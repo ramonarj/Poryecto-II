@@ -87,6 +87,7 @@ int ControllerInputComponent::yvalue(int joy, int stick)
 			return m_joystickValues[joy].second->getY();
 		}
 	}
+	return 0;
 }
 
 void ControllerInputComponent::handleInput(GameObject* o, Uint32 time, const SDL_Event& event) {

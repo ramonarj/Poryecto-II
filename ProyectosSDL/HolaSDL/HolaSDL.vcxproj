@@ -83,6 +83,7 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
+    <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayState.h" />

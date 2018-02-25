@@ -71,6 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="ControllerInputComponent.cpp" />
     <ClCompile Include="FillRectRenderer.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
@@ -94,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collisions.h" />
+    <ClInclude Include="ControllerInputComponent.h" />
     <ClInclude Include="FillRectRenderer.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
@@ -103,6 +106,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayState.h" />

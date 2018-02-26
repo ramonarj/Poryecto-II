@@ -57,9 +57,6 @@
     <ClCompile Include="FillRectRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="GameComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     <ClCompile Include="TileLayer.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -138,9 +138,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="FillRectRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ImageRenderer.h">
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="TileLayer.h">
       <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

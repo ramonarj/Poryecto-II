@@ -1,6 +1,11 @@
 #pragma once
 
+#include "SDLGame.h"
 #include "GameObject.h"
+
+using namespace std;
+
+class Entity;
 
 class Component {
 
@@ -13,9 +18,7 @@ public:
 	Component();
 	virtual ~Component();
 
-	virtual void update(GameObject* o, Uint32 time) = 0;
-	virtual void handleInput(GameObject* o, Uint32 time, const SDL_Event& event) = 0;
-	virtual void render(GameObject* o, Uint32 time) = 0;
-
+	virtual void update(Entity* e, Uint32 time) = 0;
+	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event) = 0;
+	virtual void render(Entity* e, Uint32 time) = 0;
 };
-

@@ -2,7 +2,6 @@
 #define INPUTCOMPONENT_H_
 
 #include "Component.h"
-#include "GameObject.h"
 
 /*
  *

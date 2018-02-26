@@ -30,6 +30,10 @@ public:
 	virtual void delLogicComponent(LogicComponent* pc);
 	virtual void delRenderComponent(RenderComponent* rc);
 
+	//Nuevos
+	template<typename T>
+	T getComponent();
+
 private:
 	bool enabled_;
 

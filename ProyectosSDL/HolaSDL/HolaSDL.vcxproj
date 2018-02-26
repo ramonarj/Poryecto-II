@@ -70,6 +70,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Item.cpp" />
+    <ClCompile Include="..\Weapon.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -104,6 +106,8 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Item.h" />
+    <ClInclude Include="..\Weapon.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
@@ -122,6 +126,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LogicComponent.h" />
+    <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="PhysicsComponent.h" />

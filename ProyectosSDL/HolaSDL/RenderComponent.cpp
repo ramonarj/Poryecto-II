@@ -1,6 +1,7 @@
 #include "RenderComponent.h"
 
-RenderComponent::RenderComponent() : Component(){
+RenderComponent::RenderComponent() : Component()
+{
 	// TODO Auto-generated constructor stub
 
 }

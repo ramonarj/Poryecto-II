@@ -6,8 +6,8 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 {
 }
 
-KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter) :
-	left_(left), right_(right), up_(up), down_(down), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter) {
+KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter) :
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter) {
 }
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
@@ -33,6 +33,9 @@ void KeyBoardInputComponent::handleInput(GameObject* o, Uint32 time, const SDL_E
 	}
 	else if (state[down_]) {
 		velocity.setY(1);
+	}
+	else if (state[interact_]) {
+		//INTERACTUAR ETC
 	}
 	else {
 		velocity.setY(0);

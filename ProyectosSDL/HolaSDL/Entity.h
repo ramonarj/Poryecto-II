@@ -1,6 +1,6 @@
 #include "GameObject.h"
 #include "InputComponent.h"
-#include "PhysicsComponent.h"
+#include "LogicComponent.h"
 #include "RenderComponent.h"
 #include <vector>
 
@@ -19,17 +19,17 @@ public:
 	virtual void render(Uint32 time);
 
 	virtual void addInputComponent(InputComponent* ic);
-	virtual void addPhysicsComponent(PhysicsComponent* pc);
+	virtual void addLogicComponent(LogicComponent* pc);
 	virtual void addRenderComponent(RenderComponent* rc);
 
 	virtual void delInputComponent(InputComponent* ic);
-	virtual void delPhysicsComponent(PhysicsComponent* pc);
+	virtual void delLogicComponent(LogicComponent* pc);
 	virtual void delRenderComponent(RenderComponent* rc);
 
 private:
 	bool enabled_;
 
 	vector<InputComponent*> inputComp_;
-	vector<PhysicsComponent*> physicsComp_;
+	vector<LogicComponent*> physicsComp_;
 	vector<RenderComponent*> renderComp_;
 };

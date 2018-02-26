@@ -6,6 +6,8 @@
 #include "SDLGame.h"
 #include "GameObject.h"
 #include "Entity.h"
+#include "Player.h"
+#include "Enemy.h"
 
 class Game : public SDLGame {
 

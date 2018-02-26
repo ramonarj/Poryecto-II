@@ -6,7 +6,9 @@ class Enemy :
 {
 public:
 	Enemy();
-	~Enemy();
+	Enemy(Player* player);
+	virtual ~Enemy();
+	void update();
 private:
 	Player* player;
 };

@@ -14,7 +14,7 @@ void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 }
 
 void Entity::update(Uint32 time) {
-	for (PhysicsComponent* pc : physicsComp_) {
+	for (LogicComponent* pc : physicsComp_) {
 		if (pc->isEnabled())
 			pc->update(this, time);
 	}
@@ -31,7 +31,7 @@ void Entity::addInputComponent(InputComponent* ic) {
 	inputComp_.push_back(ic);
 }
 
-void Entity::addPhysicsComponent(PhysicsComponent* pc) {
+void Entity::addLogicComponent(LogicComponent* pc) {
 	physicsComp_.push_back(pc);
 }
 
@@ -46,8 +46,8 @@ void Entity::delInputComponent(InputComponent* ic) {
 		inputComp_.erase(position);
 }
 
-void Entity::delPhysicsComponent(PhysicsComponent* pc) {
-	std::vector<PhysicsComponent*>::iterator position = std::find(
+void Entity::delLogicComponent(LogicComponent* pc) {
+	std::vector<LogicComponent*>::iterator position = std::find(
 			physicsComp_.begin(), physicsComp_.end(), pc);
 	if (position != physicsComp_.end())
 		physicsComp_.erase(position);

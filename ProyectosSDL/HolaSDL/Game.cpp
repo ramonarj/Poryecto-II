@@ -9,8 +9,10 @@ Game::~Game() {
 	closeGame();
 }
 
-void Game::initGame() {
-
+void Game::initGame() 
+{
+	//Player* player = new Player();
+	//Enemy* enemy = new Enemy(player);
 }
 
 void Game::closeGame() {

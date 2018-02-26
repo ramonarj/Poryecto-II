@@ -1,8 +1,10 @@
 #pragma once
-class LogicComponent
+
+#include "Component.h"
+class LogicComponent: public Component
 {
 public:
 	LogicComponent();
-	~LogicComponent();
+	virtual ~LogicComponent();
 };
 

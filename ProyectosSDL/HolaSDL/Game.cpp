@@ -11,8 +11,8 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	//GameObject* player = new GameObject(this);
-	//actors_.push_back(new GameObject* e);
+	Entity* player = new Entity(this);
+	actors_.push_back(player);
 	Player* playerComp = new Player(2,2);
 	Enemy* enemyComp = new Enemy(playerComp);
 }

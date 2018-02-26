@@ -13,6 +13,17 @@ Enemy::Enemy(Player* player):player(player)
 
 void Enemy::update(GameObject* o, Uint32 time)
 {
+	//Movimiento en X
+	if (player->getPosX() < posX)
+		posX++;
+	else if(player->getPosX() > posX)
+		posX--;
+
+	//Movimiento en Y
+	if (player->getPosY() < posY)
+		posY++;
+	else if (player->getPosX() > posY)
+		posX--;
 
 }
 

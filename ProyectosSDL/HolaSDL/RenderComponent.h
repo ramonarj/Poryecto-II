@@ -11,6 +11,7 @@ public:
 	RenderComponent();
 	virtual ~RenderComponent();
 	virtual void render(Entity* e, Uint32 time) = 0;
+
 };
 
 #endif /* RENDERCOMPONENT_H_ */

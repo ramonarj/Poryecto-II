@@ -11,8 +11,15 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	//Player* player = new Player();
-	//Enemy* enemy = new Enemy(player);
+	//Jugador
+	Entity* player = new Entity(this);
+	player->addLogicComponent(new Player(2, 2));
+	actors_.push_back(player);
+
+	//Enemigo
+	Entity* enemy = new Entity(this);
+	//enemy->addLogicComponent(new Enemy(player));
+	//actors_.push_back(enemy);
 }
 
 void Game::closeGame() {

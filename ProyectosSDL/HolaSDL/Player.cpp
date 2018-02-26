@@ -6,6 +6,11 @@ Player::Player()
 {
 }
 
+Player::Player(int posX, int posY):Character(posX, posY)
+{
+}
+
+
 void Player::update(GameObject* o, Uint32 time)
 {
 

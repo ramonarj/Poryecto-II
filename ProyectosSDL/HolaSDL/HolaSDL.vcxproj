@@ -82,6 +82,8 @@
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Music.cpp" />
@@ -93,6 +95,7 @@
     <ClCompile Include="SkeletonRenderer.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +111,8 @@
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="PhysicsComponent.h" />
@@ -119,6 +124,7 @@
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TileLayer.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

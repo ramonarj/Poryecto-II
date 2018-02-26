@@ -9,7 +9,7 @@ public:
 	int getPosX() { return posX; };
 	int getPosY() { return posY; };
 	virtual ~Character();
-private:
+protected:
 	int posX, posY;
 };
 

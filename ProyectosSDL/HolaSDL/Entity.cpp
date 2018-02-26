@@ -59,3 +59,9 @@ void Entity::delRenderComponent(RenderComponent* rc) {
 	if (position != renderComp_.end())
 		renderComp_.erase(position);
 }
+
+template<typename T>
+T Entity:: getComponent()
+{
+	for()
+}

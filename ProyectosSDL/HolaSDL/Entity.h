@@ -11,7 +11,7 @@ public:
 	Entity(SDLGame* game);
 	virtual ~Entity();
 
-	void setActive(bool enabled) { enabled_ = enabled; };
+	void setEnabled(bool enabled) { enabled_ = enabled; };
 	bool isEnabled() { return enabled_; };
 
 	virtual void handleInput(Uint32 time, const SDL_Event& event);

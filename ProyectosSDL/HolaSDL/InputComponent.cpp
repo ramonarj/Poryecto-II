@@ -1,6 +1,6 @@
 #include "InputComponent.h"
 
-InputComponent::InputComponent() {
+InputComponent::InputComponent() : Component(){
 	// TODO Auto-generated constructor stub
 
 }

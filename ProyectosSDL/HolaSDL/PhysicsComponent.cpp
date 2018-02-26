@@ -1,6 +1,6 @@
 #include "PhysicsComponent.h"
 
-PhysicsComponent::PhysicsComponent() {
+PhysicsComponent::PhysicsComponent() : Component(){
 	// TODO Auto-generated constructor stub
 
 }

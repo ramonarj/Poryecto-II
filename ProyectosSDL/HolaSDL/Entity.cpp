@@ -8,19 +8,22 @@ Entity::~Entity() {
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 	for (InputComponent* ic : inputComp_) {
-		ic->handleInput(this, time, event);
+		if (ic->isEnabled())
+			ic->handleInput(this, time, event);
 	}
 }
 
 void Entity::update(Uint32 time) {
 	for (PhysicsComponent* pc : physicsComp_) {
-		pc->update(this, time);
+		if (pc->isEnabled())
+			pc->update(this, time);
 	}
 }
 
 void Entity::render(Uint32 time) {
 	for (RenderComponent* rc : renderComp_) {
-		rc->render(this, time);
+		if (rc->isEnabled())
+			rc->render(this, time);
 	}
 }
 

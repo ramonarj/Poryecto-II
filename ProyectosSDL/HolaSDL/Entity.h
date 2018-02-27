@@ -15,6 +15,7 @@ using namespace std;
 class Entity{
 public:
 	Entity(SDLGame* game);
+	Entity(SDLGame* game, int posX, int posY);
 	virtual ~Entity();
 
 	void setActive(bool enabled) { active_ = enabled; };
@@ -52,9 +53,9 @@ public:
 	const Vector2D& getDirection() const;
 	void setDirection(const Vector2D &vel);
 
-	//Nuevos
+	//Get Component
 	template<typename T>
-	T getComponent();
+	T* getComponent();
 
 private:
     SDLGame* game_; // pointer to the game:
@@ -70,6 +71,8 @@ private:
 	vector<InputComponent*> inputComp_;
 	vector<LogicComponent*> logicComp_;
 	vector<RenderComponent*> renderComp_;
+
+	
 };
 
 #endif /* ENTITY_H_ */

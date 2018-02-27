@@ -12,14 +12,13 @@ Game::~Game() {
 void Game::initGame() 
 {
 	//Jugador
-	Entity* player = new Entity(this);
-	Player* playerComp = new Player(2,2);
-	player->addLogicComponent(playerComp);
+	Entity* player = new Entity(this, 2, 2);
+	player->addLogicComponent(new Player(5));
 	actors_.push_back(player);
 
 	//Enemigo
-	Entity* enemy = new Entity(this);
-	enemy->addLogicComponent(new Enemy(playerComp, 20, 10));
+	Entity* enemy = new Entity(this, 20, 10);
+	enemy->addLogicComponent(new Enemy(player, 2));
 	actors_.push_back(enemy);
 }
 

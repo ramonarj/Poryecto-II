@@ -2,11 +2,11 @@
 
 
 
-Player::Player()
+Player::Player():Character()
 {
 }
 
-Player::Player(int posX, int posY):Character(posX, posY)
+Player::Player(int life):Character(life)
 {
 }
 

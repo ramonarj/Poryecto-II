@@ -5,11 +5,10 @@ class Character: public LogicComponent
 {
 public:
 	Character();
-	Character(int posX, int posY);
-	int getPosX() { return posX; };
-	int getPosY() { return posY; };
+	Character(int life);
 	virtual ~Character();
+
 protected:
-	int posX, posY;
+	int life;
 };
 

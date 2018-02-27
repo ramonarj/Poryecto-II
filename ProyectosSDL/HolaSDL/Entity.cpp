@@ -7,6 +7,11 @@ Entity::Entity(SDLGame* game) :
 	game_(game), active_(true), width_(), height_(), position_(), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
 }
 
+Entity::Entity(SDLGame* game, int posX, int posY) :
+	game_(game), active_(true), width_(), height_(), position_(posX, posY), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
+}
+
+
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 	for (InputComponent* ic : inputComp_) {
@@ -63,9 +68,44 @@ void Entity::delRenderComponent(RenderComponent* rc) {
 }
 
 template<typename T>
-T Entity:: getComponent()
+T* Entity:: getComponent()
 {
-	for()
+	RenderComponent* renderComp = dynamic_cast<T>();
+	LogicComponent* logicComp = dynamic_cast<T>();
+	InputComponent* inputComp = dynamic_cast<T>();
+	//Render Compopnent
+	if (renderComp != nullptr)
+	{
+		for (RenderComponent* rc : renderComp_) {
+			T* component = dynamic_cast<T>(rc);
+			if (component != nullptr)
+				return component;
+
+		}
+	}
+
+	//Logic Component
+	else if (logicComp != nullptr)
+	{
+		for (LogicComponent* lc : logicComp_) {
+			T* component = dynamic_cast<T>(lc);
+			if (component != nullptr)
+				return component;
+		}
+	}
+
+	//Input Component
+	else if (inputComp != nullptr)
+	{
+		for (InputComponent* ic : inputComp_) {
+			T* component = dynamic_cast<T>(ic);
+			if (component != nullptr)
+				return component;
+		}
+	}
+
+	else
+		return nullptr;
 }
 
 

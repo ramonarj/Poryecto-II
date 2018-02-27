@@ -74,7 +74,7 @@ T* Entity:: getComponent()
 	LogicComponent* logicComp = dynamic_cast<T>();
 	InputComponent* inputComp = dynamic_cast<T>();
 	//Render Compopnent
-	if (renderComp != nullptr)
+	if(renderComp != nullptr)
 	{
 		for (RenderComponent* rc : renderComp_) {
 			T* component = dynamic_cast<T>(rc);
@@ -85,7 +85,7 @@ T* Entity:: getComponent()
 	}
 
 	//Logic Component
-	else if (logicComp != nullptr)
+	else if(logicComp != nullptr)
 	{
 		for (LogicComponent* lc : logicComp_) {
 			T* component = dynamic_cast<T>(lc);
@@ -95,7 +95,7 @@ T* Entity:: getComponent()
 	}
 
 	//Input Component
-	else if (inputComp != nullptr)
+	else if(inputComp != nullptr)
 	{
 		for (InputComponent* ic : inputComp_) {
 			T* component = dynamic_cast<T>(ic);

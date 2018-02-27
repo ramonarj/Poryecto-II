@@ -16,5 +16,7 @@ public:
 	virtual ~Enemy();
 private:
 	Entity* player;
+
+	virtual void move(Entity* o);
 };
 

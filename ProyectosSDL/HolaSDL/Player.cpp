@@ -10,8 +10,7 @@ Player::Player(int life):Character(life)
 {
 }
 
-
-void Player::update(Entity* o, Uint32 time)
+void Player::move(Entity* o)
 {
 
 }

@@ -16,13 +16,18 @@ Enemy::Enemy(Entity* player, int life):player(player), Character(life)
 
 void Enemy::update(Entity* o, Uint32 time)
 {
+	move(o);
+}
+
+void Enemy::move(Entity* o)
+{
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
 
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())
 		pos.setX(pos.getX() + 1);
-	else if(pos.getX() > playerPos.getX())
+	else if (pos.getX() > playerPos.getX())
 		pos.setX(pos.getX() - 1);
 
 	//Movimiento en Y
@@ -39,7 +44,6 @@ void Enemy::update(Entity* o, Uint32 time)
 		cout << "You died" << endl;
 	else
 		cout << "(" << pos.getX() << "," << pos.getY() << ")" << endl;
-
 }
 
 void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}

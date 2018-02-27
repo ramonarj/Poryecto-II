@@ -67,7 +67,6 @@ void Entity::delRenderComponent(RenderComponent* rc) {
 		renderComp_.erase(position);
 }
 
-
 ////Heredados de GameObject
 
 SDLGame* Entity::getGame() const {

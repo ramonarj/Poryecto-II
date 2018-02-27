@@ -84,6 +84,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="Interactible.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="Layer.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="Interactible.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="Layer.h" />

@@ -1,11 +1,5 @@
 #include "Item.h"
-
-
-
-Item::Item(ItemType type) : type (type)
-{
-}
-
+#include <iostream>
 
 Item::~Item()
 {
@@ -13,4 +7,8 @@ Item::~Item()
 
 void Item::update() {
 
+}
+
+void Item::interact() {
+	std::cout << "You interacted with: " << type_ << std::endl;
 }

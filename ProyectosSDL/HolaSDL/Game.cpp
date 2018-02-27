@@ -13,7 +13,7 @@ void Game::initGame()
 {
 	//Jugador
 	Entity* player = new Entity(this);
-	player->addLogicComponent(new Player(2, 2));
+	//player->addLogicComponent(new Player(2, 2));
 	actors_.push_back(player);
 
 	//Enemigo

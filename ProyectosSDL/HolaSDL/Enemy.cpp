@@ -9,9 +9,9 @@ Enemy::Enemy():player(nullptr), Character()
 
 Enemy::Enemy(Entity* player, int life):player(player), Character(life)
 {
-	/*Player* playerComp = player->getComponent<Player>();
+	Player* playerComp = player->getComponent<Player>();
 	if (playerComp != nullptr)
-		cout << "There's a player with life: " << playerComp->getLife();*/
+		cout << "There's a player with life: " << playerComp->getLife();
 }
 
 void Enemy::update(Entity* o, Uint32 time)
@@ -35,17 +35,15 @@ void Enemy::update(Entity* o, Uint32 time)
 	o->setPosition(pos);
 
 	//Lo pilla
-	if (pos.getX() == playerPos.getX() && pos.getY() == playerPos.getY())
-		cout << "You died" << endl;
-	else
-		cout << "(" << pos.getX() << "," << pos.getY() << ")" << endl;
+	//if (pos.getX() == playerPos.getX() && pos.getY() == playerPos.getY())
+	//	cout << "You died" << endl;
+	//else
+	//	cout << "(" << pos.getX() << "," << pos.getY() << ")" << endl;
 
 }
 
 void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}
 void Enemy::render(Entity* o, Uint32 time) {}
-
-
 
 Enemy::~Enemy()
 {

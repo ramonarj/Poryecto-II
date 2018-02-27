@@ -55,7 +55,32 @@ public:
 
 	//Get Component
 	template<typename T>
-	T* getComponent();
+	T* getComponent()
+	{
+		//Render Compopnent
+		for (RenderComponent* rc : renderComp_) {
+			T* component = dynamic_cast<T*>(rc);
+			if (component != nullptr)
+				return component;
+		}
+		
+		//Logic Component
+		for (LogicComponent* lc : logicComp_) {
+			T* component = dynamic_cast<T*>(lc);
+			if (component != nullptr)
+				return component;
+		}
+
+		//Input Component
+		for (InputComponent* ic : inputComp_) {
+			T* component = dynamic_cast<T*>(ic);
+			if (component != nullptr)
+				return component;
+		}
+
+		//If component not found
+		return nullptr;
+	};
 
 private:
     SDLGame* game_; // pointer to the game:

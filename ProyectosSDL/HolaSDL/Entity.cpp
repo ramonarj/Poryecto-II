@@ -67,47 +67,6 @@ void Entity::delRenderComponent(RenderComponent* rc) {
 		renderComp_.erase(position);
 }
 
-template<typename T>
-T* Entity:: getComponent()
-{
-	RenderComponent* renderComp = dynamic_cast<T>();
-	LogicComponent* logicComp = dynamic_cast<T>();
-	InputComponent* inputComp = dynamic_cast<T>();
-	//Render Compopnent
-	if (renderComp != nullptr)
-	{
-		for (RenderComponent* rc : renderComp_) {
-			T* component = dynamic_cast<T>(rc);
-			if (component != nullptr)
-				return component;
-
-		}
-	}
-
-	//Logic Component
-	else if (logicComp != nullptr)
-	{
-		for (LogicComponent* lc : logicComp_) {
-			T* component = dynamic_cast<T>(lc);
-			if (component != nullptr)
-				return component;
-		}
-	}
-
-	//Input Component
-	else if (inputComp != nullptr)
-	{
-		for (InputComponent* ic : inputComp_) {
-			T* component = dynamic_cast<T>(ic);
-			if (component != nullptr)
-				return component;
-		}
-	}
-
-	else
-		return nullptr;
-}
-
 
 ////Heredados de GameObject
 

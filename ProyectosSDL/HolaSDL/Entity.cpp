@@ -1,10 +1,12 @@
 #include "Entity.h"
 
-Entity::Entity(SDLGame* game) :	GameObject(game), enabled_(true), inputComp_(), physicsComp_(), renderComp_() {
-}
-
 Entity::~Entity() {
 }
+
+Entity::Entity(SDLGame* game) :
+	game_(game), active_(true), width_(), height_(), position_(), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
+}
+
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 	for (InputComponent* ic : inputComp_) {
@@ -14,9 +16,9 @@ void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 }
 
 void Entity::update(Uint32 time) {
-	for (LogicComponent* pc : physicsComp_) {
-		if (pc->isEnabled())
-			pc->update(this, time);
+	for (LogicComponent* lc : logicComp_) {
+		if (lc->isEnabled())
+			lc->update(this, time);
 	}
 }
 
@@ -31,8 +33,8 @@ void Entity::addInputComponent(InputComponent* ic) {
 	inputComp_.push_back(ic);
 }
 
-void Entity::addLogicComponent(LogicComponent* pc) {
-	physicsComp_.push_back(pc);
+void Entity::addLogicComponent(LogicComponent* lc) {
+	logicComp_.push_back(lc);
 }
 
 void Entity::addRenderComponent(RenderComponent* rc) {
@@ -46,11 +48,11 @@ void Entity::delInputComponent(InputComponent* ic) {
 		inputComp_.erase(position);
 }
 
-void Entity::delLogicComponent(LogicComponent* pc) {
+void Entity::delLogicComponent(LogicComponent* lc) {
 	std::vector<LogicComponent*>::iterator position = std::find(
-			physicsComp_.begin(), physicsComp_.end(), pc);
-	if (position != physicsComp_.end())
-		physicsComp_.erase(position);
+		logicComp_.begin(), logicComp_.end(), lc);
+	if (position != logicComp_.end())
+		logicComp_.erase(position);
 }
 
 void Entity::delRenderComponent(RenderComponent* rc) {
@@ -65,3 +67,59 @@ T Entity:: getComponent()
 {
 	for()
 }
+
+
+////Heredados de GameObject
+
+SDLGame* Entity::getGame() const {
+	return game_;
+}
+
+
+double Entity::getWidth() const {
+	return width_;
+}
+
+void Entity::setWidth(double width) {
+	width_ = width;
+}
+
+double Entity::getHeight() const {
+	return height_;
+}
+
+void Entity::setHeight(double height) {
+	height_ = height;
+}
+
+const Vector2D& Entity::getPosition() const {
+	return position_;
+}
+
+void Entity::setPosition(const Vector2D &pos) {
+	position_.set(pos);
+}
+
+const Vector2D& Entity::getVelocity() const {
+	return velocity_;
+}
+
+void Entity::setVelocity(const Vector2D &vel) {
+	velocity_.set(vel);
+}
+
+const Vector2D& Entity::getDirection() const {
+	return direction_;
+}
+
+void Entity::scale(double s) {
+	width_ *= s;
+	height_ *= s;
+}
+
+void Entity::setDirection(const Vector2D &vel) {
+	direction_.set(vel);
+	direction_.normalize();
+}
+
+

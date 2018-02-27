@@ -11,7 +11,7 @@ Enemy::Enemy(Player* player):player(player)
 
 }
 
-void Enemy::update(GameObject* o, Uint32 time)
+void Enemy::update(Entity* o, Uint32 time)
 {
 	//Movimiento en X
 	if (player->getPosX() < posX)
@@ -27,8 +27,8 @@ void Enemy::update(GameObject* o, Uint32 time)
 
 }
 
-void Enemy::handleInput(GameObject* o, Uint32 time, const SDL_Event& event) {}
-void Enemy::render(GameObject* o, Uint32 time) {}
+void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}
+void Enemy::render(Entity* o, Uint32 time) {}
 
 
 

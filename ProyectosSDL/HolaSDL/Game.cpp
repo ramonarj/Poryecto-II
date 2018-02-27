@@ -70,14 +70,14 @@ void Game::handleInput(Uint32 time) {
 			}
 		}
 
-		for (GameObject* o : actors_) {
+		for (Entity* o : actors_) {
 			o->handleInput(time, event);
 		}
 	}
 }
 
 void Game::update(Uint32 time) {
-	for (GameObject* o : actors_) {
+	for (Entity* o : actors_) {
 		o->update(time);
 	}
 }
@@ -87,7 +87,7 @@ void Game::render(Uint32 time) {
 
 	SDL_RenderClear(getRenderer()); //Limpia el render
 
-	for (GameObject* o : actors_) {
+	for (Entity* o : actors_) {
 		o->render(time);
 	}
 

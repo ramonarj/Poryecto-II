@@ -11,13 +11,13 @@ Player::Player(int posX, int posY):Character(posX, posY)
 }
 
 
-void Player::update(GameObject* o, Uint32 time)
+void Player::update(Entity* o, Uint32 time)
 {
 
 }
 
-void Player::handleInput(GameObject* o, Uint32 time, const SDL_Event& event){}
-void Player::render(GameObject* o, Uint32 time){}
+void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event){}
+void Player::render(Entity* o, Uint32 time){}
 
 Player::~Player()
 {

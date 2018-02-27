@@ -15,13 +15,13 @@ Weapon::~Weapon()
 void Weapon::weaponType(ItemType type) {
 	switch (type)
 	{
-	case Palo:
+	case Stick:
 		hits = 5;
-	case Plancha:
+	case Lever:
 		hits = 10;
-	case Tuberia:
+	case Pipe:
 		hits = 15;
-	case Hacha:
+	case Ax:
 		hits = 20;
 		damage = 2;
 		

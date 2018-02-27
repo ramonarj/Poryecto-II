@@ -2,7 +2,6 @@
 #define PHYSICSCOMPONENT_H_
 
 #include "Component.h"
-#include "GameObject.h"
 
 /*
  *

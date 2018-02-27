@@ -1,7 +1,11 @@
+#ifndef ENTITY_H_
+#define ENTITY_H_
+
 #include "GameObject.h"
 #include "InputComponent.h"
 #include "LogicComponent.h"
 #include "RenderComponent.h"
+
 #include <vector>
 
 using namespace std;
@@ -37,3 +41,5 @@ private:
 	vector<LogicComponent*> physicsComp_;
 	vector<RenderComponent*> renderComp_;
 };
+
+#endif /* ENTITY_H_ */

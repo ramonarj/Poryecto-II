@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : SDLGame("Game Name", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
+Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 	exit_ = false;
 }
@@ -13,13 +13,14 @@ void Game::initGame()
 {
 	//Jugador
 	Entity* player = new Entity(this);
-	//player->addLogicComponent(new Player(2, 2));
+	Player* playerComp = new Player(2,2);
+	player->addLogicComponent(playerComp);
 	actors_.push_back(player);
 
 	//Enemigo
 	Entity* enemy = new Entity(this);
-	//enemy->addLogicComponent(new Enemy(player));
-	//actors_.push_back(enemy);
+	enemy->addLogicComponent(new Enemy(playerComp, 20, 10));
+	actors_.push_back(enemy);
 }
 
 void Game::closeGame() {

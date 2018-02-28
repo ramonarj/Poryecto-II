@@ -19,6 +19,12 @@
     <Filter Include="Archivos de encabezado\Map">
       <UniqueIdentifier>{16574091-922a-4532-938c-f1cc97613aab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Inventory">
+      <UniqueIdentifier>{e1b45d89-4645-4e95-b9c8-373d4b0a1335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Inventory">
+      <UniqueIdentifier>{1f81370f-03ca-4dab-aecf-5a767a7896b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -125,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="Interactible.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

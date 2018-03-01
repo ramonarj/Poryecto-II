@@ -117,11 +117,29 @@
     <ClCompile Include="Component.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="..\Item.cpp">
+    <ClCompile Include="Item.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="..\Weapon.cpp">
+    <ClCompile Include="Weapon.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelParser.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,10 +242,22 @@
     <ClInclude Include="Messages.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\Item.h">
+    <ClInclude Include="Weapon.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\Weapon.h">
+    <ClInclude Include="Item.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelParser.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

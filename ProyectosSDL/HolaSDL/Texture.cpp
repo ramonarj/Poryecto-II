@@ -1,15 +1,17 @@
 #include "Texture.h"
 
+Texture* Texture::s_pInstance = 0;
+
 Texture::Texture() :
 		texture_(nullptr), width_(0), height_(0) {
 }
 
-Texture::Texture(SDL_Renderer* renderer, std::string fileName) :
+Texture::Texture(SDL_Renderer* renderer, string fileName) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromImg(renderer, fileName);
 }
 
-Texture::Texture(SDL_Renderer* renderer, std::string text, const Font& font,
+Texture::Texture(SDL_Renderer* renderer, string text, const Font& font,
 		const SDL_Color color) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromText(renderer, text, font, color);
@@ -36,7 +38,7 @@ void Texture::close() {
 	}
 }
 
-bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
+bool Texture::loadFromImg(SDL_Renderer* renderer, string fileName) {
 	SDL_Surface* surface = IMG_Load(fileName.c_str());
 	if (surface != nullptr) {
 		close(); // destroy current texture
@@ -50,7 +52,7 @@ bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	return texture_ != nullptr;
 }
 
-bool Texture::loadFromText(SDL_Renderer* renderer, std::string text,
+bool Texture::loadFromText(SDL_Renderer* renderer, string text,
 		const Font& font, const SDL_Color color) {
 	SDL_Surface* textSurface = font.renderText(text, color);
 	if (textSurface != nullptr) {
@@ -95,4 +97,40 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
 		SDL_RenderCopyEx(renderer, texture_, clip, &dest, angle, nullptr,
 				SDL_FLIP_NONE);
 	}
+}
+
+bool Texture::load(string fileName, std::string id, SDL_Renderer * pRenderer)
+{
+	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
+	if (pTempSurface == 0)
+	{
+		return false;
+	}
+	SDL_Texture* pTexture =
+		SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+	SDL_FreeSurface(pTempSurface);
+
+	// everything went ok, add the texture to our list
+	if (pTexture != 0)
+	{
+		m_textureMap[id] = pTexture;
+		return true;
+	}
+
+	// reaching here means something went wrong
+	return false;
+}
+
+void Texture::drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer)
+{
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
+	srcRect.x = margin + (spacing + width) * currentFrame;
+	srcRect.y = margin + (spacing + height) * currentRow;
+	srcRect.w = destRect.w = width;
+	srcRect.h = destRect.h = height;
+	destRect.x = x;
+	destRect.y = y;
+	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
+		&destRect, 0, 0, SDL_FLIP_NONE);
 }

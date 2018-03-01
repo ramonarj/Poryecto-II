@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="30" tilewidth="24" tileheight="24" nextobjectid="1">
+ <tileset firstgid="1" name="paredes" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="400" columns="20">
+  <image source="levels/PRUEBA D0S.png" width="480" height="480"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="60" height="30" offsetx="92" offsety="-334">
+  <data encoding="base64" compression="zlib">
+   eJzt1rkKwkAUheH4ONpoYauNK8QNtNLCuIA22riAdtq4gD6Tj+ZfJBBCCkGEmfEUHzcDp7ozgeNnPK+FA45YYR07t9GB70hujABFPHHCGY/wPMHUoVwfAzTRQD2cVdTQRc+h3AJLDDFKmTPMHcpFe4n2kZzJ/dmeM/0+fnW/vPHgk/3Znov2wn8dxPfB+VVBcn+25zbYIotcbBbI5LHje+9Q7oIrSiinzBvuDuVM70PqV+pX6lfqV/9+v6b2IfUr9Sv1K/Ur9Ssz+5D6lfqV+pX6lfqVmX1I/eq73BuSGrVD
+  </data>
+ </layer>
+</map>

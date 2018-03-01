@@ -1,22 +1,26 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
-#include "GameObject.h"
 #include "InputComponent.h"
 #include "LogicComponent.h"
 #include "RenderComponent.h"
+
+#include "SDLGame.h"
+#include "Vector2D.h"
 
 #include <vector>
 
 using namespace std;
 
-class Entity: public GameObject {
+class Entity{
 public:
 	Entity(SDLGame* game);
 	virtual ~Entity();
 
-	void setEnabled(bool enabled) { enabled_ = enabled; };
-	bool isEnabled() { return enabled_; };
+	void setActive(bool enabled) { active_ = enabled; };
+	bool isActive() { return active_; };
+
+	SDLGame* getGame() const;
 
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
@@ -30,15 +34,41 @@ public:
 	virtual void delLogicComponent(LogicComponent* pc);
 	virtual void delRenderComponent(RenderComponent* rc);
 
+	//Getters y setters
+
+	double getWidth() const;
+	void setWidth(double width);
+	double getHeight() const;
+	void setHeight(double height);
+	void scale(double s);
+
+
+	const Vector2D& getPosition() const;
+	void setPosition(const Vector2D &pos);
+
+	const Vector2D& getVelocity() const;
+	void setVelocity(const Vector2D &vel);
+
+	const Vector2D& getDirection() const;
+	void setDirection(const Vector2D &vel);
+
 	//Nuevos
 	template<typename T>
 	T getComponent();
 
 private:
-	bool enabled_;
+    SDLGame* game_; // pointer to the game:
+	bool active_;
+
+	Vector2D position_; // position
+	Vector2D direction_; // angle in degrees (0) is considered facing left
+	Vector2D velocity_; // direction
+
+	double width_;  // width
+	double height_; // height
 
 	vector<InputComponent*> inputComp_;
-	vector<LogicComponent*> physicsComp_;
+	vector<LogicComponent*> logicComp_;
 	vector<RenderComponent*> renderComp_;
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "LogicComponent.h"
-enum ItemType{Palo, Plancha, Tuberia, Hacha, Alcohol, Vendas, Botiquin, QuimicoGenerico, QuimiciAcido,
-				Acido, Biocida, PiezaPuzzle, Tarjeta, Llave, CintaAislante, Foto};
+enum ItemType{ Stick, Lever, Pipe, Ax, Alcohol, Bandages, FirstAid, GenericChemical, AcidChemical, 
+					Acid, Biocide, PiecePuzzle, Card, Key, TapeInsulation, Photo };
 
 class Item : public LogicComponent//, public Observable
 {

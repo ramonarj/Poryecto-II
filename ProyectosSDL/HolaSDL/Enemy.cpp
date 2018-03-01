@@ -1,34 +1,42 @@
 #include "Enemy.h"
+#include <iostream>
 
 
-Enemy::Enemy():player(nullptr)
+Enemy::Enemy():player(nullptr), Character()
 {
 
 }
 
-Enemy::Enemy(Player* player):player(player)
+Enemy::Enemy(Player* player, int posX, int posY):player(player), Character(posX, posY)
 {
 
 }
 
-void Enemy::update(GameObject* o, Uint32 time)
+void Enemy::update(Entity* o, Uint32 time)
 {
+	
 	//Movimiento en X
-	if (player->getPosX() < posX)
+	if (posX < player->getPosX())
 		posX++;
-	else if(player->getPosX() > posX)
+	else if(posX > player->getPosX())
 		posX--;
 
 	//Movimiento en Y
-	if (player->getPosY() < posY)
+	if (posY < player->getPosY())
 		posY++;
-	else if (player->getPosX() > posY)
-		posX--;
+	else if (posY > player->getPosY())
+		posY--;
+
+	//Lo pilla
+	if (posX == player->getPosX() && posY == player->getPosY())
+		cout << "You died" << endl;
+	else
+		cout << "(" << posX << "," << posY << ")" << endl;
 
 }
 
-void Enemy::handleInput(GameObject* o, Uint32 time, const SDL_Event& event) {}
-void Enemy::render(GameObject* o, Uint32 time) {}
+void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}
+void Enemy::render(Entity* o, Uint32 time) {}
 
 
 

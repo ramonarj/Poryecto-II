@@ -8,6 +8,10 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Item.h"
+#include "Weapon.h"
+#include "FirstAid.h"
+#include "InsulationTape.h"
 
 class Game : public SDLGame {
 

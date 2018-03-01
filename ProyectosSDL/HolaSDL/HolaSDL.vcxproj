@@ -76,6 +76,7 @@
     <ClCompile Include="ControllerInputComponent.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FillRectRenderer.cpp" />
+    <ClCompile Include="FirstAid.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -84,6 +85,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="InsulationTape.cpp" />
     <ClCompile Include="Interactible.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -114,6 +116,7 @@
     <ClInclude Include="ControllerInputComponent.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="FillRectRenderer.h" />
+    <ClInclude Include="FirstAid.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Entity.h" />
@@ -122,6 +125,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="InsulationTape.h" />
     <ClInclude Include="Interactible.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />

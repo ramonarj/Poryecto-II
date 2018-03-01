@@ -20,6 +20,18 @@ void Game::initGame()
 	Entity* enemy = new Entity(this, 20, 10);
 	enemy->addLogicComponent(new Enemy(player, 2));
 	actors_.push_back(enemy);
+
+	//Item
+	Entity* palo = new Entity(this, 10, 20);
+	palo->addLogicComponent(new Weapon(ItemType::Stick));
+	actors_.push_back(palo);
+	palo->getComponent<Weapon>()->attack();
+
+	Entity* insulationTape = new Entity(this, 15, 25);
+	insulationTape->addLogicComponent(new InsulationTape());
+	actors_.push_back(insulationTape);
+	insulationTape->getComponent<InsulationTape>()->useItem(palo);
+	
 }
 
 void Game::closeGame() {

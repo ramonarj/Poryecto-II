@@ -25,6 +25,12 @@
     <Filter Include="Archivos de código fuente\Inventory">
       <UniqueIdentifier>{1f81370f-03ca-4dab-aecf-5a767a7896b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Items">
+      <UniqueIdentifier>{7468ab43-0034-4071-8898-934bdd690bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Items">
+      <UniqueIdentifier>{a6d85e77-1d01-477b-9471-010f1977f41b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,17 +129,23 @@
     <ClCompile Include="Component.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstAid.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="InsulationTape.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,17 +248,23 @@
     <ClInclude Include="Messages.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Interactible.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstAid.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="InsulationTape.h">
+      <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

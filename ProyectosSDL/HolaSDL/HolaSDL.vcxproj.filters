@@ -117,9 +117,6 @@
     <ClCompile Include="Character.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="LogicComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -146,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="InsulationTape.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicComponent.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemContainer.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +236,6 @@
     <ClInclude Include="Character.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="LogicComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -265,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="InsulationTape.h">
       <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicComponent.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemContainer.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

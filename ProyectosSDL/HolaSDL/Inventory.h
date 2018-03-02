@@ -1,42 +1,42 @@
 #pragma once
-#include "LogicComponent.h"
+#include "ItemContainer.h"
 #include <vector>
-#include "Item.h"
-#include "Entity.h"
+#include "Weapon.h"
+
 
 using namespace std;
 
-class Inventory : public  Entity
+class Inventory : public ItemContainer
 {
 public:
-	Inventory(SDLGame* game, int tam);
+	Weapon * equiped;
+
+	Inventory(int tam);
 	~Inventory();
 
 protected:
-	int tam;
 	bool debug;
-	vector<Item*> inventory;
-
+	
 public:
+
+	void update();
+	void handleInput();
+	void render();
+
+	void addItem(Item * item);
+
 	//DEBUG METHODS
 	void Debug_Mode_On() { debug = true; };
 	void Debug_Mode_Off() { debug = false; };
 
-	//ADD AND DELETE OBJECTS TO THE INVENTORY
-	void addItem(Item* item);
-	void DeleteItem(int pos);
-	void ClearInventory();
+	virtual bool checkItem(Item* item);
+	virtual Item* ItemInPosition(int pos);
+	void equipWeapon(int pos);
+	
+	Weapon* currentWeapon();
 
-	//CHECK METHODS
-	bool checkItem(Item* item);
-	Item* ItemInPosition(int pos);
-	//It returns false if the inventory isn't full
-	bool fullInventory();
-	bool empty();
 	
 
-
-	
 };
 
 

@@ -1,39 +1,45 @@
 #include "Inventory.h"
 
 
-Inventory::Inventory(SDLGame* game, int tam) : Entity(game)
+Inventory::Inventory(int tam) : ItemContainer(tam)
 {
-	this->tam = tam;
-	this->debug = false;
+	debug = false;
+	equiped = nullptr;
 }
 
 Inventory::~Inventory()
 {
 }
-//ADD ITEM TO INVENTORY
+
+void Inventory::update()
+{
+	handleInput();
+	render();
+}
+void Inventory::handleInput()
+{
+}
+
+void Inventory::render()
+{
+	
+}
+
 void Inventory::addItem(Item * item)
 {
-	if (!fullInventory()) { inventory.push_back(item); }
-}
-//DELETE ITEM FROM SELECTED POSITION
-void Inventory::DeleteItem(int pos)
-{
-	if (!empty()) { inventory.erase(inventory.begin() + pos); }
-}
-//MAKE AN EMPTY INVENTORY
-void Inventory::ClearInventory()
-{
-	while (!empty())
+	if (equiped == nullptr)
 	{
-		inventory.erase(inventory.begin());
+		if (Weapon* wep = dynamic_cast<Weapon*>(item))
+			equiped = wep;
 	}
+	else if (!fullInventory()) { inventory.push_back(item); }
 }
+
 //CHECK IF ITEM "item" IS ON THE INVENTORY
-bool Inventory::checkItem(Item* item)
+bool Inventory::checkItem(Item * item)
 {
 	int i = 0;
 	bool found = false;
-
 	while (!found && i < inventory.size() && !empty())
 	{
 		if (ItemInPosition(i) == item) { found = true; }
@@ -41,22 +47,36 @@ bool Inventory::checkItem(Item* item)
 	return found;
 }
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
-Item* Inventory::ItemInPosition(int pos)
+Item * Inventory::ItemInPosition(int pos)
 {
 	if (pos < inventory.size() && !empty()) { return inventory[pos]; }
 	else return nullptr;
 }
-//CHECK IF INVENTORY IS FULL
-bool Inventory::fullInventory()
+
+void Inventory::equipWeapon(int pos)
 {
-	if (inventory.size() >= tam) { return true; }
-	else return false;
+	if(Weapon* wep = dynamic_cast<Weapon*>(inventory[pos])) {
+
+		if (equiped != nullptr) {
+			Item* aux = currentWeapon();
+			equiped = wep;
+			this->DeleteItem(pos);
+			addItem(aux);
+		}
+		else
+		{
+			equiped = wep;
+			this->DeleteItem(pos);	
+		}
+		
+	}
 }
-//CHECK IF INVENTORY IS EMPTY
-bool Inventory::empty()
+
+Weapon * Inventory::currentWeapon()
 {
-	if (inventory.empty()) { return true; }
-	else return false;
+	return equiped;
 }
+
+
 
 

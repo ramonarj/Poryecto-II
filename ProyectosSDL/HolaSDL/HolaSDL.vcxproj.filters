@@ -150,6 +150,9 @@
     <ClCompile Include="ItemContainer.cpp">
       <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationRenderer.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="ItemContainer.h">
       <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationRenderer.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

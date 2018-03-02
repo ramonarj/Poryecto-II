@@ -12,12 +12,16 @@
 #include "Weapon.h"
 #include "FirstAid.h"
 #include "InsulationTape.h"
+#include "GameStateMachine.h"
+#include "PlayState.h"
 
 class Game : public SDLGame {
 
 public:
 	Game();
 	virtual ~Game();
+
+	GameStateMachine stateMachine_;
 
 	// from SDLGame
 	void start();
@@ -27,8 +31,8 @@ private:
 	void initGame();
 	void closeGame();
 	void handleInput(Uint32 time);
-	void update(Uint32 time);
-	void render(Uint32 time);
+	//void update(Uint32 time);
+	//void render(Uint32 time);
 
 	const static int _WINDOW_WIDTH_ = 1280;
 	const static int _WINDOW_HEIGHT_ = 720;

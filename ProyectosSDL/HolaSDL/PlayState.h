@@ -1,5 +1,4 @@
 #pragma once
-#include "Game.h"
 #include "GameState.h"
 
 class PlayState: public GameState {
@@ -11,5 +10,6 @@ public:
 	PlayState() {};
 	PlayState(Game* game);
 	~PlayState();
+	virtual void render(Uint32 time);
 };
 

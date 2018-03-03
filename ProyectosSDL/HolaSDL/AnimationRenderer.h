@@ -11,9 +11,10 @@ public:
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 time) {};
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
-	virtual int dir(Entity* o);
+	
 private:
 	Texture* image_;
 	Uint32 movementFrames, movements = 4;
+	int dir(Entity* o);
 };
 

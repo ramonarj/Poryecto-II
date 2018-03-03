@@ -2,8 +2,18 @@
 #include "Game.h"
 
 PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva partida
-												   //Jugador
-	Entity* player = new Entity(game_, 2, 2);
+	
+
+	Entity* inventory = new Entity(game_, 0, 0);
+	Inventory* invtComp = new Inventory(4, game_->getResources()->getImageTexture(Resources::Inventory));
+	inventory->addLogicComponent(invtComp);
+	inventory->addRenderComponent(invtComp);
+	stage_.push_back(inventory);
+												   
+	Entity* player = new Entity(game_, 100, 100);	//Jugador
+	player->setWidth(200.0);
+	player->setHeight(200.0);
+	player->setVelocity(Vector2D(1.0, 0.0));
 	player->addLogicComponent(new Player(5));
 	player->addRenderComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 12));
 	stage_.push_back(player);
@@ -23,12 +33,6 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	insulationTape->addLogicComponent(new InsulationTape());
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->useItem(palo);
-
-	Entity* inventory = new Entity(game_, 0, 0);
-	Inventory* invtComp = new Inventory(4, game_->getResources()->getImageTexture(Resources::Inventory));
-	inventory->addLogicComponent(invtComp);
-	inventory->addRenderComponent(invtComp);
-	stage_.push_back(inventory);
 
 }
 

@@ -11,7 +11,7 @@ class Inventory : public ItemContainer
 public:
 	Weapon * equiped;
 
-	Inventory(int tam);
+	Inventory(int tam, Texture* tex);
 	~Inventory();
 
 protected:
@@ -19,9 +19,9 @@ protected:
 	
 public:
 
-	void update();
-	void handleInput();
-	void render();
+	virtual void update(Entity* e, Uint32 time);
+	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
+	virtual void render(Entity* e, Uint32 time);
 
 	void addItem(Item * item);
 

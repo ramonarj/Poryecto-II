@@ -1,7 +1,7 @@
 #include "Inventory.h"
 
 
-Inventory::Inventory(int tam) : ItemContainer(tam)
+Inventory::Inventory(int tam, Texture* tex) : ItemContainer(tam, tex)
 {
 	debug = false;
 	equiped = nullptr;
@@ -11,18 +11,24 @@ Inventory::~Inventory()
 {
 }
 
-void Inventory::update()
+void Inventory::update(Entity* e, Uint32 time)
 {
-	handleInput();
-	render();
+	//render(e, time);
 }
-void Inventory::handleInput()
+
+void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
 }
 
-void Inventory::render()
+void Inventory::render(Entity* e, Uint32 time)
 {
-	
+	SDL_Rect dest;
+	dest.x = 0;
+	dest.y = 0;
+	dest.w = 600;
+	dest.h = 600;
+	texture->render(e->getGame()->getRenderer(), dest);
+	//SDL_RenderPresent(e->getGame()->getRenderer());
 }
 
 void Inventory::addItem(Item * item)

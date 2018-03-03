@@ -3,18 +3,20 @@
 #include <vector>
 #include "Item.h"
 #include "Texture.h"
+#include "Resources.h"
 
 using namespace std;
 
-class ItemContainer : public LogicComponent
+class ItemContainer : public LogicComponent, public RenderComponent
 {
 public:
-	ItemContainer(int tam);
+	ItemContainer(int tam, Texture* Texture);
 	~ItemContainer();
 
 protected:
 	int tam;
 	vector<Item*> inventory;
+	Texture* texture;
 
 public:
 

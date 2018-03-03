@@ -22,6 +22,13 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	insulationTape->addLogicComponent(new InsulationTape());
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->useItem(palo);
+
+	Entity* inventory = new Entity(game_, 0, 0);
+	Inventory* invtComp = new Inventory(4, game_->getResources()->getImageTexture(Resources::Inventory));
+	inventory->addLogicComponent(invtComp);
+	inventory->addRenderComponent(invtComp);
+	stage_.push_back(inventory);
+
 }
 
 

@@ -9,7 +9,7 @@ using namespace std;
 class Inventory : public ItemContainer
 {
 public:
-	Weapon * equiped;
+	Entity * equiped;
 
 	Inventory(int tam, Texture* tex);
 	~Inventory();
@@ -23,17 +23,17 @@ public:
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
 
-	void addItem(Item * item);
+	void addItem(Entity * item);
 
 	//DEBUG METHODS
 	void Debug_Mode_On() { debug = true; };
 	void Debug_Mode_Off() { debug = false; };
 
-	virtual bool checkItem(Item* item);
-	virtual Item* ItemInPosition(int pos);
+	virtual bool checkItem(Entity* item);
+	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	
-	Weapon* currentWeapon();
+	Entity* currentWeapon();
 
 	
 

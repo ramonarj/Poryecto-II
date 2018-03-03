@@ -13,7 +13,6 @@ Inventory::~Inventory()
 
 void Inventory::update(Entity* e, Uint32 time)
 {
-	//render(e, time);
 }
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
@@ -28,21 +27,24 @@ void Inventory::render(Entity* e, Uint32 time)
 	dest.w = 600;
 	dest.h = 600;
 	texture->render(e->getGame()->getRenderer(), dest);
-	//SDL_RenderPresent(e->getGame()->getRenderer());
 }
 
-void Inventory::addItem(Item * item)
+void Inventory::addItem(Entity * item)
 {
+	bool equip = false;
 	if (equiped == nullptr)
 	{
-		if (Weapon* wep = dynamic_cast<Weapon*>(item))
-			equiped = wep;
+		Weapon* wep = item->getComponent<Weapon>();
+		if (wep != nullptr) {
+			equiped = item;
+			equip = true;
+		}
 	}
-	else if (!fullInventory()) { inventory.push_back(item); }
+	if (!fullInventory() && !equip) { inventory.push_back(item); }
 }
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY
-bool Inventory::checkItem(Item * item)
+bool Inventory::checkItem(Entity * item)
 {
 	int i = 0;
 	bool found = false;
@@ -53,7 +55,7 @@ bool Inventory::checkItem(Item * item)
 	return found;
 }
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
-Item * Inventory::ItemInPosition(int pos)
+Entity * Inventory::ItemInPosition(int pos)
 {
 	if (pos < inventory.size() && !empty()) { return inventory[pos]; }
 	else return nullptr;
@@ -61,24 +63,24 @@ Item * Inventory::ItemInPosition(int pos)
 
 void Inventory::equipWeapon(int pos)
 {
-	if(Weapon* wep = dynamic_cast<Weapon*>(inventory[pos])) {
+	if(inventory[pos]->getComponent<Weapon>()) {
 
 		if (equiped != nullptr) {
-			Item* aux = currentWeapon();
-			equiped = wep;
+			Entity* aux = currentWeapon();
+			equiped = inventory[pos];
 			this->DeleteItem(pos);
 			addItem(aux);
 		}
 		else
 		{
-			equiped = wep;
+			equiped = inventory[pos];
 			this->DeleteItem(pos);	
 		}
 		
 	}
 }
 
-Weapon * Inventory::currentWeapon()
+Entity * Inventory::currentWeapon()
 {
 	return equiped;
 }

@@ -5,6 +5,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 												   //Jugador
 	Entity* player = new Entity(game_, 2, 2);
 	player->addLogicComponent(new Player(5));
+	player->addRenderComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 12));
 	stage_.push_back(player);
 
 	//Enemigo

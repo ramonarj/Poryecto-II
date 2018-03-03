@@ -16,6 +16,8 @@
 #include "PlayState.h"
 #include "Level.h"
 
+#include "AnimationRenderer.h"
+
 class Game : public SDLGame {
 
 public:

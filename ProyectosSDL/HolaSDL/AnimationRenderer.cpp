@@ -9,7 +9,7 @@ AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames) : im
 AnimationRenderer::~AnimationRenderer()
 {
 }
-void AnimationRenderer::render(GameObject* o, Uint32 time) {
+void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 	SDL_Rect rect
 		RECT(o->getPosition().getX(), o->getPosition().getY(), o->getWidth(), o->getHeight());
@@ -24,7 +24,7 @@ void AnimationRenderer::render(GameObject* o, Uint32 time) {
 }
 
 
-int AnimationRenderer::dir(GameObject* o){
+int AnimationRenderer::dir(Entity* o){
 	int x = o->getDirection().getX();
 	int y = o->getDirection().getY();
 	if (x != 0){

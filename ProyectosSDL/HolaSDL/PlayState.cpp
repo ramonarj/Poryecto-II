@@ -32,8 +32,8 @@ PlayState::~PlayState() {
 void PlayState::render(Uint32 time)
 {
 	//SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x2222222FF)); //Color de fondo
-	SDL_RenderClear(Game::Instance()->getRenderer());
-	Game::Instance()->getLevel()->render();
+	SDL_RenderClear(game_->getRenderer());
+	game_->getLevel()->render();
 	GameState::render(time);
-	SDL_RenderPresent(Game::Instance()->getRenderer());
+	SDL_RenderPresent(game_->getRenderer());
 }

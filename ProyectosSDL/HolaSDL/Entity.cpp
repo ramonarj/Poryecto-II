@@ -7,6 +7,11 @@ Entity::Entity(SDLGame* game) :
 	game_(game), active_(true), width_(), height_(), position_(), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
 }
 
+Entity::Entity(SDLGame* game, int posX, int posY) :
+	game_(game), active_(true), width_(), height_(), position_(posX, posY), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
+}
+
+
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 	for (InputComponent* ic : inputComp_) {
@@ -61,13 +66,6 @@ void Entity::delRenderComponent(RenderComponent* rc) {
 	if (position != renderComp_.end())
 		renderComp_.erase(position);
 }
-
-template<typename T>
-T Entity:: getComponent()
-{
-	for()
-}
-
 
 ////Heredados de GameObject
 

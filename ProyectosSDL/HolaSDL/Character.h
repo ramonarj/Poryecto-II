@@ -5,11 +5,17 @@ class Character: public LogicComponent
 {
 public:
 	Character();
-	Character(int posX, int posY);
-	int getPosX() { return posX; };
-	int getPosY() { return posY; };
+	Character(int life);
+	void takeDamage(int i);
+	bool isDead() { return life < 1; };
+
+
+	virtual void update(Entity* o, Uint32 time);
+
 	virtual ~Character();
+
 protected:
-	int posX, posY;
+	int life;
+	virtual void move(Entity* o)= 0;
 };
 

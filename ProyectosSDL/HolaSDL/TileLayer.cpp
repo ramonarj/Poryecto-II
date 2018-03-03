@@ -35,7 +35,7 @@ void TileLayer::render()
 			}
 			Tileset tileset = getTilesetByID(id);
 			id--;
-			Texture::Instance()->drawTile(tileset.name, 2, 2,
+			Texture::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing,
 				(j * m_tileSize) - x2, (i * m_tileSize) - y2, m_tileSize, m_tileSize,
 				(id - (tileset.firstGridID - 1)) / tileset.numColumns,
 				(id - (tileset.firstGridID - 1)) % tileset.numColumns,

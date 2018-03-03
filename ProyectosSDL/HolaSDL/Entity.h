@@ -15,6 +15,7 @@ using namespace std;
 class Entity{
 public:
 	Entity(SDLGame* game);
+	Entity(SDLGame* game, int posX, int posY);
 	virtual ~Entity();
 
 	void setActive(bool enabled) { active_ = enabled; };
@@ -52,9 +53,34 @@ public:
 	const Vector2D& getDirection() const;
 	void setDirection(const Vector2D &vel);
 
-	//Nuevos
+	//Get Component
 	template<typename T>
-	T getComponent();
+	T* getComponent()
+	{
+		//Render Compopnent
+		for (RenderComponent* rc : renderComp_) {
+			T* component = dynamic_cast<T*>(rc);
+			if (component != nullptr)
+				return component;
+		}
+		
+		//Logic Component
+		for (LogicComponent* lc : logicComp_) {
+			T* component = dynamic_cast<T*>(lc);
+			if (component != nullptr)
+				return component;
+		}
+
+		//Input Component
+		for (InputComponent* ic : inputComp_) {
+			T* component = dynamic_cast<T*>(ic);
+			if (component != nullptr)
+				return component;
+		}
+
+		//If component not found
+		return nullptr;
+	};
 
 private:
     SDLGame* game_; // pointer to the game:
@@ -70,6 +96,8 @@ private:
 	vector<InputComponent*> inputComp_;
 	vector<LogicComponent*> logicComp_;
 	vector<RenderComponent*> renderComp_;
+
+	
 };
 
 #endif /* ENTITY_H_ */

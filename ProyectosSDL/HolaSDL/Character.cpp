@@ -2,10 +2,20 @@
 
 
 
-Character::Character() :posX(0), posY(0){}
+Character::Character() :life(0){}
 
-Character::Character(int posX, int posY) : posX(posX), posY(posY) {};
+Character::Character(int life) : life(life) {};
 
+
+void Character::update(Entity* o, Uint32 time)
+{
+	move(o);
+}
+
+void Character::takeDamage(int i)
+{
+	life -= i;
+}
 
 Character::~Character()
 {

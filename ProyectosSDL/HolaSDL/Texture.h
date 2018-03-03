@@ -9,7 +9,6 @@ using namespace std;
 
 class Texture {
 public:
-
 	static Texture* Instance()
 	{
 		if (s_pInstance == 0)
@@ -21,15 +20,15 @@ public:
 	}
 
 	//Texture();
-	Texture(SDL_Renderer* renderer, string fileName);
-	Texture(SDL_Renderer* renderer, string text, const Font& font,
+	Texture(SDL_Renderer* renderer, std::string fileName);
+	Texture(SDL_Renderer* renderer, std::string text, const Font& font,
 			const SDL_Color color);
 	virtual ~Texture();
 
 	int getWidth();
 	int getHeight();
-	bool loadFromImg(SDL_Renderer* renderer, string fileName);
-	bool loadFromText(SDL_Renderer * pRender, string texto,
+	bool loadFromImg(SDL_Renderer* renderer, std::string fileName);
+	bool loadFromText(SDL_Renderer * pRender, std::string texto,
 			Font const& font, SDL_Color color = { 0, 0, 0, 255 });
 	void render(SDL_Renderer* renderer, int x, int y) const;
 	void render(SDL_Renderer* renderer, SDL_Rect const& dest, SDL_Rect* clip =
@@ -54,11 +53,9 @@ private:
 
 	map<string, SDL_Texture*> m_textureMap;
 
-
 	Texture();
 	static Texture* s_pInstance;
 };
-
 
 typedef Texture Texture;
 

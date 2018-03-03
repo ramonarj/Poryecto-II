@@ -4,7 +4,7 @@
 
 Weapon::Weapon(ItemType type) : Item(type)
 {
-	weaponType(type);
+	weaponInit(type);
 }
 
 
@@ -12,24 +12,42 @@ Weapon::~Weapon()
 {
 }
 
-void Weapon::weaponType(ItemType type) {
+void Weapon::weaponInit(ItemType type) {
 	switch (type)
 	{
 	case Stick:
-		hits = 5;
-	case Lever:
-		hits = 10;
-	case Pipe:
-		hits = 15;
-	case Ax:
-		hits = 20;
-		damage = 2;
-		
-	default:
+		maxHits_ = 5;
 		break;
+	case Lever:
+		maxHits_ = 10;
+		break;
+	case Pipe:
+		maxHits_ = 15;
+		break;
+	case Ax:
+		maxHits_ = 20;
+		damage_ = 2;
+		break;
+	default:
+		maxHits_ = 1;
+		damage_ = 1;
+		break;
+	}
+	numHits_ = maxHits_;
+}
+
+void Weapon::attack() {
+
+	numHits_--;
+	std::cout << " has atacado, numHits = " << numHits_ << std::endl;
+
+	if (numHits_ <= 0) {
+		std::cout << "Arma destruida: " << this->getType() << std::endl;
+		setEnabled(false); // no se como destuir el arma
 	}
 }
 
-void Weapon::update() {
-
+void  Weapon::repair() {
+	numHits_ = maxHits_;
+	std::cout << " arma reparada, numHits = " << numHits_ << std::endl;
 }

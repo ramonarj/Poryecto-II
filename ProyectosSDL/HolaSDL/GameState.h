@@ -10,7 +10,7 @@ class Game;
 class GameState {
 
 protected:
-	list<Entity*> stage;
+	list<Entity*> stage_;
 	Game* game_;
 
 public:
@@ -19,6 +19,6 @@ public:
 	virtual ~GameState();
 	virtual void render(Uint32 time);
 	virtual void update(Uint32 time);
-	virtual void handleEvent(Uint32 time, SDL_Event& event);
+	virtual void handleInput(Uint32 time, SDL_Event& event);
 };
 

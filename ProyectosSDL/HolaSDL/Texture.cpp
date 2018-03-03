@@ -6,12 +6,12 @@ Texture::Texture() :
 		texture_(nullptr), width_(0), height_(0) {
 }
 
-Texture::Texture(SDL_Renderer* renderer, string fileName) :
+Texture::Texture(SDL_Renderer* renderer, std::string fileName) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromImg(renderer, fileName);
 }
 
-Texture::Texture(SDL_Renderer* renderer, string text, const Font& font,
+Texture::Texture(SDL_Renderer* renderer, std::string text, const Font& font,
 		const SDL_Color color) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromText(renderer, text, font, color);
@@ -38,7 +38,7 @@ void Texture::close() {
 	}
 }
 
-bool Texture::loadFromImg(SDL_Renderer* renderer, string fileName) {
+bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	SDL_Surface* surface = IMG_Load(fileName.c_str());
 	if (surface != nullptr) {
 		close(); // destroy current texture
@@ -52,7 +52,7 @@ bool Texture::loadFromImg(SDL_Renderer* renderer, string fileName) {
 	return texture_ != nullptr;
 }
 
-bool Texture::loadFromText(SDL_Renderer* renderer, string text,
+bool Texture::loadFromText(SDL_Renderer* renderer, std::string text,
 		const Font& font, const SDL_Color color) {
 	SDL_Surface* textSurface = font.renderText(text, color);
 	if (textSurface != nullptr) {

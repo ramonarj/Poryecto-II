@@ -1,12 +1,13 @@
 #pragma once
 #include "Character.h"
 #include "Player.h"
+#include "Entity.h"
 class Enemy :
 	public Character
 {
 public:
 	Enemy();
-	Enemy(Player* player, int posX, int posY);
+	Enemy(Entity* player, int life);
 
 	virtual void update(Entity* o, Uint32 time);
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
@@ -14,6 +15,8 @@ public:
 
 	virtual ~Enemy();
 private:
-	Player* player;
+	Entity* player;
+
+	virtual void move(Entity* o);
 };
 

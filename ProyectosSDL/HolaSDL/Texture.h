@@ -3,10 +3,23 @@
 
 #include "sdl_includes.h"
 #include "Font.h"
+#include <map>
+
+using namespace std;
 
 class Texture {
 public:
-	Texture();
+	static Texture* Instance()
+	{
+		if (s_pInstance == 0)
+		{
+			s_pInstance = new Texture();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
+
+	//Texture();
 	Texture(SDL_Renderer* renderer, std::string fileName);
 	Texture(SDL_Renderer* renderer, std::string text, const Font& font,
 			const SDL_Color color);
@@ -22,6 +35,14 @@ public:
 			nullptr) const;
 	void render(SDL_Renderer* renderer, SDL_Rect const& dest, double angle,
 			SDL_Rect* clip = nullptr) const;
+
+	//Para el mapa
+	bool load(string fileName, std::string
+		id, SDL_Renderer* pRenderer);
+	void drawTile(string id, int margin, int
+		spacing, int x, int y, int width, int height, int currentRow,
+		int currentFrame, SDL_Renderer *pRenderer);
+
 	void close();
 
 private:
@@ -29,6 +50,13 @@ private:
 	SDL_Texture *texture_;
 	int width_;
 	int height_;
+
+	map<string, SDL_Texture*> m_textureMap;
+
+	Texture();
+	static Texture* s_pInstance;
 };
+
+typedef Texture Texture;
 
 #endif /* TEXTURE_H_ */

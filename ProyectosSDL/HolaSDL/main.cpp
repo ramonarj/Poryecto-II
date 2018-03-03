@@ -4,8 +4,7 @@
 using namespace std;
 
 int main(int ac, char** av) {
-	Game g;
-	g.start();
+	Game::Instance()->start();
 
 	return 0;
 }

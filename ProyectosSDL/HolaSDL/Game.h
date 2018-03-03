@@ -14,11 +14,22 @@
 #include "InsulationTape.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
+#include "Level.h"
 
 class Game : public SDLGame {
 
 public:
-	Game();
+
+	static Game* Instance()
+	{
+		if (s_pInstance == 0)
+		{
+			s_pInstance = new Game();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
+	//Game();
 	virtual ~Game();
 
 	GameStateMachine stateMachine_;
@@ -27,16 +38,24 @@ public:
 	void start();
 	void stop();
 
+	Level* getLevel() { return pLevel; };
+
 private:
+	Game();
+	static Game* s_pInstance;
+
 	void initGame();
 	void closeGame();
 	void handleInput(Uint32 time);
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
-	const static int _WINDOW_WIDTH_ = 1280;
+	const static int _WINDOW_WIDTH_ = 1080;
 	const static int _WINDOW_HEIGHT_ = 720;
 	bool exit_;
 	std::vector<Entity*> actors_;
 
+	Level* pLevel = nullptr;
 };
+
+typedef Game Game;

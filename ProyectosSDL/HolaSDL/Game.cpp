@@ -1,5 +1,7 @@
 #include "Game.h"
 
+Game* Game::s_pInstance = 0;
+
 Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization
 	initGame();
@@ -16,7 +18,7 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	
+
 }
 
 void Game::closeGame() {
@@ -24,6 +26,10 @@ void Game::closeGame() {
 }
 
 void Game::start() {
+
+	LevelParser levelParser;
+	pLevel = levelParser.parseLevel("levels/prueba.tmx");
+
 	exit_ = false;
 	while (!exit_) {
 		Uint32 startTime = SDL_GetTicks();

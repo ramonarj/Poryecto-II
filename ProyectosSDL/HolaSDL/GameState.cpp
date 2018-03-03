@@ -10,10 +10,8 @@ GameState::~GameState(){ //Destructora
 }
 
 void GameState::render(Uint32 time){ //Llama a los render components de todas las entities
-	SDL_RenderClear(game_->getRenderer()); //Limpia el render
 	for (Entity* e : stage_)
 		e->render(time);
-	SDL_RenderPresent(game_->getRenderer());
 }
 
 void GameState::update(Uint32 time) { //Llamar a los logic components de todas las entities

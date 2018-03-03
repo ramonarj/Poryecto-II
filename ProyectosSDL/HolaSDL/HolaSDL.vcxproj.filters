@@ -102,15 +102,6 @@
     <ClCompile Include="MouseInputComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -152,6 +143,33 @@
     </ClCompile>
     <ClCompile Include="AnimationRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelParser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,15 +242,6 @@
     <ClInclude Include="MouseInputComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -277,6 +286,27 @@
     </ClInclude>
     <ClInclude Include="AnimationRenderer.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelParser.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

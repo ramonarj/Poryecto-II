@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "LevelParser.h"
+
 
 class PlayState: public GameState {
 

@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -71,6 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationRenderer.cpp" />
+    <ClCompile Include="base64.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="LogicComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
@@ -108,11 +110,16 @@
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
+    <ClInclude Include="base64.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
@@ -136,6 +143,7 @@
     <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelParser.h" />
     <ClInclude Include="LogicComponent.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
@@ -151,6 +159,8 @@
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>

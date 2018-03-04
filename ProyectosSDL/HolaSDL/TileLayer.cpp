@@ -10,13 +10,13 @@ TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) :
 
 }
 
-void TileLayer::update()
+void TileLayer::update(Uint32 time)
 {
 	m_position = m_position + m_velocity;
 	//m_velocity.setX(1);
 }
 
-void TileLayer::render()
+void TileLayer::render(Uint32 time)
 {
 	int x, y, x2, y2 = 0;
 	x = m_position.getX() / m_tileSize;

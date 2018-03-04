@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sdl_includes.h"
+
 class Level;
 
 class Layer
@@ -8,7 +10,7 @@ public:
 
 	virtual ~Layer() {}
 
-	virtual void render() = 0;
-	virtual void update() = 0;
+	virtual void render(Uint32 time) = 0;
+	virtual void update(Uint32 time) = 0;
 };
 

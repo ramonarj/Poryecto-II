@@ -25,8 +25,8 @@ public:
 
 	~Level();
 
-	void update();
-	void render();
+	void update(Uint32 time);
+	void render(Uint32 time);
 
 	std::vector<Tileset>* getTilesets() { return &m_tilesets; }
 	std::vector<Layer*>* getLayers() { return &m_layers; }

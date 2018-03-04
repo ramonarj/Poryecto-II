@@ -17,6 +17,7 @@
 #include "Level.h"
 
 #include "AnimationRenderer.h"
+class PlayerCreator;
 
 class Game : public SDLGame {
 
@@ -52,8 +53,8 @@ private:
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
-	const static int _WINDOW_WIDTH_ = 1080;
-	const static int _WINDOW_HEIGHT_ = 720;
+	const static int _WINDOW_WIDTH_ = 640;
+	const static int _WINDOW_HEIGHT_ = 480;
 	bool exit_;
 	std::vector<Entity*> actors_;
 

@@ -147,9 +147,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
-    <ClCompile Include="LevelParser.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
     <ClCompile Include="TileLayer.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
@@ -170,6 +167,21 @@
     </ClCompile>
     <ClCompile Include="ItemContainer.cpp">
       <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="LoaderParams.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelParser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityCreator.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -290,9 +302,6 @@
     <ClInclude Include="Level.h">
       <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
-    <ClInclude Include="LevelParser.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
     <ClInclude Include="TileLayer.h">
       <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
@@ -307,6 +316,21 @@
     </ClInclude>
     <ClInclude Include="ItemContainer.h">
       <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="LoaderParams.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelParser.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityCreator.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

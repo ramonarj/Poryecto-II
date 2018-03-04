@@ -7,7 +7,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization
 	initGame();
 
-	//Se añade PlayScene
+	//Se aÃ±ade PlayScene
 	stateMachine_.pushState(new PlayState(this));
 
 	exit_ = false;

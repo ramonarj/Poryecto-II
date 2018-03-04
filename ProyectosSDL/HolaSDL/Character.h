@@ -7,11 +7,10 @@ public:
 	Character();
 	Character(int life);
 	void takeDamage(int i);
-	bool isDead() { return life < 1; };
+	bool isAlive() { return life > 0; };
 
 
 	virtual void update(Entity* o, Uint32 time);
-
 	virtual ~Character();
 
 protected:

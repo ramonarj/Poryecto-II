@@ -25,6 +25,12 @@
     <Filter Include="Archivos de código fuente\Inventory">
       <UniqueIdentifier>{1f81370f-03ca-4dab-aecf-5a767a7896b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Items">
+      <UniqueIdentifier>{7468ab43-0034-4071-8898-934bdd690bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Items">
+      <UniqueIdentifier>{a6d85e77-1d01-477b-9471-010f1977f41b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,22 +102,10 @@
     <ClCompile Include="MouseInputComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="LogicComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -123,17 +117,71 @@
     <ClCompile Include="Component.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstAid.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="InsulationTape.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicComponent.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationRenderer.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemContainer.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactory.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="LoaderParams.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelParser.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityCreator.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,22 +254,10 @@
     <ClInclude Include="MouseInputComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -236,17 +272,65 @@
     <ClInclude Include="Messages.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Interactible.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstAid.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="InsulationTape.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicComponent.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationRenderer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemContainer.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactory.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="LoaderParams.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelParser.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityCreator.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

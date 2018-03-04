@@ -1,9 +1,10 @@
 #pragma once
-#include <string>
+#include <iostream>
 #include <vector>
 #include "Layer.h"
+#include "LevelParser.h"
 
-using namespace std;
+class TileLayer;
 
 struct Tileset
 {
@@ -21,19 +22,25 @@ struct Tileset
 class Level
 {
 public:
-	Level();
+
 	~Level();
 
-	void update();
-	void render();
+	void update(Uint32 time);
+	void render(Uint32 time);
 
-	//GETS
-	vector<Tileset>* getTilesVector() { return &TileSets_V; }
-	vector<Layer*>* getLayerVector() { return &Layers_V; }
+	std::vector<Tileset>* getTilesets() { return &m_tilesets; }
+	std::vector<Layer*>* getLayers() { return &m_layers; }
+	std::vector<TileLayer*>* getCollisionLayers() { return &m_collisionLayers; }
 
-protected:
+	const std::vector<TileLayer*>& getCollidableLayers() { return m_collisionLayers; }
 
-	vector<Tileset> TileSets_V;
-	vector<Layer*> Layers_V;
+private:
 
+	friend class LevelParser;
+
+	Level();
+
+	std::vector<Layer*> m_layers;
+	std::vector<Tileset> m_tilesets;
+	std::vector<TileLayer*> m_collisionLayers;
 };

@@ -4,11 +4,11 @@ Entity::~Entity() {
 }
 
 Entity::Entity(SDLGame* game) :
-	game_(game), active_(true), width_(), height_(), position_(), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
+	game_(game), active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), inputComp_(), logicComp_(), renderComp_() {
 }
 
 Entity::Entity(SDLGame* game, int posX, int posY) :
-	game_(game), active_(true), width_(), height_(), position_(posX, posY), direction_(1, 0), velocity_(), inputComp_(), logicComp_(), renderComp_() {
+	game_(game), active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), inputComp_(), logicComp_(), renderComp_() {
 }
 
 
@@ -32,6 +32,16 @@ void Entity::render(Uint32 time) {
 		if (rc->isEnabled())
 			rc->render(this, time);
 	}
+}
+
+void Entity::load(int x, int y, int width, int height, string textureID)
+{
+	position_ = Vector2D(x, y);
+	width_ = width;
+	height_ = height;
+	textureID_ = textureID;
+	currentRow_ = 1;
+	currentFrame_ = 1;
 }
 
 void Entity::addInputComponent(InputComponent* ic) {

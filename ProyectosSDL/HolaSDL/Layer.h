@@ -1,20 +1,16 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include "Vector2D.h"
 
-using namespace std;
+#include "sdl_includes.h"
+
+class Level;
 
 class Layer
 {
 public:
 
-	virtual void render() = 0;
-	virtual void update() = 0;
-
-protected:
-
 	virtual ~Layer() {}
 
+	virtual void render(Uint32 time) = 0;
+	virtual void update(Uint32 time) = 0;
 };
 

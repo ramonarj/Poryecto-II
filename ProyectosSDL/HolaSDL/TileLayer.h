@@ -1,18 +1,24 @@
 #pragma once
+#include <iostream>
+#include <vector>
 #include "Layer.h"
 #include "Level.h"
+#include "Vector2D.h"
 
 class TileLayer : public Layer
 {
 public:
 	TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
-	virtual void update();
-	virtual void render();
-	//SETS
-
-	void setTileIDs(const std::vector<std::vector<int>>& data){ m_tileIDs = data; }
-	void setTileSize(int tileSize){ m_tileSize = tileSize; }
-
+	virtual void update(Uint32 time);
+	virtual void render(Uint32 time);
+	void setTileIDs(const std::vector<std::vector<int>>& data)
+	{
+		m_tileIDs = data;
+	}
+	void setTileSize(int tileSize)
+	{
+		m_tileSize = tileSize;
+	}
 	Tileset getTilesetByID(int tileID);
 private:
 	int m_numColumns;

@@ -17,6 +17,7 @@
 #include "Level.h"
 
 #include "AnimationRenderer.h"
+class PlayerCreator;
 
 class Game : public SDLGame {
 

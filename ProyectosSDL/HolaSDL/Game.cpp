@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "PlayerCreator.h"
 
 Game* Game::s_pInstance = 0;
 
@@ -18,7 +19,7 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-
+	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
 }
 
 void Game::closeGame() {
@@ -28,7 +29,7 @@ void Game::closeGame() {
 void Game::start() {
 
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/prueba.tmx");
+	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
 
 	exit_ = false;
 	while (!exit_) {

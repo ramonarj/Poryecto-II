@@ -8,6 +8,8 @@
 #include "Level.h"
 #include "Game.h"
 #include "Texture.h"
+#include "ObjectLayer.h"
+#include "GameObjectFactory.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -25,6 +27,18 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
+	//we know that properties is the first child of the root
+	TiXmlElement* pProperties = pRoot->FirstChildElement();
+
+	// we must parse the textures needed for this level, which have been added to properties
+	for (TiXmlElement* e = pProperties->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("property"))
+		{
+			parseTextures(e);
+		}
+	}
+
 	// parse the tilesets
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e =
 		e->NextSiblingElement())
@@ -39,9 +53,18 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e =
 		e->NextSiblingElement())
 	{
-		if (e->Value() == std::string("layer"))
+		if (e->Value() == std::string("objectgroup") || e->Value() ==
+			std::string("layer"))
 		{
-			parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets());
+			if (e->FirstChildElement()->Value() == std::string("object"))
+			{
+				parseObjectLayer(e, pLevel->getLayers());
+			}
+			else if (e->FirstChildElement()->Value() ==
+				std::string("data"))
+			{
+				parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets());
+			}
 		}
 	}
 	return pLevel;
@@ -113,5 +136,76 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
 	}
 	pTileLayer->setTileIDs(data);
 	pLayers->push_back(pTileLayer);
+}
+
+void LevelParser::parseTextures(TiXmlElement * pTextureRoot)
+{
+	Texture::Instance()->load(pTextureRoot->Attribute("value"), pTextureRoot->Attribute("name"),
+		Game::Instance()->getRenderer());
+}
+
+void LevelParser::parseObjectLayer(TiXmlElement * pObjectElement, std::vector<Layer*>* pLayers)
+{
+	// create an object layer
+	ObjectLayer* pObjectLayer = new ObjectLayer();
+	std::cout << pObjectElement->FirstChildElement()->Value();
+
+	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		std::cout << e->Value();
+		if (e->Value() == std::string("object"))
+		{
+			int x, y, width, height, numFrames;
+			int callbackID = 0;
+			int animSpeed = 0;
+			std::string textureID;
+
+			// get the initial node values type, x and y
+			e->Attribute("x", &x);
+			e->Attribute("y", &y);
+			Entity* pEntity = GameObjectFactory::Instance()->create(e->Attribute("type"));
+
+			// get the property values
+			for (TiXmlElement* properties = e->FirstChildElement(); properties != NULL; properties = properties->NextSiblingElement())
+			{
+				if (properties->Value() == std::string("properties"))
+				{
+					for (TiXmlElement* property = properties->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
+					{
+						if (property->Value() == std::string("property"))
+						{
+							if (property->Attribute("name") == std::string("numFrames"))
+							{
+								property->Attribute("value", &numFrames);
+							}
+							else if (property->Attribute("name") == std::string("textureHeight"))
+							{
+								property->Attribute("value", &height);
+							}
+							else if (property->Attribute("name") == std::string("textureID"))
+							{
+								textureID = property->Attribute("value");
+							}
+							else if (property->Attribute("name") == std::string("textureWidth"))
+							{
+								property->Attribute("value", &width);
+							}
+							else if (property->Attribute("name") == std::string("callbackID"))
+							{
+								property->Attribute("value", &callbackID);
+							}
+							else if (e->Attribute("name") == std::string("animSpeed"))
+							{
+								property->Attribute("value", &animSpeed);
+							}
+						}
+					}
+				}
+			}
+			pEntity->load(x, y, width, height, textureID);
+			pObjectLayer->pushEntity(pEntity);
+		}
+	}
+	pLayers->push_back(pObjectLayer);
 }
 

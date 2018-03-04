@@ -27,6 +27,8 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 
+	void load(int x, int y, int width, int height, string textureID);
+
 	virtual void addInputComponent(InputComponent* ic);
 	virtual void addLogicComponent(LogicComponent* pc);
 	virtual void addRenderComponent(RenderComponent* rc);
@@ -92,6 +94,11 @@ private:
 
 	double width_;  // width
 	double height_; // height
+
+	string textureID_;
+
+	double currentRow_;
+	double currentFrame_;
 
 	vector<InputComponent*> inputComp_;
 	vector<LogicComponent*> logicComp_;

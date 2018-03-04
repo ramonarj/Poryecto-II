@@ -120,9 +120,6 @@
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
     </ClCompile>
@@ -137,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="LogicComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemContainer.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="AnimationRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
@@ -170,6 +164,12 @@
     </ClCompile>
     <ClCompile Include="tinyxmlparser.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemContainer.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +263,6 @@
     <ClInclude Include="Interactible.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
-    </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
@@ -280,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="LogicComponent.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemContainer.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="AnimationRenderer.h">
       <Filter>Archivos de encabezado</Filter>
@@ -307,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="tinyxml.h">
       <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemContainer.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

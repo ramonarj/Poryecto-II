@@ -1,7 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "LevelParser.h"
-
+#include "Inventory.h"
 
 class PlayState: public GameState {
 

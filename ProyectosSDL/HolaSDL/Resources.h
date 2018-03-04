@@ -25,7 +25,9 @@ public:
 		AIIcon,
 		SpaceShips,
 		Airplanes,
-		Star
+		Star,
+		Inventory,
+		PruebaAnim
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

@@ -2,9 +2,10 @@
 
 
 
-ItemContainer::ItemContainer(int tam)
+ItemContainer::ItemContainer(int tam, Texture* texture)
 {
 	this->tam = tam;
+	this->texture = texture;
 }
 
 

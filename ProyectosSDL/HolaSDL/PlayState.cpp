@@ -5,7 +5,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	
 
 	Entity* inventory = new Entity(game_, 0, 0);
-	Inventory* invtComp = new Inventory(4, game_->getResources()->getImageTexture(Resources::Inventory));
+	Inventory* invtComp = new Inventory(4);
 	inventory->addLogicComponent(invtComp);
 	inventory->addRenderComponent(invtComp);
 	stage_.push_back(inventory);
@@ -29,12 +29,14 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	stage_.push_back(palo);
 	palo->getComponent<Weapon>()->attack();
 
-	/*Entity* insulationTape = new Entity(game_, 15, 25);
+	Entity* insulationTape = new Entity(game_, 15, 25);
 	insulationTape->addLogicComponent(new InsulationTape());
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->useItem(palo);
 
-	invtComp->addItem(palo);*/
+	invtComp->addItem(insulationTape);
+	invtComp->addItem(palo);
+	invtComp->addItem(palo);//SOLO SE PINTA UNO PORQUE EL OTRO SE EQUIPA AUTOMÁTICAMENTE
 }
 
 

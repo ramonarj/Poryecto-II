@@ -4,19 +4,25 @@
 #include "Texture.h"
 #include "Resources.h"
 #include "Weapon.h"
+#include "InsulationTape.h"
 
 using namespace std;
+
+struct coord {
+	int x;
+	int y;
+};
 
 class ItemContainer : public LogicComponent, public RenderComponent
 {
 public:
-	ItemContainer(int tam, Texture* Texture);
+	ItemContainer(int tam);
 	~ItemContainer();
 
 protected:
 	int tam;
 	vector<Entity*> inventory;
-	Texture* texture;
+	vector<coord> ObjPos;
 
 public:
 
@@ -31,6 +37,9 @@ public:
 	//It returns false if the inventory isn't full
 	bool fullInventory();
 	bool empty();
+	//GETS
+	int getItemPosX(int i) { return ObjPos[i].x; };
+	int getItemPosY(int i) { return ObjPos[i].y; };
 
 };
 

@@ -1,10 +1,18 @@
 #include "Inventory.h"
 
 
-Inventory::Inventory(int tam, Texture* tex) : ItemContainer(tam, tex)
+Inventory::Inventory(int tam) : ItemContainer(tam)
 {
 	debug = false;
 	equiped = nullptr;
+
+	coord pos;
+	pos.x = 32; pos.y = 306;
+	for (int i = 0; i < tam; i++)
+	{
+		ObjPos.push_back(pos);
+		pos.x += 61;
+	}
 }
 
 Inventory::~Inventory()
@@ -26,7 +34,22 @@ void Inventory::render(Entity* e, Uint32 time)
 	dest.y = 0;
 	dest.w = 600;
 	dest.h = 600;
-	texture->render(e->getGame()->getRenderer(), dest);
+	e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
+
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+
+		if(inventory[i]->getComponent<InsulationTape>())
+		{
+			inventory[i]->getGame()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(e->getGame()->getRenderer(), DestRect);
+		}
+		else if (inventory[i]->getComponent<Weapon>())
+		{
+			if(inventory[i]->getComponent<Weapon>()->getType() == ItemType::Stick)
+			inventory[i]->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+		}
+	}
 }
 
 void Inventory::addItem(Entity * item)

@@ -6,12 +6,13 @@
 
 using namespace std;
 
+
 class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
 
-	Inventory(int tam, Texture* tex);
+	Inventory(int tam);
 	~Inventory();
 
 protected:
@@ -32,6 +33,7 @@ public:
 	virtual bool checkItem(Entity* item);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
+
 	
 	Entity* currentWeapon();
 

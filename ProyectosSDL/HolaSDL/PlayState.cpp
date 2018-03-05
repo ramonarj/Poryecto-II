@@ -9,18 +9,18 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
 												   
-	/*Entity* player = new Entity(game_, 100, 100);	//Jugador
-	player->setWidth(200.0);
-	player->setHeight(200.0);
-	player->setVelocity(Vector2D(1.0, 0.0));
-	player->addComponent(new Player(5));
-	player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 12));
-	stage_.push_back(player);*/
+	//Entity* player = new Entity(game_, 100, 100);	//Jugador
+	//player->setWidth(200.0);
+	//player->setHeight(200.0);
+	//player->setVelocity(Vector2D(1.0, 0.0));
+	//player->addComponent(new Player(5));
+	//player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 12, true));
+	//stage_.push_back(player);
 
-	//Enemigo
-	/*Entity* enemy = new Entity(game_, 20, 10);
-	enemy->addComponent(new Enemy(player, 2));
-	stage_.push_back(enemy);*/
+	////Enemigo
+	//Entity* enemy = new Entity(game_, 20, 10);
+	//enemy->addComponent(new Enemy(player, 3));
+	//stage_.push_back(enemy);
 
 	//Item
 	Entity* palo = new Entity(game_, 10, 20);

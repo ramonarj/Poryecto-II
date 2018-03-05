@@ -43,6 +43,18 @@ public:
 
 	Level* getLevel() { return pLevel; };
 
+	template<typename T>
+	Entity* getEntityWithComponent()
+	{
+		for (Entity* e : stateMachine_.currentState()->getStage()) {
+			if (e.getComponent<T>() != nullptr)
+				return e;
+		}
+
+		//If Entity not found
+		return nullptr;
+	};
+
 private:
 	Game();
 	static Game* s_pInstance;

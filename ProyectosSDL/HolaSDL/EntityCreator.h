@@ -22,7 +22,7 @@ public:
 		e->setHeight(200.0);
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Player(5));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12, true));
 		return e;
 	}
 };
@@ -37,7 +37,7 @@ public:
 		e->setHeight(200.0);
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy(nullptr, 1));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12, true));
 
 		return e;
 	}

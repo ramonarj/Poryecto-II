@@ -67,6 +67,8 @@ Level* LevelParser::parseLevel(const char *levelFile)
 			}
 		}
 	}
+
+	pLevel_ = pLevel;
 	return pLevel;
 }
 
@@ -203,6 +205,10 @@ void LevelParser::parseObjectLayer(TiXmlElement * pObjectElement, std::vector<La
 				}
 			}
 			pEntity->load(x, y, width, height, textureID);
+			if (e->Attribute("type") == "Player") // check if it's the player
+			{
+				pLevel_->setPlayer(pEntity);
+			}
 			pObjectLayer->pushEntity(pEntity);
 		}
 	}

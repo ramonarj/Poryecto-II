@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "PlayerCreator.h"
+#include "EntityCreator.h"
 
 Game* Game::s_pInstance = 0;
 

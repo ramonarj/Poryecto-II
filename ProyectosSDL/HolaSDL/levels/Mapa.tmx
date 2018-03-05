@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="1">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="5">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="50" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
- </tileset>
- <tileset firstgid="577" name="PruebaAnim" tilewidth="32" tileheight="32" spacing="0" margin="0" tilecount="75" columns="12">
-  <image source="levels/PruebaAnim.png" width="384" height="128"/>
- </tileset>
- <tileset firstgid="652" name="SRMap" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="6596" columns="97">
-  <image source="levels/SRMap.png" width="2339" height="1653"/>
  </tileset>
  <layer name="Suelo" width="125" height="117">
   <data encoding="base64" compression="zlib">
@@ -19,4 +13,13 @@
    eJztnQ1uFSEQx/epib2IH4m9iFZN9CZq9SrtXdqr2L6jSNMSJ/MGdoaFzgL/XzLpC1DeBwv8h1nYZQEAAAAAAAAAAAAAAOyFv8Hugl0Fuw52H+xoSL9+es3zrlheb/Dvwu2oyNfUoSlTm8NhWV4Euwmvb4O9DK9fHfTpMe8rq+uG5fUG/y7U4nday9fUoSlTm2/Bvgf7Fewy2Jfl8X206ak8/n+98TvYn+X/d6H2I9hPRb6mDk2Z2mxpc0teb7wJfextsNfLqb176n9r+Zo6NGVqgzaX+Rh+70/BPiyndh7ssyJfU4emTG3o2PLQRtKYk0q35IH9QMeWs+VxPHl/0KfHPGmconlgP9Cx5WEsuTicjjm59GjSOEXzAAAAAAAA8Cauk98vp7GIO5IGxoGuk0uxiJgGxoGuP0lrUtq1KI+4GiiDrj9J61UxbQ2PuBqPh0vXWCxD4+U8Ni7F1XuOn68R158uDqfrVZ9I2ho8RkGtVayCx8OlayyWuSVleGxciqv3HD9/LvYQS5WusVjmkpThMTMprt5zXO258I6lpsYV2uapOKl07aDN1/GIpaLNffHQ7an5hM4lsQxvc6kMb3PEz/N46HYeD5fmkljmjJThsXEpro74+Toeup3Hw6W5JJY5J2V4bDwVV0f8PI+Hbk/551bfWqpnRP+cz7/Sff80fQ0P3Z7yz62+tVTPiP45n3+ltXbLeru3bs/p8pJ6RtTtfP5N3fOr/d4euj2lIba0+Qj3Oqfg82/qnl/tXOy9jwVtvg6ff3l8hformhiLh25P6Uarb51q89H8cz7/8vhK9FW0MRYP3Z7yz62+9Sz9fATdnvPPLbpRul5H7Ocj6PZazNLPR9DttZiln4+g22sxSz8fQbfXYpZ+PoJur4W0J7Wl9hwFD91eC2lPag/a05uedTsoo2fdDsroWbeDMnrW7aCMnnU7KKNn3Q7K6FG3S7rzqEgf+Z650ZHiSdI5pjx95HvmRscaZxrprMga9OifW+NMkk6dWZ/26J9LcSbpTMjcmbYz69Me/XNpnT11JmTqTNu96tPnAP75fMA/n48e/fPZoOfCUb19XNJrEpr6etLtsyHty1tbk9DW14tur4n0rCdpr2vJGYu16pZ0dtRaJfe+9qjba5La2yrtdbWesSj1J1onPecqV7fURrFtSu593btut85X1vKpva2586q05PoTfZ+1unNtnlqTyLF33W6dr6zle2/z1JpEjr3rdut8taV8j20+om63zldbyufavGSey82b9H3W6s61+Yi63TpfbSlPz6fif7V7RHKfhdep3X+Sa/MRdbt1vtpSPu4F4XtmLXtEWtQN3V5Xt1uf0Vz62bf459JYtBZLzDG7brc+o3nLZy/1z+kZ3nScyMUSc0C3257duuWzl+r22syu22ds89l1+4xtPrtutz6j2UIt/7w2s+t26zOaLdTyz2szu263PqPZQkvffwuz63YP+H0vD39L1wCs76nd++NJa93uQe486lbPQbTu/fGktW73IBXLa3l91j5jriWtdbsHqVhey9+79hlzLWmt2z3InTvf6ve27v3xpLVu98BjbLfu/fFkRN2e8o+f20/fKyPqdslvp+c7zs6Iuh3kGVG3AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyPMPEzS3Bw==
   </data>
  </layer>
+ <objectgroup name="Capa de Objetos 1">
+  <object id="2" name="Player" type="Player" x="100" y="100" width="32" height="50">
+   <properties>
+    <property name="textureHeight" type="int" value="350"/>
+    <property name="textureID" value="player"/>
+    <property name="textureWidth" type="int" value="350"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

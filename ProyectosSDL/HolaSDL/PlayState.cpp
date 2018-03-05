@@ -49,7 +49,7 @@ void PlayState::render(Uint32 time)
 	//SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x2222222FF)); //Color de fondo
 	SDL_RenderClear(game_->getRenderer());
 	GameState::render(time);
-	//game_->getLevel()->render(time);
+	game_->getLevel()->render(time);
 	SDL_RenderPresent(game_->getRenderer());
 
 	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();

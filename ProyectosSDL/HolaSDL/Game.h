@@ -47,7 +47,7 @@ public:
 	Entity* getEntityWithComponent()
 	{
 		for (Entity* e : stateMachine_.currentState()->getStage()) {
-			if (e.getComponent<T>() != nullptr)
+			if (e->getComponent<T>() != nullptr)
 				return e;
 		}
 

@@ -27,7 +27,9 @@ public:
 		Airplanes,
 		Star,
 		Inventory,
-		PruebaAnim
+		PruebaAnim,
+		PruebaMedicKit,
+		Crowbar
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

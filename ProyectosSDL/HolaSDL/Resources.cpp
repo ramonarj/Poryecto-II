@@ -5,7 +5,8 @@
 std::vector<std::string> Resources::imageFiles_ { "images/blank.png",
 		"images/tennis_ball.png", "images/keyboard.png", "images/mouse.png",
 		"images/ai.png", "images/spaceships.png", "images/airplanes.png",
-		"images/star.png", "images/Inventory.png", "images/PruebaAnim.png" };
+		"images/star.png", "images/Inventory.png", "images/PruebaAnim.png",
+		"images/Spray.png","images/Crowbar.png" };
 
 std::vector<Resources::FontInfo> Resources::fontFiles_ {
 		{ "fonts/ARIAL.ttf", 16 }, { "fonts/ARIAL.ttf", 24 }, {

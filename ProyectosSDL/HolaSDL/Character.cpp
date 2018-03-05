@@ -9,12 +9,22 @@ Character::Character(int life) : life(life) {};
 
 void Character::update(Entity* o, Uint32 time)
 {
-	move(o);
+	//Solo si está vivo
+	if(isAlive())
+		move(o);
 }
 
 void Character::takeDamage(int i)
 {
-	life -= i;
+	//Si está vivo solamente
+	if(isAlive())
+	{
+		life -= i; //Restamos la vida
+		if (!isAlive())
+			cout << "I died" << endl;
+		else
+			cout << "Life: " << life << endl;
+	}
 }
 
 Character::~Character()

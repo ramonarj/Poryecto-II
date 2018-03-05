@@ -25,6 +25,6 @@ void Level::update(Uint32 time)
 {
 	for (int i = 0; i < m_layers.size(); i++)
 	{
-		m_layers[i]->update(time);
+		m_layers[i]->update(this, time);
 	}
 }

@@ -73,6 +73,7 @@
     <ClCompile Include="AnimationRenderer.cpp" />
     <ClCompile Include="base64.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ControllerInputComponent.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="AnimationRenderer.h" />
     <ClInclude Include="base64.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ControllerInputComponent.h" />

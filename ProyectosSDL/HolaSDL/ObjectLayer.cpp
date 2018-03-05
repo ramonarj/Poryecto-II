@@ -1,8 +1,10 @@
 #include "ObjectLayer.h"
 
 
-void ObjectLayer::update(Uint32 time)
+void ObjectLayer::update(Level* pLevel, Uint32 time)
 {
+	m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+
 	GameState::Instance()->update(time);
 }
 

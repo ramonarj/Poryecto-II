@@ -38,6 +38,7 @@ public:
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy(nullptr, 1));
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12));
+
 		return e;
 	}
 };

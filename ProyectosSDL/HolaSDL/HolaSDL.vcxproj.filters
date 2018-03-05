@@ -72,13 +72,7 @@
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="SkeletonRenderer.cpp">
@@ -132,22 +126,10 @@
     <ClCompile Include="InsulationTape.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
     </ClCompile>
-    <ClCompile Include="LogicComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="base64.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
     <ClCompile Include="tinystr.cpp">
@@ -174,14 +156,23 @@
     <ClCompile Include="LoaderParams.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectLayer.cpp">
+    <ClCompile Include="EntityCreator.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
     <ClCompile Include="LevelParser.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
-    <ClCompile Include="EntityCreator.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="ObjectLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,13 +215,7 @@
     <ClInclude Include="ImageRenderer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SkeletonRenderer.h">
@@ -287,22 +272,10 @@
     <ClInclude Include="InsulationTape.h">
       <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
-    <ClInclude Include="LogicComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationRenderer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="base64.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
       <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
     <ClInclude Include="tinystr.h">
@@ -323,14 +296,23 @@
     <ClInclude Include="LoaderParams.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectLayer.h">
+    <ClInclude Include="EntityCreator.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
       <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
     <ClInclude Include="LevelParser.h">
       <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
-    <ClInclude Include="EntityCreator.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="ObjectLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>Archivos de encabezado\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,10 +1,7 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
-#include "InputComponent.h"
-#include "LogicComponent.h"
-#include "RenderComponent.h"
-
+#include "Component.h"
 #include "SDLGame.h"
 #include "Vector2D.h"
 
@@ -29,13 +26,9 @@ public:
 
 	void load(int x, int y, int width, int height, string textureID);
 
-	virtual void addInputComponent(InputComponent* ic);
-	virtual void addLogicComponent(LogicComponent* pc);
-	virtual void addRenderComponent(RenderComponent* rc);
+	virtual void addComponent(Component* c);
+	virtual void delComponent(Component* c);
 
-	virtual void delInputComponent(InputComponent* ic);
-	virtual void delLogicComponent(LogicComponent* pc);
-	virtual void delRenderComponent(RenderComponent* rc);
 
 	//Getters y setters
 
@@ -59,23 +52,9 @@ public:
 	template<typename T>
 	T* getComponent()
 	{
-		//Render Compopnent
-		for (RenderComponent* rc : renderComp_) {
-			T* component = dynamic_cast<T*>(rc);
-			if (component != nullptr)
-				return component;
-		}
-		
-		//Logic Component
-		for (LogicComponent* lc : logicComp_) {
-			T* component = dynamic_cast<T*>(lc);
-			if (component != nullptr)
-				return component;
-		}
-
-		//Input Component
-		for (InputComponent* ic : inputComp_) {
-			T* component = dynamic_cast<T*>(ic);
+		//Compopnent
+		for (Component* c : comps_) {
+			T* component = dynamic_cast<T*>(c);
 			if (component != nullptr)
 				return component;
 		}
@@ -100,10 +79,7 @@ private:
 	double currentRow_;
 	double currentFrame_;
 
-	vector<InputComponent*> inputComp_;
-	vector<LogicComponent*> logicComp_;
-	vector<RenderComponent*> renderComp_;
-
+	vector<Component*> comps_;
 	
 };
 

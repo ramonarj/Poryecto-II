@@ -1,7 +1,7 @@
 #pragma once
-#include "InputComponent.h"
+#include "Component.h"
 class KeyBoardInputComponent :
-	public InputComponent
+	public Component
 {
 public:
 	KeyBoardInputComponent();

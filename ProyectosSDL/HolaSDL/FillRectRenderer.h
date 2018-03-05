@@ -1,12 +1,12 @@
 #ifndef FILLRECTRENDERER_H_
 #define FILLRECTRENDERER_H_
 
-#include "RenderComponent.h"
+#include "Component.h"
 
 /*
  *
  */
-class FillRectRenderer : public RenderComponent {
+class FillRectRenderer : public Component {
 public:
 	FillRectRenderer();
 	FillRectRenderer(SDL_Color color);

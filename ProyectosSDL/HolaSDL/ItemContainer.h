@@ -1,5 +1,5 @@
 #pragma once
-#include "LogicComponent.h"
+#include "Component.h"
 #include <vector>
 #include "Texture.h"
 #include "Resources.h"
@@ -13,7 +13,7 @@ struct coord {
 	int y;
 };
 
-class ItemContainer : public LogicComponent, public RenderComponent
+class ItemContainer : public Component
 {
 public:
 	ItemContainer(int tam);

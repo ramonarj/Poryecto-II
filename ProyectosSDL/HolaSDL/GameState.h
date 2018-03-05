@@ -35,7 +35,7 @@ public:
 	virtual void handleInput(Uint32 time, SDL_Event& event);
 
 	void pushEntities(Entity* e) { stage_.push_back(e); };
-	list<Entity*> getEntities() { return stage_; };
+	list<Entity*> getStage() { return stage_; };
 };
 
 

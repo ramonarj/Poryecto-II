@@ -1,10 +1,10 @@
 #pragma once
-#include "InputComponent.h"
+#include "Component.h"
 
 enum mouse_buttons { LEFT, MIDDLE, RIGHT };
 
 class MouseInputComponent :
-	public InputComponent
+	public Component
 {
 public:
 	MouseInputComponent();

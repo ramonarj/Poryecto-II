@@ -32,5 +32,7 @@ private:
 	int m_tileSize;
 	int m_width;
 	int m_height;
+
+	Level* pLevel_ = nullptr;
 };
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "LogicComponent.h"
+#include "Component.h"
 class Interactible :
-	public LogicComponent
+	public Component
 {
 public:
 	Interactible();

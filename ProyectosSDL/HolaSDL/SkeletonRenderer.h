@@ -1,9 +1,9 @@
 #ifndef SKELETONTENDERER_H_
 #define SKELETONTENDERER_H_
 
-#include "RenderComponent.h"
+#include "Component.h"
 
-class SkeletonRendered : public RenderComponent {
+class SkeletonRendered : public Component {
 public:
 	SkeletonRendered();
 	SkeletonRendered(SDL_Color color);

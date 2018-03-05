@@ -1,11 +1,11 @@
 #pragma once
-#include "InputComponent.h"
+#include "Component.h"
 
 //Button enum for PS4 controller
 enum controller_buttons { Square, Cross, Circle, Triangle, L1, R1, L2, R2, Select, Start, L3, R3, HomeButton, Panel };
 
 class ControllerInputComponent :
-	public InputComponent
+	public Component
 {
 public:
 	ControllerInputComponent();

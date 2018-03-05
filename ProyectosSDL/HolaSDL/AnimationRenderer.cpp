@@ -1,33 +1,68 @@
 #include "AnimationRenderer.h"
 
-
-AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames) : image_(image), movementFrames(movementFrames)
+AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames, bool character) : image_(image), movementFrames(movementFrames), character(character)
 {
 }
-
 
 AnimationRenderer::~AnimationRenderer()
 {
 }
+
 void AnimationRenderer::render(Entity* o, Uint32 time) {
 
-	SDL_Rect rect
+	SDL_Rect dest
 		RECT(o->getPosition().getX(), o->getPosition().getY(), o->getWidth(), o->getHeight());
-	SDL_Rect clip;
-	if (o->getVelocity().magnitude() != 0)
-		clip =
-		RECT(((time / 100) % movementFrames)* image_->getWidth() / movementFrames, dir(o) * image_->getHeight() / movements, image_->getWidth() / movementFrames, image_->getHeight() / movements);
-	else
-		clip =
-		RECT(0, dir(o) * image_->getHeight() / movements, image_->getWidth() / movementFrames, image_->getHeight() / movements);
-	image_->render(o->getGame()->getRenderer(), rect, &clip);
 
+	SDL_Rect clip;
+	if (character){
+		if (o->getVelocity().magnitude() != 0){
+			clip =
+				RECT((frame + 2) * image_->getWidth() / movementFrames,
+				dir(o) * image_->getHeight() / movements,
+				image_->getWidth() / movementFrames,
+				image_->getHeight() / movements);
+
+			lastDir = o->getDirection();
+
+			if (time > actualTime + cooldown){
+				if (frame + 2 < movementFrames - 1)
+					frame++;
+				else
+					frame = 0;
+				actualTime = time;
+			}
+
+		}
+		else{
+			clip =
+				RECT(idleFrame* image_->getWidth() / movementFrames,
+				dir(o) * image_->getHeight() / movements,
+				image_->getWidth() / movementFrames,
+				image_->getHeight() / movements);
+			if (time > actualTime + cooldown){
+				if (idleFrame < 1)
+					idleFrame++;
+				else
+					idleFrame = 0;
+				actualTime = time;
+			}
+			frame = 0;
+		}
+	}
+	else{
+		clip =
+			RECT(((time / cooldown) % movementFrames)* image_->getWidth() / movementFrames,
+			0,
+			image_->getWidth() / movementFrames,
+			image_->getHeight() / movements);
+	}
+	image_->render(o->getGame()->getRenderer(), dest, &clip);
 }
 
 
 int AnimationRenderer::dir(Entity* o){
-	int x = o->getDirection().getX();
-	int y = o->getDirection().getY();
+	int x = lastDir.getX();
+	int y = lastDir.getY();
 	if (x != 0){
 		if (x < 0)
 			return 2;

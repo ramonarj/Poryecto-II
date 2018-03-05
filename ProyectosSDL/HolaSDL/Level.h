@@ -3,6 +3,7 @@
 #include <vector>
 #include "Layer.h"
 #include "LevelParser.h"
+#include "Entity.h"
 
 class TileLayer;
 
@@ -34,6 +35,9 @@ public:
 
 	const std::vector<TileLayer*>& getCollidableLayers() { return m_collisionLayers; }
 
+	Entity* getPlayer() { return pPlayer; }
+	void setPlayer(Entity* player) { pPlayer = player; };
+
 private:
 
 	friend class LevelParser;
@@ -43,4 +47,6 @@ private:
 	std::vector<Layer*> m_layers;
 	std::vector<Tileset> m_tilesets;
 	std::vector<TileLayer*> m_collisionLayers;
+
+	Entity* pPlayer = nullptr; //Puntero a player
 };

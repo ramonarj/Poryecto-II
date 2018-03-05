@@ -14,7 +14,7 @@ public:
 		player->setHeight(200.0);
 		player->setVelocity(Vector2D(1.0, 0.0));
 		player->addLogicComponent(new Player(5));
-		player->addRenderComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12));
+		player->addRenderComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
 		return player;
 	}
 };

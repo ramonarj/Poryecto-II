@@ -1,14 +1,13 @@
 #include "AnimationRenderer.h"
 
-
-{
-}
 AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames, bool character) : image_(image), movementFrames(movementFrames), character(character)
 {
 }
+
 AnimationRenderer::~AnimationRenderer()
 {
 }
+
 void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 	SDL_Rect dest

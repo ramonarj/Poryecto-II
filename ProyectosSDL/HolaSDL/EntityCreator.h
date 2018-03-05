@@ -22,7 +22,7 @@ public:
 		e->setHeight(200.0);
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addLogicComponent(new Player(5));
-		e->addRenderComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 12));
+		e->addRenderComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
 		return e;
 	}
 };

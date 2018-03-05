@@ -16,11 +16,15 @@ struct coord {
 class ItemContainer : public Component
 {
 public:
-	ItemContainer(int tam);
+	ItemContainer();
 	~ItemContainer();
 
 protected:
-	int tam;
+	
+	static const int InvTam = 4;
+	static const int chestTam = 10;
+	bool clicked = false;
+	int slotClicked;
 	vector<Entity*> inventory;
 	vector<coord> ObjPos;
 
@@ -35,7 +39,7 @@ public:
 	virtual bool checkItem(Entity* item) = 0;
 	virtual Entity* ItemInPosition(int pos) = 0;
 	//It returns false if the inventory isn't full
-	bool fullInventory();
+	virtual bool fullInventory() = 0;
 	bool empty();
 	//GETS
 	int getItemPosX(int i) { return ObjPos[i].x; };

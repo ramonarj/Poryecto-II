@@ -1,18 +1,21 @@
 #include "Inventory.h"
+#include "FirstAid.h"
 
 
-Inventory::Inventory(int tam) : ItemContainer(tam)
+Inventory::Inventory()
 {
 	debug = false;
 	equiped = nullptr;
 
 	coord pos;
 	pos.x = 32; pos.y = 306;
-	for (int i = 0; i < tam; i++)
+	for (int i = 0; i < InvTam; i++)
 	{
 		ObjPos.push_back(pos);
 		pos.x += 61;
 	}
+	EquippedCoord.x = 265;
+	EquippedCoord.y = 228;
 }
 
 Inventory::~Inventory()
@@ -25,30 +28,79 @@ void Inventory::update(Entity* e, Uint32 time)
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
+	
+	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
+		if (event.button.button == SDL_BUTTON_LEFT) {
+			int i = 0;
+			while (i<inventory.size() && !clicked)
+			{
+				if ((event.button.x >= ObjPos[i].x && event.button.x <= ObjPos[i].x + 50)
+					&& (event.button.y >= ObjPos[i].y && event.button.y <= ObjPos[i].y + 50))//EL 50 Es un numero provisional de prueba
+				{ clicked = true; }
+
+				slotClicked = i;
+				i++;
+			}
+		}
+	}
+	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
+		if (event.button.button == SDL_BUTTON_LEFT) {
+			clicked = false;
+		}
+	}
 }
 
+//Este mótodo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
-	SDL_Rect dest;
-	dest.x = 0;
-	dest.y = 0;
-	dest.w = 600;
-	dest.h = 600;
+	SDL_Rect dest = {0,0,600,600};
 	e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
 
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+		if (i != slotClicked || !clicked) {
+			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+			renderItem(i, e, DestRect);
+		}
+		if (clicked)
+		{
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			SDL_Rect DestRect = { x, y, 50, 50 };
+			renderItem(slotClicked, e, DestRect);
+		}
+	}
+	SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
+	if (equiped->getComponent<Weapon>()->getType() == ItemType::Stick)
+		equiped->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Pipe)
+		equiped->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Ax)
+		equiped->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Lever)
+		equiped->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+}
 
-		if(inventory[i]->getComponent<InsulationTape>())
-		{
-			inventory[i]->getGame()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(e->getGame()->getRenderer(), DestRect);
-		}
-		else if (inventory[i]->getComponent<Weapon>())
-		{
-			if(inventory[i]->getComponent<Weapon>()->getType() == ItemType::Stick)
+void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
+{
+	if (inventory[i]->getComponent<InsulationTape>())
+	{
+		inventory[i]->getGame()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(e->getGame()->getRenderer(), DestRect);
+	}
+	else if (inventory[i]->getComponent<Weapon>())
+	{
+		if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Stick)
 			inventory[i]->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
-		}
+		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Pipe)
+			inventory[i]->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Ax)
+			inventory[i]->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Lever)
+			inventory[i]->getGame()->getResources()->getImageTexture(Resources::Crowbar)->render(e->getGame()->getRenderer(), DestRect);
+	}
+	else if (inventory[i]->getComponent<FirstAid>())
+	{
+		inventory[i]->getGame()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(e->getGame()->getRenderer(), DestRect);
 	}
 }
 
@@ -102,6 +154,14 @@ void Inventory::equipWeapon(int pos)
 		
 	}
 }
+
+bool Inventory::fullInventory()
+{
+	if (inventory.size() >= InvTam) { return true; }
+	else return false;
+}
+
+
 
 Entity * Inventory::currentWeapon()
 {

@@ -20,6 +20,7 @@ Game::~Game() {
 void Game::initGame() 
 {
 	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+	//GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
 }
 
 void Game::closeGame() {

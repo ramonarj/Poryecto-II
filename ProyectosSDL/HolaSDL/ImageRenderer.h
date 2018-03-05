@@ -1,12 +1,12 @@
 #ifndef IMAGERENDERER_H_
 #define IMAGERENDERER_H_
 
-#include "RenderComponent.h"
+#include "Component.h"
 
 /*
  *
  */
-class ImageRenderer: public RenderComponent {
+class ImageRenderer: public Component {
 public:
 	ImageRenderer(Texture* image);
 	virtual ~ImageRenderer();

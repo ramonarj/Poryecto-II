@@ -1,9 +1,9 @@
 #pragma once
-#include "RenderComponent.h"
+#include "Component.h"
 #include "Entity.h"
 
 class AnimationRenderer :
-	public RenderComponent
+	public Component
 {
 public:
 	AnimationRenderer(Texture* image, Uint32 movementFrames);

@@ -72,13 +72,7 @@
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="SkeletonRenderer.cpp">
@@ -131,9 +125,6 @@
     </ClCompile>
     <ClCompile Include="InsulationTape.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="LogicComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="AnimationRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
@@ -224,13 +215,7 @@
     <ClInclude Include="ImageRenderer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SkeletonRenderer.h">
@@ -286,9 +271,6 @@
     </ClInclude>
     <ClInclude Include="InsulationTape.h">
       <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicComponent.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="AnimationRenderer.h">
       <Filter>Archivos de encabezado</Filter>

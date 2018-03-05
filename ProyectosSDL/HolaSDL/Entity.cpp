@@ -4,33 +4,33 @@ Entity::~Entity() {
 }
 
 Entity::Entity(SDLGame* game) :
-	game_(game), active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), inputComp_(), logicComp_(), renderComp_() {
+	game_(game), active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
 Entity::Entity(SDLGame* game, int posX, int posY) :
-	game_(game), active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), inputComp_(), logicComp_(), renderComp_() {
+	game_(game), active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
 
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
-	for (InputComponent* ic : inputComp_) {
-		if (ic->isEnabled())
-			ic->handleInput(this, time, event);
+	for (Component* c : comps_) {
+		if (c->isEnabled())
+			c->handleInput(this, time, event);
 	}
 }
 
 void Entity::update(Uint32 time) {
-	for (LogicComponent* lc : logicComp_) {
-		if (lc->isEnabled())
-			lc->update(this, time);
+	for (Component* c : comps_) {
+		if (c->isEnabled())
+			c->update(this, time);
 	}
 }
 
 void Entity::render(Uint32 time) {
-	for (RenderComponent* rc : renderComp_) {
-		if (rc->isEnabled())
-			rc->render(this, time);
+	for (Component* c : comps_) {
+		if (c->isEnabled())
+			c->render(this, time);
 	}
 }
 
@@ -44,38 +44,17 @@ void Entity::load(int x, int y, int width, int height, string textureID)
 	currentFrame_ = 1;
 }
 
-void Entity::addInputComponent(InputComponent* ic) {
-	inputComp_.push_back(ic);
+void Entity::addComponent(Component* c) {
+	comps_.push_back(c);
 }
 
-void Entity::addLogicComponent(LogicComponent* lc) {
-	logicComp_.push_back(lc);
+void Entity::delComponent(Component* c) {
+	std::vector<Component*>::iterator position = std::find(
+		comps_.begin(), comps_.end(), c);
+	if (position != comps_.end())
+		comps_.erase(position);
 }
 
-void Entity::addRenderComponent(RenderComponent* rc) {
-	renderComp_.push_back(rc);
-}
-
-void Entity::delInputComponent(InputComponent* ic) {
-	std::vector<InputComponent*>::iterator position = std::find(
-			inputComp_.begin(), inputComp_.end(), ic);
-	if (position != inputComp_.end())
-		inputComp_.erase(position);
-}
-
-void Entity::delLogicComponent(LogicComponent* lc) {
-	std::vector<LogicComponent*>::iterator position = std::find(
-		logicComp_.begin(), logicComp_.end(), lc);
-	if (position != logicComp_.end())
-		logicComp_.erase(position);
-}
-
-void Entity::delRenderComponent(RenderComponent* rc) {
-	std::vector<RenderComponent*>::iterator position = std::find(
-			renderComp_.begin(), renderComp_.end(), rc);
-	if (position != renderComp_.end())
-		renderComp_.erase(position);
-}
 
 ////Heredados de GameObject
 

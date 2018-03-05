@@ -1,7 +1,7 @@
 #pragma once
-#include "LogicComponent.h"
+#include "Component.h"
 
-class Character: public LogicComponent
+class Character: public Component
 {
 public:
 	Character();

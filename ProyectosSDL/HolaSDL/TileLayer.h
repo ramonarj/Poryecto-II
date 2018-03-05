@@ -3,12 +3,13 @@
 #include <vector>
 #include "Layer.h"
 #include "Level.h"
-#include "Vector2D.h"
+#include "Camera.h"
 
 class TileLayer : public Layer
 {
 public:
-	TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
+	TileLayer(int tileSize, int mapWidth, int mapHeight, const
+		std::vector<Tileset>& tilesets);
 	virtual void update(Level* pLevel, Uint32 time);
 	virtual void render(Uint32 time);
 
@@ -28,6 +29,7 @@ private:
 	int m_numRows;
 	int m_tileSize;
 
+	int m_mapHeight;
 	int m_mapWidth;
 
 	Vector2D m_position;

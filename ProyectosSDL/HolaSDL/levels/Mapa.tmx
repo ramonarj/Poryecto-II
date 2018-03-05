@@ -14,7 +14,7 @@
   </data>
  </layer>
  <objectgroup name="Characters">
-  <object id="5" name="Player" type="Player" x="75" y="261" width="32" height="50">
+  <object id="5" name="Player" type="Player" x="503" y="536" width="32" height="50">
    <properties>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="player"/>
@@ -24,7 +24,7 @@
  </objectgroup>
  <objectgroup name="Collides">
   <properties>
-   <property name="collidable"/>
+   <property name="collidable" value=""/>
   </properties>
   <object id="6" x="0" y="192" width="192" height="24"/>
   <object id="7" x="0" y="360" width="192" height="24"/>

@@ -103,7 +103,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
 	std::vector<TileLayer*> *pCollisionLayers)
 
 {
-	TileLayer* pTileLayer = new TileLayer(m_tileSize, *pTilesets);
+	TileLayer* pTileLayer = new TileLayer(m_tileSize, m_width, m_height, *pTilesets);
 
 	bool collidable = false;
 

@@ -6,7 +6,7 @@ Player::Player():Character()
 {
 }
 
-Player::Player(int life):Character(life)
+Player::Player(int life, int damage):Character(life, damage)
 {
 }
 

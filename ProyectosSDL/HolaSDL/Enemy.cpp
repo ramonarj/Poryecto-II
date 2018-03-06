@@ -4,10 +4,10 @@
 
 Enemy::Enemy():player(nullptr), Character(){}
 
-Enemy::Enemy(int life) : Character(life){}
+Enemy::Enemy(int life, int damage) : Character(life, damage){}
 
 
-Enemy::Enemy(Entity* player, int life):player(player), Character(life)
+Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(life, damage)
 {
 	Player* playerComp = player->getComponent<Player>();
 	if (playerComp != nullptr)
@@ -16,6 +16,7 @@ Enemy::Enemy(Entity* player, int life):player(player), Character(life)
 
 void Enemy::move(Entity* o)
 {
+	cout << "we";
 	//Posición del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
@@ -44,8 +45,8 @@ void Enemy::move(Entity* o)
 		this->takeDamage(player->getComponent<Player>()->getDamage());
 
 		//Respawn
-		pos.setX(pos.getX() + 3);
-		pos.setY(pos.getY() + 3);
+		pos.setX(pos.getX() + 20);
+		pos.setY(pos.getY() + 20);
 		o->setPosition(pos);
 	}
 	//Lo persigue
@@ -59,7 +60,7 @@ void Enemy::render(Entity* o, Uint32 time) {}
 void Enemy::update(Entity * o, Uint32 time)
 {
 	//Tanto él como el jugador están vivos
-	if (isAlive() && player->getComponent<Player>()->isAlive())
+	if (isAlive() && player != nullptr && player->getComponent<Player>()->isAlive())
 		move(o);
 
 	//Si no, se queda quieto

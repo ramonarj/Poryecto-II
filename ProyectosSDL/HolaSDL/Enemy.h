@@ -7,8 +7,8 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(int life);
-	Enemy(Entity* player, int life);
+	Enemy(int life, int damage);
+	Enemy(Entity* player, int life, int damage);
 
 	void addPlayer(Entity* player) { this->player = player; };
 

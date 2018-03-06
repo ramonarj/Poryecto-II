@@ -5,7 +5,7 @@ class Character: public Component
 {
 public:
 	Character();
-	Character(int life);
+	Character(int life, int damage);
 	void takeDamage(int i);
 	bool isAlive() { return life > 0; };
 	int getDamage() { return damage; };

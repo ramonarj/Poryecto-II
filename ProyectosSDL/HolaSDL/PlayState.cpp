@@ -35,7 +35,6 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo);
-	invtComp->addItem(palo);//SOLO SE PINTA UNO PORQUE EL OTRO SE EQUIPA AUTOMÁTICAMENTE
 
 }
 

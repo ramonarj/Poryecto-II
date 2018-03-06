@@ -1,5 +1,5 @@
 #include "Inventory.h"
-
+#include "Game.h"
 
 Inventory::Inventory(int tam) : ItemContainer(tam)
 {
@@ -34,7 +34,8 @@ void Inventory::render(Entity* e, Uint32 time)
 	dest.y = 0;
 	dest.w = 600;
 	dest.h = 600;
-	e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
+	//e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
+	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(e->getGame()->getRenderer(), dest);
 
 	for (int i = 0; i < inventory.size(); i++)
 	{

@@ -21,6 +21,7 @@ void Game::initGame()
 {
 	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
 	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+	TheGameObjectFactory::Instance()->registerType("Item", new ItemCreator(ItemType::Stick));
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);

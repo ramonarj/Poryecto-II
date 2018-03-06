@@ -43,7 +43,7 @@ public:
 		Entity* e = new Entity(Game::Instance());
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Item(type_));
-		//e->addComponent(new ImageRenderer(Game::Instance()->getResources()->getImageTexture()));
+		e->addComponent(new ImageRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)));
 		//falta que se cambie el resource por el resourceManager
 		return e;
 	}

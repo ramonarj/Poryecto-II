@@ -11,25 +11,26 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 			
 
 
-	////Player
-	//Entity* player = new Entity(game_, 100, 100);	//Jugador
-	//player->setWidth(200.0);
-	//player->setHeight(200.0);
-	//player->setVelocity(Vector2D(0.0, 0.0));
-	//player->addComponent(new Player(5, 1));
-	//player->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
-	//	SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-	//player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
-	//stage_.push_back(player);
+	//Player
+	Entity* player = new Entity(game_, 100, 100);	//Jugador
+	player->setWidth(200.0);
+	player->setHeight(200.0);
+	player->setVelocity(Vector2D(0.0, 0.0));
+	player->addComponent(new Player(5, 1));
+	player->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
+		SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
+	player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+	stage_.push_back(player);
 
 
-	////Enemigo
-	//Entity* enemy = new Entity(game_, 100, 100);
-	//enemy->setWidth(200.0);
-	//enemy->setHeight(200.0);
-	//enemy->addComponent(new Enemy(player, 2, 2));
-	//enemy->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
-	//stage_.push_back(enemy);
+	//Enemigo
+	Entity* enemy = new Entity(game_, 100, 100);
+	enemy->setWidth(200.0);
+	enemy->setHeight(200.0);
+	player->setVelocity(Vector2D(1.0, 0.0));
+	enemy->addComponent(new Enemy(player, 2, 2));
+	enemy->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+	stage_.push_back(enemy);
 
 	
 	

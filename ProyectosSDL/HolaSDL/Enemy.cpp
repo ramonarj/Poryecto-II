@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include <iostream>
+#include <math.h>
 
 
 Enemy::Enemy():player(nullptr), Character(){}
@@ -20,6 +21,12 @@ void Enemy::move(Entity* o)
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
 
+	//Lo persigue
+	Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
+	float alpha = 180 * atan(chaseVector.getY() / chaseVector.getX()) / M_PI;
+	int vel = o->getVelocity().magnitude();
+
+	cout << alpha << endl;
 
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())
@@ -33,8 +40,12 @@ void Enemy::move(Entity* o)
 	else if (pos.getY()> playerPos.getY())
 		pos.setY(pos.getY() - 1);
 
-	//Actualizamos a posicion
+	//Actualizamos a posicion(PONER ESTO EN CHARACTER)
+	pos.setX(pos.getX() + o->getVelocity().getX());
+	pos.setY(pos.getY() + o->getVelocity().getY());
+
 	o->setPosition(pos);
+
 
 	//PROVISIONAL: HACER COLISIONES EN PLAN BIEN
 	//Lo pilla

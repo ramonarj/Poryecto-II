@@ -15,6 +15,7 @@
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "Level.h"
+#include "KeyBoardInputComponent.h"
 
 #include "AnimationRenderer.h"
 class PlayerCreator;

@@ -14,7 +14,7 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 {
 }
 
-void KeyBoardInputComponent::handleInput(GameObject* o, Uint32 time, const SDL_Event& event) {
+void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 
 	Vector2D velocity = o->getVelocity();
 
@@ -40,4 +40,7 @@ void KeyBoardInputComponent::handleInput(GameObject* o, Uint32 time, const SDL_E
 	else {
 		velocity.setY(0);
 	}
+
+	o->setVelocity(velocity);
+
 }

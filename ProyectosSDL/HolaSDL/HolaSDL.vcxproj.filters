@@ -31,6 +31,12 @@
     <Filter Include="Archivos de encabezado\Items">
       <UniqueIdentifier>{a6d85e77-1d01-477b-9471-010f1977f41b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Personajes">
+      <UniqueIdentifier>{a455bfcb-ee3a-499d-a527-7368c1606e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Personajes">
+      <UniqueIdentifier>{e8640d42-fa9d-4985-b603-6827a9d032d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -97,15 +103,6 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
@@ -183,6 +180,15 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Archivos de código fuente\Personajes</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Archivos de código fuente\Personajes</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Archivos de código fuente\Personajes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -249,15 +255,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
@@ -331,6 +328,15 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Archivos de encabezado\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Archivos de encabezado\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Archivos de encabezado\Personajes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

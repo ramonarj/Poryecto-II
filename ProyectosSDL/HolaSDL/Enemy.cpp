@@ -5,9 +5,6 @@
 
 Enemy::Enemy():player(nullptr), Character(){}
 
-Enemy::Enemy(int life, int damage) : Character(life, damage){}
-
-
 Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(life, damage)
 {
 	Player* playerComp = player->getComponent<Player>();

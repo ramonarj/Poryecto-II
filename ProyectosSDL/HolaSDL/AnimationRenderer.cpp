@@ -56,7 +56,7 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 			image_->getWidth() / movementFrames,
 			image_->getHeight() / movements);
 	}
-	image_->render(o->getGame()->getRenderer(), dest, &clip);
+	image_->render(Game::Instance()->getRenderer(), dest, &clip);
 }
 
 

@@ -1,7 +1,9 @@
 #include "PlayState.h"
 #include "Game.h"
 
-PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva partida
+PlayState* PlayState::s_pInstance = 0;
+
+PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 	
 
 	Entity* inventory = new Entity(game_, 0, 0);
@@ -9,33 +11,6 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
 			
-
-
-	//Player
-	Entity* player = new Entity(game_, 100, 100);	//Jugador
-	player->setWidth(200.0);
-	player->setHeight(200.0);
-	player->setVelocity(Vector2D(0.0, 0.0));
-	player->addComponent(new Player(5, 1));
-	player->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
-		SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-	player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
-	stage_.push_back(player);
-
-
-	//Enemigo
-	Entity* enemy = new Entity(game_, 100, 100);
-	enemy->setWidth(200.0);
-	enemy->setHeight(200.0);
-	enemy->setVelocity(Vector2D(1.0, 0.0));
-	enemy->addComponent(new Enemy(player, 2, 2));
-	enemy->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
-	stage_.push_back(enemy);
-
-	
-	
-
-
 	//Item
 	Entity* palo = new Entity(game_, 10, 20);
 	palo->addComponent(new Weapon(ItemType::Stick));
@@ -66,7 +41,7 @@ PlayState::~PlayState() {
 void PlayState::update(Uint32 time)
 {
 	GameState::update(time);
-	game_->getLevel()->update(time);
+	Game::Instance()->getLevel()->update(time);
 
 	/*Entity* enemy = Game::Instance()->getEntityWithComponent<Player>();
 	if (enemy != nullptr)
@@ -78,18 +53,20 @@ void PlayState::update(Uint32 time)
 void PlayState::render(Uint32 time)
 {
 	//SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x2222222FF)); //Color de fondo
-	SDL_RenderClear(game_->getRenderer());
+	SDL_RenderClear(Game::Instance()->getRenderer());
+	Game::Instance()->getLevel()->render(time);
 	GameState::render(time);
-	game_->getLevel()->render(time);
-	SDL_RenderPresent(game_->getRenderer());
+	SDL_RenderPresent(Game::Instance()->getRenderer());
 
+
+	//game_->getEntityWithComponent<Player>()->getComponent<Character>()->lif();
 	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();
-	cout << endl << stage_.size();
+	//cout << endl << stage_.size();
 	
 }
 
 void PlayState::handleInput(Uint32 time, SDL_Event & event)
 {
+	Game::Instance()->getLevel()->handleInput(time, event);
 	GameState::handleInput(time, event);
-	game_->getLevel()->handleInput(time, event);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Entity.h"
+#include "Game.h"
 
 class AnimationRenderer :
 	public Component

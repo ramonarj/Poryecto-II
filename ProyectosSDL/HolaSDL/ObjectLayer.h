@@ -12,8 +12,5 @@ public:
 	virtual void handleInput(Uint32 time, SDL_Event& event);
 
 	CollisionManager m_collisionManager;
-
-	void pushEntity(Entity* e) { GameState::Instance()->pushEntities(e); };
-
 };
 

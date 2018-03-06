@@ -16,16 +16,19 @@
  <objectgroup name="Capa de Objetos 1">
   <object id="2" name="Player" type="Player" x="100" y="100" width="32" height="50">
    <properties>
-    <property name="textureHeight" type="int" value="350"/>
+    <property name="life" type="int" value="3"/>
+    <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="player"/>
-    <property name="textureWidth" type="int" value="350"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="5" name="Enemy" type="Enemy" x="170" y="103" width="32" height="50">
    <properties>
-    <property name="textureHeight" type="int" value="200"/>
+    <property name="damage" type="int" value="1"/>
+    <property name="life" type="int" value="1"/>
+    <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="200"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
  </objectgroup>

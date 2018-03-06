@@ -10,6 +10,9 @@ public:
 	bool isAlive() { return life > 0; };
 	int getDamage() { return damage; };
 
+	void load(int l, int d);
+	void lif() { cout << life << endl; };
+
 	virtual void update(Entity* o, Uint32 time);
 	virtual ~Character();
 

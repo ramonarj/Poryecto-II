@@ -36,6 +36,8 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	insulationTape->getComponent<InsulationTape>()->use(palo);
 
 	invtComp->addItem(insulationTape);
+	invtComp->addItem(insulationTape);
+	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo);
 
 }

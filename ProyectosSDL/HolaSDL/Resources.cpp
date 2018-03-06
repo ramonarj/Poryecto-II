@@ -2,26 +2,26 @@
 #include <tuple>
 #include "Resources.h"
 
-std::vector<std::string> Resources::imageFiles_ { "images/blank.png",
+vector<string> Resources::imageFiles_ { "images/blank.png",
 		"images/tennis_ball.png", "images/keyboard.png", "images/mouse.png",
 		"images/ai.png", "images/spaceships.png", "images/airplanes.png",
 		"images/star.png", "images/Inventory.png", "images/PruebaAnim.png",
 		"images/Spray.png","images/Crowbar.png" };
 
-std::vector<Resources::FontInfo> Resources::fontFiles_ {
+vector<Resources::FontInfo> Resources::fontFiles_ {
 		{ "fonts/ARIAL.ttf", 16 }, { "fonts/ARIAL.ttf", 24 }, {
 				"fonts/NES-Chimera.ttf", 16 }, { "fonts/NES-Chimera.ttf", 24 },
 		{ "fonts/Capture_it.ttf", 16 }, { "fonts/Capture_it.ttf", 24 } };
 
-std::vector<Resources::TextMsgInfo> Resources::textMsgs_ { { "Hello World", {
+vector<Resources::TextMsgInfo> Resources::textMsgs_ { { "Hello World", {
 		COLOR(0xaaffffff) }, Resources::ARIAL16 }, { "Press Any Key ...", {
 		COLOR(0xaaffbbff) }, Resources::ARIAL24 }, { "Game Over", { COLOR(
 		0xffffbbff) }, Resources::ARIAL24 } };
 
-std::vector<std::string> Resources::musicFiles_ { "sound/beat.wav",
+vector<string> Resources::musicFiles_ { "sound/beat.wav",
 		"sound/cheer.wav", "sound/boooo.wav" };
 
-std::vector<std::string> Resources::soundEffectFiles_ { "sound/wall_hit.wav",
+vector<string> Resources::soundEffectFiles_ { "sound/wall_hit.wav",
 		"sound/paddle_hit.wav" };
 
 #include <iostream>
@@ -46,7 +46,7 @@ Resources::~Resources() {
 	closeSoundEffects();
 }
 
-void Resources::setImageTextures(std::vector<std::string> textures) {
+void Resources::setImageTextures(vector<string> textures) {
 	closeImageTextures();
 	numOfImageTextures_ = textures.size();
 	imageTextures_ = new Texture*[numOfImageTextures_];
@@ -55,19 +55,19 @@ void Resources::setImageTextures(std::vector<std::string> textures) {
 	}
 }
 
-void Resources::setTextTextures(std::vector<TextMsgInfo> texts) {
+void Resources::setTextTextures(vector<TextMsgInfo> texts) {
 	closeTextTextures();
 	numOfTextTextures_ = texts.size();
 	textTextures_ = new Texture*[numOfTextTextures_];
 	for (int i = 0; i < numOfTextTextures_; i++) {
-		std::string txt = texts[i].text;
+		string txt = texts[i].text;
 		Font* font = getFont(texts[i].fontId);
 		SDL_Color color = texts[i].color;
 		textTextures_[i] = new Texture(game_->getRenderer(), txt, *font, color);
 	}
 }
 
-void Resources::setFonts(std::vector<FontInfo> fonts) {
+void Resources::setFonts(vector<FontInfo> fonts) {
 	closeFonts();
 	numOfFonts_ = fonts.size();
 	fonts_ = new Font*[numOfFonts_];
@@ -76,7 +76,7 @@ void Resources::setFonts(std::vector<FontInfo> fonts) {
 	}
 }
 
-void Resources::setMusic(std::vector<std::string> music) {
+void Resources::setMusic(vector<string> music) {
 	closeMusic();
 	numOfMusic_ = music.size();
 	music_ = new Music*[numOfMusic_];
@@ -85,7 +85,7 @@ void Resources::setMusic(std::vector<std::string> music) {
 	}
 }
 
-void Resources::setSoundEffects(std::vector<std::string> soundEffects) {
+void Resources::setSoundEffects(vector<string> soundEffects) {
 	closeSoundEffects();
 	numOfSoundEffects_ = soundEffects.size();
 	soundEffects_ = new SoundEffect*[numOfSoundEffects_];

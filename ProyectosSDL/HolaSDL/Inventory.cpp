@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include "Game.h"
 #include "FirstAid.h"
 
 
@@ -50,11 +51,12 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	}
 }
 
-//Este mótodo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
+//Este mï¿½todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
 	SDL_Rect dest = {0,0,600,600};
-	e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
+	//e->getGame()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
+	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(e->getGame()->getRenderer(), dest);
 
 	for (int i = 0; i < inventory.size(); i++)
 	{

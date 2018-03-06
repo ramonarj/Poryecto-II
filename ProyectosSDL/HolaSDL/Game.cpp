@@ -21,6 +21,12 @@ void Game::initGame()
 {
 	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
 	//GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+
+	//Initializate ResourceManager
+	resourceManager_ = new ResourceManager(this);
+
+	//Load Resources
+	resourceManager_->addTexture("Inventory", "images/Inventory.png");
 }
 
 void Game::closeGame() {

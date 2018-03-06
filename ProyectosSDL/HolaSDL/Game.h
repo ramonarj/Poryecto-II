@@ -16,6 +16,7 @@
 #include "PlayState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
+#include "ResourceManager.h"
 
 #include "AnimationRenderer.h"
 class PlayerCreator;
@@ -42,6 +43,7 @@ public:
 	void start();
 	void stop();
 
+	ResourceManager* getResourceManager() { return resourceManager_; };
 	Level* getLevel() { return pLevel; };
 
 	template<typename T>
@@ -59,6 +61,7 @@ public:
 private:
 	Game();
 	static Game* s_pInstance;
+	ResourceManager* resourceManager_;
 
 	void initGame();
 	void closeGame();

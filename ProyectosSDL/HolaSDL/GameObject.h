@@ -7,10 +7,8 @@
 class GameObject {
 
 public:
-	GameObject(SDLGame* game);
+	GameObject();
 	virtual ~GameObject();
-
-	SDLGame* getGame() const;
 
 	bool isActive() const;
 	void setActive(bool active);

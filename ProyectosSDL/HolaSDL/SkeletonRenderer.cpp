@@ -14,7 +14,7 @@ SkeletonRendered::~SkeletonRendered() {
 
 void SkeletonRendered::render(GameObject *o, Uint32 time) {
 
-	SDL_Renderer* renderer = o->getGame()->getRenderer();
+	SDL_Renderer* renderer = Game::Instance()->getRenderer();
 
 	// the rotation angle of the object wrt to
 	double angle = Vector2D(0, -1).angle(o->getDirection());

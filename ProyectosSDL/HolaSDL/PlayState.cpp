@@ -5,7 +5,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	
 
 	Entity* inventory = new Entity(game_, 0, 0);
-	Inventory* invtComp = new Inventory(4);
+	Inventory* invtComp = new Inventory();
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
 												   

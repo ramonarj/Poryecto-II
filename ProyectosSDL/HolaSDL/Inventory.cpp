@@ -46,6 +46,11 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
+			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
+				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
+			{
+				equipWeapon(slotClicked);
+			}
 			clicked = false;
 		}
 	}
@@ -54,9 +59,22 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
+	
 	SDL_Rect dest = {0,0,600,600};
-	//e->()->getResources()->getImageTexture(Resources::Inventory)->render(e->getGame()->getRenderer(), dest);
 	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(Game::Instance()->getRenderer(), dest);
+
+	//RENDERIZAMOS EL ARMA EQUIPADA
+	if (equiped != nullptr) {
+		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
+		if (equiped->getComponent<Weapon>()->getType() == ItemType::Stick)
+			Game::Instance()->getResources()->getImageTexture(Resources::stick)->render(Game::Instance()->getRenderer(), DestRect);
+		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Pipe)
+			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Ax)
+			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Lever)
+			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+	}
 
 	for (int i = 0; i < inventory.size(); i++)
 	{
@@ -72,15 +90,8 @@ void Inventory::render(Entity* e, Uint32 time)
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
-	SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
-	if (equiped->getComponent<Weapon>()->getType() == ItemType::Stick)
-		Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Pipe)
-		Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Ax)
-		Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-	else if (equiped->getComponent<Weapon>()->getType() == ItemType::Lever)
-		Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+	
+	
 }
 
 void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
@@ -92,7 +103,7 @@ void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
 	else if (inventory[i]->getComponent<Weapon>())
 	{
 		if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Stick)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+			Game::Instance()->getResources()->getImageTexture(Resources::stick)->render(Game::Instance()->getRenderer(), DestRect);
 		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Pipe)
 			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
 		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Ax)

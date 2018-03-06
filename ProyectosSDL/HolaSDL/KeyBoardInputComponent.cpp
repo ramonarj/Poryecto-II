@@ -40,7 +40,16 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		direction.setY(-1);
 	}
 	else if (state[interact_]) {
-		//INTERACTUAR ETC
+		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
+		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
+			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
+			if (Collisions::RectRect(&playerRect, &intRect)) {
+				if (e->getComponent<Interactible>() != nullptr) {
+					e->getComponent<Interactible>()->interact();
+				}
+				else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
+			}
+		}
 	}
 	else {
 		velocity.setY(0);

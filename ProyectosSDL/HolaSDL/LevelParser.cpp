@@ -242,6 +242,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				pLevel->setPlayer(pEntity);
 			}
 			pObjectLayer->pushEntity(pEntity);
+			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);

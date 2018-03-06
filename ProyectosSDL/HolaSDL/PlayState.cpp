@@ -84,6 +84,7 @@ void PlayState::render(Uint32 time)
 	SDL_RenderPresent(game_->getRenderer());
 
 	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();
+	cout << endl << stage_.size();
 	
 }
 

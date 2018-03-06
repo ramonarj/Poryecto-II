@@ -63,8 +63,8 @@ Level* LevelParser::parseLevel(const char *levelFile)
 				parseObjectLayer(e, pLevel->getLayers(), pLevel);
 			}
 			else if (e->FirstChildElement()->Value() == std::string("data") ||
-				(e->FirstChildElement()->NextSiblingElement() != 0 && 
-					e ->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
+				(e->FirstChildElement()->NextSiblingElement() != 0 &&
+					e->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
 			{
 				parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets(),
 					pLevel->getCollisionLayers());
@@ -98,8 +98,8 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot,
 	pTilesets->push_back(tileset);
 }
 
-void LevelParser::parseTileLayer(TiXmlElement* pTileElement, 
-	std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, 
+void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
+	std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets,
 	std::vector<TileLayer*> *pCollisionLayers)
 
 {
@@ -192,6 +192,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int x, y, width, height, numFrames;
 			int callbackID = 0;
 			int animSpeed = 0;
+			int life = 0;
+			int damage = 0;
 			std::string textureID;
 
 			// get the initial node values type, x and y
@@ -228,22 +230,31 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &callbackID);
 							}
-							else if (e->Attribute("name") == std::string("animSpeed"))
+							else if (property->Attribute("name") == std::string("animSpeed"))
 							{
 								property->Attribute("value", &animSpeed);
 							}
+							else if (property->Attribute("name") == std::string("life"))
+							{
+								property->Attribute("value", &life);
+							}
+							else if (property->Attribute("name") == std::string("damage"))
+							{
+								property->Attribute("value", &damage);
+							}
+
+							cout << e->Attribute("type");
 						}
 					}
 				}
 			}
 			pEntity->load(x, y, width, height, textureID);
-			if (e->Attribute("type") == "Player") // check if it's the player
+			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
-				pLevel->setPlayer(pEntity);
+				pEntity->getComponent<Character>()->load(life, damage);
 			}
-			pObjectLayer->pushEntity(pEntity);
+			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);
 }
-

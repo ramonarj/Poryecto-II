@@ -11,8 +11,9 @@ class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
+	coord EquippedCoord;
 
-	Inventory(int tam);
+	Inventory();
 	~Inventory();
 
 protected:
@@ -33,6 +34,8 @@ public:
 	virtual bool checkItem(Entity* item);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
+	virtual bool fullInventory();
+	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	
 	Entity* currentWeapon();

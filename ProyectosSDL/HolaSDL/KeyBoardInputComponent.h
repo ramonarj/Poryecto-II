@@ -1,5 +1,10 @@
 #pragma once
 #include "Component.h"
+#include "Game.h"
+#include "Entity.h"
+#include "Collisions.h"
+#include <iostream>
+
 class KeyBoardInputComponent :
 	public Component
 {
@@ -7,7 +12,7 @@ public:
 	KeyBoardInputComponent();
 	KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter);
 	virtual ~KeyBoardInputComponent();
-	virtual void handleInput(GameObject* o, Uint32 time, const SDL_Event& event);
+	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 
 private:
 	SDL_Scancode left_;

@@ -4,8 +4,14 @@
 
 Character::Character() :life(0){}
 
-Character::Character(int life) : life(life) {};
+Character::Character(int life, int damage) : life(life), damage(damage) {};
 
+
+void Character::load(int l, int d)
+{
+	life = l;
+	damage = d;
+}
 
 void Character::update(Entity* o, Uint32 time)
 {

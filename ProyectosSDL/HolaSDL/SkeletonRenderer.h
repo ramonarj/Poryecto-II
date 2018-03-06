@@ -2,6 +2,7 @@
 #define SKELETONTENDERER_H_
 
 #include "Component.h"
+#include "Game.h"
 
 class SkeletonRendered : public Component {
 public:

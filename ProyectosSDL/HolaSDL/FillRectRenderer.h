@@ -2,6 +2,7 @@
 #define FILLRECTRENDERER_H_
 
 #include "Component.h"
+#include "Game.h"
 
 /*
  *

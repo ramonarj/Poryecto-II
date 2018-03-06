@@ -2,9 +2,8 @@
 
 
 
-ItemContainer::ItemContainer(int tam)
+ItemContainer::ItemContainer()
 {
-	this->tam = tam;
 }
 
 
@@ -25,12 +24,7 @@ void ItemContainer::ClearInventory()
 		inventory.erase(inventory.begin());
 	}
 }
-//CHECK IF INVENTORY IS FULL
-bool ItemContainer::fullInventory()
-{
-	if (inventory.size() >= tam) { return true; }
-	else return false;
-}
+
 //CHECK IF INVENTORY IS EMPTY
 bool ItemContainer::empty()
 {

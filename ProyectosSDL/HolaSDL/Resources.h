@@ -61,21 +61,21 @@ public:
 private:
 
 	struct TextMsgInfo {
-		std::string text;
+		string text;
 		SDL_Color color;
 		FontId fontId;
 	};
 
 	struct FontInfo {
-		std::string fileName;
+		string fileName;
 		int size;
 	};
 
-	static std::vector<std::string> imageFiles_; // initialized in .cpp
-	static std::vector<TextMsgInfo> textMsgs_; // initialized in .cpp
-	static std::vector<FontInfo> fontFiles_; // initialized in .cpp
-	static std::vector<std::string> musicFiles_; // initialized in .cpp
-	static std::vector<std::string> soundEffectFiles_; // initialized in .cpp
+	static vector<string> imageFiles_; // initialized in .cpp
+	static vector<TextMsgInfo> textMsgs_; // initialized in .cpp
+	static vector<FontInfo> fontFiles_; // initialized in .cpp
+	static vector<string> musicFiles_; // initialized in .cpp
+	static vector<string> soundEffectFiles_; // initialized in .cpp
 
 
 public:
@@ -91,11 +91,11 @@ public:
 	SoundEffect* getSoundEffect(SoundEffectId i) const;
 
 private:
-	void setImageTextures(std::vector<std::string> textures);
-	void setTextTextures(std::vector<TextMsgInfo> texts);
-	void setFonts(std::vector<FontInfo> fonts);
-	void setMusic(std::vector<std::string> music);
-	void setSoundEffects(std::vector<std::string> soundEffects);
+	void setImageTextures(vector<string> textures);
+	void setTextTextures(vector<TextMsgInfo> texts);
+	void setFonts(vector<FontInfo> fonts);
+	void setMusic(vector<string> music);
+	void setSoundEffects(vector<string> soundEffects);
 
 	void closeImageTextures();
 	void closeTextTextures();

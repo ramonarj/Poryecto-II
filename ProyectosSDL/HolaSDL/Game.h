@@ -15,6 +15,8 @@
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "Level.h"
+#include "KeyBoardInputComponent.h"
+#include "ResourceManager.h"
 
 #include "AnimationRenderer.h"
 class PlayerCreator;
@@ -41,12 +43,13 @@ public:
 	void start();
 	void stop();
 
+	ResourceManager* getResourceManager() { return resourceManager_; };
 	Level* getLevel() { return pLevel; };
 
 	template<typename T>
 	Entity* getEntityWithComponent()
 	{
-		for (Entity* e : stateMachine_.currentState()->getStage()) {
+		for (Entity* e : *getStateMachine()->currentState()->getStage()) {
 			if (e->getComponent<T>() != nullptr)
 				return e;
 		}
@@ -55,9 +58,12 @@ public:
 		return nullptr;
 	};
 
+	GameStateMachine* getStateMachine() { return &stateMachine_; };
+
 private:
 	Game();
 	static Game* s_pInstance;
+	ResourceManager* resourceManager_;
 
 	void initGame();
 	void closeGame();

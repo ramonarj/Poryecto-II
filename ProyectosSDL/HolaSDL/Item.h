@@ -11,12 +11,13 @@ public:
 	virtual ~Item();
 	
 	virtual void update(Entity* e, Uint32 time) {};
-	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event) {};
-	virtual void render(Entity* e, Uint32 time) {};
 
-	virtual void interact(); // Método para interactuar de los Items
+	// Método para interactuar de los Items
+	virtual void interact(); 
 	ItemType getType() { return type_; };
-	virtual void useItem(Entity* e);
+	
+	// METODO PARA USAR UN ITEM (LOS ITEMS SE USAN DESDE EL INVENTARIO)
+	virtual void use(Entity* e) {};
 private:
 	ItemType type_;
 };

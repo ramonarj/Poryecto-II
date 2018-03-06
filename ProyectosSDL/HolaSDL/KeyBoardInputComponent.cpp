@@ -14,30 +14,49 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 {
 }
 
-void KeyBoardInputComponent::handleInput(GameObject* o, Uint32 time, const SDL_Event& event) {
+void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 
 	Vector2D velocity = o->getVelocity();
-
+	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	if (state[left_]) {
-		velocity.setX(-1);
+		velocity.setX(-10);
+		direction.setX(-1);
 	}
 	else if (state[right_]) {
-		velocity.setX(1);
+		velocity.setX(10);
+		direction.setX(1);
 	}
 	else {
 		velocity.setX(0);
+		direction.setX(0);
 	}
 	if (state[up_]) {
-		velocity.setY(-1);
+		velocity.setY(-10);
+		direction.setY(1);
 	}
 	else if (state[down_]) {
-		velocity.setY(1);
+		velocity.setY(10);
+		direction.setY(-1);
 	}
 	else if (state[interact_]) {
-		//INTERACTUAR ETC
+		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
+		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
+			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
+			if (Collisions::RectRect(&playerRect, &intRect)) {
+				if (e->getComponent<Interactible>() != nullptr) {
+					e->getComponent<Interactible>()->interact();
+				}
+				else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
+			}
+		}
 	}
 	else {
 		velocity.setY(0);
+		direction.setY(0);
 	}
+
+	o->setVelocity(velocity);
+	o->setDirection(direction);
+
 }

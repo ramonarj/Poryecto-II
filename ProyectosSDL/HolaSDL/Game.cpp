@@ -8,7 +8,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 
 	//Se añade PlayScene
-	stateMachine_.pushState(new PlayState(this));
+	stateMachine_.pushState(PlayState::Instance());
 
 	exit_ = false;
 }
@@ -19,8 +19,15 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-	//GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+	TheGameObjectFactory::Instance()->registerType("Item", new ItemCreator(ItemType::Stick));
+
+	//Initializate ResourceManager
+	resourceManager_ = new ResourceManager(this);
+
+	//Load Resources
+	resourceManager_->addTexture("Inventory", "images/Inventory.png");
 }
 
 void Game::closeGame() {

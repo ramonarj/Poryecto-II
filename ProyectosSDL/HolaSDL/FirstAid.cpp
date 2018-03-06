@@ -15,10 +15,10 @@ void FirstAid::update(Entity* e, Uint32 time) {
 
 }
 
-void FirstAid::useItem(Entity* player) {
-	if (player->getComponent<Player>()) {
+void FirstAid::use(Entity* player) {
+	if (player->getComponent<Player>() != nullptr) {
 		std::cout << Item::getType() << " ha sido usado" << std::endl;
 		//llamar al metodo de e de recargar vida
-		Item::useItem(player);
+		player->getComponent<Player>()->cure();
 	}
 }

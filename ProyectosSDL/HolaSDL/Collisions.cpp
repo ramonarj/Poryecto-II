@@ -9,27 +9,20 @@ Collisions::~Collisions() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Collisions::collides(GameObject* o1, GameObject* o2) {
-
-	Vector2D o1Pos = o1->getPosition();
-	double o1Width = o1->getWidth();
-	double o1Height = o1->getHeight();
-
-	Vector2D o2Pos = o2->getPosition();
-	double o2Width = o2->getWidth();
-	double o2Height = o2->getHeight();
-
-	// o1 completely to the left of o2, or vice versa
-	if (o1Pos.getX() + o1Width < o2Pos.getX()
-			|| o2Pos.getX() + o2Width < o1Pos.getX()) {
-		return false;
-	}
-
-	// o1 completely to the top of o2, or vice versa
-	if (o1Pos.getY() + o1Height < o2Pos.getY()
-			|| o2Pos.getY() + o2Height < o1Pos.getY()) {
-		return false;
-	}
-
+bool Collisions::RectRect(SDL_Rect * A, SDL_Rect * B)
+{
+	int aHBuf = A->h / s_buffer;
+	int aWBuf = A->w / s_buffer;
+	int bHBuf = B->h / s_buffer;
+	int bWBuf = B->w / s_buffer;
+	// if the bottom of A is less than the top of B - no collision
+	if ((A->y + A->h) - aHBuf <= B->y + bHBuf) { return false; }
+	// if the top of A is more than the bottom of B = no collision
+	if (A->y + aHBuf >= (B->y + B->h) - bHBuf) { return false; }
+	// if the right of A is less than the left of B - no collision
+	if ((A->x + A->w) - aWBuf <= B->x + bWBuf) { return false; }
+	// if the left of A is more than the right of B - no collision
+	if (A->x + aWBuf >= (B->x + B->w) - bWBuf) { return false; }
+	// otherwise there has been a collision
 	return true;
 }

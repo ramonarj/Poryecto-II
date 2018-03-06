@@ -7,7 +7,9 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(Entity* player, int life);
+	Enemy(Entity* player, int life, int damage);
+
+	void addPlayer(Entity* player) { this->player = player; };
 
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* o, Uint32 time);

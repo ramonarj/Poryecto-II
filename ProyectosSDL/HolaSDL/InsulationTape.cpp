@@ -8,9 +8,8 @@ InsulationTape::~InsulationTape()
 void InsulationTape::interact() {
 }
 
-void InsulationTape::useItem(Entity* e) {
-	if (e->getComponent<Weapon>()) {
+void InsulationTape::use(Entity* e) {
+	if (e->getComponent<Weapon>() != nullptr) {
 		e->getComponent<Weapon>()->repair();
-		Item::useItem(e);
 	}
 }

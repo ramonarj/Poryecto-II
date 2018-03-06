@@ -2,6 +2,8 @@
 #define IMAGERENDERER_H_
 
 #include "Component.h"
+#include "Entity.h"
+#include "Game.h"
 
 /*
  *
@@ -10,7 +12,7 @@ class ImageRenderer: public Component {
 public:
 	ImageRenderer(Texture* image);
 	virtual ~ImageRenderer();
-	virtual void render(GameObject* o, Uint32 time);
+	virtual void render(Entity* o, Uint32 time);
 private:
 	Texture* image_;
 };

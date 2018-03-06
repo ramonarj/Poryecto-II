@@ -28,15 +28,13 @@ public:
 
 	void update(Uint32 time);
 	void render(Uint32 time);
+	void handleInput(Uint32 time, SDL_Event& event);
 
 	std::vector<Tileset>* getTilesets() { return &m_tilesets; }
 	std::vector<Layer*>* getLayers() { return &m_layers; }
 	std::vector<TileLayer*>* getCollisionLayers() { return &m_collisionLayers; }
 
 	const std::vector<TileLayer*>& getCollidableLayers() { return m_collisionLayers; }
-
-	Entity* getPlayer() { return pPlayer; }
-	void setPlayer(Entity* player) { pPlayer = player; };
 
 private:
 
@@ -47,6 +45,4 @@ private:
 	std::vector<Layer*> m_layers;
 	std::vector<Tileset> m_tilesets;
 	std::vector<TileLayer*> m_collisionLayers;
-
-	Entity* pPlayer = nullptr; //Puntero a player
 };

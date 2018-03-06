@@ -12,6 +12,7 @@ public:
 		std::vector<Tileset>& tilesets);
 	virtual void update(Level* pLevel, Uint32 time);
 	virtual void render(Uint32 time);
+	virtual void handleInput(Uint32 time, SDL_Event& event);
 
 	void setTileIDs(const std::vector<std::vector<int>>& data) { m_tileIDs = data; };
 	void setTileSize(int tileSize) { m_tileSize = tileSize; };

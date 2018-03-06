@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="8">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="50" columns="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="19">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
  <layer name="Suelo" width="125" height="117">
@@ -9,12 +9,15 @@
   </data>
  </layer>
  <layer name="Habitaciones" width="125" height="117">
+  <properties>
+   <property name="collidable" type="int" value="0"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Capa de Objetos 1">
-  <object id="2" name="Player" type="Player" x="100" y="100" width="32" height="50">
+ <objectgroup name="Characters">
+  <object id="2" name="Player" type="Player" x="763" y="314" width="32" height="50">
    <properties>
     <property name="life" type="int" value="3"/>
     <property name="textureHeight" type="int" value="50"/>

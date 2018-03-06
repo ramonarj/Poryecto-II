@@ -20,6 +20,6 @@ protected:
 	int life;
 	int damage;
 	virtual void move(Entity* o)= 0;
-	
+
 };
 

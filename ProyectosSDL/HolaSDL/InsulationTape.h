@@ -8,6 +8,7 @@ public:
 	virtual ~InsulationTape();
 
 	virtual void interact(); // Método para interactuar de los Itemss
-	virtual void useItem(Entity* e);
+
+	virtual void use(Entity* e);
 };
 

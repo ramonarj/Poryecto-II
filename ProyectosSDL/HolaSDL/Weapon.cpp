@@ -47,7 +47,10 @@ void Weapon::attack() {
 	}
 }
 
-void  Weapon::repair() {
-	numHits_ = maxHits_;
+void Weapon::repair() {
+
+	numHits_ += repairIndex_*maxHits_;
+	if (numHits_ > maxHits_) 
+		numHits_ = maxHits_;
 	std::cout << " arma reparada, numHits = " << numHits_ << std::endl;
 }

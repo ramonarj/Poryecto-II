@@ -8,7 +8,7 @@ public:
 	FirstAid();
 	virtual ~FirstAid();
 	virtual void update(Entity* e, Uint32 time);
-	virtual void useItem(Entity* e);
+	virtual void use(Entity* e);
 private:
 	int lifeFilling = 3;
 };

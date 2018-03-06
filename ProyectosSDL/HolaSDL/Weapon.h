@@ -13,6 +13,7 @@ private:
 	int damage_;
 	int numHits_;
 	int maxHits_;
+	int repairIndex_ = 0.6;
 
 	void repair();	// Repara el arma
 	void weaponInit(ItemType type);	// Metodo para inicializar el arma

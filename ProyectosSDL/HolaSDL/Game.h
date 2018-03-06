@@ -49,7 +49,7 @@ public:
 	template<typename T>
 	Entity* getEntityWithComponent()
 	{
-		for (Entity* e : stateMachine_.currentState()->getStage()) {
+		for (Entity* e : *getStateMachine()->currentState()->getStage()) {
 			if (e->getComponent<T>() != nullptr)
 				return e;
 		}
@@ -57,6 +57,8 @@ public:
 		//If Entity not found
 		return nullptr;
 	};
+
+	GameStateMachine* getStateMachine() { return &stateMachine_; };
 
 private:
 	Game();

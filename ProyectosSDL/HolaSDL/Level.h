@@ -28,6 +28,7 @@ public:
 
 	void update(Uint32 time);
 	void render(Uint32 time);
+	void handleInput(Uint32 time, SDL_Event& event);
 
 	std::vector<Tileset>* getTilesets() { return &m_tilesets; }
 	std::vector<Layer*>* getLayers() { return &m_layers; }

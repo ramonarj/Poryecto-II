@@ -5,15 +5,15 @@
 #include "GameObject.h"
 
 /*
- *
- */
+*
+*/
 class Collisions {
 public:
 	Collisions();
 	virtual ~Collisions();
 
-	static bool collides(GameObject* o1, GameObject* o2);
-
+	const static int s_buffer = 4;
+	static bool RectRect(SDL_Rect* A, SDL_Rect* B);
 };
 
 #endif /* SRC_SIMPLEENGINE_BASE_COLLISIONS_H_ */

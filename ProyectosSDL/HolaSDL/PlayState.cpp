@@ -9,7 +9,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
 												   
-	Entity* player = new Entity(game_, 100, 100);	//Jugador
+	/*Entity* player = new Entity(game_, 100, 100);	//Jugador
 	player->setWidth(200.0);
 	player->setHeight(200.0);
 	player->setVelocity(Vector2D(0.0, 0.0));
@@ -17,7 +17,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	player->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 		SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
 	player->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
-	stage_.push_back(player);
+	stage_.push_back(player);*/
 
 	////Enemigo
 	//Entity* enemy = new Entity(game_, 20, 10);
@@ -33,7 +33,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	Entity* insulationTape = new Entity(game_, 15, 25);
 	insulationTape->addComponent(new InsulationTape());
 	stage_.push_back(insulationTape);
-	insulationTape->getComponent<InsulationTape>()->useItem(palo);
+	insulationTape->getComponent<InsulationTape>()->use(palo);
 
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo);
@@ -43,6 +43,12 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 
 PlayState::~PlayState() {
 	
+}
+
+void PlayState::update(Uint32 time)
+{
+	GameState::update(time);
+	game_->getLevel()->update(time);
 }
 
 void PlayState::render(Uint32 time)
@@ -55,4 +61,10 @@ void PlayState::render(Uint32 time)
 
 	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();
 	
+}
+
+void PlayState::handleInput(Uint32 time, SDL_Event & event)
+{
+	GameState::handleInput(time, event);
+	game_->getLevel()->handleInput(time, event);
 }

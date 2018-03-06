@@ -23,10 +23,13 @@ void Enemy::move(Entity* o)
 
 	//Lo persigue
 	Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
-	float alpha = 180 * atan(chaseVector.getY() / chaseVector.getX()) / M_PI;
-	int vel = o->getVelocity().magnitude();
+	float alpha = atan(chaseVector.getY() / chaseVector.getX());
+	int velMag = o->getVelocity().magnitude();
 
-	cout << alpha << endl;
+	//Ponemos la nueva velocidad
+	Vector2D vel{ cos(alpha) * velMag, sin(alpha)* velMag};
+	cout << vel.getX() << " " << vel.getY() << endl;
+	//o->setVelocity(vel);
 
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())

@@ -27,7 +27,7 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	Entity* enemy = new Entity(game_, 100, 100);
 	enemy->setWidth(200.0);
 	enemy->setHeight(200.0);
-	player->setVelocity(Vector2D(1.0, 0.0));
+	enemy->setVelocity(Vector2D(1.0, 0.0));
 	enemy->addComponent(new Enemy(player, 2, 2));
 	enemy->addComponent(new AnimationRenderer(game_->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
 	stage_.push_back(enemy);

@@ -2,10 +2,10 @@
 #include <iostream>
 
 
-Enemy::Enemy():player(nullptr), Character()
-{
+Enemy::Enemy():player(nullptr), Character(){}
 
-}
+Enemy::Enemy(int life) : Character(life){}
+
 
 Enemy::Enemy(Entity* player, int life):player(player), Character(life)
 {
@@ -39,8 +39,9 @@ void Enemy::move(Entity* o)
 	//Lo pilla
 	if (pos.getX() == playerPos.getX() && pos.getY() == playerPos.getY())
 	{
-		player->getComponent<Player>()->takeDamage(1);
-		this->takeDamage(1);
+		//De momento, ambos se hacen daño
+		player->getComponent<Player>()->takeDamage(damage);
+		this->takeDamage(player->getComponent<Player>()->getDamage());
 
 		//Respawn
 		pos.setX(pos.getX() + 3);

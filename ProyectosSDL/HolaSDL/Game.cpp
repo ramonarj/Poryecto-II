@@ -20,7 +20,7 @@ Game::~Game() {
 void Game::initGame() 
 {
 	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-	//TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);

@@ -20,3 +20,16 @@ public:
 		return e;
 	}
 };
+
+class EnemyCreator : public BaseCreator
+{
+public:
+	Entity* createEntity() const
+	{
+		Entity* e = new Entity(Game::Instance());
+		e->setVelocity(Vector2D(1.0, 0.0));
+		e->addComponent(new Enemy());
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+		return e;
+	}
+};

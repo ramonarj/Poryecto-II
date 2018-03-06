@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="6">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="50" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
@@ -19,6 +19,13 @@
     <property name="textureHeight" type="int" value="350"/>
     <property name="textureID" value="player"/>
     <property name="textureWidth" type="int" value="350"/>
+   </properties>
+  </object>
+  <object id="5" name="Enemy" type="Enemy" x="170" y="103" width="32" height="50">
+   <properties>
+    <property name="textureHeight" type="int" value="200"/>
+    <property name="textureID" value="enemy"/>
+    <property name="textureWidth" type="int" value="200"/>
    </properties>
   </object>
  </objectgroup>

@@ -40,11 +40,15 @@ PlayState::PlayState(Game* game): GameState(game){ //Constructora de nueva parti
 	palo->addComponent(new Weapon(ItemType::Stick));
 	stage_.push_back(palo);
 	palo->getComponent<Weapon>()->attack();
+	palo->getComponent<Weapon>()->attack();
+	palo->getComponent<Weapon>()->attack();
+	palo->getComponent<Weapon>()->attack();
 
 	Entity* insulationTape = new Entity(game_, 15, 25);
 	insulationTape->addComponent(new InsulationTape());
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->use(palo);
+
 
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(insulationTape);

@@ -6,7 +6,7 @@ Player::Player():Character()
 {
 }
 
-Player::Player(int life, int damage):Character(life, damage)
+Player::Player(int life, int damage):Character(life, damage),maxLife_(life)
 {
 }
 
@@ -29,4 +29,10 @@ void Player::render(Entity* o, Uint32 time){}
 
 Player::~Player()
 {
+}
+
+void Player::cure() {
+	life += maxLife_ * cureIndex_;
+	if (life > maxLife_)
+		life = maxLife_;
 }

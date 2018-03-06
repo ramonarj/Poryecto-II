@@ -11,8 +11,7 @@ public:
 	virtual ~Item();
 	
 	virtual void update(Entity* e, Uint32 time) {};
-	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event) {};
-	virtual void render(Entity* e, Uint32 time) {};
+
 	// Método para interactuar de los Items
 	virtual void interact(); 
 	ItemType getType() { return type_; };

@@ -33,3 +33,20 @@ public:
 		return e;
 	}
 };
+
+class ItemCreator : public BaseCreator
+{
+public:
+	ItemCreator(ItemType type) : type_(type) {};
+	Entity* createEntity() const
+	{
+		Entity* e = new Entity(Game::Instance());
+		e->setVelocity(Vector2D(1.0, 0.0));
+		e->addComponent(new Item(type_));
+		//e->addComponent(new ImageRenderer(Game::Instance()->getResources()->getImageTexture()));
+		//falta que se cambie el resource por el resourceManager
+		return e;
+	}
+private:
+	ItemType type_;
+};

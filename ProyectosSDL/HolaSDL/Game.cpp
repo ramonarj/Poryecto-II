@@ -30,7 +30,6 @@ void Game::initGame()
 	//Load Resources
 	resourceManager_->addTexture("Inventory", "images/Inventory.png");
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
-	
 }
 
 void Game::closeGame() {

@@ -44,6 +44,7 @@ public:
 		
 		e->addComponent(chooseItemType(type_));
 		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(toString(type_))));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	};
 	Component* chooseItemType(const ItemType type) const{

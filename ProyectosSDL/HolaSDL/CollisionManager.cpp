@@ -2,7 +2,7 @@
 
 CollisionManager* CollisionManager::s_pInstance = 0;
 
-void CollisionManager::checkPlayerTileCollision(Entity * pPlayer, const std::vector<TileLayer*>& collisionLayers)
+void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vector<TileLayer*>& collisionLayers)
 {
 	for (std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
 	{
@@ -33,18 +33,13 @@ void CollisionManager::checkPlayerTileCollision(Entity * pPlayer, const std::vec
 
 		if (tileid != 0)
 		{
-			/*Vector2D direction_ = pPlayer->getDirection();
-			int i = 0;
-			bool boolChanged = false;
-			while (i < dir.size() && !boolChanged)
-			{
-				if (direction_.getX() == dir[i].getX() && direction_.getY() == dir[i].getY())
-				{
-					pPlayer->stopWalk()
-					boolChanged = true;
-				}
-				else i++;
-			}*/
+			Vector2D velocity(pPlayer->getVelocity());
+			velocity.setX(-velocity.getX());
+			velocity.setY(-velocity.getY());
+			pPlayer->setVelocity(velocity);
+			pPlayer->getComponent<Player>()->move(pPlayer);
+			/*Vector2D velocity(0, 0);
+			pPlayer->setVelocity(velocity);*/
 		}
 	}
 }

@@ -13,10 +13,11 @@ public:
 
 	int getLife() { return life; };
 	void cure();
+	virtual void move(Entity* o);
 
 	virtual ~Player();
 private:
-	virtual void move(Entity* o);
+	
 	int maxLife_;
 	double cureIndex_ = 0.6;
 };

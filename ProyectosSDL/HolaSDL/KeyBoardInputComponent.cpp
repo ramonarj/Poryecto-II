@@ -54,6 +54,13 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			}
 		}
 	}
+	/*else if (state[interact_]) {
+		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
+		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
+			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
+			if (Collisions::RectRect(&playerRect, &intRect)) {
+				if (e->getComponent<Interactible>() != nullptr) {
+					e->getComponent<Interactible>()->interact();				}			}		}	}*/
 	else {
 		velocity.setY(0);
 		direction.setY(0);

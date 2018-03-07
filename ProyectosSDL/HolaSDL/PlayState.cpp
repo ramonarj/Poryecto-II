@@ -6,7 +6,7 @@ PlayState* PlayState::s_pInstance = 0;
 PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 	
 
-	/*inventory = new Entity(0, 0);
+	inventory = new Entity(0, 0);
 	Inventory* invtComp = new Inventory();
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
@@ -31,7 +31,7 @@ PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);
-	invtComp->addItem(palo);*/
+	invtComp->addItem(palo);
 
 }
 

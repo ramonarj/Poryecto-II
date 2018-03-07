@@ -15,7 +15,7 @@ public:
 	Entity(int posX, int posY);
 	virtual ~Entity();
 
-	void setActive(bool enabled) { active_ = enabled; };
+	void setActive(bool enabled);
 	bool isActive() { return active_; };
 
 	virtual void handleInput(Uint32 time, const SDL_Event& event);

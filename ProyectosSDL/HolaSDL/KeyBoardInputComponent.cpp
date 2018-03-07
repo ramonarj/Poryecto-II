@@ -1,5 +1,6 @@
 #include "KeyBoardInputComponent.h"
 #include "ImageRenderer.h"
+#include <iostream>
 
 
 KeyBoardInputComponent::KeyBoardInputComponent()
@@ -53,6 +54,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				}
 			}
 		}
+	}
+	else if (state[inventory_])
+	{
+		if (event.type == SDL_KEYDOWN)
+			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
 	}
 	/*else if (state[interact_]) {
 		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };

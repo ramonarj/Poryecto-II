@@ -33,13 +33,10 @@ void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vect
 
 		if (tileid != 0)
 		{
-			Vector2D velocity(pPlayer->getVelocity());
-			velocity.setX(-velocity.getX());
-			velocity.setY(-velocity.getY());
-			pPlayer->setVelocity(velocity);
-			pPlayer->getComponent<Player>()->move(pPlayer);
-			/*Vector2D velocity(0, 0);
-			pPlayer->setVelocity(velocity);*/
+			Vector2D pos(0, 0);
+			pos.setX(pPlayer->getPosition().getX() - pPlayer->getVelocity().getX());
+			pos.setY(pPlayer->getPosition().getY() - pPlayer->getVelocity().getY());
+			pPlayer->setPosition(pos);
 		}
 	}
 }

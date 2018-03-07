@@ -18,8 +18,6 @@ public:
 	void setActive(bool enabled) { active_ = enabled; };
 	bool isActive() { return active_; };
 
-	SDLGame* getGame() const;
-
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
@@ -38,7 +36,6 @@ public:
 	void setHeight(double height);
 	void scale(double s);
 
-
 	const Vector2D& getPosition() const;
 	void setPosition(const Vector2D &pos);
 
@@ -47,6 +44,7 @@ public:
 
 	const Vector2D& getDirection() const;
 	void setDirection(const Vector2D &vel);
+
 
 	//Get Component
 	template<typename T>

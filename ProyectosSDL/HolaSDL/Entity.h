@@ -18,6 +18,8 @@ public:
 	void setActive(bool enabled) { active_ = enabled; };
 	bool isActive() { return active_; };
 
+	SDLGame* getGame() const;
+
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);

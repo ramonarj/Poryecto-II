@@ -10,7 +10,7 @@ private:
 	PlayState();
 	static PlayState* s_pInstance;
 public:
-
+	Entity* inventory;
 	static PlayState* Instance()
 	{
 		if (s_pInstance == 0)

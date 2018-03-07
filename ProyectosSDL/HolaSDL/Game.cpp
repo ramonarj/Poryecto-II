@@ -21,13 +21,15 @@ void Game::initGame()
 {
 	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
 	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
-	TheGameObjectFactory::Instance()->registerType("Item", new ItemCreator(ItemType::Stick));
+	TheGameObjectFactory::Instance()->registerType("Item", new ItemCreator(ItemType::Lever));
+	
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);
 
 	//Load Resources
 	resourceManager_->addTexture("Inventory", "images/Inventory.png");
+	resourceManager_->addTexture("Lever", "images/Crowbar.png");
 }
 
 void Game::closeGame() {

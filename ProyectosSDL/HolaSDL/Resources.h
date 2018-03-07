@@ -29,7 +29,8 @@ public:
 		Inventory,
 		PruebaAnim,
 		PruebaMedicKit,
-		Crowbar
+		Crowbar,
+		stick
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

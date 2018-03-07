@@ -283,3 +283,8 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+ProyectosSDL/bin/HolaSDLDebug\.exe
+
+ProyectosSDL/bin/HolaSDLDebug\.exp
+
+ProyectosSDL/bin/HolaSDLDebug\.lib

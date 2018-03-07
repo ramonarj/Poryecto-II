@@ -1,5 +1,5 @@
 #include "KeyBoardInputComponent.h"
-
+#include "ImageRenderer.h"
 
 
 KeyBoardInputComponent::KeyBoardInputComponent()
@@ -40,17 +40,27 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		direction.setY(-1);
 	}
 	else if (state[interact_]) {
+		if (event.type == SDL_KEYDOWN) {
+			SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
+			for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
+				SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
+				if (Collisions::RectRect(&playerRect, &intRect)) {
+					if (e->getComponent<Interactible>() != nullptr) {
+						e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());
+						e->delComponent(e->getComponent<ImageRenderer>());
+					}
+					else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
+				}
+			}
+		}
+	}
+	/*else if (state[interact_]) {
 		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
 		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
 			if (Collisions::RectRect(&playerRect, &intRect)) {
 				if (e->getComponent<Interactible>() != nullptr) {
-					e->getComponent<Interactible>()->interact();
-				}
-				else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
-			}
-		}
-	}
+					e->getComponent<Interactible>()->interact();				}			}		}	}*/
 	else {
 		velocity.setY(0);
 		direction.setY(0);

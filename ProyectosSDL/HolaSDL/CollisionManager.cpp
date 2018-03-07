@@ -1,9 +1,13 @@
 #include "CollisionManager.h"
 
-void CollisionManager::checkPlayerTileCollision(Entity * pPlayer, const std::vector<TileLayer*>& collisionLayers)
+CollisionManager* CollisionManager::s_pInstance = 0;
+
+void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vector<TileLayer*>& collisionLayers)
 {
 	for (std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
 	{
+		vector<Vector2D> dir(4);
+		dir[0].set(-1, 0); dir[1].set(1, 0); dir[2].set(0, 1); dir[3].set(0, -1);
 		TileLayer* pTileLayer = (*it);
 		std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
 
@@ -27,9 +31,12 @@ void CollisionManager::checkPlayerTileCollision(Entity * pPlayer, const std::vec
 			tileid = tiles[tileRow + y][tileColumn + x];
 		}
 
-		/*if (tileid != 0)
+		if (tileid != 0)
 		{
-			pPlayer->collision();
-		}*/
+			Vector2D pos(0, 0);
+			pos.setX(pPlayer->getPosition().getX() - pPlayer->getVelocity().getX());
+			pos.setY(pPlayer->getPosition().getY() - pPlayer->getVelocity().getY());
+			pPlayer->setPosition(pos);
+		}
 	}
 }

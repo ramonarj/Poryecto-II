@@ -12,7 +12,7 @@ public:
 	
 	virtual void update(Entity* e, Uint32 time) {};
 
-	// Método para interactuar de los Items
+	// Mï¿½todo para interactuar de los Items
 	virtual void interact(Entity* e, ItemContainer* ic);
 	ItemType getType() { return type_; };
 	

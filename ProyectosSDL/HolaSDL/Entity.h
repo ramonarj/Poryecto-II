@@ -11,8 +11,8 @@ using namespace std;
 
 class Entity{
 public:
-	Entity(SDLGame* game);
-	Entity(SDLGame* game, int posX, int posY);
+	Entity();
+	Entity(int posX, int posY);
 	virtual ~Entity();
 
 	void setActive(bool enabled) { active_ = enabled; };
@@ -64,7 +64,6 @@ public:
 	};
 
 private:
-    SDLGame* game_; // pointer to the game:
 	bool active_;
 
 	Vector2D position_; // position
@@ -80,7 +79,6 @@ private:
 	double currentFrame_;
 
 	vector<Component*> comps_;
-	
 };
 
 #endif /* ENTITY_H_ */

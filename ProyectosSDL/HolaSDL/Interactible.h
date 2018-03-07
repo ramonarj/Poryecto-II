@@ -7,6 +7,6 @@ class Interactible :
 public:
 	Interactible();
 	~Interactible();
-	virtual void interact(Entity* e, ItemContainer* ic) = 0; // Método abstracto de la interacción
+	virtual void interact(Entity* e, ItemContainer* ic) = 0; // Mï¿½todo abstracto de la interacciï¿½n
 };
 

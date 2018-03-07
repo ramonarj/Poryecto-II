@@ -4,6 +4,7 @@
 #include "Layer.h"
 #include "LevelParser.h"
 #include "Entity.h"
+#include "CollisionManager.h"
 
 class TileLayer;
 

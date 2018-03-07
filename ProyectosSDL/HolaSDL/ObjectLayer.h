@@ -10,7 +10,5 @@ public:
 	virtual void update(Level* pLevel, Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);
-
-	CollisionManager m_collisionManager;
 };
 

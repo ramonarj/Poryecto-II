@@ -124,6 +124,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
 					if (property->Attribute("name") == std::string("collidable"))
 					{
 						collidable = true;
+						pCollisionLayers->push_back(pTileLayer);
 					}
 				}
 			}
@@ -242,8 +243,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &damage);
 							}
-
-							cout << e->Attribute("type");
 						}
 					}
 				}

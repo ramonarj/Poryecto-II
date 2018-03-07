@@ -3,12 +3,12 @@
 Entity::~Entity() {
 }
 
-Entity::Entity(SDLGame* game) :
-	game_(game), active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
+Entity::Entity() :
+	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
-Entity::Entity(SDLGame* game, int posX, int posY) :
-	game_(game), active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
+Entity::Entity( int posX, int posY) :
+	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
 
@@ -57,11 +57,6 @@ void Entity::delComponent(Component* c) {
 
 
 ////Heredados de GameObject
-
-SDLGame* Entity::getGame() const {
-	return game_;
-}
-
 
 double Entity::getWidth() const {
 	return width_;

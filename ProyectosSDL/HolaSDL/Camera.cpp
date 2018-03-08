@@ -2,34 +2,33 @@
 
 Camera* Camera::s_pCamera = new Camera();
 
-Camera::Camera() : m_pTarget(0), m_position(0, 0)
+Camera::Camera() : m_pTarget(0, 0), m_position(0, 0)
 {
 
 }
 
 Camera::~Camera()
 {
-	delete m_pTarget;
+
 }
 
-void Camera::update(Vector2D velocity)
-{
-	Vector2D pos(Game::Instance()->getEntityWithComponent<Player>()->getPosition());
-	m_pTarget = &pos;
-}
 
 const Vector2D Camera::getPosition() const
 {
-	{
-		if (m_pTarget != 0)
-		{
-			Vector2D pos(m_pTarget->getX() - (Game::Instance()->getWindowWidth() / 2), 0);
-			if (pos.getX() < 0)
-			{
-				pos.setX(0);
-			}
-			return pos;
-		}
-		return m_position;
-	}
+
+	Vector2D pos(m_pTarget.getX() - (Game::Instance()->getWindowWidth() / 2), m_pTarget.getY() - (Game::Instance()->getWindowHeight() / 2));
+
+	if (pos.getX() > 0) pos.setX(m_pTarget.getX());
+	if (pos.getY() > 0) pos.setX(m_pTarget.getY());
+
+	if (pos.getX() < 0)
+		pos.setX(0);
+	else if (pos.getX() > Game::Instance()->getWindowWidth())
+		pos.setX(Game::Instance()->getWindowWidth());
+	if (pos.getY() < 0)
+		pos.setY(0);
+	else if (pos.getY() > Game::Instance()->getWindowHeight())
+		pos.setY(Game::Instance()->getWindowWidth());
+
+	return pos;
 }

@@ -18,6 +18,7 @@ private:
 	Uint32 movementFrames, movements = 4, frame = 0, idleFrame = 0, actualTime = 0, cooldown = 80;
 	Vector2D lastDir;
 	int dir(Entity* o);
+	int dirIddle(Entity* o);
 	bool character;
 };
 

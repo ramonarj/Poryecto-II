@@ -32,7 +32,7 @@ void Game::initGame()
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
 
 	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
-	resourceManager_->getMusic("SafeRoom")->play();
+	//resourceManager_->getMusic("SafeRoom")->play();
 	
 }
 

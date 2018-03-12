@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Entity.h"
 
 class Character: public Component
 {
@@ -19,7 +20,7 @@ public:
 protected:
 	int life;
 	int damage;
-	virtual void move(Entity* o)= 0;
+	virtual void move(Entity* o);
 	
 };
 

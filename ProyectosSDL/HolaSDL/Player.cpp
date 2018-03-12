@@ -13,11 +13,7 @@ Player::Player(int life, int damage):Character(life, damage),maxLife_(life)
 void Player::move(Entity* o)
 {
 	Vector2D pos = { o->getPosition().getX(), o->getPosition().getY() };
-
-	pos.setX(pos.getX() + o->getVelocity().getX());
-	pos.setY(pos.getY() + o->getVelocity().getY());
-
-	o->setPosition(pos);
+	Character::move(o);
 	Camera::Instance()->setTarget(pos);
 }
 

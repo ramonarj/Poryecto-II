@@ -11,6 +11,10 @@ GameState::~GameState(){ //Destructora
 		delete o;
 }
 
+void GameState::startState()
+{
+}
+
 void GameState::render(Uint32 time){ //Llama a los render components de todas las entities
 	for (Entity* e : stage_)
 		e->render(time);

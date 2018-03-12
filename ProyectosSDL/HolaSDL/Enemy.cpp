@@ -37,13 +37,12 @@ void Enemy::move(Entity* o)
 		//pos.setX(pos.getX() + o->getVelocity().getX());
 		//pos.setY(pos.getY() + o->getVelocity().getY());
 
-		o->setPosition(pos);
 		Vector2D vel;
 		//Movimiento en X
 		if (pos.getX() < playerPos.getX())
-			vel.setX(velMag);
+			vel.setX(cos(alpha) * velMag);
 		else if (pos.getX() > playerPos.getX())
-			vel.setX(-velMag);
+			vel.setX(cos(alpha) * -velMag);
 
 		//Movimiento en Y
 		if (pos.getY() < playerPos.getY())
@@ -51,18 +50,17 @@ void Enemy::move(Entity* o)
 		else if (pos.getY()> playerPos.getY())
 			vel.setY(-velMag);
 
+		//cout << alpha << endl;
 		o->setVelocity(vel);
 		//Actualizamos a posicion(PONER ESTO EN CHARACTER)
-		pos.setX(pos.getX() + o->getVelocity().getX());
-		pos.setY(pos.getY() + o->getVelocity().getY());
-
-		o->setPosition(pos);
+		Character::move(o);
 
 
 		//PROVISIONAL: HACER COLISIONES EN PLAN BIEN
 		//Lo pilla
-		if (pos.getX() == playerPos.getX() && pos.getY() == playerPos.getY())
+		if ((int)pos.getX() == playerPos.getX() && (int)pos.getY() == playerPos.getY())
 		{
+			cout << "e";
 			//De momento, ambos se hacen daño
 			player->getComponent<Player>()->takeDamage(damage);
 			this->takeDamage(player->getComponent<Player>()->getDamage());

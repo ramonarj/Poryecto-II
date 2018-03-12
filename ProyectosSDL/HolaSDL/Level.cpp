@@ -13,11 +13,11 @@ Level::~Level()
 {
 }
 
-void Level::render(Uint32 time)
+void Level::render()
 {
 	for (int i = 0; i < m_layers.size(); i++)
 	{
-		m_layers[i]->render(time);
+		m_layers[i]->render();
 	}
 }
 

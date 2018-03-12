@@ -17,7 +17,7 @@ void TileLayer::update(Level* pLevel, Uint32 time)
 	//m_velocity.setX(1);
 }
 
-void TileLayer::render(Uint32 time)
+void TileLayer::render()
 {
 	int x, y, x2, y2 = 0;
 

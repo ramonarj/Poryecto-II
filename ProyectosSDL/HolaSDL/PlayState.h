@@ -9,6 +9,7 @@ private:
 	SDL_Renderer* renderer;
 	PlayState();
 	static PlayState* s_pInstance;
+	Level* pLevel = nullptr;
 public:
 	Entity* inventory;
 	static PlayState* Instance()
@@ -22,6 +23,7 @@ public:
 	}
 	//PlayState();
 	~PlayState();
+	virtual void startState();
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);

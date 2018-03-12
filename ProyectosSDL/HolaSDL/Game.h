@@ -14,6 +14,7 @@
 #include "InsulationTape.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
+#include "MenuState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
 #include "ResourceManager.h"
@@ -44,7 +45,6 @@ public:
 	void stop();
 
 	ResourceManager* getResourceManager() { return resourceManager_; };
-	Level* getLevel() { return pLevel; };
 
 	template<typename T>
 	Entity* getEntityWithComponent()
@@ -75,8 +75,6 @@ private:
 	const static int _WINDOW_HEIGHT_ = 720;
 	bool exit_;
 	std::vector<Entity*> actors_;
-
-	Level* pLevel = nullptr;
 };
 
 typedef Game Game;

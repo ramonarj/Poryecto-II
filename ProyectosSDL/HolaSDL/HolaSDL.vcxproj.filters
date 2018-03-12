@@ -37,6 +37,12 @@
     <Filter Include="Archivos de encabezado\Personajes">
       <UniqueIdentifier>{e8640d42-fa9d-4985-b603-6827a9d032d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\States">
+      <UniqueIdentifier>{026561e7-785b-4fee-b85e-253a39630032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\States">
+      <UniqueIdentifier>{37e28b8a-ea15-4e63-838f-f36730764667}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,13 +90,7 @@
     <ClCompile Include="SkeletonRenderer.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="GameStateMachine.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayState.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="ControllerInputComponent.cpp">
@@ -189,6 +189,15 @@
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -236,13 +245,7 @@
     <ClInclude Include="SkeletonRenderer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="GameStateMachine.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayState.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ControllerInputComponent.h">
@@ -337,6 +340,15 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Archivos de encabezado\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Archivos de encabezado\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Archivos de encabezado\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Archivos de encabezado\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

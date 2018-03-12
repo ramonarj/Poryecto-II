@@ -20,7 +20,7 @@
   <object id="2" name="Player" type="Player" x="100" y="100" width="32" height="50">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="life" type="int" value="3"/>
+    <property name="life" type="int" value="5"/>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="player"/>
     <property name="textureWidth" type="int" value="50"/>
@@ -35,7 +35,7 @@
   </object>
   <object id="8" name="Enemy" type="Enemy" x="182" y="98" width="32" height="50">
    <properties>
-    <property name="damage" type="int" value="0"/>
+    <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="enemy"/>

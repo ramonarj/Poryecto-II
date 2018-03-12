@@ -44,12 +44,6 @@ void PlayState::update(Uint32 time)
 {
 	GameState::update(time);
 	Game::Instance()->getLevel()->update(time);
-
-	/*Entity* enemy = Game::Instance()->getEntityWithComponent<Player>();
-	if (enemy != nullptr)
-		cout << enemy->getComponent<Enemy>()->getDamage() << endl;
-	else
-		cout << "ee";*/
 }
 
 void PlayState::render(Uint32 time)
@@ -60,10 +54,6 @@ void PlayState::render(Uint32 time)
 	GameState::render(time);
 	SDL_RenderPresent(Game::Instance()->getRenderer());
 
-
-	//game_->getEntityWithComponent<Player>()->getComponent<Character>()->lif();
-	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();
-	//cout << endl << stage_.size();
 	
 }
 

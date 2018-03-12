@@ -1,6 +1,6 @@
 #include "AnimationRenderer.h"
 
-AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames, bool character) : image_(image), movementFrames(movementFrames), character(character)
+AnimationRenderer::AnimationRenderer(Texture* image, Texture* imageAttack, Uint32 movementFrames, Uint32 attackMovementFrames, bool character) : image_(image), imageAttack_(imageAttack), movementFrames_(movementFrames), attackMovementFrames_(attackMovementFrames), character(character)
 {
 }
 
@@ -17,44 +17,67 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 	if (character){
 		if (o->getVelocity().magnitude() != 0){
 			clip =
-				RECT((frame + 2) * image_->getWidth() / movementFrames,
-				dir(o) * image_->getHeight() / movements,
-				image_->getWidth() / movementFrames,
-				image_->getHeight() / movements);
+				RECT((frame_ + 2) * image_->getWidth() / movementFrames_,
+				dir(o) * image_->getHeight() / movements_,
+				image_->getWidth() / movementFrames_,
+				image_->getHeight() / movements_);
 
 			lastDir = o->getDirection();
 
-			if (time > actualTime + cooldown){
-				if (frame + 2 < movementFrames - 1)
-					frame++;
+			if (time > actualTime_ + cooldown_){
+				if (frame_ + 2 < movementFrames_ - 1)
+					frame_++;
 				else
-					frame = 0;
-				actualTime = time;
+					frame_ = 0;
+				actualTime_ = time;
 			}
 
 		}
-		else{
+		else if ((o->getComponent<Character>()->getAttacking())){
+			
 			clip =
-				RECT(idleFrame* image_->getWidth() / movementFrames,
-				dirIddle(o) * image_->getHeight() / movements,
-				image_->getWidth() / movementFrames,
-				image_->getHeight() / movements);
-			if (time > actualTime + cooldown){
-				if (idleFrame < 1)
-					idleFrame++;
-				else
-					idleFrame = 0;
-				actualTime = time;
+				RECT((attackFrames_) * imageAttack_->getWidth() / attackMovementFrames_,
+					dir(o) * imageAttack_->getHeight() / movements_,
+					imageAttack_->getWidth() / attackMovementFrames_,
+					imageAttack_->getHeight() / movements_);
+
+			lastDir = o->getDirection();
+
+			if (time > actualTime_ + cooldown_) {
+				if (attackFrames_ < attackMovementFrames_ - 1)
+					attackFrames_++;
+				else {
+					attackFrames_ = 0;
+					frame_ = 0;
+					(o->getComponent<Character>()->setAttacking(false));
+				}
+
+				actualTime_ = time;
 			}
-			frame = 0;
+
+		}
+		else {
+			clip =
+				RECT(idleFrame_* image_->getWidth() / movementFrames_,
+					dirIddle(o) * image_->getHeight() / movements_,
+					image_->getWidth() / movementFrames_,
+					image_->getHeight() / movements_);
+			if (time > actualTime_ + cooldownIddle_) {
+				if (idleFrame_ < 1)
+					idleFrame_++;
+				else
+					idleFrame_ = 0;
+				actualTime_ = time;
+			}
+			frame_ = 0;
 		}
 	}
 	else{
 		clip =
-			RECT(((time / cooldown) % movementFrames)* image_->getWidth() / movementFrames,
+			RECT(((time / cooldown_) % movementFrames_)* image_->getWidth() / movementFrames_,
 			0,
-			image_->getWidth() / movementFrames,
-			image_->getHeight() / movements);
+			image_->getWidth() / movementFrames_,
+			image_->getHeight() / movements_);
 	}
 	image_->render(Game::Instance()->getRenderer(), dest, &clip);
 }

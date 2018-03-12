@@ -10,6 +10,8 @@ public:
 	void takeDamage(int i);
 	bool isAlive() { return life > 0; };
 	int getDamage() { return damage; };
+	bool getAttacking() { return attacking; };
+	void setAttacking(bool flag) { attacking = flag; };
 
 	void load(int l, int d);
 	void lif() { cout << life << endl; };
@@ -20,6 +22,7 @@ public:
 protected:
 	int life;
 	int damage;
+	bool attacking = false;
 	virtual void move(Entity* o);
 	
 };

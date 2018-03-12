@@ -28,8 +28,7 @@ void SDLGame::initSDL() {
 
 	// Create window .
 	window_ = SDL_CreateWindow(windowTitle_.c_str(),
-	SDL_WINDOWPOS_UNDEFINED,
-	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
+	SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
 
 	// Create the renderer
 	renderer_ = SDL_CreateRenderer(window_, -1,

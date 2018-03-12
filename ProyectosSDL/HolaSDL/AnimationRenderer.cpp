@@ -36,7 +36,7 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 		else{
 			clip =
 				RECT(idleFrame* image_->getWidth() / movementFrames,
-				dir(o) * image_->getHeight() / movements,
+				dirIddle(o) * image_->getHeight() / movements,
 				image_->getWidth() / movementFrames,
 				image_->getHeight() / movements);
 			if (time > actualTime + cooldown){
@@ -52,15 +52,32 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 	else{
 		clip =
 			RECT(((time / cooldown) % movementFrames)* image_->getWidth() / movementFrames,
-			0,
-			image_->getWidth() / movementFrames,
-			image_->getHeight() / movements);
+			0, image_->getWidth() / movementFrames, 0);
 	}
 	image_->render(Game::Instance()->getRenderer(), dest, &clip);
 }
 
+int AnimationRenderer::dir(Entity* o) {
 
-int AnimationRenderer::dir(Entity* o){
+	Vector2D dir = o->getDirection();
+	int direccion = 0;
+	if (dir.getX() != 0) 
+	{ if (dir.getX() < 0) 
+		direccion = 2;
+	else 			
+		direccion = 3; }
+	else { if (dir.getY() > 0)
+		direccion = 0; 		
+	else 			
+		direccion = 1; 
+	} 	
+	if (dir.getX() != 0 && dir.getY() != 0) 
+	{ if (dir.getY() > 0) { direccion = 0; }
+	else direccion = 1; } 	return direccion;
+
+}
+
+int AnimationRenderer::dirIddle(Entity* o){
 	int x = lastDir.getX();
 	int y = lastDir.getY();
 	if (x != 0){
@@ -75,5 +92,4 @@ int AnimationRenderer::dir(Entity* o){
 		else
 			return 1;
 	}
-
 }

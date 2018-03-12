@@ -14,6 +14,7 @@ Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(lif
 
 void Enemy::move(Entity* o)
 {
+
 	//Posición del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };

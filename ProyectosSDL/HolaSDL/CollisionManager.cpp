@@ -18,17 +18,70 @@ void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vect
 		x = layerPos.getX() / pTileLayer->getTileSize();
 		y = layerPos.getY() / pTileLayer->getTileSize();
 
-		if (pPlayer->getVelocity().getX() >= 0 || pPlayer->getVelocity().getY() >= 0)
+		if (pPlayer->getVelocity().getX() > 0 || pPlayer->getVelocity().getY() > 0)
 		{
 			tileColumn = ((pPlayer->getPosition().getX() + pPlayer->getWidth()) / pTileLayer->getTileSize());
 			tileRow = ((pPlayer->getPosition().getY() + pPlayer->getHeight()) / pTileLayer->getTileSize());
 			tileid = tiles[tileRow + y][tileColumn + x];
+
+			if (tileid == 0)
+			{
+				if (pPlayer->getVelocity().getX() > 0)
+				{
+					tileRow = ((pPlayer->getPosition().getY() + (pPlayer->getHeight() / 2)) / pTileLayer->getTileSize());
+					tileid = tiles[tileRow + y][tileColumn + x];
+
+					if (tileid == 0)
+					{
+						tileRow = (pPlayer->getPosition().getY() / pTileLayer->getTileSize());
+						tileid = tiles[tileRow + y][tileColumn + x];
+					}
+				}
+
+				else if (pPlayer->getVelocity().getY() > 0)
+				{
+					tileColumn = ((pPlayer->getPosition().getX() + (pPlayer->getWidth() / 2)) / pTileLayer->getTileSize());
+					tileid = tiles[tileRow + y][tileColumn + x];
+
+					if (tileid == 0)
+					{
+						tileColumn = (pPlayer->getPosition().getX() / pTileLayer->getTileSize());
+						tileid = tiles[tileRow + y][tileColumn + x];
+					}
+				}
+			}
 		}
 		else if (pPlayer->getVelocity().getX() < 0 || pPlayer->getVelocity().getY() < 0)
 		{
 			tileColumn = pPlayer->getPosition().getX() / pTileLayer->getTileSize();
 			tileRow = pPlayer->getPosition().getY() / pTileLayer->getTileSize();
 			tileid = tiles[tileRow + y][tileColumn + x];
+
+			if (tileid == 0)
+			{
+				if (pPlayer->getVelocity().getX() < 0)
+				{
+					tileRow = ((pPlayer->getPosition().getY() + (pPlayer->getHeight() / 2)) / pTileLayer->getTileSize());
+					tileid = tiles[tileRow + y][tileColumn + x];
+
+					if (tileid == 0)
+					{
+						tileRow = ((pPlayer->getPosition().getY() + pPlayer->getHeight()) / pTileLayer->getTileSize());
+						tileid = tiles[tileRow + y][tileColumn + x];
+					}
+				}
+				else if (pPlayer->getVelocity().getY() < 0)
+				{
+					tileColumn = ((pPlayer->getPosition().getX() + (pPlayer->getWidth() / 2)) / pTileLayer->getTileSize());
+					tileid = tiles[tileRow + y][tileColumn + x];
+
+					if (tileid == 0)
+					{
+						tileColumn = ((pPlayer->getPosition().getX() + pPlayer->getWidth()) / pTileLayer->getTileSize());
+						tileid = tiles[tileRow + y][tileColumn + x];
+					}
+				}
+			}
 		}
 
 		if (tileid != 0)

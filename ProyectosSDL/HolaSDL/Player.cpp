@@ -18,6 +18,7 @@ void Player::move(Entity* o)
 	pos.setY(pos.getY() + o->getVelocity().getY());
 
 	o->setPosition(pos);
+	Camera::Instance()->setTarget(pos);
 }
 
 void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event)

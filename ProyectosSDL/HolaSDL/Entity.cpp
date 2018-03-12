@@ -3,11 +3,19 @@
 Entity::~Entity() {
 }
 
+void Entity::setActive(bool enabled)
+{
+	active_ = enabled;
+	for (Component* c : comps_) {
+		c->setEnabled(enabled);
+	}
+}
+
 Entity::Entity() :
 	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
-Entity::Entity( int posX, int posY) :
+Entity::Entity(int posX, int posY) :
 	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
@@ -103,5 +111,6 @@ void Entity::setDirection(const Vector2D &vel) {
 	direction_.set(vel);
 	direction_.normalize();
 }
+
 
 

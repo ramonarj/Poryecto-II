@@ -40,10 +40,16 @@ PlayState::~PlayState() {
 	
 }
 
+void PlayState::startState()
+{
+	LevelParser levelParser;
+	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+}
+
 void PlayState::update(Uint32 time)
 {
 	GameState::update(time);
-	Game::Instance()->getLevel()->update(time);
+	pLevel->update(time);
 
 	/*Entity* enemy = Game::Instance()->getEntityWithComponent<Player>();
 	if (enemy != nullptr)
@@ -56,7 +62,7 @@ void PlayState::render(Uint32 time)
 {
 	//SDL_SetRenderDrawColor(game_->getRenderer(), COLOR(0x2222222FF)); //Color de fondo
 	SDL_RenderClear(Game::Instance()->getRenderer());
-	Game::Instance()->getLevel()->render(time);
+	pLevel->render();
 	GameState::render(time);
 	SDL_RenderPresent(Game::Instance()->getRenderer());
 
@@ -69,6 +75,6 @@ void PlayState::render(Uint32 time)
 
 void PlayState::handleInput(Uint32 time, SDL_Event & event)
 {
-	Game::Instance()->getLevel()->handleInput(time, event);
+	pLevel->handleInput(time, event);
 	GameState::handleInput(time, event);
 }

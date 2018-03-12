@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="125" height="117" tilewidth="24" tileheight="24" nextobjectid="11">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
@@ -16,21 +16,13 @@
    eJztnQ1uFSEQx/epib2IH4m9iK2a6E3U6lXau7RXsX1HkZeWOM4O7MwudBb4/xLSVyC8DxbmP8zCThMAAAAAAAAAAAAAAGAv/AnpPqTrkG5CegjpaMi/eXrNy65ZWWvw78LTUVGuaUNTpzSHwzS9COk2vL4L6WV4/eqgz49lX1hbt6ysNfh3oSl+p6VyTRuaOqX5GtI38v/n6fF9tPnastb4FdLvkH4K6XtIPxTlmjY0dUqDPpd5E8bY25BeT/P07mn8LZVr2tDUKQ36XOZj+L0vQvowzdN5SJ8U5Zo2NHVKE+eWCJ9zlvK1ZWA/0LnlbHqcT94f9PmxTJqnaBnYD3RuOc0ll4f5nJPLj0map2gZAAAAAAAA3sR18odpHou4J3mgH+g6uRSLiHmgH+g6ubR2rl2L8oirgXXQ9SdpvSrmLeERV+PxcOkai3VovJzHxqW4esvx8yXi+tPlYb5edUHylogxCimuVitWwePh0jUW69yROjw2LsXVW46fPxd7iKVG6DVWqg6Ys4dYagR9/jx4xFLR57546HYp5n2C2pJSdcAcD93O4+GSLYl1zkgdHhuX4uqIny/jodt5PFyyJbHOOanDY+OpuDri53k8dHvKP7f61lI7Pfrn3P5K9/3T/CU8dHvKP7f61lI7Pfrn3P5Ka+2W9XZP3X6aS66mf/PK6bXFnkjtWNtoAW5/+T2/VlvsodtTGmJLn69towW4/U3tTdDaYs99LOhzHdz+8vgK9Vc0MRYP3Z7Sjaf+sujGVJ/35p9z+8vjK9FX0cZYPHR7yj+3+tajjPMedHvOP7foRul67XGc96DbSzHKOO9Bt5dilHHeg24vxSjjvAfdXopRxnkPur0U0p7UmtqzFzx0eymkPaktaE9vWtbtYB0t63awjpZ1O1hHy7odrKNl3Q7W0bJuB+toUbdLuvOoyO/5nrnekeJJ0jmmPL/ne+Z6xxpn4vk9rslbaNE/t8aZJJ06sj5t0T+X4kzSmZC5M21H1qct+ufSOnvqTMjUmbZ71afPAfzz8YB/Ph4t+uejQc+Fo3r7OKXXJDTttaTbR0Pal7e0JqFtrxXdXhLpWU/SXtc1ZyyWalvS2VFrrbn3tUXdXpLU3lZpr6v1jEVpPNE26TlXubalPop9s+be173rdqu9stZP7W29mrbvdc2NJ/o+S23n+jy1JpFj77rdaq+s9Vvv89SaRI6963arvdpSv8U+71G3W+3Vlvq5Pl9j53J2k77PUtu5Pu9Rt1vt1Zb69Hwq/le7RyT3WXib2v0nuT7vUbdb7dWW+nEvCN8za9kjUqNt6Payut36jOa1n32Lfy7NRUuxxByj63brM5q3fPa1/jk9w5vOE7lYYg7o9v91u2QnvXV7aUbX7SP2+ei6fcQ+H123c/9cuofO2z8vzei63fqMZgul/PPSjK7brc9otlDT99/C6LrdA37fy+nv2jUA63tq9/54Ulu3e5A7j7rWcxCte388qa3bPUjF8mpen6XPmKtJbd3uQSqWV/P3Ln3GXE1q63YPcufO1/q9rXt/PKmt2z3wmNute3886VG3p/zj5/bT90qPul3y2+n5jqPTo24HeXrU7QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPL8BRFnj1s=
   </data>
  </layer>
- <objectgroup name="Capa de Objetos 1">
+ <objectgroup name="Characters">
   <object id="2" name="Player" type="Player" x="100" y="100" width="32" height="50">
    <properties>
+    <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="player"/>
-    <property name="textureWidth" type="int" value="50"/>
-   </properties>
-  </object>
-  <object id="5" name="Enemy" type="Enemy" x="170" y="103" width="32" height="50">
-   <properties>
-    <property name="damage" type="int" value="1"/>
-    <property name="life" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="50"/>
-    <property name="textureID" value="enemy"/>
     <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
@@ -38,6 +30,15 @@
    <properties>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="50"/>
+   </properties>
+  </object>
+  <object id="8" name="Enemy" type="Enemy" x="182" y="98" width="32" height="50">
+   <properties>
+    <property name="damage" type="int" value="0"/>
+    <property name="life" type="int" value="3"/>
+    <property name="textureHeight" type="int" value="50"/>
+    <property name="textureID" value="enemy"/>
     <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>

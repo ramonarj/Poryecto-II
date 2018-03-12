@@ -28,7 +28,7 @@ public:
 	~Level();
 
 	void update(Uint32 time);
-	void render(Uint32 time);
+	void render();
 	void handleInput(Uint32 time, SDL_Event& event);
 
 	std::vector<Tileset>* getTilesets() { return &m_tilesets; }

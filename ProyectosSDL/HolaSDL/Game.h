@@ -44,7 +44,6 @@ public:
 	void stop();
 
 	ResourceManager* getResourceManager() { return resourceManager_; };
-	Level* getLevel() { return pLevel; };
 
 	template<typename T>
 	Entity* getEntityWithComponent()
@@ -76,7 +75,6 @@ private:
 	bool exit_;
 	std::vector<Entity*> actors_;
 
-	Level* pLevel = nullptr;
 };
 
 typedef Game Game;

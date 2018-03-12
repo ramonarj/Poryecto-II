@@ -37,10 +37,8 @@ void Game::closeGame() {
 }
 
 void Game::start() {
-
-	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
-
+	
+	stateMachine_.currentState()->startState();
 	exit_ = false;
 	while (!exit_) {
 		Uint32 startTime = SDL_GetTicks();

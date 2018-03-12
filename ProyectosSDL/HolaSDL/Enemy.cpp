@@ -41,9 +41,9 @@ void Enemy::move(Entity* o)
 		Vector2D vel;
 		//Movimiento en X
 		if (pos.getX() < playerPos.getX())
-			vel.setX(velMag);
+			vel.setX(cos(alpha) * velMag);
 		else if (pos.getX() > playerPos.getX())
-			vel.setX(-velMag);
+			vel.setX(cos(alpha) * -velMag);
 
 		//Movimiento en Y
 		if (pos.getY() < playerPos.getY())
@@ -51,6 +51,7 @@ void Enemy::move(Entity* o)
 		else if (pos.getY()> playerPos.getY())
 			vel.setY(-velMag);
 
+		//cout << alpha << endl;
 		o->setVelocity(vel);
 		//Actualizamos a posicion(PONER ESTO EN CHARACTER)
 		pos.setX(pos.getX() + o->getVelocity().getX());

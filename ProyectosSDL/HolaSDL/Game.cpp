@@ -30,6 +30,10 @@ void Game::initGame()
 	//Load Resources
 	resourceManager_->addTexture("Inventory", "images/Inventory.png");
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
+
+	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
+	resourceManager_->getMusic("SafeRoom")->play();
+	
 }
 
 void Game::closeGame() {

@@ -14,6 +14,7 @@
 #include "InsulationTape.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
+#include "MenuState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
 #include "ResourceManager.h"

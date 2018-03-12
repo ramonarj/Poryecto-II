@@ -15,7 +15,6 @@ Camera::~Camera()
 
 const Vector2D Camera::getPosition() const
 {
-
 	Vector2D pos(m_pTarget.getX() - (Game::Instance()->getWindowWidth() / 2), m_pTarget.getY() - (Game::Instance()->getWindowHeight() / 2));
 
 	if (pos.getX() < 0)
@@ -26,6 +25,8 @@ const Vector2D Camera::getPosition() const
 		pos.setY(0);
 	else if (pos.getY() > Game::Instance()->getWindowHeight())
 		pos.setY(Game::Instance()->getWindowWidth());
+
+	pos.set(0, 0);
 
 	return pos;
 }

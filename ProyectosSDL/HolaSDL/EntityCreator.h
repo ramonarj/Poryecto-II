@@ -51,25 +51,25 @@ public:
 		switch (type)
 		{
 		case Stick:
-			i = new Weapon(type);
+			i = new Weapon(type,toString(type));
 			break;
 		case Lever:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Pipe:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Ax:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Firstaid:
-			i = new FirstAid();
+			i = new FirstAid(toString(type));
 			break;
 		case Insulationtape:
-			i = new InsulationTape();
+			i = new InsulationTape(toString(type));
 			break;
 		default:
-			i = new Item(type);
+			i = new Item(type, toString(type));
 			break;
 		}
 		

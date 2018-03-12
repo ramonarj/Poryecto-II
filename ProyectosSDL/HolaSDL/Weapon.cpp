@@ -2,7 +2,7 @@
 
 
 
-Weapon::Weapon(ItemType type) : Item(type)
+Weapon::Weapon(ItemType type, const string& filename) : Item(type, filename)
 {
 	weaponInit(type);
 }

@@ -31,7 +31,7 @@ void Level::handleInput(Uint32 time, SDL_Event & event)
 
 void Level::update(Uint32 time)
 {
-	CollisionManager::Instance()->checkPlayerTileCollision(Game::Instance()->getEntityWithComponent<Player>(), m_collisionLayers);
+	CollisionManager::Instance()->checkPlayerTileCollision(PlayState::Instance()->getPlayer(), m_collisionLayers);
 	for (int i = 0; i < m_layers.size(); i++)
 	{
 		m_layers[i]->update(this, time);

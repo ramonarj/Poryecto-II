@@ -251,6 +251,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
 				pEntity->getComponent<Character>()->load(life, damage);
+				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 			}
 			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}

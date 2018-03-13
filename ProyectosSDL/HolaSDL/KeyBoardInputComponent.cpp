@@ -50,29 +50,12 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 						e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());
 						e->delComponent(e->getComponent<ImageRenderer>());
 					}
-					else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
+					else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
 				}
 			}
 		}
 	}
-	else if (state[inventory_])
-	{
-		if (event.type == SDL_KEYDOWN && !InventoryOpen) {
-			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
-			InventoryOpen = true;
-		}
-		if (event.type == SDL_KEYUP) {
-			InventoryOpen = false;
-		}
-	}
-	else if (state[attack_])
-	{
-		if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) 
-			o->getComponent<Character>()->setAttacking(true);
-		
-	}
 	/*else if (state[interact_]) {
-
 		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
 		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
@@ -93,3 +76,22 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	o->setDirection(direction);
 
 }
+
+	/*else if (state[inventory_])
+	{
+		if (event.type == SDL_KEYDOWN && !InventoryOpen) {
+			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
+			InventoryOpen = true;
+		}
+		if (event.type == SDL_KEYUP) {
+			InventoryOpen = false;
+		}
+	}
+	else if (state[attack_])
+	{
+		if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) 
+			o->getComponent<Character>()->setAttacking(true);
+		
+	}
+	/*else if (state[interact_]) {
+	}*/

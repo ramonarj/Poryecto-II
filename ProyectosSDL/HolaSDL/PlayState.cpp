@@ -4,13 +4,12 @@
 PlayState* PlayState::s_pInstance = 0;
 
 PlayState::PlayState(): GameState(){ //Constructora de nueva partida
-	
 
 	inventory = new Entity(0, 0);
 	Inventory* invtComp = new Inventory();
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
-			
+
 	//Item
 	Entity* palo = new Entity(10, 20);
 	palo->addComponent(new Weapon(ItemType::Stick,"Stick"));
@@ -43,7 +42,14 @@ PlayState::~PlayState() {
 void PlayState::startState()
 {
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+	zona1 = levelParser.parseLevel("levels/Zona1.tmx");
+	zona2 = levelParser.parseLevel("levels/Zona2.tmx");
+	zona3 = levelParser.parseLevel("levels/Zona3.tmx");
+	zona4 = levelParser.parseLevel("levels/Zona4.tmx");
+	zona5 = levelParser.parseLevel("levels/Zona5.tmx");
+	zona6 = levelParser.parseLevel("levels/Zona6.tmx");
+
+	pLevel = zona6;
 }
 
 void PlayState::update(Uint32 time)

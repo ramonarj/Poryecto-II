@@ -13,7 +13,6 @@ struct coord {
 	int y;
 };
 
-
 class ItemContainer : public Component
 {
 public:
@@ -21,13 +20,13 @@ public:
 	~ItemContainer();
 
 protected:
-
+	
 	static const int InvTam = 4;
 	static const int chestTam = 10;
 	bool clicked = false;
 	int slotClicked;
 	vector<Entity*> inventory;
-	coord slots[4] = { { 705, 100 },{ 800, 100 },{ 705,200 },{ 800,200 } };
+	vector<coord> ObjPos;
 
 public:
 
@@ -43,8 +42,8 @@ public:
 	virtual bool fullInventory() = 0;
 	bool empty();
 	//GETS
-	int getItemPosX(int i) { return slots[i].x; };
-	int getItemPosY(int i) { return slots[i].y; };
+	int getItemPosX(int i) { return ObjPos[i].x; };
+	int getItemPosY(int i) { return ObjPos[i].y; };
 
 };
 

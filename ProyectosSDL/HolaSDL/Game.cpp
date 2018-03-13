@@ -29,7 +29,7 @@ void Game::initGame()
 	resourceManager_ = new ResourceManager(this);
 
 	//Load Resources
-	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
+	resourceManager_->addTexture("Inventory", "images/Inventory.png");
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
 
 	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");

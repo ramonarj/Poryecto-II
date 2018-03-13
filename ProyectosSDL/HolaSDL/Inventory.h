@@ -11,15 +11,14 @@ class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
-	coord EquippedCoord = { 750, 343 };
-
+	coord EquippedCoord;
 
 	Inventory();
 	~Inventory();
 
 protected:
 	bool debug;
-
+	
 public:
 
 	virtual void update(Entity* e, Uint32 time);
@@ -38,10 +37,10 @@ public:
 	virtual bool fullInventory();
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
-
+	
 	Entity* currentWeapon();
 
-
+	
 
 };
 

@@ -7,6 +7,16 @@ Inventory::Inventory()
 {
 	debug = false;
 	equiped = nullptr;
+
+	coord pos;
+	pos.x = 32; pos.y = 306;
+	for (int i = 0; i < InvTam; i++)
+	{
+		ObjPos.push_back(pos);
+		pos.x += 61;
+	}
+	EquippedCoord.x = 265;
+	EquippedCoord.y = 228;
 }
 
 Inventory::~Inventory()
@@ -19,17 +29,15 @@ void Inventory::update(Entity* e, Uint32 time)
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
-
+	
 	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
-			while (i<inventory.size() && !clicked)
+			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= slots[i].x && event.button.x <= slots[i].x + 50)
-					&& (event.button.y >= slots[i].y && event.button.y <= slots[i].y + 50))//EL 50 Es un numero provisional de prueba
-				{
-					clicked = true;
-				}
+				if ((event.button.x >= ObjPos[i].x && event.button.x <= ObjPos[i].x + 50)
+					&& (event.button.y >= ObjPos[i].y && event.button.y <= ObjPos[i].y + 50))//EL 50 Es un numero provisional de prueba
+				{ clicked = true; }
 
 				slotClicked = i;
 				i++;
@@ -51,11 +59,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
-	int ancho = Game::Instance()->getWindowWidth() - Game::Instance()->getWindowWidth() / 10;
-	int alto = Game::Instance()->getWindowHeight() - Game::Instance()->getWindowHeight() / 10;
-	int posX = Game::Instance()->getWindowWidth() / 2 - ancho / 2;
-	int posY = Game::Instance()->getWindowHeight() / 2 - alto / 2;
-	SDL_Rect dest = { posX,posY, ancho,alto };
+	
+	SDL_Rect dest = {0,0,600,600};
 	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(Game::Instance()->getRenderer(), dest);
 
 	//RENDERIZAMOS EL ARMA EQUIPADA
@@ -71,7 +76,7 @@ void Inventory::render(Entity* e, Uint32 time)
 			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
 	}
 
-	for (int i = 0; i < inventory.size(); i++)
+	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
 			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
@@ -85,8 +90,8 @@ void Inventory::render(Entity* e, Uint32 time)
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
-
-
+	
+	
 }
 
 void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
@@ -131,7 +136,7 @@ bool Inventory::checkItem(Entity * item)
 {
 	int i = 0;
 	bool found = false;
-	while (!found && i < inventory.size() && !empty())
+	while (!found && i < int(inventory.size()) && !empty())
 	{
 		if (ItemInPosition(i) == item) { found = true; }
 	}
@@ -140,13 +145,13 @@ bool Inventory::checkItem(Entity * item)
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
 Entity * Inventory::ItemInPosition(int pos)
 {
-	if (pos < inventory.size() && !empty()) { return inventory[pos]; }
+	if (pos < int(inventory.size()) && !empty()) { return inventory[pos]; }
 	else return nullptr;
 }
 
 void Inventory::equipWeapon(int pos)
 {
-	if (inventory[pos]->getComponent<Weapon>()) {
+	if(inventory[pos]->getComponent<Weapon>()) {
 
 		if (equiped != nullptr) {
 			Entity* aux = currentWeapon();
@@ -157,9 +162,9 @@ void Inventory::equipWeapon(int pos)
 		else
 		{
 			equiped = inventory[pos];
-			this->DeleteItem(pos);
+			this->DeleteItem(pos);	
 		}
-
+		
 	}
 }
 

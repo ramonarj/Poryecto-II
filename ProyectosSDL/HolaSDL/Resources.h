@@ -30,9 +30,7 @@ public:
 		PruebaAnim,
 		PruebaMedicKit,
 		Crowbar,
-		stick, 
-		PruebaAtaque,
-		SpriteSheetElise
+		stick
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

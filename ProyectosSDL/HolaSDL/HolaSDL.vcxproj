@@ -101,6 +101,7 @@
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelParser.h" />
     <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Music.h" />

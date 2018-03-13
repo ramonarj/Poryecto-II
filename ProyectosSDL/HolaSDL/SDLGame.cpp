@@ -28,14 +28,15 @@ void SDLGame::initSDL() {
 
 	// Create window .
 	window_ = SDL_CreateWindow(windowTitle_.c_str(),
-	SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
+	SDL_WINDOWPOS_UNDEFINED,
+	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
 
 	// Create the renderer
 	renderer_ = SDL_CreateRenderer(window_, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	// Clear screen (background color).
-	SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
+	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 0);  // Dark grey.
 	SDL_RenderClear(renderer_);
 	SDL_RenderPresent(renderer_);
 

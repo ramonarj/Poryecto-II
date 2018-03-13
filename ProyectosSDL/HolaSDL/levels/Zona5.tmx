@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="29" tilewidth="24" tileheight="24" nextobjectid="16">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="60" columns="36">
+  <image source="levels/Tilesheet.png" width="864" height="384"/>
+ </tileset>
+ <layer name="Suelo" width="42" height="29">
+  <data encoding="base64" compression="zlib">
+   eJztlVlOwzAQhscHYCvLPdjKcg/WBF57CrDhHiCx3gMkKHATCIfgr4jJYDt24tLkgYz0qdM2lb7OjMdEXXTRxX+Od/ABbmpwCzLw2aDnlCCaBkOqzguYwW9mRXOeR+AYDEAKkjxPPLkCB+CwOc0fz5QhA7TpmTBHRUUNXaQteuqeyjyXnly16Kkdtccc6IFFsER2PU/AaYueKvdYB32wBbbJns8rcE3h/TUU37l+jd1rvO+S7Pnj/2PAvn8CzxTeX1m+8zIx3l47A+dk9133VXua9fSdM3NGXNSd72X8pxUwTwULYBWfrYnf9SxD+/P3pqsyqDvfO3DZBRtUsAn28Nm+KOrNzzufARnIdf3N+yL2HLru+dG834F7ctdPUvV6mnMT6+m650fz/greHG4uZ9/99Vd7rexch3oa6i/P+fOxnhfgkuw6hGpVdqZC9Y31fACPZPenbObKvKruqnH77uqj766PfT7W07VHJwXfz3XDtUcnBd/PXXSh4wtfOdks
+  </data>
+ </layer>
+ <layer name="Collides" width="42" height="29">
+  <properties>
+   <property name="collidable" type="int" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1cENACAIBEFKtv+XJRhyJyjZSXga1o9GALhhiVPZ2XG2ched3l10ene90nl6e9Q3LXNPpVNFp1e2s+tvnNipnFHR6UWn1/TOjgF+swGBrTVh
+  </data>
+ </layer>
+</map>

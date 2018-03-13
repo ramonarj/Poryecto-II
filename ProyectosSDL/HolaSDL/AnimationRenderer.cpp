@@ -52,7 +52,9 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 	else{
 		clip =
 			RECT(((time / cooldown) % movementFrames)* image_->getWidth() / movementFrames,
-			0, image_->getWidth() / movementFrames, 0);
+			0,
+			image_->getWidth() / movementFrames,
+			image_->getHeight() / movements);
 	}
 	image_->render(Game::Instance()->getRenderer(), dest, &clip);
 }

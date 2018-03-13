@@ -4,13 +4,12 @@
 PlayState* PlayState::s_pInstance = 0;
 
 PlayState::PlayState(): GameState(){ //Constructora de nueva partida
-	
 
 	inventory = new Entity(0, 0);
 	Inventory* invtComp = new Inventory();
 	inventory->addComponent(invtComp);
 	stage_.push_back(inventory);
-			
+
 	//Item
 	Entity* palo = new Entity(10, 20);
 	palo->addComponent(new Weapon(ItemType::Stick));
@@ -42,20 +41,22 @@ PlayState::~PlayState() {
 
 void PlayState::startState()
 {
+
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+	zona1 = levelParser.parseLevel("levels/Zona1.tmx");
+	zona2 = levelParser.parseLevel("levels/Zona2.tmx");
+	zona3 = levelParser.parseLevel("levels/Zona3.tmx");
+	zona4 = levelParser.parseLevel("levels/Zona4.tmx");
+	zona5 = levelParser.parseLevel("levels/Zona5.tmx");
+	zona6 = levelParser.parseLevel("levels/Zona6.tmx");
+
+	pLevel = zona2;
 }
 
 void PlayState::update(Uint32 time)
 {
 	GameState::update(time);
 	pLevel->update(time);
-
-	/*Entity* enemy = Game::Instance()->getEntityWithComponent<Player>();
-	if (enemy != nullptr)
-		cout << enemy->getComponent<Enemy>()->getDamage() << endl;
-	else
-		cout << "ee";*/
 }
 
 void PlayState::render(Uint32 time)
@@ -66,10 +67,6 @@ void PlayState::render(Uint32 time)
 	GameState::render(time);
 	SDL_RenderPresent(Game::Instance()->getRenderer());
 
-
-	//game_->getEntityWithComponent<Player>()->getComponent<Character>()->lif();
-	//Entity* player = Game::Instance()->getEntityWithComponent<Player>();
-	//cout << endl << stage_.size();
 	
 }
 

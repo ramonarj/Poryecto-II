@@ -1,6 +1,6 @@
 #include "AnimationRenderer.h"
 
-AnimationRenderer::AnimationRenderer(Texture* image, Texture* imageAttack, Uint32 movementFrames, Uint32 attackMovementFrames, bool character) : image_(image), imageAttack_(imageAttack), movementFrames_(movementFrames), attackMovementFrames_(attackMovementFrames), character(character)
+AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames, Uint32 attackMovementFrames, Uint32 cooldown, bool character, bool direccionable) : image_(image), movementFrames_(movementFrames), attackMovementFrames_(attackMovementFrames), cooldown_(cooldown), character(character), direccionable(direccionable)
 {
 }
 
@@ -17,9 +17,9 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 	if (character){
 		if (o->getVelocity().magnitude() != 0){
 			clip =
-				RECT((frame_ + 2) * image_->getWidth() / movementFrames_,
+				RECT((frame_ + 2) * image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 				dir(o) * image_->getHeight() / movements_,
-				image_->getWidth() / movementFrames_,
+				image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 				image_->getHeight() / movements_);
 
 			lastDir = o->getDirection();
@@ -36,18 +36,17 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 		else if ((o->getComponent<Character>()->getAttacking())){
 			
 			clip =
-				RECT((attackFrames_) * imageAttack_->getWidth() / attackMovementFrames_,
-					dir(o) * imageAttack_->getHeight() / movements_,
-					imageAttack_->getWidth() / attackMovementFrames_,
-					imageAttack_->getHeight() / movements_);
+				RECT((attackFrames_)* image_->getWidth() / (movementFrames_ + attackMovementFrames_),
+				dirIddle(o) * image_->getHeight() / movements_,
+				image_->getWidth() / (movementFrames_ + attackMovementFrames_),
+				image_->getHeight() / movements_);
 
-			lastDir = o->getDirection();
 
 			if (time > actualTime_ + cooldown_) {
-				if (attackFrames_ < attackMovementFrames_ - 1)
+				if (attackFrames_ < (movementFrames_ + attackMovementFrames_) - 1)
 					attackFrames_++;
 				else {
-					attackFrames_ = 0;
+					attackFrames_ = 14;
 					frame_ = 0;
 					(o->getComponent<Character>()->setAttacking(false));
 				}
@@ -58,10 +57,11 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 		}
 		else {
 			clip =
-				RECT(idleFrame_* image_->getWidth() / movementFrames_,
+				RECT(idleFrame_* image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 					dirIddle(o) * image_->getHeight() / movements_,
-					image_->getWidth() / movementFrames_,
+					image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 					image_->getHeight() / movements_);
+
 			if (time > actualTime_ + cooldownIddle_) {
 				if (idleFrame_ < 1)
 					idleFrame_++;
@@ -72,13 +72,37 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 			frame_ = 0;
 		}
 	}
+	else if(direccionable){
+		clip =
+			RECT(((time / cooldown_) % movementFrames_)* image_->getWidth() / movementFrames_,
+			dir(o) * image_->getHeight()/movements_,
+			image_->getWidth() / movementFrames_,
+			image_->getHeight() / movements_);
+
+		if (time > actualTime_ + cooldown_){
+			if (frame_< movementFrames_ - 1)
+				frame_++;
+			else
+				frame_ = 0;
+			actualTime_ = time;
+		}
+	}
 	else{
 		clip =
 			RECT(((time / cooldown_) % movementFrames_)* image_->getWidth() / movementFrames_,
 			0,
 			image_->getWidth() / movementFrames_,
-			image_->getHeight() / movements_);
+			image_->getHeight());
+
+		if (time > actualTime_ + cooldown_){
+			if (frame_  < movementFrames_ - 1)
+				frame_++;
+			else
+				frame_ = 0;
+			actualTime_ = time;
+		}
 	}
+
 	image_->render(Game::Instance()->getRenderer(), dest, &clip);
 }
 

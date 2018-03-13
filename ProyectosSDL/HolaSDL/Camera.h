@@ -14,7 +14,7 @@ public:
 	}
 
 
-	void setTarget(Entity* target) { m_pTarget = target; };
+	void setTarget(Vector2D target) { m_pTarget = target; };
 	void setPosition(const Vector2D& position) {
 		m_position = position;
 	}
@@ -24,7 +24,7 @@ private:
 	Camera();
 	~Camera();
 	// the camera's target
-	Entity* m_pTarget;
+	Vector2D m_pTarget;
 	// the camera's position
 	Vector2D m_position;
 	static Camera* s_pCamera;

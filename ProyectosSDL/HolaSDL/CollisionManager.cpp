@@ -6,6 +6,8 @@ void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vect
 {
 	for (std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
 	{
+		vector<Vector2D> dir(4);
+		dir[0].set(-1, 0); dir[1].set(1, 0); dir[2].set(0, 1); dir[3].set(0, -1);
 		TileLayer* pTileLayer = (*it);
 		std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
 
@@ -13,8 +15,8 @@ void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vect
 
 		int x, y, tileColumn, tileRow, tileid = 0;
 
-		x = Camera::Instance()->getPosition().getX() / pTileLayer->getTileSize();
-		y = Camera::Instance()->getPosition().getY() / pTileLayer->getTileSize();
+		x = layerPos.getX() / pTileLayer->getTileSize();
+		y = layerPos.getY() / pTileLayer->getTileSize();
 
 		if (pPlayer->getVelocity().getX() > 0 || pPlayer->getVelocity().getY() > 0)
 		{

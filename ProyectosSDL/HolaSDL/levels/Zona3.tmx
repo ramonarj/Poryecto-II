@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="55" height="47" tilewidth="24" tileheight="24" nextobjectid="16">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="60" columns="36">
+  <image source="levels/Tilesheet.png" width="864" height="384"/>
+ </tileset>
+ <layer name="Suelo" width="55" height="47">
+  <data encoding="base64" compression="zlib">
+   eJztmdttAjEQRceQgEgfPKPQB0+JdJJQC4lIH4SXQiNAoBQun0hx7GG9WsPeK50/jz1H9vrDK8IwDMNoswe/4NODuRFZGL+xoTgmcDPotQDW4maLcTvPsSEoYq1hArcReAXjCBkI3egWF1m4PYISKFuogKcANVm4NUELPFt4Ae0ANVm4udb8a840alyh2yUz8P3PnHOwCFDDfdPNSbewfdJNF94l+dk3utEtSY0rvEvys290o1uSGld4l+Rn3+7ZbQI+xP6GPwVfKdQcRPd/4Bq3JViJ/R3/B2xSqDn/H3gw6bplhfaM1kEjgr59qIKawq0H+hH07UMHdBVut3Qm38C7wq2Kb7Nm7O/0MVFHnw3FXdLB2K6xv9PHRA999hVuDMMw2pwAaTUMWg==
+  </data>
+ </layer>
+ <layer name="Collides" width="55" height="47">
+  <properties>
+   <property name="collidable" type="int" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztlMENwCAMxBi5+7+6AdHdBSiVLeVFLOFPxgAAWMNzwSRtX4a2fncHtPW7O6Ct13Xutuu4JG3qW7dTQZvm0ZY7FbRpHm25U0Gb5tGWOxW0aR5tuVNBm+bRljsVtGkebblTQZvm/aFtNqsc9Y+3QJu/fxLa/P2TOG03DQAAeLwJk3cB
+  </data>
+ </layer>
+</map>

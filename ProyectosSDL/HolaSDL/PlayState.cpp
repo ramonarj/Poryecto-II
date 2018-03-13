@@ -43,10 +43,17 @@ PlayState::~PlayState() {
 void PlayState::startState()
 {
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+	zona1 = levelParser.parseLevel("levels/Zona1.tmx");
+	zona2 = levelParser.parseLevel("levels/Zona2.tmx");
+	zona3 = levelParser.parseLevel("levels/Zona3.tmx");
+	zona4 = levelParser.parseLevel("levels/Zona4.tmx");
+	zona5 = levelParser.parseLevel("levels/Zona5.tmx");
+	zona6 = levelParser.parseLevel("levels/Mapa.tmx");
+
+	pLevel = zona6;
 
 	player = Game::Instance()->getEntityWithComponent<Player>();
-	Camera::Instance()->setTarget(player);
+
 
 	Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>()->addPlayer(player);
 }

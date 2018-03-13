@@ -48,7 +48,7 @@ void PlayState::startState()
 	zona3 = levelParser.parseLevel("levels/Zona3.tmx");
 	zona4 = levelParser.parseLevel("levels/Zona4.tmx");
 	zona5 = levelParser.parseLevel("levels/Zona5.tmx");
-	zona6 = levelParser.parseLevel("levels/Zona6.tmx");
+	zona6 = levelParser.parseLevel("levels/Mapa.tmx");
 
 	pLevel = zona6;
 
@@ -71,8 +71,6 @@ void PlayState::render(Uint32 time)
 	pLevel->render();
 	GameState::render(time);
 	SDL_RenderPresent(Game::Instance()->getRenderer());
-
-	
 }
 
 void PlayState::handleInput(Uint32 time, SDL_Event & event)

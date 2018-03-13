@@ -27,7 +27,7 @@ const Vector2D Camera::getPosition() const
 	else if (pos.getY() > Game::Instance()->getWindowHeight())
 		pos.setY(Game::Instance()->getWindowWidth());
 
-	pos.set(0, 0);
+	//pos.set(0, 0);
 
 	return pos;
 }

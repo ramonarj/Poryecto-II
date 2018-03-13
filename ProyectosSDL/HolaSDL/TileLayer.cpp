@@ -27,9 +27,15 @@ void TileLayer::render()
 	x2 = int(m_position.getX()) % m_tileSize;
 	y2 = int(m_position.getY()) % m_tileSize;
 
-	for (int i = 0; i < m_numRows; i++)
+	int iniRow = Camera::Instance()->getPosition().getY() / m_tileSize;
+	int iniCol = Camera::Instance()->getPosition().getX() / m_tileSize;
+
+	int finRow = Camera::Instance()->getPosition().getY() + Game::Instance()->getWindowHeight() / m_tileSize;
+	int finCol = Camera::Instance()->getPosition().getX() + Game::Instance()->getWindowWidth() / m_tileSize;
+
+	for (int i = iniRow; i < finRow; i++)
 	{
-		for (int j = 0; j < m_numColumns; j++)
+		for (int j = iniCol; j < finCol; j++)
 		{
 			int id = m_tileIDs[i + y][j + x];
 

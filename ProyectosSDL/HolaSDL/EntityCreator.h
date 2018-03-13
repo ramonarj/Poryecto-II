@@ -16,7 +16,7 @@ public:
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, 14, true));
 		return e;
 	}
 };
@@ -29,7 +29,7 @@ public:
 		Entity* e = new Entity();
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy());
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, 14, true));
 		return e;
 	}
 };
@@ -51,25 +51,25 @@ public:
 		switch (type)
 		{
 		case Stick:
-			i = new Weapon(type);
+			i = new Weapon(type,toString(type));
 			break;
 		case Lever:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Pipe:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Ax:
-			i = new Weapon(type);
+			i = new Weapon(type, toString(type));
 			break;
 		case Firstaid:
-			i = new FirstAid();
+			i = new FirstAid(toString(type));
 			break;
 		case Insulationtape:
-			i = new InsulationTape();
+			i = new InsulationTape(toString(type));
 			break;
 		default:
-			i = new Item(type);
+			i = new Item(type, toString(type));
 			break;
 		}
 		

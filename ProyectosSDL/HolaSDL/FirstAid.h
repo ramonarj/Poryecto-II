@@ -5,7 +5,7 @@
 class FirstAid : public Item
 {
 public:
-	FirstAid();
+	FirstAid(const string& filename);
 	virtual ~FirstAid();
 	virtual void update(Entity* e, Uint32 time);
 	virtual void use(Entity* e);

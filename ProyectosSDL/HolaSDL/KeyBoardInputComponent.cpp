@@ -20,11 +20,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
-	if (state[left_]) {
+	if (state[left_] && !(o->getComponent<Character>()->getAttacking())) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 		velocity.setX(-10);
 		direction.setX(-1);
 	}
-	else if (state[right_]) {
+	else if (state[right_] && !(o->getComponent<Character>()->getAttacking())) {
 		velocity.setX(10);
 		direction.setX(1);
 	}
@@ -32,11 +32,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		velocity.setX(0);
 		direction.setX(0);
 	}
-	if (state[up_]) {
+	if (state[up_] && !(o->getComponent<Character>()->getAttacking())) {
 		velocity.setY(-10);
 		direction.setY(1);
 	}
-	else if (state[down_]) {
+	else if (state[down_] && !(o->getComponent<Character>()->getAttacking())) {
 		velocity.setY(10);
 		direction.setY(-1);
 	}
@@ -50,23 +50,23 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 						e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());
 						e->delComponent(e->getComponent<ImageRenderer>());
 					}
-					else std::cout << "Esta entidad no tiene el componegnte Interactible." << std::endl; // DEBUG
+					else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
 				}
 			}
 		}
 	}
-	else if (state[inventory_])
-	{
-		if (event.type == SDL_KEYDOWN)
-			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
-	}
-	/*else if (state[interact_]) {
+	/*else if (state[interact_]) {
 		SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
 		for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 			SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
 			if (Collisions::RectRect(&playerRect, &intRect)) {
 				if (e->getComponent<Interactible>() != nullptr) {
-					e->getComponent<Interactible>()->interact();				}			}		}	}*/
+					e->getComponent<Interactible>()->interact();
+				}
+			}
+		}
+	}*/
+
 	else {
 		velocity.setY(0);
 		direction.setY(0);
@@ -76,3 +76,22 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	o->setDirection(direction);
 
 }
+
+	/*else if (state[inventory_])
+	{
+		if (event.type == SDL_KEYDOWN && !InventoryOpen) {
+			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
+			InventoryOpen = true;
+		}
+		if (event.type == SDL_KEYUP) {
+			InventoryOpen = false;
+		}
+	}
+	else if (state[attack_])
+	{
+		if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) 
+			o->getComponent<Character>()->setAttacking(true);
+		
+	}
+	/*else if (state[interact_]) {
+	}*/

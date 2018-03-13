@@ -12,7 +12,7 @@ PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 
 	//Item
 	Entity* palo = new Entity(10, 20);
-	palo->addComponent(new Weapon(ItemType::Stick));
+	palo->addComponent(new Weapon(ItemType::Stick,"Stick"));
 	stage_.push_back(palo);
 	palo->getComponent<Weapon>()->attack();
 	palo->getComponent<Weapon>()->attack();
@@ -20,11 +20,11 @@ PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 	palo->getComponent<Weapon>()->attack();
 
 	Entity* palo2 = new Entity(10, 20);
-	palo2->addComponent(new Weapon(ItemType::Lever));
+	palo2->addComponent(new Weapon(ItemType::Lever,"Lever"));
 	stage_.push_back(palo2);
 
 	Entity* insulationTape = new Entity(15, 25);
-	insulationTape->addComponent(new InsulationTape());
+	insulationTape->addComponent(new InsulationTape("InsulationTape"));
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->use(palo);
 
@@ -41,7 +41,6 @@ PlayState::~PlayState() {
 
 void PlayState::startState()
 {
-
 	LevelParser levelParser;
 	zona1 = levelParser.parseLevel("levels/Zona1.tmx");
 	zona2 = levelParser.parseLevel("levels/Zona2.tmx");
@@ -50,7 +49,7 @@ void PlayState::startState()
 	zona5 = levelParser.parseLevel("levels/Zona5.tmx");
 	zona6 = levelParser.parseLevel("levels/Zona6.tmx");
 
-	pLevel = zona2;
+	pLevel = zona6;
 }
 
 void PlayState::update(Uint32 time)

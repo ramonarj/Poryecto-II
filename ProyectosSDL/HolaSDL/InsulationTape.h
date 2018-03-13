@@ -4,7 +4,7 @@
 class InsulationTape : public Item
 {
 public:
-	InsulationTape() : Item(ItemType::Insulationtape) {};
+	InsulationTape(const string& filename) : Item(ItemType::Insulationtape,filename) {};
 	virtual ~InsulationTape();
 
 	virtual void interact(); // Método para interactuar de los Itemss

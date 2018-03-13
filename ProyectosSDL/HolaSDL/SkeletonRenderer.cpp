@@ -38,19 +38,15 @@ void SkeletonRendered::render(GameObject *o, Uint32 time) {
 
 	// draw lines between the corners, after shifting them by (x,y)
 	SDL_SetRenderDrawColor(renderer, color_.r, color_.g, color_.b, color_.a);
-	SDL_RenderDrawLine(renderer, lu.getX() + x, lu.getY() + y, ru.getX() + x,
-			ru.getY() + y);
-	SDL_RenderDrawLine(renderer, ru.getX() + x, ru.getY() + y, rb.getX() + x,
-			rb.getY() + y);
-	SDL_RenderDrawLine(renderer, rb.getX() + x, rb.getY() + y, lb.getX() + x,
-			lb.getY() + y);
-	SDL_RenderDrawLine(renderer, lb.getX() + x, lb.getY() + y, lu.getX() + x,
-			lu.getY() + y);
+	SDL_RenderDrawLine(renderer, int(lu.getX() + x), int(lu.getY() + y), int(ru.getX() + x), int(ru.getY() + y));
+	SDL_RenderDrawLine(renderer, int(ru.getX() + x), int(ru.getY() + y), int(rb.getX() + x), int(rb.getY() + y));
+	SDL_RenderDrawLine(renderer, int(rb.getX() + x), int(rb.getY() + y), int(lb.getX() + x), int(lb.getY() + y));
+	SDL_RenderDrawLine(renderer, int(lb.getX() + x), int(lb.getY() + y), int(lu.getX() + x), int(lu.getY() + y));
 
 	// draw direction vector
 	SDL_SetRenderDrawColor(renderer, 255, 100, 100, 100);
 	Vector2D dir = (o->getDirection()) * (o->getHeight() / 2);
-	SDL_RenderDrawLine(renderer, x, y, dir.getX() + x, dir.getY() + y);
+	SDL_RenderDrawLine(renderer, int(x), int(y), int(dir.getX() + x), int(dir.getY() + y));
 
 	// draw velocity vector
 	SDL_SetRenderDrawColor(renderer, 100, 255, 100, 100);
@@ -58,6 +54,5 @@ void SkeletonRendered::render(GameObject *o, Uint32 time) {
 	Vector2D vel = o->getVelocity();
 	double wh = std::min(o->getHeight(), o->getWidth()) / 2; // minimum of width an height
 	vel = vel * wh / 5; // why 5? i
-	SDL_RenderDrawLine(renderer, x, y, vel.getX() + x, vel.getY() + y);
-
+	SDL_RenderDrawLine(renderer, int(x), int(y), int(vel.getX() + x), int(vel.getY() + y));
 }

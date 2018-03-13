@@ -14,7 +14,6 @@ void Player::move(Entity* o)
 {
 	Vector2D pos = { o->getPosition().getX(), o->getPosition().getY() };
 	Character::move(o);
-	Camera::Instance()->setTarget(pos);
 }
 
 void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event)
@@ -29,7 +28,7 @@ Player::~Player()
 }
 
 void Player::cure() {
-	life += maxLife_ * cureIndex_;
+	life += maxLife_ * int(cureIndex_);
 	if (life > maxLife_)
 		life = maxLife_;
 }

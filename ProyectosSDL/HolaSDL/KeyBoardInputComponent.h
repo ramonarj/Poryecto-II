@@ -22,7 +22,6 @@ private:
 	SDL_Scancode interact_;
 	SDL_Scancode attack_;
 	SDL_Keycode inventory_;
-	bool InventoryOpen = true;
 
 	SDL_Scancode pause_;
 	SDL_Scancode enter_;

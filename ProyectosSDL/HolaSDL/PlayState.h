@@ -10,6 +10,8 @@ private:
 	PlayState();
 	static PlayState* s_pInstance;
 	Level* pLevel = nullptr;
+	Entity* player;
+
 public:
 	Entity* inventory;
 	static PlayState* Instance()
@@ -27,6 +29,9 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);
+
+	//Devuelve al jugador
+	Entity* getPlayer() { return player; };
 };
 
 typedef PlayState PlayState;

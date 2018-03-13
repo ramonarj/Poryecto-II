@@ -44,6 +44,10 @@ void PlayState::startState()
 {
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+	player = Game::Instance()->getEntityWithComponent<Player>();
+
+
+	Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>()->addPlayer(player);
 }
 
 void PlayState::update(Uint32 time)

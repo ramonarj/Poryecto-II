@@ -42,9 +42,9 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	}
 	else if (state[interact_]) {
 		if (event.type == SDL_KEYDOWN) {
-			SDL_Rect playerRect = { o->getPosition().getX(), o->getPosition().getX(), o->getWidth(), o->getHeight() };
+			SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getX()), int(o->getWidth()), int(o->getHeight()) };
 			for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
-				SDL_Rect intRect = { e->getPosition().getX(), e->getPosition().getX(), e->getWidth(), e->getHeight() };
+				SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getX()), int(e->getWidth()), int(e->getHeight()) };
 				if (Collisions::RectRect(&playerRect, &intRect)) {
 					if (e->getComponent<Interactible>() != nullptr) {
 						e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());

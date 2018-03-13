@@ -29,7 +29,7 @@ Player::~Player()
 }
 
 void Player::cure() {
-	life += maxLife_ * cureIndex_;
+	life += maxLife_ * int(cureIndex_);
 	if (life > maxLife_)
 		life = maxLife_;
 }

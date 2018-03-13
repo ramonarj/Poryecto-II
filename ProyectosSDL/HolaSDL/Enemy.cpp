@@ -25,8 +25,8 @@ void Enemy::move(Entity* o)
 
 		//Lo persigue
 		Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
-		float alpha = abs(atan(chaseVector.getY() / chaseVector.getX()));
-		int velMag = o->getVelocity().magnitude();
+		float alpha = float(abs(atan(chaseVector.getY() / chaseVector.getX())));
+		int velMag = int(o->getVelocity().magnitude());
 
 		////Ponemos la nueva velocidad
 		//Vector2D vel{ cos(alpha) * velMag * chaseVector.getX() / abs(chaseVector.getX()), sin(alpha)* velMag * chaseVector.getY() / abs(chaseVector.getY()) };

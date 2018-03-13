@@ -33,7 +33,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
-			while (i<inventory.size() && !clicked)
+			while (i< int(inventory.size()) && !clicked)
 			{
 				if ((event.button.x >= ObjPos[i].x && event.button.x <= ObjPos[i].x + 50)
 					&& (event.button.y >= ObjPos[i].y && event.button.y <= ObjPos[i].y + 50))//EL 50 Es un numero provisional de prueba
@@ -76,7 +76,7 @@ void Inventory::render(Entity* e, Uint32 time)
 			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
 	}
 
-	for (int i = 0; i < inventory.size(); i++)
+	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
 			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
@@ -136,7 +136,7 @@ bool Inventory::checkItem(Entity * item)
 {
 	int i = 0;
 	bool found = false;
-	while (!found && i < inventory.size() && !empty())
+	while (!found && i < int(inventory.size()) && !empty())
 	{
 		if (ItemInPosition(i) == item) { found = true; }
 	}
@@ -145,7 +145,7 @@ bool Inventory::checkItem(Entity * item)
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
 Entity * Inventory::ItemInPosition(int pos)
 {
-	if (pos < inventory.size() && !empty()) { return inventory[pos]; }
+	if (pos < int(inventory.size()) && !empty()) { return inventory[pos]; }
 	else return nullptr;
 }
 

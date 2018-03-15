@@ -13,6 +13,9 @@ private:
 
 	Entity* player;
 
+	int mapWidth;
+	int mapHeight;
+
 public:
 	Entity* inventory;
 	static PlayState* Instance()
@@ -33,6 +36,8 @@ public:
 
 	//Devuelve al jugador
 	Entity* getPlayer() { return player; };
+	int getMapWidth() { return mapWidth; };
+	int getMapHeight() { return mapHeight; };
 };
 
 typedef PlayState PlayState;

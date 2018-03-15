@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="500" tilewidth="24" tileheight="24" nextobjectid="16">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="195" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
  <layer name="Suelo" width="500" height="500">

@@ -45,6 +45,9 @@ void PlayState::startState()
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
 
+	mapWidth = levelParser.mapWidth;
+	mapHeight = levelParser.mapHeight;
+
 	player = Game::Instance()->getEntityWithComponent<Player>();
 	Camera::Instance()->setTarget(player);
 

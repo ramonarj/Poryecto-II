@@ -4,81 +4,87 @@ CollisionManager* CollisionManager::s_pInstance = 0;
 
 void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
 {
-	for (std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
+	for (TileLayer* it : collisionLayers)
 	{
-		TileLayer* pTileLayer = (*it);
+		TileLayer* pTileLayer = it;
 		std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
 
 		Vector2D layerPos = pTileLayer->getPosition();
 
 		int x, y, tileColumn, tileRow, tileid = 0;
 
-		x = Camera::Instance()->getPosition().getX() / pTileLayer->getTileSize();
-		y = Camera::Instance()->getPosition().getY() / pTileLayer->getTileSize();
+		x = layerPos.getX() / pTileLayer->getTileSize();
+		y = layerPos.getY() / pTileLayer->getTileSize();
 
-		for (list<Entity*>::const_iterator c = characters.begin(); c != characters.end(); c++)
+		for (Entity* c : characters)
 		{
-			if ((*c)->getVelocity().getX() > 0 || (*c)->getVelocity().getY() > 0)
+			if (c->getVelocity().getX() >  0 || c->getVelocity().getY() > 0)
 			{
-				tileColumn = (((*c)->getPosition().getX() + (*c)->getWidth()) / pTileLayer->getTileSize());
-				tileRow = (((*c)->getPosition().getY() + (*c)->getHeight()) / pTileLayer->getTileSize());
+				tileColumn = ((c->getPosition().getX() + c->getWidth()) / pTileLayer->getTileSize());
+				tileRow = ((c->getPosition().getY() + c->getHeight()) / pTileLayer->getTileSize());
 				tileid = tiles[tileRow + y][tileColumn + x];
 
 				if (tileid == 0)
 				{
-					if ((*c)->getVelocity().getX() > 0)
+					if (c->getVelocity().getX() > 0)
 					{
-						tileRow = (((*c)->getPosition().getY() + ((*c)->getHeight() / 2)) / pTileLayer->getTileSize());
+						tileRow = ((c->getPosition().getY() + (c->getHeight() / 2)) / pTileLayer->getTileSize());
 						tileid = tiles[tileRow + y][tileColumn + x];
 
 						if (tileid == 0)
 						{
-							tileRow = ((*c)->getPosition().getY() / pTileLayer->getTileSize());
+							tileRow = (c->getPosition().getY() / pTileLayer->getTileSize());
 							tileid = tiles[tileRow + y][tileColumn + x];
 						}
 					}
 
-					else if ((*c)->getVelocity().getY() > 0)
+					if (tileid == 0)
 					{
-						tileColumn = (((*c)->getPosition().getX() + ((*c)->getWidth() / 2)) / pTileLayer->getTileSize());
-						tileid = tiles[tileRow + y][tileColumn + x];
-
-						if (tileid == 0)
+						if (c->getVelocity().getY() > 0)
 						{
-							tileColumn = ((*c)->getPosition().getX() / pTileLayer->getTileSize());
+							tileColumn = ((c->getPosition().getX() + (c->getWidth() / 2)) / pTileLayer->getTileSize());
 							tileid = tiles[tileRow + y][tileColumn + x];
+
+							if (tileid == 0)
+							{
+								tileColumn = (c->getPosition().getX() / pTileLayer->getTileSize());
+								tileid = tiles[tileRow + y][tileColumn + x];
+							}
 						}
 					}
 				}
 			}
-			else if ((*c)->getVelocity().getX() < 0 || (*c)->getVelocity().getY() < 0)
+			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
-				tileColumn = (*c)->getPosition().getX() / pTileLayer->getTileSize();
-				tileRow = (*c)->getPosition().getY() / pTileLayer->getTileSize();
+				tileColumn = c->getPosition().getX() / pTileLayer->getTileSize();
+				tileRow = c->getPosition().getY() / pTileLayer->getTileSize();
 				tileid = tiles[tileRow + y][tileColumn + x];
 
 				if (tileid == 0)
 				{
-					if ((*c)->getVelocity().getX() < 0)
+					if (c->getVelocity().getX() < 0)
 					{
-						tileRow = (((*c)->getPosition().getY() + ((*c)->getHeight() / 2)) / pTileLayer->getTileSize());
+						tileRow = ((c->getPosition().getY() + (c->getHeight() / 2)) / pTileLayer->getTileSize());
 						tileid = tiles[tileRow + y][tileColumn + x];
 
 						if (tileid == 0)
 						{
-							tileRow = (((*c)->getPosition().getY() + (*c)->getHeight()) / pTileLayer->getTileSize());
+							tileRow = ((c->getPosition().getY() + c->getHeight()) / pTileLayer->getTileSize());
 							tileid = tiles[tileRow + y][tileColumn + x];
 						}
 					}
-					else if ((*c)->getVelocity().getY() < 0)
+					if (tileid == 0)
 					{
-						tileColumn = (((*c)->getPosition().getX() + ((*c)->getWidth() / 2)) / pTileLayer->getTileSize());
-						tileid = tiles[tileRow + y][tileColumn + x];
-
-						if (tileid == 0)
+						if (c->getVelocity().getY() < 0)
 						{
-							tileColumn = (((*c)->getPosition().getX() + (*c)->getWidth()) / pTileLayer->getTileSize());
+							tileColumn = ((c->getPosition().getX() + (c->getWidth() / 2)) / pTileLayer->getTileSize());
 							tileid = tiles[tileRow + y][tileColumn + x];
+
+							if (tileid == 0)
+							{
+								tileColumn = ((c->getPosition().getX() + c->getWidth()) / pTileLayer->getTileSize());
+								tileid = tiles[tileRow + y][tileColumn + x];
+							}
 						}
 					}
 				}
@@ -87,9 +93,9 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 			if (tileid != 0)
 			{
 				Vector2D pos(0, 0);
-				pos.setX((*c)->getPosition().getX() - (*c)->getVelocity().getX());
-				pos.setY((*c)->getPosition().getY() - (*c)->getVelocity().getY());
-				(*c)->setPosition(pos);
+				pos.setX(c->getPosition().getX() - c->getVelocity().getX());
+				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
+				c->setPosition(pos);
 			}
 		}
 	}

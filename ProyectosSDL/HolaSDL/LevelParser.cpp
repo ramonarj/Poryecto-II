@@ -32,6 +32,9 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
+	mapWidth = m_width * m_tileSize;
+	mapHeight = m_height * m_tileSize;
+
 	//we know that properties is the first child of the root
 	TiXmlElement* pProperties = pRoot->FirstChildElement();
 

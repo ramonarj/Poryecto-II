@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "Game.h"
+#include "LevelParser.h"
 class Camera
 {
 public:

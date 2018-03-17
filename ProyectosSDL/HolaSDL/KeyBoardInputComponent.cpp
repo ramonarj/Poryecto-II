@@ -58,11 +58,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			}
 		}
 	}
-	else if (state[inventory_])
-	{
-		if (event.type == SDL_KEYDOWN)
-			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
-	}
+
 	else if (state[attack_])
 	{
 		if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking()))
@@ -75,6 +71,18 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 	o->setVelocity(velocity);
 	o->setDirection(direction);
+
+	if (state[inventory_])
+	{
+		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
+			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
+			inventoryPressed = true;
+		}
+	}
+	if (!state[inventory_])
+	{
+		inventoryPressed = false;
+	}
 
 }
 

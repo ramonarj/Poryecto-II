@@ -41,7 +41,8 @@ public:
 
 	Entity* currentWeapon();
 
-
+private:
+	SDL_Renderer * pRenderer;
 
 };
 

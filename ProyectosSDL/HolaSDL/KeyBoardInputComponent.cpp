@@ -1,6 +1,7 @@
 #include "KeyBoardInputComponent.h"
 #include "ImageRenderer.h"
 #include <iostream>
+#include "Camera.h"
 
 
 KeyBoardInputComponent::KeyBoardInputComponent()
@@ -20,12 +21,14 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
+	double vel = 10 * Camera::Instance()->getZoom();
+
 	if (state[left_] && !(o->getComponent<Character>()->getAttacking())) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
-		velocity.setX(-10);
+		velocity.setX(-vel);
 		direction.setX(-1);
 	}
 	else if (state[right_] && !(o->getComponent<Character>()->getAttacking())) {
-		velocity.setX(10);
+		velocity.setX(vel);
 		direction.setX(1);
 	}
 	else {
@@ -33,11 +36,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		direction.setX(0);
 	}
 	if (state[up_] && !(o->getComponent<Character>()->getAttacking())) {
-		velocity.setY(-10);
+		velocity.setY(-vel);
 		direction.setY(1);
 	}
 	else if (state[down_] && !(o->getComponent<Character>()->getAttacking())) {
-		velocity.setY(10);
+		velocity.setY(vel);
 		direction.setY(-1);
 	}
 	else if (state[interact_]) {
@@ -75,21 +78,3 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 }
 
-	/*else if (state[inventory_])
-	{
-		if (event.type == SDL_KEYDOWN && !InventoryOpen) {
-			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
-			InventoryOpen = true;
-		}
-		if (event.type == SDL_KEYUP) {
-			InventoryOpen = false;
-		}
-	}
-	else if (state[attack_])
-	{
-		if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) 
-			o->getComponent<Character>()->setAttacking(true);
-		
-	}
-	/*else if (state[interact_]) {
-	}*/

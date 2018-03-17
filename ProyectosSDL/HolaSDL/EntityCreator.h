@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "ImageRenderer.h"
 #include "Resources.h"
+#include "SkeletonRenderer.h"
 
 class PlayerCreator : public BaseCreator
 {

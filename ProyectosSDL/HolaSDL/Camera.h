@@ -21,6 +21,8 @@ public:
 	}
 	const Vector2D getPosition() const;
 
+	double getZoom() { return zoom; };
+
 private:
 	Camera();
 	~Camera();
@@ -29,6 +31,8 @@ private:
 	// the camera's position
 	Vector2D m_position;
 	static Camera* s_pCamera;
+
+	double zoom;
 
 };
 typedef Camera Camera;

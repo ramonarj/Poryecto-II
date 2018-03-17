@@ -25,7 +25,9 @@ private:
 	SDL_Scancode pause_;
 	SDL_Scancode enter_;
 
+	//VARIABLE PARA EVITAR EL PARPADEO DEL INVENTARIO
 	bool inventoryPressed = false;
+	Entity* inv = nullptr;
 
 };
 

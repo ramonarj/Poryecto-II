@@ -38,7 +38,6 @@ public:
 	virtual bool fullInventory();
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
-
 	Entity* currentWeapon();
 
 private:

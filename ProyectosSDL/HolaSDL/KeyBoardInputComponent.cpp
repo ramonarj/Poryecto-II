@@ -75,7 +75,8 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	if (state[inventory_])
 	{
 		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
-			Game::Instance()->getEntityWithComponent<Inventory>()->setActive(!Game::Instance()->getEntityWithComponent<Inventory>()->isActive());
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			inv->setActive(!inv->isActive());
 			inventoryPressed = true;
 		}
 	}

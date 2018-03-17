@@ -21,7 +21,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
-	double vel = 10 * Camera::Instance()->getZoom();
+	double vel = 3 * Camera::Instance()->getZoom();
 
 	if (state[left_] && !(o->getComponent<Character>()->getAttacking())) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 		velocity.setX(-vel);

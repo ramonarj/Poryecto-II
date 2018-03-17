@@ -12,7 +12,9 @@ AnimationRenderer::~AnimationRenderer()
 void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 	SDL_Rect dest
-		RECT(o->getPosition().getX() - Camera::Instance()->getPosition().getX(), o->getPosition().getY() - Camera::Instance()->getPosition().getY(), o->getWidth(), o->getHeight());
+		RECT(o->getPosition().getX() - Camera::Instance()->getPosition().getX(),
+			o->getPosition().getY() - Camera::Instance()->getPosition().getY(),
+			o->getWidth(), o->getHeight());
 
 	SDL_Rect clip;
 	if (character){

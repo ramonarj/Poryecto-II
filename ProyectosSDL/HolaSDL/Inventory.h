@@ -43,6 +43,7 @@ public:
 
 private:
 	SDL_Renderer * pRenderer;
+	const Resources* resource;
 
 };
 

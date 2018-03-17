@@ -32,7 +32,10 @@ public:
 		Crowbar,
 		stick, 
 		PruebaAtaque,
-		SpriteSheetElise
+		SpriteSheetElise,
+		FondoMenu,
+		BotonNuevaPartida,
+		BotonExit,
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

@@ -7,7 +7,9 @@ vector<string> Resources::imageFiles_ { "images/blank.png",
 		"images/ai.png", "images/spaceships.png", "images/airplanes.png",
 		"images/star.png", "images/Inventory.png", "images/PruebaAnim.png",
 		"images/Spray.png","images/Crowbar.png", "images/stickPrueba.png", 
-		"images/PruebaAtaque.png", "images/SpriteSheetElise.png" };
+		"images/PruebaAtaque.png", "images/SpriteSheetElise.png", 
+		"images/Menu/FondoMenu.png", "images/Menu/NuevaPartida.png",
+		"images/Menu/Exit.png" };
 
 vector<Resources::FontInfo> Resources::fontFiles_ {
 		{ "fonts/ARIAL.ttf", 16 }, { "fonts/ARIAL.ttf", 24 }, {

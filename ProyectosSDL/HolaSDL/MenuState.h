@@ -2,13 +2,22 @@
 #include "GameState.h"
 #include "LevelParser.h"
 #include "Inventory.h"
+#include "MenuButton.h"
 
 class MenuState : public GameState {
 
 private:
-	SDL_Renderer* renderer;
+	SDL_Renderer* pRenderer;
+	const Resources* resource;
+
+	double width;
+	double height;
+
 	MenuState();
 	static MenuState* s_pInstance;
+
+	vector<SDL_Rect> destRect;
+
 public:
 	Entity* inventory;
 	static MenuState* Instance()

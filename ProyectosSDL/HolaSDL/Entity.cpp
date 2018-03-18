@@ -23,23 +23,29 @@ Entity::Entity(int posX, int posY) :
 
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->handleInput(this, time, event);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->handleInput(this, time, event);
+		}
 	}
 }
 
 void Entity::update(Uint32 time) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->update(this, time);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->update(this, time);
+		}
 	}
 }
 
 void Entity::render(Uint32 time) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->render(this, time);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->render(this, time);
+		}
 	}
 }
 

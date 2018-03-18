@@ -51,7 +51,6 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				if (Collisions::RectRect(&playerRect, &intRect)) {
 					if (e->getComponent<Interactible>() != nullptr) {
 						e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());
-						e->delComponent(e->getComponent<ImageRenderer>());
 					}
 					else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
 				}

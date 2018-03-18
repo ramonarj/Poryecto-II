@@ -30,7 +30,7 @@ public:
 		Entity* e = new Entity();
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy());
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise), 14, 6, 120, true, false));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 150, true, false));
 		return e;
 	}
 };

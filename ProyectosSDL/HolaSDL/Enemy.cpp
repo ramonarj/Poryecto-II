@@ -14,6 +14,7 @@ Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(lif
 
 void Enemy::move(Entity* o)
 {
+	//1.SDFBNDFGDFG
 	Entity* player = PlayState::Instance()->getPlayer();
 	//Posición del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
@@ -33,6 +34,7 @@ void Enemy::move(Entity* o)
 	//pos.setX(pos.getX() + o->getVelocity().getX());
 	//pos.setY(pos.getY() + o->getVelocity().getY());
 
+	//2.VELOCIDAD
 	Vector2D vel;
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())
@@ -47,8 +49,34 @@ void Enemy::move(Entity* o)
 		vel.setY(-velMag);
 
 	//cout << alpha << endl;
+
+	//Actualizamos la velocidad
 	o->setVelocity(vel);
-	//Actualizamos a posicion(PONER ESTO EN CHARACTER)
+
+
+	///3.DIRECCIÓN
+	Vector2D dir;
+	//Prioritaria en el eje X
+	if (vel.getX() > 0)
+		dir.setX(1);
+	else
+		dir.setX(-1);
+
+	//Prioritaria en el eje Y
+	if (vel.getY() > 0) 
+		dir.setY(-1);
+	else
+		dir.setY(1);
+
+	//Eje prioritario (solo tenemos en cuenta las direcciones (-1, 0), (1, 0), (0, -1) y (0, 1)
+	if (abs(chaseVector.getX()) > abs(chaseVector.getY()))
+		dir.setY(0);
+	else
+		dir.setX(0);
+
+	o->setDirection(dir);
+
+	//4.PADRE
 	Character::move(o);
 
 

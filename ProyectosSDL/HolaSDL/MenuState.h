@@ -29,7 +29,6 @@ public:
 		}
 		return s_pInstance;
 	}
-	//PlayState();
 	~MenuState();
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);

@@ -13,9 +13,9 @@ protected:
 	list<Entity*> stage_;
 	list<Entity*> interactibles_;
 	list<Entity*> characters_;
-	Game* game_;
+	list<Entity*> doors_;
 
-	GameState() {};
+	GameState();
 	static GameState* s_pInstance;
 
 public:
@@ -30,7 +30,6 @@ public:
 		return s_pInstance;
 	}
 
-	GameState(Game* game);
 	virtual ~GameState();
 	virtual void startState();
 	virtual void render(Uint32 time);
@@ -41,6 +40,7 @@ public:
 	list<Entity*>* getStage() { return &stage_; };
 	list<Entity*>* getInteractibles() { return &interactibles_; };
 	list<Entity*>* getCharacters() { return &characters_; };
+	list<Entity*>* getDoors() { return &doors_; };
 };
 
 

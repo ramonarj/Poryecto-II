@@ -138,3 +138,13 @@ public:
 private:
 	ItemType type_;
 };
+
+class DoorCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		return e;
+	}
+};

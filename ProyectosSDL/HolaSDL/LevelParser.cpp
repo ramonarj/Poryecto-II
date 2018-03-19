@@ -211,9 +211,17 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int damage = 0;
 			std::string textureID;
 
+			int numero = 0;
+			std::string orientacion;
+
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
+			if (e->Attribute("type") == std::string("Puerta"))
+			{
+				e->Attribute("width", &width);
+				e->Attribute("height", &height);
+			}
 			Entity* pEntity = GameObjectFactory::Instance()->create(e->Attribute("type"));
 
 			// get the property values
@@ -257,17 +265,36 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &damage);
 							}
+							else if (property->Attribute("name") == std::string("numero"))
+							{
+								property->Attribute("value", &numero);
+							}
+							else if (property->Attribute("name") == std::string("dir"))
+							{
+								orientacion = property->Attribute("value");
+							}
 						}
 					}
 				}
 			}
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, textureID);
+			//Cargas de varias formas dependiendo del tipo de objeto
+			if (e->Attribute("type") != std::string("Puerta"))
+				pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, textureID);
+			else
+				pEntity->loadDoors(x * zoom, y * zoom, width * zoom, height * zoom, numero, orientacion);
+
+			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
 				pEntity->getComponent<Character>()->load(life, damage);
 				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 			}
-			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+
+			//Si es una puerta lo mete en un vector diferente al de entidades
+			if (e->Attribute("type") != std::string("Puerta"))
+				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			else
+				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);

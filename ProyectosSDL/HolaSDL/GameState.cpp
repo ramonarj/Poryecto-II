@@ -3,7 +3,7 @@
 
 GameState* GameState::s_pInstance = 0;
 
-GameState::GameState(Game* game): game_(game){ //Constructora
+GameState::GameState(){ //Constructora
 }
 
 GameState::~GameState(){ //Destructora

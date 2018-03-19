@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include <iostream>
 #include <math.h>
+#include <algorithm>
 
 
 Enemy::Enemy():player(nullptr), Character(){}
@@ -14,14 +15,15 @@ Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(lif
 
 void Enemy::move(Entity* o)
 {
-	//1.SDFBNDFGDFG
+	//1.CÁLCULOS
 	Entity* player = PlayState::Instance()->getPlayer();
 	//Posición del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
 
-	//Lo persigue
+	//Persigue al jugador
 	Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
+	int distance = sqrt(pow(chaseVector.getX(), 2) + pow(chaseVector.getY(), 2));
 	float alpha = float(abs(atan(chaseVector.getY() / chaseVector.getX())));
 	int velMag = int(o->getVelocity().magnitude());
 
@@ -76,20 +78,18 @@ void Enemy::move(Entity* o)
 
 	o->setDirection(dir);
 
-	//4.PADRE
+	//4.SE MUEVE
 	Character::move(o);
 
-
-	//PROVISIONAL: HACER COLISIONES EN PLAN BIEN
+	//5.COLISIONES
 	//Lo pilla
-	if ((int)pos.getX() == playerPos.getX() && (int)pos.getY() == playerPos.getY())
+	if (distance <= ALCANCE)
 	{
-		cout << "e";
 		//De momento, ambos se hacen daño
 		player->getComponent<Player>()->takeDamage(damage);
 		this->takeDamage(player->getComponent<Player>()->getDamage());
 
-		//Respawn
+		//Respawn-> HACER UN KNOCKBACK
 		pos.setX(pos.getX() + 30);
 		pos.setY(pos.getY() + 30);
 		o->setPosition(pos);

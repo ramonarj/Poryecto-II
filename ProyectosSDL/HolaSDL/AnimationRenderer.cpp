@@ -37,7 +37,10 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 		}
 		else if ((o->getComponent<Character>()->getAttacking())){
-			
+			if (o->getComponent<Player>() != nullptr) {
+				string w = o->getComponent<Player>()->getWeaponId();
+				//Convertir el string a int
+			}
 			clip =
 				RECT((attackFrames_)* image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 				dirIddle(o) * image_->getHeight() / movements_,

@@ -13,14 +13,14 @@ public:
 
 	int getLife() { return life; };
 	void cure();
-	void setWeaponId(string id) { WeaponId = id; };
-	string getWeaponId() { return WeaponId; };
+	void setWeaponId(int id) { WeaponId = id; };
+	int getWeaponId() { return WeaponId; };
 
 	virtual ~Player();
 private:
 	virtual void move(Entity* o);
 	int maxLife_;
 	double cureIndex_ = 0.6;
-	string WeaponId;
+	int WeaponId;
 };
 

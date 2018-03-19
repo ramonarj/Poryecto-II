@@ -62,7 +62,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			}
 		}
 
-		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
+		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon && pressing shift
 		{
 			if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) {
 				o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());

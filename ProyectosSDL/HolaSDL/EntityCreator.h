@@ -17,7 +17,7 @@ public:
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 80, true, false));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 26, 80, true, false));
 		return e;
 	}
 };
@@ -30,7 +30,7 @@ public:
 		Entity* e = new Entity();
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy());
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 150, true, false));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 10, 150, true, false));
 		return e;
 	}
 };

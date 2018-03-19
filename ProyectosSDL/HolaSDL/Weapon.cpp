@@ -5,6 +5,7 @@
 Weapon::Weapon(ItemType type, const string& filename) : Item(type, filename)
 {
 	weaponInit(type);
+	type_ = type;
 }
 
 

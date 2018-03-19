@@ -1,4 +1,5 @@
 #include "AnimationRenderer.h"
+#include "Camera.h"
 
 AnimationRenderer::AnimationRenderer(Texture* image, Uint32 movementFrames, Uint32 attackMovementFrames, Uint32 cooldown, bool character, bool direccionable) : image_(image), movementFrames_(movementFrames), attackMovementFrames_(attackMovementFrames), cooldown_(cooldown), character(character), direccionable(direccionable)
 {
@@ -11,7 +12,9 @@ AnimationRenderer::~AnimationRenderer()
 void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 	SDL_Rect dest
-		RECT(o->getPosition().getX(), o->getPosition().getY(), o->getWidth(), o->getHeight());
+		RECT(o->getPosition().getX() - Camera::Instance()->getPosition().getX(),
+			o->getPosition().getY() - Camera::Instance()->getPosition().getY(),
+			o->getWidth(), o->getHeight());
 
 	SDL_Rect clip;
 	if (character){
@@ -34,7 +37,10 @@ void AnimationRenderer::render(Entity* o, Uint32 time) {
 
 		}
 		else if ((o->getComponent<Character>()->getAttacking())){
-			
+			if (o->getComponent<Player>() != nullptr) {
+				string w = o->getComponent<Player>()->getWeaponId();
+				//Convertir el string a int
+			}
 			clip =
 				RECT((attackFrames_)* image_->getWidth() / (movementFrames_ + attackMovementFrames_),
 				dirIddle(o) * image_->getHeight() / movements_,

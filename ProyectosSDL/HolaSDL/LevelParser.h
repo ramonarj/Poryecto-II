@@ -14,8 +14,12 @@ class ObjectLayer;
 
 class LevelParser
 {
+
 public:
 	Level * parseLevel(const char* stateFile);
+
+	int mapWidth;
+	int mapHeight;
 
 private:
 
@@ -36,4 +40,6 @@ private:
 	int m_width;
 	int m_height;
 };
+
+
 

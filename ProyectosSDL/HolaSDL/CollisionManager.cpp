@@ -2,92 +2,109 @@
 
 CollisionManager* CollisionManager::s_pInstance = 0;
 
-void CollisionManager::checkPlayerTileCollision(Entity* pPlayer, const std::vector<TileLayer*>& collisionLayers)
+void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
 {
-	for (std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
+	int zoom = Camera::Instance()->getZoom();
+	for (TileLayer* it : collisionLayers)
 	{
-		TileLayer* pTileLayer = (*it);
+		TileLayer* pTileLayer = it;
 		std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
 
 		Vector2D layerPos = pTileLayer->getPosition();
 
 		int x, y, tileColumn, tileRow, tileid = 0;
 
-		x = Camera::Instance()->getPosition().getX() / pTileLayer->getTileSize();
-		y = Camera::Instance()->getPosition().getY() / pTileLayer->getTileSize();
+		int tileSize = pTileLayer->getTileSize() / zoom;
 
-		if (pPlayer->getVelocity().getX() > 0 || pPlayer->getVelocity().getY() > 0)
+		x = layerPos.getX() / tileSize;
+		y = layerPos.getY() / tileSize;
+
+		for (Entity* c : characters)
 		{
-			tileColumn = ((pPlayer->getPosition().getX() + pPlayer->getWidth()) / pTileLayer->getTileSize());
-			tileRow = ((pPlayer->getPosition().getY() + pPlayer->getHeight()) / pTileLayer->getTileSize());
-			tileid = tiles[tileRow + y][tileColumn + x];
+			Vector2D pos(Vector2D(c->getPosition().getX() / zoom, c->getPosition().getY() / zoom));
+			double width = c->getWidth() / zoom;
+			double height = c->getHeight() / zoom;
 
-			if (tileid == 0)
+
+			if (c->getVelocity().getX() >  0 || c->getVelocity().getY() > 0)
 			{
-				if (pPlayer->getVelocity().getX() > 0)
-				{
-					tileRow = ((pPlayer->getPosition().getY() + (pPlayer->getHeight() / 2)) / pTileLayer->getTileSize());
-					tileid = tiles[tileRow + y][tileColumn + x];
+				tileColumn = (((pos.getX() + width)) / tileSize);
+				tileRow = ((pos.getY() + height) / tileSize);
+				tileid = tiles[tileRow + y][tileColumn + x];
 
-					if (tileid == 0)
+				if (tileid == 0)
+				{
+					if (c->getVelocity().getX() > 0)
 					{
-						tileRow = (pPlayer->getPosition().getY() / pTileLayer->getTileSize());
+						tileRow = ((pos.getY() + (height / 2)) / tileSize);
 						tileid = tiles[tileRow + y][tileColumn + x];
+
+						if (tileid == 0)
+						{
+							tileRow = (pos.getY() / tileSize);
+							tileid = tiles[tileRow + y][tileColumn + x];
+						}
 					}
-				}
-
-				else if (pPlayer->getVelocity().getY() > 0)
-				{
-					tileColumn = ((pPlayer->getPosition().getX() + (pPlayer->getWidth() / 2)) / pTileLayer->getTileSize());
-					tileid = tiles[tileRow + y][tileColumn + x];
 
 					if (tileid == 0)
 					{
-						tileColumn = (pPlayer->getPosition().getX() / pTileLayer->getTileSize());
-						tileid = tiles[tileRow + y][tileColumn + x];
+						if (c->getVelocity().getY() > 0)
+						{
+							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
+							tileid = tiles[tileRow + y][tileColumn + x];
+
+							if (tileid == 0)
+							{
+								tileColumn = (pos.getX() / tileSize);
+								tileid = tiles[tileRow + y][tileColumn + x];
+							}
+						}
 					}
 				}
 			}
-		}
-		else if (pPlayer->getVelocity().getX() < 0 || pPlayer->getVelocity().getY() < 0)
-		{
-			tileColumn = pPlayer->getPosition().getX() / pTileLayer->getTileSize();
-			tileRow = pPlayer->getPosition().getY() / pTileLayer->getTileSize();
-			tileid = tiles[tileRow + y][tileColumn + x];
-
-			if (tileid == 0)
+			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
-				if (pPlayer->getVelocity().getX() < 0)
-				{
-					tileRow = ((pPlayer->getPosition().getY() + (pPlayer->getHeight() / 2)) / pTileLayer->getTileSize());
-					tileid = tiles[tileRow + y][tileColumn + x];
+				tileColumn = pos.getX() / tileSize;
+				tileRow = pos.getY() / tileSize;
+				tileid = tiles[tileRow + y][tileColumn + x];
 
-					if (tileid == 0)
+				if (tileid == 0)
+				{
+					if (c->getVelocity().getX() < 0)
 					{
-						tileRow = ((pPlayer->getPosition().getY() + pPlayer->getHeight()) / pTileLayer->getTileSize());
+						tileRow = ((pos.getY() + (height / 2)) / tileSize);
 						tileid = tiles[tileRow + y][tileColumn + x];
+
+						if (tileid == 0)
+						{
+							tileRow = ((pos.getY() + height) / tileSize);
+							tileid = tiles[tileRow + y][tileColumn + x];
+						}
 					}
-				}
-				else if (pPlayer->getVelocity().getY() < 0)
-				{
-					tileColumn = ((pPlayer->getPosition().getX() + (pPlayer->getWidth() / 2)) / pTileLayer->getTileSize());
-					tileid = tiles[tileRow + y][tileColumn + x];
-
 					if (tileid == 0)
 					{
-						tileColumn = ((pPlayer->getPosition().getX() + pPlayer->getWidth()) / pTileLayer->getTileSize());
-						tileid = tiles[tileRow + y][tileColumn + x];
+						if (c->getVelocity().getY() < 0)
+						{
+							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
+							tileid = tiles[tileRow + y][tileColumn + x];
+
+							if (tileid == 0)
+							{
+								tileColumn = ((pos.getX() + width) / tileSize);
+								tileid = tiles[tileRow + y][tileColumn + x];
+							}
+						}
 					}
 				}
 			}
-		}
 
-		if (tileid != 0)
-		{
-			Vector2D pos(0, 0);
-			pos.setX(pPlayer->getPosition().getX() - pPlayer->getVelocity().getX());
-			pos.setY(pPlayer->getPosition().getY() - pPlayer->getVelocity().getY());
-			pPlayer->setPosition(pos);
+			if (tileid != 0)
+			{
+				Vector2D pos(0, 0);
+				pos.setX(c->getPosition().getX() - c->getVelocity().getX());
+				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
+				c->setPosition(pos);
+			}
 		}
 	}
 }

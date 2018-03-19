@@ -50,6 +50,7 @@ private:
 	SDL_Texture *texture_;
 	int width_;
 	int height_;
+	int zoom;
 
 	map<string, SDL_Texture*> m_textureMap;
 

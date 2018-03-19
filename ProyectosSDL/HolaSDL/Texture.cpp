@@ -1,20 +1,24 @@
 #include "Texture.h"
+#include "Camera.h"
 
 Texture* Texture::s_pInstance = 0;
 
 Texture::Texture() :
 		texture_(nullptr), width_(0), height_(0) {
+	zoom = Camera::Instance()->getZoom();
 }
 
 Texture::Texture(SDL_Renderer* renderer, std::string fileName) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromImg(renderer, fileName);
+	zoom = Camera::Instance()->getZoom();
 }
 
 Texture::Texture(SDL_Renderer* renderer, std::string text, const Font& font,
 		const SDL_Color color) :
 		texture_(nullptr), width_(0), height_(0) {
 	loadFromText(renderer, text, font, color);
+	zoom = Camera::Instance()->getZoom();
 }
 
 Texture::~Texture() {
@@ -71,15 +75,15 @@ void Texture::render(SDL_Renderer* renderer, int x, int y) const {
 	SDL_Rect dest;
 	dest.x = x;
 	dest.y = y;
-	dest.w = width_;
-	dest.h = height_;
+	dest.w = width_ * zoom;
+	dest.h = height_ * zoom;
 	render(renderer, dest);
 }
 
 void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 		SDL_Rect* clip) const {
 	if (texture_) {
-		SDL_Rect default_clip = { 0, 0, width_, height_ };
+		SDL_Rect default_clip = { 0, 0, width_ * zoom, height_ * zoom };
 		if (clip == nullptr) {
 			clip = &default_clip;
 		}
@@ -90,7 +94,7 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
 		SDL_Rect* clip) const {
 	if (texture_) {
-		SDL_Rect default_clip = { 0, 0, width_, height_ };
+		SDL_Rect default_clip = { 0, 0, width_ * zoom, height_ * zoom };
 		if (clip == nullptr) {
 			clip = &default_clip;
 		}
@@ -125,12 +129,18 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
-	srcRect.x = margin + (spacing + width) * currentFrame;
-	srcRect.y = margin + (spacing + height) * currentRow;
-	srcRect.w = destRect.w = width;
-	srcRect.h = destRect.h = height;
-	destRect.x = x;
-	destRect.y = y;
+
+	srcRect.x = margin + (spacing + width / zoom) * currentFrame;
+	srcRect.y = margin + (spacing + height / zoom) * currentRow;
+	srcRect.w = width / zoom;
+	srcRect.h = height / zoom;
+
+	destRect.w = width * zoom;
+	destRect.h = height * zoom;
+	destRect.x = x * zoom;
+	destRect.y = y * zoom;
+
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, SDL_FLIP_NONE);
+	//SDL_RenderPresent(pRenderer);
 }

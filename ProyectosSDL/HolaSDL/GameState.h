@@ -12,6 +12,7 @@ class GameState {
 protected:
 	list<Entity*> stage_;
 	list<Entity*> interactibles_;
+	list<Entity*> characters_;
 	Game* game_;
 
 	GameState() {};
@@ -39,6 +40,7 @@ public:
 	void pushEntities(Entity* e) { stage_.push_back(e); };
 	list<Entity*>* getStage() { return &stage_; };
 	list<Entity*>* getInteractibles() { return &interactibles_; };
+	list<Entity*>* getCharacters() { return &characters_; };
 };
 
 

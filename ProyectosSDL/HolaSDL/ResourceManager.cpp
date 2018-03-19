@@ -30,3 +30,13 @@ Music * ResourceManager::getMusic(string id)
 {
 	return music_[id];
 }
+
+void ResourceManager::addSound(string id, string filepath)
+{
+	sounds_.insert(pair<string,SoundEffect*>(id, new SoundEffect(filepath)));
+}
+
+SoundEffect * ResourceManager::getSound(string id)
+{
+	return sounds_[id];
+}

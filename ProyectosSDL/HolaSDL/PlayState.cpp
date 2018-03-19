@@ -49,6 +49,7 @@ void PlayState::startState()
 	inventory = new Entity(0, 0);
 	Inventory* invtComp = new Inventory();
 	inventory->addComponent(invtComp);
+	inventory->setActive(false);
 	stage_.push_back(inventory);
 
 	invtComp->addItem(insulationTape);

@@ -9,7 +9,7 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 }
 
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter) :
-	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter) {
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter), inventoryPressed(false) {
 }
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
@@ -22,6 +22,9 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	double vel = 3 * Camera::Instance()->getZoom();
+
+	if (inv == nullptr)
+		inv = Game::Instance()->getEntityWithComponent<Inventory>();
 
 	if (inv != nullptr && !inv->isActive()) {
 		if (state[left_] && !(o->getComponent<Character>()->getAttacking())) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS

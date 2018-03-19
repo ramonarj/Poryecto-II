@@ -108,3 +108,55 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 		}
 	}
 }
+
+void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list<Entity*> doors)
+{
+	Entity* puerta = nullptr;
+
+	list<Entity*>::const_iterator it = doors.begin();
+	bool chocaPuerta = false;
+	while (it != doors.end() && !chocaPuerta)
+	{
+		if (Collisions::RectRect(&player->getRect(), &(*it)->getRect())) {
+			puerta = (*it);
+			chocaPuerta = true;
+		}
+		else
+			it++;
+	}
+
+	it = doors.begin();
+	bool puertEncontrada = false;
+
+	if (puerta != nullptr)
+	{
+		while (it != doors.end() && !puertEncontrada)
+		{
+			if ((*it) != puerta)
+			{
+				if ((*it)->getDoorNum() == puerta->getDoorNum())
+				{
+					if ((*it)->getOri() == "norte")
+						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
+						(*it)->getPosition().getY() + (*it)->getHeight() / 2));
+
+					else if ((*it)->getOri() == "sur")
+						player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
+						(*it)->getPosition().getY() - (*it)->getHeight() / 2));
+
+					else if ((*it)->getOri() == "este")
+						player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth(),
+						(*it)->getPosition().getY()));
+
+					else if ((*it)->getOri() == "oeste")
+						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2, 
+						(*it)->getPosition().getY()));
+
+					puertEncontrada = true;
+				}
+			}
+
+			it++;
+		}
+	}
+}

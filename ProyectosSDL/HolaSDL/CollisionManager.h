@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "TileLayer.h"
 #include <list>
+#include "Collisions.h"
+
 class CollisionManager
 {
 public:
@@ -26,6 +28,10 @@ public:
 
 	void checkPlayerTileCollision(std::list<Entity*> characters, const
 		std::vector<TileLayer*> &collisionLayers);
+
+	void checkPlayerDoorCollision(Entity* player,
+		const std::list<Entity*> doors);
+
 private:
 	CollisionManager() {};
 	static CollisionManager* s_pInstance;

@@ -2,6 +2,9 @@
 #include "Character.h"
 #include "Player.h"
 
+const int ALCANCE = 15;
+const int KNOCKBACK = 10;
+
 class Enemy :
 	public Character
 {

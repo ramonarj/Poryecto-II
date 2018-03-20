@@ -26,7 +26,7 @@ void PlayState::startState()
 	Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>()->addPlayer(player);
 
 	//Música
-	Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
+	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
 	//Item
 	Entity* palo = new Entity(10, 20);

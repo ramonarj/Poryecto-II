@@ -21,7 +21,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
-	double vel = 3 * Camera::Instance()->getZoom();
+	double vel = 7 * Camera::Instance()->getZoom();
 
 	if (inv == nullptr)
 		inv = Game::Instance()->getEntityWithComponent<Inventory>();

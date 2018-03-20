@@ -49,22 +49,17 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			}
 			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
 			else if(chestMode){
-				int i = 0;
+				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
 				bool change = false;
-				while (i < 20 && !change)
-				{
-					if ((event.button.x >= ChestSlots[i].x && event.button.x <= ChestSlots[i].x + 50)
-						&& (event.button.y >= ChestSlots[i].y && event.button.y <= ChestSlots[i].y + 50))
+					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[19].x)//19 es un número trivial a cambiar, peor aun no se como
+						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[19].y))
 					{
-						if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
 						if (!cofre->fullChest()) {
 							cofre->addItem(inventory[slotClicked]);
 							this->DeleteItem(slotClicked);
 							change = true;
 						}
 					}
-					i++;
-				}
 			}
 			clicked = false;
 		}

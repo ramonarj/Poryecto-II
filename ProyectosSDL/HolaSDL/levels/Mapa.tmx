@@ -139,7 +139,7 @@
     <property name="life" type="int" value="3"/>
     <property name="textureHeight" type="int" value="50"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="50"/>
+    <property name="textureWidth" type="int" value="45"/>
    </properties>
   </object>
   <object id="16" name="Item" type="Item" x="1508" y="499" width="32" height="50">

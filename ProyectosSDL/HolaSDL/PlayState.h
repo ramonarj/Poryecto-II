@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "LevelParser.h"
 #include "Inventory.h"
+#include "Chest.h"
 
 class PlayState: public GameState {
 
@@ -18,6 +19,7 @@ private:
 
 public:
 	Entity* inventory;
+	Entity* chest;
 	static PlayState* Instance()
 	{
 		if (s_pInstance == 0)

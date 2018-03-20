@@ -74,6 +74,7 @@
     <ClCompile Include="base64.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Chest.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="base64.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Chest.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />

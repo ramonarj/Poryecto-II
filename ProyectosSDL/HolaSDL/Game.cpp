@@ -8,9 +8,9 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 
 	//Se añade MenuScene
-	//stateMachine_.pushState(MenuState::Instance());
-	stateMachine_.pushState(PlayState::Instance());
 	//resourceManager_->getMusic("Menu")->play();
+	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(MenuState::Instance());
 
 	exit_ = false;
 }
@@ -31,6 +31,7 @@ void Game::initGame()
 
 	//Load Resources
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
+	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
 
 	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");

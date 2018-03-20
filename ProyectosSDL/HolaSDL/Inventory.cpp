@@ -5,6 +5,7 @@
 
 Inventory::Inventory()
 {
+	InvTam = 4;
 	debug = false;
 	equiped = nullptr;
 	pRenderer = nullptr;
@@ -27,8 +28,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= slots[i].x && event.button.x <= slots[i].x + 50)
-					&& (event.button.y >= slots[i].y && event.button.y <= slots[i].y + 50))//EL 50 Es un numero provisional de prueba
+				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba
 				{
 					clicked = true;
 				}
@@ -40,10 +41,30 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
+			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
 			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
 				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
 			{
 				equipWeapon(slotClicked);
+			}
+			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
+			else if(chestMode){
+				int i = 0;
+				bool change = false;
+				while (i < 20 && !change)
+				{
+					if ((event.button.x >= ChestSlots[i].x && event.button.x <= ChestSlots[i].x + 50)
+						&& (event.button.y >= ChestSlots[i].y && event.button.y <= ChestSlots[i].y + 50))
+					{
+						if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
+						if (!cofre->fullChest()) {
+							cofre->addItem(inventory[slotClicked]);
+							this->DeleteItem(slotClicked);
+							change = true;
+						}
+					}
+					i++;
+				}
 			}
 			clicked = false;
 		}
@@ -88,7 +109,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), 50, 50 };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)

@@ -2,6 +2,7 @@
 #include "ItemContainer.h"
 #include <vector>
 #include "Weapon.h"
+#include "Chest.h"
 
 
 using namespace std;
@@ -11,7 +12,9 @@ class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
+	Chest* cofre = nullptr;
 	coord EquippedCoord = { 750, 343 };
+	void setChestMode(bool a) { chestMode = a; }
 
 
 	Inventory();
@@ -40,9 +43,11 @@ public:
 
 	Entity* currentWeapon();
 
-private:
-	SDL_Renderer * pRenderer;
-	const Resources* resource;
+	bool chestMode = false;
+	
+	 
+
+
 
 };
 

@@ -16,7 +16,7 @@ public:
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
-			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
+			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 26, 80, true, false));
 		return e;
 	}

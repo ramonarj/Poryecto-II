@@ -8,9 +8,12 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 {
 }
 
-KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter) :
-	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter), inventoryPressed(false) {
-}
+KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
+												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter) :
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), 
+	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false)
+	{
+	}
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
 {
@@ -87,19 +90,40 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		o->setVelocity(Vector2D(0,0));
 	}
 
-	if (state[inventory_])
+	if (state[inventory_] && !cstOpen)
 	{
 		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
 			inv->setActive(!inv->isActive());
 			inventoryPressed = true;
+			invOpen = !invOpen;
 		}
 	}
-	if (!state[inventory_])
+	if (!state[inventory_] && !cstOpen)
 	{
 		inventoryPressed = false;
 	}
+
+	if (state[chest_] && !invOpen)
+	{
+		if (event.type == SDL_KEYDOWN && !chestPressed) {
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			inv->setActive(!inv->isActive());
+			cst->setActive(!cst->isActive());
+			chestPressed = true;
+			cstOpen = !cstOpen;
+			inv->getComponent<Inventory>()->setChestMode(cstOpen);
+			//SOUND 
+			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+		}
+	}
+	if (!state[chest_] && !invOpen)
+	{
+		chestPressed = false;
+	}
+
 
 }
 

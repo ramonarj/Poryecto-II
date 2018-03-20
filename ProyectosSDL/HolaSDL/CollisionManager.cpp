@@ -151,6 +151,7 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 	
 					playerComp->setTeleport(false);
 					puertEncontrada = true;
+					puerta = nullptr;
 				}
 			}
 

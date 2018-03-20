@@ -1,6 +1,7 @@
 #include "Item.h"
 #include <iostream>
 #include "ItemContainer.h"
+#include "Game.h"
 
 Item::Item(ItemType type, const string& filename) : type_(type) {
 	loadDescription(filename);
@@ -10,15 +11,16 @@ Item::~Item()
 {
 }
 
-void Item::interact(Entity* e, ItemContainer* ic) {
+void Item::interact(Entity* e) {
 	std::cout << "You interacted with: " << type_ << std::endl;
 	e->setActive(false);
-	ic->addItem(e);
+	dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
+		->currentState())->inventory->getComponent<Inventory>()->addItem(e);
 }
 
 bool Item::loadDescription(const string& filename) {
 	ifstream archivo;
-	stringstream ss,file;
+	stringstream ss, file;
 	string line;
 
 	file << "ItemDescriptions/" << filename << "Description.txt";

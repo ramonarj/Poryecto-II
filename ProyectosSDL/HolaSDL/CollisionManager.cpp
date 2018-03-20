@@ -103,6 +103,8 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 	Entity* puerta = nullptr;
 	SDL_Rect playerRect{ player->getRect().x, player->getRect().y + player->getRect().h / 2, player->getRect().w, player->getRect().h };
 
+	Player* playerComp = player->getComponent<Player>();
+
 	list<Entity*>::const_iterator it = doors.begin();
 	bool chocaPuerta = false;
 	while (it != doors.end() && !chocaPuerta)
@@ -110,15 +112,20 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 		if (Collisions::RectRect(&playerRect, &(*it)->getRect())) {
 			puerta = (*it);
 			chocaPuerta = true;
+
+			playerComp->setDoorCollision(true);
 		}
 		else
+		{
+			playerComp->setDoorCollision(false);
 			it++;
+		}
 	}
 
 	it = doors.begin();
 	bool puertEncontrada = false;
 
-	if (puerta != nullptr)
+	if (puerta != nullptr && playerComp->getTeleport())
 	{
 		while (it != doors.end() && !puertEncontrada)
 		{
@@ -141,7 +148,8 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 					else if ((*it)->getOri() == "oeste")
 						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2, 
 						(*it)->getPosition().getY()));
-
+	
+					playerComp->setTeleport(false);
 					puertEncontrada = true;
 				}
 			}

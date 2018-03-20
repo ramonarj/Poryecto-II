@@ -10,7 +10,9 @@ class KeyBoardInputComponent :
 {
 public:
 	KeyBoardInputComponent();
-	KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter);
+	KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, 
+		SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter);
+
 	virtual ~KeyBoardInputComponent();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 

@@ -13,102 +13,102 @@
    <property name="collidable" type="int" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3b2S2zYAhdHt/bL7/lWKRJOZRKRE8O9e4pwZNvYKhFHo85KQ+PMDAAAAzOj3wwEA5Ftrtp4DQAc9B4B+TT3/dG/grgMA7tbW8zSJcwJgPnq+T+KcAJiPnu+TOCcA5qPn+yTOCYAMKfu50lq1NJ8797SlrREAOVIakTKPl7WenzHu2a8F4NlSGpEyjxc9B6BJSiNS5vFydc99/hyAPVIakTKPlzt6DgCj7Id7T88B4D0913MA+um5ngPQT8/1HIB+n3qedpw1z61rAwBJNGuZtQGghWYtszYAtNCsZdYGgBaatczaANDi3Z6wu/e82Q8HAOPW2pbgrO7qOQBcR88BoJ+eA0A/PQeAfnoOAP30HAD66TkA9NNzAOin5wDQT88BoJ+eA0A/PQeAfnoOAP08Xw0A+l3dVz0HgOPpOQD003MA6HfEffJv753/fPg7ACCHngNAPz0H4Gn+/HPMRM8BuNOflWN0nLWxn+rdffRv7q0DwBGWGjvS8yN+5gk0HICr6TkA9NNzAOin5wDQT88BoJ+eA0A/PQeAfnoOAP30HACyrX3326fvbNNzAMiwp596DgAZ9BwA+uk5APTTcwDo966f3+6R03MAyLDU86vOddW5AeDJ9JxveF47QLa919u3HiPz4R6/P//v+Ls/A+B+af1Mm8/M1pqt5wBZ0vqZNp+Z6TlAj7R+ps1nZnoO0COtn2nzSfd78rF2XgBy7P0+mTv2zPGvu7qq5wBZ9vRVe++n5wB8Q8+z6TkA39DzbHoOwDf0PNu7rtoPB8B/vbuPbu9ajqWenzX20ecA4HoankfPAaCfngNAPz0HgH56DgD99BwA+uk5APTTcwDop+cA0E/PAaCfngNAPz0HgH6exwIA/TwvFQD66TkA9NNzAOin5wDQb20P25H74rbslQMA9tNbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABglOehAUCvpeeVAwA93rVbzwGgi54DQL8zev47eAAAY87q+RWvAQD+pucA0E/PAbia+6zHO+PzanoOMKet+6VG91vZo7XsyH/v0u/8a+s601oDPFXqe3nqvNJ96rWeAzxT6nt56rzSjfbctRSAbqnvxanzSjfS8zPOCcC1Ut+LU+eV7pv9D2ecE4B7bX0vHrn+OvoajqfnAM800vOtP3PWa5bGufpooucAz/TEnl8ptWVX/v8jdQ0AZqLn+6S27Mp5pa4BwEz0fJ/EllkDgPno+T6JLbMGAPPR831SW+Z6O8BcntjzK/ejp7bMHn+AuTyt51vPkzYeAIzQ83vG83stAEd6es+vuN6+5/q0a9YAHGGGnjdomScAmZ7c87ZGts0XgBx6nqNtvgDkeHLPjxznbC3zBCDTDD1P3A/nM9wAHOnpPf90nrTxAGCEnmeNBwAj9DxrPAAYMWPPj743DwB3m63nR46t5QCkmLXne8f3uzkASWbs+Wv80XNoOQBpRnq+9bPUR73maCPjajkAiVralLA/TssBSNXUp7ObvjS+73ADIF1To666p+67WAFo09KqlnkCwB22PC/k7gMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACY21+khgxH
+   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
   </data>
  </layer>
  <objectgroup name="Puertas">
-  <object id="17" name="Puerta" type="Puerta" x="768" y="560" width="48" height="48">
+  <object id="17" name="Puerta" type="Puerta" x="768" y="552" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
     <property name="numero" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="18" name="Puerta" type="Puerta" x="768" y="1096" width="48" height="48">
+  <object id="18" name="Puerta" type="Puerta" x="768" y="1104" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numero" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="21" name="Puerta" type="Puerta" x="312" y="1760" width="48" height="48">
+  <object id="21" name="Puerta" type="Puerta" x="312" y="1752" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
     <property name="numero" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="22" name="Puerta" type="Puerta" x="288" y="2752" width="48" height="48">
+  <object id="22" name="Puerta" type="Puerta" x="288" y="2760" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numero" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="24" name="Puerta" type="Puerta" x="1040" y="3480" width="48" height="48">
+  <object id="24" name="Puerta" type="Puerta" x="1032" y="3480" width="48" height="48">
    <properties>
     <property name="dir" value="este"/>
     <property name="numero" type="int" value="3"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="25" name="Puerta" type="Puerta" x="1384" y="3168" width="48" height="48">
+  <object id="25" name="Puerta" type="Puerta" x="1392" y="3168" width="48" height="48">
    <properties>
     <property name="dir" value="oeste"/>
     <property name="numero" type="int" value="3"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="26" name="Puerta" type="Puerta" x="2384" y="3168" width="48" height="48">
+  <object id="26" name="Puerta" type="Puerta" x="2376" y="3168" width="48" height="48">
    <properties>
     <property name="dir" value="este"/>
     <property name="numero" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="27" name="Puerta" type="Puerta" x="2872" y="2976" width="48" height="48">
+  <object id="27" name="Puerta" type="Puerta" x="2880" y="2976" width="48" height="48">
    <properties>
     <property name="dir" value="oeste"/>
     <property name="numero" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="28" name="Puerta" type="Puerta" x="2304" y="3112" width="48" height="48">
+  <object id="28" name="Puerta" type="Puerta" x="2304" y="3120" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numero" type="int" value="5"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="29" name="Puerta" type="Puerta" x="2376" y="2560" width="48" height="48">
+  <object id="29" name="Puerta" type="Puerta" x="2376" y="2568" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numero" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="30" name="Puerta" type="Puerta" x="2376" y="2720" width="48" height="48">
+  <object id="30" name="Puerta" type="Puerta" x="2376" y="2712" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
     <property name="numero" type="int" value="5"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="31" name="Puerta" type="Puerta" x="2856" y="2168" width="48" height="48">
+  <object id="31" name="Puerta" type="Puerta" x="2856" y="2160" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
     <property name="numero" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="32" name="Puerta" type="Puerta" x="2304" y="1088" width="48" height="48">
+  <object id="32" name="Puerta" type="Puerta" x="2304" y="1080" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
     <property name="numero" type="int" value="7"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="33" name="Puerta" type="Puerta" x="3360" y="1528" width="48" height="48">
+  <object id="33" name="Puerta" type="Puerta" x="3360" y="1536" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numero" type="int" value="7"/>

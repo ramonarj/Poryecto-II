@@ -2,7 +2,7 @@
 
 
 
-Player::Player():Character()
+Player::Player():Character(), doorCollision(false), teleport(false)
 {
 }
 

@@ -70,6 +70,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 			}
 		}
+		else if (state[enter_] && o->getComponent<Player>()->getDoorCollision())
+		{
+			o->getComponent<Player>()->setTeleport(true);
+			o->getComponent<Player>()->setDoorCollision(false);
+		}
 		else {
 			velocity.setY(0);
 			direction.setY(0);

@@ -129,9 +129,7 @@ void Entity::scale(double s) {
 SDL_Rect Entity::getRect()
 {
 	SDL_Rect dest
-	{ position_.getX() - Camera::Instance()->getPosition().getX(),
-		position_.getY() - Camera::Instance()->getPosition().getY(),
-			width_, height_ };
+	{ position_.getX(), position_.getY(), width_, height_ };
 
 	return dest;
 }

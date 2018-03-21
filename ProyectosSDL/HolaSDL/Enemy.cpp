@@ -4,9 +4,9 @@
 #include <algorithm>
 
 
-Enemy::Enemy():player(nullptr), Character(){}
+Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), Character(){}
 
-Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(life, damage)
+Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Character(life, damage), rango(rango)
 {
 	Player* playerComp = player->getComponent<Player>();
 	if (playerComp != nullptr)
@@ -16,7 +16,7 @@ Enemy::Enemy(Entity* player, int life, int damage):player(player), Character(lif
 void Enemy::move(Entity* o)
 {
 	//1.CÁLCULOS
-	Entity* player = PlayState::Instance()->getPlayer();
+
 	//Posición del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
@@ -26,6 +26,7 @@ void Enemy::move(Entity* o)
 	int distance = sqrt(pow(chaseVector.getX(), 2) + pow(chaseVector.getY(), 2));
 	float alpha = float(abs(atan(chaseVector.getY() / chaseVector.getX())));
 	int velMag = int(o->getVelocity().magnitude());
+
 
 	////Ponemos la nueva velocidad
 	//Vector2D vel{ cos(alpha) * velMag * chaseVector.getX() / abs(chaseVector.getX()), sin(alpha)* velMag * chaseVector.getY() / abs(chaseVector.getY()) };
@@ -96,16 +97,28 @@ void Enemy::move(Entity* o)
 	}
 }
 
+bool Enemy::playerInRange(Entity * o)
+{
+	//Posición del jugador y del enemigo
+	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
+	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
+
+	//Persigue al jugador
+	Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
+	int distance = sqrt(pow(chaseVector.getX(), 2) + pow(chaseVector.getY(), 2));
+
+	return(player != nullptr && player->getComponent<Player>()->isAlive() && distance < rango);
+}
+
 void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}
 void Enemy::render(Entity* o, Uint32 time) {}
 
 void Enemy::update(Entity * o, Uint32 time)
 {
 	//Tanto él como el jugador están vivos
-	if (isAlive() && player!=nullptr && player->getComponent<Player>()->isAlive())
+	if (isAlive() && playerInRange(o))
 		move(o);
-	else
-		o->setVelocity(Vector2D(0, 0));
+	
 }
 
 Enemy::~Enemy()

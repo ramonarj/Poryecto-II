@@ -23,7 +23,10 @@ void PlayState::startState()
 	player = Game::Instance()->getEntityWithComponent<Player>();
 	Camera::Instance()->setTarget(player);
 
-	Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>()->addPlayer(player);
+	Enemy* enemyComp = Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>();
+	enemyComp -> addPlayer(player);
+
+
 
 	//Música
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();

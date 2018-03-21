@@ -102,9 +102,9 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 {
 	Entity* puerta = nullptr;
 	SDL_Rect playerRect{ player->getRect().x, player->getRect().y + player->getRect().h / 2, player->getRect().w, player->getRect().h };
-
 	Player* playerComp = player->getComponent<Player>();
 
+	//Comprueba si el personaje ha colisionado con alguna puerta
 	list<Entity*>::const_iterator it = doors.begin();
 	bool chocaPuerta = false;
 	while (it != doors.end() && !chocaPuerta)
@@ -112,8 +112,16 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 		if (Collisions::RectRect(&playerRect, &(*it)->getRect())) {
 			puerta = (*it);
 			chocaPuerta = true;
-
 			playerComp->setDoorCollision(true);
+
+			/*if ((*it)->getOri() == "norte" && (player->getDirection().getX() == 0 && player->getDirection().getY() == 1))
+				playerComp->setDoorCollision(true);
+			else if ((*it)->getOri() == "sur" && (player->getDirection().getX() == 0 && player->getDirection().getY() == -1))
+				playerComp->setDoorCollision(true);
+			else if ((*it)->getOri() == "este" && (player->getDirection().getX() == 1 && player->getDirection().getY() == 0))
+				playerComp->setDoorCollision(true);
+			else if ((*it)->getOri() == "oeste" && (player->getDirection().getX() == -1 && player->getDirection().getY() == 0))
+				playerComp->setDoorCollision(true);*/
 		}
 		else
 		{
@@ -122,40 +130,39 @@ void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list
 		}
 	}
 
-	it = doors.begin();
+	//Si el personaje quiere hacer un teleport, se busca una puerta con el mismo numero
+	list<Entity*>::const_iterator it2 = doors.begin();
 	bool puertEncontrada = false;
-
-	if (puerta != nullptr && playerComp->getTeleport())
+	if (it != doors.end() && playerComp->getTeleport())
 	{
-		while (it != doors.end() && !puertEncontrada)
+		while (it2 != doors.end() && !puertEncontrada)
 		{
-			if ((*it) != puerta)
+			if ((*it2) != (*it))
 			{
-				if ((*it)->getDoorNum() == puerta->getDoorNum())
+				if ((*it2)->getDoorNum() == (*it)->getDoorNum())
 				{
-					if ((*it)->getOri() == "norte")
-						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
-						(*it)->getPosition().getY() + player->getHeight() / 2));
+					if ((*it2)->getOri() == "norte")
+						player->setPosition(Vector2D((*it2)->getPosition().getX() + (*it2)->getWidth() / 2 - player->getWidth() / 2,
+						(*it2)->getPosition().getY() + (*it2)->getHeight() / 10));
 
-					else if ((*it)->getOri() == "sur")
-						player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
-						(*it)->getPosition().getY() - player->getHeight()));
+					else if ((*it2)->getOri() == "sur")
+						player->setPosition(Vector2D(((*it2)->getPosition().getX() + (*it2)->getWidth() / 2) - player->getWidth() / 2,
+						(*it2)->getPosition().getY() - player->getHeight() / 2));
 
-					else if ((*it)->getOri() == "este")
-						player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth(),
-						(*it)->getPosition().getY()));
+					else if ((*it2)->getOri() == "este")
+						player->setPosition(Vector2D((*it2)->getPosition().getX() - player->getWidth() / 2,
+						(*it2)->getPosition().getY()));
 
-					else if ((*it)->getOri() == "oeste")
-						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2, 
-						(*it)->getPosition().getY()));
+					else if ((*it2)->getOri() == "oeste")
+						player->setPosition(Vector2D((*it2)->getPosition().getX() + (*it2)->getWidth() / 2, 
+						(*it2)->getPosition().getY()));
 	
 					playerComp->setTeleport(false);
 					puertEncontrada = true;
-					puerta = nullptr;
 				}
 			}
 
-			it++;
+			it2++;
 		}
 	}
 }

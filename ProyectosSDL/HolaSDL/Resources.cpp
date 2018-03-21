@@ -9,7 +9,7 @@ vector<string> Resources::imageFiles_ { "images/blank.png",
 		"images/Spray.png","images/Crowbar.png", "images/stickPrueba.png", 
 		"images/PruebaAtaque.png", "images/SpriteSheetElise.png", 
 		"images/Menu/FondoMenu.png", "images/Menu/NuevaPartida.png",
-		"images/Menu/Exit.png", "images/Enemigo1.png" };
+		"images/Menu/Exit.png", "images/Enemigo1.png", "images/key.png" };
 
 vector<Resources::FontInfo> Resources::fontFiles_ {
 		{ "fonts/ARIAL.ttf", 16 }, { "fonts/ARIAL.ttf", 24 }, {

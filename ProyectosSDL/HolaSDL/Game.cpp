@@ -33,6 +33,7 @@ void Game::initGame()
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
 	resourceManager_->addTexture("Lever", "images/Crowbar.png");
+	resourceManager_->addTexture("Key", "images/key.png");
 
 	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
 	resourceManager_->addMusic("Menu", "music/Menu.mp3");
@@ -119,6 +120,7 @@ void Game::handleInput(Uint32 time) {
 
 void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Item", new ItemCreator(ItemType::LEVER));
+	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
 	gameObjectFactory->registerType("Ax", new ItemCreator(ItemType::AX));
@@ -131,7 +133,6 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
 	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
-	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
 	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));*/
 }

@@ -59,6 +59,5 @@ protected:
 	SDL_Renderer * pRenderer;
 	const Resources* resource;
 	int getInvTam() { return InvTam; }
-
 };
 

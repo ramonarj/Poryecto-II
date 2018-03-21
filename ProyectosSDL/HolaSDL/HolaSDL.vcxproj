@@ -96,6 +96,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemContainer.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemContainer.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />

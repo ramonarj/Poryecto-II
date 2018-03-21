@@ -51,23 +51,26 @@ public:
 		Item* i;
 		switch (type)
 		{
-		case Stick:
+		case STICK:
 			i = new Weapon(type,toString(type));
 			break;
-		case Lever:
+		case LEVER:
 			i = new Weapon(type, toString(type));
 			break;
-		case Pipe:
+		case PIPE:
 			i = new Weapon(type, toString(type));
 			break;
-		case Ax:
+		case AX:
 			i = new Weapon(type, toString(type));
 			break;
-		case Firstaid:
+		case FIRSTAID:
 			i = new FirstAid(toString(type));
 			break;
-		case Insulationtape:
+		case INSULATIONTEPE:
 			i = new InsulationTape(toString(type));
+			break;
+		case KEY:
+			i = new Key(toString(type));
 			break;
 		default:
 			i = new Item(type, toString(type));
@@ -77,62 +80,62 @@ public:
 		return i;
 	};
 	string toString(const ItemType type) const{
-		string typeTexture;
+		string str;
 		switch (type)
 		{
-		case Stick:
-			typeTexture = "Stick";
+		case STICK:
+			str = "Stick";
 			break;
-		case Lever:
-			typeTexture = "Lever";
+		case LEVER:
+			str = "Lever";
 			break;
-		case Pipe:
-			typeTexture = "Pipe";
+		case PIPE:
+			str = "Pipe";
 			break;
-		case Ax:
-			typeTexture = "Ax";
+		case AX:
+			str = "Ax";
 			break;
-		case Alcohol:
-			typeTexture = "Alcohol";
+		case ALCOHOL:
+			str = "Alcohol";
 			break;
-		case Bandages:
-			typeTexture = "Bandages";
+		case BANDAGES:
+			str = "Bandages";
 			break;
-		case Firstaid:
-			typeTexture = "Firstaid";
+		case FIRSTAID:
+			str = "Firstaid";
 			break;
-		case GenericChemical:
-			typeTexture = "GenericChemical";
+		case GENERICCHEMICAL:
+			str = "GenericChemical";
 			break;
-		case AcidChemical:
-			typeTexture = "AcidChemical";
+		case ACIDCHEMICAL:
+			str = "AcidChemical";
 			break;
-		case Acid:
-			typeTexture = "Acid";
+		case ACID:
+			str = "Acid";
 			break;
-		case Biocide:
-			typeTexture = "Biocide";
+		case BIOCIDE:
+			str = "Biocide";
 			break;
-		case PiecePuzzle:
-			typeTexture = "PiecePuzzle";
+		case PIECEPUZZLE:
+			str = "PiecePuzzle";
 			break;
-		case Card:
-			typeTexture = "Card";
+		case CARD:
+			str = "Card";
 			break;
-		case Key:
-			typeTexture = "Key";
+		case KEY:
+			str = "Key";
 			break;
-		case Insulationtape:
-			typeTexture = "Insulationtape";
+		case INSULATIONTEPE:
+			str = "Insulationtape";
 			break;
-		case Photo:
-			typeTexture = "Photo";
+		case PHOTO:
+			str = "Photo";
 			break;
 		default:
-			typeTexture = "";
+			str = "";
 			break;
 		}
-		return typeTexture;
+		return str;
 	};
 
 private:

@@ -21,10 +21,10 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
-	TheGameObjectFactory::Instance()->registerType("Item", new ItemCreator(ItemType::Lever));
-	TheGameObjectFactory::Instance()->registerType("Puerta", new DoorCreator());
+	gameObjectFactory->registerType("Player", new PlayerCreator());
+	gameObjectFactory->registerType("Enemy", new EnemyCreator());
+	gameObjectFactory->registerType("Puerta", new DoorCreator());
+	registerTypeItem();
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);
@@ -117,3 +117,21 @@ void Game::handleInput(Uint32 time) {
 //	SDL_RenderPresent(getRenderer());
 //}
 
+void Game::registerTypeItem() {
+	gameObjectFactory->registerType("Item", new ItemCreator(ItemType::LEVER));
+	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
+	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
+	gameObjectFactory->registerType("Ax", new ItemCreator(ItemType::AX));
+	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
+	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
+	gameObjectFactory->registerType("Firtsaid", new ItemCreator(ItemType::FIRSTAID));
+	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
+	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
+	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));
+	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
+	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
+	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
+	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
+	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
+	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));*/
+}

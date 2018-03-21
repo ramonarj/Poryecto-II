@@ -30,7 +30,7 @@ void PlayState::startState()
 
 	//Item
 	Entity* palo = new Entity(10, 20);
-	palo->addComponent(new Weapon(ItemType::Stick, "Stick"));
+	palo->addComponent(new Weapon(ItemType::STICK, "Stick"));
 	stage_.push_back(palo);
 	palo->getComponent<Weapon>()->attack();
 	palo->getComponent<Weapon>()->attack();
@@ -38,7 +38,7 @@ void PlayState::startState()
 	palo->getComponent<Weapon>()->attack();
 
 	Entity* palo2 = new Entity(10, 20);
-	palo2->addComponent(new Weapon(ItemType::Lever, "Lever"));
+	palo2->addComponent(new Weapon(ItemType::LEVER, "Lever"));
 	stage_.push_back(palo2);
 
 	Entity* insulationTape = new Entity(15, 25);

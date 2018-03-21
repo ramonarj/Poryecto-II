@@ -88,16 +88,16 @@ void Inventory::render(Entity* e, Uint32 time)
 		Weapon* weaponComp = equiped->getComponent<Weapon>();
 		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
 
-		if (weaponComp->getType() == ItemType::Stick)
+		if (weaponComp->getType() == ItemType::STICK)
 			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Pipe)
+		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Ax)
+		else if (weaponComp->getType() == ItemType::AX)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Lever)
+		else if (weaponComp->getType() == ItemType::LEVER)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 
@@ -131,16 +131,16 @@ void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
 	else if (inventory[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
-		if (weaponComp->getType() == ItemType::Stick)
+		if (weaponComp->getType() == ItemType::STICK)
 			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Pipe)
+		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Ax)
+		else if (weaponComp->getType() == ItemType::AX)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Lever)
+		else if (weaponComp->getType() == ItemType::LEVER)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<FirstAid>())

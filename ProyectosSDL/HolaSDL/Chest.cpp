@@ -100,16 +100,16 @@ void Chest::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	else if (chest[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = chest[i]->getComponent<Weapon>();
-		if (weaponComp->getType() == ItemType::Stick)
+		if (weaponComp->getType() == ItemType::STICK)
 			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Pipe)
+		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Ax)
+		else if (weaponComp->getType() == ItemType::AX)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Lever)
+		else if (weaponComp->getType() == ItemType::LEVER)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 	else if (chest[i]->getComponent<FirstAid>())

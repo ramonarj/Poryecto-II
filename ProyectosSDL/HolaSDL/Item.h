@@ -6,8 +6,8 @@
 #include <sstream>
 using namespace std;
 
-enum ItemType{ Stick, Lever, Pipe, Ax, Alcohol, Bandages, Firstaid, GenericChemical, AcidChemical, 
-					Acid, Biocide, PiecePuzzle, Card, Key, Insulationtape, Photo };
+enum ItemType{ STICK, LEVER, PIPE, AX, ALCOHOL, BANDAGES, FIRSTAID, GENERICCHEMICAL, ACIDCHEMICAL, 
+					ACID, BIOCIDE, PIECEPUZZLE, CARD, KEY, INSULATIONTEPE, PHOTO };
 
 class Item : public Interactible
 {

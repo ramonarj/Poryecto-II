@@ -23,7 +23,8 @@ protected:
 	int life;
 	int damage;
 	bool attacking = false;
-	virtual void move(Entity* o);
+	void move(Entity*o);
+	void knockBack(Entity*o, Vector2D desplazamiento);
 	
 };
 

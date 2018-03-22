@@ -5,18 +5,11 @@
 
 Inventory::Inventory()
 {
+	InvTam = 4;
 	debug = false;
 	equiped = nullptr;
-
-	coord pos;
-	pos.x = 32; pos.y = 306;
-	for (int i = 0; i < InvTam; i++)
-	{
-		ObjPos.push_back(pos);
-		pos.x += 61;
-	}
-	EquippedCoord.x = 265;
-	EquippedCoord.y = 228;
+	pRenderer = nullptr;
+	resource = nullptr;
 }
 
 Inventory::~Inventory()
@@ -29,15 +22,17 @@ void Inventory::update(Entity* e, Uint32 time)
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
-	
+
 	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
-			while (i<inventory.size() && !clicked)
+			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= ObjPos[i].x && event.button.x <= ObjPos[i].x + 50)
-					&& (event.button.y >= ObjPos[i].y && event.button.y <= ObjPos[i].y + 50))//EL 50 Es un numero provisional de prueba
-				{ clicked = true; }
+				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba
+				{
+					clicked = true;
+				}
 
 				slotClicked = i;
 				i++;
@@ -46,10 +41,25 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
+			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
 			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
 				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
 			{
 				equipWeapon(slotClicked);
+			}
+			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
+			else if(chestMode){
+				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
+				bool change = false;
+					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[19].x)//19 es un número trivial a cambiar, peor aun no se como
+						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[19].y))
+					{
+						if (!cofre->fullChest()) {
+							cofre->addItem(inventory[slotClicked]);
+							this->DeleteItem(slotClicked);
+							change = true;
+						}
+					}
 			}
 			clicked = false;
 		}
@@ -59,27 +69,42 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
-	
-	SDL_Rect dest = {0,0,600,600};
-	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(Game::Instance()->getRenderer(), dest);
+	pRenderer = Game::Instance()->getRenderer();
+	resource = Game::Instance()->getResources();
+
+	int width = Game::Instance()->getWindowWidth();
+	int height = Game::Instance()->getWindowHeight();
+
+	int ancho = width - width / 10;
+	int alto = height - height / 10;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
+
+	SDL_Rect dest = { posX,posY, ancho,alto };
+	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(pRenderer, dest);
 
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {
+		Weapon* weaponComp = equiped->getComponent<Weapon>();
 		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
-		if (equiped->getComponent<Weapon>()->getType() == ItemType::Stick)
-			Game::Instance()->getResources()->getImageTexture(Resources::stick)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Pipe)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Ax)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (equiped->getComponent<Weapon>()->getType() == ItemType::Lever)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+
+		if (weaponComp->getType() == ItemType::STICK)
+			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::PIPE)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::AX)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::LEVER)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 
-	for (int i = 0; i < inventory.size(); i++)
+	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), 50, 50 };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)
@@ -90,30 +115,37 @@ void Inventory::render(Entity* e, Uint32 time)
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
-	
-	
+
+
 }
 
 void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
 {
+	pRenderer = Game::Instance()->getRenderer();
+	resource = Game::Instance()->getResources();
+
 	if (inventory[i]->getComponent<InsulationTape>())
 	{
-		Game::Instance()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(Game::Instance()->getRenderer(), DestRect);
+		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<Weapon>())
 	{
-		if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Stick)
-			Game::Instance()->getResources()->getImageTexture(Resources::stick)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Pipe)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Ax)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
-		else if (inventory[i]->getComponent<Weapon>()->getType() == ItemType::Lever)
-			Game::Instance()->getResources()->getImageTexture(Resources::Crowbar)->render(Game::Instance()->getRenderer(), DestRect);
+		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
+		if (weaponComp->getType() == ItemType::STICK)
+			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::PIPE)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::AX)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+
+		else if (weaponComp->getType() == ItemType::LEVER)
+			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<FirstAid>())
 	{
-		Game::Instance()->getResources()->getImageTexture(Resources::PruebaMedicKit)->render(Game::Instance()->getRenderer(), DestRect);
+		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
 	}
 }
 
@@ -136,7 +168,7 @@ bool Inventory::checkItem(Entity * item)
 {
 	int i = 0;
 	bool found = false;
-	while (!found && i < inventory.size() && !empty())
+	while (!found && i < int(inventory.size()) && !empty())
 	{
 		if (ItemInPosition(i) == item) { found = true; }
 	}
@@ -145,13 +177,13 @@ bool Inventory::checkItem(Entity * item)
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
 Entity * Inventory::ItemInPosition(int pos)
 {
-	if (pos < inventory.size() && !empty()) { return inventory[pos]; }
+	if (pos < int(inventory.size()) && !empty()) { return inventory[pos]; }
 	else return nullptr;
 }
 
 void Inventory::equipWeapon(int pos)
 {
-	if(inventory[pos]->getComponent<Weapon>()) {
+	if (inventory[pos]->getComponent<Weapon>()) {
 
 		if (equiped != nullptr) {
 			Entity* aux = currentWeapon();
@@ -162,9 +194,9 @@ void Inventory::equipWeapon(int pos)
 		else
 		{
 			equiped = inventory[pos];
-			this->DeleteItem(pos);	
+			this->DeleteItem(pos);
 		}
-		
+
 	}
 }
 
@@ -180,6 +212,7 @@ Entity * Inventory::currentWeapon()
 {
 	return equiped;
 }
+
 
 
 

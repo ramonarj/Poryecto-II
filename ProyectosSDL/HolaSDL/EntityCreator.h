@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "ImageRenderer.h"
 #include "Resources.h"
+#include "SkeletonRenderer.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -15,8 +16,8 @@ public:
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
-			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 26, 80, true, false));
 		return e;
 	}
 };
@@ -29,7 +30,7 @@ public:
 		Entity* e = new Entity();
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Enemy());
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::PruebaAnim), 14, true));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 10, 150, true, false));
 		return e;
 	}
 };
@@ -50,90 +51,103 @@ public:
 		Item* i;
 		switch (type)
 		{
-		case Stick:
-			i = new Weapon(type);
+		case STICK:
+			i = new Weapon(type,toString(type));
 			break;
-		case Lever:
-			i = new Weapon(type);
+		case LEVER:
+			i = new Weapon(type, toString(type));
 			break;
-		case Pipe:
-			i = new Weapon(type);
+		case PIPE:
+			i = new Weapon(type, toString(type));
 			break;
-		case Ax:
-			i = new Weapon(type);
+		case AX:
+			i = new Weapon(type, toString(type));
 			break;
-		case Firstaid:
-			i = new FirstAid();
+		case FIRSTAID:
+			i = new FirstAid(toString(type));
 			break;
-		case Insulationtape:
-			i = new InsulationTape();
+		case INSULATIONTEPE:
+			i = new InsulationTape(toString(type));
+			break;
+		case KEY:
+			i = new Key(toString(type));
 			break;
 		default:
-			i = new Item(type);
+			i = new Item(type, toString(type));
 			break;
 		}
 		
 		return i;
 	};
 	string toString(const ItemType type) const{
-		string typeTexture;
+		string str;
 		switch (type)
 		{
-		case Stick:
-			typeTexture = "Stick";
+		case STICK:
+			str = "Stick";
 			break;
-		case Lever:
-			typeTexture = "Lever";
+		case LEVER:
+			str = "Lever";
 			break;
-		case Pipe:
-			typeTexture = "Pipe";
+		case PIPE:
+			str = "Pipe";
 			break;
-		case Ax:
-			typeTexture = "Ax";
+		case AX:
+			str = "Ax";
 			break;
-		case Alcohol:
-			typeTexture = "Alcohol";
+		case ALCOHOL:
+			str = "Alcohol";
 			break;
-		case Bandages:
-			typeTexture = "Bandages";
+		case BANDAGES:
+			str = "Bandages";
 			break;
-		case Firstaid:
-			typeTexture = "Firstaid";
+		case FIRSTAID:
+			str = "Firstaid";
 			break;
-		case GenericChemical:
-			typeTexture = "GenericChemical";
+		case GENERICCHEMICAL:
+			str = "GenericChemical";
 			break;
-		case AcidChemical:
-			typeTexture = "AcidChemical";
+		case ACIDCHEMICAL:
+			str = "AcidChemical";
 			break;
-		case Acid:
-			typeTexture = "Acid";
+		case ACID:
+			str = "Acid";
 			break;
-		case Biocide:
-			typeTexture = "Biocide";
+		case BIOCIDE:
+			str = "Biocide";
 			break;
-		case PiecePuzzle:
-			typeTexture = "PiecePuzzle";
+		case PIECEPUZZLE:
+			str = "PiecePuzzle";
 			break;
-		case Card:
-			typeTexture = "Card";
+		case CARD:
+			str = "Card";
 			break;
-		case Key:
-			typeTexture = "Key";
+		case KEY:
+			str = "Key";
 			break;
-		case Insulationtape:
-			typeTexture = "Insulationtape";
+		case INSULATIONTEPE:
+			str = "Insulationtape";
 			break;
-		case Photo:
-			typeTexture = "Photo";
+		case PHOTO:
+			str = "Photo";
 			break;
 		default:
-			typeTexture = "";
+			str = "";
 			break;
 		}
-		return typeTexture;
+		return str;
 	};
 
 private:
 	ItemType type_;
+};
+
+class DoorCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		return e;
+	}
 };

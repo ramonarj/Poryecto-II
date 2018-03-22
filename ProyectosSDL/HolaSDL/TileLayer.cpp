@@ -8,16 +8,15 @@ TileLayer::TileLayer(int tileSize, int mapWidth, int mapHeight,
 {
 	m_numColumns = mapWidth;
 	m_numRows = mapHeight;
-	m_mapWidth = mapWidth;
 }
 
 void TileLayer::update(Level* pLevel, Uint32 time)
 {
-	m_position = m_position + m_velocity;
+	//m_position = m_position + m_velocity;
 	//m_velocity.setX(1);
 }
 
-void TileLayer::render(Uint32 time)
+void TileLayer::render()
 {
 	int x, y, x2, y2 = 0;
 
@@ -27,25 +26,19 @@ void TileLayer::render(Uint32 time)
 	x2 = int(m_position.getX()) % m_tileSize;
 	y2 = int(m_position.getY()) % m_tileSize;
 
-	for (int i = 0; i < m_numRows; i++)
+	int iniRow = Camera::Instance()->getPosition().getY() / m_tileSize;
+	int iniCol = Camera::Instance()->getPosition().getX() / m_tileSize;
+
+	int finRow = (Camera::Instance()->getPosition().getY() + Game::Instance()->getWindowHeight()) / m_tileSize + 2;
+	int finCol = (Camera::Instance()->getPosition().getX() + Game::Instance()->getWindowWidth()) / m_tileSize + 2;
+
+	int test = 0;
+	for (int i = iniRow; i < finRow; i++)
 	{
-		for (int j = 0; j < m_numColumns; j++)
+		for (int j = iniCol; j < finCol; j++)
 		{
 			int id = m_tileIDs[i + y][j + x];
-
 			if (id == 0)
-			{
-				continue;
-			}
-
-			if (((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX() < -m_tileSize ||
-				((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX() > Game::Instance()->getWindowWidth())
-			{
-				continue;
-			}
-
-			if (((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY() < -m_tileSize ||
-				((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY() > Game::Instance()->getWindowHeight())
 			{
 				continue;
 			}
@@ -54,8 +47,9 @@ void TileLayer::render(Uint32 time)
 
 			id--;
 
+			//void Texture::drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer)
 			Texture::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, ((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX(), ((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY(), m_tileSize, m_tileSize,
-				(id - (tileset.firstGridID - 1)) / tileset.numColumns, (id - (tileset.firstGridID - 1)) % tileset.numColumns, Game::Instance()->getRenderer());
+				((id - (tileset.firstGridID - 1)) / tileset.numColumns), ((id - (tileset.firstGridID - 1)) % tileset.numColumns), Game::Instance()->getRenderer());
 		}
 	}
 }
@@ -70,8 +64,7 @@ Tileset TileLayer::getTilesetByID(int tileID)
 	{
 		if (i + 1 <= m_tilesets.size() - 1)
 		{
-			if (tileID >= m_tilesets[i].firstGridID&&tileID < m_tilesets[i +
-				1].firstGridID)
+			if (tileID >= m_tilesets[i].firstGridID && tileID < m_tilesets[i + 1].firstGridID)
 			{
 				return m_tilesets[i];
 			}

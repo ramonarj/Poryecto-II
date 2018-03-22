@@ -2,6 +2,7 @@
 #include "ItemContainer.h"
 #include <vector>
 #include "Weapon.h"
+#include "Chest.h"
 
 
 using namespace std;
@@ -11,14 +12,17 @@ class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
-	coord EquippedCoord;
+	Chest* cofre = nullptr;
+	coord EquippedCoord = { 750, 343 };
+	void setChestMode(bool a) { chestMode = a; }
+
 
 	Inventory();
 	~Inventory();
 
 protected:
 	bool debug;
-	
+
 public:
 
 	virtual void update(Entity* e, Uint32 time);
@@ -37,10 +41,13 @@ public:
 	virtual bool fullInventory();
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
-	
 	Entity* currentWeapon();
 
+	bool chestMode = false;
 	
+	 
+
+
 
 };
 

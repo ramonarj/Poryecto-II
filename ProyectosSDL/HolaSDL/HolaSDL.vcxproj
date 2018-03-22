@@ -74,6 +74,7 @@
     <ClCompile Include="base64.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Chest.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -95,12 +96,14 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemContainer.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
@@ -126,6 +129,7 @@
     <ClInclude Include="base64.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Chest.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
@@ -147,11 +151,13 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemContainer.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelParser.h" />
     <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Music.h" />

@@ -3,12 +3,16 @@
 
 GameState* GameState::s_pInstance = 0;
 
-GameState::GameState(Game* game): game_(game){ //Constructora
+GameState::GameState(){ //Constructora
 }
 
 GameState::~GameState(){ //Destructora
 	for (Entity* o : stage_)
 		delete o;
+}
+
+void GameState::startState()
+{
 }
 
 void GameState::render(Uint32 time){ //Llama a los render components de todas las entities

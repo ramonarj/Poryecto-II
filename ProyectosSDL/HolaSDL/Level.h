@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Layer.h"
 #include "LevelParser.h"
 #include "Entity.h"
@@ -28,7 +29,7 @@ public:
 	~Level();
 
 	void update(Uint32 time);
-	void render(Uint32 time);
+	void render();
 	void handleInput(Uint32 time, SDL_Event& event);
 
 	std::vector<Tileset>* getTilesets() { return &m_tilesets; }

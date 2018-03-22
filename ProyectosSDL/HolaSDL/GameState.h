@@ -12,9 +12,10 @@ class GameState {
 protected:
 	list<Entity*> stage_;
 	list<Entity*> interactibles_;
-	Game* game_;
+	list<Entity*> characters_;
+	list<Entity*> doors_;
 
-	GameState() {};
+	GameState();
 	static GameState* s_pInstance;
 
 public:
@@ -29,8 +30,8 @@ public:
 		return s_pInstance;
 	}
 
-	GameState(Game* game);
 	virtual ~GameState();
+	virtual void startState();
 	virtual void render(Uint32 time);
 	virtual void update(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);
@@ -38,6 +39,8 @@ public:
 	void pushEntities(Entity* e) { stage_.push_back(e); };
 	list<Entity*>* getStage() { return &stage_; };
 	list<Entity*>* getInteractibles() { return &interactibles_; };
+	list<Entity*>* getCharacters() { return &characters_; };
+	list<Entity*>* getDoors() { return &doors_; };
 };
 
 

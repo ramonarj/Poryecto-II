@@ -32,6 +32,13 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
+	m_tileSize *= Camera::Instance()->getZoom();
+	/*m_width *= Camera::Instance()->getZoom();
+	m_height *= Camera::Instance()->getZoom();*/
+
+	mapWidth = m_width * m_tileSize;
+	mapHeight = m_height * m_tileSize;
+
 	//we know that properties is the first child of the root
 	TiXmlElement* pProperties = pRoot->FirstChildElement();
 
@@ -85,11 +92,16 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot,
 	Tileset tileset;
 	pTilesetRoot->FirstChildElement()->Attribute("width",
 		&tileset.width);
+
 	pTilesetRoot->FirstChildElement()->Attribute("height",
 		&tileset.height);
+
 	pTilesetRoot->Attribute("firstgid", &tileset.firstGridID);
+
 	pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth);
+
 	pTilesetRoot->Attribute("tileheight", &tileset.tileHeight);
+
 	pTilesetRoot->Attribute("spacing", &tileset.spacing);
 	pTilesetRoot->Attribute("margin", &tileset.margin);
 	tileset.name = pTilesetRoot->Attribute("name");
@@ -103,7 +115,8 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
 	std::vector<TileLayer*> *pCollisionLayers)
 
 {
-	TileLayer* pTileLayer = new TileLayer(m_tileSize, m_width, m_height, *pTilesets);
+	TileLayer* pTileLayer = new TileLayer(m_tileSize, m_width,
+		m_height, *pTilesets);
 
 	bool collidable = false;
 
@@ -124,7 +137,6 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement,
 					if (property->Attribute("name") == std::string("collidable"))
 					{
 						collidable = true;
-						pCollisionLayers->push_back(pTileLayer);
 					}
 				}
 			}
@@ -181,6 +193,8 @@ void LevelParser::parseTextures(TiXmlElement * pTextureRoot)
 }
 
 void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel) {
+	int zoom = Camera::Instance()->getZoom();
+
 	// create an object layer
 	ObjectLayer* pObjectLayer = new ObjectLayer();
 	std::cout << pObjectElement->FirstChildElement()->Value();
@@ -197,9 +211,17 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int damage = 0;
 			std::string textureID;
 
+			int numero = 0;
+			std::string orientacion;
+
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
+			if (e->Attribute("type") == std::string("Puerta"))
+			{
+				e->Attribute("width", &width);
+				e->Attribute("height", &height);
+			}
 			Entity* pEntity = GameObjectFactory::Instance()->create(e->Attribute("type"));
 
 			// get the property values
@@ -243,20 +265,36 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &damage);
 							}
+							else if (property->Attribute("name") == std::string("numero"))
+							{
+								property->Attribute("value", &numero);
+							}
+							else if (property->Attribute("name") == std::string("dir"))
+							{
+								orientacion = property->Attribute("value");
+							}
 						}
 					}
 				}
 			}
-			pEntity->load(x, y, width, height, textureID);
+			//Cargas de varias formas dependiendo del tipo de objeto
+			if (e->Attribute("type") != std::string("Puerta"))
+				pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, textureID);
+			else
+				pEntity->loadDoors(x * zoom, y * zoom, width * zoom, height * zoom, numero, orientacion);
+
+			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
 				pEntity->getComponent<Character>()->load(life, damage);
-				if (e->Attribute("type") == std::string("Player"))
-				{
-					Camera::Instance()->setTarget(pEntity->getPosition());
-				}
+				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 			}
-			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+
+			//Si es una puerta lo mete en un vector diferente al de entidades
+			if (e->Attribute("type") != std::string("Puerta"))
+				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			else
+				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);

@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Camera.h"
 
 Entity::~Entity() {
 }
@@ -12,44 +13,62 @@ void Entity::setActive(bool enabled)
 }
 
 Entity::Entity() :
-	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
+	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_(), numPuerta_(0) {
 }
 
 Entity::Entity(int posX, int posY) :
-	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
+	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_(), numPuerta_(0) {
 }
 
 
 
 void Entity::handleInput(Uint32 time, const SDL_Event& event) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->handleInput(this, time, event);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->handleInput(this, time, event);
+		}
 	}
 }
 
 void Entity::update(Uint32 time) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->update(this, time);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->update(this, time);
+		}
 	}
 }
 
 void Entity::render(Uint32 time) {
-	for (Component* c : comps_) {
-		if (c->isEnabled())
-			c->render(this, time);
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->render(this, time);
+		}
 	}
 }
 
 void Entity::load(int x, int y, int width, int height, string textureID)
 {
-	position_ = Vector2D(x, y);
+	position_.set(Vector2D(x, y));
 	width_ = width;
 	height_ = height;
 	textureID_ = textureID;
 	currentRow_ = 1;
 	currentFrame_ = 1;
+}
+
+void Entity::loadDoors(int x, int y, int width, int height, int numero, string ori)
+{
+	position_.set(Vector2D(x, y));
+	width_ = width;
+	height_ = height;
+	currentRow_ = 1;
+	currentFrame_ = 1;
+
+	numPuerta_ = numero;
+	orientacion_ = ori;
 }
 
 void Entity::addComponent(Component* c) {
@@ -105,6 +124,14 @@ const Vector2D& Entity::getDirection() const {
 void Entity::scale(double s) {
 	width_ *= s;
 	height_ *= s;
+}
+
+SDL_Rect Entity::getRect()
+{
+	SDL_Rect dest
+	{ position_.getX(), position_.getY(), width_, height_ };
+
+	return dest;
 }
 
 void Entity::setDirection(const Vector2D &vel) {

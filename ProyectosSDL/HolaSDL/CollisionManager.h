@@ -1,6 +1,9 @@
 #pragma once
 #include "Entity.h"
 #include "TileLayer.h"
+#include <list>
+#include "Collisions.h"
+
 class CollisionManager
 {
 public:
@@ -23,8 +26,12 @@ public:
 	void checkEnemyPlayerBulletCollision(const
 		std::vector<GameObject*> &objects);*/
 
-	void checkPlayerTileCollision(Entity* pPlayer, const
+	void checkPlayerTileCollision(std::list<Entity*> characters, const
 		std::vector<TileLayer*> &collisionLayers);
+
+	void checkPlayerDoorCollision(Entity* player,
+		const std::list<Entity*> doors);
+
 private:
 	CollisionManager() {};
 	static CollisionManager* s_pInstance;

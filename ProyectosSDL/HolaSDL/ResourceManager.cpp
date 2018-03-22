@@ -20,3 +20,23 @@ Texture * ResourceManager::getTexture(string id)
 {
 	return textures_[id];
 }
+
+void ResourceManager::addMusic(string id, string filepath)
+{
+	music_.insert(pair<string, Music*>(id, new Music(filepath)));
+}
+
+Music * ResourceManager::getMusic(string id)
+{
+	return music_[id];
+}
+
+void ResourceManager::addSound(string id, string filepath)
+{
+	sounds_.insert(pair<string,SoundEffect*>(id, new SoundEffect(filepath)));
+}
+
+SoundEffect * ResourceManager::getSound(string id)
+{
+	return sounds_[id];
+}

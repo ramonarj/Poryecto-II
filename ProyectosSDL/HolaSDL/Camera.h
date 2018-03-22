@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "Game.h"
+#include "LevelParser.h"
 class Camera
 {
 public:
@@ -14,20 +15,24 @@ public:
 	}
 
 
-	void setTarget(Vector2D target) { m_pTarget = target; };
+	void setTarget(Entity* target) { m_pTarget = target; };
 	void setPosition(const Vector2D& position) {
 		m_position = position;
 	}
 	const Vector2D getPosition() const;
 
+	int getZoom() { return zoom; };
+
 private:
 	Camera();
 	~Camera();
 	// the camera's target
-	Vector2D m_pTarget;
+	Entity* m_pTarget;
 	// the camera's position
 	Vector2D m_position;
 	static Camera* s_pCamera;
+
+	int zoom;
 
 };
 typedef Camera Camera;

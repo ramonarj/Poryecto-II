@@ -2,9 +2,10 @@
 
 
 
-Weapon::Weapon(ItemType type) : Item(type)
+Weapon::Weapon(ItemType type, const string& filename) : Item(type, filename)
 {
 	weaponInit(type);
+	type_ = type;
 }
 
 
@@ -15,16 +16,16 @@ Weapon::~Weapon()
 void Weapon::weaponInit(ItemType type) {
 	switch (type)
 	{
-	case Stick:
+	case STICK:
 		maxHits_ = 5;
 		break;
-	case Lever:
+	case LEVER:
 		maxHits_ = 10;
 		break;
-	case Pipe:
+	case PIPE:
 		maxHits_ = 15;
 		break;
-	case Ax:
+	case AX:
 		maxHits_ = 20;
 		damage_ = 2;
 		break;
@@ -49,7 +50,7 @@ void Weapon::attack() {
 
 void Weapon::repair() {
 
-	numHits_ += repairIndex_*maxHits_;
+	numHits_ += (int)repairIndex_*maxHits_;
 	if (numHits_ > maxHits_) 
 		numHits_ = maxHits_;
 	std::cout << " arma reparada, numHits = " << numHits_ << std::endl;

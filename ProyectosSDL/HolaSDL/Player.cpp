@@ -2,7 +2,7 @@
 
 
 
-Player::Player():Character()
+Player::Player():Character(), doorCollision(false), teleport(false)
 {
 }
 
@@ -13,12 +13,7 @@ Player::Player(int life, int damage):Character(life, damage),maxLife_(life)
 void Player::move(Entity* o)
 {
 	Vector2D pos = { o->getPosition().getX(), o->getPosition().getY() };
-
-	pos.setX(pos.getX() + o->getVelocity().getX());
-	pos.setY(pos.getY() + o->getVelocity().getY());
-
-	o->setPosition(pos);
-	Camera::Instance()->setTarget(pos);
+	Character::move(o);
 }
 
 void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event)
@@ -33,7 +28,7 @@ Player::~Player()
 }
 
 void Player::cure() {
-	life += maxLife_ * cureIndex_;
+	life += maxLife_ * int(cureIndex_);
 	if (life > maxLife_)
 		life = maxLife_;
 }

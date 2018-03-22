@@ -12,12 +12,14 @@
 #include "Weapon.h"
 #include "FirstAid.h"
 #include "InsulationTape.h"
+#include "Key.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
+#include "MenuState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
 #include "ResourceManager.h"
-
+#include "GameObjectFactory.h"
 #include "AnimationRenderer.h"
 class PlayerCreator;
 
@@ -44,7 +46,6 @@ public:
 	void stop();
 
 	ResourceManager* getResourceManager() { return resourceManager_; };
-	Level* getLevel() { return pLevel; };
 
 	template<typename T>
 	Entity* getEntityWithComponent()
@@ -71,12 +72,14 @@ private:
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
-	const static int _WINDOW_WIDTH_ = 1080;
+	void registerTypeItem();
+
+	const static int _WINDOW_WIDTH_ = 1280;
 	const static int _WINDOW_HEIGHT_ = 720;
 	bool exit_;
 	std::vector<Entity*> actors_;
 
-	Level* pLevel = nullptr;
+	GameObjectFactory* gameObjectFactory = TheGameObjectFactory::Instance();
 };
 
 typedef Game Game;

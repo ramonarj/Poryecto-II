@@ -27,9 +27,10 @@ class EnemyCreator : public BaseCreator
 public:
 	Entity* createEntity() const
 	{
+		Vector2D vel (1.0, 0.0);
 		Entity* e = new Entity();
-		e->setVelocity(Vector2D(1.0, 0.0));
-		e->addComponent(new Enemy());
+		e->setVelocity(vel);
+		e->addComponent(new Enemy(vel));
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 10, 150, true, false));
 		return e;
 	}

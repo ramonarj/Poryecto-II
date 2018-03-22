@@ -46,3 +46,10 @@ void Character::move(Entity * o)
 
 	o->setPosition(pos);
 }
+
+void Character::knockBack(Entity*o, Vector2D desplazamiento)
+{
+	o->setPosition(Vector2D
+	(o->getPosition().getX() + desplazamiento.getX(),
+		o->getPosition().getY() + desplazamiento.getY()));
+}

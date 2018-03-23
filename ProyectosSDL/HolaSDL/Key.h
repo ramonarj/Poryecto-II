@@ -10,6 +10,7 @@ public:
 	//virtual void use(Entity* e) {};
 	void setDoorId(int id) { doorId = id; };
 	const int getDoorId() const { return doorId; };
+	void load(int numDoor);
 private:
 	int doorId;
 };

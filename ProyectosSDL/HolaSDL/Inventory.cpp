@@ -160,7 +160,12 @@ void Inventory::addItem(Entity * item)
 			equip = true;
 		}
 	}
-	if (!fullInventory() && !equip) { inventory.push_back(item); }
+	if (!fullInventory() && !equip) {
+		inventory.push_back(item);
+		Key* k = item->getComponent<Key>();
+		if (k != nullptr)
+			keys.push_back(item);
+	}
 }
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY

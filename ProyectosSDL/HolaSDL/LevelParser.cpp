@@ -209,7 +209,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int life = 0;
 			int damage = 0;
 
-			int numero = 0;
+			int numKey = 0;
+			int numDoor = 0;
+			int needKey = 0;
 			std::string orientacion;
 
 			// get the initial node values type, x and y
@@ -251,13 +253,21 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &damage);
 							}
-							else if (property->Attribute("name") == std::string("numero"))
+							else if (property->Attribute("name") == std::string("numDoor"))
 							{
-								property->Attribute("value", &numero);
+								property->Attribute("value", &numDoor);
 							}
 							else if (property->Attribute("name") == std::string("dir"))
 							{
 								orientacion = property->Attribute("value");
+							}
+							else if (property->Attribute("name") == std::string("numKey"))
+							{
+								property->Attribute("value", &numKey);
+							}
+							else if (property->Attribute("name") == std::string("needKey"))
+							{
+								property->Attribute("value", &needKey);
 							}
 						}
 					}
@@ -273,7 +283,11 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			}
 			else if (e->Attribute("type") == std::string("Puerta"))
 			{
-				pEntity->getComponent<Door>()->load(numero, orientacion);
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey);
+			}
+			else if (e->Attribute("type") == std::string("Key"))
+			{
+				pEntity->getComponent<Key>()->load(numKey);
 			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades

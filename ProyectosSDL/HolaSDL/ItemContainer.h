@@ -53,7 +53,8 @@ public:
 	int getItemChestPosX(int i) { return ChestSlots[i].x; };
 	int getItemChestPosY(int i) { return ChestSlots[i].y; };
 	
-
+	int inventorySize() { return inventory.size(); };
+	vector<Entity*> getInventory() { return inventory; };
 
 protected:
 	SDL_Renderer * pRenderer;

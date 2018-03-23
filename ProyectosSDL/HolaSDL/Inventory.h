@@ -3,7 +3,8 @@
 #include <vector>
 #include "Weapon.h"
 #include "Chest.h"
-
+#include <list>
+#include "Key.h"
 
 using namespace std;
 
@@ -44,11 +45,11 @@ public:
 	Entity* currentWeapon();
 
 	bool chestMode = false;
+
+	vector<Entity*> getKeys() { return keys; };
 	
-	 
-
-
-
+private:
+	vector<Entity*> keys;
 };
 
 

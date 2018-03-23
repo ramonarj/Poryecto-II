@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="500" tilewidth="24" tileheight="24" nextobjectid="35">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="195" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
  <layer name="Suelo" width="500" height="500">
@@ -20,98 +20,126 @@
   <object id="17" name="Puerta" type="Puerta" x="768" y="544" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
-    <property name="numero" type="int" value="1"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="18" name="Puerta" type="Puerta" x="768" y="1112" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
-    <property name="numero" type="int" value="1"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="21" name="Puerta" type="Puerta" x="312" y="1744" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
-    <property name="numero" type="int" value="2"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="22" name="Puerta" type="Puerta" x="288" y="2768" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
-    <property name="numero" type="int" value="2"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="24" name="Puerta" type="Puerta" x="1024" y="3480" width="48" height="48">
    <properties>
     <property name="dir" value="este"/>
-    <property name="numero" type="int" value="3"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="3"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="25" name="Puerta" type="Puerta" x="1400" y="3168" width="48" height="48">
    <properties>
     <property name="dir" value="oeste"/>
-    <property name="numero" type="int" value="3"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="3"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="26" name="Puerta" type="Puerta" x="2366" y="3168" width="48" height="48">
    <properties>
     <property name="dir" value="este"/>
-    <property name="numero" type="int" value="4"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>	
+    <property name="numDoor" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="27" name="Puerta" type="Puerta" x="2888" y="2976" width="48" height="48">
    <properties>
     <property name="dir" value="oeste"/>
-    <property name="numero" type="int" value="4"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="28" name="Puerta" type="Puerta" x="2256" y="3128" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
-    <property name="numero" type="int" value="5"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>	
+    <property name="numDoor" type="int" value="5"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="29" name="Puerta" type="Puerta" x="2376" y="2576" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
-    <property name="numero" type="int" value="6"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="30" name="Puerta" type="Puerta" x="2376" y="2704" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
-    <property name="numero" type="int" value="5"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="5"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="31" name="Puerta" type="Puerta" x="2856" y="2152" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
-    <property name="numero" type="int" value="6"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="32" name="Puerta" type="Puerta" x="2304" y="1072" width="48" height="48">
    <properties>
     <property name="dir" value="sur"/>
-    <property name="numero" type="int" value="7"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>	
+    <property name="numDoor" type="int" value="7"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
   <object id="33" name="Puerta" type="Puerta" x="3360" y="1544" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
-    <property name="numero" type="int" value="7"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="numDoor" type="int" value="7"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
@@ -149,8 +177,9 @@
     <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
-  <object id="34" name="Item" type="Key" x="771" y="305" width="32" height="50">
+  <object id="34" name="Key" type="Key" x="771" y="305" width="32" height="50">
    <properties>
+    <property name="numKey" type="int" value="1"/>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="35"/>

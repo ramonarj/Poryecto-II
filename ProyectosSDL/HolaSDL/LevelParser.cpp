@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
+#include "Door.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -205,11 +206,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;
-			int callbackID = 0;
-			int animSpeed = 0;
 			int life = 0;
 			int damage = 0;
-			std::string textureID;
 
 			int numero = 0;
 			std::string orientacion;
@@ -241,21 +239,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &height);
 							}
-							else if (property->Attribute("name") == std::string("textureID"))
-							{
-								textureID = property->Attribute("value");
-							}
 							else if (property->Attribute("name") == std::string("textureWidth"))
 							{
 								property->Attribute("value", &width);
-							}
-							else if (property->Attribute("name") == std::string("callbackID"))
-							{
-								property->Attribute("value", &callbackID);
-							}
-							else if (property->Attribute("name") == std::string("animSpeed"))
-							{
-								property->Attribute("value", &animSpeed);
 							}
 							else if (property->Attribute("name") == std::string("life"))
 							{
@@ -278,16 +264,16 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			if (e->Attribute("type") != std::string("Puerta"))
-				pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, textureID);
-			else
-				pEntity->loadDoors(x * zoom, y * zoom, width * zoom, height * zoom, numero, orientacion);
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom);
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
 				pEntity->getComponent<Character>()->load(life, damage);
-				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
+			}
+			else if (e->Attribute("type") == std::string("Puerta"))
+			{
+				pEntity->getComponent<Door>()->load(numero, orientacion);
 			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades

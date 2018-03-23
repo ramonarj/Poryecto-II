@@ -13,11 +13,11 @@ void Entity::setActive(bool enabled)
 }
 
 Entity::Entity() :
-	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_(), numPuerta_(0) {
+	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
 Entity::Entity(int posX, int posY) :
-	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_(), numPuerta_(0) {
+	active_(true), width_(0), height_(0), position_(posX, posY), direction_(1, 0), velocity_(0, 0), comps_() {
 }
 
 
@@ -49,26 +49,13 @@ void Entity::render(Uint32 time) {
 	}
 }
 
-void Entity::load(int x, int y, int width, int height, string textureID)
-{
-	position_.set(Vector2D(x, y));
-	width_ = width;
-	height_ = height;
-	textureID_ = textureID;
-	currentRow_ = 1;
-	currentFrame_ = 1;
-}
-
-void Entity::loadDoors(int x, int y, int width, int height, int numero, string ori)
+void Entity::load(int x, int y, int width, int height)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
 	height_ = height;
 	currentRow_ = 1;
 	currentFrame_ = 1;
-
-	numPuerta_ = numero;
-	orientacion_ = ori;
 }
 
 void Entity::addComponent(Component* c) {

@@ -12,6 +12,7 @@ public:
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 time) {};
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
+	Vector2D getLastDir() { return lastDir; };
 
 private:
 	Texture * image_;

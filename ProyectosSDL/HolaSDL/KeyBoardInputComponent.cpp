@@ -52,9 +52,9 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		}
 		else if (state[interact_]) {
 			if (event.type == SDL_KEYDOWN) {
-				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getX()), int(o->getWidth()), int(o->getHeight()) };
+				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
-					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getX()), int(e->getWidth()), int(e->getHeight()) };
+					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 					if (Collisions::RectRect(&playerRect, &intRect) && e->isActive()) {
 						if (e->getComponent<Interactible>() != nullptr) {
 							e->getComponent<Interactible>()->interact(e);
@@ -72,11 +72,6 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				o->getComponent<Character>()->setAttacking(true);
 				std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 			}
-		}
-		else if (state[enter_] && o->getComponent<Player>()->getDoorCollision())
-		{
-			o->getComponent<Player>()->setTeleport(true);
-			o->getComponent<Player>()->setDoorCollision(false);
 		}
 		else {
 			velocity.setY(0);

@@ -22,9 +22,7 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 
-	void load(int x, int y, int width, int height, string textureID);
-
-	void loadDoors(int x, int y, int width, int height, int numero, string ori);
+	void load(int x, int y, int width, int height);
 
 	virtual void addComponent(Component* c);
 	virtual void delComponent(Component* c);
@@ -48,9 +46,6 @@ public:
 
 	const Vector2D& getDirection() const;
 	void setDirection(const Vector2D &vel);
-
-	int getDoorNum() { return numPuerta_; };
-	string getOri() { return orientacion_; };
 
 
 	//Get Component
@@ -78,14 +73,8 @@ private:
 	double width_;  // width
 	double height_; // height
 
-	string textureID_;
-
 	double currentRow_;
 	double currentFrame_;
-
-	//SI es una puerta es una entidad con un numero
-	int numPuerta_;
-	string orientacion_;
 
 	vector<Component*> comps_;
 };

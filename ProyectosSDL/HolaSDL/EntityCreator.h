@@ -6,6 +6,7 @@
 #include "ImageRenderer.h"
 #include "Resources.h"
 #include "SkeletonRenderer.h"
+#include "Door.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -18,6 +19,7 @@ public:
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 26, 80, true, false));
+		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };
@@ -32,6 +34,7 @@ public:
 		e->setVelocity(vel);
 		e->addComponent(new Enemy(vel));
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 10, 150, true, false));
+		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };
@@ -149,6 +152,8 @@ public:
 	Entity * createEntity() const
 	{
 		Entity* e = new Entity();
+		e->addComponent(new Door());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

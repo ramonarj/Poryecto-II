@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-CollisionManager* CollisionManager::s_pInstance = 0;
+unique_ptr<CollisionManager> CollisionManager::s_pInstance = nullptr;
 
 void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
 {

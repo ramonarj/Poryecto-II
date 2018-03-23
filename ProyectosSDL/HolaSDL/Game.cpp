@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "EntityCreator.h"
 
-Game* Game::s_pInstance = 0;
+unique_ptr<Game> Game:: s_pInstance = nullptr;
 
 Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization

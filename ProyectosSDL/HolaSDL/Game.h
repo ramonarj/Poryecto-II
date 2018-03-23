@@ -2,6 +2,7 @@
 #include "SDLGame.h"
 
 #include <vector>
+#include <memory>
 
 #include "SDLGame.h"
 #include "GameObject.h"
@@ -21,7 +22,6 @@
 #include "ResourceManager.h"
 #include "GameObjectFactory.h"
 #include "AnimationRenderer.h"
-class PlayerCreator;
 
 class Game : public SDLGame {
 
@@ -29,12 +29,9 @@ public:
 
 	static Game* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new Game();
-			return s_pInstance;
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new Game());
+		return s_pInstance.get();
 	}
 	//Game();
 	virtual ~Game();
@@ -63,7 +60,7 @@ public:
 
 private:
 	Game();
-	static Game* s_pInstance;
+	static unique_ptr<Game> s_pInstance;
 	ResourceManager* resourceManager_;
 
 	void initGame();

@@ -1,7 +1,7 @@
 #include "MenuState.h"
 #include "Game.h"
 
-MenuState* MenuState::s_pInstance = 0;
+unique_ptr<MenuState> MenuState::s_pInstance = nullptr;
 
 MenuState::MenuState() : GameState(), pRenderer(nullptr), resource(nullptr), width(0), height(0) { //Constructora de nueva partida
 

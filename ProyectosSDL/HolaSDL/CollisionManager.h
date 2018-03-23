@@ -3,6 +3,7 @@
 #include "TileLayer.h"
 #include <list>
 #include "Collisions.h"
+#include <memory>
 
 class CollisionManager
 {
@@ -10,10 +11,9 @@ public:
 
 	static CollisionManager* Instance()
 	{
-		if (s_pInstance == 0)
-			s_pInstance = new CollisionManager();
-
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new CollisionManager());
+		return s_pInstance.get();
 	}
 
 	void checkPlayerTileCollision(std::list<Entity*> characters, const
@@ -21,7 +21,7 @@ public:
 
 private:
 	CollisionManager() {};
-	static CollisionManager* s_pInstance;
+	static unique_ptr<CollisionManager> s_pInstance;
 };
 
 typedef CollisionManager CollisionManager;

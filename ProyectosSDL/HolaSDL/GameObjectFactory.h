@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include <string>
 #include <map>
+#include <memory>
 
 class Game;
 
@@ -18,12 +19,11 @@ class GameObjectFactory
 public:
 	static GameObjectFactory* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new GameObjectFactory();
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new GameObjectFactory());
+		return s_pInstance.get();
 	}
+	~GameObjectFactory() {}
 
 	bool registerType(std::string typeID, BaseCreator* pCreator)
 	{
@@ -55,9 +55,8 @@ public:
 
 private:
 	GameObjectFactory() {}
-	~GameObjectFactory() {}
 
-	static GameObjectFactory* s_pInstance;
+	static unique_ptr<GameObjectFactory> s_pInstance;
 
 	std::map<std::string, BaseCreator*> m_creators;
 };

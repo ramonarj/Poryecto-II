@@ -1,7 +1,7 @@
 #include "PlayState.h"
 #include "Game.h"
 
-PlayState* PlayState::s_pInstance = 0;
+unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
 PlayState::PlayState(): GameState(){ //Constructora de nueva partida
 	

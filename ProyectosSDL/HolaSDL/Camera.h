@@ -2,18 +2,18 @@
 #include "Vector2D.h"
 #include "Game.h"
 #include "LevelParser.h"
+#include <memory>
+
 class Camera
 {
 public:
 	static Camera* Instance()
 	{
-		if (s_pCamera == 0)
-		{
-			s_pCamera = new Camera();
-		}
-		return s_pCamera;
+		if (s_pCamera.get() == nullptr)
+			s_pCamera.reset(new Camera());
+		return s_pCamera.get();
 	}
-
+	~Camera();
 
 	void setTarget(Entity* target) { m_pTarget = target; };
 	void setPosition(const Vector2D& position) {
@@ -25,12 +25,12 @@ public:
 
 private:
 	Camera();
-	~Camera();
 	// the camera's target
 	Entity* m_pTarget;
 	// the camera's position
 	Vector2D m_position;
-	static Camera* s_pCamera;
+
+	static unique_ptr<Camera> s_pCamera;
 
 	int zoom;
 

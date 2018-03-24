@@ -15,9 +15,9 @@ vector<Resources::TextMsgInfo> Resources::textMsgs_ { { "Hello World", {
 		COLOR(0xaaffbbff) }, Resources::ARIAL24 }, { "Game Over", { COLOR(
 		0xffffbbff) }, Resources::ARIAL24 } };
 
-vector<string> Resources::musicFiles_ { "music/Menu.mp3", "music/SafeRoom.mp3" };
+vector<string> Resources::musicFiles_ { };
 
-vector<string> Resources::soundEffectFiles_ { "sounds/Inventory.wav" };
+vector<string> Resources::soundEffectFiles_ { };
 
 #include <iostream>
 

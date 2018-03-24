@@ -15,7 +15,7 @@ MenuState::~MenuState() {
 
 void MenuState::startState()
 {
-	Game::Instance()->getResources()->getMusic(Resources::Menu)->play();
+	Game::Instance()->getResourceManager()->getMusic("Menu")->play();
 }
 
 

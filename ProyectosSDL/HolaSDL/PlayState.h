@@ -2,13 +2,16 @@
 #include "GameState.h"
 #include "LevelParser.h"
 #include "Inventory.h"
+#include "Chest.h"
+#include <memory>
 
 class PlayState: public GameState {
 
 private:
-	SDL_Renderer* renderer;
 	PlayState();
-	static PlayState* s_pInstance;
+	static unique_ptr<PlayState> s_pInstance;
+
+	SDL_Renderer* renderer;
 	Level* pLevel = nullptr;
 
 	Entity* player;
@@ -18,16 +21,13 @@ private:
 
 public:
 	Entity* inventory;
+	Entity* chest;
 	static PlayState* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new PlayState();
-			return s_pInstance;
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new PlayState());
+		return s_pInstance.get();
 	}
-	//PlayState();
 	~PlayState();
 	virtual void startState();
 	virtual void update(Uint32 time);

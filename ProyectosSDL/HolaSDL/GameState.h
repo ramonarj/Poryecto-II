@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Entity.h"
 #include <list>
+#include <memory>
 
 using namespace std;
 
@@ -16,18 +17,15 @@ protected:
 	list<Entity*> doors_;
 
 	GameState();
-	static GameState* s_pInstance;
+	static unique_ptr<GameState> s_pInstance;
 
 public:
 
 	static GameState* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new GameState();
-			return s_pInstance;
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new GameState());
+		return s_pInstance.get();
 	}
 
 	virtual ~GameState();

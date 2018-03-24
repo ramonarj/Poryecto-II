@@ -16,16 +16,16 @@ Weapon::~Weapon()
 void Weapon::weaponInit(ItemType type) {
 	switch (type)
 	{
-	case Stick:
+	case STICK:
 		maxHits_ = 5;
 		break;
-	case Lever:
+	case LEVER:
 		maxHits_ = 10;
 		break;
-	case Pipe:
+	case PIPE:
 		maxHits_ = 15;
 		break;
-	case Ax:
+	case AX:
 		maxHits_ = 20;
 		damage_ = 2;
 		break;

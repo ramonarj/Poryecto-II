@@ -4,6 +4,7 @@
 #include "sdl_includes.h"
 #include "Font.h"
 #include <map>
+#include <memory>
 
 using namespace std;
 
@@ -11,13 +12,11 @@ class Texture {
 public:
 	static Texture* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new Texture();
-			return s_pInstance;
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new Texture());
+		return s_pInstance.get();
 	}
+
 
 	//Texture();
 	Texture(SDL_Renderer* renderer, std::string fileName);
@@ -55,7 +54,7 @@ private:
 	map<string, SDL_Texture*> m_textureMap;
 
 	Texture();
-	static Texture* s_pInstance;
+	static unique_ptr<Texture> s_pInstance;
 };
 
 typedef Texture Texture;

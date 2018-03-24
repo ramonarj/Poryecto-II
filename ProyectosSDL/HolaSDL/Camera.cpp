@@ -1,7 +1,7 @@
 #include "Camera.h"
 #include "PlayState.h"
 
-Camera* Camera::s_pCamera = new Camera();
+unique_ptr<Camera> Camera::s_pCamera = nullptr;
 
 Camera::Camera() : m_pTarget(nullptr), m_position(0, 0), zoom(1)
 {

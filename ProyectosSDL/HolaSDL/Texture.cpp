@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include "Camera.h"
 
-Texture* Texture::s_pInstance = 0;
+unique_ptr<Texture> Texture::s_pInstance = nullptr;
 
 Texture::Texture() :
 		texture_(nullptr), width_(0), height_(0) {

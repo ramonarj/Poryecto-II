@@ -9,7 +9,7 @@ public:
 	Weapon(ItemType type, const string& filename);
 	~Weapon();
 	void attack(); // Resta 1 al numero de golpes que tiene el arma
-	string getTypeStr() { return to_string(type_); };
+	int getTypeStr() { return (type_); };
 private:
 	int damage_;
 	int numHits_;

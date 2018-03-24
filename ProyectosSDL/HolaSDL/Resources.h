@@ -36,7 +36,8 @@ public:
 		FondoMenu,
 		BotonNuevaPartida,
 		BotonExit,
-		Enemigo1
+		Enemigo1,
+		Key
 	};
 
 	// Text Messages - each is loaded as an instance of a texture

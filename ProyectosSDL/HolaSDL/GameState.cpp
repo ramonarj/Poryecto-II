@@ -1,7 +1,7 @@
 #include "GameState.h"
 #include "Game.h"
 
-GameState* GameState::s_pInstance = 0;
+unique_ptr<GameState> GameState::s_pInstance = nullptr;
 
 GameState::GameState(){ //Constructora
 }

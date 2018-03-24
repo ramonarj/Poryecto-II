@@ -198,6 +198,15 @@
     <ClCompile Include="MenuState.cpp">
       <Filter>Archivos de código fuente\States</Filter>
     </ClCompile>
+    <ClCompile Include="Chest.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -349,6 +358,15 @@
     </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Archivos de encabezado\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Chest.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

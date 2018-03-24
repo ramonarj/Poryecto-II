@@ -5,6 +5,7 @@
 
 Inventory::Inventory()
 {
+	InvTam = 4;
 	debug = false;
 	equiped = nullptr;
 	pRenderer = nullptr;
@@ -27,8 +28,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= slots[i].x && event.button.x <= slots[i].x + 50)
-					&& (event.button.y >= slots[i].y && event.button.y <= slots[i].y + 50))//EL 50 Es un numero provisional de prueba
+				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba
 				{
 					clicked = true;
 				}
@@ -40,10 +41,25 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
+			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
 			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
 				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
 			{
 				equipWeapon(slotClicked);
+			}
+			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
+			else if(chestMode){
+				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
+				bool change = false;
+					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[19].x)//19 es un número trivial a cambiar, peor aun no se como
+						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[19].y))
+					{
+						if (!cofre->fullChest()) {
+							cofre->addItem(inventory[slotClicked]);
+							this->DeleteItem(slotClicked);
+							change = true;
+						}
+					}
 			}
 			clicked = false;
 		}
@@ -72,23 +88,23 @@ void Inventory::render(Entity* e, Uint32 time)
 		Weapon* weaponComp = equiped->getComponent<Weapon>();
 		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
 
-		if (weaponComp->getType() == ItemType::Stick)
+		if (weaponComp->getType() == ItemType::STICK)
 			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Pipe)
+		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Ax)
+		else if (weaponComp->getType() == ItemType::AX)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Lever)
+		else if (weaponComp->getType() == ItemType::LEVER)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemPosX(i), getItemPosY(i), 50, 50 };
+			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), 50, 50 };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)
@@ -115,16 +131,16 @@ void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
 	else if (inventory[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
-		if (weaponComp->getType() == ItemType::Stick)
+		if (weaponComp->getType() == ItemType::STICK)
 			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Pipe)
+		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Ax)
+		else if (weaponComp->getType() == ItemType::AX)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::Lever)
+		else if (weaponComp->getType() == ItemType::LEVER)
 			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<FirstAid>())
@@ -144,7 +160,12 @@ void Inventory::addItem(Entity * item)
 			equip = true;
 		}
 	}
-	if (!fullInventory() && !equip) { inventory.push_back(item); }
+	if (!fullInventory() && !equip) {
+		inventory.push_back(item);
+		Key* k = item->getComponent<Key>();
+		if (k != nullptr)
+			keys.push_back(item);
+	}
 }
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY

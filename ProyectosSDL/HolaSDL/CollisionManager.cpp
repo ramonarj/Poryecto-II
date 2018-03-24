@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
 
-CollisionManager* CollisionManager::s_pInstance = 0;
+unique_ptr<CollisionManager> CollisionManager::s_pInstance = nullptr;
 
 void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
 {
@@ -28,8 +28,8 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 
 			if (c->getVelocity().getX() >  0 || c->getVelocity().getY() > 0)
 			{
-				tileColumn = (((pos.getX() + width)) / tileSize);
-				tileRow = ((pos.getY() + height) / tileSize);
+				tileColumn = ((pos.getX() + 2* width / 3) / tileSize);
+				tileRow = ((pos.getY() + 9 * height / 10) / tileSize);
 				tileid = tiles[tileRow + y][tileColumn + x];
 
 				if (tileid == 0)
@@ -38,12 +38,6 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 					{
 						tileRow = ((pos.getY() + (height / 2)) / tileSize);
 						tileid = tiles[tileRow + y][tileColumn + x];
-
-						if (tileid == 0)
-						{
-							tileRow = (pos.getY() / tileSize);
-							tileid = tiles[tileRow + y][tileColumn + x];
-						}
 					}
 
 					if (tileid == 0)
@@ -55,7 +49,7 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 
 							if (tileid == 0)
 							{
-								tileColumn = (pos.getX() / tileSize);
+								tileColumn = ((pos.getX() + width / 3) / tileSize);
 								tileid = tiles[tileRow + y][tileColumn + x];
 							}
 						}
@@ -64,23 +58,18 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 			}
 			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
-				tileColumn = pos.getX() / tileSize;
-				tileRow = pos.getY() / tileSize;
+				tileColumn = (pos.getX() + width / 3) / tileSize;
+				tileRow = (pos.getY() + (height / 2)) / tileSize;
 				tileid = tiles[tileRow + y][tileColumn + x];
 
 				if (tileid == 0)
 				{
 					if (c->getVelocity().getX() < 0)
 					{
-						tileRow = ((pos.getY() + (height / 2)) / tileSize);
+						tileRow = ((pos.getY() + 9 * height / 10) / tileSize);
 						tileid = tiles[tileRow + y][tileColumn + x];
-
-						if (tileid == 0)
-						{
-							tileRow = ((pos.getY() + height) / tileSize);
-							tileid = tiles[tileRow + y][tileColumn + x];
-						}
 					}
+
 					if (tileid == 0)
 					{
 						if (c->getVelocity().getY() < 0)
@@ -90,7 +79,7 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 
 							if (tileid == 0)
 							{
-								tileColumn = ((pos.getX() + width) / tileSize);
+								tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
 								tileid = tiles[tileRow + y][tileColumn + x];
 							}
 						}
@@ -105,58 +94,6 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
 			}
-		}
-	}
-}
-
-void CollisionManager::checkPlayerDoorCollision(Entity * player, const std::list<Entity*> doors)
-{
-	Entity* puerta = nullptr;
-
-	list<Entity*>::const_iterator it = doors.begin();
-	bool chocaPuerta = false;
-	while (it != doors.end() && !chocaPuerta)
-	{
-		if (Collisions::RectRect(&player->getRect(), &(*it)->getRect())) {
-			puerta = (*it);
-			chocaPuerta = true;
-		}
-		else
-			it++;
-	}
-
-	it = doors.begin();
-	bool puertEncontrada = false;
-
-	if (puerta != nullptr)
-	{
-		while (it != doors.end() && !puertEncontrada)
-		{
-			if ((*it) != puerta)
-			{
-				if ((*it)->getDoorNum() == puerta->getDoorNum())
-				{
-					if ((*it)->getOri() == "norte")
-						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
-						(*it)->getPosition().getY() + (*it)->getHeight() / 2));
-
-					else if ((*it)->getOri() == "sur")
-						player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
-						(*it)->getPosition().getY() - (*it)->getHeight() / 2));
-
-					else if ((*it)->getOri() == "este")
-						player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth(),
-						(*it)->getPosition().getY()));
-
-					else if ((*it)->getOri() == "oeste")
-						player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2, 
-						(*it)->getPosition().getY()));
-
-					puertEncontrada = true;
-				}
-			}
-
-			it++;
 		}
 	}
 }

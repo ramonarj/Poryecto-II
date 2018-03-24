@@ -2,6 +2,7 @@
 #include "SDLGame.h"
 
 #include <vector>
+#include <memory>
 
 #include "SDLGame.h"
 #include "GameObject.h"
@@ -12,15 +13,15 @@
 #include "Weapon.h"
 #include "FirstAid.h"
 #include "InsulationTape.h"
+#include "Key.h"
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "MenuState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
 #include "ResourceManager.h"
-
+#include "GameObjectFactory.h"
 #include "AnimationRenderer.h"
-class PlayerCreator;
 
 class Game : public SDLGame {
 
@@ -28,12 +29,9 @@ public:
 
 	static Game* Instance()
 	{
-		if (s_pInstance == 0)
-		{
-			s_pInstance = new Game();
-			return s_pInstance;
-		}
-		return s_pInstance;
+		if (s_pInstance.get() == nullptr)
+			s_pInstance.reset(new Game());
+		return s_pInstance.get();
 	}
 	//Game();
 	virtual ~Game();
@@ -62,7 +60,7 @@ public:
 
 private:
 	Game();
-	static Game* s_pInstance;
+	static unique_ptr<Game> s_pInstance;
 	ResourceManager* resourceManager_;
 
 	void initGame();
@@ -71,10 +69,14 @@ private:
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
+	void registerTypeItem();
+
 	const static int _WINDOW_WIDTH_ = 1280;
 	const static int _WINDOW_HEIGHT_ = 720;
 	bool exit_;
 	std::vector<Entity*> actors_;
+
+	GameObjectFactory* gameObjectFactory = TheGameObjectFactory::Instance();
 };
 
 typedef Game Game;

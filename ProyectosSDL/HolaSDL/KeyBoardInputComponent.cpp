@@ -8,9 +8,12 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 {
 }
 
-KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, SDL_Scancode inventory, SDL_Scancode pause, SDL_Scancode enter) :
-	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), pause_(pause), enter_(enter), inventoryPressed(false) {
-}
+KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
+												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter) :
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), 
+	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false)
+	{
+	}
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
 {
@@ -21,7 +24,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
-	double vel = 3 * Camera::Instance()->getZoom();
+	double vel = 7 * Camera::Instance()->getZoom();
 
 	if (inv == nullptr)
 		inv = Game::Instance()->getEntityWithComponent<Inventory>();
@@ -49,12 +52,12 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		}
 		else if (state[interact_]) {
 			if (event.type == SDL_KEYDOWN) {
-				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getX()), int(o->getWidth()), int(o->getHeight()) };
+				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
-					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getX()), int(e->getWidth()), int(e->getHeight()) };
+					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 					if (Collisions::RectRect(&playerRect, &intRect) && e->isActive()) {
 						if (e->getComponent<Interactible>() != nullptr) {
-							e->getComponent<Interactible>()->interact(e, dynamic_cast<PlayState*>(Game::Instance()->stateMachine_.currentState())->inventory->getComponent<Inventory>());
+							e->getComponent<Interactible>()->interact(e);
 						}
 						else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
 					}
@@ -62,7 +65,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			}
 		}
 
-		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
+		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon && pressing shift
 		{
 			if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) {
 				o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
@@ -82,19 +85,40 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		o->setVelocity(Vector2D(0,0));
 	}
 
-	if (state[inventory_])
+	if (state[inventory_] && !cstOpen)
 	{
 		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
 			inv->setActive(!inv->isActive());
 			inventoryPressed = true;
+			invOpen = !invOpen;
 		}
 	}
-	if (!state[inventory_])
+	if (!state[inventory_] && !cstOpen)
 	{
 		inventoryPressed = false;
 	}
+
+	if (state[chest_] && !invOpen)
+	{
+		if (event.type == SDL_KEYDOWN && !chestPressed) {
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			inv->setActive(!inv->isActive());
+			cst->setActive(!cst->isActive());
+			chestPressed = true;
+			cstOpen = !cstOpen;
+			inv->getComponent<Inventory>()->setChestMode(cstOpen);
+			//SOUND 
+			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+		}
+	}
+	if (!state[chest_] && !invOpen)
+	{
+		chestPressed = false;
+	}
+
 
 }
 

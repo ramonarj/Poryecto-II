@@ -21,14 +21,13 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	gameObjectFactory->registerType("Player", new PlayerCreator());
-	gameObjectFactory->registerType("Enemy", new EnemyCreator());
-	gameObjectFactory->registerType("Puerta", new DoorCreator());
-	registerTypeItem();
+	//Añadir las factorias de las Entidades
+	addGameObjectsFactory();
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);
 
+	//Añadir los assets
 	addResourcesTexture();
 	addResourcesMusic();
 	addResourcesSoundEffects();
@@ -91,6 +90,14 @@ void Game::handleInput(Uint32 time) {
 	}
 }
 
+void Game::addGameObjectsFactory()
+{
+	gameObjectFactory->registerType("Player", new PlayerCreator());
+	gameObjectFactory->registerType("Enemy", new EnemyCreator());
+	gameObjectFactory->registerType("Puerta", new DoorCreator());
+	registerTypeItem();
+}
+
 void Game::addResourcesTexture()
 {
 	//Characters
@@ -126,24 +133,6 @@ void Game::addResourcesSoundEffects()
 {
 	resourceManager_->addSound("InventoryOpen", "sounds/Inventory.wav");
 }
-
-//void Game::update(Uint32 time) {
-//	for (Entity* o : actors_) {
-//		o->update(time);
-//	}
-//}
-
-//void Game::render(Uint32 time) {
-//	SDL_SetRenderDrawColor(getRenderer(), COLOR(0x555555FF)); //Color de fondo
-//
-//	SDL_RenderClear(getRenderer()); //Limpia el render
-//
-//	for (Entity* o : actors_) {
-//		o->render(time);
-//	}
-//
-//	SDL_RenderPresent(getRenderer());
-//}
 
 void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));

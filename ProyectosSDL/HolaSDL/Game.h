@@ -69,6 +69,7 @@ private:
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
+	void addGameObjectsFactory();
 	void addResourcesTexture();
 	void addResourcesMusic();
 	void addResourcesSoundEffects();

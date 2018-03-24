@@ -2,7 +2,7 @@
 #include "Component.h"
 #include <vector>
 #include "Texture.h"
-#include "Resources.h"
+#include "ResourceManager.h"
 #include "Weapon.h"
 #include "InsulationTape.h"
 
@@ -58,7 +58,7 @@ public:
 
 protected:
 	SDL_Renderer * pRenderer;
-	const Resources* resource;
+	ResourceManager* resource;
 	int getInvTam() { return InvTam; }
 };
 

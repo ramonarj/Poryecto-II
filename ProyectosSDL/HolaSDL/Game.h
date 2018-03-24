@@ -69,6 +69,10 @@ private:
 	//void update(Uint32 time);
 	//void render(Uint32 time);
 
+	void addResourcesTexture();
+	void addResourcesMusic();
+	void addResourcesSoundEffects();
+
 	void registerTypeItem();
 
 	const static int _WINDOW_WIDTH_ = 1280;

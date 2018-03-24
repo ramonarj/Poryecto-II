@@ -70,7 +70,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 void Inventory::render(Entity* e, Uint32 time)
 {
 	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResources();
+	resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -81,7 +81,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	int posY = height / 2 - alto / 2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
-	Game::Instance()->getResourceManager()->getTexture("Inventory")->render(pRenderer, dest);
+	resource->getTexture("Inventory")->render(pRenderer, dest);
 
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {
@@ -89,16 +89,16 @@ void Inventory::render(Entity* e, Uint32 time)
 		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
 
 		if (weaponComp->getType() == ItemType::STICK)
-			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
+			resource->getTexture("Stick")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::AX)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::LEVER)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+		else if (weaponComp->getType() == ItemType::CROWBAR)
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 	}
 
 	for (int i = 0; i < int(inventory.size()); i++)
@@ -122,30 +122,30 @@ void Inventory::render(Entity* e, Uint32 time)
 void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
 {
 	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResources();
+	resource = Game::Instance()->getResourceManager();
 
 	if (inventory[i]->getComponent<InsulationTape>())
 	{
-		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
+		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
 		if (weaponComp->getType() == ItemType::STICK)
-			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
+			resource->getTexture("Stick")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::AX)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::LEVER)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+		else if (weaponComp->getType() == ItemType::CROWBAR)
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<FirstAid>())
 	{
-		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
+		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
 	}
 }
 

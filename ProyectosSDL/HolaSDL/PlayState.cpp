@@ -41,7 +41,7 @@ void PlayState::startState()
 	palo->getComponent<Weapon>()->attack();
 
 	Entity* palo2 = new Entity(10, 20);
-	palo2->addComponent(new Weapon(ItemType::LEVER, "Lever"));
+	palo2->addComponent(new Weapon(ItemType::CROWBAR, "Crowbar"));
 	stage_.push_back(palo2);
 
 	Entity* insulationTape = new Entity(15, 25);

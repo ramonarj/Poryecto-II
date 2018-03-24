@@ -2,14 +2,8 @@
 #include <tuple>
 #include "Resources.h"
 
-vector<string> Resources::imageFiles_ { "images/blank.png",
-		"images/tennis_ball.png", "images/keyboard.png", "images/mouse.png",
-		"images/ai.png", "images/spaceships.png", "images/airplanes.png",
-		"images/star.png", "images/Inventory.png", "images/PruebaAnim.png",
-		"images/Spray.png","images/Crowbar.png", "images/stickPrueba.png", 
-		"images/PruebaAtaque.png", "images/SpriteSheetElise.png", 
-		"images/Menu/FondoMenu.png", "images/Menu/NuevaPartida.png",
-		"images/Menu/Exit.png", "images/Enemigo1.png", "images/key.png" };
+vector<string> Resources::imageFiles_ {
+		};
 
 vector<Resources::FontInfo> Resources::fontFiles_ {
 		{ "fonts/ARIAL.ttf", 16 }, { "fonts/ARIAL.ttf", 24 }, {
@@ -21,11 +15,9 @@ vector<Resources::TextMsgInfo> Resources::textMsgs_ { { "Hello World", {
 		COLOR(0xaaffbbff) }, Resources::ARIAL24 }, { "Game Over", { COLOR(
 		0xffffbbff) }, Resources::ARIAL24 } };
 
-vector<string> Resources::musicFiles_ { "sound/beat.wav",
-		"sound/cheer.wav", "sound/boooo.wav" };
+vector<string> Resources::musicFiles_ { "music/Menu.mp3", "music/SafeRoom.mp3" };
 
-vector<string> Resources::soundEffectFiles_ { "sound/wall_hit.wav",
-		"sound/paddle_hit.wav" };
+vector<string> Resources::soundEffectFiles_ { "sounds/Inventory.wav" };
 
 #include <iostream>
 

@@ -47,7 +47,7 @@ void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 void Chest::render(Entity * e, Uint32 time)
 {
 	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResources();
+	resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -58,7 +58,7 @@ void Chest::render(Entity * e, Uint32 time)
 	int posY = 0 + (height / 10)/2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
-	Game::Instance()->getResourceManager()->getTexture("Chest")->render(pRenderer, dest);
+	resource->getTexture("Chest")->render(pRenderer, dest);
 
 	for (int i = 0; i < int(chest.size()); i++)
 	{
@@ -91,30 +91,30 @@ bool Chest::checkItem(Entity * item)
 void Chest::renderItem(int i, Entity * e, SDL_Rect DestRect)
 {
 	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResources();
+	resource = Game::Instance()->getResourceManager();
 
 	if (chest[i]->getComponent<InsulationTape>())
 	{
-		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
+		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
 	}
 	else if (chest[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = chest[i]->getComponent<Weapon>();
 		if (weaponComp->getType() == ItemType::STICK)
-			resource->getImageTexture(Resources::stick)->render(pRenderer, DestRect);
+			resource->getTexture("Stick")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::AX)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::LEVER)
-			resource->getImageTexture(Resources::Crowbar)->render(pRenderer, DestRect);
+		else if (weaponComp->getType() == ItemType::CROWBAR)
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 	}
 	else if (chest[i]->getComponent<FirstAid>())
 	{
-		resource->getImageTexture(Resources::PruebaMedicKit)->render(pRenderer, DestRect);
+		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
 	}
 }
 

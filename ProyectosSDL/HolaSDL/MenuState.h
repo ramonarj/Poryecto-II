@@ -9,7 +9,7 @@ class MenuState : public GameState {
 
 private:
 	SDL_Renderer* pRenderer;
-	const Resources* resource;
+	ResourceManager* resource;
 
 	double width;
 	double height;
@@ -28,6 +28,7 @@ public:
 		return s_pInstance.get();
 	}
 	~MenuState();
+	virtual void startState();
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);

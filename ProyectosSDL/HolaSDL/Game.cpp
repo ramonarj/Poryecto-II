@@ -8,9 +8,9 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 
 	//Se añade MenuScene
-	//resourceManager_->getMusic("Menu")->play();
-	stateMachine_.pushState(PlayState::Instance());
-	//stateMachine_.pushState(MenuState::Instance());
+	//getResources()->getMusic(Resources::Menu)->play();
+	//stateMachine_.pushState(PlayState::Instance());
+	stateMachine_.pushState(MenuState::Instance());
 
 	exit_ = false;
 }
@@ -29,18 +29,9 @@ void Game::initGame()
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);
 
-	//Load Resources
-	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
-	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
-	resourceManager_->addTexture("Lever", "images/Crowbar.png");
-	resourceManager_->addTexture("Key", "images/key.png");
-
-	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
-	resourceManager_->addMusic("Menu", "music/Menu.mp3");
-
-	resourceManager_->addSound("Inventory", "sounds/Inventory.wav");
-	
-	
+	addResourcesTexture();
+	addResourcesMusic();
+	addResourcesSoundEffects();
 }
 
 void Game::closeGame() {
@@ -100,6 +91,39 @@ void Game::handleInput(Uint32 time) {
 	}
 }
 
+void Game::addResourcesTexture()
+{
+	//Characters
+	resourceManager_->addTexture("SpriteSheetElise", "images/SpriteSheetElise.png");
+	resourceManager_->addTexture("Enemigo1", "images/Enemigo1.png");
+
+	//Items
+	resourceManager_->addTexture("PruebaMedicKit", "images/Spray.png");
+	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
+	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
+	resourceManager_->addTexture("Key", "images/key.png");
+
+	//Inventory
+	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
+	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
+
+	//Backgrounds
+	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
+
+	//Buttons
+	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
+	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
+
+}
+
+void Game::addResourcesMusic()
+{
+}
+
+void Game::addResourcesSoundEffects()
+{
+}
+
 //void Game::update(Uint32 time) {
 //	for (Entity* o : actors_) {
 //		o->update(time);
@@ -119,7 +143,7 @@ void Game::handleInput(Uint32 time) {
 //}
 
 void Game::registerTypeItem() {
-	gameObjectFactory->registerType("Item", new ItemCreator(ItemType::LEVER));
+	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));

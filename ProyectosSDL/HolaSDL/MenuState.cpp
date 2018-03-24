@@ -13,6 +13,13 @@ MenuState::~MenuState() {
 
 }
 
+void MenuState::startState()
+{
+	Game::Instance()->getResources()->getMusic(Resources::Menu)->play();
+}
+
+
+
 void MenuState::update(Uint32 time)
 {
 	GameState::update(time);
@@ -21,7 +28,7 @@ void MenuState::update(Uint32 time)
 void MenuState::render(Uint32 time)
 {
 	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResources();
+	resource = Game::Instance()->getResourceManager();
 	width = Game::Instance()->getWindowWidth();
 	height = Game::Instance()->getWindowHeight();
 
@@ -31,9 +38,9 @@ void MenuState::render(Uint32 time)
 
 	SDL_RenderClear(pRenderer);
 
-	resource->getImageTexture(Resources::FondoMenu)->render(pRenderer, destRect[0]);
-	resource->getImageTexture(Resources::BotonNuevaPartida)->render(pRenderer, destRect[1]);
-	resource->getImageTexture(Resources::BotonExit)->render(pRenderer, destRect[2]);
+	resource->getTexture("FondoMenu")->render(pRenderer, destRect[0]);
+	resource->getTexture("BotonNuevaPartida")->render(pRenderer, destRect[1]);
+	resource->getTexture("BotonExit")->render(pRenderer, destRect[2]);
 
 	SDL_RenderPresent(pRenderer);
 }

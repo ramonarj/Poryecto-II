@@ -5,7 +5,7 @@
 
 Inventory::Inventory()
 {
-	InvTam = 4;
+	//InvTam = 4;
 	debug = false;
 	equiped = nullptr;
 	pRenderer = nullptr;
@@ -50,14 +50,12 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
 			else if(chestMode){
 				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
-				bool change = false;
-					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[19].x)//19 es un número trivial a cambiar, peor aun no se como
-						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[19].y))
+					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[cofre->getChestTam() - 1].x)
+						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[cofre->getChestTam() - 1].y))
 					{
 						if (!cofre->fullChest()) {
 							cofre->addItem(inventory[slotClicked]);
 							this->DeleteItem(slotClicked);
-							change = true;
 						}
 					}
 			}
@@ -115,39 +113,8 @@ void Inventory::render(Entity* e, Uint32 time)
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
-
-
 }
 
-void Inventory::renderItem(int i, Entity* e, SDL_Rect DestRect)
-{
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
-
-	if (inventory[i]->getComponent<InsulationTape>())
-	{
-		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
-	}
-	else if (inventory[i]->getComponent<Weapon>())
-	{
-		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
-		if (weaponComp->getType() == ItemType::STICK)
-			resource->getTexture("Stick")->render(pRenderer, DestRect);
-
-		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
-
-		else if (weaponComp->getType() == ItemType::AX)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
-
-		else if (weaponComp->getType() == ItemType::CROWBAR)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
-	}
-	else if (inventory[i]->getComponent<FirstAid>())
-	{
-		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
-	}
-}
 
 void Inventory::addItem(Entity * item)
 {
@@ -207,7 +174,7 @@ void Inventory::equipWeapon(int pos)
 
 bool Inventory::fullInventory()
 {
-	if (inventory.size() >= InvTam) { return true; }
+	if (inventory.size() >= InventoryTam) { return true; }
 	else return false;
 }
 

@@ -109,6 +109,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
 	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
 	resourceManager_->addTexture("Key", "images/key.png");
+	resourceManager_->addTexture("Axe", "images/Hacha.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
@@ -137,9 +138,9 @@ void Game::addResourcesSoundEffects()
 void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
+	gameObjectFactory->registerType("Axe", new ItemCreator(ItemType::AXE));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
-	gameObjectFactory->registerType("Ax", new ItemCreator(ItemType::AX));
 	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
 	gameObjectFactory->registerType("Firtsaid", new ItemCreator(ItemType::FIRSTAID));

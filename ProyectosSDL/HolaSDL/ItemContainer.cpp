@@ -51,8 +51,8 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::AX)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+		else if (weaponComp->getType() == ItemType::AXE)
+			resource->getTexture("Axe")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::CROWBAR)
 			resource->getTexture("Crowbar")->render(pRenderer, DestRect);

@@ -25,7 +25,7 @@ void Weapon::weaponInit(ItemType type) {
 	case PIPE:
 		maxHits_ = 15;
 		break;
-	case AX:
+	case AXE:
 		maxHits_ = 20;
 		damage_ = 2;
 		break;

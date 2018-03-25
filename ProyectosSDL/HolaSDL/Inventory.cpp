@@ -92,8 +92,8 @@ void Inventory::render(Entity* e, Uint32 time)
 		else if (weaponComp->getType() == ItemType::PIPE)
 			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
 
-		else if (weaponComp->getType() == ItemType::AX)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+		else if (weaponComp->getType() == ItemType::AXE)
+			resource->getTexture("Axe")->render(pRenderer, DestRect);
 
 		else if (weaponComp->getType() == ItemType::CROWBAR)
 			resource->getTexture("Crowbar")->render(pRenderer, DestRect);

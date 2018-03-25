@@ -64,7 +64,7 @@ public:
 		case PIPE:
 			i = new Weapon(type, toString(type));
 			break;
-		case AX:
+		case AXE:
 			i = new Weapon(type, toString(type));
 			break;
 		case FIRSTAID:
@@ -96,8 +96,8 @@ public:
 		case PIPE:
 			str = "Pipe";
 			break;
-		case AX:
-			str = "Ax";
+		case AXE:
+			str = "Axe";
 			break;
 		case ALCOHOL:
 			str = "Alcohol";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="24" tileheight="24" nextobjectid="38">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="24" tileheight="24" nextobjectid="39">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="196" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
  <layer name="Suelo" width="600" height="600">
@@ -155,16 +155,23 @@
   </object>
   <object id="36" name="Crowbar" type="Crowbar" x="2435.34" y="2078.21" width="32" height="50">
    <properties>
-    <property name="textureHeight" type="int" value="50"/>
+    <property name="textureHeight" type="int" value="32"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="50"/>
+    <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
   <object id="37" name="Crowbar" type="Crowbar" x="1292.66" y="1867.79" width="32" height="50">
    <properties>
-    <property name="textureHeight" type="int" value="50"/>
+    <property name="textureHeight" type="int" value="32"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="50"/>
+    <property name="textureWidth" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="38" name="Axe" type="Axe" x="2240" y="2077" width="32" height="50">
+   <properties>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
  </objectgroup>

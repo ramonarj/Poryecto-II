@@ -40,7 +40,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 
 	if (inventory[i]->getComponent<InsulationTape>())
 	{
-		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
+		resource->getTexture("Firstaid")->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<Weapon>())
 	{
@@ -59,7 +59,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	}
 	else if (inventory[i]->getComponent<FirstAid>())
 	{
-		resource->getTexture("PruebaMedicKit")->render(pRenderer, DestRect);
+		resource->getTexture("Firstaid")->render(pRenderer, DestRect);
 	}
 	else if (inventory[i]->getComponent<Key>())
 	{

@@ -105,7 +105,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Enemigo1", "images/Enemigo1.png");
 
 	//Items
-	resourceManager_->addTexture("PruebaMedicKit", "images/Spray.png");
+	resourceManager_->addTexture("Firstaid", "images/Botiquin.png");
 	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
 	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
 	resourceManager_->addTexture("Key", "images/key.png");
@@ -139,11 +139,11 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
 	gameObjectFactory->registerType("Axe", new ItemCreator(ItemType::AXE));
+	gameObjectFactory->registerType("Firstaid", new ItemCreator(ItemType::FIRSTAID));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
 	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
-	gameObjectFactory->registerType("Firtsaid", new ItemCreator(ItemType::FIRSTAID));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
 	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
 	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));

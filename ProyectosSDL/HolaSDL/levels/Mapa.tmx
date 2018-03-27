@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="24" tileheight="24" nextobjectid="79">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="24" tileheight="24" nextobjectid="117">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="576" columns="36">
   <image source="levels/Tilesheet.png" width="864" height="384"/>
  </tileset>
  <layer name="Suelo" width="600" height="600">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="PuertasZona2">
@@ -91,12 +91,284 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="PuertasZona3">
+  <object id="81" name="Puerta" type="Puerta" x="800" y="9694" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="27"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="82" name="Puerta" type="Puerta" x="800" y="10558" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="28"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="83" name="Puerta" type="Puerta" x="800" y="12382" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="29"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="84" name="Puerta" type="Puerta" x="3496" y="11350" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="27"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="85" name="Puerta" type="Puerta" x="3496" y="11470" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="28"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="86" name="Puerta" type="Puerta" x="3496" y="11710" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="29"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="90" name="Puerta" type="Puerta" x="2008" y="9694" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="30"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="92" name="Puerta" type="Puerta" x="2008" y="10558" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="31"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="93" name="Puerta" type="Puerta" x="2008" y="11350" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="32"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="94" name="Puerta" type="Puerta" x="2008" y="12382" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="33"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="95" name="Puerta" type="Puerta" x="3752" y="11350" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="30"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="96" name="Puerta" type="Puerta" x="3752" y="11470" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="31"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="97" name="Puerta" type="Puerta" x="3752" y="11591" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="32"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="98" name="Puerta" type="Puerta" x="3752" y="11710" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="33"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="100" name="Puerta" type="Puerta" x="4064" y="11470" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="37"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="101" name="Puerta" type="Puerta" x="3808" y="11470" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="35"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="102" name="Puerta" type="Puerta" x="3808" y="11350" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="34"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="103" name="Puerta" type="Puerta" x="4064" y="11710" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="38"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="104" name="Puerta" type="Puerta" x="3808" y="11710" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="36"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="106" name="Puerta" type="Puerta" x="4712" y="9718" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="34"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="107" name="Puerta" type="Puerta" x="4712" y="10582" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="35"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="108" name="Puerta" type="Puerta" x="5920" y="12406" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="38"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="109" name="Puerta" type="Puerta" x="4712" y="12406" width="48" height="28">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="36"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="110" name="Puerta" type="Puerta" x="5920" y="10582" width="48" height="28">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="37"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="111" name="Puerta" type="Puerta" x="862" y="9808" width="28" height="48">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="39"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="112" name="Puerta" type="Puerta" x="1966" y="9808" width="28" height="48">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="40"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="113" name="Puerta" type="Puerta" x="862" y="10520" width="28" height="48">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="39"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="114" name="Puerta" type="Puerta" x="1966" y="10520" width="28" height="48">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="40"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="115" name="Puerta" type="Puerta" x="4774" y="9832" width="28" height="48">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="41"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="116" name="Puerta" type="Puerta" x="4774" y="10544" width="28" height="48">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="41"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="Collides" width="600" height="600">
   <properties>
    <property name="collidable" type="int" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   eJzt3cGOo0gahdF+5Hz/1agXJc0MJimCC8QNnyOxszv/Mp2OT04I//MPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3Otn8ACAGVm3mMHI/3P+PwVgVp/WqBXWLZ+HdNFXAKxk5b564jlkOF8ArERfXXsOGc4XACvRV9eeQ4bzBcBK9NW155DhfAH0cU3zPn117TlkOF8AfX57H/7292h9de05ZLjfE6CPvtq36rqlrwDgXvrq+/g8BADG18Or66Y1FQBY1Vudo68AgFXpKwCALH0FAJClrwAAsvb2YXJ9OwDAmDv3udRXAMA30lcAAFn6CsbYSxWAPfoKxvguIAD26CsYo68A2KOvYIy+AmCPvoIx+gqAPfoKxugrAPboKxijrwDYo6/62QfgHfoKgD36qt+d55B99r8CYI++6qevAGAuvt+5n74CgLm8tQ5b/3P0FQDMRV/101cAMBd91U9fAcBc9FU/fQUAc0ley+4+9Xd4fQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAGfluKwCArDPNpK8AAI7pKwCALH0FAJClrwDgGa5x/h76CgCe8ds6ao1di74CgGfoq+9hfwYAeEZTX53tg6cOAID/1tZXs5lxJgDgXfrqmhlnAgDepa+umXEmAOBd+uqaGWcCALZmuT57tnbYm+fNa9Rne40AgM9mWbNnmeOP3/rqjv/u3c8FAJ4zy5o9yxx/6CsAYNQsa/Ysc/zxdF/Z/woA1jHLmj3LHH+80VcAwBpc3/6ZvgIAGugrfQUAZOkrfQUAZOkrfQUAZB311WzHXXOefW0AAPZoiH1eGwBghIbY57UBAEZoiH1eGwBghIbY57UBAEa8fb2669sBAN5zVwfpKwDgW+krAIAsfQUAkKWvAACy9NU1iWv+AYC16Ktrzvx7Vvu3AwCf6atr9BUA8P/01TX6CoBGyb0t2dJX1+grABqNrEnWsb+nr67RVwA00lf30lfX6CsAGumre+mra/zdGoBG+upe+goAvo++utdvHXT1OPPzAIDn6Kt7Pf1aOTcA8D59dS99BQDfx/5X99JXAABZieuszvStvgIAOE9fAQBk6SsAgCx9BQCQ5d4DAAAAAAAAAAAAAAAAAAAAIMH3KgIAZI20kr4CANinrwAAsvQVAECWvgIAyNJXAABZ+goAIEtfAQBk2f8KAAAAAAAAAACAb+b6OQCArDPNpK8AAI7pKwCALH0FAJClrwAAsvQVAECWvgIAyLI/AwAAAJDkO5UBALJGWklfAQDs01cAAFn6CgAgS18BAGTpKwCALH0FAJClrwAAsux/BQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADP8j1BAABZR/2krwAAztFXAABZ+goAIEtfAQBk6SsAYBWz3LenrwCAVczSNbN0HgDAVbP0FQDAKvQVAECWvgIAyNJXAABZ+goAIMt9ewAAAAAAAAAAAAAAAAAAAAD8yz4UAABZ9lEFAMjSVwAAWfoKACBLXwEAZOkrAIAsfQUAkGV/BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/sbPwQEAwDm/NZS+AgA4T18BAGTpKwCALH0FAJClrwAAsvQVAECWvgIAyNJXAABZ+goAIEtfAQBk6SsAgCx9BQCQ5fudAQAAAAAAAAAAAADW4zpxAICsvY7SVwAAY/QVAECWvgIAyNJXAABZ+goAIEtfAQBk2Z8BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4H0/gwcAAJ+NtJK+AgDYp69gLanPnX2WDTBOX8Fa9n4/R/oq8RiAb6SvYC36CuB9n94fjz7/954K89JXAO876id9BV30FcD7Rvvq6gHcQ18BvG+kr+74mUCGvgJ439HnS/oKuugrgPnpK+iirwDmp6+gi74CmMeT16J7T4YxV+4f0VcAz3vyfdJ7Moy58rujrwCep69gfvoKoIu+gvnpK4Au+grmp68AuiT2ZLd/O9zr6vcpXP1ZI48BAJjZ0fct3P2znvrZAABP0VcAAFlX/z6Y/ju+vgIA2s3WM7PNAwBw1mw9M9s8AABnzdYzs80DAHDWbD0z2zwAAGdd3V/UXnYAAP/rSu9oIQCA8/QVAECWvgIAyNJXAABZrkUHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGb3M3gAAPDZSCvpKwCAffoKACBLXwEAZOkrAIAsfQUAkKWvAACy9BUAPMe+R9/B/lcA8JxPa6h1FQBgnL4CAMjSVwAAWfoKACBLXwEAZOkrAIAsfQUAkGXfIwAA/qULAQCy/F0TACBLXwEAZOkrAIAsfQUAkKWvAACy9BUAQJa+AgDIsv8VAAAAAAAAAAAAwPpcMwoAkOWeZwCALH0FAJClrwAAsvQVAECWvgIAyNJXAABZ9mcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgLj87R4Pm2QGAdX3qkZZGaZ6dLb0MwCqaG6V5dracTwBW0bymNc/OlvMJwCqa17Tm2dlyPgFYRfOa1jw7W84nAKtoXtOaZ2fL+QRgFc1rWvPsbDmfAKyi+Z745tnZ0lcAAFl6GQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOB9e98xeecBALCyp3tHXwEAq9NXAABZ+goAIEtfAQBk6SsAgKyn7/fTVwDAt9NXAABZ+goA4Jon/j5on1IA4Ju0dEvLnAAALd3SMicAQEu3tMwJANDSLS1zAgC4vh1YVfN7SfPswJb9GYBVfHr/aXlPap6dreZebp59JvoKWEVzozTPzlbz+WyefSb6ClhF87rQPDtbzeezefaZJD/38xki8KbmdaF5draaz2fz7LNJ9hXAW5rXhebZ2Wo+n82zzybxuZPProC3Na8LzbOz1Xw+m2ef0ZU+0lbADJrXhebZ2Wo+n82zz2qkk7QVMIvm+8qbZ2eruVGaZ5/Zmd9pv/8AsNXcy82zz+7o9fR6AwCM2WtYXQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDnZ+IDAKDRrB0z61wAAEdm7ZhZ5wIAODJrx8w6FwDAkVk7Zta5AACOnO2YkWvTR58DANBopK/OPuau5wAAvVbeP0BfAQBv+LTWr7L+6ysA4A366tzj9RUAcERfnXu8vgIAjuirc4/XVwDAEX117vH6CgA4oq/OPV5fAQBH9NW5x+srAOCI/a/OPV5fAQDfTF8BAGTpKwCALH0FAJClrwAAsvQVAECWvgIAyNJXAABZ+goAIEtfAQBk6SsAgCx9BQCQpa8AALJG+upvjjueAwDQoKVbWuYEAGjplpY5AQBauqVlTgCAlm5pmRMA4G+vPZ/hAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvsPPztGgeXYAYF2feqSlUZpnZ6u5l5tnByCvuVGaZ2er+Xw2zw5AXvO60Dw7W83ns3l2APKa14Xm2dlqPp/NswOQ17wuNM/OVvP5bJ4dgLzmdaF5draaz2fz7ADkNa8LzbOz1Xw+m2cHIK/5vvLm2dlqbpTm2QGAdTX3cvPsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwDr+A+OO/w4=
   </data>
  </layer>
  <objectgroup name="PuertasZona1">
@@ -390,7 +662,7 @@
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="22" name="Puerta" type="Puerta" x="2831.58" y="12248" width="48" height="48">
+  <object id="22" name="Puerta" type="Puerta" x="3480" y="11144" width="48" height="48">
    <properties>
     <property name="dir" value="norte"/>
     <property name="needKey" type="int" value="0"/>
@@ -399,7 +671,7 @@
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="24" name="Puerta" type="Puerta" x="3567.58" y="12960" width="48" height="48">
+  <object id="24" name="Puerta" type="Puerta" x="4216" y="11856" width="48" height="48">
    <properties>
     <property name="dir" value="este"/>
     <property name="needKey" type="int" value="0"/>

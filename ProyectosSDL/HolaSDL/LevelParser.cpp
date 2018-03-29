@@ -15,6 +15,8 @@
 
 Level* LevelParser::parseLevel(const char *levelFile)
 {
+	zoom = Camera::Instance()->getZoom();
+
 	// create a tinyXML document and load the map xml
 	TiXmlDocument levelDocument;
 	levelDocument.LoadFile(levelFile);
@@ -33,9 +35,7 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
-	m_tileSize *= Camera::Instance()->getZoom();
-	/*m_width *= Camera::Instance()->getZoom();
-	m_height *= Camera::Instance()->getZoom();*/
+	m_tileSize *= zoom;
 
 	mapWidth = m_width * m_tileSize;
 	mapHeight = m_height * m_tileSize;
@@ -194,7 +194,7 @@ void LevelParser::parseTextures(TiXmlElement * pTextureRoot)
 }
 
 void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel) {
-	int zoom = Camera::Instance()->getZoom();
+	zoom = Camera::Instance()->getZoom();
 
 	// create an object layer
 	ObjectLayer* pObjectLayer = new ObjectLayer();

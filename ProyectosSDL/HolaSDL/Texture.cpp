@@ -75,15 +75,15 @@ void Texture::render(SDL_Renderer* renderer, int x, int y) const {
 	SDL_Rect dest;
 	dest.x = x;
 	dest.y = y;
-	dest.w = width_ * zoom;
-	dest.h = height_ * zoom;
+	dest.w = width_;
+	dest.h = height_;
 	render(renderer, dest);
 }
 
 void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 		SDL_Rect* clip) const {
 	if (texture_) {
-		SDL_Rect default_clip = { 0, 0, width_ * zoom, height_ * zoom };
+		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {
 			clip = &default_clip;
 		}
@@ -94,7 +94,7 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
 		SDL_Rect* clip) const {
 	if (texture_) {
-		SDL_Rect default_clip = { 0, 0, width_ * zoom, height_ * zoom };
+		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {
 			clip = &default_clip;
 		}
@@ -135,10 +135,10 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 	srcRect.w = width / zoom;
 	srcRect.h = height / zoom;
 
-	destRect.w = width * zoom;
-	destRect.h = height * zoom;
-	destRect.x = x * zoom;
-	destRect.y = y * zoom;
+	destRect.w = width;
+	destRect.h = height;
+	destRect.x = x;
+	destRect.y = y;
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, SDL_FLIP_NONE);

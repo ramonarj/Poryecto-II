@@ -18,6 +18,8 @@ void TileLayer::update(Level* pLevel, Uint32 time)
 
 void TileLayer::render()
 {
+	zoom = Camera::Instance()->getZoom();
+
 	int x, y, x2, y2 = 0;
 
 	x = m_position.getX() / m_tileSize;
@@ -48,7 +50,7 @@ void TileLayer::render()
 			id--;
 
 			//void Texture::drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer)
-			Texture::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, ((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX(), ((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY(), m_tileSize, m_tileSize,
+			Texture::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, (((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX()), ((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY(), m_tileSize, m_tileSize,
 				((id - (tileset.firstGridID - 1)) / tileset.numColumns), ((id - (tileset.firstGridID - 1)) % tileset.numColumns), Game::Instance()->getRenderer());
 		}
 	}

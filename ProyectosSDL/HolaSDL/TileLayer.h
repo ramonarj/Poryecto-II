@@ -39,4 +39,6 @@ private:
 	const std::vector<Tileset>& m_tilesets;
 
 	std::vector<std::vector<int>> m_tileIDs;
+
+	int zoom;
 };

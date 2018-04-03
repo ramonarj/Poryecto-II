@@ -73,6 +73,7 @@ private:
 	void addResourcesTexture();
 	void addResourcesMusic();
 	void addResourcesSoundEffects();
+	void addResourcesFonts();
 
 	void registerTypeItem();
 

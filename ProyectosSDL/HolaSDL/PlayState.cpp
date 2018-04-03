@@ -61,8 +61,6 @@ void PlayState::startState()
 	inventory->setActive(false);
 	stage_.push_back(inventory);
 
-	
-
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);
 	invtComp->addItem(palo);

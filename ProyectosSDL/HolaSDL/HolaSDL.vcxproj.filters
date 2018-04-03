@@ -207,6 +207,9 @@
     <ClCompile Include="Door.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="TextNote.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -366,6 +369,9 @@
       <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="TextNote.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

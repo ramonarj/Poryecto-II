@@ -135,6 +135,11 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("InventoryOpen", "sounds/Inventory.wav");
 }
 
+void Game::addResourcesFonts()
+{
+	resourceManager_->addFont("NES-Chimera", "fonts/NES-Chimera.ttf", 24);
+}
+
 void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));

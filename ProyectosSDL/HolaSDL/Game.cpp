@@ -48,7 +48,7 @@ void Game::start() {
 		handleInput(startTime);
 		stateMachine_.currentState()->update(startTime);
 		stateMachine_.currentState()->render(startTime);
-
+		stateMachine_.currentState()->removeEntities();
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
 			SDL_Delay(10 - frameTime);

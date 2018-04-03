@@ -16,7 +16,7 @@ public:
 	virtual void render(Entity* e, Uint32 time);
 	
 	bool fullChest();
-	void addItem(Entity * item);
+	bool addItem(Entity * item);
 
 	virtual bool checkItem(Entity* item);
 	//void renderItem(int i, Entity* e, SDL_Rect DestRect);

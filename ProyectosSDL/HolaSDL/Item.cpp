@@ -16,6 +16,9 @@ void Item::interact(Entity* e) {
 	e->setActive(false);
 	dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
 		->currentState())->inventory->getComponent<Inventory>()->addItem(e);
+	dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
+		->currentState())->removeEntity(e);
+
 }
 
 bool Item::loadDescription(const string& filename) {

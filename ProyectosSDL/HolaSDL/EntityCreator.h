@@ -47,7 +47,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
-		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(toString(type_))));
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_))));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	};
@@ -56,34 +56,34 @@ public:
 		switch (type)
 		{
 		case STICK:
-			i = new Weapon(type,toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case CROWBAR:
-			i = new Weapon(type, toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case PIPE:
-			i = new Weapon(type, toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case AXE:
-			i = new Weapon(type, toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			i = new FirstAid(toString(type));
+			i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
-			i = new InsulationTape(toString(type));
+			i = new InsulationTape(itemTypetoString(type));
 			break;
 		case KEY:
-			i = new Key(toString(type));
+			i = new Key(itemTypetoString(type));
 			break;
 		default:
-			i = new Item(type, toString(type));
+			i = new Item(type, itemTypetoString(type));
 			break;
 		}
 		
 		return i;
 	};
-	string toString(const ItemType type) const{
+	string itemTypetoString(const ItemType type) const{
 		string str;
 		switch (type)
 		{

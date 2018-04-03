@@ -14,10 +14,9 @@ Item::~Item()
 void Item::interact(Entity* e) {
 	std::cout << "You interacted with: " << type_ << std::endl;
 	e->setActive(false);
-	dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
-		->currentState())->inventory->getComponent<Inventory>()->addItem(e);
-	dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
-		->currentState())->removeEntity(e);
+	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
+			->currentState())->inventory->getComponent<Inventory>()->addItem(e))
+		Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(e);
 
 }
 

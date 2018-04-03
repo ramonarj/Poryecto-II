@@ -3,10 +3,10 @@
 
 unique_ptr<GameState> GameState::s_pInstance = nullptr;
 
-GameState::GameState(){ //Constructora
+GameState::GameState() { //Constructora
 }
 
-GameState::~GameState(){ //Destructora
+GameState::~GameState() { //Destructora
 	for (Entity* o : stage_)
 		delete o;
 }
@@ -15,7 +15,7 @@ void GameState::startState()
 {
 }
 
-void GameState::render(Uint32 time){ //Llama a los render components de todas las entities
+void GameState::render(Uint32 time) { //Llama a los render components de todas las entities
 	for (Entity* e : stage_)
 		e->render(time);
 }
@@ -55,4 +55,13 @@ void GameState::removeEntities() {
 		delete(e);
 	}
 	removedEntities_.clear();
+	
+	for (Entity* e : removedInteractibles_) {
+		removeInteractible(e);
+		removeStage(e);
+	}
+}
+
+void GameState::removeInteractibleOfStage(Entity* e) {
+	removedInteractibles_.push_back(e);
 }

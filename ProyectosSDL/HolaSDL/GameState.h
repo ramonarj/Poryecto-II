@@ -16,6 +16,7 @@ protected:
 	list<Entity*> characters_;
 	list<Entity*> doors_;
 	list<Entity*> removedEntities_;
+	list<Entity*> removedInteractibles_;
 
 	GameState();
 	static unique_ptr<GameState> s_pInstance;
@@ -25,7 +26,6 @@ protected:
 	void removeCharacter(Entity* e);
 	void removeDoor(Entity* e);
 public:
-	void removeEntities();
 
 	static GameState* Instance()
 	{
@@ -46,7 +46,9 @@ public:
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };
 	
+	void removeEntities();
 	void removeEntity(Entity* e);
+	void removeInteractibleOfStage(Entity* e);
 };
 
 

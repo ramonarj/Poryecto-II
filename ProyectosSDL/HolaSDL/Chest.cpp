@@ -92,9 +92,11 @@ bool Chest::fullChest()
 	return inventory.size() >= ChestTam;
 }
 
-void Chest::addItem(Entity * item)
+bool Chest::addItem(Entity * item)
 {
-	if (!fullChest()) { inventory.push_back(item); }
+	bool alm = false;
+	if (!fullChest()) { inventory.push_back(item); alm = true; }
+	return alm;
 }
 
 bool Chest::checkItem(Entity * item)

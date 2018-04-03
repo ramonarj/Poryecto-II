@@ -116,8 +116,9 @@ void Inventory::render(Entity* e, Uint32 time)
 }
 
 
-void Inventory::addItem(Entity * item)
+bool Inventory::addItem(Entity * item)
 {
+	bool alm = false;
 	bool equip = false;
 	if (equiped == nullptr)
 	{
@@ -125,6 +126,7 @@ void Inventory::addItem(Entity * item)
 		if (wep != nullptr) {
 			equiped = item;
 			equip = true;
+			alm = true;
 		}
 	}
 	if (!fullInventory() && !equip) {
@@ -132,7 +134,9 @@ void Inventory::addItem(Entity * item)
 		Key* k = item->getComponent<Key>();
 		if (k != nullptr)
 			keys.push_back(item);
+		alm = true;
 	}
+	return alm;
 }
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY

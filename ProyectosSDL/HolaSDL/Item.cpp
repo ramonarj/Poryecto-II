@@ -13,10 +13,12 @@ Item::~Item()
 
 void Item::interact(Entity* e) {
 	std::cout << "You interacted with: " << type_ << std::endl;
-	e->setActive(false);
+	
 	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
-			->currentState())->inventory->getComponent<Inventory>()->addItem(e))
+		->currentState())->inventory->getComponent<Inventory>()->addItem(e)) {
 		Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(e);
+		e->setActive(false);
+	}
 
 }
 

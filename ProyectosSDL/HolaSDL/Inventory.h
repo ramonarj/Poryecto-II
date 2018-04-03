@@ -30,7 +30,7 @@ public:
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
 
-	void addItem(Entity * item);
+	bool addItem(Entity * item);
 
 	//DEBUG METHODS
 	void Debug_Mode_On() { debug = true; };

@@ -37,7 +37,7 @@ protected:
 public:
 
 	//ADD AND DELETE OBJECTS TO THE INVENTORY
-	virtual void addItem(Entity* item) = 0;
+	virtual bool addItem(Entity* item) = 0;
 	void DeleteItem(int pos);
 	void ClearInventory();
 

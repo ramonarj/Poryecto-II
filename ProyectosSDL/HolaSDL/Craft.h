@@ -3,8 +3,10 @@
 #include <vector>
 #include "Texture.h"
 #include "ResourceManager.h"
-#include "Inventory.h"
 #include "Game.h"
+#include "ItemContainer.h"
+
+enum repCoords { WeaponSlot, InsulationTapeSlot };
 
 class Craft : public Component
 {
@@ -17,14 +19,24 @@ public:
 	virtual void render(Entity* e, Uint32 time);
 
 	Inventory* inv;
-	Item* Wep;
-	Item* cinta;
+	Entity* Wep = nullptr;
+	Entity* cinta = nullptr;
 	
 	SDL_Renderer* pRenderer = nullptr;
 	ResourceManager* resource = nullptr;
 
 	void repare();
 	void wepSwitch();
+	void setWep(Entity* e);
+	void setCinta(Entity* e);
 	
+	bool WepinSlot() { return Wep != nullptr; };
+	bool CintainSlot() { return cinta != nullptr; };
+
+	coord WepRepareSlot() { return repareSlots[WeaponSlot]; }
+	coord InsulationTapeRepareSlot() { return repareSlots[InsulationTapeSlot]; }
+private:
+	coord repareSlots[2] = { { 158, 540 },{ 271, 540 } };
+	void renderItem(Entity* e, coord pos);
 };
 

@@ -36,8 +36,6 @@ bool ItemContainer::empty()
 
 void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 {
-
-
 	if (inventory[i]->getComponent<InsulationTape>())
 	{
 		resource->getTexture("insulationTape")->render(pRenderer, DestRect);

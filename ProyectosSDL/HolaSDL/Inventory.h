@@ -8,12 +8,13 @@
 
 using namespace std;
 
-
+class Craft;
 class Inventory : public ItemContainer
 {
 public:
 	Entity * equiped;
 	Chest* cofre = nullptr;
+	Craft* craftWin = nullptr;
 	coord EquippedCoord = { 750, 343 };	
 	const int InventoryTam = 4;
 
@@ -22,7 +23,7 @@ public:
 
 protected:
 	bool debug;
-
+	
 public:
 
 	virtual void update(Entity* e, Uint32 time);

@@ -1,7 +1,7 @@
 #include "Inventory.h"
 #include "Game.h"
 #include "FirstAid.h"
-
+#include "Craft.h"
 
 Inventory::Inventory()
 {
@@ -58,6 +58,25 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 							this->DeleteItem(slotClicked);
 						}
 					}
+			}
+
+			else if (craftMode) {
+				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
+				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + 50)//Cambiar
+					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + 50)
+					&& inventory[slotClicked]->getComponent<Weapon>() && !craftWin->WepinSlot())
+				{
+					craftWin->setWep(inventory[slotClicked]);
+					this->DeleteItem(slotClicked);
+				}
+					
+				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x && event.button.x <= craftWin->InsulationTapeRepareSlot().x + 50)//Cambiar
+					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y && event.button.y <= craftWin->InsulationTapeRepareSlot().y + 50)
+					&&inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
+						craftWin->setCinta(inventory[slotClicked]);
+						this->DeleteItem(slotClicked);
+				}
+				
 			}
 			clicked = false;
 		}

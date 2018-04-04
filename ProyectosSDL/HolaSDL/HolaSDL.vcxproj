@@ -79,6 +79,7 @@
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ControllerInputComponent.cpp" />
+    <ClCompile Include="Craft.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ControllerInputComponent.h" />
+    <ClInclude Include="Craft.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EntityCreator.h" />

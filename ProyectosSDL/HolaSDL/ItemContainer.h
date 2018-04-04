@@ -3,8 +3,8 @@
 #include <vector>
 #include "Texture.h"
 #include "ResourceManager.h"
-#include "Weapon.h"
-#include "InsulationTape.h"
+
+
 
 
 using namespace std;
@@ -52,8 +52,8 @@ public:
 
 protected:
 	
-	SDL_Renderer* pRenderer;
-	ResourceManager* resource;
+	SDL_Renderer* pRenderer = nullptr;
+	ResourceManager* resource = nullptr;
 
 	//CHECK METHODS
 	virtual bool checkItem(Entity* item) = 0;

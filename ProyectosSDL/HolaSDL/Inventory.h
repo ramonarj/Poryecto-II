@@ -14,8 +14,7 @@ class Inventory : public ItemContainer
 public:
 	Entity * equiped;
 	Chest* cofre = nullptr;
-	coord EquippedCoord = { 750, 343 };
-	void setChestMode(bool a) { chestMode = a; }
+	coord EquippedCoord = { 750, 343 };	
 	const int InventoryTam = 4;
 
 	Inventory();
@@ -40,11 +39,14 @@ public:
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	virtual bool fullInventory();
+	void setChestMode(bool a) { chestMode = a; }
+	void setCraftMode(bool a) { craftMode = a; }
 	//void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	Entity* currentWeapon();
 
 	bool chestMode = false;
+	bool craftMode = false;
 
 	//GETS
 	vector<Entity*> getKeys() { return keys; };

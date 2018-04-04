@@ -198,9 +198,6 @@
     <ClCompile Include="MenuState.cpp">
       <Filter>Archivos de código fuente\States</Filter>
     </ClCompile>
-    <ClCompile Include="Chest.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Key.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -209,6 +206,12 @@
     </ClCompile>
     <ClCompile Include="TextNote.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Chest.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Craft.cpp">
+      <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -362,9 +365,6 @@
     <ClInclude Include="MenuState.h">
       <Filter>Archivos de encabezado\States</Filter>
     </ClInclude>
-    <ClInclude Include="Chest.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Key.h">
       <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
@@ -373,6 +373,12 @@
     </ClInclude>
     <ClInclude Include="TextNote.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Chest.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Craft.h">
+      <Filter>Archivos de encabezado\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

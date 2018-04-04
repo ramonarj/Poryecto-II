@@ -3,6 +3,7 @@
 #include "LevelParser.h"
 #include "Inventory.h"
 #include "Chest.h"
+#include "Craft.h"
 #include <memory>
 
 class PlayState: public GameState {
@@ -22,6 +23,8 @@ private:
 public:
 	Entity* inventory;
 	Entity* chest;
+	Entity* craft;
+
 	static PlayState* Instance()
 	{
 		if (s_pInstance.get() == nullptr)

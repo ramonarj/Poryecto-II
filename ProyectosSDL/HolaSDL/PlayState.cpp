@@ -49,6 +49,12 @@ void PlayState::startState()
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->use(palo);
 
+	craft = new Entity(0,0);
+	Craft* craftComp = new Craft();
+	craft->addComponent(craftComp);
+	craft->setActive(false);
+	stage_.push_back(craft);
+
 	chest = new Entity(0, 0);
 	Chest* chestComp = new Chest();
 	chest->addComponent(chestComp);

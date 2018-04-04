@@ -106,6 +106,7 @@ void Game::addResourcesTexture()
 
 	//Items
 	resourceManager_->addTexture("Firstaid", "images/Botiquin.png");
+	resourceManager_->addTexture("insulationTape", "images/cintaPrueba.png");
 	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
 	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
 	resourceManager_->addTexture("Key", "images/key.png");
@@ -114,6 +115,7 @@ void Game::addResourcesTexture()
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
+	resourceManager_->addTexture("Craft", "images/Inventario/FullscreenVersions/Crafting_Full.png");
 
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");

@@ -29,7 +29,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			while (i< int(inventory.size()) && !clicked)
 			{
 				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
-					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba //cambio
 				{
 					clicked = true;
 				}
@@ -43,7 +43,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
 			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
-				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
+				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50)) //cambio
 			{
 				equipWeapon(slotClicked);
 			}
@@ -62,6 +62,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			clicked = false;
 		}
 	}
+	
 }
 
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta

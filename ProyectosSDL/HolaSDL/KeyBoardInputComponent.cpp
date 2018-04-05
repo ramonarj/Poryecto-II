@@ -134,6 +134,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			craft->setActive(!craft->isActive());
 			craftPressed = true;
 			crftOpen = !crftOpen;
+			if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
 			inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 			//SOUND 
 			Game::Instance()->getResourceManager()->getSound("Inventory")->play();

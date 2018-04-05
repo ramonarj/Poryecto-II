@@ -16,6 +16,15 @@ void Craft::update(Entity * e, Uint32 time)
 
 void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+	if (event.type == SDL_MOUSEBUTTONDOWN) {
+		if (event.button.button == SDL_BUTTON_LEFT) {
+			if ((event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)//cambiar
+				&& (event.button.y >= RepareButton.y && event.button.y <= RepareButton.y + 150))
+				{
+					repare();
+				}			
+		}
+	}
 }
 
 void Craft::render(Entity * e, Uint32 time)
@@ -41,6 +50,12 @@ void Craft::render(Entity * e, Uint32 time)
 
 void Craft::repare()
 {
+	Wep->getComponent<Weapon>()->repare(REPARE_VAR);
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
+	inv->addItem(Wep);
+	Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(cinta);
+	Wep = nullptr;
+	cinta = nullptr;
 }
 
 void Craft::wepSwitch()
@@ -89,4 +104,18 @@ void Craft::setWep(Entity* e)
 void Craft::setCinta(Entity* e)
 {
 	cinta = e;
+}
+
+void Craft::restoreObjects()
+{
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
+
+	if(Wep != nullptr) { 
+		inv->addItem(Wep); 
+		Wep = nullptr;
+	}
+	if (cinta != nullptr) { 
+		inv->addItem(cinta); 
+		cinta = nullptr;
+	}
 }

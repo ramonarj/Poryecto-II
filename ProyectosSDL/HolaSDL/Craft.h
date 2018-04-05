@@ -18,7 +18,7 @@ public:
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
 
-	Inventory* inv;
+	Inventory* inv = nullptr;
 	Entity* Wep = nullptr;
 	Entity* cinta = nullptr;
 	
@@ -29,14 +29,17 @@ public:
 	void wepSwitch();
 	void setWep(Entity* e);
 	void setCinta(Entity* e);
+	void restoreObjects();
 	
 	bool WepinSlot() { return Wep != nullptr; };
 	bool CintainSlot() { return cinta != nullptr; };
 
 	coord WepRepareSlot() { return repareSlots[WeaponSlot]; }
 	coord InsulationTapeRepareSlot() { return repareSlots[InsulationTapeSlot]; }
+	coord RepareButton = { 400, 490 };
 private:
 	coord repareSlots[2] = { { 158, 540 },{ 271, 540 } };
 	void renderItem(Entity* e, coord pos);
+	const int REPARE_VAR = 4;
 };
 

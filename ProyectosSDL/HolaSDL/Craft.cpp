@@ -16,15 +16,38 @@ void Craft::update(Entity * e, Uint32 time)
 
 void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
-	if (event.type == SDL_MOUSEBUTTONDOWN) {
-		if (event.button.button == SDL_BUTTON_LEFT) {
-			if ((event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)//cambiar
-				&& (event.button.y >= RepareButton.y && event.button.y <= RepareButton.y + 150))
-				{
+	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)
+		&& (event.button.y >= RepareButton.y && event.button.y <= RepareButton.y + 150)) {
+				if(Wep != nullptr && cinta != nullptr)
 					repare();
-				}			
-		}
 	}
+	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= craftSlotsclick[0].x && event.button.x <= craftSlotsclick[0].x + craftSlotsclick[0].w)
+		&& (event.button.y >= craftSlotsclick[0].y && event.button.y <= craftSlotsclick[0].y + craftSlotsclick[0].h)) {
+		cout << "\nse necesita: venda, alcohol o dos quimicos genericos\n";
+	}
+	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= craftSlotsclick[1].x && event.button.x <= craftSlotsclick[1].x + craftSlotsclick[1].w)
+		&& (event.button.y >= craftSlotsclick[1].y && event.button.y <= craftSlotsclick[1].y + craftSlotsclick[1].h)) {
+		cout << "\nse necesita quimico para acido x2\n";
+	}
+	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= craftSlotsclick[2].x && event.button.x <= craftSlotsclick[2].x + craftSlotsclick[2].w)
+		&& (event.button.y >= craftSlotsclick[2].y && event.button.y <= craftSlotsclick[2].y + craftSlotsclick[2].h)) {
+		cout << "\nno lo se\n";
+	}
+	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= craftSlotsclick[3].x && event.button.x <= craftSlotsclick[3].x + craftSlotsclick[3].w)
+		&& (event.button.y >= craftSlotsclick[3].y && event.button.y <= craftSlotsclick[3].y + craftSlotsclick[3].h)) {
+		cout << "\nno lo se\n";
+	}
+	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
+		(event.button.x >= craftButton.x && event.button.x <= craftButton.x + craftButton.w)
+		&& (event.button.y >= craftButton.y && event.button.y <= craftButton.y + craftButton.h)) {
+		cout << "\nla iglesia no te mola? pum pistola\n";
+	}
+
 }
 
 void Craft::render(Entity * e, Uint32 time)
@@ -45,6 +68,12 @@ void Craft::render(Entity * e, Uint32 time)
 
 	renderItem(Wep, repareSlots[WeaponSlot]);
 	renderItem(cinta, repareSlots[InsulationTapeSlot]);
+
+	//RENDER DE LOS OBJETOS A CRAFTEAR
+	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
+	resource->getTexture("acid")->render(pRenderer, craftSlots[1]);
+
+
 
 }
 

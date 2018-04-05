@@ -111,6 +111,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
 	resourceManager_->addTexture("Key", "images/key.png");
 	resourceManager_->addTexture("Axe", "images/Hacha.png");
+	resourceManager_->addTexture("acid", "images/acido.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");

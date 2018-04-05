@@ -36,7 +36,11 @@ public:
 
 	coord WepRepareSlot() { return repareSlots[WeaponSlot]; }
 	coord InsulationTapeRepareSlot() { return repareSlots[InsulationTapeSlot]; }
+
 	coord RepareButton = { 400, 490 };
+	SDL_Rect craftSlots[4] = { { 129,100, 50,50 }, { 129,195, 50,50 }, { 129,290, 50,50 }, { 129,385, 50,50 } };
+	SDL_Rect craftSlotsclick[4] = { { 110, 83, 90, 90 },{ 110, 178, 90, 90 },{ 110, 273, 90, 90 },{ 110, 378, 90, 90 } };
+	SDL_Rect craftButton = { 225,370, 370,90 };
 private:
 	coord repareSlots[2] = { { 158, 540 },{ 271, 540 } };
 	void renderItem(Entity* e, coord pos);

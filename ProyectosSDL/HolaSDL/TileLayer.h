@@ -8,6 +8,7 @@
 class TileLayer : public Layer
 {
 public:
+
 	TileLayer(int tileSize, int mapWidth, int mapHeight, const
 		std::vector<Tileset>& tilesets);
 	virtual void update(Level* pLevel, Uint32 time);
@@ -25,7 +26,9 @@ public:
 	Tileset getTilesetByID(int tileID);
 
 	const Vector2D getPosition() { return m_position; }
+
 private:
+
 	int m_numColumns;
 	int m_numRows;
 	int m_tileSize;
@@ -39,4 +42,8 @@ private:
 	const std::vector<Tileset>& m_tilesets;
 
 	std::vector<std::vector<int>> m_tileIDs;
+
+	int zoom;
+
+	Entity* player;
 };

@@ -1,188 +1,1038 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="500" tilewidth="24" tileheight="24" nextobjectid="35">
- <tileset firstgid="1" name="ParedesSuelo" tilewidth="24" tileheight="24" spacing="0" margin="0" tilecount="195" columns="36">
-  <image source="levels/Tilesheet.png" width="864" height="384"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="159">
+ <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
+  <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
- <layer name="Suelo" width="500" height="500">
+ <tileset firstgid="577" name="ascensores" tilewidth="20" tileheight="20" tilecount="64" columns="16">
+  <image source="ascensores.png" width="320" height="80"/>
+ </tileset>
+ <tileset firstgid="641" name="Puertas" tilewidth="20" tileheight="20" tilecount="210" columns="14">
+  <image source="Puertas.png" width="281" height="300"/>
+ </tileset>
+ <tileset firstgid="851" name="Pared baño" tilewidth="20" tileheight="20" tilecount="60" columns="6">
+  <image source="Pared baño.png" width="120" height="200"/>
+ </tileset>
+ <layer name="Suelo" width="600" height="600">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="Collides" width="500" height="500">
+ <layer name="Puertas" width="600" height="600">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="Collides" width="600" height="600">
   <properties>
    <property name="collidable" type="int" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Puertas">
-  <object id="17" name="Puerta" type="Puerta" x="768" y="544" width="48" height="48">
-   <properties>
-    <property name="dir" value="sur"/>
-    <property name="needKey" type="int" value="1"/>
-    <property name="numKey" type="int" value="1"/>
-    <property name="numDoor" type="int" value="1"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="18" name="Puerta" type="Puerta" x="768" y="1112" width="48" height="48">
-   <properties>
-    <property name="dir" value="norte"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="1"/>
-    <property name="numDoor" type="int" value="1"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="21" name="Puerta" type="Puerta" x="312" y="1744" width="48" height="48">
-   <properties>
-    <property name="dir" value="sur"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="2"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="22" name="Puerta" type="Puerta" x="288" y="2768" width="48" height="48">
-   <properties>
-    <property name="dir" value="norte"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="2"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="24" name="Puerta" type="Puerta" x="1024" y="3480" width="48" height="48">
-   <properties>
-    <property name="dir" value="este"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="3"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="25" name="Puerta" type="Puerta" x="1400" y="3168" width="48" height="48">
+ <objectgroup name="PuertasZona5">
+  <object id="142" name="Puerta" type="Puerta" x="11206" y="1779" width="40" height="22">
    <properties>
     <property name="dir" value="oeste"/>
     <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="47"/>
     <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="3"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="26" name="Puerta" type="Puerta" x="2366" y="3168" width="48" height="48">
-   <properties>
-    <property name="dir" value="este"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>	
-    <property name="numDoor" type="int" value="4"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="27" name="Puerta" type="Puerta" x="2888" y="2976" width="48" height="48">
+  <object id="143" name="Puerta" type="Puerta" x="11206" y="2559" width="40" height="22">
    <properties>
     <property name="dir" value="oeste"/>
     <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="48"/>
     <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="28" name="Puerta" type="Puerta" x="2256" y="3128" width="48" height="48">
+  <object id="144" name="Puerta" type="Puerta" x="11206" y="3279" width="40" height="22">
    <properties>
-    <property name="dir" value="norte"/>
+    <property name="dir" value="oeste"/>
     <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>	
-    <property name="numDoor" type="int" value="5"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="29" name="Puerta" type="Puerta" x="2376" y="2576" width="48" height="48">
-   <properties>
-    <property name="dir" value="norte"/>
-    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="49"/>
     <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="30" name="Puerta" type="Puerta" x="2376" y="2704" width="48" height="48">
+  <object id="145" name="Puerta" type="Puerta" x="11206" y="4059" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="50"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="146" name="Puerta" type="Puerta" x="11234" y="639" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="47"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="147" name="Puerta" type="Puerta" x="11234" y="739" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="48"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="148" name="Puerta" type="Puerta" x="11234" y="839" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="49"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="149" name="Puerta" type="Puerta" x="11234" y="939" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="50"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="150" name="Puerta" type="Puerta" x="8580" y="1934" width="40" height="40">
    <properties>
     <property name="dir" value="sur"/>
     <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="51"/>
     <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="5"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="31" name="Puerta" type="Puerta" x="2856" y="2152" width="48" height="48">
-   <properties>
-    <property name="dir" value="sur"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="6"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="32" name="Puerta" type="Puerta" x="2304" y="1072" width="48" height="48">
-   <properties>
-    <property name="dir" value="sur"/>
-    <property name="needKey" type="int" value="0"/>
-    <property name="numKey" type="int" value="2"/>	
-    <property name="numDoor" type="int" value="7"/>
-    <property name="textureID" value="puerta"/>
-   </properties>
-  </object>
-  <object id="33" name="Puerta" type="Puerta" x="3360" y="1544" width="48" height="48">
+  <object id="151" name="Puerta" type="Puerta" x="10860" y="926" width="40" height="40">
    <properties>
     <property name="dir" value="norte"/>
     <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="51"/>
     <property name="numKey" type="int" value="2"/>
-    <property name="numDoor" type="int" value="7"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="152" name="Puerta" type="Puerta" x="8794" y="1879" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="53"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="153" name="Puerta" type="Puerta" x="8794" y="1819" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="52"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="154" name="Puerta" type="Puerta" x="8966" y="3059" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="52"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="155" name="Puerta" type="Puerta" x="8966" y="3799" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="53"/>
+    <property name="numKey" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
  </objectgroup>
+ <objectgroup name="PuertasZona4">
+  <object id="120" name="Puerta" type="Puerta" x="8800" y="10006" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="42"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="121" name="Puerta" type="Puerta" x="8540" y="9414" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="42"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="122" name="Puerta" type="Puerta" x="8279" y="9826" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="43"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="123" name="Puerta" type="Puerta" x="8239" y="9826" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="44"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="124" name="Puerta" type="Puerta" x="6519" y="9094" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="44"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="125" name="Puerta" type="Puerta" x="7539" y="9094" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="43"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="138" name="Puerta" type="Puerta" x="10279" y="5986" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="46"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="139" name="Puerta" type="Puerta" x="10239" y="5986" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="45"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="140" name="Puerta" type="Puerta" x="10039" y="5154" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="46"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="141" name="Puerta" type="Puerta" x="9019" y="5154" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="45"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="PuertasZona3">
+  <object id="82" name="Puerta" type="Puerta" x="666" y="8799" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="28"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="83" name="Puerta" type="Puerta" x="665.97" y="10319" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="29"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="85" name="Puerta" type="Puerta" x="2914" y="9559" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="28"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="86" name="Puerta" type="Puerta" x="2914" y="9759" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="29"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="90" name="Puerta" type="Puerta" x="1674" y="8079" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="30"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="92" name="Puerta" type="Puerta" x="1674" y="8799" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="31"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="93" name="Puerta" type="Puerta" x="1674" y="9459" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="32"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="94" name="Puerta" type="Puerta" x="1674" y="10319" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="33"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="95" name="Puerta" type="Puerta" x="3126" y="9459" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="30"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="96" name="Puerta" type="Puerta" x="3126" y="9559" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="31"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="97" name="Puerta" type="Puerta" x="3126" y="9659" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="32"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="98" name="Puerta" type="Puerta" x="3126" y="9759" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="33"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="100" name="Puerta" type="Puerta" x="3386" y="9559" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="37"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="101" name="Puerta" type="Puerta" x="3174" y="9559" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="35"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="102" name="Puerta" type="Puerta" x="3174" y="9459" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="34"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="103" name="Puerta" type="Puerta" x="3386" y="9759" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="38"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="104" name="Puerta" type="Puerta" x="3174" y="9759" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="36"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="106" name="Puerta" type="Puerta" x="3926" y="8099" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="34"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="107" name="Puerta" type="Puerta" x="3926" y="8819" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="35"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="108" name="Puerta" type="Puerta" x="4934" y="10339" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="38"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="109" name="Puerta" type="Puerta" x="3926" y="10339" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="36"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="110" name="Puerta" type="Puerta" x="4934" y="8819" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="37"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="111" name="Puerta" type="Puerta" x="719" y="8174" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="39"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="112" name="Puerta" type="Puerta" x="1639" y="8174" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="40"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="113" name="Puerta" type="Puerta" x="719" y="8766" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="39"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="114" name="Puerta" type="Puerta" x="1639" y="8766" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="40"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="115" name="Puerta" type="Puerta" x="3979" y="8194" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="41"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="116" name="Puerta" type="Puerta" x="3979" y="8786" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="41"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="PuertasZona2">
+  <object id="70" name="Puerta" type="Puerta" x="2959" y="6334" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="23"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="71" name="Puerta" type="Puerta" x="3100" y="6334" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="24"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="72" name="Puerta" type="Puerta" x="1679" y="6926" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="22"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="73" name="Puerta" type="Puerta" x="2599" y="7106" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="23"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="74" name="Puerta" type="Puerta" x="4180" y="6766" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="24"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="75" name="Puerta" type="Puerta" x="2774" y="5940" width="40" height="40">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="25"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="76" name="Puerta" type="Puerta" x="2686" y="5940" width="40" height="40">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="26"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="77" name="Puerta" type="Puerta" x="2054" y="5380" width="40" height="40">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="26"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="78" name="Puerta" type="Puerta" x="2866" y="5020" width="40" height="40">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="25"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="PuertasZona1">
+  <object id="40" name="Puerta" type="Puerta" x="1740" y="534" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="10"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="42" name="Puerta" type="Puerta" x="599" y="514" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="8"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="43" name="Puerta" type="Puerta" x="959" y="1014" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="9"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="44" name="Puerta" type="Puerta" x="899" y="1526" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="8"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="45" name="Puerta" type="Puerta" x="939" y="1526" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="9"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="46" name="Puerta" type="Puerta" x="1080" y="1526" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="10"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="47" name="Puerta" type="Puerta" x="580" y="1986" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="11"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="48" name="Puerta" type="Puerta" x="960" y="2806" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="12"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="49" name="Puerta" type="Puerta" x="1546" y="2460" width="40" height="40">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="13"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="50" name="Puerta" type="Puerta" x="900" y="1593.67" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="11"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="51" name="Puerta" type="Puerta" x="1060" y="1594" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="12"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="52" name="Puerta" type="Puerta" x="1074" y="2880" width="40" height="40">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="13"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="53" name="Puerta" type="Puerta" x="2920" y="746" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="14"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="54" name="Puerta" type="Puerta" x="2560" y="1706" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="15"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="55" name="Puerta" type="Puerta" x="2420" y="1494" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="14"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="56" name="Puerta" type="Puerta" x="3900" y="494" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="15"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="57" name="Puerta" type="Puerta" x="2499" y="1774" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="16"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="58" name="Puerta" type="Puerta" x="2419" y="2086" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="17"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="59" name="Puerta" type="Puerta" x="2579" y="2086" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="18"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="60" name="Puerta" type="Puerta" x="2319" y="3186" width="22" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="16"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="61" name="Puerta" type="Puerta" x="1639" y="3414" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="17"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="62" name="Puerta" type="Puerta" x="2839" y="3694" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="18"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="63" name="Puerta" type="Puerta" x="3826" y="1299" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="19"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="64" name="Puerta" type="Puerta" x="2754" y="1779" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="19"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="65" name="Puerta" type="Puerta" x="2754" y="1879" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="20"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="66" name="Puerta" type="Puerta" x="3826" y="1939" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="20"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="67" name="Puerta" type="Puerta" x="3826" y="2659" width="40" height="22">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="21"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="68" name="Puerta" type="Puerta" x="2754" y="2079" width="40" height="22">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="21"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="69" name="Puerta" type="Puerta" x="2899" y="6334" width="22" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="22"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Puertas">
+  <object id="17" name="Puerta" type="Puerta" x="1420" y="1774" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="1"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="18" name="Puerta" type="Puerta" x="3100" y="5906" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="1"/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="21" name="Puerta" type="Puerta" x="2720" y="6434" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="2"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="22" name="Puerta" type="Puerta" x="2900" y="9286" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="2"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="24" name="Puerta" type="Puerta" x="3514" y="9880" width="40" height="40">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="3"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="27" name="Puerta" type="Puerta" x="9826" y="6120" width="40" height="40">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="4"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="29" name="Puerta" type="Puerta" x="10760" y="994" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="6"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="30" name="Puerta" type="Puerta" x="8600" y="7454" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="5"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="32" name="Puerta" type="Puerta" x="2700" y="2214" width="40" height="40">
+   <properties>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="7"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="33" name="Puerta" type="Puerta" x="11180" y="486" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="7"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="117" name="Puerta" type="Puerta" x="8208" y="10036" width="48" height="48">
+   <properties>
+    <property name="dir" value="oeste"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="3"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="118" name="Puerta" type="Puerta" x="9054" y="10040" width="40" height="40">
+   <properties>
+    <property name="dir" value="este"/>
+    <property name="needKey" type="int" value="0"/>
+    <property name="numDoor" type="int" value="4"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="119" name="Puerta" type="Puerta" x="8960" y="10006" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="5"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="126" name="Puerta" type="Puerta" x="8600" y="7326" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="6"/>
+    <property name="numKey" type="int" value="2"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object id="35" name="Key" type="Key" x="1413.34" y="1585.21" width="20" height="27.3333">
+   <properties>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="36" name="Crowbar" type="Crowbar" x="1934.34" y="1746.21" width="23" height="27">
+   <properties>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="37" name="Crowbar" type="Crowbar" x="1141.66" y="1562.79" width="24" height="34">
+   <properties>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="38" name="Axe" type="Axe" x="1742" y="1746" width="23" height="27">
+   <properties>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="33"/>
+   </properties>
+  </object>
+  <object id="39" name="Firstaid" type="Firstaid" x="1419.33" y="1682.33" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="32"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="Characters">
-  <object id="2" name="Player" type="Player" x="509.093" y="290.905" width="32" height="50">
+  <object id="2" name="Player" type="Player" x="1233.09" y="1570.9" width="21" height="31">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="5"/>
-    <property name="textureHeight" type="int" value="45"/>
+    <property name="textureHeight" type="int" value="32"/>
     <property name="textureID" value="player"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
-  <object id="7" name="Item" type="Item" x="366.667" y="281.909" width="32" height="50">
-   <properties>
-    <property name="textureHeight" type="int" value="50"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="50"/>
-   </properties>
-  </object>
-  <object id="8" name="Enemy" type="Enemy" x="206.242" y="270.727" width="32" height="50">
+  <object id="8" name="Enemy" type="Enemy" x="972.24" y="1565.06" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
-    <property name="textureHeight" type="int" value="50"/>
+    <property name="textureHeight" type="int" value="32"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
-   </properties>
-  </object>
-  <object id="16" name="Item" type="Item" x="1508" y="499" width="32" height="50">
-   <properties>
-    <property name="textureHeight" type="int" value="50"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="50"/>
-   </properties>
-  </object>
-  <object id="34" name="Key" type="Key" x="771" y="305" width="32" height="50">
-   <properties>
-    <property name="numKey" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="20"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="35"/>
+    <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
  </objectgroup>

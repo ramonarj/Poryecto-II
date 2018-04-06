@@ -116,6 +116,7 @@
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="TextNote.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="tinystr.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="sdl_includes.h" />
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="TextNote.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="tinystr.h" />

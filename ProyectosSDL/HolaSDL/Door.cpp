@@ -18,7 +18,9 @@ void Door::interact(Entity * e)
 	player = PlayState::Instance()->getPlayer();
 
 	if (needKey_)
+	{
 		setNeedKey();
+	}
 	else
 	{
 		if (canTeleport())
@@ -47,6 +49,8 @@ void Door::interact(Entity * e)
 						else if (doorComp->getOri() == "oeste")
 							player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
 							(*it)->getPosition().getY()));
+
+						doorComp->keyFalse();
 
 						puertEncontrada = true;
 					}
@@ -91,9 +95,14 @@ void Door::setNeedKey()
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
 			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_)
-				needKey_ = false;
+				keyFalse();
 			else
 				i++;
 		}
 	}
+}
+
+void Door::keyFalse()
+{
+	needKey_ = false;
 }

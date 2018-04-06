@@ -18,26 +18,6 @@ public:
 	// Images -- each image file is loaded as an instance of Texture
 	//
 	enum ImageId {
-		Blank,
-		TennisBall,
-		KeyBoardIcon,
-		MouseIcon,
-		AIIcon,
-		SpaceShips,
-		Airplanes,
-		Star,
-		Inventory,
-		PruebaAnim,
-		PruebaMedicKit,
-		Crowbar,
-		stick, 
-		PruebaAtaque,
-		SpriteSheetElise,
-		FondoMenu,
-		BotonNuevaPartida,
-		BotonExit,
-		Enemigo1,
-		Key
 	};
 
 	// Text Messages - each is loaded as an instance of a texture
@@ -56,14 +36,12 @@ public:
 	// Music -- each file is loaded as an instance of Music
 	//
 	enum MusicId {
-		Beat, Cheer, Boooo
 	};
 
 
 	// Sound Effects -- each file is loaded as an instance of SoundEffect
 	//
 	enum SoundEffectId {
-		Wall_Hit, Paddle_Hit
 	};
 
 private:

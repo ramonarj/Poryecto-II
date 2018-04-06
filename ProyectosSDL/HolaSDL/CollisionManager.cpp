@@ -4,7 +4,6 @@ unique_ptr<CollisionManager> CollisionManager::s_pInstance = nullptr;
 
 void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
 {
-	int zoom = Camera::Instance()->getZoom();
 	for (TileLayer* it : collisionLayers)
 	{
 		TileLayer* pTileLayer = it;
@@ -14,16 +13,16 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 
 		int x, y, tileColumn, tileRow, tileid = 0;
 
-		int tileSize = pTileLayer->getTileSize() / zoom;
+		int tileSize = pTileLayer->getTileSize();
 
 		x = layerPos.getX() / tileSize;
 		y = layerPos.getY() / tileSize;
 
 		for (Entity* c : characters)
 		{
-			Vector2D pos(Vector2D(c->getPosition().getX() / zoom, c->getPosition().getY() / zoom));
-			double width = c->getWidth() / zoom;
-			double height = c->getHeight() / zoom;
+			Vector2D pos(Vector2D(c->getPosition().getX(), c->getPosition().getY()));
+			double width = c->getWidth();
+			double height = c->getHeight();
 
 
 			if (c->getVelocity().getX() >  0 || c->getVelocity().getY() > 0)
@@ -93,6 +92,9 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setX(c->getPosition().getX() - c->getVelocity().getX());
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
+
+				tiles[tileRow + y][tileColumn + x] = -1;
+				it->setTileIDs(tiles);
 			}
 		}
 	}

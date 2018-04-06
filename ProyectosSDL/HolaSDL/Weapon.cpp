@@ -19,13 +19,13 @@ void Weapon::weaponInit(ItemType type) {
 	case STICK:
 		maxHits_ = 5;
 		break;
-	case LEVER:
+	case CROWBAR:
 		maxHits_ = 10;
 		break;
 	case PIPE:
 		maxHits_ = 15;
 		break;
-	case AX:
+	case AXE:
 		maxHits_ = 20;
 		damage_ = 2;
 		break;

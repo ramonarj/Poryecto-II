@@ -17,31 +17,22 @@ public:
 		return s_pInstance.get();
 	}
 
-
 	//Texture();
 	Texture(SDL_Renderer* renderer, std::string fileName);
-	Texture(SDL_Renderer* renderer, std::string text, const Font& font,
-			const SDL_Color color);
+	Texture(SDL_Renderer* renderer, std::string text, const Font& font,	const SDL_Color color);
 	virtual ~Texture();
 
 	int getWidth();
 	int getHeight();
 	bool loadFromImg(SDL_Renderer* renderer, std::string fileName);
-	bool loadFromText(SDL_Renderer * pRender, std::string texto,
-			Font const& font, SDL_Color color = { 0, 0, 0, 255 });
+	bool loadFromText(SDL_Renderer * pRender, std::string texto, Font const& font, SDL_Color color = { 0, 0, 0, 255 });
 	void render(SDL_Renderer* renderer, int x, int y) const;
-	void render(SDL_Renderer* renderer, SDL_Rect const& dest, SDL_Rect* clip =
-			nullptr) const;
-	void render(SDL_Renderer* renderer, SDL_Rect const& dest, double angle,
-			SDL_Rect* clip = nullptr) const;
+	void render(SDL_Renderer* renderer, SDL_Rect const& dest, SDL_Rect* clip = nullptr) const;
+	void render(SDL_Renderer* renderer, SDL_Rect const& dest, double angle,	SDL_Rect* clip = nullptr) const;
 
 	//Para el mapa
-	bool load(string fileName, std::string
-		id, SDL_Renderer* pRenderer);
-	void drawTile(string id, int margin, int
-		spacing, int x, int y, int width, int height, int currentRow,
-		int currentFrame, SDL_Renderer *pRenderer);
-
+	bool load(string fileName, std::string id, SDL_Renderer* pRenderer);
+	void drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer);
 	void close();
 
 private:

@@ -5,6 +5,7 @@
 #include <string>
 #include "Texture.h"
 #include "Music.h"
+#include "Font.h"
 #include "SoundEffect.h"
 
 using namespace std;
@@ -17,7 +18,8 @@ private:
 	Game* game_;
 	map <string, Texture*> textures_;
 	map <string, Music*> music_;
-	map<string, SoundEffect*> sounds_;
+	map <string, SoundEffect*> sounds_;
+	map <string, Font*> fonts_;
 
 public:
 	ResourceManager(Game* game);
@@ -34,6 +36,10 @@ public:
 	//Sounds
 	void addSound(string id, string filepath);
 	SoundEffect* getSound(string id);
+
+	//Fonts
+	void addFont(string id, string filepath, int fontSize);
+	Font* getFont(string id);
 
 };
 

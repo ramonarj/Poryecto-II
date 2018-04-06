@@ -8,7 +8,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 
 	//Se añade MenuScene
-	//resourceManager_->getMusic("Menu")->play();
+	//getResources()->getMusic(Resources::Menu)->play();
 	stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(MenuState::Instance());
 
@@ -21,26 +21,16 @@ Game::~Game() {
 
 void Game::initGame() 
 {
-	gameObjectFactory->registerType("Player", new PlayerCreator());
-	gameObjectFactory->registerType("Enemy", new EnemyCreator());
-	gameObjectFactory->registerType("Puerta", new DoorCreator());
-	registerTypeItem();
+	//Añadir las factorias de las Entidades
+	addGameObjectsFactory();
 
 	//Initializate ResourceManager
 	resourceManager_ = new ResourceManager(this);
 
-	//Load Resources
-	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
-	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
-	resourceManager_->addTexture("Lever", "images/Crowbar.png");
-	resourceManager_->addTexture("Key", "images/key.png");
-
-	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
-	resourceManager_->addMusic("Menu", "music/Menu.mp3");
-
-	resourceManager_->addSound("Inventory", "sounds/Inventory.wav");
-	
-	
+	//Añadir los assets
+	addResourcesTexture();
+	addResourcesMusic();
+	addResourcesSoundEffects();
 }
 
 void Game::closeGame() {
@@ -58,7 +48,7 @@ void Game::start() {
 		handleInput(startTime);
 		stateMachine_.currentState()->update(startTime);
 		stateMachine_.currentState()->render(startTime);
-
+		stateMachine_.currentState()->removeEntities();
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
 			SDL_Delay(10 - frameTime);
@@ -100,33 +90,65 @@ void Game::handleInput(Uint32 time) {
 	}
 }
 
-//void Game::update(Uint32 time) {
-//	for (Entity* o : actors_) {
-//		o->update(time);
-//	}
-//}
+void Game::addGameObjectsFactory()
+{
+	gameObjectFactory->registerType("Player", new PlayerCreator());
+	gameObjectFactory->registerType("Enemy", new EnemyCreator());
+	gameObjectFactory->registerType("Puerta", new DoorCreator());
+	registerTypeItem();
+}
 
-//void Game::render(Uint32 time) {
-//	SDL_SetRenderDrawColor(getRenderer(), COLOR(0x555555FF)); //Color de fondo
-//
-//	SDL_RenderClear(getRenderer()); //Limpia el render
-//
-//	for (Entity* o : actors_) {
-//		o->render(time);
-//	}
-//
-//	SDL_RenderPresent(getRenderer());
-//}
+void Game::addResourcesTexture()
+{
+	//Characters
+	resourceManager_->addTexture("SpriteSheetElise", "images/SpriteSheetElise.png");
+	resourceManager_->addTexture("Enemigo1", "images/Enemigo1.png");
+
+	//Items
+	resourceManager_->addTexture("Firstaid", "images/Botiquin.png");
+	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
+	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
+	resourceManager_->addTexture("Key", "images/key.png");
+	resourceManager_->addTexture("Axe", "images/Hacha.png");
+
+	//Inventory
+	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
+	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
+
+	//Backgrounds
+	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
+
+	//Buttons
+	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
+	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
+
+}
+
+void Game::addResourcesMusic()
+{
+	resourceManager_->addMusic("Menu", "music/Menu.mp3");
+	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
+}
+
+void Game::addResourcesSoundEffects()
+{
+	resourceManager_->addSound("InventoryOpen", "sounds/Inventory.wav");
+}
+
+void Game::addResourcesFonts()
+{
+	resourceManager_->addFont("NES-Chimera", "fonts/NES-Chimera.ttf", 24);
+}
 
 void Game::registerTypeItem() {
-	gameObjectFactory->registerType("Item", new ItemCreator(ItemType::LEVER));
+	gameObjectFactory->registerType("Crowbar", new ItemCreator(ItemType::CROWBAR));
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
+	gameObjectFactory->registerType("Axe", new ItemCreator(ItemType::AXE));
+	gameObjectFactory->registerType("Firstaid", new ItemCreator(ItemType::FIRSTAID));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
-	gameObjectFactory->registerType("Ax", new ItemCreator(ItemType::AX));
 	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
-	gameObjectFactory->registerType("Firtsaid", new ItemCreator(ItemType::FIRSTAID));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
 	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
 	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));

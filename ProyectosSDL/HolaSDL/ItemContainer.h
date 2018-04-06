@@ -2,9 +2,10 @@
 #include "Component.h"
 #include <vector>
 #include "Texture.h"
-#include "Resources.h"
+#include "ResourceManager.h"
 #include "Weapon.h"
 #include "InsulationTape.h"
+
 
 using namespace std;
 
@@ -22,11 +23,10 @@ public:
 
 protected:
 
-	int InvTam;
+	//int InvTam;
 	bool clicked = false;
 	int slotClicked;
 	vector<Entity*> inventory;
-	vector<Entity*> chest;
 	coord Inventoryslots[4] = { { 705, 100 },{ 800, 100 },{ 705,200 },{ 800,200 } };
 
 	coord ChestSlots[20] = { { 135,100 },{ 230,100 },{ 325,100 },{ 420,100 },{ 515,100 },
@@ -37,16 +37,10 @@ protected:
 public:
 
 	//ADD AND DELETE OBJECTS TO THE INVENTORY
-	virtual void addItem(Entity* item) = 0;
+	virtual bool addItem(Entity* item) = 0;
 	void DeleteItem(int pos);
 	void ClearInventory();
 
-	//CHECK METHODS
-	virtual bool checkItem(Entity* item) = 0;
-	virtual Entity* ItemInPosition(int pos) = 0;
-	//It returns false if the inventory isn't full
-	virtual bool fullInventory() = 0;
-	bool empty();
 	//GETS
 	int getItemInvPosX(int i) { return Inventoryslots[i].x; };
 	int getItemInvPosY(int i) { return Inventoryslots[i].y; };
@@ -57,8 +51,15 @@ public:
 	vector<Entity*> getInventory() { return inventory; };
 
 protected:
-	SDL_Renderer * pRenderer;
-	const Resources* resource;
-	int getInvTam() { return InvTam; }
+	
+	SDL_Renderer* pRenderer;
+	ResourceManager* resource;
+
+	//CHECK METHODS
+	virtual bool checkItem(Entity* item) = 0;
+	virtual Entity* ItemInPosition(int pos) = 0;
+	virtual bool fullInventory() = 0;
+	bool empty();
+	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 };
 

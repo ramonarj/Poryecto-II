@@ -41,7 +41,7 @@ void PlayState::startState()
 	palo->getComponent<Weapon>()->attack();
 
 	Entity* palo2 = new Entity(10, 20);
-	palo2->addComponent(new Weapon(ItemType::LEVER, "Lever"));
+	palo2->addComponent(new Weapon(ItemType::CROWBAR, "Crowbar"));
 	stage_.push_back(palo2);
 
 	Entity* insulationTape = new Entity(15, 25);
@@ -60,8 +60,6 @@ void PlayState::startState()
 	inventory->addComponent(invtComp);
 	inventory->setActive(false);
 	stage_.push_back(inventory);
-
-	
 
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);

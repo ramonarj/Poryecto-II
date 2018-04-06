@@ -18,7 +18,7 @@ public:
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C, SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::SpriteSheetElise),14, 6, 26, 80, true, false));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
 		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
@@ -33,7 +33,7 @@ public:
 		Entity* e = new Entity();
 		e->setVelocity(vel);
 		e->addComponent(new Enemy(vel));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResources()->getImageTexture(Resources::Enemigo1), 10, 0, 10, 150, true, false));
+		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1"), 10, 0, 10, 150, true, false));
 		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
@@ -47,7 +47,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
-		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(toString(type_))));
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_))));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	};
@@ -56,48 +56,48 @@ public:
 		switch (type)
 		{
 		case STICK:
-			i = new Weapon(type,toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
-		case LEVER:
-			i = new Weapon(type, toString(type));
+		case CROWBAR:
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case PIPE:
-			i = new Weapon(type, toString(type));
+			i = new Weapon(type, itemTypetoString(type));
 			break;
-		case AX:
-			i = new Weapon(type, toString(type));
+		case AXE:
+			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			i = new FirstAid(toString(type));
+			i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
-			i = new InsulationTape(toString(type));
+			i = new InsulationTape(itemTypetoString(type));
 			break;
 		case KEY:
-			i = new Key(toString(type));
+			i = new Key(itemTypetoString(type));
 			break;
 		default:
-			i = new Item(type, toString(type));
+			i = new Item(type, itemTypetoString(type));
 			break;
 		}
 		
 		return i;
 	};
-	string toString(const ItemType type) const{
+	string itemTypetoString(const ItemType type) const{
 		string str;
 		switch (type)
 		{
 		case STICK:
 			str = "Stick";
 			break;
-		case LEVER:
-			str = "Lever";
+		case CROWBAR:
+			str = "Crowbar";
 			break;
 		case PIPE:
 			str = "Pipe";
 			break;
-		case AX:
-			str = "Ax";
+		case AXE:
+			str = "Axe";
 			break;
 		case ALCOHOL:
 			str = "Alcohol";
@@ -141,7 +141,6 @@ public:
 		}
 		return str;
 	};
-
 private:
 	ItemType type_;
 };

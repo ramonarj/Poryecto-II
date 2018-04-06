@@ -103,8 +103,9 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot,
 
 	pTilesetRoot->Attribute("tileheight", &tileset.tileHeight);
 
-	pTilesetRoot->Attribute("spacing", &tileset.spacing);
-	pTilesetRoot->Attribute("margin", &tileset.margin);
+	tileset.spacing = 0;
+	tileset.margin = 0;
+
 	tileset.name = pTilesetRoot->Attribute("name");
 	tileset.numColumns = tileset.width / (tileset.tileWidth +
 		tileset.spacing);

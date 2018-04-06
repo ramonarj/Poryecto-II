@@ -92,6 +92,9 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setX(c->getPosition().getX() - c->getVelocity().getX());
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
+
+				tiles[tileRow + y][tileColumn + x] = -1;
+				it->setTileIDs(tiles);
 			}
 		}
 	}

@@ -8,6 +8,7 @@ Player::Player():Character()
 
 Player::Player(int life, int damage):Character(life, damage),maxLife_(life)
 {
+
 }
 
 void Player::move(Entity* o)

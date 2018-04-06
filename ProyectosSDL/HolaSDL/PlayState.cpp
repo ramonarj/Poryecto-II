@@ -28,7 +28,7 @@ void PlayState::startState()
 
 
 
-	//Música
+	//Mï¿½sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
 	//Item

@@ -18,6 +18,7 @@ public:
 
 	bool canTeleport();
 	void setNeedKey();
+	void keyFalse();
 
 private:
 	list<Entity*> doors;

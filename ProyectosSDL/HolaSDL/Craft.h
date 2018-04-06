@@ -44,6 +44,8 @@ public:
 private:
 	coord repareSlots[2] = { { 158, 540 },{ 271, 540 } };
 	void renderItem(Entity* e, coord pos);
+	void craft();
 	const int REPARE_VAR = 4;
+	int slotCraftClicked = -1;
 };
 

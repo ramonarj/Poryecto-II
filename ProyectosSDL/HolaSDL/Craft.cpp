@@ -26,26 +26,31 @@ void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 		(event.button.x >= craftSlotsclick[0].x && event.button.x <= craftSlotsclick[0].x + craftSlotsclick[0].w)
 		&& (event.button.y >= craftSlotsclick[0].y && event.button.y <= craftSlotsclick[0].y + craftSlotsclick[0].h)) {
 		cout << "\nse necesita: venda, alcohol o dos quimicos genericos\n";
+		slotCraftClicked = 0;
 	}
 	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
 		(event.button.x >= craftSlotsclick[1].x && event.button.x <= craftSlotsclick[1].x + craftSlotsclick[1].w)
 		&& (event.button.y >= craftSlotsclick[1].y && event.button.y <= craftSlotsclick[1].y + craftSlotsclick[1].h)) {
 		cout << "\nse necesita quimico para acido x2\n";
+		slotCraftClicked = 1;
 	}
 	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
 		(event.button.x >= craftSlotsclick[2].x && event.button.x <= craftSlotsclick[2].x + craftSlotsclick[2].w)
 		&& (event.button.y >= craftSlotsclick[2].y && event.button.y <= craftSlotsclick[2].y + craftSlotsclick[2].h)) {
 		cout << "\nno lo se\n";
+		slotCraftClicked = 2;
 	}
 	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
 		(event.button.x >= craftSlotsclick[3].x && event.button.x <= craftSlotsclick[3].x + craftSlotsclick[3].w)
 		&& (event.button.y >= craftSlotsclick[3].y && event.button.y <= craftSlotsclick[3].y + craftSlotsclick[3].h)) {
 		cout << "\nno lo se\n";
+		slotCraftClicked = 3;
 	}
 	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
 		(event.button.x >= craftButton.x && event.button.x <= craftButton.x + craftButton.w)
 		&& (event.button.y >= craftButton.y && event.button.y <= craftButton.y + craftButton.h)) {
 		cout << "\nla iglesia no te mola? pum pistola\n";
+		craft();
 	}
 
 }
@@ -123,6 +128,25 @@ void Craft::renderItem(Entity* e, coord pos)
 			resource->getTexture("Key")->render(pRenderer, DestRect);
 		}
 	}
+}
+
+void Craft::craft()
+{
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
+	switch (slotCraftClicked)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	default:
+		break;
+	}
+
 }
 
 void Craft::setWep(Entity* e)

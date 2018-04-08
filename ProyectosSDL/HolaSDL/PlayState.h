@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "LevelParser.h"
+#include "TextNote.h"
 #include "Inventory.h"
 #include "Chest.h"
 #include "Craft.h"

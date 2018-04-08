@@ -8,12 +8,13 @@ using namespace std;
 
 class TextNote : public Component {
 public:
-	TextNote(Game* game_, string text);
+	TextNote(Game* game_, string txtFilePath, int x, int y, Texture* backgroundTexture);
 	~TextNote();
 	virtual void render(Entity* e, Uint32 time);
 
 private:
-
+	Texture* background_;
+	int spacing_;
 	SDL_Renderer* renderer_;
 	Font* font_;
 	Vector2D pos_;

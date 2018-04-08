@@ -31,6 +31,7 @@ void Game::initGame()
 	addResourcesTexture();
 	addResourcesMusic();
 	addResourcesSoundEffects();
+	addResourcesFonts();
 }
 
 void Game::closeGame() {
@@ -120,6 +121,7 @@ void Game::addResourcesTexture()
 
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
+	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
 
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
@@ -140,7 +142,9 @@ void Game::addResourcesSoundEffects()
 
 void Game::addResourcesFonts()
 {
+	resourceManager_->addFont("ARIAL", "fonts/ARIAL.ttf", 24);
 	resourceManager_->addFont("NES-Chimera", "fonts/NES-Chimera.ttf", 24);
+	resourceManager_->addFont("VCR_OSD_MONO", "fonts/VCR_OSD_MONO.ttf", 21);
 }
 
 void Game::registerTypeItem() {

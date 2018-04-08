@@ -45,19 +45,13 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 						{
 							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
 							tileid = tiles[tileRow + y][tileColumn + x];
-
-							if (tileid == 0)
-							{
-								tileColumn = ((pos.getX() + width / 3) / tileSize);
-								tileid = tiles[tileRow + y][tileColumn + x];
-							}
 						}
 					}
 				}
 			}
 			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
-				tileColumn = (pos.getX() + width / 3) / tileSize;
+				tileColumn = (pos.getX() + width / 2) / tileSize;
 				tileRow = (pos.getY() + (height / 2)) / tileSize;
 				tileid = tiles[tileRow + y][tileColumn + x];
 
@@ -73,14 +67,8 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 					{
 						if (c->getVelocity().getY() < 0)
 						{
-							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
+							tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
 							tileid = tiles[tileRow + y][tileColumn + x];
-
-							if (tileid == 0)
-							{
-								tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
-								tileid = tiles[tileRow + y][tileColumn + x];
-							}
 						}
 					}
 				}

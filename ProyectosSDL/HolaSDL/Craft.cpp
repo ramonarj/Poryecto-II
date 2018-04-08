@@ -127,9 +127,9 @@ void Craft::craft()
 	switch (slotCraftClicked)
 	{
 	case 0:
-		if (inv->checkItem(ItemType::BANDAGES) && inv->checkItem(ItemType::ALCOHOL) && !inv->fullInventory())
+		if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())
 		{
-			inv->objectCrafted(ItemType::BANDAGES, ItemType::ALCOHOL);
+			inv->objectCrafted(ItemType::CROWBAR, ItemType::STICK);
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new FirstAid("Firstaid"));
 			inv->addItem(e);

@@ -160,13 +160,16 @@ bool Inventory::addItem(Entity * item)
 }
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY
-bool Inventory::checkItem(Entity * item)
+bool Inventory::checkItem(int item)
 {
 	int i = 0;
 	bool found = false;
+	if (debug) { return true; }
+
 	while (!found && i < int(inventory.size()) && !empty())
 	{
-		if (ItemInPosition(i) == item) { found = true; }
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == item) { found = true; }
+		else i++;
 	}
 	return found;
 }
@@ -200,6 +203,30 @@ bool Inventory::fullInventory()
 {
 	if (inventory.size() >= InventoryTam) { return true; }
 	else return false;
+}
+
+void Inventory::objectCrafted(int a, int b)
+{
+	int i = 0;
+	bool found = false;
+	while (!found && i < int(inventory.size()) && !empty())
+	{
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == a) { 
+			found = true;
+			inventory.erase(inventory.begin() + i);
+		}
+		else i++;
+	}
+	i = 0;
+	found = false;
+	while (!found && i < int(inventory.size()) && !empty())
+	{
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == b) {
+			found = true; 
+			inventory.erase(inventory.begin() + i);
+		}
+		else i++;
+	}
 }
 
 

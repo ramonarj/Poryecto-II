@@ -43,21 +43,15 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 					{
 						if (c->getVelocity().getY() > 0)
 						{
-							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
+							tileColumn = ((pos.getX() + (width / 2.5)) / tileSize);
 							tileid = tiles[tileRow + y][tileColumn + x];
-
-							if (tileid == 0)
-							{
-								tileColumn = ((pos.getX() + width / 3) / tileSize);
-								tileid = tiles[tileRow + y][tileColumn + x];
-							}
 						}
 					}
 				}
 			}
 			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
-				tileColumn = (pos.getX() + width / 3) / tileSize;
+				tileColumn = (pos.getX() + width / 2.5) / tileSize;
 				tileRow = (pos.getY() + (height / 2)) / tileSize;
 				tileid = tiles[tileRow + y][tileColumn + x];
 
@@ -73,14 +67,8 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 					{
 						if (c->getVelocity().getY() < 0)
 						{
-							tileColumn = ((pos.getX() + (width / 2)) / tileSize);
+							tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
 							tileid = tiles[tileRow + y][tileColumn + x];
-
-							if (tileid == 0)
-							{
-								tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
-								tileid = tiles[tileRow + y][tileColumn + x];
-							}
 						}
 					}
 				}
@@ -92,8 +80,6 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setX(c->getPosition().getX() - c->getVelocity().getX());
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
-
-				//c->setLastCollision(tileid, tileColumn + x, tileRow + y);
 
 				if (it->getTilesetByID(tileid).name == "Puertas")
 				{
@@ -115,9 +101,6 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				}
 
 				it->setTileIDs(tiles);
-
-				/*tiles[tileRow + y][tileColumn + x] = -1;
-				it->setTileIDs(tiles);*/
 			}
 		}
 	}

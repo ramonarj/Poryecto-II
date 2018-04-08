@@ -1,9 +1,7 @@
 #include "Entity.h"
 #include "Camera.h"
 
-
 Entity::~Entity() {
-	lastCollision = { 0, 0, 0 };
 }
 
 void Entity::setActive(bool enabled)
@@ -126,18 +124,6 @@ SDL_Rect Entity::getRect()
 void Entity::setDirection(const Vector2D &vel) {
 	direction_.set(vel);
 	direction_.normalize();
-}
-
-void Entity::setLastCollision(int id, int x, int y)
-{
-	lastCollision.id = id;
-	lastCollision.x = x;
-	lastCollision.y = y;
-}
-
-LastCollision Entity::getLastCollision()
-{
-	return lastCollision;
 }
 
 

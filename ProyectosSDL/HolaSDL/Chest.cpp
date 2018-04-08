@@ -99,13 +99,13 @@ bool Chest::addItem(Entity * item)
 	return alm;
 }
 
-bool Chest::checkItem(Entity * item)
+bool Chest::checkItem(int item)
 {
 	int i = 0;
 	bool found = false;
 	while (!found && i < int(inventory.size()) && !empty())
 	{
-		if (ItemInPosition(i) == item) { found = true; }
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == item) { found = true; }
 	}
 	return found;
 }

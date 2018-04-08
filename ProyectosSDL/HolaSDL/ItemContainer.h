@@ -55,7 +55,7 @@ protected:
 	ResourceManager* resource = nullptr;
 
 	//CHECK METHODS
-	virtual bool checkItem(Entity* item) = 0;
+	virtual bool checkItem(int item) = 0;
 	virtual Entity* ItemInPosition(int pos) = 0;
 	virtual bool fullInventory() = 0;
 	bool empty();

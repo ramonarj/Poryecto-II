@@ -22,7 +22,7 @@ public:
 	~Inventory();
 
 protected:
-	bool debug;
+	bool debug = false;
 	
 public:
 
@@ -36,12 +36,13 @@ public:
 	void Debug_Mode_On() { debug = true; };
 	void Debug_Mode_Off() { debug = false; };
 
-	virtual bool checkItem(Entity* item);
+	virtual bool checkItem(int item);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }
+	void objectCrafted(int a, int b);
 	//void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	Entity* currentWeapon();

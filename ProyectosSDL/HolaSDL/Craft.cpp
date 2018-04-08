@@ -16,43 +16,34 @@ void Craft::update(Entity * e, Uint32 time)
 
 void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
-	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)
-		&& (event.button.y >= RepareButton.y && event.button.y <= RepareButton.y + 150)) {
-				if(Wep != nullptr && cinta != nullptr)
-					repare();
-	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= craftSlotsclick[0].x && event.button.x <= craftSlotsclick[0].x + craftSlotsclick[0].w)
-		&& (event.button.y >= craftSlotsclick[0].y && event.button.y <= craftSlotsclick[0].y + craftSlotsclick[0].h)) {
-		cout << "\nse necesita: venda, alcohol o dos quimicos genericos\n";
-		slotCraftClicked = 0;
-	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= craftSlotsclick[1].x && event.button.x <= craftSlotsclick[1].x + craftSlotsclick[1].w)
-		&& (event.button.y >= craftSlotsclick[1].y && event.button.y <= craftSlotsclick[1].y + craftSlotsclick[1].h)) {
-		cout << "\nse necesita quimico para acido x2\n";
-		slotCraftClicked = 1;
-	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= craftSlotsclick[2].x && event.button.x <= craftSlotsclick[2].x + craftSlotsclick[2].w)
-		&& (event.button.y >= craftSlotsclick[2].y && event.button.y <= craftSlotsclick[2].y + craftSlotsclick[2].h)) {
-		cout << "\nno lo se\n";
-		slotCraftClicked = 2;
-	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= craftSlotsclick[3].x && event.button.x <= craftSlotsclick[3].x + craftSlotsclick[3].w)
-		&& (event.button.y >= craftSlotsclick[3].y && event.button.y <= craftSlotsclick[3].y + craftSlotsclick[3].h)) {
-		cout << "\nno lo se\n";
-		slotCraftClicked = 3;
-	}
-	else if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-		(event.button.x >= craftButton.x && event.button.x <= craftButton.x + craftButton.w)
-		&& (event.button.y >= craftButton.y && event.button.y <= craftButton.y + craftButton.h)) {
-		cout << "\nla iglesia no te mola? pum pistola\n";
-		craft();
-	}
+	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 
+		if ((event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)
+			&& (event.button.y >= RepareButton.y && event.button.y <= RepareButton.y + 150)) {
+			if (Wep != nullptr && cinta != nullptr)
+				repare();
+		}
+		else if ((event.button.x >= craftSlotsclick[0].x && event.button.x <= craftSlotsclick[0].x + craftSlotsclick[0].w)
+			&& (event.button.y >= craftSlotsclick[0].y && event.button.y <= craftSlotsclick[0].y + craftSlotsclick[0].h)) {
+			slotCraftClicked = 0;
+		}
+		else if ((event.button.x >= craftSlotsclick[1].x && event.button.x <= craftSlotsclick[1].x + craftSlotsclick[1].w)
+			&& (event.button.y >= craftSlotsclick[1].y && event.button.y <= craftSlotsclick[1].y + craftSlotsclick[1].h)) {
+			slotCraftClicked = 1;
+		}
+		else if ((event.button.x >= craftSlotsclick[2].x && event.button.x <= craftSlotsclick[2].x + craftSlotsclick[2].w)
+			&& (event.button.y >= craftSlotsclick[2].y && event.button.y <= craftSlotsclick[2].y + craftSlotsclick[2].h)) {
+			slotCraftClicked = 2;
+		}
+		else if ((event.button.x >= craftSlotsclick[3].x && event.button.x <= craftSlotsclick[3].x + craftSlotsclick[3].w)
+			&& (event.button.y >= craftSlotsclick[3].y && event.button.y <= craftSlotsclick[3].y + craftSlotsclick[3].h)) {
+			slotCraftClicked = 3;
+		}
+		else if ((event.button.x >= craftButton.x && event.button.x <= craftButton.x + craftButton.w)
+			&& (event.button.y >= craftButton.y && event.button.y <= craftButton.y + craftButton.h)) {
+			craft();
+		}
+	}
 }
 
 void Craft::render(Entity * e, Uint32 time)
@@ -136,6 +127,13 @@ void Craft::craft()
 	switch (slotCraftClicked)
 	{
 	case 0:
+		if (inv->checkItem(ItemType::BANDAGES) && inv->checkItem(ItemType::ALCOHOL) && !inv->fullInventory())
+		{
+			inv->objectCrafted(ItemType::BANDAGES, ItemType::ALCOHOL);
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new FirstAid("Firstaid"));
+			inv->addItem(e);
+		}
 		break;
 	case 1:
 		break;

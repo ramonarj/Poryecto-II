@@ -44,6 +44,4 @@ private:
 	std::vector<std::vector<int>> m_tileIDs;
 
 	int zoom;
-
-	Entity* player;
 };

@@ -1,7 +1,7 @@
 #include "Inventory.h"
 #include "Game.h"
 #include "FirstAid.h"
-
+#include "Craft.h"
 
 Inventory::Inventory()
 {
@@ -29,7 +29,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			while (i< int(inventory.size()) && !clicked)
 			{
 				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
-					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba //cambio
 				{
 					clicked = true;
 				}
@@ -43,7 +43,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
 			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
-				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50))
+				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50)) //cambio
 			{
 				equipWeapon(slotClicked);
 			}
@@ -59,9 +59,29 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 						}
 					}
 			}
+
+			else if (craftMode) {
+				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
+				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + 50)//Cambiar
+					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + 50)
+					&& inventory[slotClicked]->getComponent<Weapon>() && !craftWin->WepinSlot())
+				{
+					craftWin->setWep(inventory[slotClicked]);
+					this->DeleteItem(slotClicked);
+				}
+					
+				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x && event.button.x <= craftWin->InsulationTapeRepareSlot().x + 50)//Cambiar
+					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y && event.button.y <= craftWin->InsulationTapeRepareSlot().y + 50)
+					&&inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
+						craftWin->setCinta(inventory[slotClicked]);
+						this->DeleteItem(slotClicked);
+				}
+				
+			}
 			clicked = false;
 		}
 	}
+	
 }
 
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta

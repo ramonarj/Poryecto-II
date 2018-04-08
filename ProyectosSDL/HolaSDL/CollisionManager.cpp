@@ -93,8 +93,31 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
 
-				tiles[tileRow + y][tileColumn + x] = -1;
+				//c->setLastCollision(tileid, tileColumn + x, tileRow + y);
+
+				if (it->getTilesetByID(tileid).name == "Puertas")
+				{
+					if (tileid == 829 || tileid == 830)
+					{
+						tiles[tileRow + y][tileColumn + x] = -1;
+						if (tileid == 829)
+						{
+							tiles[tileRow + y][tileColumn + x + 1] = -1;
+							tiles[tileRow + y + 1][tileColumn + x + 1] = -1;
+						}
+						else
+						{
+							tiles[tileRow + y][tileColumn + x - 1] = -1;
+							tiles[tileRow + y + 1][tileColumn + x - 1] = -1;
+						}
+						tiles[tileRow + y + 1][tileColumn + x] = -1;
+					}
+				}
+
 				it->setTileIDs(tiles);
+
+				/*tiles[tileRow + y][tileColumn + x] = -1;
+				it->setTileIDs(tiles);*/
 			}
 		}
 	}

@@ -28,7 +28,7 @@ void PlayState::startState()
 
 
 
-	//Música
+	//Mï¿½sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
 	//Item
@@ -48,6 +48,12 @@ void PlayState::startState()
 	insulationTape->addComponent(new InsulationTape("InsulationTape"));
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->use(palo);
+
+	craft = new Entity(0,0);
+	Craft* craftComp = new Craft();
+	craft->addComponent(craftComp);
+	craft->setActive(false);
+	stage_.push_back(craft);
 
 	chest = new Entity(0, 0);
 	Chest* chestComp = new Chest();

@@ -9,6 +9,7 @@ public:
 	Weapon(ItemType type, const string& filename);
 	~Weapon();
 	void attack(); // Resta 1 al numero de golpes que tiene el arma
+	void repare(int a);
 	int getTypeStr() { return (type_); };
 private:
 	int damage_;

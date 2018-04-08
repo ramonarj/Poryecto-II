@@ -2,15 +2,15 @@
 #include "ImageRenderer.h"
 #include <iostream>
 #include "Camera.h"
-
+#include "Craft.h"
 
 KeyBoardInputComponent::KeyBoardInputComponent()
 {
 }
 
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
-												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter) :
-	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), 
+												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo) :
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo),
 	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false)
 	{
 	}
@@ -85,26 +85,31 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		o->setVelocity(Vector2D(0,0));
 	}
 
-	if (state[inventory_] && !cstOpen)
+
+	//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
+	if (state[inventory_] && !cstOpen && !crftOpen)
 	{
 		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
 			Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
 			inv->setActive(!inv->isActive());
 			inventoryPressed = true;
 			invOpen = !invOpen;
 		}
 	}
-	if (!state[inventory_] && !cstOpen)
+	if (!state[inventory_] && !cstOpen && !crftOpen)
 	{
 		inventoryPressed = false;
 	}
 
-	if (state[chest_] && !invOpen)
+	if (state[chest_] && !invOpen && !crftOpen)
 	{
 		if (event.type == SDL_KEYDOWN && !chestPressed) {
 			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
 			inv->setActive(!inv->isActive());
 			cst->setActive(!cst->isActive());
 			chestPressed = true;
@@ -114,9 +119,30 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
 		}
 	}
-	if (!state[chest_] && !invOpen)
+	if (!state[chest_] && !invOpen && !crftOpen)
 	{
 		chestPressed = false;
+	}
+
+	if (state[craft_] && !invOpen && !cstOpen)
+	{
+		if (event.type == SDL_KEYDOWN && !craftPressed) {
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+			inv->setActive(!inv->isActive());
+			craft->setActive(!craft->isActive());
+			craftPressed = true;
+			crftOpen = !crftOpen;
+			if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+			inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+			//SOUND 
+			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+		}
+	}
+	if (!state[craft_] && !invOpen && !cstOpen)
+	{
+		craftPressed = false;
 	}
 
 

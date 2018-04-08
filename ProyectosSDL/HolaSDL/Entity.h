@@ -9,6 +9,12 @@
 
 using namespace std;
 
+struct LastCollision {
+	int id;
+	int x;
+	int y;
+};
+
 class Entity{
 public:
 	Entity();
@@ -63,6 +69,9 @@ public:
 		return nullptr;
 	};
 
+	void setLastCollision(int id, int x, int y);
+	LastCollision getLastCollision();
+
 private:
 	bool active_;
 
@@ -77,6 +86,8 @@ private:
 	double currentFrame_;
 
 	vector<Component*> comps_;
+
+	LastCollision lastCollision;
 };
 
 #endif /* ENTITY_H_ */

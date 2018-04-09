@@ -28,7 +28,7 @@ void ControllerInputComponent::initialiseJoysticks()
 		for (int i = 0; i < SDL_NumJoysticks(); i++)
 		{
 			SDL_Joystick* joy = SDL_JoystickOpen(i);
-			
+
 			m_joysticks.push_back(joy);
 			m_joystickValues.push_back(std::make_pair(new Vector2D(0, 0), new Vector2D(0, 0))); // add our pair
 
@@ -38,7 +38,7 @@ void ControllerInputComponent::initialiseJoysticks()
 				tempButtons.push_back(false);
 			}
 			m_buttonStates.push_back(tempButtons);
-			
+
 		}
 		SDL_JoystickEventState(SDL_ENABLE);
 		m_bJoysticksInitialised = true;
@@ -99,14 +99,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	double vel = 7 * Camera::Instance()->getZoom();
-	
+
 
 	//EJES SOBRE EL JOYSTICK IZQUIERDO
 	if (event.type == SDL_JOYAXISMOTION) // check the type value
 	{
-		
 
-										  // left stick move left or right
+
+		// left stick move left or right
 		if (event.jaxis.axis == 0)
 		{
 			if (event.jaxis.value > m_joystickDeadZone)		//This value goes from -33000 until 33000
@@ -145,14 +145,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 	//BOTONES DEL MANDO		COLOCA EL ESTADO DE ESE BOTÓN A ACTIVO AL PULSARLO Y SE QUEDA ASI HASTA QUE SE SUELTA EL BOTON
 	if (event.type == SDL_JOYBUTTONDOWN)
 	{
-		
+
 		m_buttonStates[0][event.jbutton.button] = true;
 		ProcessButton(0, event.jbutton.button);
 	}
 
 	if (event.type == SDL_JOYBUTTONUP)
 	{
-		
+
 		m_buttonStates[0][event.jbutton.button] = false;
 	}
 
@@ -182,7 +182,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			velocity.setY(vel);
 			direction.setY(-1);
 		}
-		else if (m_buttonStates[0][Square]) {
+		else if (m_buttonStates[0][Square]) {		//Interacturar
 			SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 			for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 				SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
@@ -195,86 +195,86 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			}
 		}
 
-			else if (m_buttonStates[0][Circle] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon && pressing shift
-			{
-				if (/*event.type == SDL_KEYDOWN && */!(o->getComponent<Character>()->getAttacking())) {
-					o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
-					o->getComponent<Character>()->setAttacking(true);
-					std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
-				}
+		else if (m_buttonStates[0][Circle] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
+		{
+			if (!(o->getComponent<Character>()->getAttacking())) {
+				o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
+				o->getComponent<Character>()->setAttacking(true);
+				std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 			}
-			else {
-				velocity.setY(0);
-				direction.setY(0);
-			}
-
-			o->setVelocity(velocity);
-			o->setDirection(direction);
 		}
 		else {
-			o->setVelocity(Vector2D(0, 0));
+			velocity.setY(0);
+			direction.setY(0);
 		}
 
+		o->setVelocity(velocity);
+		o->setDirection(direction);
+	}
+	else {
+		o->setVelocity(Vector2D(0, 0));
+	}
 
-		////INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
-		//if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)
-		//{
-		//	if (/*event.type == SDL_KEYDOWN &&*/ !inventoryPressed) {
-		//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-		//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-		//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-		//		Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
-		//		inv->setActive(!inv->isActive());
-		//		inventoryPressed = true;
-		//		invOpen = !invOpen;
-		//	}
-		//}
-		//if (!m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)
-		//{
-		//	inventoryPressed = false;
-		//}
 
-		//if (state[chest_] && !invOpen && !crftOpen)
-		//{
-		//	if (event.type == SDL_KEYDOWN && !chestPressed) {
-		//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-		//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-		//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-		//		inv->setActive(!inv->isActive());
-		//		cst->setActive(!cst->isActive());
-		//		chestPressed = true;
-		//		cstOpen = !cstOpen;
-		//		inv->getComponent<Inventory>()->setChestMode(cstOpen);
-		//		//SOUND 
-		//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		//	}
-		//}
-		//if (!state[chest_] && !invOpen && !crftOpen)
-		//{
-		//	chestPressed = false;
-		//}
+	//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
+	if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)		//Inventario
+	{
+		if (/*event.type == SDL_KEYDOWN &&*/ !inventoryPressed) {
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+			Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
+			inv->setActive(!inv->isActive());
+			inventoryPressed = true;
+			invOpen = !invOpen;
+		}
+	}
+	if (!m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)
+	{
+		inventoryPressed = false;
+	}
 
-		//if (state[craft_] && !invOpen && !cstOpen)
-		//{
-		//	if (event.type == SDL_KEYDOWN && !craftPressed) {
-		//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-		//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-		//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-		//		inv->setActive(!inv->isActive());
-		//		craft->setActive(!craft->isActive());
-		//		craftPressed = true;
-		//		crftOpen = !crftOpen;
-		//		if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
-		//		inv->getComponent<Inventory>()->setCraftMode(crftOpen);
-		//		//SOUND 
-		//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		//	}
-		//}
-		//if (!state[craft_] && !invOpen && !cstOpen)
-		//{
-		//	craftPressed = false;
-		//}
-	
+	if (m_buttonStates[0][R1] && !invOpen && !crftOpen)		//Abrir cofre
+	{
+		if (!chestPressed) {
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+			inv->setActive(!inv->isActive());
+			cst->setActive(!cst->isActive());
+			chestPressed = true;
+			cstOpen = !cstOpen;
+			inv->getComponent<Inventory>()->setChestMode(cstOpen);
+			//SOUND 
+			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+		}
+	}
+	if (!m_buttonStates[0][R1] && !invOpen && !crftOpen)
+	{
+		chestPressed = false;
+	}
+
+	if (m_buttonStates[0][R2] && !invOpen && !cstOpen)
+	{
+		if (!craftPressed) {
+			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+			inv->setActive(!inv->isActive());
+			craft->setActive(!craft->isActive());
+			craftPressed = true;
+			crftOpen = !crftOpen;
+			if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+			inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+			//SOUND 
+			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+		}
+	}
+	if (!m_buttonStates[0][R2] && !invOpen && !cstOpen)
+	{
+		craftPressed = false;
+	}
+
 
 }
 

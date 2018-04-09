@@ -72,9 +72,9 @@ void PlayState::startState()
 	invtComp->addItem(palo);
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
-	//Entity* textTest = new Entity(20, 20);
-	//textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
-	//stage_.push_back(textTest);
+	/*Entity* textTest = new Entity(20, 20);
+	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
+	stage_.push_back(textTest);*/
 }
 
 void PlayState::update(Uint32 time)

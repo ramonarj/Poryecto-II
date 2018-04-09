@@ -95,6 +95,9 @@ int ControllerInputComponent::yvalue(int joy, int stick)
 
 void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 
+
+	/*if(m_bJoysticksInitialised){*/
+
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
@@ -104,8 +107,6 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 	//EJES SOBRE EL JOYSTICK IZQUIERDO
 	if (event.type == SDL_JOYAXISMOTION) // check the type value
 	{
-
-
 		// left stick move left or right
 		if (event.jaxis.axis == 0)
 		{
@@ -274,7 +275,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 	{
 		craftPressed = false;
 	}
-
+	
 
 }
 

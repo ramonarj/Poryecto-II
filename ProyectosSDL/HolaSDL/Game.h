@@ -17,6 +17,7 @@
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include "LightTestState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
 #include "ControllerInputComponent.h"

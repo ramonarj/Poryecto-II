@@ -213,6 +213,12 @@
     <ClCompile Include="Craft.cpp">
       <Filter>Archivos de código fuente\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="LightTestState.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticImageRender.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -379,6 +385,12 @@
     </ClInclude>
     <ClInclude Include="Craft.h">
       <Filter>Archivos de encabezado\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="LightTestState.h">
+      <Filter>Archivos de encabezado\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticImageRender.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

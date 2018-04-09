@@ -19,6 +19,7 @@
 #include "MenuState.h"
 #include "Level.h"
 #include "KeyBoardInputComponent.h"
+#include "ControllerInputComponent.h"
 #include "ResourceManager.h"
 #include "GameObjectFactory.h"
 #include "AnimationRenderer.h"

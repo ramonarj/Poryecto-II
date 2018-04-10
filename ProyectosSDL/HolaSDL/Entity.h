@@ -1,6 +1,7 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
+#include "checkML.h"
 #include "Component.h"
 #include "SDLGame.h"
 #include "Vector2D.h"

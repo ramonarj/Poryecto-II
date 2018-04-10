@@ -1,6 +1,7 @@
 #ifndef SDLGAME_H_
 #define SDLGAME_H_
 
+#include "checkML.h"
 #include "sdl_includes.h"
 #include <string>
 #include <vector>

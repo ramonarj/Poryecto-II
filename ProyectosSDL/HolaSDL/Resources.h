@@ -1,6 +1,7 @@
 #ifndef RESOURCES_H_
 #define RESOURCES_H_
 
+#include "checkML.h"
 #include "Texture.h"
 #include "Font.h"
 #include "Music.h"

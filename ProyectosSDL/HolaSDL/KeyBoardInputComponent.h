@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Component.h"
 #include "Game.h"
 #include "Entity.h"

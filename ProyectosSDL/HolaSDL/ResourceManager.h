@@ -1,6 +1,7 @@
 #ifndef RESOURCEMANAGER_H_
 #define RESOURCEMANAGER_H_
 
+#include "checkML.h"
 #include <map>
 #include <string>
 #include "Texture.h"

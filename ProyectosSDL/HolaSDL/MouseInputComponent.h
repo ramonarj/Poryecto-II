@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Component.h"
 
 enum mouse_buttons { LEFT, MIDDLE, RIGHT };

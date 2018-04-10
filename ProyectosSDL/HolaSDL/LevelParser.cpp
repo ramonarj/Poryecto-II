@@ -27,9 +27,9 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	// get the root node and display some values
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
-	std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
+	/*std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
 	std::cout << "Width:" << pRoot->Attribute("width") << " - Height:" << pRoot->Attribute("height") << "\n";
-	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";
+	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";*/
 
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
@@ -199,11 +199,11 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 	// create an object layer
 	ObjectLayer* pObjectLayer = new ObjectLayer();
-	std::cout << pObjectElement->FirstChildElement()->Value();
+	//std::cout << pObjectElement->FirstChildElement()->Value();
 
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		std::cout << e->Value();
+		//std::cout << e->Value();
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;

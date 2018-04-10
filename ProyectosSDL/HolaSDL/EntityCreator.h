@@ -141,6 +141,9 @@ public:
 		case PHOTO:
 			str = "Photo";
 			break;
+		case MASK:
+			str = "Mask";
+			break;
 		default:
 			str = "";
 			break;

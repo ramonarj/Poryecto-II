@@ -64,7 +64,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
 				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + 50)//Cambiar
 					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + 50)
-					&& inventory[slotClicked]->getComponent<Weapon>() && !craftWin->WepinSlot())
+					&& inventory[slotClicked]->getComponent<Weapon>())
 				{
 					craftWin->setWep(inventory[slotClicked]);
 					this->DeleteItem(slotClicked);
@@ -87,6 +87,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
+	
 	pRenderer = Game::Instance()->getRenderer();
 	resource = Game::Instance()->getResourceManager();
 

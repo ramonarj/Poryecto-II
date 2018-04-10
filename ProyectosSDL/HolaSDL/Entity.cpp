@@ -14,6 +14,8 @@ void Entity::setActive(bool enabled)
 
 Entity::Entity() :
 	active_(true), width_(0), height_(0), position_(0, 0), direction_(1, 0), velocity_(0, 0), comps_() {
+	for (int i = 0; i < 4; i++)
+		sideCollision.push_back(false);
 }
 
 Entity::Entity(int posX, int posY) :
@@ -124,6 +126,18 @@ SDL_Rect Entity::getRect()
 void Entity::setDirection(const Vector2D &vel) {
 	direction_.set(vel);
 	direction_.normalize();
+}
+
+void Entity::setSideCollision(int i)
+{
+	for (int j = 0; j < sideCollision.size(); j++)
+	{
+		if (i != j) sideCollision[j] = false;
+		else sideCollision[j] = true;
+	}
+	for (int j = 0; j < sideCollision.size(); j++)
+		cout << sideCollision[j] << " - ";
+	cout << endl;
 }
 
 

@@ -20,7 +20,7 @@ public:
 	virtual bool initialiseJoysticks();
 	void clean();
 	bool joysticksInitialised() { return m_bJoysticksInitialised; }
-	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }		//Devuelve el estado concreto de un botón (pulsado o no)
+	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }		//Devuelve el estado concreto de un botï¿½n (pulsado o no)
 
 	void ProcessButton(int joy, int buttonNumber);
 	void Active(bool value) { active_ = value;};

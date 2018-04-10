@@ -20,9 +20,7 @@ public:
 	void setMapWidth(int mapWidth) { m_mapWidth = mapWidth; };
 
 	int getTileSize() { return m_tileSize; }
-
 	const std::vector<std::vector<int>>& getTileIDs() { return m_tileIDs; }
-
 	Tileset getTilesetByID(int tileID);
 
 	const Vector2D getPosition() { return m_position; }
@@ -40,8 +38,9 @@ private:
 	Vector2D m_velocity;
 
 	const std::vector<Tileset>& m_tilesets;
-
 	std::vector<std::vector<int>> m_tileIDs;
 
 	int zoom;
+
+	void renderTV(int id, int i, int j, int x, int y);
 };

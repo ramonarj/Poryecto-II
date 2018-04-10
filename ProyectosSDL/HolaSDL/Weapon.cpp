@@ -54,6 +54,12 @@ void Weapon::repare(int a)
 	if (maxHits_ < 0) { maxHits_ = 0; }
 }
 
+void Weapon::repare(int a)
+{
+	maxHits_ -= a;
+	if (maxHits_ < 0) { maxHits_ = 0; }
+}
+
 void Weapon::repair() {
 
 	numHits_ += (int)repairIndex_*maxHits_;

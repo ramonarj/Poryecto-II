@@ -45,11 +45,12 @@ void TileLayer::render()
 				continue;
 			}
 
+			//Cambiar algunas cosas del mapa
+			renderTV(id, i, j, x, y);
+			setTileIDs(m_tileIDs);
+
 			Tileset tileset = getTilesetByID(id);
-
 			id--;
-
-			//void Texture::drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer * pRenderer)
 
 			Texture::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, (((j * m_tileSize) - x2) - Camera::Instance()->getPosition().getX()), ((i * m_tileSize) - y2) - Camera::Instance()->getPosition().getY(), m_tileSize, m_tileSize,
 				((id - (tileset.firstGridID - 1)) / tileset.numColumns), ((id - (tileset.firstGridID - 1)) % tileset.numColumns), Game::Instance()->getRenderer());
@@ -80,4 +81,12 @@ Tileset TileLayer::getTilesetByID(int tileID)
 	std::cout << "did not find tileset, returning empty tileset\n";
 	Tileset t;
 	return t;
+}
+
+void TileLayer::renderTV(int id, int i, int j, int x, int y)
+{
+	if (id == 1246 || id == 1247 || id == 1257 || id == 1258)
+		m_tileIDs[i + y][j + x] += 2;
+	else if (id == 1248 || id == 1249 || id == 1259 || id == 1260)
+		m_tileIDs[i + y][j + x] -= 2;
 }

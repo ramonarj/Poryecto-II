@@ -2,7 +2,7 @@
 
 unique_ptr<CollisionManager> CollisionManager::s_pInstance = nullptr;
 
-void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, const std::vector<TileLayer*>& collisionLayers)
+void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const std::vector<TileLayer*>& collisionLayers)
 {
 	for (TileLayer* it : collisionLayers)
 	{
@@ -18,7 +18,7 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 		x = layerPos.getX() / tileSize;
 		y = layerPos.getY() / tileSize;
 
-		for (Entity* c : characters)
+		for (Entity* c : entity)
 		{
 			Vector2D pos(Vector2D(c->getPosition().getX(), c->getPosition().getY()));
 			double width = c->getWidth();
@@ -48,8 +48,13 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 						}
 					}
 				}
+
+				if (tileid != 0) {
+					if (c->getVelocity().getX() > 0) c->setSideCollision(1);
+					else c->setSideCollision(2);
+				}
 			}
-			else if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
+			if (c->getVelocity().getX() < 0 || c->getVelocity().getY() < 0)
 			{
 				tileColumn = (pos.getX() + width / 2) / tileSize;
 				tileRow = (pos.getY() + (height / 2)) / tileSize;
@@ -72,6 +77,10 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 						}
 					}
 				}
+				if (tileid != 0) {
+					if (c->getVelocity().getX() < 0) c->setSideCollision(3);
+					else c->setSideCollision(0);
+				}
 			}
 
 			if (tileid != 0)
@@ -81,7 +90,7 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 				pos.setY(c->getPosition().getY() - c->getVelocity().getY());
 				c->setPosition(pos);
 
-				if (it->getTilesetByID(tileid).name == "Puertas")
+				/*if (it->getTilesetByID(tileid).name == "Puertas")
 				{
 					if (tileid == 829 || tileid == 830)
 					{
@@ -100,7 +109,7 @@ void CollisionManager::checkPlayerTileCollision(std::list<Entity*> characters, c
 					}
 				}
 
-				it->setTileIDs(tiles);
+				it->setTileIDs(tiles);*/
 			}
 		}
 	}

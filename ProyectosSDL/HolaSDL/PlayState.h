@@ -5,6 +5,7 @@
 #include "Inventory.h"
 #include "Chest.h"
 #include "Craft.h"
+#include "Movable.h"
 #include <memory>
 
 class PlayState: public GameState {

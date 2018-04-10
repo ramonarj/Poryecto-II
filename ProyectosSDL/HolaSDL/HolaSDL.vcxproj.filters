@@ -219,6 +219,9 @@
     <ClCompile Include="StaticImageRender.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Movable.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -390,6 +393,9 @@
       <Filter>Archivos de encabezado\States</Filter>
     </ClInclude>
     <ClInclude Include="StaticImageRender.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Movable.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -108,6 +108,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
+    <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
+    <ClInclude Include="Movable.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PhysicsComponent.h" />

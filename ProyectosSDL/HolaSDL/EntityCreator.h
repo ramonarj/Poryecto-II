@@ -7,6 +7,7 @@
 #include "Resources.h"
 #include "SkeletonRenderer.h"
 #include "Door.h"
+#include "Movable.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -56,7 +57,7 @@ public:
 		return e;
 	};
 	Component* chooseItemType(const ItemType type) const{
-		Item* i;
+		Component* i;
 		switch (type)
 		{
 		case STICK:
@@ -72,6 +73,7 @@ public:
 			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
+			//i = new Movable();	//	DEBUG
 			i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
@@ -157,6 +159,18 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Door());
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class MovableCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Movable());
+		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(e);
 		return e;
 	}
 };

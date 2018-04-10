@@ -17,7 +17,6 @@ void Item::interact(Entity* e) {
 	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
 		->currentState())->inventory->getComponent<Inventory>()->addItem(e)) {
 		Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(e);
-		e->setActive(false);
 	}
 
 }

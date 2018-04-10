@@ -8,6 +8,7 @@
 
 //Button enum for PS4 controller
 enum controller_buttons { Square, Cross, Circle, Triangle, L1, R1, L2, R2, Select, Start, L3, R3, HomeButton, Panel };
+enum xbox_controller_buttons { A, B, X, Y, left1, leftTrigger, SelectXB, rightTrigger, right1, StartXB, left3, right3, XboxButton };
 
 class ControllerInputComponent :
 	public Component
@@ -45,6 +46,8 @@ private:
 	bool chestOpen() { return cstOpen; };
 	bool InventoryOpen() { return invOpen; };
 	bool craftOpen() { return craft; };
+
+	bool controllerType = false;	//FALSE Play4   //   TRUE XBOX
 
 	//*MOUSE*
 	int mouseX = 0; int mouseY = 0;

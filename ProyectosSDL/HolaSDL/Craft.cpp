@@ -85,6 +85,7 @@ void Craft::repare()
 
 void Craft::wepSwitch()
 {
+	
 }
 
 void Craft::renderItem(Entity* e, coord pos)
@@ -149,7 +150,19 @@ void Craft::craft()
 
 void Craft::setWep(Entity* e)
 {
-	Wep = e;
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
+	if(Wep != nullptr)
+	{
+		Entity* aux = Wep;
+		Wep = e;
+		inv->addItem(aux);
+	}
+	else
+	{
+		Wep = e;
+	}
+	
+
 }
 
 void Craft::setCinta(Entity* e)

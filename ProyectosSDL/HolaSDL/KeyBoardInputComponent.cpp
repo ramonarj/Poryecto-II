@@ -9,8 +9,8 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 }
 
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
-												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo) :
-	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo),
+												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController) :
+	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo), switchController_(SwitchController),
 	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false)
 	{
 	}
@@ -143,6 +143,13 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	if (!state[craft_] && !invOpen && !cstOpen)
 	{
 		craftPressed = false;
+	}
+
+	if (state[switchController_]) {
+		if (o->getComponent<ControllerInputComponent>()->joysticksInitialised()) {
+			this->setEnabled(false);
+			o->getComponent<ControllerInputComponent>()->Active(true);
+		}
 	}
 
 

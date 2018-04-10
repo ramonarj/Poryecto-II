@@ -11,7 +11,7 @@ class KeyBoardInputComponent :
 public:
 	KeyBoardInputComponent();		
 	KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, 
-		SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo);
+		SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController);
 	virtual ~KeyBoardInputComponent();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 
@@ -27,6 +27,7 @@ private:
 	SDL_Keycode craft_;
 	SDL_Scancode pause_;
 	SDL_Scancode enter_;
+	SDL_Scancode switchController_;
 
 	//VARIABLE PARA EVITAR EL PARPADEO DEL INVENTARIO Y PARA CUADRAR QUE SE ABRAN LAS 
 	//INTERFACES CORRECTAS SIN QUE SE ABRAN Y CIERREN DE FORMAS DESIGUALES
@@ -37,5 +38,8 @@ private:
 	bool chestOpen() { return cstOpen; };
 	bool InventoryOpen() { return invOpen; };
 	bool craftOpen() { return craft; };
+
+	//*MOUSE*
+	int mouseX=0; int mouseY = 0;
 };
 

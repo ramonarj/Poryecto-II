@@ -23,7 +23,7 @@ void Inventory::update(Entity* e, Uint32 time)
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
 
-	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
+	if ((event.type == SDL_MOUSEBUTTONDOWN && !clicked)) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)

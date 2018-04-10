@@ -41,10 +41,14 @@ bool ControllerInputComponent::initialiseJoysticks()
 			}
 			m_buttonStates.push_back(tempButtons);
 
-			if (tempButtons.size() == 14)
+			if (tempButtons.size() == 14) {
 				increment = 1;
-			else if (tempButtons.size() == 11)
+				controllerType = false;
+			}
+			else if (tempButtons.size() == 11) {
 				increment = 8;
+				controllerType = true;
+			}
 
 		}
 		SDL_JoystickEventState(SDL_ENABLE);
@@ -166,67 +170,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 					m_joystickValues[0].first->setY(0);
 				}
 			}
-			//if (m_buttonStates[0].size() == 11) {
-			//	if (event.jaxis.axis == 3)
-			//	{
-			//		if (event.jaxis.value > m_joystickDeadZone / 2)		//This value goes from -33000 until 33000
-			//		{
-			//			mouseX += increment;						//joystick derecho - derecha
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 2)
-			//		{
-			//			mouseX -= increment;						//joystick derecho - izquierda
-			//		}
-			//	}
-			//	if (event.jaxis.axis == 4)
-			//	{
-
-			//		if (event.jaxis.value > m_joystickDeadZone / 2)			//joystick derecho - abajo
-			//		{
-			//			mouseY += increment;
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 2)	//joystick derecho - arriba
-			//		{
-			//			mouseY -= increment;
-			//		}
-
-			//	}
-			//}
-
-			//if (m_buttonStates[0].size() == 14) {
-			//	if (event.jaxis.axis == 2)
-			//	{
-			//		if (event.jaxis.value > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
-			//		{
-			//			mouseX += increment;						//joystick derecho - derecha
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 4)
-			//		{
-			//			mouseX -= increment;						//joystick derecho - izquierda
-			//		}
-			//	}
-			//	if (event.jaxis.axis == 5)
-			//	{
-
-			//		if (event.jaxis.value > m_joystickDeadZone / 4)			//joystick derecho - abajo
-			//		{
-			//			mouseY += increment;
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 4)	//joystick derecho - arriba
-			//		{
-			//			mouseY -= increment;
-			//		}
-
-			//	}
-			//}		
-
-			//SDL_WarpMouseGlobal(mouseX, mouseY);
 			
 		}
 
 
 		//JOYSTICK DERECHO
-		if (m_buttonStates[0].size() == 11) {										//XBOX
+		if (controllerType) {										//XBOX
 			int b = SDL_JoystickGetAxis(m_joysticks[0], 3);
 			int a = SDL_JoystickGetAxis(m_joysticks[0], 4);
 
@@ -250,7 +199,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			}
 		}
 
-		if (m_buttonStates[0].size() == 14) {								//PLAY
+		if (!controllerType) {								//PLAY
 			
 
 			int b = SDL_JoystickGetAxis(m_joysticks[0], 2);
@@ -327,7 +276,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				velocity.setY(vel);
 				direction.setY(-1);
 			}
-			else if (m_buttonStates[0][Square]) {		//Interacturar
+			else if ((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) {		//Interacturar
 				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
@@ -340,7 +289,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				}
 			}
 
-			else if (m_buttonStates[0][Circle] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
+			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
 			{
 				if (!(o->getComponent<Character>()->getAttacking())) {
 					o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
@@ -420,11 +369,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			craftPressed = false;
 		}
 
-		if (m_buttonStates[0][Select])
+		if ((!controllerType && m_buttonStates[0][Select]) || (controllerType && m_buttonStates[0][SelectXB]))
 		{
 			o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 			Active(false);
-			m_buttonStates[0][Select] = false;
+			if(!controllerType)
+				m_buttonStates[0][Select] = false;
+			else
+				m_buttonStates[0][SelectXB] = false;
 		}
 
 	}

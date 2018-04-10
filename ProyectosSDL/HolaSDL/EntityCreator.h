@@ -7,6 +7,7 @@
 #include "Resources.h"
 #include "SkeletonRenderer.h"
 #include "Door.h"
+#include "Movable.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -17,7 +18,11 @@ public:
 		e->setVelocity(Vector2D(1.0, 0.0));
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
-			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C,  SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN, SDL_SCANCODE_X));
+			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C,  SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN, SDL_SCANCODE_X, SDL_SCANCODE_0));
+
+		e->addComponent(new ControllerInputComponent());
+		
+
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
 		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
@@ -52,7 +57,7 @@ public:
 		return e;
 	};
 	Component* chooseItemType(const ItemType type) const{
-		Item* i;
+		Component* i;
 		switch (type)
 		{
 		case STICK:
@@ -68,7 +73,8 @@ public:
 			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			i = new FirstAid(itemTypetoString(type));
+			i = new Movable();	//	DEBUG
+			//i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type));
@@ -153,6 +159,18 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Door());
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class MovableCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Movable());
+		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(e);
 		return e;
 	}
 };

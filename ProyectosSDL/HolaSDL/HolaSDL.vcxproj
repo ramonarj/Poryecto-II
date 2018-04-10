@@ -103,10 +103,12 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
+    <ClCompile Include="LightTestState.cpp" />
     <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
+    <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
@@ -117,6 +119,7 @@
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="StaticImageRender.cpp" />
     <ClCompile Include="TextNote.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileLayer.cpp" />
@@ -161,10 +164,12 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelParser.h" />
+    <ClInclude Include="LightTestState.h" />
     <ClInclude Include="LoaderParams.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MouseInputComponent.h" />
+    <ClInclude Include="Movable.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PhysicsComponent.h" />
@@ -176,6 +181,7 @@
     <ClInclude Include="sdl_includes.h" />
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="StaticImageRender.h" />
     <ClInclude Include="TextNote.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileLayer.h" />

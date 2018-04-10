@@ -16,7 +16,7 @@ public:
 		return s_pInstance.get();
 	}
 
-	void checkPlayerTileCollision(std::list<Entity*> characters, const
+	void checkEntityTileCollision(std::list<Entity*> characters, const
 		std::vector<TileLayer*> &collisionLayers);
 
 private:

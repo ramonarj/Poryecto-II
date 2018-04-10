@@ -11,6 +11,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//getResources()->getMusic(Resources::Menu)->play();
 	stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(MenuState::Instance());
+	//stateMachine_.pushState(new LightTestState(this));
 
 	exit_ = false;
 }

@@ -47,6 +47,8 @@ public:
 	const Vector2D& getDirection() const;
 	void setDirection(const Vector2D &vel);
 
+	void setSideCollision(int i);
+
 
 	//Get Component
 	template<typename T>
@@ -77,6 +79,7 @@ private:
 	double currentFrame_;
 
 	vector<Component*> comps_;
+	vector<bool> sideCollision;
 };
 
 #endif /* ENTITY_H_ */

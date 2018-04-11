@@ -18,8 +18,6 @@ void TileLayer::update(Level* pLevel, Uint32 time)
 
 void TileLayer::render()
 {
-	zoom = Camera::Instance()->getZoom();
-
 	int x, y, x2, y2 = 0;
 
 	x = m_position.getX() / m_tileSize;

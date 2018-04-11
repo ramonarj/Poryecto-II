@@ -85,8 +85,8 @@ Tileset TileLayer::getTilesetByID(int tileID)
 
 void TileLayer::renderTV(int id, int i, int j, int x, int y)
 {
-	if (id == 1246 || id == 1247 || id == 1257 || id == 1258)
+	if (id == 1282 || id == 1283 || id == 1293 || id == 1294)
 		m_tileIDs[i + y][j + x] += 2;
-	else if (id == 1248 || id == 1249 || id == 1259 || id == 1260)
+	else if (id == 1284 || id == 1285 || id == 1295 || id == 1296)
 		m_tileIDs[i + y][j + x] -= 2;
 }

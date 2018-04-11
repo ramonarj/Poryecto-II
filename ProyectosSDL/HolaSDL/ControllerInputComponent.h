@@ -8,7 +8,7 @@
 
 //Button enum for PS4 controller
 enum controller_buttons { Square, Cross, Circle, Triangle, L1, R1, L2, R2, Select, Start, L3, R3, HomeButton, Panel };
-enum xbox_controller_buttons { A, B, X, Y, left1, leftTrigger, SelectXB, rightTrigger, right1, StartXB, left3, right3, XboxButton };
+enum xbox_controller_buttons { A, B, X, Y, left1, leftTrigger, SelectXB, StartXB, left3, right1, rightTrigger, right3, XboxButton };
 
 class ControllerInputComponent :
 	public Component

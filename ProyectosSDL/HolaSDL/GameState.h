@@ -11,6 +11,8 @@ class Game;
 class GameState {
 
 protected:
+	Entity* cursor_;
+
 	list<Entity*> stage_;
 	list<Entity*> interactibles_;
 	list<Entity*> characters_;
@@ -45,7 +47,7 @@ public:
 	list<Entity*>* getInteractibles() { return &interactibles_; };
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };
-	
+	Entity* getCursor() { return cursor_; };
 	void removeEntities();
 	void removeEntity(Entity* e);
 	void removeInteractibleOfStage(Entity* e);

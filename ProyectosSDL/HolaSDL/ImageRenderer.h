@@ -3,7 +3,6 @@
 
 #include "Component.h"
 #include "Entity.h"
-#include "Game.h"
 
 /*
  *
@@ -13,7 +12,7 @@ public:
 	ImageRenderer(Texture* image);
 	virtual ~ImageRenderer();
 	virtual void render(Entity* o, Uint32 time);
-private:
+protected:
 	Texture* image_;
 };
 

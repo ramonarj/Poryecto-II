@@ -1,4 +1,5 @@
 #include "ImageRenderer.h"
+#include "Game.h"
 
 ImageRenderer::ImageRenderer(Texture* image) : image_(image) {
 }

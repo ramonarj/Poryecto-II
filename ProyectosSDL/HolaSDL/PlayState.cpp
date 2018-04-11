@@ -34,6 +34,13 @@ void PlayState::startState()
 	//M�sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
+	//CURSOR
+	cursor_ = new Entity();
+	cursor_->setHeight(50);
+	cursor_->setWidth(50);
+	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
+	cursor_->addComponent(new MouseInputComponent());
+
 	//Item
 	Entity* palo = new Entity(10, 20);
 	palo->addComponent(new Weapon(ItemType::STICK, "Stick"));

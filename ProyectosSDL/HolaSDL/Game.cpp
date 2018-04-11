@@ -33,6 +33,7 @@ void Game::initGame()
 	addResourcesMusic();
 	addResourcesSoundEffects();
 	addResourcesFonts();
+	SDL_ShowCursor(0);
 }
 
 void Game::closeGame() {
@@ -127,6 +128,9 @@ void Game::addResourcesTexture()
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
 	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
+
+	//Cursors
+	resourceManager_->addTexture("Cursor", "images/stickPrueba.png");
 
 }
 

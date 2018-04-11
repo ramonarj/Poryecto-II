@@ -75,13 +75,7 @@ void Game::handleInput(Uint32 time) {
 				break;
 
 			case SDLK_f: // Pressing f to toggle fullscreen
-				int flags = SDL_GetWindowFlags(window_);
-				if (flags & SDL_WINDOW_FULLSCREEN) {
-					SDL_SetWindowFullscreen(window_, 0);
-				}
-				else {
-					SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
-				}
+				setFullScreen();
 				break;
 			}
 
@@ -89,6 +83,16 @@ void Game::handleInput(Uint32 time) {
 
 		//HandleInput de la Escena actual
 		stateMachine_.currentState()->handleInput(time, event_);
+	}
+}
+
+void Game::setFullScreen(){
+	int flags = SDL_GetWindowFlags(window_);
+	if (flags & SDL_WINDOW_FULLSCREEN) {
+		SDL_SetWindowFullscreen(window_, 0);
+	}
+	else {
+		SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
 	}
 }
 

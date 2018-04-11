@@ -3,7 +3,7 @@
 
 unique_ptr<Camera> Camera::s_pCamera = nullptr;
 
-Camera::Camera() : m_pTarget(nullptr), m_position(0, 0), zoom(3)
+Camera::Camera() : m_pTarget(nullptr), m_position(0, 0), zoom(4)
 {
 
 }

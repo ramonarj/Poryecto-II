@@ -378,6 +378,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			else
 				m_buttonStates[0][SelectXB] = false;
 		}
+		if ((!controllerType && m_buttonStates[0][L3]) || (controllerType && m_buttonStates[0][left3]))
+		{
+			Game::Instance()->setFullScreen();
+			if (!controllerType)
+				m_buttonStates[0][L3] = false;
+			else
+				m_buttonStates[0][left3] = false;
+		}
 
 	}
 }

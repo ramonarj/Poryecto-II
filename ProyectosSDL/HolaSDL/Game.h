@@ -60,6 +60,7 @@ public:
 	};
 
 	GameStateMachine* getStateMachine() { return &stateMachine_; };
+	void setFullScreen();
 
 private:
 	Game();

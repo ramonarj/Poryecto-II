@@ -145,6 +145,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		craftPressed = false;
 	}
 
+	if (invOpen || cstOpen || crftOpen)
+		Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(true);
+	else
+		Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(false);
+
 	if (state[switchController_]) {
 		if (o->getComponent<ControllerInputComponent>()->joysticksInitialised()) {
 			this->setEnabled(false);

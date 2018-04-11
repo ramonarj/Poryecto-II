@@ -172,5 +172,6 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
-	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));*/
+	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
+	gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));*/
 }

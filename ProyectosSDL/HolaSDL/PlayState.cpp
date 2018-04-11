@@ -40,6 +40,7 @@ void PlayState::startState()
 	cursor_->setWidth(50);
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
 	cursor_->addComponent(new MouseInputComponent());
+	cursor_->setActive(false);
 
 	//Item
 	Entity* palo = new Entity(10, 20);

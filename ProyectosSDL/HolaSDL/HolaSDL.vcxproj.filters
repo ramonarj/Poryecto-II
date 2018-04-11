@@ -222,6 +222,12 @@
     <ClCompile Include="Movable.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="SlidingPuzzle.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SlidingPuzzleComponent.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -396,6 +402,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Movable.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SlidingPuzzle.h">
+      <Filter>Archivos de encabezado\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SlidingPuzzleComponent.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

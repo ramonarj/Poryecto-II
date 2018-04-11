@@ -118,6 +118,8 @@
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
+    <ClCompile Include="SlidingPuzzle.cpp" />
+    <ClCompile Include="SlidingPuzzleComponent.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="StaticImageRender.cpp" />
     <ClCompile Include="TextNote.cpp" />
@@ -180,6 +182,8 @@
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="sdl_includes.h" />
     <ClInclude Include="SkeletonRenderer.h" />
+    <ClInclude Include="SlidingPuzzle.h" />
+    <ClInclude Include="SlidingPuzzleComponent.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="StaticImageRender.h" />
     <ClInclude Include="TextNote.h" />

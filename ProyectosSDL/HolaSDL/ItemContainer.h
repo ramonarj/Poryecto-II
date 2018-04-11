@@ -24,7 +24,7 @@ protected:
 	//int InvTam;
 	bool clicked = false;
 	int slotClicked;
-
+	
 	vector<Entity*> inventory;
 	coord Inventoryslots[4] = { { 705, 100 },{ 800, 100 },{ 705,200 },{ 800,200 } };
 

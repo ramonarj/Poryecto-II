@@ -92,8 +92,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 void Inventory::render(Entity* e, Uint32 time)
 {
 	
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
+	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -328,10 +328,7 @@ void Inventory::moveMarkSlot(int a) {
 	}
 }
 
-void Inventory::setSelectedSlot(int a)
-{
-	selectedSlot = a;
-}
+
 
 void Inventory::activeItem()
 {
@@ -364,11 +361,12 @@ void Inventory::moveItem()
 			this->DeleteItem(selectedSlot);
 		}
 		else {
-			//Entity* auxInv = &inv->ItemInPosition[inv->getSelectedSlot()];	//Guardamos la entidad del inventario
-			//inv->DeleteItem(inv->getSelectedSlot());	//La borramos
-			//inv->addItem(inventory[selectedSlot]);		//Añadimos la del cofre
-			//this->DeleteItem(selectedSlot);				//Borramos la del cofre
-			//this->addItem(auxInv);						//Añadimos al cofre la del inventario
+			Entity* auxInv = ItemInPosition(selectedSlot);	//Guardamos la entidad del inventario
+			Entity* auxCofre = cofre->ItemInPosition(cofre->getSelectedSlot());
+			DeleteItem(selectedSlot);	//La borramos
+			cofre->DeleteItem(cofre->getSelectedSlot());		//Añadimos la del cofre
+			cofre->addItem(auxCofre);					//Borramos la del cofre
+			this->addItem(auxInv);						//Añadimos al cofre la del inventario
 		}
 	}
 }
@@ -377,11 +375,3 @@ Entity * Inventory::currentWeapon()
 {
 	return equiped;
 }
-
-
-
-
-
-
-
-

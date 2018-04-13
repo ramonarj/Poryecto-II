@@ -16,6 +16,9 @@ void Craft::update(Entity * e, Uint32 time)
 
 void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+	if (inv == nullptr)
+		inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>();
+
 	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 
 		if ((event.button.x >= RepareButton.x && event.button.x <= RepareButton.x + 200)
@@ -48,8 +51,8 @@ void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 
 void Craft::render(Entity * e, Uint32 time)
 {
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
+	if(pRenderer==nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -88,6 +91,65 @@ void Craft::wepSwitch()
 	
 }
 
+void Craft::moveMarkSlot(int a)
+{
+	if (!craftButtonSelected) {
+		if (a == 1) {
+			selectedSlot = 0;
+		}
+		else if (a == 3)
+			selectedSlot = 1;
+	}
+	else {
+		if (a == 1) {
+			selectedSlot = 1;
+		}
+	}
+}
+
+void Craft::tryCrafting()
+{
+	if (!craftButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botón de crafteo ya o no
+		switch (selectedSlot)
+		{
+		case 0:
+			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			{
+				craftButtonSelected = true;
+			}
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		slotCraftClicked = selectedSlot;	//Ya sabemos que podemos crearlo, y lo ajustamos y creamos
+		craft();	//Crafteamos
+		craftButtonSelected = false;
+		slotCraftClicked = -1;
+		selectedSlot = 0;	//Colocamos la marca en el de arriba
+	}
+
+}
+
+void Craft::retireBlock()
+{
+	craftButtonSelected = false;
+	repairButtonSelected = false;
+}
+
+void Craft::renderSlotMark(SDL_Rect DestRect)
+{
+	resource->getTexture("InventoryCursor")->render(pRenderer, DestRect);
+}
+
 void Craft::renderItem(Entity* e, coord pos)
 {	
 	if (e != nullptr) {
@@ -120,6 +182,18 @@ void Craft::renderItem(Entity* e, coord pos)
 			resource->getTexture("Key")->render(pRenderer, DestRect);
 		}
 	}
+
+	if (controllerActive) {
+		if (selectedSlot < 2 && !craftButtonSelected) {
+			SDL_Rect DestRect = { craftSlots[selectedSlot].x - slotWidth / 2 + 5, craftSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+			renderSlotMark(DestRect);
+		}
+		else if (craftButtonSelected){
+			//SDL_Rect DestRect = { cra.x - slotWidth / 2 - 5, EquippedCoord.y - slotWidth / 2 - 10, slotWidth * 2 + 16, slotWidth * 2 + 16 };
+			renderSlotMark(craftButton);
+		}
+	}
+
 }
 
 void Craft::craft()

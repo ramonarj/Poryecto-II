@@ -61,8 +61,8 @@ void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 
 void Chest::render(Entity * e, Uint32 time)
 {
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
+	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -91,7 +91,16 @@ void Chest::render(Entity * e, Uint32 time)
 	}
 
 	if (controllerActive) {
-		SDL_Rect DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 5, ChestSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		SDL_Rect DestRect;
+		if(selectedSlot<5)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if(selectedSlot<10)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if (selectedSlot<15)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 - 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if (selectedSlot<20)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 - 6, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+
 		renderSlotMark(DestRect);
 	}
 

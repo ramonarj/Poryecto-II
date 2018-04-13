@@ -123,6 +123,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		active_ = false;
 		inv->getComponent<Inventory>()->setActiveController(false);
 		cst->getComponent<Chest>()->setActiveController(false);
+		craft->getComponent<Craft>()->setActiveController(false);
 		clean();
 	}
 	else if(event.type == SDL_JOYDEVICEADDED) {
@@ -132,6 +133,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(false);
 		inv->getComponent<Inventory>()->setActiveController(true);
 		cst->getComponent<Chest>()->setActiveController(true);
+		craft->getComponent<Craft>()->setActiveController(true);
 		active_ = true;
 	}
 
@@ -177,10 +179,8 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				{
 					m_joystickValues[0].first->setY(0);
 				}
-			}
-			
+			}	
 		}
-
 
 		//JOYSTICK DERECHO
 		if (controllerType) {										//XBOX
@@ -197,7 +197,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 					cst->getComponent<Chest>()->moveMarkSlot(2);
 				}
 				else if (interfaceActive == 3) {
-
+					//craft->getComponent<Craft>()->moveMarkSlot(2);		//COMENTADOS POR AHORA
 				}
 			}
 			//Derecho izquierda
@@ -210,7 +210,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 					cst->getComponent<Chest>()->moveMarkSlot(4);
 				}
 				else if (interfaceActive == 3) {
-
+					//craft->getComponent<Craft>()->moveMarkSlot(4);		//COMENTADOS POR AHORA
 				}
 			}
 			else if((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2)&&(a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
@@ -229,7 +229,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 					cst->getComponent<Chest>()->moveMarkSlot(3);
 				}
 				else if (interfaceActive == 3) {
-
+					craft->getComponent<Craft>()->moveMarkSlot(3);
 				}
 			}
 
@@ -242,7 +242,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 					cst->getComponent<Chest>()->moveMarkSlot(1);
 				}
 				else if (interfaceActive == 3) {
-
+					craft->getComponent<Craft>()->moveMarkSlot(1);
 				}
 			}
 			else if ((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2) && (a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
@@ -450,7 +450,8 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 		//ESTAR EN EL COFRE
 
-		if (m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && !interactButtonPressedLeftShoulder)
+		//Cambiar de interfaz
+		if (m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && !interactButtonPressedLeftShoulder)	
 		{
 			if (interfaceActive == 1)
 				interfaceActive = 2;
@@ -463,7 +464,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 
-		//Activar el objeto si estas en el inventario o meter en el inventario si estas en el cofre
+		//Activar el objeto si estas en el inventario
 		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedCross)	
 		{
 			if (interfaceActive == 1) {
@@ -497,10 +498,10 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 		//ESTAR EN EL CRAFTEO
 
-		if (m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && !interactButtonPressedLeftShoulder)
+		if (m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && !interactButtonPressedLeftShoulder)		//CAMBIO DE INTERFAZ
 		{
 			if (interfaceActive == 1)
-				interfaceActive = 2;
+				interfaceActive = 3;
 			else
 				interfaceActive = 1;
 			interactButtonPressedLeftShoulder = true;
@@ -510,11 +511,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 
-		//Activar el objeto si estas en el inventario o meter en el inventario si estas en el cofre
+		//Activar el objeto si estas en el inventario
 		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedCross)
 		{
 			if (interfaceActive == 1) {
 				inv->getComponent<Inventory>()->activeItem();
+			}
+			if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->tryCrafting();	//ESTE METODO HABRA QUE CAMBIARLO YA QUE CONTROLAS CRAFTEO Y REPARACIÓN
 			}
 
 			interactButtonPressedCross = true;
@@ -524,20 +528,17 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 
-		//Coger del inventario para guardarlo en el cofre
-		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedSquare)
+		//Coger del inventario arma y material para devolverlo
+		if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedCircle)
 		{
-			if (interfaceActive == 1) {
-				inv->getComponent<Inventory>()->moveItem();
-			}
-			else if (interfaceActive == 2) {
-				cst->getComponent<Chest>()->moveItem();
+			if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->retireBlock();
 			}
 
-			interactButtonPressedSquare = true;
+			interactButtonPressedCircle = true;
 		}
-		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedSquare) {
-			interactButtonPressedSquare = false;
+		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedCircle) {
+			interactButtonPressedCircle = false;
 		}
 
 

@@ -52,6 +52,7 @@ private:
 
 	bool interactButtonPressedCross = false;
 	bool interactButtonPressedSquare = false;
+	bool interactButtonPressedCircle = false;
 	bool interactButtonPressedLeftShoulder = false;
 
 	int interfaceActive = 0;	//0=ninguna abierta, 1=inventario, 2=cofre, 3=crafteo

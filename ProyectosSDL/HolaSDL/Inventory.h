@@ -22,8 +22,8 @@ public:
 	~Inventory();
 
 	void setActiveController(bool b) { controllerActive = b; };
-	virtual void moveMarkSlot(int a);
-	void setSelectedSlot(int a);
+	void moveMarkSlot(int a);
+	void setSelectedSlot(int a) { selectedSlot = a; };
 
 protected:
 	bool debug = false;

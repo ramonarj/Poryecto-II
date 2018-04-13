@@ -62,6 +62,5 @@ protected:
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	void renderSlotMark(SDL_Rect DestRect);
-	virtual void moveSelectedSlot(int a) {};
 };
 

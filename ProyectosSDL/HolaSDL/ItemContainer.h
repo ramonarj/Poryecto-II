@@ -50,7 +50,7 @@ public:
 	vector<Entity*> getInventory() { return inventory; };
 
 protected:
-	
+	int slotWidth = 50;
 	SDL_Renderer* pRenderer = nullptr;
 	ResourceManager* resource = nullptr;
 
@@ -60,5 +60,8 @@ protected:
 	virtual bool fullInventory() = 0;
 	bool empty();
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
+
+	void renderSlotMark(SDL_Rect DestRect);
+	virtual void moveSelectedSlot(int a) {};
 };
 

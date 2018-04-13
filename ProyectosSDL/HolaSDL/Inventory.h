@@ -21,6 +21,10 @@ public:
 	Inventory();
 	~Inventory();
 
+	void setActiveController(bool b) { controllerActive = b; };
+	virtual void moveMarkSlot(int a);
+	void setSelectedSlot(int a);
+
 protected:
 	bool debug = false;
 	
@@ -53,9 +57,14 @@ public:
 	//GETS
 	vector<Entity*> getKeys() { return keys; };
 	int getInvTam() { return InventoryTam; };
+	int getSelectedSlot() { return selectedSlot; };
+
+	void activeItem();
 	
 private:
 	vector<Entity*> keys;
+	bool controllerActive = false;
+	int selectedSlot = 0;
 };
 
 

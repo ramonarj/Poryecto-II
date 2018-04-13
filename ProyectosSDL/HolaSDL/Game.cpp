@@ -135,6 +135,7 @@ void Game::addResourcesTexture()
 
 	//Cursors
 	resourceManager_->addTexture("Cursor", "images/stickPrueba.png");
+	resourceManager_->addTexture("InventoryCursor", "images/Inventario/CursorInventario.png");
 
 }
 

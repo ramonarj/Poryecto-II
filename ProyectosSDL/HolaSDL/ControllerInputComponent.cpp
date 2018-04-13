@@ -42,11 +42,11 @@ bool ControllerInputComponent::initialiseJoysticks()
 			m_buttonStates.push_back(tempButtons);
 
 			if (tempButtons.size() == 14) {
-				increment = 1;
+				//increment = 1;
 				controllerType = false;
 			}
 			else if (tempButtons.size() == 11) {
-				increment = 8;
+				//increment = 8;
 				controllerType = true;
 			}
 
@@ -114,16 +114,25 @@ int ControllerInputComponent::yvalue(int joy, int stick)
 
 void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 	
+	if (inv == nullptr)
+		inv = Game::Instance()->getEntityWithComponent<Inventory>();
+	if(cst == nullptr)
+		cst = Game::Instance()->getEntityWithComponent<Chest>();
+
 	if (event.type == SDL_JOYDEVICEREMOVED) {
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 		active_ = false;
+		inv->getComponent<Inventory>()->setActiveController(false);
+		cst->getComponent<Chest>()->setActiveController(false);
 		clean();
 	}
 	else if(event.type == SDL_JOYDEVICEADDED) {
 		initialiseJoysticks();
-		mouseX = 500;
-		mouseY = 500;
+		/*mouseX = 500;
+		mouseY = 500;*/
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(false);
+		inv->getComponent<Inventory>()->setActiveController(true);
+		cst->getComponent<Chest>()->setActiveController(true);
 		active_ = true;
 	}
 
@@ -179,59 +188,103 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			int b = SDL_JoystickGetAxis(m_joysticks[0], 3);
 			int a = SDL_JoystickGetAxis(m_joysticks[0], 4);
 
-			if (b > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
+			//Derecho derecha
+			if (b > m_joystickDeadZone * 2 && !joystickMoved)
 			{
-				mouseX += increment;						//joystick derecho - derecha
+				joystickMoved = true;
+				if(interfaceActive==1)
+					inv->getComponent<Inventory>()->moveMarkSlot(2);						
+				else if (interfaceActive == 2) {
+					cst->getComponent<Chest>()->moveMarkSlot(2);
+				}
+				else if (interfaceActive == 3) {
+
+				}
 			}
-			else if (b < -m_joystickDeadZone / 4)
+			//Derecho izquierda
+			else if (b < -m_joystickDeadZone * 2 && !joystickMoved)
 			{
-				mouseX -= increment;						//joystick derecho - izquierda
+				joystickMoved = true;
+				if (interfaceActive == 1)
+					inv->getComponent<Inventory>()->moveMarkSlot(4);
+				else if (interfaceActive == 2) {
+					cst->getComponent<Chest>()->moveMarkSlot(4);
+				}
+				else if (interfaceActive == 3) {
+
+				}
+			}
+			else if((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2)&&(a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+			{
+				joystickMoved = false;
 			}
 
 
-			if (a > m_joystickDeadZone / 4)			//joystick derecho - abajo
+			//Derecho abajo
+			if (a > m_joystickDeadZone * 2 && !joystickMoved)			
 			{
-				mouseY += increment;
+				joystickMoved = true;
+				if (interfaceActive == 1)
+					inv->getComponent<Inventory>()->moveMarkSlot(3);
+				else if (interfaceActive == 2) {
+					cst->getComponent<Chest>()->moveMarkSlot(3);
+				}
+				else if (interfaceActive == 3) {
+
+				}
 			}
-			else if (a < -m_joystickDeadZone / 4)	//joystick derecho - arriba
+
+			else if (a < -m_joystickDeadZone * 2 && !joystickMoved)	//joystick derecho - arriba
 			{
-				mouseY -= increment;
+				joystickMoved = true;
+				if (interfaceActive == 1)
+					inv->getComponent<Inventory>()->moveMarkSlot(1);
+				else if (interfaceActive == 2) {
+					cst->getComponent<Chest>()->moveMarkSlot(1);
+				}
+				else if (interfaceActive == 3) {
+
+				}
+			}
+			else if ((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2) && (a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+			{
+				joystickMoved = false;
 			}
 		}
 
-		if (!controllerType) {								//PLAY
-			
+		//if (!controllerType) {								//PLAY
+		//	
 
-			int b = SDL_JoystickGetAxis(m_joysticks[0], 2);
-			int a = SDL_JoystickGetAxis(m_joysticks[0], 5);
+		//	int b = SDL_JoystickGetAxis(m_joysticks[0], 2);
+		//	int a = SDL_JoystickGetAxis(m_joysticks[0], 5);
 
-			if (b >= SDL_JOYSTICK_AXIS_MAX-2000 || b <= SDL_JOYSTICK_AXIS_MIN+2000 || a >= SDL_JOYSTICK_AXIS_MAX-2000 || a <= SDL_JOYSTICK_AXIS_MIN+2000)
-				increment = 5;
-			else
-				increment = 1;
+		//	/*if (b >= SDL_JOYSTICK_AXIS_MAX-2000 || b <= SDL_JOYSTICK_AXIS_MIN+2000 || a >= SDL_JOYSTICK_AXIS_MAX-2000 || a <= SDL_JOYSTICK_AXIS_MIN+2000)
+		//		increment = 5;
+		//	else
+		//		increment = 1;*/
 
-			if (b > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
-			{
-				mouseX += increment;						//joystick derecho - derecha
-			}
-			else if (b < -m_joystickDeadZone / 4)
-			{
-				mouseX -= increment;						//joystick derecho - izquierda
-			}
-			
-			
-			if (a > m_joystickDeadZone / 4)			//joystick derecho - abajo
-			{
-				mouseY += increment;
-			}
-			else if (a < -m_joystickDeadZone / 4)	//joystick derecho - arriba
-			{
-				mouseY -= increment;
-			}
+		//	if (b > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
+		//	{
+		//		mouseX += increment;						//joystick derecho - derecha
+		//	}
+		//	else if (b < -m_joystickDeadZone / 4)
+		//	{
+		//		mouseX -= increment;						//joystick derecho - izquierda
+		//	}
+		//	
+		//	
+		//	if (a > m_joystickDeadZone / 4)			//joystick derecho - abajo
+		//	{
+		//		mouseY += increment;
+		//	}
+		//	else if (a < -m_joystickDeadZone / 4)	//joystick derecho - arriba
+		//	{
+		//		mouseY -= increment;
+		//	}
 
-		}
+		//}
 
-		SDL_WarpMouseGlobal(mouseX, mouseY);
+		/*SDL_WarpMouseGlobal(mouseX, mouseY);*/
 
 
 
@@ -309,7 +362,6 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			o->setVelocity(Vector2D(0, 0));
 		}
 
-
 		//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
 		if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)		//Inventario
 		{
@@ -319,8 +371,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
 				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
 				inv->setActive(!inv->isActive());
+				inv->getComponent<Inventory>()->setSelectedSlot(0);
 				inventoryPressed = true;
 				invOpen = !invOpen;
+
+				if(interfaceActive==0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
 			}
 		}
 		if (!m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)
@@ -341,6 +397,10 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				inv->getComponent<Inventory>()->setChestMode(cstOpen);
 				//SOUND 
 				Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+				if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
+
 			}
 		}
 		if (!m_buttonStates[0][R1] && !invOpen && !crftOpen)
@@ -348,7 +408,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			chestPressed = false;
 		}
 
-		if (m_buttonStates[0][R2] && !invOpen && !cstOpen)
+		if (m_buttonStates[0][R2] && !invOpen && !cstOpen)		//Abrir crafteo
 		{
 			if (!craftPressed) {
 				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
@@ -362,6 +422,9 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 				//SOUND 
 				Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+				if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
 			}
 		}
 		if (!m_buttonStates[0][R2] && !invOpen && !cstOpen)
@@ -369,16 +432,77 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			craftPressed = false;
 		}
 
-		if ((!controllerType && m_buttonStates[0][Select]) || (controllerType && m_buttonStates[0][SelectXB]))
+
+
+		///////////////////////////////////////////////////////////////////////////////
+		////////////////////INTERACCIONES DENTRO DE LOS MENUS//////////////////////////
+		///////////////////////////////////////////////////////////////////////////////
+
+
+		//ESTAR SOLO EN EL INVENTARIO
+
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && invOpen && !cstOpen && !crftOpen && !interactButtonPressedCross)	
 		{
+			inv->getComponent<Inventory>()->activeItem();
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && invOpen && !cstOpen && !crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		//ESTAR EN EL COFRE
+
+		if (m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && !interactButtonPressedLeftShoulder)
+		{
+			if (interfaceActive == 1)
+				interfaceActive = 2;
+			else
+				interfaceActive = 1;
+			interactButtonPressedLeftShoulder = true;
+		}
+		else if (!m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && interactButtonPressedLeftShoulder) {
+			interactButtonPressedLeftShoulder = false;
+		}
+
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedCross)	
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->activeItem();
+			}
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveItem();
+			}
+
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		
+
+
+
+
+
+
+
+		if ((!controllerType && m_buttonStates[0][Select]) || (controllerType && m_buttonStates[0][SelectXB]))		//SELECT PARA VOLVER A TECLADO Y RATON
+		{
+
 			o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 			Active(false);
 			if(!controllerType)
 				m_buttonStates[0][Select] = false;
 			else
 				m_buttonStates[0][SelectXB] = false;
+
+			
 		}
-		if ((!controllerType && m_buttonStates[0][L3]) || (controllerType && m_buttonStates[0][left3]))
+
+		if ((!controllerType && m_buttonStates[0][L3]) || (controllerType && m_buttonStates[0][left3]))		//PANTALLA COMPLETA
 		{
 			Game::Instance()->setFullScreen();
 			if (!controllerType)
@@ -386,7 +510,6 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			else
 				m_buttonStates[0][left3] = false;
 		}
-
 	}
 }
 

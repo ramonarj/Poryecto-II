@@ -48,9 +48,16 @@ private:
 	bool craftOpen() { return craft; };
 
 	bool controllerType = false;	//FALSE Play4   //   TRUE XBOX
+	bool joystickMoved = false;
 
-	//*MOUSE*
-	int mouseX = 0; int mouseY = 0;
-	int increment = 5;
+	bool interactButtonPressedCross = false;
+	bool interactButtonPressedSquare = false;
+	bool interactButtonPressedLeftShoulder = false;
+
+	int interfaceActive = 0;	//0=ninguna abierta, 1=inventario, 2=cofre, 3=crafteo
+									
+	////*MOUSE*
+	//int mouseX = 0; int mouseY = 0;
+	//int increment = 5;
 };
 

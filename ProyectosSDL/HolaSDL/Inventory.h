@@ -60,6 +60,7 @@ public:
 	int getSelectedSlot() { return selectedSlot; };
 
 	void activeItem();
+	void moveItem();
 	
 private:
 	vector<Entity*> keys;

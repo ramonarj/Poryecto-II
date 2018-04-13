@@ -22,6 +22,10 @@ void Chest::update(Entity * e, Uint32 time)
 
 void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+
+	if (inv == nullptr)
+		inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>();
+
 	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;

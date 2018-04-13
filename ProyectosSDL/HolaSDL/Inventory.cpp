@@ -23,6 +23,11 @@ void Inventory::update(Entity* e, Uint32 time)
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
 
+	if (cofre == nullptr)
+		cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>();
+	//if (craftWin == nullptr)
+		//craftWin = Game::Instance()->getEntityWithComponent<>()->getComponent<Chest>();
+
 	if ((event.type == SDL_MOUSEBUTTONDOWN && !clicked)) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
@@ -342,6 +347,28 @@ void Inventory::activeItem()
 			else if (aux->getComponent<FirstAid>() != nullptr) {
 				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>());
 			}
+		}
+	}
+}
+
+void Inventory::moveItem()
+{
+	Entity* aux;
+	aux = ItemInPosition(selectedSlot);
+
+	if (aux != nullptr) {
+
+		if (!cofre->fullInventory())
+		{
+			cofre->addItem(aux);
+			this->DeleteItem(selectedSlot);
+		}
+		else {
+			//Entity* auxInv = &inv->ItemInPosition[inv->getSelectedSlot()];	//Guardamos la entidad del inventario
+			//inv->DeleteItem(inv->getSelectedSlot());	//La borramos
+			//inv->addItem(inventory[selectedSlot]);		//Añadimos la del cofre
+			//this->DeleteItem(selectedSlot);				//Borramos la del cofre
+			//this->addItem(auxInv);						//Añadimos al cofre la del inventario
 		}
 	}
 }

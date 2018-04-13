@@ -114,10 +114,9 @@ int ControllerInputComponent::yvalue(int joy, int stick)
 
 void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 	
-	if (inv == nullptr)
-		inv = Game::Instance()->getEntityWithComponent<Inventory>();
-	if(cst == nullptr)
-		cst = Game::Instance()->getEntityWithComponent<Chest>();
+	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
 
 	if (event.type == SDL_JOYDEVICEREMOVED) {
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
@@ -366,9 +365,9 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)		//Inventario
 		{
 			if (/*event.type == SDL_KEYDOWN &&*/ !inventoryPressed) {
-				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+				/*if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }*/
 				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
 				inv->setActive(!inv->isActive());
 				inv->getComponent<Inventory>()->setSelectedSlot(0);
@@ -387,9 +386,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		if (m_buttonStates[0][R1] && !invOpen && !crftOpen)		//Abrir cofre
 		{
 			if (!chestPressed) {
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+				
 				inv->setActive(!inv->isActive());
 				cst->setActive(!cst->isActive());
 				chestPressed = true;
@@ -411,9 +408,9 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		if (m_buttonStates[0][R2] && !invOpen && !cstOpen)		//Abrir crafteo
 		{
 			if (!craftPressed) {
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+				/*if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }*/
 				inv->setActive(!inv->isActive());
 				craft->setActive(!craft->isActive());
 				craftPressed = true;
@@ -465,13 +462,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			interactButtonPressedLeftShoulder = false;
 		}
 
+
+		//Activar el objeto si estas en el inventario o meter en el inventario si estas en el cofre
 		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedCross)	
 		{
 			if (interfaceActive == 1) {
 				inv->getComponent<Inventory>()->activeItem();
-			}
-			else if (interfaceActive == 2) {
-				cst->getComponent<Chest>()->moveItem();
 			}
 
 			interactButtonPressedCross = true;
@@ -481,8 +477,68 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 
-		
+		//Coger del inventario para guardarlo en el cofre
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedSquare)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->moveItem();
+			}
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveItem();
+			}
 
+			interactButtonPressedSquare = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && cstOpen && !crftOpen && interactButtonPressedSquare) {
+			interactButtonPressedSquare = false;
+		}
+
+
+
+		//ESTAR EN EL CRAFTEO
+
+		if (m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && !interactButtonPressedLeftShoulder)
+		{
+			if (interfaceActive == 1)
+				interfaceActive = 2;
+			else
+				interfaceActive = 1;
+			interactButtonPressedLeftShoulder = true;
+		}
+		else if (!m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && interactButtonPressedLeftShoulder) {
+			interactButtonPressedLeftShoulder = false;
+		}
+
+
+		//Activar el objeto si estas en el inventario o meter en el inventario si estas en el cofre
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedCross)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->activeItem();
+			}
+
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		//Coger del inventario para guardarlo en el cofre
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedSquare)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->moveItem();
+			}
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveItem();
+			}
+
+			interactButtonPressedSquare = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedSquare) {
+			interactButtonPressedSquare = false;
+		}
 
 
 
@@ -491,15 +547,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 		if ((!controllerType && m_buttonStates[0][Select]) || (controllerType && m_buttonStates[0][SelectXB]))		//SELECT PARA VOLVER A TECLADO Y RATON
 		{
-
 			o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 			Active(false);
 			if(!controllerType)
 				m_buttonStates[0][Select] = false;
 			else
-				m_buttonStates[0][SelectXB] = false;
-
-			
+				m_buttonStates[0][SelectXB] = false;	
 		}
 
 		if ((!controllerType && m_buttonStates[0][L3]) || (controllerType && m_buttonStates[0][left3]))		//PANTALLA COMPLETA

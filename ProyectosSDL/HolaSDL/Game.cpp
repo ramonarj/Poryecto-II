@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "EntityCreator.h"
+#include "SlidingPuzzle.h"
 
 unique_ptr<Game> Game:: s_pInstance = nullptr;
 
@@ -10,6 +11,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Se añade MenuScene
 	//getResources()->getMusic(Resources::Menu)->play();
 	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(SlidingPuzzle::Instance());
 	//stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
@@ -124,6 +126,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
 	resourceManager_->addTexture("Craft", "images/Inventario/FullscreenVersions/Crafting_Full.png");
+
+	//Puzzle
+	resourceManager_->addTexture("SlidingPuzzle", "images/puzzle.jpg");
 
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");

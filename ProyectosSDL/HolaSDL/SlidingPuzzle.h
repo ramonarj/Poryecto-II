@@ -1,13 +1,13 @@
 
 #pragma once
 #include "GameState.h"
+#include "SlidingPuzzleComponent.h"
 
 class SlidingPuzzle : public GameState
 {
 private:
 	SlidingPuzzle();
 	static unique_ptr<SlidingPuzzle> s_pInstance;
-	void init();
 public:
 	~SlidingPuzzle();
 
@@ -19,6 +19,9 @@ public:
 	}
 
 	virtual void startState();
+	virtual void render(Uint32 time);
+	virtual void update(Uint32 time);
+	virtual void handleInput(Uint32 time, SDL_Event& event);
 };
 
 typedef SlidingPuzzle SlidingPuzzle;

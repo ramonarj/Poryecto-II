@@ -90,7 +90,7 @@ void Chest::render(Entity * e, Uint32 time)
 			}
 	}
 
-	if (controllerActive) {
+	if (controllerActive && renderMark) {
 		SDL_Rect DestRect;
 		if(selectedSlot<5)
 			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };

@@ -43,6 +43,7 @@ public:
 	virtual bool checkItem(int item);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
+	void removeWeapon();
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }
@@ -61,11 +62,14 @@ public:
 
 	void activeItem();
 	void moveItem();
+	void setToRepair();
+	void setRenderMark(bool a) { renderMark = a; }
 	
 private:
 	vector<Entity*> keys;
 	bool controllerActive = false;
 	int selectedSlot = 0;
+	bool renderMark = true;
 };
 
 

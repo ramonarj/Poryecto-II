@@ -19,6 +19,7 @@ public:
 	virtual void render(Entity* e, Uint32 time);
 
 	Inventory* inv = nullptr;
+
 	Entity* Wep = nullptr;
 	Entity* cinta = nullptr;
 	
@@ -39,19 +40,25 @@ public:
 
 	coord RepareButton = { 400, 490 };
 	SDL_Rect craftSlots[4] = { { 129,100, 50,50 }, { 129,195, 50,50 }, { 129,290, 50,50 }, { 129,385, 50,50 } };
+	SDL_Rect reparetSlotsRect[2] = { { 158, 540, 50,50 },{ 271, 540, 50,50 } };
 	SDL_Rect craftSlotsclick[4] = { { 110, 83, 90, 90 },{ 110, 178, 90, 90 },{ 110, 273, 90, 90 },{ 110, 378, 90, 90 } };
+	
 	SDL_Rect craftButton = { 225,370, 370,90 };
-
+	SDL_Rect repairButtonRect = { 400,485, 200,160 };
 
 	//Controller
 	void setActiveController(bool b) { controllerActive = b; };
 	void moveMarkSlot(int a);
 	void setSelectedSlot(int a) { selectedSlot = a; };
-	void tryCrafting();
+	void tryCraftingRepair();
 	void retireBlock();
+	void returnToInv();
+	bool checkRepair();
 
 	void renderSlotMark(SDL_Rect DestRect);
-	
+	bool getRepairButtonSelected() { return repairButtonSelected; };
+	bool getCraftButtonSelected() { return craftButtonSelected; };
+	void setRenderMark(bool a) { renderMark = a; };
 
 private:
 	coord repareSlots[2] = { { 158, 540 },{ 271, 540 } };
@@ -66,5 +73,6 @@ private:
 	bool controllerActive = false;
 	int selectedSlot = 0;
 	int slotWidth = 50;
+	bool renderMark = false;
 };
 

@@ -66,11 +66,13 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	{
 		if (e->Value() == std::string("objectgroup") || e->Value() == std::string("layer"))
 		{
-			if (e->FirstChildElement()->Value() == std::string("object"))
+			parseObjectLayer(e, pLevel->getLayers(), pLevel);
+			/*if (e->FirstChildElement()->Value() == std::string("object"))
 			{
 				parseObjectLayer(e, pLevel->getLayers(), pLevel);
 			}
-			else if (e->FirstChildElement()->Value() == std::string("data") ||
+			else */
+			if (e->FirstChildElement()->Value() == std::string("data") ||
 				(e->FirstChildElement()->NextSiblingElement() != 0 &&
 					e->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
 			{
@@ -194,12 +196,36 @@ void LevelParser::parseTextures(TiXmlElement * pTextureRoot)
 		Game::Instance()->getRenderer());
 }
 
-void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel) {
+void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel)
+{
 	zoom = Camera::Instance()->getZoom();
 
 	// create an object layer
 	ObjectLayer* pObjectLayer = new ObjectLayer();
 	//std::cout << pObjectElement->FirstChildElement()->Value();
+
+	int staticEntity;
+	int collidableDoor;
+	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("properties"))
+		{
+			for (TiXmlElement* property = e->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
+			{
+				if (property->Value() == std::string("property"))
+				{
+					if (property->Attribute("name") == std::string("staticEntity"))
+					{
+						property->Attribute("value", &staticEntity);
+					}
+					if (property->Attribute("name") == std::string("collidableDoor"))
+					{
+						property->Attribute("value", &collidableDoor);
+					}
+				}
+			}
+		}
+	}
 
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -275,7 +301,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom);
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity);
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
@@ -284,7 +310,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			}
 			else if (e->Attribute("type") == std::string("Puerta"))
 			{
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey);
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
 			}
 			else if (e->Attribute("type") == std::string("Key"))
 			{

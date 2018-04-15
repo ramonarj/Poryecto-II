@@ -51,13 +51,15 @@ void Entity::render(Uint32 time) {
 	}
 }
 
-void Entity::load(int x, int y, int width, int height)
+void Entity::load(int x, int y, int width, int height, int staticEntity)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
 	height_ = height;
 	currentRow_ = 1;
 	currentFrame_ = 1;
+
+	staticEntity_ = staticEntity;
 }
 
 void Entity::addComponent(Component* c) {
@@ -115,6 +117,11 @@ void Entity::scale(double s) {
 	height_ *= s;
 }
 
+bool Entity::isStatic()
+{
+	return staticEntity_;
+}
+
 SDL_Rect Entity::getRect()
 {
 	SDL_Rect dest
@@ -135,9 +142,6 @@ void Entity::setSideCollision(int i)
 		if (i != j) sideCollision[j] = false;
 		else sideCollision[j] = true;
 	}
-	for (int j = 0; j < sideCollision.size(); j++)
-		cout << sideCollision[j] << " - ";
-	cout << endl;
 }
 
 

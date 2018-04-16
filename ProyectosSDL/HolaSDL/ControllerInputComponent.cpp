@@ -299,17 +299,63 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				velocity.setY(vel);
 				direction.setY(-1);
 			}
-			else if ((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) {		//Interacturar
+			else if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {		//INTERACTUAR
 				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 					if (Collisions::RectRect(&playerRect, &intRect) && e->isActive()) {
-						if (e->getComponent<Interactible>() != nullptr) {
-							e->getComponent<Interactible>()->interact(e);
+
+						//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
+							
+						if (e->getComponent<Craft>() != nullptr) {	//Si lo que interactuamos tiene componente de crafteo
+
+							inv->setActive(!inv->isActive());
+							craft->setActive(!craft->isActive());
+							//craftPressed = true;
+							crftOpen = !crftOpen;
+							if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+							inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+							//SOUND 
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+							else interfaceActive = 0;
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							craft->getComponent<Craft>()->setRenderMark(false);
+							interactButtonPressed = true;
 						}
-						else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
+						else if (e->getComponent<Interactible>() != nullptr) {
+							e->getComponent<Interactible>()->interact(e);	//Si es un cofre tiene que hacer el interactible haga lo del cofre
+
+							/*
+
+							inv->setActive(!inv->isActive());
+							cst->setActive(!cst->isActive());
+							//chestPressed = true;		//ESTO YA NO HARIA FALTA REALMENTE
+							cstOpen = !cstOpen;
+							inv->getComponent<Inventory>()->setChestMode(cstOpen);
+							//SOUND
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+							else interfaceActive = 0;
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							cst->getComponent<Chest>()->setRenderMark(false);
+
+							*/
+
+							interactButtonPressed = true;
+						}						
+						else std::cout << "Esta entidad no tiene el componente Interactible ni es una mesa de crafteo." << std::endl; // DEBUG
 					}
 				}
+			}
+			else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && interactButtonPressed) {
+			
+				interactButtonPressed = false;
+
 			}
 
 			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
@@ -335,10 +381,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
 		if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)		//Inventario
 		{
-			if (/*event.type == SDL_KEYDOWN &&*/ !inventoryPressed) {
-				/*if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }*/
+			if (!inventoryPressed) {
 				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
 				inv->setActive(!inv->isActive());
 				inv->getComponent<Inventory>()->setSelectedSlot(0);

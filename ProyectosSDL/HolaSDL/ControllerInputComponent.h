@@ -55,6 +55,8 @@ private:
 	bool interactButtonPressedCircle = false;
 	bool interactButtonPressedLeftShoulder = false;
 
+	bool interactButtonPressed = false;
+
 	int interfaceActive = 0;	//0=ninguna abierta, 1=inventario, 2=cofre, 3=crafteo
 									
 	////*MOUSE*

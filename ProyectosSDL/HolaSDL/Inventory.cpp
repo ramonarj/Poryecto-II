@@ -10,6 +10,7 @@ Inventory::Inventory()
 	equiped = nullptr;
 	pRenderer = nullptr;
 	resource = nullptr;
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 700, 510, nullptr));
 }
 
 Inventory::~Inventory()
@@ -149,6 +150,8 @@ void Inventory::render(Entity* e, Uint32 time)
 			renderSlotMark(DestRect);
 		}
 	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
 }
 
 

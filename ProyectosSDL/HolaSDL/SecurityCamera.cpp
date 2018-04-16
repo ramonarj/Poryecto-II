@@ -14,4 +14,5 @@ SecurityCamera::~SecurityCamera()
 void SecurityCamera::load(int numCamera)
 {
 	numCamera_ = numCamera;
+	cout << numCamera_;
 }

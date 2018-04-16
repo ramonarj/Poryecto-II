@@ -54,6 +54,8 @@ void Door::interact(Entity * e)
 								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
 								(*it)->getPosition().getY()));
 
+							//cout << doorNum_ << " = " << doorComp->getDoorNum() << endl;
+
 							puertEncontrada = true;
 						}
 					}
@@ -109,17 +111,13 @@ void Door::setNeedKey()
 
 void Door::openDoor()
 {
-	doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
-	for (Entity* e : doors)
+	for (list<Entity*>::const_iterator it = doors.begin(); it != doors.end(); it++)
 	{
-		Door* doorComp = e->getComponent<Door>();
-		if (doorComp->getNeedKey()) {
+		Door* doorComp = (*it)->getComponent<Door>();
 
-			if (doorNum_ == doorComp->doorNum_);
-			{
-				cout << doorNum_ << " = " << doorComp->getDoorNum() << endl;
+		if (doorComp->getNeedKey()) {
+			if (doorNum_ == doorComp->getDoorNum())
 				doorComp->keyFalse();
-			}
 		}
 	}
 }

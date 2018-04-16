@@ -105,6 +105,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Enemy", new EnemyCreator());
 	gameObjectFactory->registerType("Puerta", new DoorCreator());
 	gameObjectFactory->registerType("Camera", new SecurityCameraCreator());
+	gameObjectFactory->registerType("Television", new TelevisionCreator());
 	registerTypeItem();
 }
 

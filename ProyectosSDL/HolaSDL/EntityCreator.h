@@ -190,3 +190,14 @@ public:
 		return e;
 	}
 };
+
+class TelevisionCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		return e;
+	}
+};

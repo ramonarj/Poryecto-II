@@ -16,6 +16,7 @@ public:
 	void load(int numero, string ori, int numKey, int needKey, int collidableDoor);
 
 	int getDoorNum() { return doorNum_; };
+	int getNumKey() { return numKey_; };
 	string getOri() { return ori_; };
 
 	bool canTeleport();

@@ -90,6 +90,7 @@ void PlayState::startState()
 
 void PlayState::update(Uint32 time)
 {
+	pLevel->update(time);
 	GameState::update(time);
 	pLevel->update(time);
 }

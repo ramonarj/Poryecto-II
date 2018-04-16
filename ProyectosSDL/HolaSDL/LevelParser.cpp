@@ -246,7 +246,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
-			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera"))
+			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") || e->Attribute("type") == std::string("Television"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -317,6 +317,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Puerta"))
 			{
 				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
+				//if (!collidableDoor) pEntity->addComponent();
 			}
 			else if (e->Attribute("type") == std::string("Key"))
 			{

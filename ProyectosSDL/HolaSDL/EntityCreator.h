@@ -8,6 +8,7 @@
 #include "SkeletonRenderer.h"
 #include "Door.h"
 #include "Movable.h"
+#include "SecurityCamera.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -174,6 +175,18 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Movable());
 		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(e);
+		return e;
+	}
+};
+
+class SecurityCameraCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new SecurityCamera());
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Firstaid")));
 		return e;
 	}
 };

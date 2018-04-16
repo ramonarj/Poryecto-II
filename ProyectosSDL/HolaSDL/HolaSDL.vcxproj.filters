@@ -31,17 +31,23 @@
     <Filter Include="Archivos de encabezado\Items">
       <UniqueIdentifier>{a6d85e77-1d01-477b-9471-010f1977f41b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de código fuente\Personajes">
-      <UniqueIdentifier>{a455bfcb-ee3a-499d-a527-7368c1606e79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Personajes">
-      <UniqueIdentifier>{e8640d42-fa9d-4985-b603-6827a9d032d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de código fuente\States">
       <UniqueIdentifier>{026561e7-785b-4fee-b85e-253a39630032}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de encabezado\States">
       <UniqueIdentifier>{37e28b8a-ea15-4e63-838f-f36730764667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\StaticEntities">
+      <UniqueIdentifier>{efe22fce-b4a4-4695-be60-af466fbb4a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Characters">
+      <UniqueIdentifier>{a455bfcb-ee3a-499d-a527-7368c1606e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\StaticEntities">
+      <UniqueIdentifier>{a5a57669-4009-4691-a26c-569b4f55f3d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Characters">
+      <UniqueIdentifier>{e8640d42-fa9d-4985-b603-6827a9d032d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,13 +184,13 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Archivos de código fuente\Personajes</Filter>
+      <Filter>Archivos de código fuente\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de código fuente\Personajes</Filter>
+      <Filter>Archivos de código fuente\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Archivos de código fuente\Personajes</Filter>
+      <Filter>Archivos de código fuente\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Interactible.cpp">
       <Filter>Archivos de código fuente</Filter>
@@ -199,9 +205,6 @@
       <Filter>Archivos de código fuente\States</Filter>
     </ClCompile>
     <ClCompile Include="Key.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Door.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="TextNote.cpp">
@@ -227,6 +230,12 @@
     </ClCompile>
     <ClCompile Include="SlidingPuzzleComponent.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="SecurityCamera.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -363,13 +372,13 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado\Personajes</Filter>
+      <Filter>Archivos de encabezado\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\Personajes</Filter>
+      <Filter>Archivos de encabezado\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Archivos de encabezado\Personajes</Filter>
+      <Filter>Archivos de encabezado\Characters</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Archivos de encabezado\States</Filter>
@@ -382,9 +391,6 @@
     </ClInclude>
     <ClInclude Include="Key.h">
       <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="TextNote.h">
       <Filter>Archivos de encabezado</Filter>
@@ -409,6 +415,12 @@
     </ClInclude>
     <ClInclude Include="SlidingPuzzleComponent.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="SecurityCamera.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

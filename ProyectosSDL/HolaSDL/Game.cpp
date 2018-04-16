@@ -104,6 +104,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Player", new PlayerCreator());
 	gameObjectFactory->registerType("Enemy", new EnemyCreator());
 	gameObjectFactory->registerType("Puerta", new DoorCreator());
+	gameObjectFactory->registerType("Camera", new SecurityCameraCreator());
 	registerTypeItem();
 }
 

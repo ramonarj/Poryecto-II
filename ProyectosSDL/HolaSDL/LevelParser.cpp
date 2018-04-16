@@ -11,6 +11,7 @@
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
 #include "Door.h"
+#include "SecurityCamera.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -239,12 +240,13 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numKey = 0;
 			int numDoor = 0;
 			int needKey = 0;
+			int numCamera = 0;
 			std::string orientacion;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
-			if (e->Attribute("type") == std::string("Puerta"))
+			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -296,6 +298,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &needKey);
 							}
+							else if (property->Attribute("name") == std::string("numCamera"))
+							{
+								property->Attribute("value", &numCamera);
+							}
 						}
 					}
 				}
@@ -315,6 +321,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Key"))
 			{
 				pEntity->getComponent<Key>()->load(numKey);
+			}
+			else if (e->Attribute("type") == std::string("Camera"))
+			{
+				pEntity->getComponent<SecurityCamera>()->load(numCamera);
 			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades

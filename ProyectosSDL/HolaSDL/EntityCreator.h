@@ -53,6 +53,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
+		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
 		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_))));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
@@ -137,7 +138,7 @@ public:
 			str = "Key";
 			break;
 		case INSULATIONTEPE:
-			str = "Insulationtape";
+			str = "insulationTape";
 			break;
 		case PHOTO:
 			str = "Photo";

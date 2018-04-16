@@ -1610,9 +1610,9 @@
   </object>
   <object id="38" name="Axe" type="Axe" x="1742" y="1746" width="23" height="27">
    <properties>
-    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="33"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
   <object id="39" name="Firstaid" type="Firstaid" x="1419.33" y="1682.33" width="20.3333" height="27.6667">

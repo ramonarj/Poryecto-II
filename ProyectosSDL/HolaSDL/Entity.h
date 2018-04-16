@@ -23,7 +23,7 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 
-	void load(int x, int y, int width, int height, int staticEntity);
+	void load(int x, int y, int width, int height, int staticEntity, string name);
 
 	virtual void addComponent(Component* c);
 	virtual void delComponent(Component* c);
@@ -37,6 +37,7 @@ public:
 	void setHeight(double height);
 	void scale(double s);
 	bool isStatic();
+	string getName();
 
 	SDL_Rect getRect();
 
@@ -84,6 +85,8 @@ private:
 	vector<bool> sideCollision;
 
 	bool staticEntity_;
+
+	string name_;
 };
 
 #endif /* ENTITY_H_ */

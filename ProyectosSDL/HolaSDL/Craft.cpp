@@ -70,7 +70,7 @@ void Craft::render(Entity * e, Uint32 time)
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
 	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("acid")->render(pRenderer, craftSlots[1]);
+	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {

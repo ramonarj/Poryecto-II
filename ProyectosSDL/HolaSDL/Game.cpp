@@ -143,6 +143,10 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Cursor", "images/stickPrueba.png");
 	resourceManager_->addTexture("InventoryCursor", "images/Inventario/CursorInventario.png");
 
+	//Lighting
+	resourceManager_->addTexture("ShadowHorizontal", "images/Shadows/ShadowHorizontal.png");
+	resourceManager_->addTexture("ShadowVertical", "images/Shadows/ShadowVertical.png");
+
 }
 
 void Game::addResourcesMusic()

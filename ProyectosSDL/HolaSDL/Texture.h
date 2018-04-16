@@ -25,6 +25,7 @@ public:
 
 	int getWidth();
 	int getHeight();
+	SDL_Texture* getSdlTexture() { return texture_; };
 	bool loadFromImg(SDL_Renderer* renderer, std::string fileName);
 	bool loadFromText(SDL_Renderer * pRender, std::string texto, Font const& font, SDL_Color color = { 0, 0, 0, 255 });
 	void render(SDL_Renderer* renderer, int x, int y) const;

@@ -1,5 +1,6 @@
 #include "PlayState.h"
 #include "Game.h"
+#include "PlayerLight.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -81,6 +82,11 @@ void PlayState::startState()
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);
 	invtComp->addItem(palo);
+
+	//Iluminacion -------------------------------------------------------------
+	//Entity* playerLight = new Entity(0, 0);
+	//playerLight->addComponent(new PlayerLight());
+	//stage_.push_back(playerLight);
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);

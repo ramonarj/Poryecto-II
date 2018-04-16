@@ -237,6 +237,9 @@
     <ClCompile Include="SecurityCamera.cpp">
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLight.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="SecurityCamera.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLight.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

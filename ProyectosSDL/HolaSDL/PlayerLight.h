@@ -10,8 +10,10 @@ public:
 	PlayerLight();
 	~PlayerLight();
 	virtual void render(Entity* o, Uint32 time);
+	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 
 private:
+	bool lightsOn_;
 	bool horizontal_; //True = Horizontal, False = Vertical
 	bool flipped_;
 	Entity* player_;

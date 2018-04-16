@@ -84,9 +84,9 @@ void PlayState::startState()
 	invtComp->addItem(palo);
 
 	//Iluminacion -------------------------------------------------------------
-	//Entity* playerLight = new Entity(0, 0);
-	//playerLight->addComponent(new PlayerLight());
-	//stage_.push_back(playerLight);
+	Entity* playerLight = new Entity(0, 0);
+	playerLight->addComponent(new PlayerLight());
+	stage_.push_back(playerLight);
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);

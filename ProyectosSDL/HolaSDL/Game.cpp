@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "EntityCreator.h"
+#include "SlidingPuzzle.h"
 
 unique_ptr<Game> Game:: s_pInstance = nullptr;
 
@@ -10,6 +11,7 @@ Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Se añade MenuScene
 	//getResources()->getMusic(Resources::Menu)->play();
 	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(SlidingPuzzle::Instance());
 	//stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
@@ -33,6 +35,7 @@ void Game::initGame()
 	addResourcesMusic();
 	addResourcesSoundEffects();
 	addResourcesFonts();
+	SDL_ShowCursor(0);
 }
 
 void Game::closeGame() {
@@ -75,13 +78,7 @@ void Game::handleInput(Uint32 time) {
 				break;
 
 			case SDLK_f: // Pressing f to toggle fullscreen
-				int flags = SDL_GetWindowFlags(window_);
-				if (flags & SDL_WINDOW_FULLSCREEN) {
-					SDL_SetWindowFullscreen(window_, 0);
-				}
-				else {
-					SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
-				}
+				setFullScreen();
 				break;
 			}
 
@@ -92,11 +89,24 @@ void Game::handleInput(Uint32 time) {
 	}
 }
 
+void Game::setFullScreen(){
+	int flags = SDL_GetWindowFlags(window_);
+	if (flags & SDL_WINDOW_FULLSCREEN) {
+		SDL_SetWindowFullscreen(window_, 0);
+	}
+	else {
+		SDL_SetWindowFullscreen(window_, SDL_WINDOW_FULLSCREEN);
+	}
+}
+
 void Game::addGameObjectsFactory()
 {
 	gameObjectFactory->registerType("Player", new PlayerCreator());
 	gameObjectFactory->registerType("Enemy", new EnemyCreator());
 	gameObjectFactory->registerType("Puerta", new DoorCreator());
+	gameObjectFactory->registerType("Camera", new SecurityCameraCreator());
+	gameObjectFactory->registerType("Television", new TelevisionCreator());
+	gameObjectFactory->registerType("Register", new RegisterCreator());
 	registerTypeItem();
 }
 
@@ -120,6 +130,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
 	resourceManager_->addTexture("Craft", "images/Inventario/FullscreenVersions/Crafting_Full.png");
 
+	//Puzzle
+	resourceManager_->addTexture("SlidingPuzzle", "images/puzzle.jpg");
+
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
 	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
@@ -127,6 +140,14 @@ void Game::addResourcesTexture()
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
 	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
+
+	//Cursors
+	resourceManager_->addTexture("Cursor", "images/stickPrueba.png");
+	resourceManager_->addTexture("InventoryCursor", "images/Inventario/CursorInventario.png");
+
+	//Lighting
+	resourceManager_->addTexture("ShadowHorizontal", "images/Shadows/ShadowHorizontal.png");
+	resourceManager_->addTexture("ShadowVertical", "images/Shadows/ShadowVertical.png");
 
 }
 
@@ -164,5 +185,6 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
-	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));*/
+	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
+	gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));*/
 }

@@ -64,3 +64,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 		resource->getTexture("Key")->render(pRenderer, DestRect);
 	}
 }
+
+void ItemContainer::renderSlotMark(SDL_Rect DestRect) {
+	resource->getTexture("InventoryCursor")->render(pRenderer, DestRect);
+}

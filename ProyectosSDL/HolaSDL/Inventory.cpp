@@ -10,6 +10,7 @@ Inventory::Inventory()
 	equiped = nullptr;
 	pRenderer = nullptr;
 	resource = nullptr;
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 700, 510, nullptr));
 }
 
 Inventory::~Inventory()
@@ -23,13 +24,18 @@ void Inventory::update(Entity* e, Uint32 time)
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
 
-	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
+	if (cofre == nullptr)
+		cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>();
+	if (craftWin == nullptr)
+		craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>();
+
+	if ((event.type == SDL_MOUSEBUTTONDOWN && !clicked)) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + 50)
-					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + 50))//EL 50 Es un numero provisional de prueba //cambio
+				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + slotWidth)
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 				{
 					clicked = true;
 				}
@@ -42,8 +48,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
-			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + 50)
-				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + 50)) //cambio
+			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + slotWidth)
+				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + slotWidth)) //cambio
 			{
 				equipWeapon(slotClicked);
 			}
@@ -62,16 +68,16 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 
 			else if (craftMode) {
 				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
-				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + 50)//Cambiar
-					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + 50)
-					&& inventory[slotClicked]->getComponent<Weapon>() && !craftWin->WepinSlot())
+				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + slotWidth)
+					&& inventory[slotClicked]->getComponent<Weapon>())
 				{
 					craftWin->setWep(inventory[slotClicked]);
 					this->DeleteItem(slotClicked);
 				}
 					
-				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x && event.button.x <= craftWin->InsulationTapeRepareSlot().x + 50)//Cambiar
-					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y && event.button.y <= craftWin->InsulationTapeRepareSlot().y + 50)
+				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x && event.button.x <= craftWin->InsulationTapeRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y && event.button.y <= craftWin->InsulationTapeRepareSlot().y + slotWidth)
 					&&inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
 						craftWin->setCinta(inventory[slotClicked]);
 						this->DeleteItem(slotClicked);
@@ -80,15 +86,15 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			}
 			clicked = false;
 		}
-	}
-	
+	}	
 }
 
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
+	
+	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -104,7 +110,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {
 		Weapon* weaponComp = equiped->getComponent<Weapon>();
-		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, 50, 50 };
+		SDL_Rect DestRect = { EquippedCoord.x, EquippedCoord.y, slotWidth, slotWidth };
 
 		if (weaponComp->getType() == ItemType::STICK)
 			resource->getTexture("Stick")->render(pRenderer, DestRect);
@@ -122,17 +128,30 @@ void Inventory::render(Entity* e, Uint32 time)
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), 50, 50 };
+			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), slotWidth, slotWidth };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)
 		{
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			SDL_Rect DestRect = { x, y, 50, 50 };
+			SDL_Rect DestRect = { x, y, slotWidth, slotWidth };
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
+
+	if (controllerActive && renderMark) {
+		if (selectedSlot <= 3) {
+			SDL_Rect DestRect = { Inventoryslots[selectedSlot].x-slotWidth/2+5, Inventoryslots[selectedSlot].y-slotWidth/2+3, slotWidth*2-8, slotWidth*2-8 };
+			renderSlotMark(DestRect);
+		}
+		else {
+			SDL_Rect DestRect = { EquippedCoord.x-slotWidth/2-5, EquippedCoord.y-slotWidth/2-10, slotWidth*2+16, slotWidth*2+16 };
+			renderSlotMark(DestRect);
+		}
+	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
 }
 
 
@@ -199,6 +218,32 @@ void Inventory::equipWeapon(int pos)
 	}
 }
 
+void Inventory::removeWeapon()
+{
+	if (!fullInventory() && equiped != nullptr) {
+		addItem(equiped);
+		equiped = nullptr;
+	}
+	else if (fullInventory() && equiped != nullptr) {
+		int i = 0;
+		bool found = false;
+		Entity* aux;
+		while (i < inventorySize() && !found) {
+
+			 aux = ItemInPosition(i);
+			if (aux->getComponent<Weapon>() != nullptr) {
+
+				DeleteItem(i);
+				addItem(equiped);
+				equiped = aux;
+				found = true;
+
+				}
+			i++;
+		}
+	}
+}
+
 bool Inventory::fullInventory()
 {
 	if (inventory.size() >= InventoryTam) { return true; }
@@ -229,14 +274,194 @@ void Inventory::objectCrafted(int a, int b)
 	}
 }
 
+void Inventory::moveMarkSlot(int a) {
+	
+	switch (selectedSlot)
+	{
+	case 0:
+		switch (a)
+		{
+		case 2:
+			selectedSlot = 1;
+			break;
+		case 3:
+			selectedSlot = 2;
+			break;
+		default:
+			break;
+		}
+		break;
+	case 1:
+		switch (a)
+		{
+		case 3:
+			selectedSlot = 3;
+			break;
+		case 4:
+			selectedSlot = 0;
+			break;
+		default:
+			break;
+		}
+		break;
+	case 2:
+		switch (a)
+		{
+		case 1:
+			selectedSlot = 0;
+			break;
+		case 2:
+			selectedSlot = 3;
+			break;
+		case 3:
+			selectedSlot = 4;
+			break;
+		default:
+			break;
+		}
+		break;
+	case 3:
+		switch (a)
+		{
+		case 1:
+			selectedSlot = 1;
+			break;
+		case 3:
+			selectedSlot = 4;
+			break;
+		case 4:
+			selectedSlot = 2;
+			break;
+		default:
+			break;
+		}
+		break;
+	case 4:
+		switch (a)
+		{
+		case 1:
+			selectedSlot = 2;
+			break;
+		case 2:
+			selectedSlot = 3;
+			break;
+		case 4:
+			selectedSlot = 2;
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
 
+
+
+void Inventory::activeItem()
+{
+	if (selectedSlot <= 3) {
+		Entity * aux;
+		aux = ItemInPosition(selectedSlot);
+
+		if (aux != nullptr) {
+
+			if (aux->getComponent<Weapon>() != nullptr) {
+				equipWeapon(selectedSlot);
+			}
+			else if (aux->getComponent<FirstAid>() != nullptr) {
+				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>());
+			}
+		}
+	}
+	else if (selectedSlot == 4)
+		removeWeapon();
+}
+
+void Inventory::moveItem()
+{
+	Entity* aux;
+	if (selectedSlot < 4) {
+		aux = ItemInPosition(selectedSlot);
+
+		if (aux != nullptr) {
+
+			if (!cofre->fullInventory())
+			{
+				cofre->addItem(aux);
+				this->DeleteItem(selectedSlot);
+			}
+			else {
+				Entity* auxInv = ItemInPosition(selectedSlot);	//Guardamos la entidad del inventario
+				Entity* auxCofre = cofre->ItemInPosition(cofre->getSelectedSlot());
+				DeleteItem(selectedSlot);	//La borramos
+				cofre->DeleteItem(cofre->getSelectedSlot());
+				cofre->addItem(auxCofre);					//Borramos la del cofre
+				this->addItem(auxInv);						//Añadimos al cofre la del inventario
+			}
+		}
+	}
+	else if (selectedSlot == 4 && equiped!=nullptr) {
+		
+		aux = equiped;
+
+		if (!cofre->fullInventory())
+		{
+			cofre->addItem(aux);
+			equiped = nullptr;
+		}
+		else {
+			Entity* auxCofre;// = cofre->ItemInPosition(cofre->getSelectedSlot());
+
+			int i = 0;
+			bool found = false;
+			while (i < cofre->inventorySize() && !found) {
+
+				auxCofre = cofre->getInventory()[i];
+
+				if (auxCofre->getComponent<Weapon>() != nullptr) {
+
+					equiped = auxCofre;		//Al encontrar un objeto en el cofre con componente arma, ponemos ese arma como la equipada
+					cofre->DeleteItem(i);	//Borramos ese objeto del cofre
+					cofre->addItem(aux);	//Añadimos al cofre el arma equipada guardada al principio en la variable auxiliar aux
+					found = true;			//Salimos del bucle
+				}
+				i++;
+			}
+		}
+	}
+}
+
+void Inventory::setToRepair()
+{
+	if (craftWin == nullptr) craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>();
+	if (selectedSlot < 4) {
+		if (!craftWin->WepinSlot() || !craftWin->CintainSlot()) {
+
+			Entity* aux = ItemInPosition(selectedSlot);
+			if (aux != nullptr) {
+				if (aux->getComponent<Weapon>() != nullptr)
+				{
+					craftWin->setWep(ItemInPosition(selectedSlot));
+					DeleteItem(selectedSlot);
+				}
+				else if (aux->getComponent<InsulationTape>() != nullptr) {		//SEGUIR POR AQUI NO SE METE PRIMERO LA CINTA
+					craftWin->setCinta(ItemInPosition(selectedSlot));
+					DeleteItem(selectedSlot);
+				}
+			}
+		}
+	}
+	else if (selectedSlot == 4) {
+		if (equiped != nullptr) {
+			craftWin->setWep(equiped);
+			equiped = nullptr;
+		}
+	}
+}
 
 Entity * Inventory::currentWeapon()
 {
 	return equiped;
 }
-
-
-
-
-

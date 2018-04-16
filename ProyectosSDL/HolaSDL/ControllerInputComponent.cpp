@@ -41,10 +41,14 @@ bool ControllerInputComponent::initialiseJoysticks()
 			}
 			m_buttonStates.push_back(tempButtons);
 
-			if (tempButtons.size() == 14)
-				increment = 1;
-			else if (tempButtons.size() == 11)
-				increment = 8;
+			if (tempButtons.size() == 14) {
+				//increment = 1;
+				controllerType = false;
+			}
+			else if (tempButtons.size() == 11) {
+				//increment = 8;
+				controllerType = true;
+			}
 
 		}
 		SDL_JoystickEventState(SDL_ENABLE);
@@ -110,16 +114,26 @@ int ControllerInputComponent::yvalue(int joy, int stick)
 
 void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 	
+	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+
 	if (event.type == SDL_JOYDEVICEREMOVED) {
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 		active_ = false;
+		inv->getComponent<Inventory>()->setActiveController(false);
+		cst->getComponent<Chest>()->setActiveController(false);
+		craft->getComponent<Craft>()->setActiveController(false);
 		clean();
 	}
 	else if(event.type == SDL_JOYDEVICEADDED) {
 		initialiseJoysticks();
-		mouseX = 500;
-		mouseY = 500;
+		/*mouseX = 500;
+		mouseY = 500;*/
 		o->getComponent<KeyBoardInputComponent>()->setEnabled(false);
+		inv->getComponent<Inventory>()->setActiveController(true);
+		cst->getComponent<Chest>()->setActiveController(true);
+		craft->getComponent<Craft>()->setActiveController(true);
 		active_ = true;
 	}
 
@@ -165,130 +179,88 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				{
 					m_joystickValues[0].first->setY(0);
 				}
-			}
-			//if (m_buttonStates[0].size() == 11) {
-			//	if (event.jaxis.axis == 3)
-			//	{
-			//		if (event.jaxis.value > m_joystickDeadZone / 2)		//This value goes from -33000 until 33000
-			//		{
-			//			mouseX += increment;						//joystick derecho - derecha
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 2)
-			//		{
-			//			mouseX -= increment;						//joystick derecho - izquierda
-			//		}
-			//	}
-			//	if (event.jaxis.axis == 4)
-			//	{
-
-			//		if (event.jaxis.value > m_joystickDeadZone / 2)			//joystick derecho - abajo
-			//		{
-			//			mouseY += increment;
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 2)	//joystick derecho - arriba
-			//		{
-			//			mouseY -= increment;
-			//		}
-
-			//	}
-			//}
-
-			//if (m_buttonStates[0].size() == 14) {
-			//	if (event.jaxis.axis == 2)
-			//	{
-			//		if (event.jaxis.value > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
-			//		{
-			//			mouseX += increment;						//joystick derecho - derecha
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 4)
-			//		{
-			//			mouseX -= increment;						//joystick derecho - izquierda
-			//		}
-			//	}
-			//	if (event.jaxis.axis == 5)
-			//	{
-
-			//		if (event.jaxis.value > m_joystickDeadZone / 4)			//joystick derecho - abajo
-			//		{
-			//			mouseY += increment;
-			//		}
-			//		else if (event.jaxis.value < -m_joystickDeadZone / 4)	//joystick derecho - arriba
-			//		{
-			//			mouseY -= increment;
-			//		}
-
-			//	}
-			//}		
-
-			//SDL_WarpMouseGlobal(mouseX, mouseY);
-			
+			}	
 		}
-
 
 		//JOYSTICK DERECHO
-		if (m_buttonStates[0].size() == 11) {										//XBOX
-			int b = SDL_JoystickGetAxis(m_joysticks[0], 3);
-			int a = SDL_JoystickGetAxis(m_joysticks[0], 4);
+		int b;
+		int a;
 
-			if (b > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
-			{
-				mouseX += increment;						//joystick derecho - derecha
-			}
-			else if (b < -m_joystickDeadZone / 4)
-			{
-				mouseX -= increment;						//joystick derecho - izquierda
-			}
+		if (controllerType) {										//XBOX
+			b = SDL_JoystickGetAxis(m_joysticks[0], 3);
+			a = SDL_JoystickGetAxis(m_joysticks[0], 4);
+		}
+		else if (!controllerType) {										//PLAY
+			b = SDL_JoystickGetAxis(m_joysticks[0], 2);
+			a = SDL_JoystickGetAxis(m_joysticks[0], 5);
+		}
 
 
-			if (a > m_joystickDeadZone / 4)			//joystick derecho - abajo
-			{
-				mouseY += increment;
+		//Derecho derecha
+		if (b > m_joystickDeadZone * 2 && !joystickMoved)
+		{
+			joystickMoved = true;
+			if(interfaceActive==1)
+				inv->getComponent<Inventory>()->moveMarkSlot(2);						
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveMarkSlot(2);
 			}
-			else if (a < -m_joystickDeadZone / 4)	//joystick derecho - arriba
-			{
-				mouseY -= increment;
+			else if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->moveMarkSlot(2);		//COMENTADOS POR AHORA
+			}
+		}
+		//Derecho izquierda
+		else if (b < -m_joystickDeadZone * 2 && !joystickMoved)
+		{
+			joystickMoved = true;
+			if (interfaceActive == 1)
+				inv->getComponent<Inventory>()->moveMarkSlot(4);
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveMarkSlot(4);
+			}
+			else if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->moveMarkSlot(4);		//COMENTADOS POR AHORA
+			}
+		}
+		else if((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2)&&(a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+		{
+			joystickMoved = false;
+		}
+
+
+		//Derecho abajo
+		if (a > m_joystickDeadZone * 2 && !joystickMoved)			
+		{
+			joystickMoved = true;
+			if (interfaceActive == 1)
+				inv->getComponent<Inventory>()->moveMarkSlot(3);
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveMarkSlot(3);
+			}
+			else if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->moveMarkSlot(3);
 			}
 		}
 
-		if (m_buttonStates[0].size() == 14) {								//PLAY
-			
-
-			int b = SDL_JoystickGetAxis(m_joysticks[0], 2);
-			int a = SDL_JoystickGetAxis(m_joysticks[0], 5);
-
-			if (b >= SDL_JOYSTICK_AXIS_MAX-2000 || b <= SDL_JOYSTICK_AXIS_MIN+2000 || a >= SDL_JOYSTICK_AXIS_MAX-2000 || a <= SDL_JOYSTICK_AXIS_MIN+2000)
-				increment = 5;
-			else
-				increment = 1;
-
-			if (b > m_joystickDeadZone / 4)		//This value goes from -33000 until 33000
-			{
-				mouseX += increment;						//joystick derecho - derecha
+		else if (a < -m_joystickDeadZone * 2 && !joystickMoved)	//joystick derecho - arriba
+		{
+			joystickMoved = true;
+			if (interfaceActive == 1)
+				inv->getComponent<Inventory>()->moveMarkSlot(1);
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveMarkSlot(1);
 			}
-			else if (b < -m_joystickDeadZone / 4)
-			{
-				mouseX -= increment;						//joystick derecho - izquierda
+			else if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->moveMarkSlot(1);
 			}
-			
-			
-			if (a > m_joystickDeadZone / 4)			//joystick derecho - abajo
-			{
-				mouseY += increment;
-			}
-			else if (a < -m_joystickDeadZone / 4)	//joystick derecho - arriba
-			{
-				mouseY -= increment;
-			}
-
 		}
+		else if ((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2) && (a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+		{
+			joystickMoved = false;
+		}
+		
 
-		SDL_WarpMouseGlobal(mouseX, mouseY);
-
-
-
-
-
-		//BOTONES DEL MANDO		COLOCA EL ESTADO DE ESE BOT�N A ACTIVO AL PULSARLO Y SE QUEDA ASI HASTA QUE SE SUELTA EL BOTON
+		//BOTONES DEL MANDO		COLOCA EL ESTADO DE ESE BOT�N A ACTIVO AL PULSARLO Y SE QUEDA ASI HASTA QUE SE SUELTA EL BOTON
 		if (event.type == SDL_JOYBUTTONDOWN)
 		{
 
@@ -327,20 +299,66 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				velocity.setY(vel);
 				direction.setY(-1);
 			}
-			else if (m_buttonStates[0][Square]) {		//Interacturar
+			else if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {		//INTERACTUAR
 				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
 					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 					if (Collisions::RectRect(&playerRect, &intRect) && e->isActive()) {
-						if (e->getComponent<Interactible>() != nullptr) {
-							e->getComponent<Interactible>()->interact(e);
+
+						//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
+							
+						if (e->getComponent<Craft>() != nullptr) {	//Si lo que interactuamos tiene componente de crafteo
+
+							inv->setActive(!inv->isActive());
+							craft->setActive(!craft->isActive());
+							//craftPressed = true;
+							crftOpen = !crftOpen;
+							if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+							inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+							//SOUND 
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+							else interfaceActive = 0;
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							craft->getComponent<Craft>()->setRenderMark(false);
+							interactButtonPressed = true;
 						}
-						else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
+						else if (e->getComponent<Interactible>() != nullptr) {
+							e->getComponent<Interactible>()->interact(e);	//Si es un cofre tiene que hacer el interactible haga lo del cofre
+
+							/*
+
+							inv->setActive(!inv->isActive());
+							cst->setActive(!cst->isActive());
+							//chestPressed = true;		//ESTO YA NO HARIA FALTA REALMENTE
+							cstOpen = !cstOpen;
+							inv->getComponent<Inventory>()->setChestMode(cstOpen);
+							//SOUND
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+							else interfaceActive = 0;
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							cst->getComponent<Chest>()->setRenderMark(false);
+
+							*/
+
+							interactButtonPressed = true;
+						}						
+						else std::cout << "Esta entidad no tiene el componente Interactible ni es una mesa de crafteo." << std::endl; // DEBUG
 					}
 				}
 			}
+			else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && interactButtonPressed) {
+			
+				interactButtonPressed = false;
 
-			else if (m_buttonStates[0][Circle] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
+			}
+
+			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon
 			{
 				if (!(o->getComponent<Character>()->getAttacking())) {
 					o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
@@ -360,18 +378,20 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			o->setVelocity(Vector2D(0, 0));
 		}
 
-
 		//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
 		if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)		//Inventario
 		{
-			if (/*event.type == SDL_KEYDOWN &&*/ !inventoryPressed) {
-				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+			if (!inventoryPressed) {
 				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
 				inv->setActive(!inv->isActive());
+				inv->getComponent<Inventory>()->setSelectedSlot(0);
 				inventoryPressed = true;
 				invOpen = !invOpen;
+
+				if(interfaceActive==0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
+
+				inv->getComponent<Inventory>()->setRenderMark(true);
 			}
 		}
 		if (!m_buttonStates[0][Triangle] && !cstOpen && !crftOpen)
@@ -382,9 +402,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		if (m_buttonStates[0][R1] && !invOpen && !crftOpen)		//Abrir cofre
 		{
 			if (!chestPressed) {
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+				
 				inv->setActive(!inv->isActive());
 				cst->setActive(!cst->isActive());
 				chestPressed = true;
@@ -392,6 +410,13 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				inv->getComponent<Inventory>()->setChestMode(cstOpen);
 				//SOUND 
 				Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+				if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
+
+				inv->getComponent<Inventory>()->setRenderMark(true);
+				cst->getComponent<Chest>()->setRenderMark(false);
+
 			}
 		}
 		if (!m_buttonStates[0][R1] && !invOpen && !crftOpen)
@@ -399,12 +424,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			chestPressed = false;
 		}
 
-		if (m_buttonStates[0][R2] && !invOpen && !cstOpen)
+		if (m_buttonStates[0][R2] && !invOpen && !cstOpen)		//Abrir crafteo
 		{
 			if (!craftPressed) {
-				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+				/*if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }*/
 				inv->setActive(!inv->isActive());
 				craft->setActive(!craft->isActive());
 				craftPressed = true;
@@ -413,6 +438,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 				//SOUND 
 				Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+				if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+				else interfaceActive = 0;
+
+				inv->getComponent<Inventory>()->setRenderMark(true);
+				craft->getComponent<Craft>()->setRenderMark(false);
 			}
 		}
 		if (!m_buttonStates[0][R2] && !invOpen && !cstOpen)
@@ -420,13 +451,174 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			craftPressed = false;
 		}
 
-		if (m_buttonStates[0][Select])
+
+
+		///////////////////////////////////////////////////////////////////////////////
+		////////////////////INTERACCIONES DENTRO DE LOS MENUS//////////////////////////
+		///////////////////////////////////////////////////////////////////////////////
+
+
+		//ESTAR SOLO EN EL INVENTARIO
+
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && invOpen && !cstOpen && !crftOpen && !interactButtonPressedCross)	
+		{
+			inv->getComponent<Inventory>()->activeItem();
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && invOpen && !cstOpen && !crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		//ESTAR EN EL COFRE
+
+		//Cambiar de interfaz
+		if (m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && !interactButtonPressedLeftShoulder)	
+		{
+			if (interfaceActive == 1) {
+				interfaceActive = 2;
+				inv->getComponent<Inventory>()->setRenderMark(false);
+				cst->getComponent<Chest>()->setRenderMark(true);
+			}
+			else {
+				interfaceActive = 1;
+				inv->getComponent<Inventory>()->setRenderMark(true);
+				cst->getComponent<Chest>()->setRenderMark(false);
+			}
+			interactButtonPressedLeftShoulder = true;
+		}
+		else if (!m_buttonStates[0][L1] && !invOpen && cstOpen && !crftOpen && interactButtonPressedLeftShoulder) {
+			interactButtonPressedLeftShoulder = false;
+		}
+
+
+		//Activar el objeto si estas en el inventario
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedCross)	
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->activeItem();
+			}
+
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && !invOpen && cstOpen && !crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		//Coger del inventario para guardarlo en el cofre
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !invOpen && cstOpen && !crftOpen && !interactButtonPressedSquare)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->moveItem();
+			}
+			else if (interfaceActive == 2) {
+				cst->getComponent<Chest>()->moveItem();
+			}
+
+			interactButtonPressedSquare = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && cstOpen && !crftOpen && interactButtonPressedSquare) {
+			interactButtonPressedSquare = false;
+		}
+
+
+
+		//ESTAR EN EL CRAFTEO
+
+		if (m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && !interactButtonPressedLeftShoulder)		//CAMBIO DE INTERFAZ
+		{
+			if (interfaceActive == 1) {
+				interfaceActive = 3;
+				inv->getComponent<Inventory>()->setRenderMark(false);
+				craft->getComponent<Craft>()->setRenderMark(true);
+			}
+			else if (interfaceActive == 3 && !craft->getComponent<Craft>()->getCraftButtonSelected() && !craft->getComponent<Craft>()->getRepairButtonSelected()) {
+				interfaceActive = 1;
+				inv->getComponent<Inventory>()->setRenderMark(true);
+				craft->getComponent<Craft>()->setRenderMark(false);
+			}
+			interactButtonPressedLeftShoulder = true;
+		}
+		else if (!m_buttonStates[0][L1] && !invOpen && !cstOpen && crftOpen && interactButtonPressedLeftShoulder) {
+			interactButtonPressedLeftShoulder = false;
+		}
+
+
+		//Activar el objeto si estas en el inventario
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedCross)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->activeItem();
+			}
+			if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->tryCraftingRepair();	//ESTE METODO HABRA QUE CAMBIARLO YA QUE CONTROLAS CRAFTEO Y REPARACIÓN
+			}
+
+			interactButtonPressedCross = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedCross) {
+			interactButtonPressedCross = false;
+		}
+
+
+		//Cancelar crafteo/reparacion
+		if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedCircle)
+		{
+			if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->retireBlock();
+			}
+
+			interactButtonPressedCircle = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Circle]) || (controllerType && !m_buttonStates[0][B])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedCircle) {
+			interactButtonPressedCircle = false;
+		}
+
+		//Coger del inventario arma y material y devolverlo
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && !interactButtonPressedSquare)
+		{
+			if (interfaceActive == 1) {
+				inv->getComponent<Inventory>()->setToRepair();
+				if (craft->getComponent<Craft>()->checkRepair()) {
+					interfaceActive = 3;
+					inv->getComponent<Inventory>()->setRenderMark(false);
+					craft->getComponent<Craft>()->setRenderMark(true);
+				}
+			}
+			else if (interfaceActive == 3) {
+				craft->getComponent<Craft>()->returnToInv();
+			}
+
+			interactButtonPressedSquare = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && !invOpen && !cstOpen && crftOpen && interactButtonPressedSquare) {
+			interactButtonPressedSquare = false;
+		}
+
+
+
+
+
+
+		if ((!controllerType && m_buttonStates[0][Select]) || (controllerType && m_buttonStates[0][SelectXB]))		//SELECT PARA VOLVER A TECLADO Y RATON
 		{
 			o->getComponent<KeyBoardInputComponent>()->setEnabled(true);
 			Active(false);
-			m_buttonStates[0][Select] = false;
+			if(!controllerType)
+				m_buttonStates[0][Select] = false;
+			else
+				m_buttonStates[0][SelectXB] = false;	
 		}
 
+		if ((!controllerType && m_buttonStates[0][L3]) || (controllerType && m_buttonStates[0][left3]))		//PANTALLA COMPLETA
+		{
+			Game::Instance()->setFullScreen();
+			if (!controllerType)
+				m_buttonStates[0][L3] = false;
+			else
+				m_buttonStates[0][left3] = false;
+		}
 	}
 }
 

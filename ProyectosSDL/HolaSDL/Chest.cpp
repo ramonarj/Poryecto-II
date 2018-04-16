@@ -22,13 +22,17 @@ void Chest::update(Entity * e, Uint32 time)
 
 void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+
+	if (inv == nullptr)
+		inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>();
+
 	if (event.type == SDL_MOUSEBUTTONDOWN && !clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= ChestSlots[i].x && event.button.x <= ChestSlots[i].x + 50)
-					&& (event.button.y >= ChestSlots[i].y && event.button.y <= ChestSlots[i].y + 50))//EL 50 Es un numero provisional de prueba
+				if ((event.button.x >= ChestSlots[i].x && event.button.x <= ChestSlots[i].x + slotWidth)
+					&& (event.button.y >= ChestSlots[i].y && event.button.y <= ChestSlots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba
 				{
 					clicked = true;
 				}
@@ -41,8 +45,8 @@ void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
-			if (event.button.x >= Inventoryslots[0].x && event.button.x <= Inventoryslots[inv->getInvTam() - 1].x &&
-				event.button.y >= Inventoryslots[0].y && event.button.y <= Inventoryslots[inv->getInvTam() - 1].y)
+			if (event.button.x >= Inventoryslots[0].x && event.button.x <= Inventoryslots[inv->getInvTam() - 1].x + slotWidth &&
+				event.button.y >= Inventoryslots[0].y && event.button.y <= Inventoryslots[inv->getInvTam() - 1].y + slotWidth)
 			{
 				if (!inv->fullInventory())
 				{
@@ -57,8 +61,8 @@ void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 
 void Chest::render(Entity * e, Uint32 time)
 {
-	pRenderer = Game::Instance()->getRenderer();
-	resource = Game::Instance()->getResourceManager();
+	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
 	int width = Game::Instance()->getWindowWidth();
 	int height = Game::Instance()->getWindowHeight();
@@ -74,17 +78,32 @@ void Chest::render(Entity * e, Uint32 time)
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemChestPosX(i), getItemChestPosY(i), 50, 50 };
+			SDL_Rect DestRect = { getItemChestPosX(i), getItemChestPosY(i), slotWidth, slotWidth };
 			renderItem(i, e, DestRect);
 		}
 			if (clicked)
 			{
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				SDL_Rect DestRect = { x, y, 50, 50 };
+				SDL_Rect DestRect = { x, y, slotWidth, slotWidth };
 				renderItem(slotClicked, e, DestRect);
 			}
 	}
+
+	if (controllerActive && renderMark) {
+		SDL_Rect DestRect;
+		if(selectedSlot<5)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if(selectedSlot<10)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if (selectedSlot<15)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 - 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+		else if (selectedSlot<20)
+			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 - 6, slotWidth * 2 - 8, slotWidth * 2 - 8 };
+
+		renderSlotMark(DestRect);
+	}
+
 }
 
 bool Chest::fullChest()
@@ -120,4 +139,60 @@ bool Chest::fullInventory()
 {
 	if (inventory.size() >= ChestTam) { return true; }
 	else return false;
+}
+
+void Chest::moveItem()
+{
+	
+	Entity* aux;
+	aux = ItemInPosition(selectedSlot);
+
+	if (aux != nullptr) {
+
+		if (!inv->fullInventory())
+		{
+			inv->addItem(inventory[selectedSlot]);
+			this->DeleteItem(selectedSlot);
+		}
+		else {
+			//Entity* auxInv = &inv->ItemInPosition[inv->getSelectedSlot()];	//Guardamos la entidad del inventario
+			//inv->DeleteItem(inv->getSelectedSlot());	//La borramos
+			//inv->addItem(inventory[selectedSlot]);		//Añadimos la del cofre
+			//this->DeleteItem(selectedSlot);				//Borramos la del cofre
+			//this->addItem(auxInv);						//Añadimos al cofre la del inventario
+		}
+	}
+}
+
+void Chest::setSelectedSlot(int a)
+{
+	selectedSlot = a;
+}
+
+void Chest::moveMarkSlot(int a) {
+	if (a == 1) //Arriba
+	{
+		if (selectedSlot > 4) {
+			selectedSlot -= 5;
+		}
+	}
+	else if (a == 2) //Derecha
+	{
+		if ((selectedSlot+1)%5 != 0) {
+			selectedSlot++;
+		}
+	}
+	else if	(a == 3) //Abajo
+	{
+		if (selectedSlot < 15) {
+			selectedSlot += 5;
+		}
+	}
+	else if	(a == 4) //Izquierda
+	{
+		if ((selectedSlot) % 5 != 0) {
+			selectedSlot--;
+		}
+	}
+
 }

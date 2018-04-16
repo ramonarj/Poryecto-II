@@ -25,5 +25,19 @@ public:
 
 	//GETS
 	int getChestTam() { return ChestTam; };
+
+	//Controller
+	void setActiveController(bool b) { controllerActive = b; };
+	void moveMarkSlot(int a);
+	void setSelectedSlot(int a);
+	int getSelectedSlot() { return selectedSlot; };
+
+	void moveItem();
+	void setRenderMark(bool a) { renderMark = a; }
+	
+private:
+	bool controllerActive = false;
+	int selectedSlot = 0;
+	bool renderMark = false;
 };
 

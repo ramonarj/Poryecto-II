@@ -1,4 +1,6 @@
 #pragma once
+
+#include "checkML.h"
 #include "Interactible.h"
 #include <list>
 #include "Inventory.h"
@@ -11,14 +13,18 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int numero, string ori, int numKey, int needKey);
+	void load(int numero, string ori, int numKey, int needKey, int collidableDoor);
 
 	int getDoorNum() { return doorNum_; };
+	int getNumKey() { return numKey_; };
 	string getOri() { return ori_; };
 
 	bool canTeleport();
+	bool getNeedKey();
 	void setNeedKey();
+	void openDoor();
 	void keyFalse();
+	bool isCollidable();
 
 private:
 	list<Entity*> doors;
@@ -32,5 +38,6 @@ private:
 	string ori_;
 	int numKey_;
 	bool needKey_;
+	bool collidableDoor_;
 };
 

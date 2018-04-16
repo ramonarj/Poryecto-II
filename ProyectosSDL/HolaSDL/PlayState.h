@@ -6,6 +6,8 @@
 #include "Chest.h"
 #include "Craft.h"
 #include "Movable.h"
+#include "MouseInputComponent.h"
+#include "StaticImageRender.h"
 #include <memory>
 
 class PlayState: public GameState {

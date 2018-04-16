@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Component.h"
 #include "Game.h"
 #include "Entity.h"
@@ -7,6 +8,7 @@
 
 //Button enum for PS4 controller
 enum controller_buttons { Square, Cross, Circle, Triangle, L1, R1, L2, R2, Select, Start, L3, R3, HomeButton, Panel };
+enum xbox_controller_buttons { A, B, X, Y, left1, leftTrigger, SelectXB, StartXB, left3, right1, rightTrigger, right3, XboxButton };
 
 class ControllerInputComponent :
 	public Component
@@ -18,7 +20,7 @@ public:
 	virtual bool initialiseJoysticks();
 	void clean();
 	bool joysticksInitialised() { return m_bJoysticksInitialised; }
-	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }		//Devuelve el estado concreto de un botón (pulsado o no)
+	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }		//Devuelve el estado concreto de un botï¿½n (pulsado o no)
 
 	void ProcessButton(int joy, int buttonNumber);
 	void Active(bool value) { active_ = value;};
@@ -45,8 +47,20 @@ private:
 	bool InventoryOpen() { return invOpen; };
 	bool craftOpen() { return craft; };
 
-	//*MOUSE*
-	int mouseX = 0; int mouseY = 0;
-	int increment = 5;
+	bool controllerType = false;	//FALSE Play4   //   TRUE XBOX
+	bool joystickMoved = false;
+
+	bool interactButtonPressedCross = false;
+	bool interactButtonPressedSquare = false;
+	bool interactButtonPressedCircle = false;
+	bool interactButtonPressedLeftShoulder = false;
+
+	bool interactButtonPressed = false;
+
+	int interfaceActive = 0;	//0=ninguna abierta, 1=inventario, 2=cofre, 3=crafteo
+									
+	////*MOUSE*
+	//int mouseX = 0; int mouseY = 0;
+	//int increment = 5;
 };
 

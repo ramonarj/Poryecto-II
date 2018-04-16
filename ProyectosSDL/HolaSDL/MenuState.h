@@ -3,6 +3,8 @@
 #include "LevelParser.h"
 #include "Inventory.h"
 #include "MenuButton.h"
+//#include "CursorRenderer.h"
+//#include "MouseMotionInput.h"
 #include <memory>
 
 class MenuState : public GameState {

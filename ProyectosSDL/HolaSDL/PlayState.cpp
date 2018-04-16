@@ -1,5 +1,6 @@
 #include "PlayState.h"
 #include "Game.h"
+#include "PlayerLight.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -28,11 +29,19 @@ void PlayState::startState()
 
 	//PROBAR LOS MOVIBLES:
 		//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h
-	Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
-	movableComp->addPlayer(player);
+	//Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
+	//movableComp->addPlayer(player);
 
 	//M�sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
+
+	//CURSOR
+	cursor_ = new Entity();
+	cursor_->setHeight(50);
+	cursor_->setWidth(50);
+	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
+	cursor_->addComponent(new MouseInputComponent());
+	cursor_->setActive(false);
 
 	//Item
 	Entity* palo = new Entity(10, 20);
@@ -74,14 +83,15 @@ void PlayState::startState()
 	invtComp->addItem(palo2);
 	invtComp->addItem(palo);
 
-	//Registro (nota de texto) de prueba ---------------------------------------------
-	/*Entity* textTest = new Entity(20, 20);
-	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
-	stage_.push_back(textTest);*/
+	//Iluminacion -------------------------------------------------------------
+	Entity* playerLight = new Entity(0, 0);
+	playerLight->addComponent(new PlayerLight());
+	stage_.push_back(playerLight);
 }
 
 void PlayState::update(Uint32 time)
 {
+	pLevel->update(time);
 	GameState::update(time);
 	pLevel->update(time);
 }

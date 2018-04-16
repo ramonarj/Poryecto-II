@@ -21,6 +21,10 @@ public:
 	Inventory();
 	~Inventory();
 
+	void setActiveController(bool b) { controllerActive = b; };
+	void moveMarkSlot(int a);
+	void setSelectedSlot(int a) { selectedSlot = a; };
+
 protected:
 	bool debug = false;
 	
@@ -39,6 +43,7 @@ public:
 	virtual bool checkItem(int item);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
+	void removeWeapon();
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }
@@ -53,9 +58,21 @@ public:
 	//GETS
 	vector<Entity*> getKeys() { return keys; };
 	int getInvTam() { return InventoryTam; };
+	int getSelectedSlot() { return selectedSlot; };
+
+	void activeItem();
+	void moveItem();
+	void setToRepair();
+	void setRenderMark(bool a) { renderMark = a; }
 	
 private:
 	vector<Entity*> keys;
+	bool controllerActive = false;
+	int selectedSlot = 0;
+	bool renderMark = true;
+
+	Entity description_ = Entity(20, 20);
+	
 };
 
 

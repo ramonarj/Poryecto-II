@@ -18,8 +18,6 @@ void TileLayer::update(Level* pLevel, Uint32 time)
 
 void TileLayer::render()
 {
-	zoom = Camera::Instance()->getZoom();
-
 	int x, y, x2, y2 = 0;
 
 	x = m_position.getX() / m_tileSize;
@@ -44,10 +42,6 @@ void TileLayer::render()
 			{
 				continue;
 			}
-
-			//Cambiar algunas cosas del mapa
-			renderTV(id, i, j, x, y);
-			setTileIDs(m_tileIDs);
 
 			Tileset tileset = getTilesetByID(id);
 			id--;
@@ -81,12 +75,4 @@ Tileset TileLayer::getTilesetByID(int tileID)
 	std::cout << "did not find tileset, returning empty tileset\n";
 	Tileset t;
 	return t;
-}
-
-void TileLayer::renderTV(int id, int i, int j, int x, int y)
-{
-	if (id == 1246 || id == 1247 || id == 1257 || id == 1258)
-		m_tileIDs[i + y][j + x] += 2;
-	else if (id == 1248 || id == 1249 || id == 1259 || id == 1260)
-		m_tileIDs[i + y][j + x] -= 2;
 }

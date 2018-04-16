@@ -1,6 +1,7 @@
 #pragma once
 #include "SDLGame.h"
 
+#include "checkML.h"
 #include <vector>
 #include <memory>
 
@@ -59,6 +60,7 @@ public:
 	};
 
 	GameStateMachine* getStateMachine() { return &stateMachine_; };
+	void setFullScreen();
 
 private:
 	Game();

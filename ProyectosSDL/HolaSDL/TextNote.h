@@ -1,4 +1,5 @@
 #pragma once
+#include "checkML.h"
 #include "Component.h"
 #include "Font.h"
 #include <vector>
@@ -11,6 +12,8 @@ public:
 	TextNote(Game* game_, string txtFilePath, int x, int y, Texture* backgroundTexture);
 	~TextNote();
 	virtual void render(Entity* e, Uint32 time);
+	void changeString(string txtFilePath);
+
 
 private:
 	Texture* background_;

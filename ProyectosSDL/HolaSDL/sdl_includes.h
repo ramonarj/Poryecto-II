@@ -11,6 +11,7 @@ program portable as paths might be different depending on the environment we use
 
 
 #if defined(_WIN32) || defined(_WIN64) // Windows
+#include "checkML.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>

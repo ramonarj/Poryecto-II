@@ -8,6 +8,8 @@
 #include "SkeletonRenderer.h"
 #include "Door.h"
 #include "Movable.h"
+#include "SecurityCamera.h"
+#include "Register.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -73,8 +75,8 @@ public:
 			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			i = new Movable();	//	DEBUG
-			//i = new FirstAid(itemTypetoString(type));
+			//i = new Movable();	//	DEBUG
+			i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type));
@@ -141,6 +143,9 @@ public:
 		case PHOTO:
 			str = "Photo";
 			break;
+		case MASK:
+			str = "Mask";
+			break;
 		default:
 			str = "";
 			break;
@@ -171,6 +176,41 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Movable());
 		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(e);
+		return e;
+	}
+};
+
+class SecurityCameraCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new SecurityCamera());
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Firstaid")));
+		return e;
+	}
+};
+
+class TelevisionCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		return e;
+	}
+};
+
+class RegisterCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Register());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

@@ -30,11 +30,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		inv = Game::Instance()->getEntityWithComponent<Inventory>();
 
 	if (inv != nullptr && !inv->isActive()) {
-		if (state[left_] && !(o->getComponent<Character>()->getAttacking())) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
+		if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 			velocity.setX(-vel);
 			direction.setX(-1);
 		}
-		else if (state[right_] && !(o->getComponent<Character>()->getAttacking())) {
+		else if (state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
 			velocity.setX(vel);
 			direction.setX(1);
 		}
@@ -42,11 +42,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			velocity.setX(0);
 			direction.setX(0);
 		}
-		if (state[up_] && !(o->getComponent<Character>()->getAttacking())) {
+		if (state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
 			velocity.setY(-vel);
 			direction.setY(1);
 		}
-		else if (state[down_] && !(o->getComponent<Character>()->getAttacking())) {
+		else if (state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
 			velocity.setY(vel);
 			direction.setY(-1);
 		}
@@ -65,7 +65,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			}
 		}
 
-		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr))	//Can only attack if you have an equiped weapon && pressing shift
+		else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr) && !o->getIsReading())	//Can only attack if you have an equiped weapon && pressing shift
 		{
 			if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) {
 				o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
@@ -89,7 +89,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	//INVENTARIO, COFRE Y CRAFTEO COMO HAY TANTOS CASOS QUE TENER EN CUENTA SE USAN VARIAS VARIABLES DE CONTROL, MIRAR .h
 	if (state[inventory_] && !cstOpen && !crftOpen)
 	{
-		if (event.type == SDL_KEYDOWN && !inventoryPressed) {
+		if (event.type == SDL_KEYDOWN && !inventoryPressed && !o->getIsReading()) {
 			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
@@ -144,6 +144,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	{
 		craftPressed = false;
 	}
+
+	if (invOpen || cstOpen || crftOpen)
+		Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(true);
+	else
+		Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(false);
 
 	if (state[switchController_]) {
 		if (o->getComponent<ControllerInputComponent>()->joysticksInitialised()) {

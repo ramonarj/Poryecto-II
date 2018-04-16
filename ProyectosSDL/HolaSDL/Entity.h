@@ -1,6 +1,7 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
+#include "checkML.h"
 #include "Component.h"
 #include "SDLGame.h"
 #include "Vector2D.h"
@@ -22,7 +23,7 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 
-	void load(int x, int y, int width, int height);
+	void load(int x, int y, int width, int height, int staticEntity, string name);
 
 	virtual void addComponent(Component* c);
 	virtual void delComponent(Component* c);
@@ -35,6 +36,10 @@ public:
 	double getHeight() const;
 	void setHeight(double height);
 	void scale(double s);
+	bool isStatic();
+	string getName();
+	bool getIsReading();
+	void setIsReading(bool b);
 
 	SDL_Rect getRect();
 
@@ -80,6 +85,12 @@ private:
 
 	vector<Component*> comps_;
 	vector<bool> sideCollision;
+
+	bool staticEntity_;
+
+	string name_;
+
+	bool reading_ = false;
 };
 
 #endif /* ENTITY_H_ */

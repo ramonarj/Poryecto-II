@@ -11,6 +11,8 @@
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
 #include "Door.h"
+#include "SecurityCamera.h"
+#include "Register.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -27,9 +29,9 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	// get the root node and display some values
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
-	std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
+	/*std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
 	std::cout << "Width:" << pRoot->Attribute("width") << " - Height:" << pRoot->Attribute("height") << "\n";
-	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";
+	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";*/
 
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
@@ -66,11 +68,13 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	{
 		if (e->Value() == std::string("objectgroup") || e->Value() == std::string("layer"))
 		{
-			if (e->FirstChildElement()->Value() == std::string("object"))
+			parseObjectLayer(e, pLevel->getLayers(), pLevel);
+			/*if (e->FirstChildElement()->Value() == std::string("object"))
 			{
 				parseObjectLayer(e, pLevel->getLayers(), pLevel);
 			}
-			else if (e->FirstChildElement()->Value() == std::string("data") ||
+			else */
+			if (e->FirstChildElement()->Value() == std::string("data") ||
 				(e->FirstChildElement()->NextSiblingElement() != 0 &&
 					e->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
 			{
@@ -194,16 +198,40 @@ void LevelParser::parseTextures(TiXmlElement * pTextureRoot)
 		Game::Instance()->getRenderer());
 }
 
-void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel) {
+void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel)
+{
 	zoom = Camera::Instance()->getZoom();
 
 	// create an object layer
 	ObjectLayer* pObjectLayer = new ObjectLayer();
-	std::cout << pObjectElement->FirstChildElement()->Value();
+	//std::cout << pObjectElement->FirstChildElement()->Value();
+
+	int staticEntity;
+	int collidableDoor;
+	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("properties"))
+		{
+			for (TiXmlElement* property = e->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
+			{
+				if (property->Value() == std::string("property"))
+				{
+					if (property->Attribute("name") == std::string("staticEntity"))
+					{
+						property->Attribute("value", &staticEntity);
+					}
+					if (property->Attribute("name") == std::string("collidableDoor"))
+					{
+						property->Attribute("value", &collidableDoor);
+					}
+				}
+			}
+		}
+	}
 
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		std::cout << e->Value();
+		//std::cout << e->Value();
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;
@@ -213,12 +241,15 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numKey = 0;
 			int numDoor = 0;
 			int needKey = 0;
+			int numCamera = 0;
 			std::string orientacion;
+			int registerFile;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
-			if (e->Attribute("type") == std::string("Puerta"))
+			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
+				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -270,12 +301,20 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &needKey);
 							}
+							else if (property->Attribute("name") == std::string("numCamera"))
+							{
+								property->Attribute("value", &numCamera);
+							}
+							else if (property->Attribute("name") == std::string("registerFile"))
+							{
+								property->Attribute("value", &registerFile);
+							}
 						}
 					}
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom);
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"));
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
@@ -284,11 +323,19 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			}
 			else if (e->Attribute("type") == std::string("Puerta"))
 			{
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey);
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
 			}
 			else if (e->Attribute("type") == std::string("Key"))
 			{
 				pEntity->getComponent<Key>()->load(numKey);
+			}
+			else if (e->Attribute("type") == std::string("Camera"))
+			{
+				pEntity->getComponent<SecurityCamera>()->load(numCamera);
+			}
+			else if (e->Attribute("type") == std::string("Register"))
+			{
+				pEntity->getComponent<Register>()->load(registerFile);
 			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades

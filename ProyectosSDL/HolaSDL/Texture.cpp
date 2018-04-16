@@ -142,5 +142,4 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, SDL_FLIP_NONE);
-	//SDL_RenderPresent(pRenderer);
 }

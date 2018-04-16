@@ -240,6 +240,12 @@
     <ClCompile Include="PlayerLight.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="ChestObject.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftingTable.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -427,6 +433,12 @@
     </ClInclude>
     <ClInclude Include="PlayerLight.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestObject.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingTable.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

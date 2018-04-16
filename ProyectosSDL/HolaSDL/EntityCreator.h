@@ -10,6 +10,8 @@
 #include "Movable.h"
 #include "SecurityCamera.h"
 #include "Register.h"
+#include "ChestObject.h"
+#include "CraftingTable.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -211,6 +213,32 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new Register());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class ChestCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		e->addComponent(new ChestObject());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class CraftingTableCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		e->addComponent(new CraftingTable());
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

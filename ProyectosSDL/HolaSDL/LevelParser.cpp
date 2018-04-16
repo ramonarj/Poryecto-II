@@ -307,7 +307,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity);
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"));
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))

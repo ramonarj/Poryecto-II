@@ -51,7 +51,7 @@ void Entity::render(Uint32 time) {
 	}
 }
 
-void Entity::load(int x, int y, int width, int height, int staticEntity)
+void Entity::load(int x, int y, int width, int height, int staticEntity, string name)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
@@ -60,6 +60,8 @@ void Entity::load(int x, int y, int width, int height, int staticEntity)
 	currentFrame_ = 1;
 
 	staticEntity_ = staticEntity;
+
+	name_ = name;
 }
 
 void Entity::addComponent(Component* c) {
@@ -120,6 +122,11 @@ void Entity::scale(double s) {
 bool Entity::isStatic()
 {
 	return staticEntity_;
+}
+
+string Entity::getName()
+{
+	return name_;
 }
 
 SDL_Rect Entity::getRect()

@@ -26,7 +26,8 @@ void TextNote::render(Entity * e, Uint32 time) {
 	
 	SDL_Rect rect RECT(0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight());
 
-	background_->render(Game::Instance()->getRenderer(), rect);
+	if(background_!=nullptr)
+		background_->render(Game::Instance()->getRenderer(), rect);
 	
 	int yIncrement = 0;
 
@@ -43,4 +44,18 @@ void TextNote::render(Entity * e, Uint32 time) {
 		}
 		yIncrement += spacing_;
 	}
+}
+
+void TextNote::changeString(string txtFilePath)
+{
+	ifstream txtFile;
+	txtFile.open(txtFilePath);
+	string temp;
+	if (txtFile.is_open()) {
+		while (!txtFile.eof()) {
+			getline(txtFile, temp);
+			textLines.push_back(temp);
+		}
+	}
+	txtFile.close();
 }

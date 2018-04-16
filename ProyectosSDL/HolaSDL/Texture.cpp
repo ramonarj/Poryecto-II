@@ -56,8 +56,7 @@ bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	return texture_ != nullptr;
 }
 
-bool Texture::loadFromText(SDL_Renderer* renderer, std::string text,
-		const Font& font, const SDL_Color color) {
+bool Texture::loadFromText(SDL_Renderer* renderer, std::string text, const Font& font, const SDL_Color color) {
 	SDL_Surface* textSurface = font.renderText(text, color);
 	if (textSurface != nullptr) {
 		close();
@@ -80,8 +79,7 @@ void Texture::render(SDL_Renderer* renderer, int x, int y) const {
 	render(renderer, dest);
 }
 
-void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
-		SDL_Rect* clip) const {
+void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, SDL_Rect* clip) const {
 	if (texture_) {
 		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {
@@ -91,8 +89,7 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 	}
 }
 
-void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
-		SDL_Rect* clip) const {
+void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle, SDL_Rect* clip) const {
 	if (texture_) {
 		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {

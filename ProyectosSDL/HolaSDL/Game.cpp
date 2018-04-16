@@ -147,6 +147,7 @@ void Game::addResourcesTexture()
 	//Lighting
 	resourceManager_->addTexture("ShadowHorizontal", "images/Shadows/ShadowHorizontal.png");
 	resourceManager_->addTexture("ShadowVertical", "images/Shadows/ShadowVertical.png");
+	resourceManager_->addTexture("Shadow", "images/Shadows/Shadow.png");
 
 }
 

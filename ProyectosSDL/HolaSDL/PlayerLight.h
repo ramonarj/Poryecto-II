@@ -19,5 +19,9 @@ private:
 	Entity* player_;
 	Texture* shadowH_;
 	Texture* shadowV_;
+	Texture* shadow_;
+
+	double currentAgl_;
+	double destAgl_;
 };
 

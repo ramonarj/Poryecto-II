@@ -129,6 +129,16 @@ string Entity::getName()
 	return name_;
 }
 
+bool Entity::getIsReading()
+{
+	return reading_;
+}
+
+void Entity::setIsReading(bool b)
+{
+	reading_ = b;
+}
+
 SDL_Rect Entity::getRect()
 {
 	SDL_Rect dest

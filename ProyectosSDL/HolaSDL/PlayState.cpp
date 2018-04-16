@@ -87,11 +87,6 @@ void PlayState::startState()
 	Entity* playerLight = new Entity(0, 0);
 	playerLight->addComponent(new PlayerLight());
 	stage_.push_back(playerLight);
-
-	//Registro (nota de texto) de prueba ---------------------------------------------
-	/*Entity* textTest = new Entity(20, 20);
-	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
-	stage_.push_back(textTest);*/
 }
 
 void PlayState::update(Uint32 time)

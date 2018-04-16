@@ -157,9 +157,9 @@ void Chest::moveItem()
 		else {
 			//Entity* auxInv = &inv->ItemInPosition[inv->getSelectedSlot()];	//Guardamos la entidad del inventario
 			//inv->DeleteItem(inv->getSelectedSlot());	//La borramos
-			//inv->addItem(inventory[selectedSlot]);		//Añadimos la del cofre
+			//inv->addItem(inventory[selectedSlot]);		//Aï¿½adimos la del cofre
 			//this->DeleteItem(selectedSlot);				//Borramos la del cofre
-			//this->addItem(auxInv);						//Añadimos al cofre la del inventario
+			//this->addItem(auxInv);						//Aï¿½adimos al cofre la del inventario
 		}
 	}
 }

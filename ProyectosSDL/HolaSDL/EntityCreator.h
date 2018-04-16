@@ -9,6 +9,7 @@
 #include "Door.h"
 #include "Movable.h"
 #include "SecurityCamera.h"
+#include "Register.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -199,6 +200,18 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		return e;
+	}
+};
+
+class RegisterCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Register());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

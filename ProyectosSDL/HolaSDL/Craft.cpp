@@ -146,7 +146,7 @@ void Craft::moveMarkSlot(int a)
 
 void Craft::tryCraftingRepair()
 {
-	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botón de crafteo ya o no
+	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botï¿½n de crafteo ya o no
 		switch (selectedSlot)
 		{
 		case 0:

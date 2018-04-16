@@ -38,6 +38,8 @@ public:
 	void scale(double s);
 	bool isStatic();
 	string getName();
+	bool getIsReading();
+	void setIsReading(bool b);
 
 	SDL_Rect getRect();
 
@@ -87,6 +89,8 @@ private:
 	bool staticEntity_;
 
 	string name_;
+
+	bool reading_ = false;
 };
 
 #endif /* ENTITY_H_ */

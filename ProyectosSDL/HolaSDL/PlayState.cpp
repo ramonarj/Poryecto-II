@@ -1,6 +1,7 @@
 #include "PlayState.h"
 #include "Game.h"
 #include "PlayerLight.h"
+#include "SRMap.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -35,7 +36,7 @@ void PlayState::startState()
 	//M�sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
-	//CURSOR
+	//CURSORº
 	cursor_ = new Entity();
 	cursor_->setHeight(50);
 	cursor_->setWidth(50);

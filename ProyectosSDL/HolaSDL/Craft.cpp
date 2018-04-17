@@ -70,7 +70,7 @@ void Craft::render(Entity * e, Uint32 time)
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
 	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("acid")->render(pRenderer, craftSlots[1]);
+	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
@@ -146,7 +146,7 @@ void Craft::moveMarkSlot(int a)
 
 void Craft::tryCraftingRepair()
 {
-	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botón de crafteo ya o no
+	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botï¿½n de crafteo ya o no
 		switch (selectedSlot)
 		{
 		case 0:

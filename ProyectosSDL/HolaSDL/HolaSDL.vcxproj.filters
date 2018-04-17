@@ -204,6 +204,9 @@
     <ClCompile Include="MenuState.cpp">
       <Filter>Archivos de código fuente\States</Filter>
     </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
     <ClCompile Include="TextNote.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -237,11 +240,17 @@
     <ClCompile Include="PlayerLight.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Key.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
+    <ClCompile Include="ChestObject.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftingTable.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="SRMap.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Register.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -431,8 +440,17 @@
     <ClInclude Include="PlayerLight.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="ChestObject.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingTable.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="SRMap.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="Register.h">
-      <Filter>Archivos de encabezado\Items</Filter>
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

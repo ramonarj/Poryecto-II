@@ -20,11 +20,10 @@ class SlidingPuzzleComponent : public Component
 
 	struct ficha
 	{
-		int currentPosX;
-		int currentPosY;
 		int correctPosX;
 		int correctPosY;
 		bool ghost;
+		SDL_Rect srcRect;
 	};
 
 	static const int puzzleTam = 9;
@@ -43,8 +42,10 @@ public:
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
 
+private:
 	bool combruebaVictoria();
-	void mueveFicha(int ficha);
+	void compruebaAdyacencia(int i, int j);
+	void desordena();
 
 	coord PosCasillas[3][3]{ {{300,50}, {300,250}, {300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
 };

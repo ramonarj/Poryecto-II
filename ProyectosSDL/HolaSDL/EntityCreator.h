@@ -29,7 +29,7 @@ public:
 		e->addComponent(new ControllerInputComponent());
 		
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
-		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
+		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };
@@ -39,12 +39,10 @@ class EnemyCreator : public BaseCreator
 public:
 	Entity* createEntity() const
 	{
-		Vector2D vel (1.0, 0.0);
+		//Vector2D vel (1.0, 0.0);
 		Entity* e = new Entity();
-		e->setVelocity(vel);
-		e->addComponent(new Enemy(vel));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
-		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
+		e->addComponent(new Enemy());
+		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };

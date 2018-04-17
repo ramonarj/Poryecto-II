@@ -25,8 +25,11 @@ void PlayState::startState()
 	player = Game::Instance()->getEntityWithComponent<Player>();
 	Camera::Instance()->setTarget(player);
 
-	Enemy* enemyComp = Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>();
-	enemyComp -> addPlayer(player);
+	for (Entity* e : stage_)
+	{
+		if (e->getComponent<Enemy>() != nullptr)
+			e->getComponent<Enemy>()->addPlayer(player);
+	}
 
 	//PROBAR LOS MOVIBLES:
 		//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h

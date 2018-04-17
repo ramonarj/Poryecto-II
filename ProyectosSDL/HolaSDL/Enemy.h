@@ -14,7 +14,6 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(Vector2D vel);
 	Enemy(Entity* player, int life, int damage, int rango=DEFAULT_RANGE);
 
 	void addPlayer(Entity* player) { this->player = player; };
@@ -24,10 +23,13 @@ public:
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 tiDSme);
 
+	void load(int numEnemy);
+
 	virtual ~Enemy();
 private:
 	Entity* player;
 
+	int numEnemy_;
 	int rango;
 	int velMag;
 	int relaxTime;

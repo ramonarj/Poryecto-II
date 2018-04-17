@@ -6,12 +6,7 @@
 
 Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(){}
 
-Enemy::Enemy(Vector2D vel): player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character()
-{
-	velMag = vel.magnitude();
-}
-
-Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Character(life, damage), rango(rango)
+Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Character(life, damage), rango(rango), numEnemy_(0)
 {
 }
 
@@ -39,18 +34,28 @@ void Enemy::move(Entity* o)
 
 	//2.VELOCIDAD
 	Vector2D vel;
-	int difY = 100;
+
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())
 		vel.setX(cos(alpha) * velMag);
 	else if (pos.getX() > playerPos.getX())
 		vel.setX(cos(alpha) * -velMag);
+	else 
+		vel.setX(0);
 
 	//Movimiento en Y
-	if (pos.getY() < playerPos.getY())
+	double auxY = 0;
+	double dif = 3;
+
+	if (numEnemy_ == 1) auxY = -30;
+	else if (numEnemy_ == 3) auxY = 40;
+
+	if (pos.getY() - auxY < playerPos.getY() - dif)
 		vel.setY(velMag);
-	else if (pos.getY() > playerPos.getY())
+	else if (pos.getY() - auxY > playerPos.getY() + dif)
 		vel.setY(-velMag);
+	else
+		vel.setY(0);
 
 
 	//Actualizamos la velocidad
@@ -140,6 +145,20 @@ void Enemy::update(Entity * o, Uint32 time)
 	//Muere	
 	else
 		o->setVelocity(Vector2D(0, 0));
+}
+
+void Enemy::load(int numEnemy)
+{	
+	numEnemy_ = numEnemy;
+	Vector2D vel;
+	if (numEnemy == 1)
+		vel.set(Vector2D(1.0, 0.0));
+	else if (numEnemy == 2)
+		vel.set(Vector2D(2.0, 0.0));
+	else if (numEnemy == 3)
+		vel.set(Vector2D(3.0, 0.0));
+
+	velMag = vel.magnitude();
 }
 
 Enemy::~Enemy()

@@ -116,8 +116,9 @@ void Game::addGameObjectsFactory()
 void Game::addResourcesTexture()
 {
 	//Characters
-	resourceManager_->addTexture("SpriteSheetElise", "images/SpriteSheetElise.png");
-	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Enemigo1_ConAtaque.png");
+	resourceManager_->addTexture("SpriteSheetElise", "images/Characters/SpriteSheetElise.png");
+	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1_ConAtaque.png");
+	resourceManager_->addTexture("Enemigo2_ConAtaque", "images/Characters/Enemigo2.png");
 
 	//Items
 	resourceManager_->addTexture("Crowbar", "images/Weapons/crowbar.png");

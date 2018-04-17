@@ -246,6 +246,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			std::string orientacion;
 			int registerFile;
 			int numMap;
+			int numEnemy;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
@@ -316,6 +317,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &numMap);
 							}
+							else if (property->Attribute("name") == std::string("numEnemy"))
+							{
+								property->Attribute("value", &numEnemy);
+							}
 						}
 					}
 				}
@@ -327,6 +332,18 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 			{
 				pEntity->getComponent<Character>()->load(life, damage);
+				if (e->Attribute("type") == std::string("Enemy")) {
+					pEntity->getComponent<Enemy>()->load(numEnemy);
+					if (numEnemy == 1)
+					{
+						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
+					}
+					else if (numEnemy == 3)
+					{
+						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
+					}
+				}
+				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 			}
 			else if (e->Attribute("type") == std::string("Puerta"))
 			{

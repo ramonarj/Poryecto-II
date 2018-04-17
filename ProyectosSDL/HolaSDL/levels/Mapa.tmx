@@ -215,12 +215,24 @@
     <property name="textureWidth" type="int" value="40"/>
    </properties>
   </object>
+  <object id="355" name="COFRE" type="Chest" x="1859.67" y="1719.33" width="40" height="40">
+   <properties>
+    <property name="textureHeight" type="int" value="40"/>
+    <property name="textureWidth" type="int" value="40"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="CraftingTables">
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
   <object id="349" name="MESA DE CRAFTEO" type="CraftingTable" x="1640.33" y="1720.33" width="40" height="40">
+   <properties>
+    <property name="textureHeight" type="int" value="40"/>
+    <property name="textureWidth" type="int" value="40"/>
+   </properties>
+  </object>
+  <object id="356" name="MESA DE CRAFTEO" type="CraftingTable" x="2019.67" y="1720.33" width="40" height="40">
    <properties>
     <property name="textureHeight" type="int" value="40"/>
     <property name="textureWidth" type="int" value="40"/>

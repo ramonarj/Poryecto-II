@@ -150,7 +150,7 @@ void Craft::tryCraftingRepair()
 		switch (selectedSlot)
 		{
 		case 0:
-			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) /*&& !inv->fullInventory()*/)		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
 			{
 				craftButtonSelected = true;
 			}

@@ -295,7 +295,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				velocity.setY(-vel);
 				direction.setY(1);
 			}
-			else if (m_joystickValues[0].first->getY() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() ) {
+			else if (m_joystickValues[0].first->getY() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 				velocity.setY(vel);
 				direction.setY(-1);
 			}
@@ -310,7 +310,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 						//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
 
-						if ((*it)->getName() == "MESA DE CRAFTEO") {	//Si lo que interactuamos tiene componente de crafteo
+						if ((*it)->getName() == "MESA DE CRAFTEO" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
 
 							inv->setActive(!inv->isActive());
 							craft->setActive(!craft->isActive());
@@ -328,7 +328,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 							interactButtonPressedSquare = true;
 							entityFound = true;
 						}
-						else if ((*it)->getName() == "COFRE") {
+						else if ((*it)->getName() == "COFRE" && !cstOpen) {
 
 							inv->setActive(!inv->isActive());
 							cst->setActive(!cst->isActive());
@@ -348,10 +348,13 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 							entityFound = true;
 
 						}
-						else {
+						else if(!cstOpen && !invOpen && !crftOpen){
 							(*it)->getComponent<Interactible>()->interact((*it));
 							interactButtonPressedSquare = true;
 							entityFound = true;
+						}
+						else {
+							++it;
 						}
 					}
 					else
@@ -359,12 +362,10 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				}
 			}
 			else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && interactButtonPressedSquare) {
-			
 				interactButtonPressedSquare = false;
-
 			}
 
-			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !interactButtonPressedCircle)	//Can only attack if you have an equiped weapon
+			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !interactButtonPressedCircle && !o->getIsReading())	//Can only attack if you have an equiped weapon
 			{
 				if (inv->getComponent<Inventory>()->currentWeapon() != nullptr && !invOpen && !cstOpen && !crftOpen) {
 					if (!(o->getComponent<Character>()->getAttacking())) {

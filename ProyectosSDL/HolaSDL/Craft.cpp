@@ -8,6 +8,8 @@ Craft::Craft()
 
 Craft::~Craft()
 {
+	if (Wep != nullptr) delete Wep;
+	if (cinta != nullptr) delete cinta;
 }
 
 void Craft::update(Entity * e, Uint32 time)
@@ -59,8 +61,16 @@ void Craft::render(Entity * e, Uint32 time)
 
 	int ancho = width - width / 10;
 	int alto = height - height / 10;
-	int posX = 0 + (width / 10) / 2;
-	int posY = 0 + (height / 10) / 2;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
+
+	SDL_Rect dest1 = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest1);
+
+	ancho = width - width / 10;
+	alto = height - height / 10;
+	posX = 0 + (width / 10) / 2;
+	posY = 0 + (height / 10) / 2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
 	resource->getTexture("Craft")->render(pRenderer, dest);
@@ -150,7 +160,7 @@ void Craft::tryCraftingRepair()
 		switch (selectedSlot)
 		{
 		case 0:
-			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) /*&& !inv->fullInventory()*/)		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
 			{
 				craftButtonSelected = true;
 			}

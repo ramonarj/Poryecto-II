@@ -14,6 +14,7 @@ Chest::Chest()
 
 Chest::~Chest()
 {
+		for (int i = 0; i < inventory.size(); i++){ if (inventory[i] != nullptr) delete inventory[i]; }
 }
 
 void Chest::update(Entity * e, Uint32 time)
@@ -69,12 +70,20 @@ void Chest::render(Entity * e, Uint32 time)
 
 	int ancho = width - width / 10;
 	int alto = height - height / 10;
-	int posX = 0 + (width / 10)/2;
-	int posY = 0 + (height / 10)/2;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
+
+	SDL_Rect dest1 = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest1);
+
+	ancho = width - width / 10;
+	alto = height - height / 10;
+	posX = 0 + (width / 10)/2;
+	posY = 0 + (height / 10)/2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
 	resource->getTexture("Chest")->render(pRenderer, dest);
-
+	
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {

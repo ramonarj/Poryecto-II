@@ -21,20 +21,21 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 
 void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 
+	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+
 	Vector2D velocity = o->getVelocity();
 	Vector2D direction = o->getDirection();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	double vel = 7 * Camera::Instance()->getZoom();
 
-	if (inv == nullptr)
-		inv = Game::Instance()->getEntityWithComponent<Inventory>();
-
-	if (inv != nullptr && !inv->isActive()) {
-		if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
+	if (inv != nullptr) {
+		if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 			velocity.setX(-vel);
 			direction.setX(-1);
 		}
-		else if (state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
+		else if (state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 			velocity.setX(vel);
 			direction.setX(1);
 		}
@@ -42,24 +43,63 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			velocity.setX(0);
 			direction.setX(0);
 		}
-		if (state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
+		if (state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 			velocity.setY(-vel);
 			direction.setY(1);
 		}
-		else if (state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading()) {
+		else if (state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 			velocity.setY(vel);
 			direction.setY(-1);
 		}
 		else if (state[interact_]) {
 			if (event.type == SDL_KEYDOWN) {
 				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
-				for (Entity* e : *Game::Instance()->stateMachine_.currentState()->getInteractibles()) {
-					SDL_Rect intRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
-					if (Collisions::RectRect(&playerRect, &intRect) && e->isActive()) {
-						if (e->getComponent<Interactible>() != nullptr) {
-							e->getComponent<Interactible>()->interact(e);
+
+				bool entityFound = false;
+				int i = 0;
+				list<Entity*>::const_iterator it = (Game::Instance()->stateMachine_.currentState()->getInteractibles()->begin());
+				while (it != (Game::Instance()->stateMachine_.currentState()->getInteractibles()->end()) && !entityFound) {				
+					SDL_Rect intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
+					if (Collisions::RectRect(&playerRect, &intRect) && (*it)->isActive()) {
+						
+						if ((*it)->getName() == "MESA DE CRAFTEO") {	//Si lo que interactuamos tiene componente de crafteo
+
+							inv->setActive(!inv->isActive());
+							craft->setActive(!craft->isActive());
+							//craftPressed = true;
+							crftOpen = !crftOpen;
+							if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+							inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+							//SOUND 
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							craft->getComponent<Craft>()->setRenderMark(false);
+							
+							entityFound = true;
 						}
-						else std::cout << "Esta entidad no tiene el componente Interactible." << std::endl; // DEBUG
+						else if ((*it)->getName() == "COFRE") {
+
+							inv->setActive(!inv->isActive());
+							cst->setActive(!cst->isActive());
+							chestPressed = true;
+							cstOpen = !cstOpen;
+							inv->getComponent<Inventory>()->setChestMode(cstOpen);
+							//SOUND 
+							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+							inv->getComponent<Inventory>()->setRenderMark(true);
+							cst->getComponent<Chest>()->setRenderMark(false);
+
+							entityFound = true;
+						}
+						else{
+							(*it)->getComponent<Interactible>()->interact((*it));
+							entityFound = true;
+						}
+					}
+					else {
+						++it;
 					}
 				}
 			}
@@ -104,46 +144,46 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 		inventoryPressed = false;
 	}
 
-	if (state[chest_] && !invOpen && !crftOpen)
-	{
-		if (event.type == SDL_KEYDOWN && !chestPressed) {
-			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-			inv->setActive(!inv->isActive());
-			cst->setActive(!cst->isActive());
-			chestPressed = true;
-			cstOpen = !cstOpen;
-			inv->getComponent<Inventory>()->setChestMode(cstOpen);
-			//SOUND 
-			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		}
-	}
-	if (!state[chest_] && !invOpen && !crftOpen)
-	{
-		chestPressed = false;
-	}
+	//if (state[chest_] && !invOpen && !crftOpen)
+	//{
+	//	if (event.type == SDL_KEYDOWN && !chestPressed) {
+	//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+	//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+	//		inv->setActive(!inv->isActive());
+	//		cst->setActive(!cst->isActive());
+	//		chestPressed = true;
+	//		cstOpen = !cstOpen;
+	//		inv->getComponent<Inventory>()->setChestMode(cstOpen);
+	//		//SOUND 
+	//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+	//	}
+	//}
+	//if (!state[chest_] && !invOpen && !crftOpen)
+	//{
+	//	chestPressed = false;
+	//}
 
-	if (state[craft_] && !invOpen && !cstOpen)
-	{
-		if (event.type == SDL_KEYDOWN && !craftPressed) {
-			if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-			if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-			if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-			inv->setActive(!inv->isActive());
-			craft->setActive(!craft->isActive());
-			craftPressed = true;
-			crftOpen = !crftOpen;
-			if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
-			inv->getComponent<Inventory>()->setCraftMode(crftOpen);
-			//SOUND 
-			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		}
-	}
-	if (!state[craft_] && !invOpen && !cstOpen)
-	{
-		craftPressed = false;
-	}
+	//if (state[craft_] && !invOpen && !cstOpen)
+	//{
+	//	if (event.type == SDL_KEYDOWN && !craftPressed) {
+	//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
+	//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
+	//		inv->setActive(!inv->isActive());
+	//		craft->setActive(!craft->isActive());
+	//		craftPressed = true;
+	//		crftOpen = !crftOpen;
+	//		if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+	//		inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+	//		//SOUND 
+	//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+	//	}
+	//}
+	//if (!state[craft_] && !invOpen && !cstOpen)
+	//{
+	//	craftPressed = false;
+	//}
 
 	if (invOpen || cstOpen || crftOpen)
 		Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(true);

@@ -39,6 +39,7 @@ void Enemy::move(Entity* o)
 
 	//2.VELOCIDAD
 	Vector2D vel;
+	int difY = 100;
 	//Movimiento en X
 	if (pos.getX() < playerPos.getX())
 		vel.setX(cos(alpha) * velMag);
@@ -48,7 +49,7 @@ void Enemy::move(Entity* o)
 	//Movimiento en Y
 	if (pos.getY() < playerPos.getY())
 		vel.setY(velMag);
-	else if (pos.getY()> playerPos.getY())
+	else if (pos.getY() > playerPos.getY())
 		vel.setY(-velMag);
 
 
@@ -109,6 +110,7 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 		//Él ataca
 		else
 		{
+			Character::attacking = true;
 			Character::knockBack(player, chaseVector);
 			player->getComponent<Player>()->takeDamage(damage);
 		}

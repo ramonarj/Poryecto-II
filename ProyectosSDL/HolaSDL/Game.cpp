@@ -106,6 +106,8 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Puerta", new DoorCreator());
 	gameObjectFactory->registerType("Camera", new SecurityCameraCreator());
 	gameObjectFactory->registerType("Television", new TelevisionCreator());
+	gameObjectFactory->registerType("Chest", new ChestCreator());
+	gameObjectFactory->registerType("CraftingTable", new CraftingTableCreator());
 	gameObjectFactory->registerType("Register", new RegisterCreator());
 	registerTypeItem();
 }
@@ -114,7 +116,7 @@ void Game::addResourcesTexture()
 {
 	//Characters
 	resourceManager_->addTexture("SpriteSheetElise", "images/SpriteSheetElise.png");
-	resourceManager_->addTexture("Enemigo1", "images/Enemigo1.png");
+	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Enemigo1_ConAtaque.png");
 
 	//Items
 	resourceManager_->addTexture("Crowbar", "images/Weapons/crowbar.png");

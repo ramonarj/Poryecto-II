@@ -381,6 +381,10 @@ void Inventory::activeItem()
 
 void Inventory::moveItem()
 {
+
+	if (cofre == nullptr)
+		cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>();
+
 	Entity* aux;
 	if (selectedSlot < 4) {
 		aux = ItemInPosition(selectedSlot);

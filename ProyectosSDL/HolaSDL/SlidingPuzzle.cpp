@@ -13,7 +13,6 @@ void SlidingPuzzle::startState()
 	cursor_->setWidth(50);
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
 	cursor_->addComponent(new MouseInputComponent());
-	cursor_->setActive(false);
 
 	Entity* slidingPuzzle = new Entity(0, 0);
 	slidingPuzzle->addComponent(new SlidingPuzzleComponent());

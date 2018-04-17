@@ -339,9 +339,26 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades
-			if (e->Attribute("type") != std::string("Puerta"))
-				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			if (e->Attribute("type") != std::string("Register"))
+			{
+				bool regFound = false;
+				int i = 0;
+				list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
+				while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound){
+					if ((*it)->getComponent<Register>() != nullptr)
+						regFound = true;
+					else
+						it++;
+				}
+				if (regFound)
+					Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
+				else
+					Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			}
 			else
+				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+
+			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 		}
 	}

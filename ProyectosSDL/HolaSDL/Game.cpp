@@ -146,7 +146,9 @@ void Game::addResourcesTexture()
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
 	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
-	resourceManager_->addTexture("SRMapa1", "images/SRMap1.png");
+	resourceManager_->addTexture("SRMapa1", "images/SRMap/SRMap1.png");
+	resourceManager_->addTexture("SRMapa2", "images/SRMap/SRMap2.png");
+	resourceManager_->addTexture("SRMapa3", "images/SRMap/SRMap3.png");
 
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");

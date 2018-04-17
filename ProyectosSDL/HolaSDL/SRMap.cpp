@@ -36,7 +36,7 @@ void SRMap::interact(Entity * e)
 void SRMap::load(int numMap, std::string ori)
 {
 	ori_ = ori;
-	image_ = Game::Instance()->getResourceManager()->getTexture("SRMapa1");
+	image_ = Game::Instance()->getResourceManager()->getTexture("SRMapa" + to_string(numMap));
 }
 
 void SRMap::render(Entity * o, Uint32 time)

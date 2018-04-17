@@ -246,10 +246,10 @@
     <ClCompile Include="CraftingTable.cpp">
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
-    <ClCompile Include="SRMap.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Register.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="SRMap.cpp">
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
   </ItemGroup>
@@ -446,13 +446,13 @@
     <ClInclude Include="CraftingTable.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
-    <ClInclude Include="SRMap.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Register.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
     <ClInclude Include="CraftingTable.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="SRMap.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
   </ItemGroup>

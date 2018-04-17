@@ -1,6 +1,7 @@
 #include "PlayState.h"
 #include "Game.h"
 #include "PlayerLight.h"
+#include "SRMap.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 

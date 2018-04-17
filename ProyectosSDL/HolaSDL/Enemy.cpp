@@ -17,8 +17,8 @@ Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Ch
 
 void Enemy::move(Entity* o)
 {
-	//1.CÁLCULOS
-	//Posición del jugador y del enemigo
+	//1.Cï¿½LCULOS
+	//Posiciï¿½n del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
 
@@ -57,7 +57,7 @@ void Enemy::move(Entity* o)
 	o->setVelocity(vel);
 
 
-	///3.DIRECCIÓN
+	///3.DIRECCIï¿½N
 	Vector2D dir;
 	//Prioritaria en el eje X
 	dir.setX((vel.getX() > 0) ? 1 : -1); //Vaya guapo el ternary operator
@@ -81,7 +81,7 @@ void Enemy::move(Entity* o)
 
 bool Enemy::playerInRange(Entity * o)
 {
-	//Posición del jugador y del enemigo
+	//Posiciï¿½n del jugador y del enemigo
 	Vector2D pos{ o->getPosition().getX(), o->getPosition().getY() };
 	Vector2D playerPos{ player->getPosition().getX(), player->getPosition().getY() };
 
@@ -98,7 +98,7 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 	SDL_Rect enemyRect = o->getRect();
 	if (Collisions::RectRect(&playerRect, &enemyRect))
 	{
-		//El que pille recibirá daño y knockback
+		//El que pille recibirï¿½ daï¿½o y knockback
 		//El player le ataca
 		if (player->getComponent<Player>()->getAttacking())
 		{
@@ -107,10 +107,10 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 			Character::knockBack(o, chaseVector);
 			this->takeDamage(player->getComponent<Player>()->getDamage());
 		}
-		//Él ataca
+		//ï¿½l ataca
 		else
 		{
-			Character::attacking = true;
+			setAttacking(true);
 			Character::knockBack(player, chaseVector);
 			player->getComponent<Player>()->takeDamage(damage);
 		}
@@ -123,7 +123,7 @@ void Enemy::render(Entity* o, Uint32 time) {}
 
 void Enemy::update(Entity * o, Uint32 time)
 {
-	//Tanto él como el jugador están vivos
+	//Tanto ï¿½l como el jugador estï¿½n vivos
 	if (isAlive() && playerInRange(o) && !reloading)
 		move(o);
 	//Recargando

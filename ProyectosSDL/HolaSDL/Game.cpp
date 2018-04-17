@@ -109,6 +109,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Chest", new ChestCreator());
 	gameObjectFactory->registerType("CraftingTable", new CraftingTableCreator());
 	gameObjectFactory->registerType("Register", new RegisterCreator());
+	gameObjectFactory->registerType("SRMap", new SRMapCreator());
 	registerTypeItem();
 }
 
@@ -145,6 +146,7 @@ void Game::addResourcesTexture()
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
 	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
+	resourceManager_->addTexture("SRMapa1", "images/SRMap1.png");
 
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");

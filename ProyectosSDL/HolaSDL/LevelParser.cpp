@@ -13,6 +13,7 @@
 #include "Door.h"
 #include "SecurityCamera.h"
 #include "Register.h"
+#include "SRMap.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -244,12 +245,14 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numCamera = 0;
 			std::string orientacion;
 			int registerFile;
+			int numMap;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
-				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register"))
+				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
+				|| e->Attribute("type") == std::string("SRMap"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -309,6 +312,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							{
 								property->Attribute("value", &registerFile);
 							}
+							else if (property->Attribute("name") == std::string("numMap"))
+							{
+								property->Attribute("value", &numMap);
+							}
 						}
 					}
 				}
@@ -337,15 +344,19 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			{
 				pEntity->getComponent<Register>()->load(registerFile);
 			}
+			else if (e->Attribute("type") == std::string("SRMap"))
+			{
+				pEntity->getComponent<SRMap>()->load(numMap, orientacion);
+			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades
-			if (e->Attribute("type") != std::string("Register"))
+			if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))
 			{
 				bool regFound = false;
 				int i = 0;
 				list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
 				while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound){
-					if ((*it)->getComponent<Register>() != nullptr)
+					if ((*it)->getComponent<Register>() != nullptr || (*it)->getComponent<SRMap>() != nullptr)
 						regFound = true;
 					else
 						it++;

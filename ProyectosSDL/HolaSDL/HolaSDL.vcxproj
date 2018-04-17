@@ -126,6 +126,7 @@
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="SRMap.cpp" />
     <ClCompile Include="StaticImageRender.cpp" />
     <ClCompile Include="TextNote.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="SRMap.h" />
     <ClInclude Include="StaticImageRender.h" />
     <ClInclude Include="TextNote.h" />
     <ClInclude Include="Texture.h" />

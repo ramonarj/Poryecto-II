@@ -218,13 +218,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				if (property->Value() == std::string("property"))
 				{
 					if (property->Attribute("name") == std::string("staticEntity"))
-					{
 						property->Attribute("value", &staticEntity);
-					}
+
 					if (property->Attribute("name") == std::string("collidableDoor"))
-					{
 						property->Attribute("value", &collidableDoor);
-					}
 				}
 			}
 		}
@@ -270,57 +267,43 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 						if (property->Value() == std::string("property"))
 						{
 							if (property->Attribute("name") == std::string("numFrames"))
-							{
 								property->Attribute("value", &numFrames);
-							}
+
 							else if (property->Attribute("name") == std::string("textureHeight"))
-							{
 								property->Attribute("value", &height);
-							}
-							else if (property->Attribute("name") == std::string("textureWidth"))
-							{
+				
+							else if (property->Attribute("name") == std::string("textureWidth"))							
 								property->Attribute("value", &width);
-							}
+							
 							else if (property->Attribute("name") == std::string("life"))
-							{
 								property->Attribute("value", &life);
-							}
+							
 							else if (property->Attribute("name") == std::string("damage"))
-							{
 								property->Attribute("value", &damage);
-							}
+						
 							else if (property->Attribute("name") == std::string("numDoor"))
-							{
 								property->Attribute("value", &numDoor);
-							}
+							
 							else if (property->Attribute("name") == std::string("dir"))
-							{
 								orientacion = property->Attribute("value");
-							}
+							
 							else if (property->Attribute("name") == std::string("numKey"))
-							{
 								property->Attribute("value", &numKey);
-							}
+							
 							else if (property->Attribute("name") == std::string("needKey"))
-							{
 								property->Attribute("value", &needKey);
-							}
+							
 							else if (property->Attribute("name") == std::string("numCamera"))
-							{
 								property->Attribute("value", &numCamera);
-							}
+							
 							else if (property->Attribute("name") == std::string("registerFile"))
-							{
 								property->Attribute("value", &registerFile);
-							}
+							
 							else if (property->Attribute("name") == std::string("numMap"))
-							{
 								property->Attribute("value", &numMap);
-							}
+							
 							else if (property->Attribute("name") == std::string("numEnemy"))
-							{
 								property->Attribute("value", &numEnemy);
-							}
 						}
 					}
 				}
@@ -338,7 +321,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 					{
 						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
 					}
-					else if (numEnemy == 3)
+					else if (numEnemy == 2)
 					{
 						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
 					}
@@ -346,25 +329,19 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 			}
 			else if (e->Attribute("type") == std::string("Puerta"))
-			{
 				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
-			}
+
 			else if (e->Attribute("type") == std::string("Key"))
-			{
 				pEntity->getComponent<Key>()->load(numKey);
-			}
+			
 			else if (e->Attribute("type") == std::string("Camera"))
-			{
 				pEntity->getComponent<SecurityCamera>()->load(numCamera);
-			}
+			
 			else if (e->Attribute("type") == std::string("Register"))
-			{
 				pEntity->getComponent<Register>()->load(registerFile);
-			}
+			
 			else if (e->Attribute("type") == std::string("SRMap"))
-			{
 				pEntity->getComponent<SRMap>()->load(numMap, orientacion);
-			}
 
 			//Si es una puerta lo mete en un vector diferente al de entidades
 			if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))

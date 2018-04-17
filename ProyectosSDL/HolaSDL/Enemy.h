@@ -34,9 +34,15 @@ private:
 	int velMag;
 	int relaxTime;
 	bool reloading;
+	bool dead;
+
+	Uint32 deadOn_;
+	Uint32 deadTime_;
 
 	virtual void move(Entity* o);
 	bool playerInRange(Entity * o);
 	void checkCollisions(Entity * o, Vector2D chaseVector);
+
+	void bringMeToLife(Uint32 time);
 };
 

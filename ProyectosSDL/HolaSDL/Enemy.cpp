@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(){}
+Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(), dead(false), deadOn_(0), deadTime_(0) {}
 
 Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Character(life, damage), rango(rango), numEnemy_(0)
 {
@@ -48,7 +48,7 @@ void Enemy::move(Entity* o)
 	double dif = 3;
 
 	if (numEnemy_ == 1) auxY = -30;
-	else if (numEnemy_ == 3) auxY = 40;
+	else if (numEnemy_ == 2) auxY = 20;
 
 	if (pos.getY() - auxY < playerPos.getY() - dif)
 		vel.setY(velMag);
@@ -123,6 +123,16 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 	}
 }
 
+void Enemy::bringMeToLife(Uint32 time)
+{
+	if (!isAlive()) {
+		if (dead && (deadOn_ + deadTime_ < time)) {
+			dead = false;
+			setAlive();
+		}
+	}
+}
+
 void Enemy::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {}
 void Enemy::render(Entity* o, Uint32 time) {}
 
@@ -143,8 +153,16 @@ void Enemy::update(Entity * o, Uint32 time)
 		}
 	}
 	//Muere	
-	else
+	else {
+		if (!dead) {
+			dead = true;
+			deadOn_ = time;
+			deadTime_ = 20000;
+		}
 		o->setVelocity(Vector2D(0, 0));
+	}
+
+	bringMeToLife(time);
 }
 
 void Enemy::load(int numEnemy)

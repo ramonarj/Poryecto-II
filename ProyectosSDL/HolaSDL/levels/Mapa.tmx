@@ -1749,10 +1749,10 @@
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
-    <property name="numEnemy" type="int" value="3"/>
-    <property name="textureHeight" type="int" value="20"/>
+    <property name="numEnemy" type="int" value="2"/>
+    <property name="textureHeight" type="int" value="25"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="30"/>
+    <property name="textureWidth" type="int" value="35"/>
    </properties>
   </object>
  </objectgroup>

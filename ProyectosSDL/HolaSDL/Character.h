@@ -9,6 +9,7 @@ public:
 	Character(int life, int damage);
 	void takeDamage(int i);
 	bool isAlive() { return life > 0; };
+	void setAlive() { life = maxLife_; };
 	int getDamage() { return damage; };
 	bool getAttacking() { return attacking; };
 	void setAttacking(bool flag) { attacking = flag; };

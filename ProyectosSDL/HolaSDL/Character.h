@@ -20,7 +20,7 @@ public:
 	virtual ~Character();
 
 protected:
-	int life;
+	int life, maxLife_;
 	int damage;
 	bool attacking = false;
 	void move(Entity*o);

@@ -371,7 +371,7 @@ void Inventory::activeItem()
 				equipWeapon(selectedSlot);
 			}
 			else if (aux->getComponent<FirstAid>() != nullptr) {
-				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>());
+				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(),aux);
 			}
 		}
 	}

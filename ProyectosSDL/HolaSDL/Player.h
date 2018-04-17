@@ -21,7 +21,6 @@ public:
 private:
 	virtual void move(Entity* o);
 
-	int maxLife_;
 	double cureIndex_ = 0.6;
 	int WeaponId;
 };

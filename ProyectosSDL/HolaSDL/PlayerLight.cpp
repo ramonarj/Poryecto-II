@@ -1,13 +1,14 @@
 #include "PlayerLight.h"
 #include <algorithm>
 
-PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), lightsOn_(false), currentAgl_(0), destAgl_(0) {
-	SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal")->getSdlTexture(), SDL_BLENDMODE_MOD);
-	SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowVertical")->getSdlTexture(), SDL_BLENDMODE_MOD);
-	SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("Shadow")->getSdlTexture(), SDL_BLENDMODE_MOD);
+PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), currentAgl_(0), destAgl_(0), lastDirection("Right"), currentDirection("Right"), sdlShadow(nullptr) {
+	//SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal")->getSdlTexture(), SDL_BLENDMODE_MOD);
+	//SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowVertical")->getSdlTexture(), SDL_BLENDMODE_MOD);
+	sdlShadow = Game::Instance()->getResourceManager()->getTexture("Shadow")->getSdlTexture();
+	SDL_SetTextureBlendMode(sdlShadow, SDL_BLENDMODE_ADD);
 
-	shadowH_ = Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal");
-	shadowV_ = Game::Instance()->getResourceManager()->getTexture("ShadowVertical");
+	//shadowH_ = Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal");
+	//shadowV_ = Game::Instance()->getResourceManager()->getTexture("ShadowVertical");
 	shadow_ = Game::Instance()->getResourceManager()->getTexture("Shadow");
 
 	player_ = PlayState::Instance()->getPlayer();
@@ -16,41 +17,68 @@ PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), lightsOn_(false)
 PlayerLight::~PlayerLight() {
 }
 
-double lerp(double a, double b, double f)
-{
+double lerp(double a, double b, double f) {
 	return a + f * (b - a);
 }
 
 void PlayerLight::render(Entity* o, Uint32 time) {
 	
-	if (player_->getDirection().getX() > 0) {
-		//cout << "Derecha" << endl;
-
-		horizontal_ = true;
-		flipped_ = false;
+	if (player_->getDirection().getX() > 0)
 		destAgl_ = 0;
-	}
-	else if (player_->getDirection().getX() < 0) {
-		//cout << "Izquierda" << endl;
-
-		horizontal_ = true;
-		flipped_ = true;
+	else if (player_->getDirection().getX() < 0)
 		destAgl_ = 180;
-	}
-	else if (player_->getDirection().getY() > 0) {
-		//cout << "Arriba" << endl;
-
-		horizontal_ = false;
-		flipped_ = false;
-		destAgl_ = 270;
-	}
-	else if (player_->getDirection().getY() < 0) {
-		//cout << "Abajo" << endl;
-
-		horizontal_ = false;
-		flipped_ = true;
+	else if (player_->getDirection().getY() > 0)
+		destAgl_ = -90;
+	else if (player_->getDirection().getY() < 0)
 		destAgl_ = 90;
-	}
+
+	//if (player_->getDirection().getX() > 0)
+	//	currentDirection = "Right";
+	//else if (player_->getDirection().getX() < 0)
+	//	currentDirection = "Left";
+	//else if (player_->getDirection().getY() > 0)
+	//	currentDirection = "Up";
+	//else if (player_->getDirection().getY() < 0)
+	//	currentDirection = "Down";
+
+	//if (currentDirection != lastDirection) {
+	//	if (lastDirection == "Right") {
+	//		if (currentDirection == "Up")
+	//			destAgl_ -= 90;
+	//		else if (currentDirection == "Down")
+	//			destAgl_ += 90;
+	//		else if (currentDirection == "Left")
+	//			destAgl_ -= 180;
+	//	}
+	//	else if (lastDirection == "Left") {
+	//		if (currentDirection == "Up")
+	//			destAgl_ += 90;
+	//		else if (currentDirection == "Down")
+	//			destAgl_ -= 90;
+	//		else if (currentDirection == "Right")
+	//			destAgl_ -= 180;
+	//	}
+	//	else if (lastDirection == "Up") {
+	//		if (currentDirection == "Right")
+	//			destAgl_ += 90;
+	//		else if (currentDirection == "Left")
+	//			destAgl_ -= 90;
+	//		else if (currentDirection == "Down")
+	//			destAgl_ -= 180;
+	//	}
+	//	else if (lastDirection == "Down") {
+	//		if (currentDirection == "Right")
+	//			destAgl_ -= 90;
+	//		else if (currentDirection == "Left")
+	//			destAgl_ += 90;
+	//		else if (currentDirection == "Up")
+	//			destAgl_ -= 180;
+	//	}
+
+	//	lastDirection = currentDirection;
+	//}
+
+	//cout << lastDirection << endl;
 
 	SDL_Rect destRect RECT(
 		o->getPosition().getX(),
@@ -66,15 +94,5 @@ void PlayerLight::render(Entity* o, Uint32 time) {
 	currentAgl_ = lerp(currentAgl_, destAgl_, 0.2);
 	//cout << currentAgl_ << endl;
 
-	if (lightsOn_)
-		(horizontal_? shadowH_ : shadowV_)->render(Game::Instance()->getRenderer(), destRect, 360 / (flipped_ ? 2 : 1));
-		//shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
+	shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
 }
-
-void PlayerLight::handleInput(Entity * e, Uint32 time, const SDL_Event & event) {
-	if (event.type == SDL_KEYDOWN) {
-		if (event.key.keysym.sym == SDLK_l)
-			lightsOn_ = !lightsOn_;
-	}
-}
-

@@ -103,6 +103,8 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightManager.cpp" />
     <ClCompile Include="LightTestState.cpp" />
     <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelParser.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightManager.h" />
     <ClInclude Include="LightTestState.h" />
     <ClInclude Include="LoaderParams.h" />
     <ClInclude Include="MenuState.h" />

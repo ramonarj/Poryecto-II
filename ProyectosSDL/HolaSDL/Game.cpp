@@ -4,7 +4,7 @@
 
 unique_ptr<Game> Game:: s_pInstance = nullptr;
 
-Game::Game() : SDLGame("Cursed Gold 2", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
+Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization
 	initGame();
 
@@ -148,6 +148,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("ShadowHorizontal", "images/Shadows/ShadowHorizontal.png");
 	resourceManager_->addTexture("ShadowVertical", "images/Shadows/ShadowVertical.png");
 	resourceManager_->addTexture("Shadow", "images/Shadows/Shadow.png");
+	resourceManager_->addTexture("Black", "images/Shadows/Black.png");
+	resourceManager_->addTexture("PointLight", "images/Shadows/PointLight.png");
+	resourceManager_->addTexture("BGtest", "images/Shadows/BGtest.png");
 
 }
 

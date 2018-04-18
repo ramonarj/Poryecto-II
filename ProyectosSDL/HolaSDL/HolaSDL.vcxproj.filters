@@ -49,6 +49,12 @@
     <Filter Include="Archivos de encabezado\Characters">
       <UniqueIdentifier>{e8640d42-fa9d-4985-b603-6827a9d032d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Lighting">
+      <UniqueIdentifier>{370b468a-a46a-4eca-873a-38c62b81e80c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Lighting">
+      <UniqueIdentifier>{2b333964-75ce-43b3-a8c1-9e2db25a2a26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -238,7 +244,13 @@
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
     <ClCompile Include="PlayerLight.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>Archivos de código fuente\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Archivos de código fuente\Lighting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -426,7 +438,13 @@
       <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
     <ClInclude Include="PlayerLight.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Archivos de encabezado\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="LightManager.h">
+      <Filter>Archivos de encabezado\Lighting</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

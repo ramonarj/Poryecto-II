@@ -1,6 +1,8 @@
 #include "PlayState.h"
 #include "Game.h"
 #include "PlayerLight.h"
+#include "LightManager.h"
+#include "Light.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -84,9 +86,19 @@ void PlayState::startState()
 	invtComp->addItem(palo);
 
 	//Iluminacion -------------------------------------------------------------
-	Entity* playerLight = new Entity(0, 0);
-	playerLight->addComponent(new PlayerLight());
-	stage_.push_back(playerLight);
+	//Entity* playerLight = new Entity(0, 0);
+	//playerLight->addComponent(new PlayerLight());
+	//stage_.push_back(playerLight);
+
+	Entity* lightManagerEntity = new Entity(0, 0);
+	LightManager* lightManager = new LightManager();
+	lightManagerEntity->addComponent(lightManager);
+	lightManagerEntity->setHeight(Game::Instance()->getWindowHeight());
+	lightManagerEntity->setWidth(Game::Instance()->getWindowWidth());
+	stage_.push_back(lightManagerEntity);
+
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5750));
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5750));
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);

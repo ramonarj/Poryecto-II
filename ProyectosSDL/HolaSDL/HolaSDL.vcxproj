@@ -75,11 +75,13 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
+    <ClCompile Include="ChestObject.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ControllerInputComponent.cpp" />
     <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="CraftingTable.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
@@ -117,6 +119,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerLight.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="Register.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="SDLGame.cpp" />
@@ -125,6 +128,7 @@
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="SRMap.cpp" />
     <ClCompile Include="StaticImageRender.cpp" />
     <ClCompile Include="TextNote.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -142,11 +146,13 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Chest.h" />
+    <ClInclude Include="ChestObject.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ControllerInputComponent.h" />
     <ClInclude Include="Craft.h" />
+    <ClInclude Include="CraftingTable.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EntityCreator.h" />
@@ -184,6 +190,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerLight.h" />
     <ClInclude Include="PlayState.h" />
+    <ClInclude Include="Register.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="SDLGame.h" />
@@ -193,6 +200,7 @@
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="SRMap.h" />
     <ClInclude Include="StaticImageRender.h" />
     <ClInclude Include="TextNote.h" />
     <ClInclude Include="Texture.h" />

@@ -7,8 +7,7 @@ class FirstAid : public Item
 public:
 	FirstAid(const string& filename);
 	virtual ~FirstAid();
-	virtual void update(Entity* e, Uint32 time);
-	virtual void use(Entity* e);
+	virtual void use(Entity* e, Entity* item);
 private:
 	int lifeFilling = 3;
 };

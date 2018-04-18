@@ -11,6 +11,10 @@ Item::~Item()
 {
 }
 
+void Item::use(Entity* e, Entity* item) { 
+	PlayState::Instance()->removeEntity(item); 
+}
+
 void Item::interact(Entity* e) {
 	std::cout << "You interacted with: " << type_ << std::endl;
 	

@@ -9,6 +9,11 @@
 #include "Door.h"
 #include "Movable.h"
 #include "SecurityCamera.h"
+#include "Register.h"
+#include "ChestObject.h"
+#include "CraftingTable.h"
+#include "SkeletonRenderer.h"
+#include "SRMap.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -23,9 +28,8 @@ public:
 
 		e->addComponent(new ControllerInputComponent());
 		
-
 		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
-		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
+		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };
@@ -35,12 +39,10 @@ class EnemyCreator : public BaseCreator
 public:
 	Entity* createEntity() const
 	{
-		Vector2D vel (1.0, 0.0);
+		//Vector2D vel (1.0, 0.0);
 		Entity* e = new Entity();
-		e->setVelocity(vel);
-		e->addComponent(new Enemy(vel));
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1"), 10, 0, 10, 150, true, false));
-		Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
+		e->addComponent(new Enemy());
+		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
 };
@@ -53,6 +55,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
+		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
 		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_))));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
@@ -74,8 +77,8 @@ public:
 			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			//i = new Movable();	//	DEBUG
-			i = new FirstAid(itemTypetoString(type));
+			i = new Movable();	//	DEBUG
+			//i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type));
@@ -137,7 +140,7 @@ public:
 			str = "Key";
 			break;
 		case INSULATIONTEPE:
-			str = "Insulationtape";
+			str = "insulationTape";
 			break;
 		case PHOTO:
 			str = "Photo";
@@ -198,6 +201,56 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		return e;
+	}
+};
+
+class RegisterCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Register());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class ChestCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		e->addComponent(new ChestObject());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class CraftingTableCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		e->addComponent(new CraftingTable());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class SRMapCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new SRMap());
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

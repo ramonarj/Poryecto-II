@@ -22,7 +22,7 @@ public:
 	ItemType getType() { return type_; };
 
 	// METODO PARA USAR UN ITEM (LOS ITEMS SE USAN DESDE EL INVENTARIO)
-	virtual void use(Entity* e) {};
+	virtual void use(Entity* e, Entity* item);
 	string getDescription() { return description; };
 
 private:

@@ -69,6 +69,7 @@ private:
 	vector<Entity*> keys;
 	bool controllerActive = false;
 	int selectedSlot = 0;
+	bool equipedClicked = false;
 	bool renderMark = true;
 
 	Entity description_ = Entity(20, 20);

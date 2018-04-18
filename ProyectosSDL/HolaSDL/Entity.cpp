@@ -51,7 +51,7 @@ void Entity::render(Uint32 time) {
 	}
 }
 
-void Entity::load(int x, int y, int width, int height, int staticEntity)
+void Entity::load(int x, int y, int width, int height, int staticEntity, string name)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
@@ -60,6 +60,8 @@ void Entity::load(int x, int y, int width, int height, int staticEntity)
 	currentFrame_ = 1;
 
 	staticEntity_ = staticEntity;
+
+	name_ = name;
 }
 
 void Entity::addComponent(Component* c) {
@@ -122,6 +124,21 @@ bool Entity::isStatic()
 	return staticEntity_;
 }
 
+string Entity::getName()
+{
+	return name_;
+}
+
+bool Entity::getIsReading()
+{
+	return reading_;
+}
+
+void Entity::setIsReading(bool b)
+{
+	reading_ = b;
+}
+
 SDL_Rect Entity::getRect()
 {
 	SDL_Rect dest
@@ -141,6 +158,16 @@ void Entity::setSideCollision(int i)
 	{
 		if (i != j) sideCollision[j] = false;
 		else sideCollision[j] = true;
+
+		for (int i = 0; i < sideCollision.size(); i++) {
+
+			if (sideCollision[i]) {
+				if (i == 0) {
+					std::cout << to_string(i) << std::endl;
+				}
+			}
+
+		}
 	}
 }
 

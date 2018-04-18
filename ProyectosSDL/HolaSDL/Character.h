@@ -9,6 +9,7 @@ public:
 	Character(int life, int damage);
 	void takeDamage(int i);
 	bool isAlive() { return life > 0; };
+	void setAlive() { life = maxLife_; };
 	int getDamage() { return damage; };
 	bool getAttacking() { return attacking; };
 	void setAttacking(bool flag) { attacking = flag; };
@@ -20,7 +21,7 @@ public:
 	virtual ~Character();
 
 protected:
-	int life;
+	int life, maxLife_;
 	int damage;
 	bool attacking = false;
 	void move(Entity*o);

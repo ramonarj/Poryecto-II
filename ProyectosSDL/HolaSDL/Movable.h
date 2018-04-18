@@ -19,5 +19,6 @@ protected:
 	Entity* player_;
 	bool firstCollision = true;
 	Vector2D movabledir = { 0.0 , 0.0 };
+	Vector2D lastVel = { 0.0, 0.0 };
 };
 

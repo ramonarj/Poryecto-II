@@ -106,23 +106,35 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Puerta", new DoorCreator());
 	gameObjectFactory->registerType("Camera", new SecurityCameraCreator());
 	gameObjectFactory->registerType("Television", new TelevisionCreator());
+	gameObjectFactory->registerType("Chest", new ChestCreator());
+	gameObjectFactory->registerType("CraftingTable", new CraftingTableCreator());
+	gameObjectFactory->registerType("Register", new RegisterCreator());
+	gameObjectFactory->registerType("SRMap", new SRMapCreator());
 	registerTypeItem();
 }
 
 void Game::addResourcesTexture()
 {
 	//Characters
-	resourceManager_->addTexture("SpriteSheetElise", "images/SpriteSheetElise.png");
-	resourceManager_->addTexture("Enemigo1", "images/Enemigo1.png");
+	resourceManager_->addTexture("SpriteSheetElise", "images/Characters/SpriteSheetElise.png");
+	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1_ConAtaque.png");
+	resourceManager_->addTexture("Enemigo2_ConAtaque", "images/Characters/Enemigo2.png");
 
 	//Items
-	resourceManager_->addTexture("Firstaid", "images/Botiquin.png");
-	resourceManager_->addTexture("insulationTape", "images/cintaPrueba.png");
-	resourceManager_->addTexture("Crowbar", "images/Crowbar.png");
-	resourceManager_->addTexture("Stick", "images/stickPrueba.png");
-	resourceManager_->addTexture("Key", "images/key.png");
-	resourceManager_->addTexture("Axe", "images/Hacha.png");
-	resourceManager_->addTexture("acid", "images/acido.png");
+	resourceManager_->addTexture("Crowbar", "images/Weapons/crowbar.png");
+	resourceManager_->addTexture("Stick", "images/Weapons/crutch.png");
+	resourceManager_->addTexture("Axe", "images/Weapons/axe.png");
+	resourceManager_->addTexture("Pipe", "images/Weapons/pipe.png");
+	resourceManager_->addTexture("GenericChemical", "images/Items/chemical.png");
+	resourceManager_->addTexture("AcidChemical", "images/Items/acid-chemical.png");
+	resourceManager_->addTexture("Acid", "images/Items/acid.png");
+	resourceManager_->addTexture("Biocide", "images/Items/biocide.png");
+	resourceManager_->addTexture("Key", "images/Items/key1.png");
+	resourceManager_->addTexture("Firstaid", "images/Items/medkit.png");
+	resourceManager_->addTexture("insulationTape", "images/Items/ducktape.png");
+	resourceManager_->addTexture("Alcohol", "images/Items/alcohol.png");
+	resourceManager_->addTexture("Bandages", "images/Items/bandage.png");
+	resourceManager_->addTexture("Card", "images/Items/keycard.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
@@ -135,6 +147,9 @@ void Game::addResourcesTexture()
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
 	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
+	resourceManager_->addTexture("SRMapa1", "images/SRMap/SRMap1.png");
+	resourceManager_->addTexture("SRMapa2", "images/SRMap/SRMap2.png");
+	resourceManager_->addTexture("SRMapa3", "images/SRMap/SRMap3.png");
 
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");

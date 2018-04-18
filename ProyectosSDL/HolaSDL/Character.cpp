@@ -9,7 +9,7 @@ Character::Character(int life, int damage) : life(life), damage(damage) {};
 
 void Character::load(int l, int d)
 {
-	life = l;
+	maxLife_ = life = l;
 	damage = d;
 }
 

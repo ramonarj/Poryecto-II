@@ -3,6 +3,7 @@
 #include "PlayerLight.h"
 #include "LightManager.h"
 #include "Light.h"
+#include "SRMap.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -26,18 +27,21 @@ void PlayState::startState()
 	player = Game::Instance()->getEntityWithComponent<Player>();
 	Camera::Instance()->setTarget(player);
 
-	Enemy* enemyComp = Game::Instance()->getEntityWithComponent<Enemy>()->getComponent<Enemy>();
-	enemyComp -> addPlayer(player);
+	for (Entity* e : stage_)
+	{
+		if (e->getComponent<Enemy>() != nullptr)
+			e->getComponent<Enemy>()->addPlayer(player);
+	}
 
 	//PROBAR LOS MOVIBLES:
 		//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h
-	//Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
-	//movableComp->addPlayer(player);
+	Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
+	movableComp->addPlayer(player);
 
 	//M�sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
 
-	//CURSOR
+	//CURSORº
 	cursor_ = new Entity();
 	cursor_->setHeight(50);
 	cursor_->setWidth(50);

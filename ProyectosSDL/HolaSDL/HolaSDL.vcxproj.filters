@@ -252,6 +252,18 @@
     <ClCompile Include="Light.cpp">
       <Filter>Archivos de código fuente\Lighting</Filter>
     </ClCompile>
+    <ClCompile Include="ChestObject.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftingTable.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="Register.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
+    <ClCompile Include="SRMap.cpp">
+      <Filter>Archivos de código fuente\StaticEntities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -445,6 +457,21 @@
     </ClInclude>
     <ClInclude Include="LightManager.h">
       <Filter>Archivos de encabezado\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestObject.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingTable.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="Register.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingTable.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="SRMap.h">
+      <Filter>Archivos de encabezado\StaticEntities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

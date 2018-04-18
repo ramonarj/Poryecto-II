@@ -8,6 +8,8 @@ Craft::Craft()
 
 Craft::~Craft()
 {
+	if (Wep != nullptr) delete Wep;
+	if (cinta != nullptr) delete cinta;
 }
 
 void Craft::update(Entity * e, Uint32 time)
@@ -59,8 +61,16 @@ void Craft::render(Entity * e, Uint32 time)
 
 	int ancho = width - width / 10;
 	int alto = height - height / 10;
-	int posX = 0 + (width / 10) / 2;
-	int posY = 0 + (height / 10) / 2;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
+
+	SDL_Rect dest1 = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest1);
+
+	ancho = width - width / 10;
+	alto = height - height / 10;
+	posX = 0 + (width / 10) / 2;
+	posY = 0 + (height / 10) / 2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
 	resource->getTexture("Craft")->render(pRenderer, dest);
@@ -70,7 +80,7 @@ void Craft::render(Entity * e, Uint32 time)
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
 	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("acid")->render(pRenderer, craftSlots[1]);
+	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
@@ -146,7 +156,7 @@ void Craft::moveMarkSlot(int a)
 
 void Craft::tryCraftingRepair()
 {
-	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botón de crafteo ya o no
+	if (!craftButtonSelected && !repairButtonSelected) {		//Cuando pulsemos la X/A del mando comprobamos si estamos en el botï¿½n de crafteo ya o no
 		switch (selectedSlot)
 		{
 		case 0:

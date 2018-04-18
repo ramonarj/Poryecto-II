@@ -54,8 +54,6 @@ void Door::interact(Entity * e)
 								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
 								(*it)->getPosition().getY()));
 
-							//cout << doorNum_ << " = " << doorComp->getDoorNum() << endl;
-
 							puertEncontrada = true;
 						}
 					}

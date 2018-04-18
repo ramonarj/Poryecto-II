@@ -79,8 +79,8 @@ void Craft::render(Entity * e, Uint32 time)
 	renderItem(cinta, repareSlots[InsulationTapeSlot]);
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
-	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
+	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0], &clip);
+	resource->getTexture("Acid")->render(pRenderer, craftSlots[1], &clip);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
@@ -238,7 +238,7 @@ void Craft::renderSlotMark(SDL_Rect DestRect)
 void Craft::renderItem(Entity* e, coord pos)
 {	
 	if (e != nullptr) {
-		SDL_Rect DestRect = { pos.x, pos.y, 50, 50 };
+		SDL_Rect DestRect = { pos.x, pos.y, slotWidth, slotWidth };
 		if (e->getComponent<InsulationTape>())
 		{
 			resource->getTexture("insulationTape")->render(pRenderer, DestRect);
@@ -247,24 +247,24 @@ void Craft::renderItem(Entity* e, coord pos)
 		{
 			Weapon* weaponComp = e->getComponent<Weapon>();
 			if (weaponComp->getType() == ItemType::STICK)
-				resource->getTexture("Stick")->render(pRenderer, DestRect);
+				resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::PIPE)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::AXE)
-				resource->getTexture("Axe")->render(pRenderer, DestRect);
+				resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::CROWBAR)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<FirstAid>())
 		{
-			resource->getTexture("Firstaid")->render(pRenderer, DestRect);
+			resource->getTexture("Firstaid")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<Key>())
 		{
-			resource->getTexture("Key")->render(pRenderer, DestRect);
+			resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
 		}
 	}
 }

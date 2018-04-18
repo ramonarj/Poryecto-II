@@ -252,6 +252,9 @@
     <ClCompile Include="SRMap.cpp">
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationRenderObject.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -454,6 +457,9 @@
     </ClInclude>
     <ClInclude Include="SRMap.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationRenderObject.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

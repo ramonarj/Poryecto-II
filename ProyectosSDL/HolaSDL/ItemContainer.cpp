@@ -36,32 +36,33 @@ bool ItemContainer::empty()
 
 void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 {
+
 	if (inventory[i]->getComponent<InsulationTape>())
 	{
-		resource->getTexture("insulationTape")->render(pRenderer, DestRect);
+		resource->getTexture("insulationTape")->render(pRenderer, DestRect, &clip);
 	}
 	else if (inventory[i]->getComponent<Weapon>())
 	{
 		Weapon* weaponComp = inventory[i]->getComponent<Weapon>();
 		if (weaponComp->getType() == ItemType::STICK)
-			resource->getTexture("Stick")->render(pRenderer, DestRect);
+			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::AXE)
-			resource->getTexture("Axe")->render(pRenderer, DestRect);
+			resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::CROWBAR)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 	}
 	else if (inventory[i]->getComponent<FirstAid>())
 	{
-		resource->getTexture("Firstaid")->render(pRenderer, DestRect);
+		resource->getTexture("Firstaid")->render(pRenderer, DestRect, &clip);
 	}
 	else if (inventory[i]->getComponent<Key>())
 	{
-		resource->getTexture("Key")->render(pRenderer, DestRect);
+		resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
 	}
 }
 

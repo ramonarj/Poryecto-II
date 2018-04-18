@@ -163,16 +163,16 @@ void Inventory::render(Entity* e, Uint32 time)
 		else  DestRect = { x, y, slotWidth, slotWidth };
 
 		if (weaponComp->getType() == ItemType::STICK)
-			resource->getTexture("Stick")->render(pRenderer, DestRect);
+			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::AXE)
-			resource->getTexture("Axe")->render(pRenderer, DestRect);
+			resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::CROWBAR)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 	}
 
 	for (int i = 0; i < int(inventory.size()); i++)

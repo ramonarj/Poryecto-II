@@ -19,7 +19,6 @@ public:
 	bool addItem(Entity * item);
 
 	virtual bool checkItem(int item);
-	//void renderItem(int i, Entity* e, SDL_Rect DestRect);
 	virtual Entity* ItemInPosition(int pos);
 	virtual bool fullInventory();
 

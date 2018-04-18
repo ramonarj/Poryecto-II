@@ -1690,7 +1690,7 @@
  </objectgroup>
  <objectgroup name="Items" visible="0">
   <properties>
-   <property name="staticEntity" type="int" value="1"/>
+   <property name="staticEntity" type="int" value="0"/>
   </properties>
   <object id="35" name="LLAVE" type="Key" x="1413.34" y="1585.21" width="20" height="27.3333">
    <properties>

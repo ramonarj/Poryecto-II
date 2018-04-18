@@ -77,8 +77,8 @@ public:
 			i = new Weapon(type, itemTypetoString(type));
 			break;
 		case FIRSTAID:
-			//i = new Movable();	//	DEBUG
-			i = new FirstAid(itemTypetoString(type));
+			i = new Movable();	//	DEBUG
+			//i = new FirstAid(itemTypetoString(type));
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type));

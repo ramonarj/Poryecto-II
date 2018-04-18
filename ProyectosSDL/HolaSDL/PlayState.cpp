@@ -33,8 +33,8 @@ void PlayState::startState()
 
 	//PROBAR LOS MOVIBLES:
 		//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h
-	//Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
-	//movableComp->addPlayer(player);
+	Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
+	movableComp->addPlayer(player);
 
 	//M�sica
 	//Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();

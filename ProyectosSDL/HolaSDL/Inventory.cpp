@@ -159,7 +159,7 @@ void Inventory::render(Entity* e, Uint32 time)
 		SDL_GetMouseState(&x, &y);
 
 		if(!equipedClicked)
-		DestRect = { EquippedCoord.x, EquippedCoord.y, slotWidth, slotWidth };
+		DestRect = { EquippedCoord.x - slotWidth/2 + 2, EquippedCoord.y - slotWidth / 2 -2, slotWidth*2, slotWidth*2 };	//DEBUG
 		else  DestRect = { x, y, slotWidth, slotWidth };
 
 		if (weaponComp->getType() == ItemType::STICK)
@@ -178,14 +178,14 @@ void Inventory::render(Entity* e, Uint32 time)
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemInvPosX(i), getItemInvPosY(i), slotWidth, slotWidth };
+			SDL_Rect DestRect = { getItemInvPosX(i) - slotWidth / 2, getItemInvPosY(i) - slotWidth / 2, slotWidth*2, slotWidth*2 };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)
 		{
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			SDL_Rect DestRect = { x, y, slotWidth, slotWidth };
+			SDL_Rect DestRect = { x - slotWidth / 2, y - slotWidth / 2, slotWidth*2, slotWidth*2 };
 			renderItem(slotClicked, e, DestRect);
 		}
 	}

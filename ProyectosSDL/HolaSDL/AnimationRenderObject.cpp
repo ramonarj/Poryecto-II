@@ -9,7 +9,9 @@ AnimationRenderObject::AnimationRenderObject()
 
 AnimationRenderObject::AnimationRenderObject(Texture* image, int cooldown=100, bool chest = false, bool camera = false, bool on = true) : chest_(chest), camera_(camera), on_(on), image_(image), cooldown_(cooldown) {
 
+}
 
+AnimationRenderObject::AnimationRenderObject(Texture * image, int cooldown,bool other, bool on, int numFrames) :on_(on), image_(image), cooldown_(cooldown), numFrames_(numFrames), other_(other) {
 
 }
 
@@ -62,6 +64,26 @@ void AnimationRenderObject::render(Entity * o, Uint32 time){
 				lastTimeFrame_ = time;
 			}
 		}
+
+		else if (other_) {
+
+			//SI ES UN OBJETO QUIETO SIN ORIENTACIÓN
+
+			clip = RECT((frame_)* image_->getWidth() / (numFrames_),
+				0,
+				image_->getWidth() / (numFrames_),
+				image_->getHeight());
+
+			if (time > lastTimeFrame_ + cooldown_) {
+				
+				frame_++;
+				if (frame_ == numFrames_)
+					frame_ = 0;
+
+				lastTimeFrame_ = time;
+			}
+		}
+
 
 		else {
 

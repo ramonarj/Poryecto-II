@@ -15,6 +15,7 @@ public:
 
 	AnimationRenderObject();
 	AnimationRenderObject(Texture* image, int cooldown, bool chest, bool camera, bool on);
+	AnimationRenderObject(Texture* image, int cooldown, bool other, bool on, int numFrames);
 
 	virtual ~AnimationRenderObject();
 
@@ -29,7 +30,10 @@ private:
 	bool chest_ = false;
 	bool camera_ = false;
 	bool on_ = false;
+	bool other_ = false;
 	bool way_ = true;
+
+	int numFrames_ = -1;
 
 	int frame_ = -1;
 	int orientation_ = -1;

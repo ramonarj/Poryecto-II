@@ -201,7 +201,7 @@ public:
 	Entity * createEntity() const
 	{
 		Entity* e = new Entity();
-		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Television"), 50, false, false, true));
+		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Television"), 100, true, true, 4));
 		return e;
 	}
 };

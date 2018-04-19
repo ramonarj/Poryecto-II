@@ -135,6 +135,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Alcohol", "images/Items/alcohol.png");
 	resourceManager_->addTexture("Bandages", "images/Items/bandage.png");
 	resourceManager_->addTexture("Card", "images/Items/keycard.png");
+	resourceManager_->addTexture("Television", "images/Items/television.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
@@ -166,6 +167,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Black", "images/Shadows/Black.png");
 	resourceManager_->addTexture("PointLight", "images/Shadows/PointLight.png");
 	resourceManager_->addTexture("BGtest", "images/Shadows/BGtest.png");
+
+	//AnimationTilesheet
+	resourceManager_->addTexture("SecurityCameras", "images/AnimTilesheet/TileshetCameras.png");
 
 }
 

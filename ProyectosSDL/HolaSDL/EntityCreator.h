@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Game.h"
 #include "ImageRenderer.h"
+#include "AnimationRenderObject.h"
 #include "Resources.h"
 #include "SkeletonRenderer.h"
 #include "Door.h"
@@ -56,7 +57,7 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
 		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
-		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_))));
+		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_)),400,false,false,true));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	};
@@ -189,7 +190,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new SecurityCamera());
-		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Firstaid")));
+		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("SecurityCameras"), 500, false, true, true));
 		return e;
 	}
 };
@@ -200,7 +201,7 @@ public:
 	Entity * createEntity() const
 	{
 		Entity* e = new Entity();
-		e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
+		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Television"), 100, true, true, 4));
 		return e;
 	}
 };

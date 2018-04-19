@@ -73,7 +73,7 @@ private:
 	bool renderMark = true;
 
 	Entity description_ = Entity(20, 20);
-	
+	SDL_Rect clip = RECT(0, 0, 20, 20);
 };
 
 

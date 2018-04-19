@@ -64,23 +64,25 @@ void Craft::render(Entity * e, Uint32 time)
 	int posX = width / 2 - ancho / 2;
 	int posY = height / 2 - alto / 2;
 
-	SDL_Rect dest1 = { posX,posY, ancho,alto };
-	resource->getTexture("Inventory")->render(pRenderer, dest1);
+	SDL_Rect dest = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest);
 
 	ancho = width - width / 10;
 	alto = height - height / 10;
 	posX = 0 + (width / 10) / 2;
 	posY = 0 + (height / 10) / 2;
 
-	SDL_Rect dest = { posX,posY, ancho,alto };
+	dest = { posX,posY, ancho,alto };
 	resource->getTexture("Craft")->render(pRenderer, dest);
 
 	renderItem(Wep, repareSlots[WeaponSlot]);
 	renderItem(cinta, repareSlots[InsulationTapeSlot]);
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
-	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
+	dest = RECT(craftSlots[0].x - slotWidth / 2, craftSlots[0].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Firstaid")->render(pRenderer, dest, &clip);
+	dest = RECT(craftSlots[1].x - slotWidth / 2, craftSlots[1].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Acid")->render(pRenderer, dest, &clip);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
@@ -160,7 +162,7 @@ void Craft::tryCraftingRepair()
 		switch (selectedSlot)
 		{
 		case 0:
-			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
 			{
 				craftButtonSelected = true;
 			}
@@ -238,33 +240,33 @@ void Craft::renderSlotMark(SDL_Rect DestRect)
 void Craft::renderItem(Entity* e, coord pos)
 {	
 	if (e != nullptr) {
-		SDL_Rect DestRect = { pos.x, pos.y, 50, 50 };
+		SDL_Rect DestRect = { pos.x - slotWidth / 2, pos.y - slotWidth / 2, slotWidth*2, slotWidth*2 };
 		if (e->getComponent<InsulationTape>())
 		{
-			resource->getTexture("insulationTape")->render(pRenderer, DestRect);
+			resource->getTexture("insulationTape")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<Weapon>())
 		{
 			Weapon* weaponComp = e->getComponent<Weapon>();
 			if (weaponComp->getType() == ItemType::STICK)
-				resource->getTexture("Stick")->render(pRenderer, DestRect);
+				resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::PIPE)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::AXE)
-				resource->getTexture("Axe")->render(pRenderer, DestRect);
+				resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::CROWBAR)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<FirstAid>())
 		{
-			resource->getTexture("Firstaid")->render(pRenderer, DestRect);
+			resource->getTexture("Firstaid")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<Key>())
 		{
-			resource->getTexture("Key")->render(pRenderer, DestRect);
+			resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
 		}
 	}
 }
@@ -275,7 +277,7 @@ void Craft::craft()
 	switch (slotCraftClicked)
 	{
 	case 0:
-		if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())
+		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES) && !inv->fullInventory())
 		{
 			inv->objectCrafted(ItemType::CROWBAR, ItemType::STICK);
 			Entity* e = new Entity(0, 0);

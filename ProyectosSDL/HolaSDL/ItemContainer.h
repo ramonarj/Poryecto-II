@@ -62,5 +62,8 @@ protected:
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	void renderSlotMark(SDL_Rect DestRect);
+
+	SDL_Rect clip = RECT(0, 0, 20, 20);
+
 };
 

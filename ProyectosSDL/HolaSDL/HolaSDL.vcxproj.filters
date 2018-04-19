@@ -264,6 +264,13 @@
     <ClCompile Include="SRMap.cpp">
       <Filter>Archivos de código fuente\StaticEntities</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+    <ClCompile Include="AnimationRenderObject.cpp">
+=======
+    <ClCompile Include="MessageRenderer.cpp">
+>>>>>>> Stashed changes
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2D.h">
@@ -472,6 +479,13 @@
     </ClInclude>
     <ClInclude Include="SRMap.h">
       <Filter>Archivos de encabezado\StaticEntities</Filter>
+    </ClInclude>
+<<<<<<< Updated upstream
+    <ClInclude Include="AnimationRenderObject.h">
+=======
+    <ClInclude Include="MessageRenderer.h">
+>>>>>>> Stashed changes
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

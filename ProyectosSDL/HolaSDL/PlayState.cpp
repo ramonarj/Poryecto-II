@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "PlayerLight.h"
 #include "SRMap.h"
+#include "MessageRenderer.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -91,6 +92,12 @@ void PlayState::startState()
 	Entity* playerLight = new Entity(0, 0);
 	playerLight->addComponent(new PlayerLight());
 	stage_.push_back(playerLight);
+
+	//MessageRenderer----------------------------------------------------------
+	Entity* messageRenderer = new Entity(0, 0);
+	messageRenderer->addComponent(new MessageRenderer());
+	stage_.push_back(messageRenderer);
+	messageRenderer->getComponent<MessageRenderer>()->display("Mensaje de prueba", Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 2);
 }
 
 void PlayState::update(Uint32 time)

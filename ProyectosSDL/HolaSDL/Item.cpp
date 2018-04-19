@@ -16,8 +16,6 @@ void Item::use(Entity* e, Entity* item) {
 }
 
 void Item::interact(Entity* e) {
-	std::cout << "You interacted with: " << type_ << std::endl;
-	
 	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
 		->currentState())->inventory->getComponent<Inventory>()->addItem(e)) {
 		Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(e);

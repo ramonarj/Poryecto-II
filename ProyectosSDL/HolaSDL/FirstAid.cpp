@@ -2,7 +2,7 @@
 
 
 
-FirstAid::FirstAid(const string& filename) : Item(ItemType::FIRSTAID,filename)
+FirstAid::FirstAid(const string& filename) : Item(ItemType::FIRSTAID, filename)
 {
 }
 

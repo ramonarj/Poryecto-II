@@ -90,6 +90,11 @@ void PlayState::startState()
 	invtComp->addItem(palo2);
 	invtComp->addItem(palo);
 
+	//MessageRenderer----------------------------------------------------------
+	Entity* messageRenderer = new Entity(0, 0);
+	messageRenderer->addComponent(new MessageRenderer());
+	messageRenderer->getComponent<MessageRenderer>()->display("Mensaje de prueba", Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 2);
+
 	//Iluminacion -------------------------------------------------------------
 	//Entity* playerLight = new Entity(0, 0);
 	//playerLight->addComponent(new PlayerLight());
@@ -110,10 +115,7 @@ void PlayState::startState()
 	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
 	stage_.push_back(textTest);*/
 
-	//MessageRenderer----------------------------------------------------------
-	Entity* messageRenderer = new Entity(0, 0);
-	messageRenderer->addComponent(new MessageRenderer());
-	messageRenderer->getComponent<MessageRenderer>()->display("Mensaje de prueba", Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 2);
+	
 }
 
 void PlayState::update(Uint32 time)

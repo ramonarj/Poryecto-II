@@ -13,7 +13,7 @@ public:
 
 private:
 	bool lightsOn_;
-	SDL_Texture* target_texture;
+	
 	SDL_Renderer* renderer_;
 	vector<Light*> lights;
 	PlayerLight playerLight_;

@@ -1695,9 +1695,9 @@
   <object id="35" name="LLAVE" type="Key" x="1413.34" y="1585.21" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="10"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
   <object id="37" name="PALANCA" type="Crowbar" x="1141.66" y="1562.79" width="24" height="34">

@@ -32,7 +32,7 @@ void LightManager::render(Entity * e, Uint32 time) {
 			SDL_RenderCopy(renderer_, l->getTexture()->getSdlTexture(), nullptr, &rect_);
 		}
 
-		//playerLight_.render(e, time);
+		playerLight_.render(e, time);
 
 		SDL_SetRenderTarget(renderer_, nullptr); //El renderer ya no solo pinta en la textura target
 

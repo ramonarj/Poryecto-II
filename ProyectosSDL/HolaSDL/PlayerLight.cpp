@@ -2,14 +2,10 @@
 #include <algorithm>
 
 PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), currentAgl_(0), destAgl_(0), lastDirection("Right"), currentDirection("Right"), sdlShadow(nullptr) {
-	//SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal")->getSdlTexture(), SDL_BLENDMODE_MOD);
-	//SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowVertical")->getSdlTexture(), SDL_BLENDMODE_MOD);
-	sdlShadow = Game::Instance()->getResourceManager()->getTexture("Shadow")->getSdlTexture();
+	sdlShadow = Game::Instance()->getResourceManager()->getTexture("PlayerLight")->getSdlTexture();
 	SDL_SetTextureBlendMode(sdlShadow, SDL_BLENDMODE_ADD);
 
-	//shadowH_ = Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal");
-	//shadowV_ = Game::Instance()->getResourceManager()->getTexture("ShadowVertical");
-	shadow_ = Game::Instance()->getResourceManager()->getTexture("Shadow");
+	shadow_ = Game::Instance()->getResourceManager()->getTexture("PlayerLight");
 
 	player_ = PlayState::Instance()->getPlayer();
 }

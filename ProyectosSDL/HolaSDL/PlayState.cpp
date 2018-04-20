@@ -107,15 +107,13 @@ void PlayState::startState()
 	lightManagerEntity->setWidth(Game::Instance()->getWindowWidth());
 	stage_.push_back(lightManagerEntity);
 
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5750));
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5750));
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5500));
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5500));
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);
 	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
 	stage_.push_back(textTest);*/
-
-	
 }
 
 void PlayState::update(Uint32 time)

@@ -1,5 +1,6 @@
 #pragma once
 #include "ItemContainer.h"
+#include "Entity.h"
 
 class Inventory;
 class Chest : public ItemContainer
@@ -38,5 +39,7 @@ private:
 	bool controllerActive = false;
 	int selectedSlot = 0;
 	bool renderMark = false;
+
+	Entity description_ = Entity(20, 20);
 };
 

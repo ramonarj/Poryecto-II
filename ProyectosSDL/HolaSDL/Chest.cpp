@@ -9,6 +9,7 @@ Chest::Chest()
 	//InvTam = 20;
 	pRenderer = nullptr;
 	resource = nullptr;
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 140, 510, nullptr));
 }
 
 
@@ -112,6 +113,27 @@ void Chest::render(Entity * e, Uint32 time)
 
 		renderSlotMark(DestRect);
 	}
+
+	if (controllerActive) {
+		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
+			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getPath());
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
+	}
+	else {
+		if (slotClicked >= 0 && slotClicked<getInventory().size()) {
+			Entity* b = getInventory()[slotClicked];
+			Item* c = b->getComponent<Item>();
+			description_.getComponent<TextNote>()->changeString(c->getPath());
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
+	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
 
 }
 

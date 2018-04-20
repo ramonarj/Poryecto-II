@@ -70,6 +70,7 @@ private:
 	bool controllerActive = false;
 	int selectedSlot = 0;
 	bool equipedClicked = false;
+	bool equipedLastClicked = false;
 	bool renderMark = true;
 
 	Entity description_ = Entity(20, 20);

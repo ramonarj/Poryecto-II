@@ -3,6 +3,7 @@
 
 Craft::Craft()
 {
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 250, 100, nullptr));
 }
 
 
@@ -100,6 +101,30 @@ void Craft::render(Entity * e, Uint32 time)
 			renderSlotMark(repairButtonRect);
 		}
 	}
+
+	if (controllerActive) {
+		if (selectedSlot == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+		}
+		else if(selectedSlot==1) {
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+		}
+		else
+			description_.getComponent<TextNote>()->changeString("");
+	}
+	else {
+		if (slotCraftClicked == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+		}
+		else if (slotCraftClicked == 1) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
+	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
 
 }
 

@@ -10,7 +10,7 @@ Inventory::Inventory()
 	equiped = nullptr;
 	pRenderer = nullptr;
 	resource = nullptr;
-	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 700, 510, nullptr));
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 710, 510, nullptr));
 }
 
 Inventory::~Inventory()
@@ -41,6 +41,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + slotWidth))
 			{
 				equipedClicked = true;
+				equipedLastClicked = true;
 			}
 			
 			else {
@@ -50,6 +51,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 						&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 					{
 						clicked = true;
+						equipedLastClicked = false;
 					}
 
 					slotClicked = i;
@@ -111,6 +113,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 				{
 					inventory.push_back(equiped);
 					equiped = nullptr;
+					equipedLastClicked = false;
 				}
 			}
 
@@ -204,24 +207,32 @@ void Inventory::render(Entity* e, Uint32 time)
 
 	if (controllerActive) {
 		if (selectedSlot >= 0 && selectedSlot<getInventory().size()) {
-			if(getInventory()[selectedSlot] != nullptr)
+			//if(getInventory()[selectedSlot] != nullptr)
 				description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getPath());
 		}
 		else if (selectedSlot == 4) {
 			if (equiped != nullptr)
 				description_.getComponent<TextNote>()->changeString(equiped->getComponent<Item>()->getPath());
 		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
 	}
 	else {
-		if (equipedClicked) {
-			Entity* b = equiped;
-			Item* c = b->getComponent<Item>();
-			description_.getComponent<TextNote>()->changeString(c->getPath());
+		if (equipedLastClicked) {
+			if (equiped != nullptr) {
+				Entity* b = equiped;
+				Item* c = b->getComponent<Item>();
+				description_.getComponent<TextNote>()->changeString(c->getPath());
+			}
 		}
-		else if (slotClicked >= 0 && slotClicked<getInventory().size()) {
+		else if (slotClicked >= 0 && slotClicked < getInventory().size()) {
 			Entity* b = getInventory()[slotClicked];
 			Item* c = b->getComponent<Item>();
 			description_.getComponent<TextNote>()->changeString(c->getPath());
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
 		}
 	}
 
@@ -288,6 +299,8 @@ void Inventory::equipWeapon(int pos)
 			equiped = inventory[pos];
 			this->DeleteItem(pos);
 		}
+
+		equipedLastClicked = true;
 
 	}
 }

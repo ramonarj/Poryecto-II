@@ -22,7 +22,7 @@ public:
 	bool joysticksInitialised() { return m_bJoysticksInitialised; }
 	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }		//Devuelve el estado concreto de un bot�n (pulsado o no)
 
-	void ProcessButton(int joy, int buttonNumber);
+	//void ProcessButton(int joy, int buttonNumber);
 	void Active(bool value) { active_ = value;};
 
 private:
@@ -33,7 +33,7 @@ private:
 	std::vector<std::pair<Vector2D*, Vector2D*>> m_joystickValues;
 	std::vector<std::vector<bool>> m_buttonStates;		//ARRAY PARA LOS BOTONES
 	bool m_bJoysticksInitialised;
-	const int m_joystickDeadZone = 10000;
+	const int m_joystickDeadZone = 17000;
 
 	bool active_ = false;
 

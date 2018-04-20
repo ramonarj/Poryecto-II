@@ -22,7 +22,6 @@ private:
 	Font* font_;
 	Vector2D pos_;
 	SDL_Color color_;
-	//string txtFilePath_;
 	vector<string> textLines;
 	vector<Texture> textTextures_; //MAYBE NO HACE FALTA
 };

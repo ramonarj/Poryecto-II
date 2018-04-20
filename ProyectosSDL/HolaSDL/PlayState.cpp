@@ -5,6 +5,7 @@
 #include "Light.h"
 #include "SRMap.h"
 #include "MessageRenderer.h"
+#include "MessageTimer.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -111,12 +112,13 @@ void PlayState::startState()
 	stage_.push_back(textTest);*/
 
 	//MessageRenderer----------------------------------------------------------
-	Entity* messageRenderer = new Entity(0, 0);
+	messageRenderer = new Entity(0, 0);
 	messageRenderer->addComponent(new MessageRenderer());
+	messageRenderer->addComponent(new MessageTimer());
 	stage_.push_back(messageRenderer);
 	messageRenderer->getComponent<MessageRenderer>()->display("This is the best f***ing game", Game::Instance()->getWindowWidth() / 2,
 	Game::Instance()->getWindowHeight() - Game::Instance()->getWindowHeight() / 8);
-
+	messageRenderer->getComponent<MessageTimer>()->start(10);
 }
 
 void PlayState::update(Uint32 time)

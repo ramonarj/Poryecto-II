@@ -24,6 +24,8 @@ private:
 	int mapWidth;
 	int mapHeight;
 
+	Entity* messageRenderer;
+
 public:
 	Entity* inventory;
 	Entity* chest;
@@ -43,6 +45,8 @@ public:
 
 	//Devuelve al jugador
 	Entity* getPlayer() { return player; };
+
+	Entity* getMessageRenderer() { return messageRenderer; };
 	int getMapWidth() { return mapWidth; };
 	int getMapHeight() { return mapHeight; };
 };

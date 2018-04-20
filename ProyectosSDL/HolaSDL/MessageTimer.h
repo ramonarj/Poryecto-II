@@ -1,0 +1,19 @@
+#pragma once
+#include "Component.h"
+#include "MessageRenderer.h"
+
+class MessageTimer : public Component { //Para deshabilitar el Badge pasado un X tiempo
+public:
+	MessageTimer();
+	virtual ~MessageTimer() {};
+	virtual void update(Entity* e, Uint32 time);
+	void start(Uint32 timeInterval);
+	bool isOn() { return on_; };
+
+private:
+	bool on_;
+	Uint32 timeOn_;
+	Uint32 timeInterval_;
+	MessageRenderer* messageRenderer;
+};
+

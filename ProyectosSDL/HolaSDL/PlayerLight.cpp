@@ -19,62 +19,33 @@ double lerp(double a, double b, double f) {
 
 void PlayerLight::render(Entity* o, Uint32 time) {
 	
-	if (player_->getDirection().getX() > 0)
+	if (player_->getDirection().getX() > 0) {
 		destAgl_ = 0;
-	else if (player_->getDirection().getX() < 0)
+		currentDirection = "Right";
+	}
+	else if (player_->getDirection().getX() < 0) {
 		destAgl_ = 180;
-	else if (player_->getDirection().getY() > 0)
-		destAgl_ = -90;
-	else if (player_->getDirection().getY() < 0)
+		currentDirection = "Left";
+	}
+	else if (player_->getDirection().getY() > 0) {
+		destAgl_ = 270;
+		currentDirection = "Up";
+	}
+	else if (player_->getDirection().getY() < 0) {
 		destAgl_ = 90;
+		currentDirection = "Down";
+	}
 
-	//if (player_->getDirection().getX() > 0)
-	//	currentDirection = "Right";
-	//else if (player_->getDirection().getX() < 0)
-	//	currentDirection = "Left";
-	//else if (player_->getDirection().getY() > 0)
-	//	currentDirection = "Up";
-	//else if (player_->getDirection().getY() < 0)
-	//	currentDirection = "Down";
+	// Esto arregla el comportamiento raro en este caso extraordinarios
+	if (lastDirection == "Right") {
+		if (currentDirection == "Up")
+			currentAgl_ += 360;
+	}else if (lastDirection == "Up") {
+		if (currentDirection == "Right")
+			currentAgl_ -= 360;
+	}
 
-	//if (currentDirection != lastDirection) {
-	//	if (lastDirection == "Right") {
-	//		if (currentDirection == "Up")
-	//			destAgl_ -= 90;
-	//		else if (currentDirection == "Down")
-	//			destAgl_ += 90;
-	//		else if (currentDirection == "Left")
-	//			destAgl_ -= 180;
-	//	}
-	//	else if (lastDirection == "Left") {
-	//		if (currentDirection == "Up")
-	//			destAgl_ += 90;
-	//		else if (currentDirection == "Down")
-	//			destAgl_ -= 90;
-	//		else if (currentDirection == "Right")
-	//			destAgl_ -= 180;
-	//	}
-	//	else if (lastDirection == "Up") {
-	//		if (currentDirection == "Right")
-	//			destAgl_ += 90;
-	//		else if (currentDirection == "Left")
-	//			destAgl_ -= 90;
-	//		else if (currentDirection == "Down")
-	//			destAgl_ -= 180;
-	//	}
-	//	else if (lastDirection == "Down") {
-	//		if (currentDirection == "Right")
-	//			destAgl_ -= 90;
-	//		else if (currentDirection == "Left")
-	//			destAgl_ += 90;
-	//		else if (currentDirection == "Up")
-	//			destAgl_ -= 180;
-	//	}
-
-	//	lastDirection = currentDirection;
-	//}
-
-	//cout << lastDirection << endl;
+	lastDirection = currentDirection;
 
 	SDL_Rect destRect RECT(
 		o->getPosition().getX(),
@@ -82,13 +53,7 @@ void PlayerLight::render(Entity* o, Uint32 time) {
 		Game::Instance()->getWindowWidth(),
 		Game::Instance()->getWindowHeight());
 
-	if ((currentAgl_ - destAgl_) > 180)
-		destAgl_ = 360;
-	if (destAgl_ == 360)
-		destAgl_ = 0;
-
-	currentAgl_ = lerp(currentAgl_, destAgl_, 0.2);
-	//cout << currentAgl_ << endl;
+	currentAgl_ = lerp(currentAgl_, destAgl_, 0.2); //transición al nuevo destino de forma suave
 
 	shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
 }

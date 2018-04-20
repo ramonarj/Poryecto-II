@@ -160,7 +160,7 @@ void Inventory::render(Entity* e, Uint32 time)
 
 		if(!equipedClicked)
 		DestRect = { EquippedCoord.x - slotWidth/2 + 2, EquippedCoord.y - slotWidth / 2 -2, slotWidth*2, slotWidth*2 };	//DEBUG
-		else  DestRect = { x, y, slotWidth, slotWidth };
+		else  DestRect = { x - slotWidth/2, y - slotWidth / 2, slotWidth*2, slotWidth*2 };
 
 		if (weaponComp->getType() == ItemType::STICK)
 			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
@@ -198,6 +198,30 @@ void Inventory::render(Entity* e, Uint32 time)
 		else {
 			SDL_Rect DestRect = { EquippedCoord.x-slotWidth/2-5, EquippedCoord.y-slotWidth/2-10, slotWidth*2+16, slotWidth*2+16 };
 			renderSlotMark(DestRect);
+		}
+	}
+
+
+	if (controllerActive) {
+		if (selectedSlot >= 0 && selectedSlot<getInventory().size()) {
+			if(getInventory()[selectedSlot] != nullptr)
+				description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getPath());
+		}
+		else if (selectedSlot == 4) {
+			if (equiped != nullptr)
+				description_.getComponent<TextNote>()->changeString(equiped->getComponent<Item>()->getPath());
+		}
+	}
+	else {
+		if (equipedClicked) {
+			Entity* b = equiped;
+			Item* c = b->getComponent<Item>();
+			description_.getComponent<TextNote>()->changeString(c->getPath());
+		}
+		else if (slotClicked >= 0 && slotClicked<getInventory().size()) {
+			Entity* b = getInventory()[slotClicked];
+			Item* c = b->getComponent<Item>();
+			description_.getComponent<TextNote>()->changeString(c->getPath());
 		}
 	}
 

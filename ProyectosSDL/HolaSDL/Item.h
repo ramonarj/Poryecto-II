@@ -24,9 +24,11 @@ public:
 	// METODO PARA USAR UN ITEM (LOS ITEMS SE USAN DESDE EL INVENTARIO)
 	virtual void use(Entity* e, Entity* item);
 	string getDescription() { return description; };
+	string getPath() { return txtFilePath_; };
 
 private:
 	ItemType type_;
 	string description;	//	descripcion que aparece en el inventario
+	string txtFilePath_;
 	bool loadDescription(const string& filename);	//	carga la descripcion del fichero DescriptionItems.txt
 };

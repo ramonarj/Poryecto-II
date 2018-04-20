@@ -29,6 +29,7 @@ bool Item::loadDescription(const string& filename) {
 	string line;
 
 	file << "ItemDescriptions/" << filename << "Description.txt";
+	txtFilePath_ = "ItemDescriptions/" + filename + "Description.txt";
 	archivo.open(file.str());
 
 	while (getline(archivo, line))

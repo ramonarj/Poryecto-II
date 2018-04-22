@@ -6,11 +6,6 @@ Player::Player() :Character()
 {
 }
 
-Player::Player(int life, int damage) : Character(life, damage)
-{
-
-}
-
 void Player::move(Entity* o)
 {
 	Vector2D pos = { o->getPosition().getX(), o->getPosition().getY() };

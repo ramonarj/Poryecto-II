@@ -14,7 +14,6 @@ class Enemy :
 {
 public:
 	Enemy();
-	Enemy(Entity* player, int life, int damage, int rango=DEFAULT_RANGE);
 
 	void addPlayer(Entity* player) { this->player = player; };
 	void setVel(int vel) { this->velMag = vel; };
@@ -35,6 +34,8 @@ private:
 	int relaxTime;
 	bool reloading;
 	bool dead;
+
+	double push;
 
 	Uint32 deadOn_;
 	Uint32 deadTime_;

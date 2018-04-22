@@ -2,9 +2,7 @@
 
 
 
-Character::Character() :life(0){}
-
-Character::Character(int life, int damage) : life(life), damage(damage) {};
+Character::Character() :life(0), damage(0), knockBack_(false), knockBackOn_(0), knockBackTime_(50){}
 
 
 void Character::load(int l, int d)
@@ -16,8 +14,15 @@ void Character::load(int l, int d)
 void Character::update(Entity* o, Uint32 time)
 {
 	//Solo si está vivo
-	if(isAlive())
+	if (isAlive())
+	{
 		move(o);
+		if (o->getComponent<Character>()->getKnockBack() && (o->getComponent<Character>()->getKnockBackOn() + knockBackTime_ < time))
+		{
+			o->getComponent<Character>()->setKnockBack(false);
+			o->setVelocity(Vector2D(0.0, 0.0));
+		}
+	}
 }
 
 void Character::takeDamage(int i)
@@ -49,7 +54,10 @@ void Character::move(Entity * o)
 
 void Character::knockBack(Entity*o, Vector2D desplazamiento)
 {
-	o->setPosition(Vector2D
-	(o->getPosition().getX() + desplazamiento.getX(),
-		o->getPosition().getY() + desplazamiento.getY()));
+	if (!o->getComponent<Character>()->getKnockBack()) 
+	{
+		o->setVelocity(Vector2D(desplazamiento.getX(), desplazamiento.getY()));
+		o->getComponent<Character>()->setKnockBackOn();
+		o->getComponent<Character>()->setKnockBack(true);
+	}
 }

@@ -6,13 +6,17 @@ class Character: public Component
 {
 public:
 	Character();
-	Character(int life, int damage);
 	void takeDamage(int i);
 	bool isAlive() { return life > 0; };
 	void setAlive() { life = maxLife_; };
 	int getDamage() { return damage; };
 	bool getAttacking() { return attacking; };
 	void setAttacking(bool flag) { attacking = flag; };
+
+	bool getKnockBack() { return knockBack_; };
+	void setKnockBack(bool b) { knockBack_ = b; };
+	Uint32 getKnockBackOn() { return knockBackOn_; };
+	void setKnockBackOn() { knockBackOn_ = SDL_GetTicks(); };
 
 	void load(int l, int d);
 	void lif() { cout << life << endl; };
@@ -26,6 +30,10 @@ protected:
 	bool attacking = false;
 	void move(Entity*o);
 	void knockBack(Entity*o, Vector2D desplazamiento);
-	
+
+private:
+	bool knockBack_;
+	Uint32 knockBackOn_;
+	Uint32 knockBackTime_;
 };
 

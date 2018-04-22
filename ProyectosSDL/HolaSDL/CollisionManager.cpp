@@ -64,7 +64,7 @@ void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const
 
 					if (tileid == 0)
 					{
-						if (c->getVelocity().getX() <= 0)
+						if (c->getVelocity().getX() < 0)
 						{
 							tileRow = ((pos.getY() + 9 * height / 10) / tileSize);
 							tileid = tiles[tileRow + y][tileColumn + x];
@@ -72,7 +72,7 @@ void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const
 
 						if (tileid == 0)
 						{
-							if (c->getVelocity().getY() <= 0)
+							if (c->getVelocity().getY() < 0)
 							{
 								tileColumn = ((pos.getX() + 2 * width / 3) / tileSize);
 								tileid = tiles[tileRow + y][tileColumn + x];
@@ -91,7 +91,7 @@ void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const
 					Vector2D vel(0, 0);
 					pos.setX(c->getPosition().getX() - c->getVelocity().getX());
 					pos.setY(c->getPosition().getY() - c->getVelocity().getY());
-					if (c->getComponent<Character>() == nullptr)
+					if (c->getComponent<Character>() == nullptr || c->getComponent<Character>()->getKnockBack())
 						c->setVelocity(vel);
 					c->setPosition(pos);
 				}

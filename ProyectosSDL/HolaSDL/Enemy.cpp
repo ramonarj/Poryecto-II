@@ -4,11 +4,8 @@
 #include <algorithm>
 
 
-Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(), dead(false), deadOn_(0), deadTime_(0) {}
+Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(), dead(false), deadOn_(0), deadTime_(0), push (20) {}
 
-Enemy::Enemy(Entity* player, int life, int damage, int rango):player(player), Character(life, damage), rango(rango), numEnemy_(0)
-{
-}
 
 void Enemy::move(Entity* o)
 {
@@ -23,43 +20,40 @@ void Enemy::move(Entity* o)
 	float alpha = float(abs(atan(chaseVector.getY() / chaseVector.getX())));
 
 
-	////Ponemos la nueva velocidad
-	//Vector2D vel{ cos(alpha) * velMag * chaseVector.getX() / abs(chaseVector.getX()), sin(alpha)* velMag * chaseVector.getY() / abs(chaseVector.getY()) };
-	//cout << vel << endl;
-	//o->setVelocity(vel);
-
-	////Actualizamos a posicion(PONER ESTO EN CHARACTER)
-	//pos.setX(pos.getX() + o->getVelocity().getX());
-	//pos.setY(pos.getY() + o->getVelocity().getY());
-
 	//2.VELOCIDAD
 	Vector2D vel;
 
-	//Movimiento en X
-	if (pos.getX() < playerPos.getX())
-		vel.setX(cos(alpha) * velMag);
-	else if (pos.getX() > playerPos.getX())
-		vel.setX(cos(alpha) * -velMag);
-	else 
-		vel.setX(0);
-
-	//Movimiento en Y
-	double auxY = 0;
+	double aux = 0;
 	double dif = 3;
 
-	if (numEnemy_ == 1) auxY = -30;
-	else if (numEnemy_ == 2) auxY = 20;
+	if (numEnemy_ == 1) aux = -30;
+	else if (numEnemy_ == 2) aux = 20;
 
-	if (pos.getY() - auxY < playerPos.getY() - dif)
-		vel.setY(velMag);
-	else if (pos.getY() - auxY > playerPos.getY() + dif)
-		vel.setY(-velMag);
-	else
-		vel.setY(0);
+	if (!o->getComponent<Character>()->getKnockBack())
+	{
+		//Movimiento en X
+		if (pos.getX() < playerPos.getX() - dif)
+			vel.setX(cos(alpha) * velMag);
+		else if (pos.getX() > playerPos.getX() + dif)
+			vel.setX(cos(alpha) * -velMag);
+		else
+			vel.setX(0);
 
+		//Movimiento en Y
 
-	//Actualizamos la velocidad
-	o->setVelocity(vel);
+		if (numEnemy_ == 1) aux = -30;
+		else if (numEnemy_ == 2) aux = 20;
+
+		if (pos.getY() - aux < playerPos.getY() - dif)
+			vel.setY(velMag);
+		else if (pos.getY() - aux > playerPos.getY() + dif)
+			vel.setY(-velMag);
+		else
+			vel.setY(0);
+
+		//Actualizamos la velocidad
+		o->setVelocity(vel);
+	}
 
 
 	///3.DIRECCI�N
@@ -77,8 +71,10 @@ void Enemy::move(Entity* o)
 
 	o->setDirection(dir);
 
+
 	//4.SE MUEVE
 	Character::move(o);
+
 
 	//5.COLISIONES
 	checkCollisions(o, chaseVector);
@@ -109,14 +105,16 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 		{
 			chaseVector.setX(-chaseVector.getX());
 			chaseVector.setY(-chaseVector.getY());
-			Character::knockBack(o, chaseVector);
+			Character::knockBack(o, Vector2D(player->getComponent<AnimationRenderer>()->getLastDir().getX()* push, player->getComponent<AnimationRenderer>()->getLastDir().getY() * push));
 			this->takeDamage(player->getComponent<Player>()->getDamage());
 		}
 		//�l ataca
 		else
 		{
 			setAttacking(true);
-			Character::knockBack(player, chaseVector);
+
+			Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
+
 			player->getComponent<Player>()->takeDamage(damage);
 		}
 		reloading = true;
@@ -139,7 +137,11 @@ void Enemy::render(Entity* o, Uint32 time) {}
 void Enemy::update(Entity * o, Uint32 time)
 {
 	//Tanto �l como el jugador est�n vivos
-	if (isAlive() && playerInRange(o) && !reloading)
+	if (o->getComponent<Character>()->getKnockBack())
+	{
+		Character::update(o, time);
+	}
+	else if (isAlive() && playerInRange(o) && !reloading)
 		move(o);
 	//Recargando
 	else if (reloading)
@@ -152,14 +154,16 @@ void Enemy::update(Entity * o, Uint32 time)
 			reloading = false;
 		}
 	}
+	else if (!playerInRange(o))
+		o->setVelocity(Vector2D(0, 0));
 	//Muere	
 	else {
 		if (!dead) {
 			dead = true;
 			deadOn_ = time;
 			deadTime_ = 20000;
+			o->setVelocity(Vector2D(0, 0));
 		}
-		o->setVelocity(Vector2D(0, 0));
 	}
 
 	bringMeToLife(time);

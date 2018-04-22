@@ -23,14 +23,18 @@ public:
 	Entity* createEntity() const
 	{
 		Entity* e = new Entity();
-		e->setVelocity(Vector2D(1.0, 0.0));
+		e->setVelocity(Vector2D(0.0, 0.0));
 		e->addComponent(new Player());
 		e->addComponent(new KeyBoardInputComponent(SDL_SCANCODE_A, SDL_SCANCODE_D, SDL_SCANCODE_W, SDL_SCANCODE_S,
 			SDL_SCANCODE_E, SDL_SCANCODE_SPACE, SDL_SCANCODE_I, SDL_SCANCODE_C,  SDL_SCANCODE_TAB, SDL_SCANCODE_RETURN, SDL_SCANCODE_X, SDL_SCANCODE_0));
 
 		e->addComponent(new ControllerInputComponent());
 		
-		e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
+		//e->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("SpriteSheetElise"),14, 6, 26, 80, true, false));
+		e->addComponent(new PlayerAnimationComponent(Game::Instance()->getResourceManager()->getTexture("Elise_Iddle"), Game::Instance()->getResourceManager()->getTexture("Elise_Moving"),
+			Game::Instance()->getResourceManager()->getTexture("Elise_AttackingCrowbar"), Game::Instance()->getResourceManager()->getTexture("Elise_AttackingPipe"), Game::Instance()->getResourceManager()->getTexture("Elise_AttackingCrutch"),
+			Game::Instance()->getResourceManager()->getTexture("Elise_AttackingAxe"), Game::Instance()->getResourceManager()->getTexture("Elise_Diying"), Game::Instance()->getResourceManager()->getTexture("Elise_Awakening"),
+			80, 2, 12, 6, 6, 6));
 		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}

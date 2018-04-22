@@ -6,7 +6,6 @@
 #include "base64.h"
 #include "zlib.h"
 #include "Level.h"
-#include "Game.h"
 #include "Texture.h"
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
@@ -346,11 +345,12 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 	if (e->Attribute("type") == std::string("Enemy")) {
 		pEntity->getComponent<Enemy>()->load(numEnemy);
 		if (numEnemy == 1)
-			pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
-
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo1_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Diying"),nullptr, 150, 2, 8, 7, 6, 0));
 		else if (numEnemy == 2)
 			pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
-
+		else if (numEnemy == 3){
+			;
+		}
 		bool playerFound = false;
 		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
 		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !playerFound) {

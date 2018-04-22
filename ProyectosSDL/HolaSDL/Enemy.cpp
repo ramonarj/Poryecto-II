@@ -4,8 +4,42 @@
 #include <algorithm>
 
 
-Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(), dead(false), deadOn_(0), deadTime_(0), push (20) {}
+Enemy::Enemy():player(nullptr), rango(DEFAULT_RANGE), relaxTime(0), reloading(false), Character(), dead(false), deadOn_(0), deadTime_(0), push (25) {}
 
+
+void Enemy::revive()
+{
+	resurecting = false;
+	dead = false;
+	setAlive();
+}
+
+void Enemy::punch(Entity* o)
+{
+	
+	SDL_Rect playerRect = player->getRect();
+	SDL_Rect enemyRect = o->getRect();
+	chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
+
+	//Comprobamos si estamos dentro todavia del enemigo
+	if (Collisions::RectRect(&playerRect, &enemyRect))
+	{
+		if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
+		{
+			chaseVector_.setX(-chaseVector_.getX());
+			chaseVector_.setY(-chaseVector_.getY());
+			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
+			this->takeDamage(player->getComponent<Player>()->getDamage());
+		}
+		//�l ataca solo si está vivo y si lo está el player
+		else if (isAlive() && player->getComponent<Character>()->isAlive())
+		{
+			Character::knockBack(player, Vector2D(o->getDirection().getX() * push, o->getDirection().getY() * push));
+			player->getComponent<Player>()->takeDamage(damage);
+		}
+		
+	}
+}
 
 void Enemy::move(Entity* o)
 {
@@ -77,7 +111,7 @@ void Enemy::move(Entity* o)
 
 
 	//5.COLISIONES
-	checkCollisions(o, chaseVector);
+	//checkCollisions(o, chaseVector);
 }
 
 bool Enemy::playerInRange(Entity * o)
@@ -90,7 +124,7 @@ bool Enemy::playerInRange(Entity * o)
 	Vector2D chaseVector{ playerPos.getX() - pos.getX(), playerPos.getY() - pos.getY() };
 	int distance = sqrt(pow(chaseVector.getX(), 2) + pow(chaseVector.getY(), 2));
 
-	return(player != nullptr && player->getComponent<Player>()->isAlive() && distance < rango);
+	return(player != nullptr && player->getComponent<Player>()->isAlive() && distance < rango && !player->getComponent<Player>()->getAwakening());	
 }
 
 void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
@@ -101,32 +135,31 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 	{
 		//El que pille recibir� da�o y knockback
 		//El player le ataca
-		if (player->getComponent<Player>()->getAttacking())
+		if (player->getComponent<Player>()->getAttacking() && isAlive() && player->getComponent<Player>()->getPunch())
 		{
 			chaseVector.setX(-chaseVector.getX());
 			chaseVector.setY(-chaseVector.getY());
-			Character::knockBack(o, Vector2D(player->getComponent<AnimationRenderer>()->getLastDir().getX()* push, player->getComponent<AnimationRenderer>()->getLastDir().getY() * push));
+			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
 			this->takeDamage(player->getComponent<Player>()->getDamage());
 		}
-		//�l ataca
-		else
+		//�l ataca solo si está vivo y si lo está el player
+		else if(isAlive() && player->getComponent<Character>()->isAlive() && !reloading)
 		{
+ 			chaseVector_ = chaseVector;
 			setAttacking(true);
 
-			Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
+			//Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
 
-			player->getComponent<Player>()->takeDamage(damage);
+			reloading = true;
 		}
-		reloading = true;
 	}
 }
 
 void Enemy::bringMeToLife(Uint32 time)
 {
 	if (!isAlive()) {
-		if (dead && (deadOn_ + deadTime_ < time)) {
-			dead = false;
-			setAlive();
+		if (dead && !resurecting && (deadOn_ + deadTime_ < time)) {
+			resurecting = true;
 		}
 	}
 }
@@ -136,8 +169,16 @@ void Enemy::render(Entity* o, Uint32 time) {}
 
 void Enemy::update(Entity * o, Uint32 time)
 {
+	if (myself == nullptr)
+		myself = o;
+
+	if (isAlive()) {
+		chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
+		checkCollisions(o, chaseVector_);
+	}
+
 	//Tanto �l como el jugador est�n vivos
-	if (o->getComponent<Character>()->getKnockBack())
+	if (o->getComponent<Character>()->getKnockBack() && isAlive())
 	{
 		Character::update(o, time);
 	}
@@ -154,16 +195,17 @@ void Enemy::update(Entity * o, Uint32 time)
 			reloading = false;
 		}
 	}
-	else if (!playerInRange(o))
-		o->setVelocity(Vector2D(0, 0));
+	/*else if (!playerInRange(o) && isAlive())
+		o->setVelocity(Vector2D(0, 0));*/
 	//Muere	
 	else {
 		if (!dead) {
 			dead = true;
 			deadOn_ = time;
 			deadTime_ = 20000;
-			o->setVelocity(Vector2D(0, 0));
+			//o->getComponent<EnemyAnimationComponent>()->setFramesToZero();
 		}
+		o->setVelocity(Vector2D(0, 0));
 	}
 
 	bringMeToLife(time);

@@ -27,6 +27,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EnemyAnimationComponent.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FillRectRenderer.cpp" />
     <ClCompile Include="FirstAid.cpp" />
@@ -62,6 +63,7 @@
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAnimationComponent.cpp" />
     <ClCompile Include="PlayerLight.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Register.cpp" />
@@ -103,6 +105,7 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EnemyAnimationComponent.h" />
     <ClInclude Include="EntityCreator.h" />
     <ClInclude Include="FillRectRenderer.h" />
     <ClInclude Include="FirstAid.h" />
@@ -138,6 +141,7 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAnimationComponent.h" />
     <ClInclude Include="PlayerLight.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Register.h" />

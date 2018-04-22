@@ -137,7 +137,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		active_ = true;
 	}
 
-	if (m_bJoysticksInitialised && active_) {
+	if (m_bJoysticksInitialised && active_ && !o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive()) {	//Aqui le meto la condicion de estar vivo y no despertando
 
 		Vector2D velocity = o->getVelocity();
 		Vector2D direction = o->getDirection();
@@ -379,7 +379,6 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				velocity.setY(0);
 				direction.setY(0);
 			}
-
 			o->setVelocity(velocity);
 			o->setDirection(direction);
 		}

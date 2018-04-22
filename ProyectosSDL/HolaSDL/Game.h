@@ -25,6 +25,8 @@
 #include "ResourceManager.h"
 #include "GameObjectFactory.h"
 #include "AnimationRenderer.h"
+#include "EnemyAnimationComponent.h"
+#include "PlayerAnimationComponent.h"
 
 class Game : public SDLGame {
 

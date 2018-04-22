@@ -117,7 +117,23 @@ void Game::addResourcesTexture()
 {
 	//Characters
 	resourceManager_->addTexture("SpriteSheetElise", "images/Characters/SpriteSheetElise.png");
-	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1_ConAtaque.png");
+
+	resourceManager_->addTexture("Elise_Iddle", "images/Characters/Elise/Iddle_Elise.png");
+	resourceManager_->addTexture("Elise_Awakening", "images/Characters/Elise/Despertar_Elise.png");
+	resourceManager_->addTexture("Elise_Moving", "images/Characters/Elise/Movimiento_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingCrowbar", "images/Characters/Elise/AtacandoCrowbar_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingPipe", "images/Characters/Elise/AtacandoPipe_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingAxe", "images/Characters/Elise/AtacandoAxe_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingCrutch", "images/Characters/Elise/AtacandoCrutch_Elise.png");
+	resourceManager_->addTexture("Elise_Diying", "images/Characters/Elise/Muerte_Elise.png");
+
+
+	resourceManager_->addTexture("Enemigo1_Iddle", "images/Characters/Enemigo1/Enemigo1_Iddle.png");
+	resourceManager_->addTexture("Enemigo1_Moving", "images/Characters/Enemigo1/Enemigo1_Moving.png");
+	resourceManager_->addTexture("Enemigo1_Attacking", "images/Characters/Enemigo1/Enemigo1_Attacking.png");
+	resourceManager_->addTexture("Enemigo1_Diying", "images/Characters/Enemigo1/Enemigo1_Diying.png");
+
+	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1/Enemigo1_ConAtaque.png");
 	resourceManager_->addTexture("Enemigo2_ConAtaque", "images/Characters/Enemigo2.png");
 
 	//Items

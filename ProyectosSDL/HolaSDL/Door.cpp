@@ -75,7 +75,7 @@ void Door::load(int numero, string ori, int numKey, int needKey, int collidableD
 
 bool Door::canTeleport()
 {
-	AnimationRenderer* animPlayer = player->getComponent<AnimationRenderer>();
+	PlayerAnimationComponent* animPlayer = player->getComponent<PlayerAnimationComponent>();
 
 	return ((ori_ == "norte" && animPlayer->getLastDir().getY() == 1)
 		|| (ori_ == "sur" && animPlayer->getLastDir().getY() == -1)

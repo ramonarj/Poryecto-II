@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Camera.h"
 #include "Craft.h"
+#include "PlayState.h"
 
 KeyBoardInputComponent::KeyBoardInputComponent()
 {
@@ -11,9 +12,9 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
 												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController) :
 	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo), switchController_(SwitchController),
-	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false)
-	{
-	}
+	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false) /*messageRenderer(PlayState::Instance()->getMessageRenderer()->getComponent<MessageRenderer>()),
+	messageTimer(PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>())*/ {
+}
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
 {
@@ -94,7 +95,16 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 							entityFound = true;
 						}
 						else{
-							(*it)->getComponent<Interactible>()->interact((*it));
+							messageRenderer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageRenderer>();
+							messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
+
+							Interactible* inter = (*it)->getComponent<Interactible>();
+							inter->interact((*it));
+							std::string* intMsg = inter->getInteractMessage();
+							if (*intMsg != "") {
+								messageRenderer->display(*intMsg);
+								messageTimer->start(5);
+							}
 							entityFound = true;
 						}
 					}

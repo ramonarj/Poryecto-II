@@ -2,7 +2,7 @@
 
 
 
-FirstAid::FirstAid(const string& filename) : Item(ItemType::FIRSTAID, filename)
+FirstAid::FirstAid(const string& filename, std::string interactMessage) : Item(ItemType::FIRSTAID, filename, interactMessage)
 {
 }
 

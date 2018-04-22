@@ -2,7 +2,6 @@
 #include "GameState.h"
 #include "LevelParser.h"
 #include "Inventory.h"
-#include "MenuButton.h"
 //#include "CursorRenderer.h"
 //#include "MouseMotionInput.h"
 #include <memory>

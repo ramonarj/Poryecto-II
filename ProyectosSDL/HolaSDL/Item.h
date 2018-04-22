@@ -12,7 +12,7 @@ enum ItemType{ STICK, CROWBAR, PIPE, AXE, ALCOHOL, BANDAGES, FIRSTAID, GENERICCH
 class Item : public Interactible
 {
 public:
-	Item(ItemType type, const string& filename);
+	Item(ItemType type, const string& filename, std::string interactMessage = "");
 	virtual ~Item();
 
 	virtual void update(Entity* e, Uint32 time) {};

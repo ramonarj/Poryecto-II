@@ -6,7 +6,7 @@ class Weapon : public Item
 {
 	friend class InsulationTape;
 public:
-	Weapon(ItemType type, const string& filename);
+	Weapon(ItemType type, const string& filename, std::string interactMessage = "");
 	~Weapon();
 	void attack(); // Resta 1 al numero de golpes que tiene el arma
 	void repare(int a);

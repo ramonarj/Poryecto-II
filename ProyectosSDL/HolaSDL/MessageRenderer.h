@@ -8,7 +8,8 @@ public:
 	MessageRenderer();
 	~MessageRenderer();
 	void setDisplaying(bool displaying) { display_ = displaying; };
-	void display(std::string message, double textX, double textY);
+	void display(std::string message, double textX, double textY); // Se puede elegir donde se pinta el mensaje
+	void display(std::string message); // Se pinta el mensaje en la posicion predeterminada
 	bool isDisplaying() { return display_; };
 	void setMessage(std::string newMsg) { message_ = newMsg; };
 	void setPosition(double x, double y) { textX_ = x; textY_ = y; };

@@ -4,7 +4,7 @@
 class Key : public Item
 {
 public:
-	Key(const string& filename) : Item(ItemType::KEY, filename) {};
+	Key(const string& filename, std::string interactMessage = "") : Item(ItemType::KEY, filename, interactMessage) {};
 	~Key() {};
 
 	//virtual void use(Entity* e) {};

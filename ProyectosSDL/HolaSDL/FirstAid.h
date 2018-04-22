@@ -5,7 +5,7 @@
 class FirstAid : public Item
 {
 public:
-	FirstAid(const string& filename);
+	FirstAid(const string& filename, std::string interactMessage = "");
 	virtual ~FirstAid();
 	virtual void use(Entity* e, Entity* item);
 private:

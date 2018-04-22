@@ -17,6 +17,13 @@ void MessageRenderer::display(std::string message, double textX, double textY) {
 	setDisplaying(true);
 }
 
+void MessageRenderer::display(std::string message) {
+	message_ = message;
+	textX_ = Game::Instance()->getWindowWidth() / 2;
+	textY_ = Game::Instance()->getWindowHeight() - Game::Instance()->getWindowHeight() / 8;
+	setDisplaying(true);
+}
+
 void MessageRenderer::render(Entity * e, Uint32 time) {
 	if (message_ != "" && display_) {
 		SDL_Surface* textSurface = font_->renderText(message_, color_);

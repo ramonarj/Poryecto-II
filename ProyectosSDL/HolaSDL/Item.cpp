@@ -3,7 +3,7 @@
 #include "ItemContainer.h"
 #include "Game.h"
 
-Item::Item(ItemType type, const string& filename) : type_(type) {
+Item::Item(ItemType type, const string& filename, std::string interactMessage) : Interactible(interactMessage), type_(type) {
 	loadDescription(filename);
 }
 

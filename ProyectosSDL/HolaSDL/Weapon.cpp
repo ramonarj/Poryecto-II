@@ -2,7 +2,7 @@
 
 
 
-Weapon::Weapon(ItemType type, const string& filename) : Item(type, filename)
+Weapon::Weapon(ItemType type, const string& filename, std::string interactMessage) : Item(type, filename, interactMessage)
 {
 	weaponInit(type);
 	type_ = type;

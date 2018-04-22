@@ -243,7 +243,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			std::string orientacion;
 			int registerFile;
 			int numMap;
-			int numEnemy;
+			int numEnemy = 0;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
@@ -313,21 +313,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
-			{
-				pEntity->getComponent<Character>()->load(life, damage);
-				if (e->Attribute("type") == std::string("Enemy")) {
-					pEntity->getComponent<Enemy>()->load(numEnemy);
-					if (numEnemy == 1)
-					{
-						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
-					}
-					else if (numEnemy == 2)
-					{
-						pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
-					}
-				}
-				Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
-			}
+				loadCharacters(e, pEntity, life, damage, numEnemy);
+
 			else if (e->Attribute("type") == std::string("Puerta"))
 				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
 
@@ -343,29 +330,61 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("SRMap"))
 				pEntity->getComponent<SRMap>()->load(numMap, orientacion);
 
-			//Si es una puerta lo mete en un vector diferente al de entidades
-			if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))
-			{
-				bool regFound = false;
-				int i = 0;
-				list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
-				while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound){
-					if ((*it)->getComponent<Register>() != nullptr || (*it)->getComponent<SRMap>() != nullptr)
-						regFound = true;
-					else
-						it++;
-				}
-				if (regFound)
-					Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
-				else
-					Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
-			}
-			else
-				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
-
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
+
+			if (e->Attribute("type") != std::string("Enemy"))
+				pushEntity(e, pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);
+}
+
+void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy)
+{
+	pEntity->getComponent<Character>()->load(life, damage);
+	if (e->Attribute("type") == std::string("Enemy")) {
+		pEntity->getComponent<Enemy>()->load(numEnemy);
+		if (numEnemy == 1)
+			pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo1_ConAtaque"), 10, 7, 17, 150, true, false));
+
+		else if (numEnemy == 2)
+			pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
+
+		bool playerFound = false;
+		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
+		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !playerFound) {
+			if ((*it)->getComponent<Player>() != nullptr)
+				playerFound = true;
+			else
+				it++;
+		}
+		if (playerFound)
+			Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
+		else
+			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+	}
+	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
+}
+
+void LevelParser::pushEntity(TiXmlElement * e, Entity * pEntity)
+{
+	if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))
+	{
+		bool regFound = false;
+		int i = 0;
+		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
+		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound) {
+			if ((*it)->getComponent<Register>() != nullptr || (*it)->getComponent<SRMap>() != nullptr)
+				regFound = true;
+			else
+				it++;
+		}
+		if (regFound)
+			Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
+		else
+			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+	}
+	else
+		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 }

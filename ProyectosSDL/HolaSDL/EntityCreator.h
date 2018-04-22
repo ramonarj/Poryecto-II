@@ -66,26 +66,26 @@ public:
 		switch (type)
 		{
 		case STICK:
-			i = new Weapon(type, itemTypetoString(type));
+			i = new Weapon(type, itemTypetoString(type), "Has recogido una muleta");
 			break;
 		case CROWBAR:
-			i = new Weapon(type, itemTypetoString(type));
+			i = new Weapon(type, itemTypetoString(type), "Has recogido una palanca");
 			break;
 		case PIPE:
-			i = new Weapon(type, itemTypetoString(type));
+			i = new Weapon(type, itemTypetoString(type), "Has recogido una tubería");
 			break;
 		case AXE:
-			i = new Weapon(type, itemTypetoString(type));
+			i = new Weapon(type, itemTypetoString(type), "Has recogido un hacha");
 			break;
 		case FIRSTAID:
 			i = new Movable();	//	DEBUG
-			//i = new FirstAid(itemTypetoString(type));
+			//i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
 			break;
 		case INSULATIONTEPE:
-			i = new InsulationTape(itemTypetoString(type));
+			i = new InsulationTape(itemTypetoString(type), "Has recogido cinta aislante");
 			break;
 		case KEY:
-			i = new Key(itemTypetoString(type));
+			i = new Key(itemTypetoString(type), "Has recogido una llave");
 			break;
 		default:
 			i = new Item(type, itemTypetoString(type));

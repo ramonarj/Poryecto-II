@@ -1,5 +1,5 @@
 #include "Interactible.h"
 
-Interactible::Interactible(){
+Interactible::Interactible(std::string interactMessage) : interactMessage_(interactMessage){
 	
 }

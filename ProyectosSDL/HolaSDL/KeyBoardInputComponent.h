@@ -5,6 +5,8 @@
 #include "Entity.h"
 #include "Collisions.h"
 #include <iostream>
+#include "MessageRenderer.h"
+#include "MessageTimer.h"
 
 class KeyBoardInputComponent :
 	public Component
@@ -42,5 +44,9 @@ private:
 
 	//*MOUSE*
 	int mouseX=0; int mouseY = 0;
+
+	//MessageRenderer
+	MessageRenderer* messageRenderer;
+	MessageTimer* messageTimer;
 };
 

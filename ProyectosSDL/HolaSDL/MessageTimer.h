@@ -7,7 +7,7 @@ public:
 	MessageTimer();
 	virtual ~MessageTimer() {};
 	virtual void update(Entity* e, Uint32 time);
-	void start(Uint32 timeInterval);
+	void start(Uint32 timeInterval); // Tiempo que tarda en desactivarse (en segundos)
 	bool isOn() { return on_; };
 
 private:

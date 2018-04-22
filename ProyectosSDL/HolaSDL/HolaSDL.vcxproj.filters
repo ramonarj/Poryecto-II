@@ -16,12 +16,12 @@
     <ClCompile Include="CraftingTable.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FillRectRenderer.cpp" />
     <ClCompile Include="FirstAid.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -72,7 +72,6 @@
     <ClCompile Include="tinyxmlparser.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="MessageTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -80,6 +79,7 @@
     <ClInclude Include="base64.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="checkML.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="ChestObject.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -90,12 +90,12 @@
     <ClInclude Include="CraftingTable.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityCreator.h" />
     <ClInclude Include="FillRectRenderer.h" />
     <ClInclude Include="FirstAid.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Entity.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
@@ -129,8 +129,8 @@
     <ClInclude Include="Register.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resources.h" />
-    <ClInclude Include="SDLGame.h" />
     <ClInclude Include="sdl_includes.h" />
+    <ClInclude Include="SDLGame.h" />
     <ClInclude Include="SecurityCamera.h" />
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SlidingPuzzle.h" />
@@ -145,6 +145,12 @@
     <ClInclude Include="tinyxml.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Weapon.h" />
-    <ClInclude Include="MessageTimer.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HolaSDL.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\icon.png" />
   </ItemGroup>
 </Project>

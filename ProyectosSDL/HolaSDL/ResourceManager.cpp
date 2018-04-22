@@ -9,7 +9,7 @@ ResourceManager::~ResourceManager() {
 
 // Textures ------------------------------------------------------------
 void ResourceManager::addTexture(string id, string filepath) {
-	textures_.insert(pair<string, Texture*>(id, new Texture(game_->getRenderer(), filepath)));
+	textures_.insert(pair<string, Texture*>(id, new Texture(game_->getRenderer(), FOLDER + filepath)));
 }
 
 Texture * ResourceManager::getTexture(string id) {
@@ -18,7 +18,7 @@ Texture * ResourceManager::getTexture(string id) {
 
 // Music ------------------------------------------------------------
 void ResourceManager::addMusic(string id, string filepath) {
-	music_.insert(pair<string, Music*>(id, new Music(filepath)));
+	music_.insert(pair<string, Music*>(id, new Music(FOLDER + filepath)));
 }
 
 Music * ResourceManager::getMusic(string id) {
@@ -27,7 +27,7 @@ Music * ResourceManager::getMusic(string id) {
 
 // Sounds ------------------------------------------------------------
 void ResourceManager::addSound(string id, string filepath) {
-	sounds_.insert(pair<string,SoundEffect*>(id, new SoundEffect(filepath)));
+	sounds_.insert(pair<string,SoundEffect*>(id, new SoundEffect(FOLDER + filepath)));
 }
 
 SoundEffect * ResourceManager::getSound(string id) {
@@ -36,7 +36,7 @@ SoundEffect * ResourceManager::getSound(string id) {
 
 // Fonts ------------------------------------------------------------
 void ResourceManager::addFont(string id, string filepath, int fontSize) {
-	fonts_.insert(pair<string, Font*>(id, new Font(filepath, fontSize)));
+	fonts_.insert(pair<string, Font*>(id, new Font(FOLDER + filepath, fontSize)));
 }
 
 Font * ResourceManager::getFont(string id) {

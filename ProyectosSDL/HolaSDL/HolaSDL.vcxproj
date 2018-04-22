@@ -168,9 +168,6 @@
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="images\icon.png" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}</ProjectGuid>
     <RootNamespace>HolaSDL</RootNamespace>

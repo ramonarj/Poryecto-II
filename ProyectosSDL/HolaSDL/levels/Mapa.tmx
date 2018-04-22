@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="372">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="373">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -1052,7 +1052,7 @@
     <property name="dir" value="sur"/>
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="2"/>
-    <property name="numKey" type="int" value="2"/>
+    <property name="numKey" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
@@ -1061,7 +1061,7 @@
     <property name="dir" value="norte"/>
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="2"/>
-    <property name="numKey" type="int" value="2"/>
+    <property name="numKey" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
@@ -1165,7 +1165,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Doors" visible="0">
+ <objectgroup name="Doors">
   <properties>
    <property name="collidableDoor" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1355,7 +1355,7 @@
     <property name="dir" value="sur"/>
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="2"/>
-    <property name="numKey" type="int" value="2"/>
+    <property name="numKey" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
@@ -1364,7 +1364,7 @@
     <property name="dir" value="norte"/>
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="2"/>
-    <property name="numKey" type="int" value="2"/>
+    <property name="numKey" type="int" value="4"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
@@ -1736,6 +1736,14 @@
     <property name="textureWidth" type="int" value="10"/>
    </properties>
   </object>
+  <object id="372" name="LLAVE" type="Key" x="8519.25" y="9333.08" width="20" height="27.3333">
+   <properties>
+    <property name="numKey" type="int" value="4"/>
+    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="10"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Characters">
   <properties>
@@ -1751,7 +1759,7 @@
     <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
-  <object id="159" name="Player" type="Player" x="1302.6" y="1572.83" width="19" height="27.3333">
+  <object id="159" name="Player" type="Player" x="1349.93" y="1564.33" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

@@ -29,13 +29,13 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	// get the root node and display some values
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
-	/*std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
+	std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
 	std::cout << "Width:" << pRoot->Attribute("width") << " - Height:" << pRoot->Attribute("height") << "\n";
-	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";*/
+	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";
 
-	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
+	pRoot->Attribute("tilewidth", &m_tileSize);
 
 	m_tileSize *= zoom;
 

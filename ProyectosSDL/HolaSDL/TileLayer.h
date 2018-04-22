@@ -41,6 +41,4 @@ private:
 	std::vector<std::vector<int>> m_tileIDs;
 
 	int zoom;
-
-	void renderTV(int id, int i, int j, int x, int y);
 };

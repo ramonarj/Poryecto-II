@@ -21,7 +21,8 @@ PlayState::~PlayState() {
 void PlayState::startState()
 {
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("levels/Mapa.tmx");
+	string fileMap = FOLDER + string("levels/Mapa.tmx");
+	pLevel = levelParser.parseLevel(fileMap.c_str());
 
 	mapWidth = levelParser.mapWidth;
 	mapHeight = levelParser.mapHeight;

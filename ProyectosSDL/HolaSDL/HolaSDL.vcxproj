@@ -55,6 +55,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MessageRenderer.cpp" />
     <ClCompile Include="MessageTimer.cpp" />
+    <ClCompile Include="MessageTrigger.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Music.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="MessageRenderer.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MessageTimer.h" />
+    <ClInclude Include="MessageTrigger.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="Music.h" />

@@ -15,6 +15,7 @@
 #include "CraftingTable.h"
 #include "SkeletonRenderer.h"
 #include "SRMap.h"
+#include "MessageTrigger.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -56,6 +57,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
+		e->addComponent(new MessageTrigger("'E' para interactuar"));
 		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
 		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_)),400,false,false,true));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);

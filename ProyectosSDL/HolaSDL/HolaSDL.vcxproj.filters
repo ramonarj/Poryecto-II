@@ -72,6 +72,8 @@
     <ClCompile Include="tinyxmlparser.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="MessageTimer.cpp" />
+    <ClCompile Include="MessageTrigger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -146,6 +148,8 @@
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="MessageTimer.h" />
+    <ClInclude Include="MessageTrigger.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

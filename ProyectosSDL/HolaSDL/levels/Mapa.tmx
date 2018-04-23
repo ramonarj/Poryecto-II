@@ -1167,9 +1167,9 @@
   <object id="373" name="LLAVE" type="Key" x="1414" y="1577.33" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="10"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
  </objectgroup>
@@ -1731,25 +1731,25 @@
   <object id="368" name="LLAVE" type="Key" x="10009" y="5907.34" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="10"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
   <object id="371" name="LLAVE" type="Key" x="1629" y="10372" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="3"/>
-    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="10"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
   <object id="372" name="LLAVE" type="Key" x="8519.25" y="9333.08" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="4"/>
-    <property name="textureHeight" type="int" value="10"/>
+    <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="10"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
  </objectgroup>

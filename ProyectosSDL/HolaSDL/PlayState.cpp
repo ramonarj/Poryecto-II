@@ -88,6 +88,12 @@ void PlayState::startState()
 	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5500));
 	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5500));
 
+	//MessageRenderer----------------------------------------------------------
+	messageRenderer = new Entity(0, 0);
+	messageRenderer->addComponent(new MessageRenderer());
+	messageRenderer->addComponent(new MessageTimer());
+	stage_.push_back(messageRenderer);
+
 	craft = new Entity(0, 0);
 	Craft* craftComp = new Craft();
 	craft->addComponent(craftComp);
@@ -114,14 +120,6 @@ void PlayState::startState()
 	/*Entity* textTest = new Entity(20, 20);
 	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
 	stage_.push_back(textTest);*/
-
-	//MessageRenderer----------------------------------------------------------
-	messageRenderer = new Entity(0, 0);
-	messageRenderer->addComponent(new MessageRenderer());
-	messageRenderer->addComponent(new MessageTimer());
-	stage_.push_back(messageRenderer);
-	/*messageRenderer->getComponent<MessageRenderer>()->display("This is the best f***ing game");
-	messageRenderer->getComponent<MessageTimer>()->start(10);*/
 }
 
 void PlayState::update(Uint32 time)

@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "Entity.h"
 #include "Collisions.h"
+#include "MessageRenderer.h"
+#include "MessageTimer.h"
 #include <iostream>
 
 //Button enum for PS4 controller
@@ -59,6 +61,10 @@ private:
 
 	int interfaceActive = 0;	//0=ninguna abierta, 1=inventario, 2=cofre, 3=crafteo
 									
+	//MessageRenderer
+	MessageRenderer* messageRenderer;
+	MessageTimer* messageTimer;
+
 	////*MOUSE*
 	//int mouseX = 0; int mouseY = 0;
 	//int increment = 5;

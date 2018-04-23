@@ -138,7 +138,7 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 		if (enemyType_ == 2)
 			actualFrameDiying_ = 0;
 
-		if (enemyType_ == 1) {
+		if (enemyType_ == 1 || enemyType_ == 3) {
 			clip =
 				RECT(actualFrameDiying_*diying_->getWidth() / diyingFrames_,
 					dirIddle(o) * diying_->getHeight() / directions_,

@@ -9,8 +9,8 @@ public:
 	MessageTrigger(std::string KBmessage, std::string CNTmessage); // Dos mensajes: Teclado y Controller
 	~MessageTrigger();
 	virtual void update(Entity* e, Uint32 time);
-	void setMessage(std::string message);
-	void setMessage(std::string KBmessage, std::string CNTmessage);
+	void setMessage(std::string message, bool displayNow = false);
+	void setMessage(std::string KBmessage, std::string CNTmessage, bool displayNow = false);
 
 private:
 	std::string KBmessage_;

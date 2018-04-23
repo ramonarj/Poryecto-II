@@ -54,9 +54,6 @@ bool ControllerInputComponent::initialiseJoysticks()
 		SDL_JoystickEventState(SDL_ENABLE);
 		m_bJoysticksInitialised = true;
 		std::cout << "Initialised " << m_joysticks.size() << "joystick(s)";
-
-		
-
 	}
 	else
 	{

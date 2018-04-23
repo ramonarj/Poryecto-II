@@ -171,47 +171,6 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			inventoryPressed = false;
 		}
 
-		//if (state[chest_] && !invOpen && !crftOpen)
-		//{
-		//	if (event.type == SDL_KEYDOWN && !chestPressed) {
-		//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-		//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-		//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-		//		inv->setActive(!inv->isActive());
-		//		cst->setActive(!cst->isActive());
-		//		chestPressed = true;
-		//		cstOpen = !cstOpen;
-		//		inv->getComponent<Inventory>()->setChestMode(cstOpen);
-		//		//SOUND 
-		//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		//	}
-		//}
-		//if (!state[chest_] && !invOpen && !crftOpen)
-		//{
-		//	chestPressed = false;
-		//}
-
-		//if (state[craft_] && !invOpen && !cstOpen)
-		//{
-		//	if (event.type == SDL_KEYDOWN && !craftPressed) {
-		//		if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
-		//		if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
-		//		if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-		//		inv->setActive(!inv->isActive());
-		//		craft->setActive(!craft->isActive());
-		//		craftPressed = true;
-		//		crftOpen = !crftOpen;
-		//		if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
-		//		inv->getComponent<Inventory>()->setCraftMode(crftOpen);
-		//		//SOUND 
-		//		Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-		//	}
-		//}
-		//if (!state[craft_] && !invOpen && !cstOpen)
-		//{
-		//	craftPressed = false;
-		//}
-
 		if (invOpen || cstOpen || crftOpen)
 			Game::Instance()->stateMachine_.currentState()->getCursor()->setActive(true);
 		else

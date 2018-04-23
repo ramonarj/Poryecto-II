@@ -61,7 +61,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(chooseItemType(type_));
-		e->addComponent(new MessageTrigger("'E' para interactuar"));
+		e->addComponent(new MessageTrigger("'E' para recoger", "Square/X para recoger"));
 		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
 		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_)),400,false,false,true));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
@@ -173,6 +173,7 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Door());
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		e->addComponent(new MessageTrigger("'E' para abrir", "'Square/X' para abrir"));
 		return e;
 	}
 };
@@ -219,6 +220,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new Register());
+		e->addComponent(new MessageTrigger("'E' para leer el registro", "'Square/X' para leer el registro"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
@@ -232,6 +234,7 @@ public:
 		Entity* e = new Entity();
 		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
 		e->addComponent(new ChestObject());
+		e->addComponent(new MessageTrigger("'E' para abrir el contenedor", "'Square/X' para abrir el contenedor"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
@@ -245,6 +248,7 @@ public:
 		Entity* e = new Entity();
 		//e->addComponent(new ImageRenderer(Game::Instance()->getResourceManager()->getTexture("Axe")));
 		e->addComponent(new CraftingTable());
+		e->addComponent(new MessageTrigger("'E' para usar la mesa de trabajo", "'Square/X' para usar la mesa de trabajo"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
@@ -257,6 +261,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new SRMap());
+		e->addComponent(new MessageTrigger("'E' para ver el mapa", "'Square/X' para ver el mapa"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

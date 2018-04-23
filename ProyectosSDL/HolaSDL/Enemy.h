@@ -55,5 +55,7 @@ private:
 	void checkCollisions(Entity * o, Vector2D chaseVector);
 
 	void bringMeToLife(Uint32 time);
+
+	bool enemyFoundInStage = false;
 };
 

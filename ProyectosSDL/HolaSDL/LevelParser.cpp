@@ -332,7 +332,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 
-			if (e->Attribute("type") != std::string("Enemy"))
+			//if (e->Attribute("type") != std::string("Enemy"))
 				pushEntity(e, pEntity);
 		}
 	}
@@ -351,7 +351,7 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 		else if (numEnemy == 3){
 			;
 		}
-		bool playerFound = false;
+		/*bool playerFound = false;
 		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
 		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !playerFound) {
 			if ((*it)->getComponent<Player>() != nullptr)
@@ -362,7 +362,7 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 		if (playerFound)
 			Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
 		else
-			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);*/
 	}
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 }

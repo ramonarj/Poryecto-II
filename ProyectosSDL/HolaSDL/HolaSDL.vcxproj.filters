@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationRenderer.cpp" />
     <ClCompile Include="AnimationRenderObject.cpp" />
+    <ClCompile Include="base64.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
@@ -15,19 +16,13 @@
     <ClCompile Include="CraftingTable.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
-<<<<<<< Updated upstream
     <ClCompile Include="Entity.cpp" />
-=======
->>>>>>> Stashed changes
+    <ClCompile Include="EnemyAnimationComponent.cpp" />
     <ClCompile Include="EntityCreator.cpp" />
     <ClCompile Include="FillRectRenderer.cpp" />
     <ClCompile Include="FirstAid.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
-<<<<<<< Updated upstream
-=======
-    <ClCompile Include="Entity.cpp" />
->>>>>>> Stashed changes
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactory.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -40,17 +35,25 @@
     <ClCompile Include="ItemContainer.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LightManager.cpp" />
     <ClCompile Include="LightTestState.cpp" />
+    <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MessageRenderer.cpp" />
+    <ClCompile Include="MessageTimer.cpp" />
+    <ClCompile Include="MessageTrigger.cpp" />
     <ClCompile Include="MouseInputComponent.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAnimationComponent.cpp" />
     <ClCompile Include="PlayerLight.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="Register.cpp" />
@@ -66,54 +69,21 @@
     <ClCompile Include="StaticImageRender.cpp" />
     <ClCompile Include="TextNote.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Weapon.cpp" />
-<<<<<<< Updated upstream
-    <ClCompile Include="MessageTimer.cpp" />
-    <ClCompile Include="MessageTrigger.cpp" />
-    <ClCompile Include="base64.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelParser.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="LoaderParams.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectLayer.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinystr.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxmlerror.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxmlparser.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
     <ClInclude Include="AnimationRenderObject.h" />
+    <ClInclude Include="base64.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
-<<<<<<< Updated upstream
     <ClInclude Include="checkML.h" />
-=======
->>>>>>> Stashed changes
     <ClInclude Include="Chest.h" />
     <ClInclude Include="ChestObject.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -124,19 +94,13 @@
     <ClInclude Include="CraftingTable.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
-<<<<<<< Updated upstream
     <ClInclude Include="Entity.h" />
-=======
->>>>>>> Stashed changes
+    <ClInclude Include="EnemyAnimationComponent.h" />
     <ClInclude Include="EntityCreator.h" />
     <ClInclude Include="FillRectRenderer.h" />
     <ClInclude Include="FirstAid.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
-<<<<<<< Updated upstream
-=======
-    <ClInclude Include="Entity.h" />
->>>>>>> Stashed changes
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />
@@ -149,29 +113,33 @@
     <ClInclude Include="ItemContainer.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelParser.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="LightManager.h" />
     <ClInclude Include="LightTestState.h" />
+    <ClInclude Include="LoaderParams.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageRenderer.h" />
     <ClInclude Include="Messages.h" />
+    <ClInclude Include="MessageTimer.h" />
+    <ClInclude Include="MessageTrigger.h" />
     <ClInclude Include="MouseInputComponent.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAnimationComponent.h" />
     <ClInclude Include="PlayerLight.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="Register.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resources.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="sdl_includes.h" />
-    <ClInclude Include="SDLGame.h" />
-=======
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="sdl_includes.h" />
->>>>>>> Stashed changes
     <ClInclude Include="SecurityCamera.h" />
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SlidingPuzzle.h" />
@@ -181,46 +149,13 @@
     <ClInclude Include="StaticImageRender.h" />
     <ClInclude Include="TextNote.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Weapon.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="MessageTimer.h" />
-    <ClInclude Include="MessageTrigger.h" />
-    <ClInclude Include="base64.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelParser.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="LoaderParams.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectLayer.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="tinystr.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="tinyxml.h">
-      <Filter>Map</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Map">
-      <UniqueIdentifier>{c0297636-4cfc-4a4c-83a0-0fd33c6421e0}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

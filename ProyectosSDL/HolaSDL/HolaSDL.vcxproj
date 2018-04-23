@@ -110,7 +110,10 @@
     <ClInclude Include="FillRectRenderer.h" />
     <ClInclude Include="FirstAid.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Game.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactory.h" />
     <ClInclude Include="GameState.h" />

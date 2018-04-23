@@ -132,8 +132,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Enemigo1_Moving", "images/Characters/Enemigo1/Enemigo1_Moving.png");
 	resourceManager_->addTexture("Enemigo1_Attacking", "images/Characters/Enemigo1/Enemigo1_Attacking.png");
 	resourceManager_->addTexture("Enemigo1_Diying", "images/Characters/Enemigo1/Enemigo1_Diying.png");
-
 	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1/Enemigo1_ConAtaque.png");
+
 	resourceManager_->addTexture("Enemigo2_ConAtaque", "images/Characters/Enemigo2.png");
 
 	//Items

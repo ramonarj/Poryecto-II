@@ -79,11 +79,17 @@ void Enemy::move(Entity* o)
 		else if (numEnemy_ == 2) aux = 20;
 
 		if (pos.getY() - aux < playerPos.getY() - dif)
+		{
 			vel.setY(velMag);
+		}
 		else if (pos.getY() - aux > playerPos.getY() + dif)
+		{
 			vel.setY(-velMag);
+		}
 		else
+		{
 			vel.setY(0);
+		}
 
 		//Actualizamos la velocidad
 		o->setVelocity(vel);

@@ -347,9 +347,9 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 		if (numEnemy == 1)
 			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo1_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Diying"),nullptr, 150, 2, 8, 7, 6, 0));
 		else if (numEnemy == 2)
-			pEntity->addComponent(new AnimationRenderer(Game::Instance()->getResourceManager()->getTexture("Enemigo2_ConAtaque"), 8, 0, 8, 100, true, false));
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo2_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Diying"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Resurrecting"), 120, 2, 8, 5, 3, 4));
 		else if (numEnemy == 3){
-			;
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo3_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Diying"), nullptr, 120, 2, 7, 7, 4, 0));
 		}
 		/*bool playerFound = false;
 		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();

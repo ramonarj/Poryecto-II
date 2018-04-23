@@ -132,6 +132,18 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Enemigo1_Moving", "images/Characters/Enemigo1/Enemigo1_Moving.png");
 	resourceManager_->addTexture("Enemigo1_Attacking", "images/Characters/Enemigo1/Enemigo1_Attacking.png");
 	resourceManager_->addTexture("Enemigo1_Diying", "images/Characters/Enemigo1/Enemigo1_Diying.png");
+	
+	resourceManager_->addTexture("Enemigo2_Iddle", "images/Characters/Enemigo2/Enemigo2_Iddle.png");
+	resourceManager_->addTexture("Enemigo2_Moving", "images/Characters/Enemigo2/Enemigo2_Moving.png");
+	resourceManager_->addTexture("Enemigo2_Attacking", "images/Characters/Enemigo2/Enemigo2_Attacking.png");
+	resourceManager_->addTexture("Enemigo2_Diying", "images/Characters/Enemigo2/Enemigo2_Diying.png");
+	resourceManager_->addTexture("Enemigo2_Resurrecting", "images/Characters/Enemigo2/Enemigo2_Resurrecting.png");
+
+	resourceManager_->addTexture("Enemigo3_Iddle", "images/Characters/Enemigo3/Enemigo3_Iddle.png");
+	resourceManager_->addTexture("Enemigo3_Moving", "images/Characters/Enemigo3/Enemigo3_Moving.png");
+	resourceManager_->addTexture("Enemigo3_Attacking", "images/Characters/Enemigo3/Enemigo3_Attacking.png");
+	resourceManager_->addTexture("Enemigo3_Diying", "images/Characters/Enemigo3/Enemigo3_Diying.png");
+
 	resourceManager_->addTexture("Enemigo1_ConAtaque", "images/Characters/Enemigo1/Enemigo1_ConAtaque.png");
 
 	resourceManager_->addTexture("Enemigo2_ConAtaque", "images/Characters/Enemigo2.png");

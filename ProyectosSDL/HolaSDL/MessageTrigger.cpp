@@ -42,12 +42,22 @@ void MessageTrigger::update(Entity * e, Uint32 time) {
 	}
 }
 
-void MessageTrigger::setMessage(std::string message) {
+void MessageTrigger::setMessage(std::string message, bool displayNow) {
 	KBmessage_ = message;
 	CNTmessage_ = message;
+	if (displayNow) {
+		messageRenderer->display(KBmessage_);
+	}
 }
 
-void MessageTrigger::setMessage(std::string KBmessage, std::string CNTmessage) {
+void MessageTrigger::setMessage(std::string KBmessage, std::string CNTmessage, bool displayNow) {
 	KBmessage_ = KBmessage;
 	CNTmessage_ = CNTmessage;
+	if (displayNow) {
+		if (!CNTcomp->joysticksInitialised())
+			messageRenderer->display(KBmessage_);
+		else {
+			messageRenderer->display(CNTmessage_);
+		}
+	}
 }

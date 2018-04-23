@@ -5,13 +5,11 @@
 
 Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
 	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), 
-	collidableDoor_(false), thisDoor_(thisDoor)
-{
+	collidableDoor_(false), thisDoor_(thisDoor) {
 }
 
 
-Door::~Door()
-{
+Door::~Door() {
 }
 
 void Door::interact(Entity * e)
@@ -20,7 +18,7 @@ void Door::interact(Entity * e)
 	if (collidableDoor_) 
 	{
 		doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
-		player = PlayState::Instance()->getPlayer();
+		
 
 		if (needKey_)
 		{
@@ -94,17 +92,15 @@ bool Door::getNeedKey()
 
 void Door::setNeedKey()
 {
-	inventory = Game::Instance()->getEntityWithComponent<Inventory>();
+	//inventory = Game::Instance()->getEntityWithComponent<Inventory>();
 	compContainer = inventory->getComponent<ItemContainer>();
-	compInvent = inventory->getComponent<Inventory>();
+	//compInvent = inventory->getComponent<Inventory>();
 
 	if (!compInvent->getKeys().empty()) {
-
 		int i = 0;
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
 			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
-				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				openDoor();
 			}
 			else
@@ -134,4 +130,38 @@ void Door::keyFalse()
 bool Door::isCollidable()
 {
 	return collidableDoor_;
+}
+
+void Door::openMessage() {
+	thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
+}
+
+void Door::update(Entity * e, Uint32 time) {
+	if (player == nullptr)
+		player = PlayState::Instance()->getPlayer();
+	if (inventory == nullptr)
+		inventory = Game::Instance()->getEntityWithComponent<Inventory>();
+	if (compInvent == nullptr)
+		compInvent = inventory->getComponent<Inventory>();
+
+	if (needKey_) {
+		SDL_Rect playerRect = { int(player->getPosition().getX()), int(player->getPosition().getY()), int(player->getWidth()), int(player->getHeight()) };
+		SDL_Rect thisRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
+
+		if (Collisions::RectRect(&playerRect, &thisRect)) {
+			if (!compInvent->getKeys().empty()) {
+				int i = 0;
+				bool found = false;
+				while (i < compInvent->getKeys().size() && !found)
+				{
+					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
+						openMessage();
+						found = true;
+					}
+					else
+						i++;
+				}
+			}
+		}
+	}
 }

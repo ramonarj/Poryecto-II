@@ -56,7 +56,7 @@ void Character::knockBack(Entity*o, Vector2D desplazamiento)
 {
 	if (!o->getComponent<Character>()->getKnockBack()) 
 	{
-		o->setVelocity(Vector2D(desplazamiento.getX(), desplazamiento.getY()));
+		o->setVelocity(Vector2D(desplazamiento.getX(), -desplazamiento.getY()));
 		o->getComponent<Character>()->setKnockBackOn();
 		o->getComponent<Character>()->setKnockBack(true);
 	}

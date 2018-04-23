@@ -73,7 +73,22 @@ void PlayState::startState()
 	stage_.push_back(insulationTape);
 	insulationTape->getComponent<InsulationTape>()->use(palo);
 
-	craft = new Entity(0,0);
+	//Iluminacion -------------------------------------------------------------
+	//Entity* playerLight = new Entity(0, 0);
+	//playerLight->addComponent(new PlayerLight());
+	//stage_.push_back(playerLight);
+
+	Entity* lightManagerEntity = new Entity(0, 0);
+	LightManager* lightManager = new LightManager();
+	lightManagerEntity->addComponent(lightManager);
+	lightManagerEntity->setHeight(Game::Instance()->getWindowHeight());
+	lightManagerEntity->setWidth(Game::Instance()->getWindowWidth());
+	stage_.push_back(lightManagerEntity);
+
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5500));
+	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5500));
+
+	craft = new Entity(0, 0);
 	Craft* craftComp = new Craft();
 	craft->addComponent(craftComp);
 	craft->setActive(false);
@@ -94,21 +109,6 @@ void PlayState::startState()
 	invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);
 	invtComp->addItem(palo);
-
-	//Iluminacion -------------------------------------------------------------
-	//Entity* playerLight = new Entity(0, 0);
-	//playerLight->addComponent(new PlayerLight());
-	//stage_.push_back(playerLight);
-
-	Entity* lightManagerEntity = new Entity(0, 0);
-	LightManager* lightManager = new LightManager();
-	lightManagerEntity->addComponent(lightManager);
-	lightManagerEntity->setHeight(Game::Instance()->getWindowHeight());
-	lightManagerEntity->setWidth(Game::Instance()->getWindowWidth());
-	stage_.push_back(lightManagerEntity);
-
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5500));
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5500));
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);

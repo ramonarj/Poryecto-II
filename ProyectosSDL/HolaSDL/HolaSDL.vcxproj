@@ -61,6 +61,7 @@
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAnimationComponent.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Movable.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAnimationComponent.h" />

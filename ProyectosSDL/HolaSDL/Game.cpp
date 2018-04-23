@@ -164,6 +164,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Bandages", "images/Items/bandage.png");
 	resourceManager_->addTexture("Card", "images/Items/keycard.png");
 	resourceManager_->addTexture("Television", "images/Items/television.png");
+	resourceManager_->addTexture("Register1", "images/Items/register1.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");

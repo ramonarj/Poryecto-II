@@ -30,21 +30,8 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	double vel = 7 * Camera::Instance()->getZoom();
 
-
-	if (state[SDL_SCANCODE_7])		//DEBUG PARA REVIVIR
-	{
-		o->getComponent<Player>()->setAwakening(true);
-		o->setVelocity(Vector2D(0.0, 0.0));
-		o->setDirection(Vector2D(0.0, -1.0)); //hacia abajo?
-		o->getComponent<Player>()->setAlive();
-	}
-
 	if (!o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive()){
 
-		if (state[SDL_SCANCODE_0])		//DEBUG PARA MATAR AL ENEMIGO
-		{
-			Game::Instance()->getEntityWithComponent<EnemyAnimationComponent>()->getComponent<Enemy>()->takeDamage(20);
-		}
 
 		if (inv != nullptr) {
 			if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS

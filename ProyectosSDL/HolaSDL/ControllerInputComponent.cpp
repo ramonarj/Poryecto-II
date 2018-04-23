@@ -179,21 +179,24 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 		//JOYSTICK DERECHO
-		int b;
-		int a;
+		int a;	//vertical
+		int b;	//horizontal
 
-		if (controllerType) {										//XBOX
-			b = SDL_JoystickGetAxis(m_joysticks[0], 3);
-			a = SDL_JoystickGetAxis(m_joysticks[0], 4);
-		}
-		else if (!controllerType) {										//PLAY
-			b = SDL_JoystickGetAxis(m_joysticks[0], 2);
-			a = SDL_JoystickGetAxis(m_joysticks[0], 5);
-		}
+		//if (controllerType) {										//XBOX
+		//	b = SDL_JoystickGetAxis(m_joysticks[0], 3);
+		//	a = SDL_JoystickGetAxis(m_joysticks[0], 4);
+		//}
+		//else if (!controllerType) {								//PLAY
+		//	b = SDL_JoystickGetAxis(m_joysticks[0], 2);
+		//	a = SDL_JoystickGetAxis(m_joysticks[0], 5);
+		//}
+
+		a = SDL_JoystickGetAxis(m_joysticks[0], 1);	//EJE VERTICAL
+		b = SDL_JoystickGetAxis(m_joysticks[0], 0); //EJE HORIZONTAL
 
 
 		//Derecho derecha
-		if (b > m_joystickDeadZone * 2 && !joystickMoved)
+		if (b > m_joystickDeadZone && !joystickMoved)
 		{
 			joystickMoved = true;
 			if(interfaceActive==1)
@@ -206,7 +209,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			}
 		}
 		//Derecho izquierda
-		else if (b < -m_joystickDeadZone * 2 && !joystickMoved)
+		else if (b < -m_joystickDeadZone && !joystickMoved)
 		{
 			joystickMoved = true;
 			if (interfaceActive == 1)
@@ -218,14 +221,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				craft->getComponent<Craft>()->moveMarkSlot(4);		//COMENTADOS POR AHORA
 			}
 		}
-		else if((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2)&&(a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+		else if((b > -m_joystickDeadZone && b < m_joystickDeadZone)&&(a > -m_joystickDeadZone && a < m_joystickDeadZone))
 		{
 			joystickMoved = false;
 		}
 
 
 		//Derecho abajo
-		if (a > m_joystickDeadZone * 2 && !joystickMoved)			
+		if (a > m_joystickDeadZone && !joystickMoved)			
 		{
 			joystickMoved = true;
 			if (interfaceActive == 1)
@@ -238,7 +241,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			}
 		}
 
-		else if (a < -m_joystickDeadZone * 2 && !joystickMoved)	//joystick derecho - arriba
+		else if (a < -m_joystickDeadZone && !joystickMoved)	//joystick derecho - arriba
 		{
 			joystickMoved = true;
 			if (interfaceActive == 1)
@@ -250,7 +253,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				craft->getComponent<Craft>()->moveMarkSlot(1);
 			}
 		}
-		else if ((b > -m_joystickDeadZone * 2 && b < m_joystickDeadZone * 2) && (a > -m_joystickDeadZone * 2 && a < m_joystickDeadZone * 2))
+		else if ((b > -m_joystickDeadZone && b < m_joystickDeadZone) && (a > -m_joystickDeadZone && a < m_joystickDeadZone))
 		{
 			joystickMoved = false;
 		}
@@ -259,9 +262,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		//BOTONES DEL MANDO		COLOCA EL ESTADO DE ESE BOT�N A ACTIVO AL PULSARLO Y SE QUEDA ASI HASTA QUE SE SUELTA EL BOTON
 		if (event.type == SDL_JOYBUTTONDOWN)
 		{
-
 			m_buttonStates[0][event.jbutton.button] = true;
-			
 		}
 
 		if (event.type == SDL_JOYBUTTONUP)
@@ -270,124 +271,127 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		}
 
 
-
+		
 		if (inv == nullptr)
 			inv = Game::Instance()->getEntityWithComponent<Inventory>();
 
-		if (inv != nullptr) {
-			if (m_joystickValues[0].first->getX() == -1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
-				velocity.setX(-vel);
-				direction.setX(-1);
-			}
-			else if (m_joystickValues[0].first->getX() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
-				velocity.setX(vel);
-				direction.setX(1);
-			}
-			else {
-				velocity.setX(0);
-				direction.setX(0);
-			}
-			if (m_joystickValues[0].first->getY() == -1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
-				velocity.setY(-vel);
-				direction.setY(1);
-			}
-			else if (m_joystickValues[0].first->getY() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
-				velocity.setY(vel);
-				direction.setY(-1);
-			}
-			else if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressedSquare) {		//INTERACTUAR
-				SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
-				bool entityFound = false;
-				int i = 0;
-				list<Entity*>::const_iterator it = (Game::Instance()->stateMachine_.currentState()->getInteractibles()->begin());
-				while (it != (Game::Instance()->stateMachine_.currentState()->getInteractibles()->end()) && !entityFound) {
-					SDL_Rect intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
-					if (Collisions::RectRect(&playerRect, &intRect) && (*it)->isActive()) {
+		if (!o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive()) {
 
-						//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
+			if (inv != nullptr) {
+				if (m_joystickValues[0].first->getX() == -1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
+					velocity.setX(-vel);
+					direction.setX(-1);
+				}
+				else if (m_joystickValues[0].first->getX() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+					velocity.setX(vel);
+					direction.setX(1);
+				}
+				else {
+					velocity.setX(0);
+					direction.setX(0);
+				}
+				if (m_joystickValues[0].first->getY() == -1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+					velocity.setY(-vel);
+					direction.setY(1);
+				}
+				else if (m_joystickValues[0].first->getY() == 1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+					velocity.setY(vel);
+					direction.setY(-1);
+				}
+				else if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressedSquare) {		//INTERACTUAR
+					SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
+					bool entityFound = false;
+					int i = 0;
+					list<Entity*>::const_iterator it = (Game::Instance()->stateMachine_.currentState()->getInteractibles()->begin());
+					while (it != (Game::Instance()->stateMachine_.currentState()->getInteractibles()->end()) && !entityFound) {
+						SDL_Rect intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
+						if (Collisions::RectRect(&playerRect, &intRect) && (*it)->isActive()) {
 
-						if ((*it)->getName() == "MESA DE CRAFTEO" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
+							//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
 
-							inv->setActive(!inv->isActive());
-							craft->setActive(!craft->isActive());
-							crftOpen = !crftOpen;
-							if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
-							inv->getComponent<Inventory>()->setCraftMode(crftOpen);
-							//SOUND 
-							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+							if ((*it)->getName() == "MESA DE CRAFTEO" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
 
-							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
-							else interfaceActive = 0;
+								inv->setActive(!inv->isActive());
+								craft->setActive(!craft->isActive());
+								crftOpen = !crftOpen;
+								if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
+								inv->getComponent<Inventory>()->setCraftMode(crftOpen);
+								//SOUND 
+								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
 
-							inv->getComponent<Inventory>()->setRenderMark(true);
-							craft->getComponent<Craft>()->setRenderMark(false);
-							interactButtonPressedSquare = true;
-							entityFound = true;
-						}
-						else if ((*it)->getName() == "COFRE" && !cstOpen) {
+								if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+								else interfaceActive = 0;
 
-							inv->setActive(!inv->isActive());
-							cst->setActive(!cst->isActive());
-							chestPressed = true;
-							cstOpen = !cstOpen;
-							inv->getComponent<Inventory>()->setChestMode(cstOpen);
-							//SOUND 
-							Game::Instance()->getResourceManager()->getSound("Inventory")->play();
-
-							if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
-							else interfaceActive = 0;
-
-							inv->getComponent<Inventory>()->setRenderMark(true);
-							cst->getComponent<Chest>()->setRenderMark(false);
-
-							interactButtonPressedSquare = true;
-							entityFound = true;
-
-						}
-						else if(!cstOpen && !invOpen && !crftOpen){
-							if (messageRenderer == nullptr)
-								messageRenderer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageRenderer>();
-							if (messageTimer == nullptr)
-								messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
-
-							Interactible* inter = (*it)->getComponent<Interactible>();
-							inter->interact((*it));
-							std::string* intMsg = inter->getInteractMessage();
-							if (*intMsg != "") {
-								messageRenderer->display(*intMsg);
-								messageTimer->start(2);
+								inv->getComponent<Inventory>()->setRenderMark(true);
+								craft->getComponent<Craft>()->setRenderMark(false);
+								interactButtonPressedSquare = true;
+								entityFound = true;
 							}
-							interactButtonPressedSquare = true;
-							entityFound = true;
-						}
-						else {
-							++it;
-						}
-					}
-					else
-						++it;
-				}
-			}
-			else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && interactButtonPressedSquare) {
-				interactButtonPressedSquare = false;
-			}
+							else if ((*it)->getName() == "COFRE" && !cstOpen) {
 
-			else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !interactButtonPressedCircle && !o->getIsReading())	//Can only attack if you have an equiped weapon
-			{
-				if (inv->getComponent<Inventory>()->currentWeapon() != nullptr && !invOpen && !cstOpen && !crftOpen) {
-					if (!(o->getComponent<Character>()->getAttacking())) {
-						o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
-						o->getComponent<Character>()->setAttacking(true);
-						std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
+								inv->setActive(!inv->isActive());
+								cst->setActive(!cst->isActive());
+								chestPressed = true;
+								cstOpen = !cstOpen;
+								inv->getComponent<Inventory>()->setChestMode(cstOpen);
+								//SOUND 
+								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+
+								if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
+								else interfaceActive = 0;
+
+								inv->getComponent<Inventory>()->setRenderMark(true);
+								cst->getComponent<Chest>()->setRenderMark(false);
+
+								interactButtonPressedSquare = true;
+								entityFound = true;
+
+							}
+							else if (!cstOpen && !invOpen && !crftOpen) {
+								if (messageRenderer == nullptr)
+									messageRenderer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageRenderer>();
+								if (messageTimer == nullptr)
+									messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
+
+								Interactible* inter = (*it)->getComponent<Interactible>();
+								inter->interact((*it));
+								std::string* intMsg = inter->getInteractMessage();
+								if (*intMsg != "") {
+									messageRenderer->display(*intMsg);
+									messageTimer->start(2);
+								}
+								interactButtonPressedSquare = true;
+								entityFound = true;
+							}
+							else {
+								++it;
+							}
+						}
+						else
+							++it;
 					}
 				}
+				else if (((!controllerType && !m_buttonStates[0][Square]) || (controllerType && !m_buttonStates[0][X])) && interactButtonPressedSquare) {
+					interactButtonPressedSquare = false;
+				}
+
+				else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !interactButtonPressedCircle && !o->getIsReading())	//Can only attack if you have an equiped weapon
+				{
+					if (inv->getComponent<Inventory>()->currentWeapon() != nullptr && !invOpen && !cstOpen && !crftOpen) {
+						if (!(o->getComponent<Character>()->getAttacking())) {
+							o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
+							o->getComponent<Character>()->setAttacking(true);
+							std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
+						}
+					}
+				}
+				else {
+					velocity.setY(0);
+					direction.setY(0);
+				}
+				o->setVelocity(velocity);
+				o->setDirection(direction);
 			}
-			else {
-				velocity.setY(0);
-				direction.setY(0);
-			}
-			o->setVelocity(velocity);
-			o->setDirection(direction);
 		}
 		else {
 			o->setVelocity(Vector2D(0, 0));

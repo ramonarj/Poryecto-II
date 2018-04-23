@@ -220,6 +220,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new Register());
+		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Register1"), 400, true, true, 2));
 		e->addComponent(new MessageTrigger("'E' para leer el registro", "'Square/X' para leer el registro"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;

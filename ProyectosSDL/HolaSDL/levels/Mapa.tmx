@@ -1762,18 +1762,18 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="40"/>
+    <property name="textureHeight" type="int" value="46"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="50"/>
+    <property name="textureWidth" type="int" value="42"/>
    </properties>
   </object>
   <object id="159" name="Player" type="Player" x="1349.93" y="1564.33" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
-    <property name="textureHeight" type="int" value="32"/>
+    <property name="textureHeight" type="int" value="29"/>
     <property name="textureID" value="Player"/>
-    <property name="textureWidth" type="int" value="32"/>
+    <property name="textureWidth" type="int" value="30"/>
    </properties>
   </object>
   <object id="367" name="Enemy" type="Enemy" x="1566.5" y="1749.33" width="19" height="27.3333">
@@ -1781,9 +1781,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="25"/>
+    <property name="textureHeight" type="int" value="41"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="35"/>
+    <property name="textureWidth" type="int" value="59"/>
    </properties>
   </object>
   <object id="370" name="Enemy" type="Enemy" x="700.136" y="8078.88" width="19" height="27.3333">

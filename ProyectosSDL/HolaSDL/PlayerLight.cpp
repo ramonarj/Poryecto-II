@@ -47,13 +47,19 @@ void PlayerLight::render(Entity* o, Uint32 time) {
 
 	lastDirection = currentDirection;
 
+	//SDL_Rect destRect RECT(
+	//	o->getPosition().getX(),
+	//	o->getPosition().getY(),
+	//	Game::Instance()->getWindowWidth(),
+	//	Game::Instance()->getWindowHeight());
+
 	SDL_Rect destRect RECT(
 		o->getPosition().getX(),
-		o->getPosition().getY(),
+		o->getPosition().getY() - ((Game::Instance()->getWindowWidth() - Game::Instance()->getWindowHeight())/2),
 		Game::Instance()->getWindowWidth(),
-		Game::Instance()->getWindowHeight());
+		Game::Instance()->getWindowWidth());
 
-	currentAgl_ = lerp(currentAgl_, destAgl_, 0.2); //transición al nuevo destino de forma suave
+	currentAgl_ = lerp(currentAgl_, destAgl_, 0.3); //transición al nuevo destino de forma suave
 
 	shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
 }

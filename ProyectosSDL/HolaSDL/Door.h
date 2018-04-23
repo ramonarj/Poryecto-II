@@ -8,7 +8,7 @@
 class Door : public Interactible
 {
 public:
-	Door();
+	Door(Entity* thisDoor);
 	~Door();
 
 	virtual void interact(Entity* e);
@@ -33,6 +33,7 @@ private:
 	ItemContainer* compContainer;
 	Inventory* compInvent;
 	Entity* itemKey;
+	Entity* thisDoor_;
 
 	int doorNum_;
 	string ori_;

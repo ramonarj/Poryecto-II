@@ -5,8 +5,7 @@
 #include "Craft.h"
 
 
-ControllerInputComponent::ControllerInputComponent()
-{
+ControllerInputComponent::ControllerInputComponent() : messageRenderer(nullptr), messageTimer(nullptr) {
 	//When you create this component and assign it, it tries to initialise de controller
 	initialiseJoysticks();
 }
@@ -346,7 +345,18 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 						}
 						else if(!cstOpen && !invOpen && !crftOpen){
-							(*it)->getComponent<Interactible>()->interact((*it));
+							if (messageRenderer == nullptr)
+								messageRenderer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageRenderer>();
+							if (messageTimer == nullptr)
+								messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
+
+							Interactible* inter = (*it)->getComponent<Interactible>();
+							inter->interact((*it));
+							std::string* intMsg = inter->getInteractMessage();
+							if (*intMsg != "") {
+								messageRenderer->display(*intMsg);
+								messageTimer->start(2);
+							}
 							interactButtonPressedSquare = true;
 							entityFound = true;
 						}

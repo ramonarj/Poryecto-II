@@ -171,9 +171,9 @@ public:
 	Entity * createEntity() const
 	{
 		Entity* e = new Entity();
-		e->addComponent(new Door());
-		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		e->addComponent(new MessageTrigger("'E' para abrir", "'Square/X' para abrir"));
+		e->addComponent(new Door(e));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

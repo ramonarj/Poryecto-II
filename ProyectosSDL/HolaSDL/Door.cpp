@@ -1,9 +1,11 @@
 #include "Door.h"
 #include "Game.h"
 #include "PlayState.h"
+#include "MessageTrigger.h"
 
-Door::Door() : player(nullptr), inventory(nullptr), compContainer(nullptr),
-	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), collidableDoor_(false)
+Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
+	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), 
+	collidableDoor_(false), thisDoor_(thisDoor)
 {
 }
 
@@ -70,6 +72,8 @@ void Door::load(int numero, string ori, int numKey, int needKey, int collidableD
 	ori_ = ori;
 	numKey_ = numKey;
 	needKey_ = needKey;
+	if (needKey_)
+		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas una llave");
 	collidableDoor_ = { collidableDoor == 0 ? false : true };
 }
 
@@ -99,8 +103,10 @@ void Door::setNeedKey()
 		int i = 0;
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
-			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_)
+			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
+				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				openDoor();
+			}
 			else
 				i++;
 		}

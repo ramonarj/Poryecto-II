@@ -288,3 +288,13 @@ ProyectosSDL/bin/HolaSDLDebug\.exe
 ProyectosSDL/bin/HolaSDLDebug\.exp
 
 ProyectosSDL/bin/HolaSDLDebug\.lib
+
+ProyectosSDL/bin/HolaSDLRelease\.exe
+
+ProyectosSDL/bin/HolaSDLRelease\.exp
+
+ProyectosSDL/bin/HolaSDLRelease\.iobj
+
+ProyectosSDL/bin/HolaSDLRelease\.ipdb
+
+ProyectosSDL/bin/HolaSDLRelease\.lib

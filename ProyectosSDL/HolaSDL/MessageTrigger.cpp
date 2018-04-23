@@ -41,3 +41,13 @@ void MessageTrigger::update(Entity * e, Uint32 time) {
 		last = false;
 	}
 }
+
+void MessageTrigger::setMessage(std::string message) {
+	KBmessage_ = message;
+	CNTmessage_ = message;
+}
+
+void MessageTrigger::setMessage(std::string KBmessage, std::string CNTmessage) {
+	KBmessage_ = KBmessage;
+	CNTmessage_ = CNTmessage;
+}

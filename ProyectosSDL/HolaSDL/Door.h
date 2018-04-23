@@ -43,5 +43,6 @@ private:
 	int numKey_;
 	bool needKey_;
 	bool collidableDoor_;
+	bool messageChanged_;
 };
 

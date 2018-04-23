@@ -5,7 +5,7 @@
 
 Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
 	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), 
-	collidableDoor_(false), thisDoor_(thisDoor) {
+	collidableDoor_(false), messageChanged_(false), thisDoor_(thisDoor) {
 }
 
 
@@ -144,7 +144,7 @@ void Door::update(Entity * e, Uint32 time) {
 	if (compInvent == nullptr)
 		compInvent = inventory->getComponent<Inventory>();
 
-	if (needKey_) {
+	if (needKey_ && !messageChanged_) {
 		SDL_Rect playerRect = { int(player->getPosition().getX()), int(player->getPosition().getY()), int(player->getWidth()), int(player->getHeight()) };
 		SDL_Rect thisRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 
@@ -157,6 +157,7 @@ void Door::update(Entity * e, Uint32 time) {
 					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
 						openMessage();
 						found = true;
+						messageChanged_ = true;
 					}
 					else
 						i++;

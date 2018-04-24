@@ -163,7 +163,7 @@ void Door::update(Entity * e, Uint32 time) {
 		}
 	}
 	else if (!messageChanged_) {
-		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
+		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", false);
 		messageChanged_ = true;
 	}
 }

@@ -101,7 +101,7 @@ void Door::setNeedKey()
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
 			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
-				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
+				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				openDoor();
 			}
 			else
@@ -152,7 +152,7 @@ void Door::update(Entity * e, Uint32 time) {
 				while (i < compInvent->getKeys().size() && !found)
 				{
 					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
-						thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para usar la llave", "'Square/X' para usar la llave", true);
+						thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para usar la llave", "'Square/X' para usar la llave");
 						messageChanged_ = true;
 						found = true;
 					}
@@ -163,7 +163,7 @@ void Door::update(Entity * e, Uint32 time) {
 		}
 	}
 	else if (!messageChanged_) {
-		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
+		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 		messageChanged_ = true;
 	}
 }

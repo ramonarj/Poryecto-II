@@ -10,7 +10,7 @@ public:
 	~MessageTrigger();
 	virtual void update(Entity* e, Uint32 time);
 	void setMessage(std::string message, bool displayNow = false);
-	void setMessage(std::string KBmessage, std::string CNTmessage, bool displayNow = false);
+	void setMessage(std::string KBmessage, std::string CNTmessage, bool displayNow = true);
 
 private:
 	std::string KBmessage_;

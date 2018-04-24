@@ -101,6 +101,7 @@ void Door::setNeedKey()
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
 			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
+				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
 				openDoor();
 			}
 			else
@@ -132,10 +133,6 @@ bool Door::isCollidable()
 	return collidableDoor_;
 }
 
-void Door::openMessage() {
-	thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
-}
-
 void Door::update(Entity * e, Uint32 time) {
 	if (player == nullptr)
 		player = PlayState::Instance()->getPlayer();
@@ -155,14 +152,18 @@ void Door::update(Entity * e, Uint32 time) {
 				while (i < compInvent->getKeys().size() && !found)
 				{
 					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
-						openMessage();
-						found = true;
+						thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para usar la llave", "'Square/X' para usar la llave", true);
 						messageChanged_ = true;
+						found = true;
 					}
 					else
 						i++;
 				}
 			}
 		}
+	}
+	else if (!messageChanged_) {
+		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", true);
+		messageChanged_ = true;
 	}
 }

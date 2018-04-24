@@ -25,7 +25,6 @@ public:
 	void openDoor();
 	void keyFalse();
 	bool isCollidable();
-	void openMessage();
 
 	virtual void update(Entity* e, Uint32 time);
 

@@ -118,7 +118,7 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 				diying_->getHeight() / directions_);
 
 
-		if (time > actualTime_ + cooldown_) {
+		if (time > actualTime_ + cooldown_*3/2) {
 			if (actualFrameDiying_ < diyingFrames_ - 1)
 				actualFrameDiying_++;
 			actualTime_ = time;
@@ -165,7 +165,7 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 					diying_->getHeight() / directions_);
 
 
-			if (time > actualTime_ + cooldown_) {
+			if (time > actualTime_ + cooldown_* 3/2) {
 				if (actualFrameResurrecting_ < resurrectingFrames_-1)
 					actualFrameResurrecting_++;
 				else {

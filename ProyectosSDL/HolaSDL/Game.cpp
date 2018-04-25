@@ -2,6 +2,7 @@
 #include "EntityCreator.h"
 #include "SlidingPuzzle.h"
 
+
 unique_ptr<Game> Game:: s_pInstance = nullptr;
 
 Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {

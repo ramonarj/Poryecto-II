@@ -85,8 +85,8 @@ public:
 			i = new Weapon(type, itemTypetoString(type), "Has recogido un hacha");
 			break;
 		case FIRSTAID:
-			i = new Movable();	//	DEBUG
-			//i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			//i = new Movable();	//	DEBUG
+			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type), "Has recogido cinta aislante");

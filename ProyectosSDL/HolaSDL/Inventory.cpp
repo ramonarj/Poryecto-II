@@ -246,7 +246,7 @@ void Inventory::saveToFile(Entity* o)
 	if (file.is_open())
 	{
 		for (Entity* e : inventory)
-			file << e;
+			
 	}
 	file.close();*/
 }
@@ -259,6 +259,7 @@ void Inventory::loadToFile(Entity* o)
 	//Vemos si existe el archivo
 	if (file.is_open())
 	{
+		file << o->get
 	}
 
 	file.close();*/

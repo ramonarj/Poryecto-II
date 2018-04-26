@@ -207,7 +207,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)SDL2_ttf-2.0.14\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\alber\Desktop\Uni\proyecto\FireExit\ProyectosSDL\OpenAL 1.1 SDK\libs\Win32;C:\Users\alber\Desktop\Uni\proyecto\FireExit\ProyectosSDL\OpenAL 1.1 SDK\libs\Win32\EFX-Util_MT;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\OpenAL 1.1 SDK\libs\Win32;..\OpenAL 1.1 SDK\libs\Win32\EFX-Util_MT;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

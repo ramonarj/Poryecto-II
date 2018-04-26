@@ -11,6 +11,8 @@ public:
 	void attack(); // Resta 1 al numero de golpes que tiene el arma
 	void repare(int a);
 	int getTypeStr() { return (type_); };
+	int getNumHits() { return numHits_; };
+	void setNumHits(int num) { numHits_ = num; };
 private:
 	int damage_;
 	int numHits_;

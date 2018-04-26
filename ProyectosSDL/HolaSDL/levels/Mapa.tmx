@@ -197,19 +197,19 @@
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
-  <object id="354" name="MAPA" type="SRMap" x="1926" y="5380" width="40" height="40">
+  <object id="354" name="SRMap" type="SRMap" x="1926" y="5380" width="40" height="40">
    <properties>
     <property name="dir" value="oeste"/>
     <property name="numMap" type="int" value="1"/>
    </properties>
   </object>
-  <object id="355" name="MAPA" type="SRMap" x="7634" y="9060" width="40" height="40">
+  <object id="355" name="SRMap" type="SRMap" x="7634" y="9060" width="40" height="40">
    <properties>
     <property name="dir" value="este"/>
     <property name="numMap" type="int" value="2"/>
    </properties>
   </object>
-  <object id="356" name="MAPA" type="SRMap" x="11300" y="1746" width="40" height="40">
+  <object id="356" name="SRMap" type="SRMap" x="11300" y="1746" width="40" height="40">
    <properties>
     <property name="dir" value="norte"/>
     <property name="numMap" type="int" value="3"/>
@@ -220,12 +220,12 @@
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
-  <object id="349" name="REGISTRO" type="Register" x="1440" y="1500" width="20" height="20">
+  <object id="349" name="Register" type="Register" x="1440" y="1500" width="20" height="20">
    <properties>
     <property name="registerFile" type="int" value="1"/>
    </properties>
   </object>
-  <object id="351" name="REGISTRO" type="Register" x="1520" y="1740" width="20" height="20">
+  <object id="351" name="Register" type="Register" x="1520" y="1740" width="20" height="20">
    <properties>
     <property name="registerFile" type="int" value="2"/>
    </properties>
@@ -235,19 +235,19 @@
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
-  <object id="358" name="COFRE" type="Chest" x="7574" y="9000" width="32" height="32">
+  <object id="358" name="Chest" type="Chest" x="7574" y="9000" width="32" height="32">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
-  <object id="359" name="COFRE" type="Chest" x="11253.9" y="1760" width="32" height="32">
+  <object id="359" name="Chest" type="Chest" x="11253.9" y="1760" width="32" height="32">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
-  <object id="365" name="COFRE" type="Chest" x="2014" y="5360" width="32" height="32">
+  <object id="365" name="Chest" type="Chest" x="2014" y="5360" width="32" height="32">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
@@ -258,19 +258,19 @@
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
-  <object id="360" name="MESA DE CRAFTEO" type="CraftingTable" x="11328" y="1814" width="32" height="32">
+  <object id="360" name="CraftingTable" type="CraftingTable" x="11328" y="1814" width="32" height="32">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
-  <object id="362" name="MESA DE CRAFTEO" type="CraftingTable" x="7520" y="9034" width="32" height="32">
+  <object id="362" name="CraftingTable" type="CraftingTable" x="7520" y="9034" width="32" height="32">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
    </properties>
   </object>
-  <object id="364" name="MESA DE CRAFTEO" type="CraftingTable" x="2034" y="5440" width="32" height="40">
+  <object id="364" name="CraftingTable" type="CraftingTable" x="2034" y="5440" width="32" height="40">
    <properties>
     <property name="textureHeight" type="int" value="32"/>
     <property name="textureWidth" type="int" value="32"/>
@@ -1164,7 +1164,7 @@
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="373" name="LLAVE" type="Key" x="1414" y="1577.33" width="20" height="27.3333">
+  <object id="373" name="Key" type="Key" x="1414" y="1577.33" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="1"/>
     <property name="textureHeight" type="int" value="20"/>
@@ -1699,7 +1699,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="35" name="LLAVE" type="Key" x="742.34" y="8108.71" width="20" height="27.3333">
+  <object id="35" name="Key" type="Key" x="742.34" y="8108.71" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="1"/>
     <property name="textureHeight" type="int" value="20"/>
@@ -1707,28 +1707,28 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="37" name="PALANCA" type="Crowbar" x="1141.66" y="1562.79" width="24" height="34">
+  <object id="37" name="Crowbar" type="Crowbar" x="1141.66" y="1562.79" width="24" height="34">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="38" name="HACHA" type="Axe" x="1742" y="1746" width="23" height="27">
+  <object id="38" name="Axe" type="Axe" x="1742" y="1746" width="23" height="27">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="39" name="BOTIQUIN" type="Firstaid" x="1419.33" y="1682.33" width="20.3333" height="27.6667">
+  <object id="39" name="Firstaid" type="Firstaid" x="1419.33" y="1682.33" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="368" name="LLAVE" type="Key" x="10009" y="5907.34" width="20" height="27.3333">
+  <object id="368" name="Key" type="Key" x="10009" y="5907.34" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="2"/>
     <property name="textureHeight" type="int" value="20"/>
@@ -1736,7 +1736,7 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="371" name="LLAVE" type="Key" x="1629" y="10372" width="20" height="27.3333">
+  <object id="371" name="Key" type="Key" x="1629" y="10372" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="3"/>
     <property name="textureHeight" type="int" value="20"/>
@@ -1744,7 +1744,7 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="372" name="LLAVE" type="Key" x="8519.25" y="9333.08" width="20" height="27.3333">
+  <object id="372" name="Key" type="Key" x="8519.25" y="9333.08" width="20" height="27.3333">
    <properties>
     <property name="numKey" type="int" value="4"/>
     <property name="textureHeight" type="int" value="20"/>

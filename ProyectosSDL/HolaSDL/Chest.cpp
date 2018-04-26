@@ -137,6 +137,31 @@ void Chest::render(Entity * e, Uint32 time)
 
 }
 
+void Chest::saveToFile(Entity* o)
+{
+	ofstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Inventory/chest.pac");
+	if (file.is_open())
+	{
+		ItemContainer::saveToFile(file);
+	}
+	file.close();
+}
+
+void Chest::loadToFile(Entity* o)
+{
+	ifstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Inventory/chest.pac");
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+		ItemContainer::loadToFile(file);
+	}
+
+	file.close();
+}
+
 bool Chest::fullChest()
 {
 	return inventory.size() >= ChestTam;

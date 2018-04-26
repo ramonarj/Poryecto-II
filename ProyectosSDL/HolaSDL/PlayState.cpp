@@ -56,7 +56,7 @@ void PlayState::startState()
 	cursor_->setActive(false);
 
 	//Item
-	Entity* palo = new Entity(10, 20);
+	/*Entity* palo = new Entity(10, 20);
 	palo->addComponent(new Weapon(ItemType::STICK, "Stick"));
 	stage_.push_back(palo);
 	palo->getComponent<Weapon>()->attack();
@@ -71,7 +71,7 @@ void PlayState::startState()
 	Entity* insulationTape = new Entity(15, 25);
 	insulationTape->addComponent(new InsulationTape("InsulationTape"));
 	stage_.push_back(insulationTape);
-	insulationTape->getComponent<InsulationTape>()->use(palo);
+	insulationTape->getComponent<InsulationTape>()->use(palo);*/
 
 	//Iluminacion -------------------------------------------------------------
 	//Entity* playerLight = new Entity(0, 0);
@@ -112,9 +112,9 @@ void PlayState::startState()
 	inventory->setActive(false);
 	stage_.push_back(inventory);
 
-	invtComp->addItem(insulationTape);
+	/*invtComp->addItem(insulationTape);
 	invtComp->addItem(palo2);
-	invtComp->addItem(palo);
+	invtComp->addItem(palo);*/
 
 	//Registro (nota de texto) de prueba ---------------------------------------------
 	/*Entity* textTest = new Entity(20, 20);

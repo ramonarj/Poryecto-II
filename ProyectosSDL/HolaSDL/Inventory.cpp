@@ -241,28 +241,33 @@ void Inventory::render(Entity* e, Uint32 time)
 
 void Inventory::saveToFile(Entity* o)
 {
-	/*ofstream file;
+	ofstream file;
 	file.open(FOLDER + SAVE_FOLDER + "Inventory/inventory.pac");
 	if (file.is_open())
 	{
-		for (Entity* e : inventory)
+		if (equiped != nullptr)
+		{
+			file << equiped->getName() << endl;
+			//file << equiped->getComponent<Weapon>()->getNumHits() << endl;
+		}
+		ItemContainer::saveToFile(file);
 			
 	}
-	file.close();*/
+	file.close();
 }
 
 void Inventory::loadToFile(Entity* o)
 {
-	/*ifstream file;
+	ifstream file;
 	file.open(FOLDER + SAVE_FOLDER + "Inventory/inventory.pac");
 
 	//Vemos si existe el archivo
 	if (file.is_open())
 	{
-		file << o->get
+		ItemContainer::loadToFile(file);
 	}
 
-	file.close();*/
+	file.close();
 }
 
 

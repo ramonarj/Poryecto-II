@@ -74,7 +74,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 						SDL_Rect intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
 						if (Collisions::RectRect(&playerRect, &intRect) && (*it)->isActive()) {
 
-							if ((*it)->getName() == "MESA DE CRAFTEO") {	//Si lo que interactuamos tiene componente de crafteo
+							if ((*it)->getName() == "CraftingTable") {	//Si lo que interactuamos tiene componente de crafteo
 
 								inv->setActive(!inv->isActive());
 								craft->setActive(!craft->isActive());
@@ -90,7 +90,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 								entityFound = true;
 							}
-							else if ((*it)->getName() == "COFRE") {
+							else if ((*it)->getName() == "Chest") {
 
 								inv->setActive(!inv->isActive());
 								cst->setActive(!cst->isActive());

@@ -53,21 +53,15 @@ void Entity::render(Uint32 time) {
 
 void Entity::saveToFile()
 {
-	if (isActive()) {
-		for (Component* c : comps_) {
-			if (c->isEnabled())
-				c->saveToFile(this);
-		}
+	for (Component* c : comps_) {
+		c->saveToFile(this);
 	}
 }
 
 void Entity::loadToFile()
 {
-	if (isActive()) {
-		for (Component* c : comps_) {
-			if (c->isEnabled())
-				c->loadToFile(this);
-		}
+	for (Component* c : comps_) {
+		c->loadToFile(this);
 	}
 }
 

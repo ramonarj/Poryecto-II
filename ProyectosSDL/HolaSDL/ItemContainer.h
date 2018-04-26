@@ -49,6 +49,9 @@ public:
 	int inventorySize() { return inventory.size(); };
 	vector<Entity*> getInventory() { return inventory; };
 
+	virtual void saveToFile(ofstream& file);
+	virtual void loadToFile(ifstream& file);
+
 protected:
 	int slotWidth = 50;
 	SDL_Renderer* pRenderer = nullptr;

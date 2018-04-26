@@ -27,6 +27,35 @@ void ItemContainer::ClearInventory()
 	}
 }
 
+void ItemContainer::saveToFile(ofstream& file)
+{
+	for (Entity* e : inventory) {
+		file << e->getName() << endl;
+		/*if (e->getComponent<Weapon>() != nullptr)
+		file << e->getComponent<Weapon>()->getNumHits() << endl;*/
+		if (e->getComponent<Key>() != nullptr)
+			file << e->getComponent<Key>()->getDoorId() << endl;
+	}
+}
+
+void ItemContainer::loadToFile(ifstream& file)
+{
+	Entity* pEntity;
+	string name;
+	int numKey;
+	file >> name;
+	while (!file.fail()) {
+		pEntity = GameObjectFactory::Instance()->create(name);
+		addItem(pEntity);
+		if (pEntity->getComponent<Key>() != nullptr)
+		{
+			file >> numKey;
+			pEntity->getComponent<Key>()->load(numKey);
+		}
+		file >> name;
+	}
+}
+
 //CHECK IF INVENTORY IS EMPTY
 bool ItemContainer::empty()
 {

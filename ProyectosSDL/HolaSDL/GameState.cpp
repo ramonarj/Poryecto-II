@@ -71,8 +71,7 @@ void GameState::removeEntities() {
 	removedEntities_.clear();
 	
 	for (Entity* e : removedInteractibles_) {
-		removeInteractible(e);
-		removeStage(e);
+		e->setActive(false);
 	}
 }
 

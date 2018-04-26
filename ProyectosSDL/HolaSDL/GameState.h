@@ -50,9 +50,9 @@ public:
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };
 	Entity* getCursor() { return cursor_; };
-	void removeEntities();
-	void removeEntity(Entity* e);
-	void removeInteractibleOfStage(Entity* e);
+	void removeEntities();	// sacar las entidades que se quieren eliminar de cada vector y hacer delete de ellas (se llama al final de cada tick)
+	void removeEntity(Entity* e);	// método que se llama cuando quieres eliminar una entidad
+	void removeInteractibleOfStage(Entity* e);	//método que se llama cuando quieres eliminar un item del escenario para meterlo en el inventario
 };
 
 

@@ -32,6 +32,18 @@ void GameState::handleInput(Uint32 time, SDL_Event& event) { //Llamar a los inpu
 	cursor_->handleInput(time,event);
 }
 
+void GameState::saveToFile()
+{
+	for (Entity* e : stage_)
+		e->saveToFile();
+}
+
+void GameState::loadToFile()
+{
+	for (Entity* e : stage_)
+		e->loadToFile();
+}
+
 void GameState::removeEntity(Entity* e) {
 	removedEntities_.push_back(e);
 }

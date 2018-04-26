@@ -239,6 +239,31 @@ void Inventory::render(Entity* e, Uint32 time)
 	description_.getComponent<TextNote>()->render(nullptr, time);
 }
 
+void Inventory::saveToFile(Entity* o)
+{
+	/*ofstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Inventory/inventory.pac");
+	if (file.is_open())
+	{
+		for (Entity* e : inventory)
+			file << e;
+	}
+	file.close();*/
+}
+
+void Inventory::loadToFile(Entity* o)
+{
+	/*ifstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Inventory/inventory.pac");
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+	}
+
+	file.close();*/
+}
+
 
 bool Inventory::addItem(Entity * item)
 {

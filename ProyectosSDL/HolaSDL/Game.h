@@ -31,6 +31,8 @@
 const string FOLDER = "../HolaSDL/";
 //const string FOLDER = "";
 
+const string SAVE_FOLDER = "/saveGame/";
+
 class Game : public SDLGame {
 
 public:

@@ -33,8 +33,6 @@ public:
 	virtual void handleInput(Uint32 time, const SDL_Event& event) = 0;
 	virtual void update(Uint32 time) = 0;
 	virtual void render(Uint32 time) = 0;
-	virtual void saveGame() = 0;
-	virtual void loadGame() = 0;
 
 protected:
 	SDLGame* game_; // pointer to the game

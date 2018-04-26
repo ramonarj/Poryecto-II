@@ -26,6 +26,9 @@ private:
 
 	Entity* messageRenderer;
 
+	bool saveGame = false;
+	bool loadGame = false;
+
 public:
 	Entity* inventory;
 	Entity* chest;
@@ -42,6 +45,8 @@ public:
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);
+	virtual void saveToFile();
+	virtual void loadToFile();
 
 	//Devuelve al jugador
 	Entity* getPlayer() { return player; };
@@ -49,6 +54,12 @@ public:
 	Entity* getMessageRenderer() { return messageRenderer; };
 	int getMapWidth() { return mapWidth; };
 	int getMapHeight() { return mapHeight; };
+
+	bool getSaveGame() { return saveGame; };
+	void setSaveGame(bool b) { saveGame = b; };
+
+	bool getLoadGame() { return loadGame; };
+	void setLoadGame(bool b) { loadGame = b; };
 };
 
 typedef PlayState PlayState;

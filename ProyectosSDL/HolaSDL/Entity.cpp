@@ -51,6 +51,49 @@ void Entity::render(Uint32 time) {
 	}
 }
 
+void Entity::saveToFile()
+{
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->saveToFile(this);
+		}
+	}
+}
+
+void Entity::loadToFile()
+{
+	if (isActive()) {
+		for (Component* c : comps_) {
+			if (c->isEnabled())
+				c->loadToFile(this);
+		}
+	}
+}
+
+void Entity::saveEntity(Entity* o, ofstream & file)
+{
+	file << o->isActive() << endl;
+	file << o->getPosition().getX() << " " << o->getPosition().getY() << endl;
+}
+
+void Entity::loadEntity(Entity * o, ifstream & file)
+{
+	bool active;
+	string s;
+
+	file >> active;
+	o->setActive(active);
+	//Pasamos de línea
+	getline(file, s);
+
+	Vector2D v;
+	double n;
+	file >> n; v.setX(n); file >> n; v.setY(n); o->setPosition(v);
+	//Pasamos de línea
+	getline(file, s);
+}
+
 void Entity::load(int x, int y, int width, int height, int staticEntity, string name)
 {
 	position_.set(Vector2D(x, y));

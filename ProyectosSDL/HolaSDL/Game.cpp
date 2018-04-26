@@ -52,6 +52,8 @@ void Game::start() {
 		Uint32 startTime = SDL_GetTicks();
 
 		handleInput(startTime);
+		stateMachine_.currentState()->saveToFile();
+		stateMachine_.currentState()->loadToFile();
 		stateMachine_.currentState()->update(startTime);
 		stateMachine_.currentState()->render(startTime);
 		stateMachine_.currentState()->removeEntities();

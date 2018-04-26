@@ -46,6 +46,8 @@ private:
 	int m_height;
 
 	int zoom;
+
+	int numEnemyFile = 0;
 };
 
 

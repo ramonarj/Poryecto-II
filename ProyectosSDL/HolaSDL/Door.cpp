@@ -167,3 +167,29 @@ void Door::update(Entity * e, Uint32 time) {
 		messageChanged_ = true;
 	}
 }
+
+void Door::saveToFile(Entity* o)
+{
+	ofstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
+	if (file.is_open())
+	{
+		file << needKey_;
+	}
+	file.close();
+}
+
+void Door::loadToFile(Entity* o)
+{
+	ifstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+		file >> needKey_;
+	}
+
+	file.close();
+}
+

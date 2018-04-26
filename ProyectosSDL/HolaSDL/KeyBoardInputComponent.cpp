@@ -10,9 +10,10 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 }
 
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
-												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController) :
+												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, 
+												SDL_Scancode SwitchController, SDL_Scancode saveGame, SDL_Scancode loadGame) :
 	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo), switchController_(SwitchController),
-	pause_(pause), enter_(enter), inventoryPressed(false), chestPressed(false), messageRenderer(nullptr), messageTimer(nullptr) {
+	pause_(pause), enter_(enter), saveGame_(saveGame), loadGame_(loadGame), inventoryPressed(false), chestPressed(false), messageRenderer(nullptr), messageTimer(nullptr) {
 }
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
@@ -34,6 +35,14 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 
 		if (inv != nullptr) {
+			if (state[saveGame_])
+			{
+				PlayState::Instance()->setSaveGame(true);
+			}
+			else if (state[loadGame_])
+			{
+				PlayState::Instance()->setLoadGame(true);
+			}
 			if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 				velocity.setX(-vel);
 				direction.setX(-1);

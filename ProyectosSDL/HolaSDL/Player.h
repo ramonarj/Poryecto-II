@@ -10,6 +10,8 @@ public:
 
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* o, Uint32 time);
+	virtual void saveToFile(Entity* o);
+	virtual void loadToFile(Entity* o);
 
 	int getLife() { return life; };
 	void cure();
@@ -29,5 +31,7 @@ private:
 	bool awakening_ = true;
 	double cureIndex_ = 0.6;
 	int WeaponId;
+
+	string filename;
 };
 

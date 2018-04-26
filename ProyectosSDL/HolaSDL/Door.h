@@ -27,6 +27,8 @@ public:
 	bool isCollidable();
 
 	virtual void update(Entity* e, Uint32 time);
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
 
 private:
 	list<Entity*> doors;

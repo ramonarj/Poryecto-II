@@ -25,6 +25,15 @@ void Character::update(Entity* o, Uint32 time)
 	}
 }
 
+void Character::saveToFile()
+{
+	
+}
+
+void Character::loadToFile(ifstream& file)
+{
+}
+
 void Character::takeDamage(int i)
 {
 	//Si está vivo solamente

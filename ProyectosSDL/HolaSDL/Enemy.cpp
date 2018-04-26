@@ -60,8 +60,9 @@ void Enemy::move(Entity* o)
 	double aux = 0;
 	double dif = 3;
 
-	if (numEnemy_ == 1) aux = -30;
-	else if (numEnemy_ == 2) aux = 20;
+	if (numEnemy_ == 1) aux = -o->getHeight() / 3;
+	else if (numEnemy_ == 2) aux = -o->getHeight() / 4;
+	else if (numEnemy_ == 3) aux = o->getHeight() / 3;
 
 	if (!o->getComponent<Character>()->getKnockBack())
 	{
@@ -74,9 +75,6 @@ void Enemy::move(Entity* o)
 			vel.setX(0);
 
 		//Movimiento en Y
-
-		if (numEnemy_ == 1) aux = -30;
-		else if (numEnemy_ == 2) aux = 20;
 
 		if (pos.getY() - aux < playerPos.getY() - dif)
 		{
@@ -154,7 +152,7 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
  			chaseVector_ = chaseVector;
 			setAttacking(true);
 
-			//Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
+			Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
 
 			reloading = true;
 		}
@@ -217,9 +215,35 @@ void Enemy::update(Entity * o, Uint32 time)
 	bringMeToLife(time);
 }
 
-void Enemy::load(int numEnemy)
+void Enemy::saveToFile(Entity* o)
+{
+	ofstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
+	if (file.is_open())
+	{
+		o->saveEntity(o, file);
+	}
+	file.close();
+}
+
+void Enemy::loadToFile(Entity* o)
+{
+	ifstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+		o->loadEntity(o, file);
+	}
+
+	file.close();
+}
+
+void Enemy::load(int numEnemy, int numEnemyFile)
 {	
 	numEnemy_ = numEnemy;
+	numFile_ = numEnemyFile;
 	Vector2D vel;
 	if (numEnemy == 1)
 		vel.set(Vector2D(1.0, 0.0));

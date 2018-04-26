@@ -142,3 +142,22 @@ void PlayState::handleInput(Uint32 time, SDL_Event & event)
 	pLevel->handleInput(time, event);
 	GameState::handleInput(time, event);
 }
+
+void PlayState::saveToFile()
+{
+	if (saveGame)
+	{
+		GameState::saveToFile();
+		saveGame = false;
+	}
+
+}
+
+void PlayState::loadToFile()
+{
+	if (loadGame)
+	{
+		GameState::loadToFile();
+		loadGame = false;
+	}
+}

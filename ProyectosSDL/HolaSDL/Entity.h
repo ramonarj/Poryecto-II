@@ -22,6 +22,11 @@ public:
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
+	virtual void saveToFile();
+	virtual void loadToFile();
+
+	void saveEntity(Entity* o, ofstream& file);
+	void loadEntity(Entity* o, ifstream& file);
 
 	void load(int x, int y, int width, int height, int staticEntity, string name);
 

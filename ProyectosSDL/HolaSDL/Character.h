@@ -22,6 +22,8 @@ public:
 	void lif() { cout << life << endl; };
 
 	virtual void update(Entity* o, Uint32 time);
+	virtual void saveToFile();
+	virtual void loadToFile(ifstream& file);
 	virtual ~Character();
 
 protected:

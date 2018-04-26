@@ -27,13 +27,17 @@ public:
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 tiDSme);
+	virtual void saveToFile(Entity* o);
+	virtual void loadToFile(Entity* o);
 
-	void load(int numEnemy);
+	void load(int numEnemy, int numEnemyFile);
 
 	virtual ~Enemy();
 private:
 	Entity* player;
 	Entity* myself = nullptr;
+
+	int numFile_;
 
 	Vector2D chaseVector_;
 

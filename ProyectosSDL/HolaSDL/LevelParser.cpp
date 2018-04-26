@@ -332,8 +332,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 
-			//if (e->Attribute("type") != std::string("Enemy"))
-				pushEntity(e, pEntity);
+			pushEntity(e, pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);
@@ -343,7 +342,7 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 {
 	pEntity->getComponent<Character>()->load(life, damage);
 	if (e->Attribute("type") == std::string("Enemy")) {
-		pEntity->getComponent<Enemy>()->load(numEnemy);
+		pEntity->getComponent<Enemy>()->load(numEnemy, numEnemyFile);
 		if (numEnemy == 1)
 			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo1_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Diying"),nullptr, 150, 2, 8, 7, 6, 0));
 		else if (numEnemy == 2)
@@ -351,18 +350,7 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 		else if (numEnemy == 3){
 			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo3_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Diying"), nullptr, 120, 2, 7, 7, 4, 0));
 		}
-		/*bool playerFound = false;
-		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
-		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !playerFound) {
-			if ((*it)->getComponent<Player>() != nullptr)
-				playerFound = true;
-			else
-				it++;
-		}
-		if (playerFound)
-			Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
-		else
-			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);*/
+		numEnemyFile++;
 	}
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 }

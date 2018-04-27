@@ -8,6 +8,7 @@ class Player :
 public:
 	Player();
 
+	virtual void update(Entity* o, Uint32 time);
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* o, Uint32 time);
 	virtual void saveToFile(Entity* o);
@@ -19,6 +20,14 @@ public:
 	int getWeaponId() { return WeaponId; };
 	bool getAwakening() { return awakening_; };
 	void setAwakening(bool awk) { awakening_ = awk; };
+
+	bool getCoolDown() { return coolDown_; };
+	void startCoolDown();
+	void coolDownAttack(Uint32 time);
+
+	bool getInvincible() { return invincible_; };
+	void startInvincible();
+	void invincible(Entity* o, Uint32 time);
 
 	bool getPunch() { return punch; };
 	void setPunch(bool p) { punch = p; };
@@ -33,5 +42,16 @@ private:
 	int WeaponId;
 
 	string filename;
+
+	//Cooldown del ataque
+	bool coolDown_;
+	Uint32 coolDownOn_;
+	Uint32 coolDownTime_;
+
+	//Invencibilidad por unos segundos
+	bool invincible_;
+	Uint32 invincibleOn_;
+	Uint32 invincibleOnOff_;
+	Uint32 invincibleTime_;
 };
 

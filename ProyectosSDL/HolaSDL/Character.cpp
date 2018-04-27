@@ -1,5 +1,5 @@
 #include "Character.h"
-
+#include "Player.h"
 
 
 Character::Character() :life(0), damage(0), knockBack_(false), knockBackOn_(0), knockBackTime_(50){}
@@ -42,7 +42,7 @@ void Character::takeDamage(int i)
 		life -= i; //Restamos la vida
 		if (!isAlive())
 			cout << "I died" << endl;
-		else
+		else 
 			cout << "Life: " << life << endl;
 	}
 }
@@ -68,5 +68,7 @@ void Character::knockBack(Entity*o, Vector2D desplazamiento)
 		o->setVelocity(Vector2D(desplazamiento.getX(), -desplazamiento.getY()));
 		o->getComponent<Character>()->setKnockBackOn();
 		o->getComponent<Character>()->setKnockBack(true);
+		if (o->getComponent<Player>() != nullptr)
+			o->getComponent<Player>()->startInvincible();
 	}
 }

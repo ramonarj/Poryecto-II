@@ -16,6 +16,11 @@ public:
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
 	Vector2D getLastDir() { return lastDir; };
 
+	void invincible();
+	void removeTransparency();
+
+
+
 private:
 
 	Texture * iddle_ = nullptr;
@@ -57,5 +62,7 @@ private:
 	int weaponId = -1;
 
 	bool attackInProgress_ = false;
+
+	Uint8 alpha_;
 };
 

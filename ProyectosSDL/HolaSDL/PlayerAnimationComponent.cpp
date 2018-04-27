@@ -10,7 +10,8 @@ PlayerAnimationComponent::PlayerAnimationComponent(Texture * iddle, Texture * mo
 	Texture * attackingCrutch, Texture * attackingAxe, Texture * diying, Texture * awakening,
 	Uint32 cooldown, Uint32 iddleFrames, Uint32 movementFrames, Uint32 attackingFrames,
 	Uint32 diyingFrames, Uint32 awakeningFrames) : iddle_(iddle), moving_(moving), attackingCrowbar_(attackingCrowbar), attackingPipe_(attackingPipe), attackingCrutch_(attackingCrutch), attackingAxe_(attackingAxe),
-	diying_(diying), awakening_(awakening), cooldown_(cooldown), iddleFrames_(iddleFrames), movementFrames_(movementFrames), attackingFrames_(attackingFrames), diyingFrames_(diyingFrames), awakeningFrames_(awakeningFrames)
+	diying_(diying), awakening_(awakening), cooldown_(cooldown), iddleFrames_(iddleFrames), movementFrames_(movementFrames), attackingFrames_(attackingFrames), diyingFrames_(diyingFrames), awakeningFrames_(awakeningFrames),
+	alpha_(255)
 {
 
 	attackingTextures_.push_back(attackingCrowbar_);		//ORDEN CROWBAR, PIPE, CRUTCH, AXE
@@ -18,6 +19,7 @@ PlayerAnimationComponent::PlayerAnimationComponent(Texture * iddle, Texture * mo
 	attackingTextures_.push_back(attackingCrutch_);
 	attackingTextures_.push_back(attackingAxe_);
 
+	//SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), 100);
 }
 
 
@@ -191,6 +193,30 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 
 		iddle_->render(Game::Instance()->getRenderer(), dest, &clip);
 	}
+}
+
+void PlayerAnimationComponent::invincible()
+{
+	if (alpha_ == 255) alpha_ = 100;
+	else alpha_ = 255;
+
+	SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(moving_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(diying_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(awakening_->getSdlTexture(), alpha_);
+	for (Texture* t: attackingTextures_)
+		SDL_SetTextureAlphaMod(t->getSdlTexture(), alpha_);
+}
+
+void PlayerAnimationComponent::removeTransparency()
+{
+	alpha_ = 255;
+	SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(moving_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(diying_->getSdlTexture(), alpha_);
+	SDL_SetTextureAlphaMod(awakening_->getSdlTexture(), alpha_);
+	for (Texture* t : attackingTextures_)
+		SDL_SetTextureAlphaMod(t->getSdlTexture(), alpha_);
 }
 
 

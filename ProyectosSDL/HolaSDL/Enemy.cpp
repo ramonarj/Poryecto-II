@@ -147,9 +147,9 @@ void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
 			this->takeDamage(player->getComponent<Player>()->getDamage());
 		}
 		//�l ataca solo si está vivo y si lo está el player
-		else if(isAlive() && player->getComponent<Character>()->isAlive() && !reloading)
+		else if (isAlive() && player->getComponent<Character>()->isAlive() && !reloading && !player->getComponent<Player>()->getInvincible())
 		{
- 			chaseVector_ = chaseVector;
+			chaseVector_ = chaseVector;
 			setAttacking(true);
 
 			Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));

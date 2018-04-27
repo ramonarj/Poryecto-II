@@ -130,9 +130,10 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 			else if (state[attack_] && (inv->getComponent<Inventory>()->currentWeapon() != nullptr) && !o->getIsReading())	//Can only attack if you have an equiped weapon && pressing shift
 			{
-				if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking())) {
+				if (event.type == SDL_KEYDOWN && !(o->getComponent<Character>()->getAttacking()) && !(o->getComponent<Player>()->getCoolDown())) {
 					o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
 					o->getComponent<Character>()->setAttacking(true);
+					o->getComponent<Player>()->startCoolDown();
 					std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 				}
 			}

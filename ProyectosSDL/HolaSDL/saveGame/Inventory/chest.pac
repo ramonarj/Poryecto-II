@@ -1,3 +1,3 @@
-Key
-1
 Firstaid
+Crowbar
+10

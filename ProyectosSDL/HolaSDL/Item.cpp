@@ -15,6 +15,35 @@ void Item::use(Entity* e, Entity* item) {
 	PlayState::Instance()->removeEntity(item); 
 }
 
+void Item::saveToFile(Entity * o)
+{
+	ofstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
+	if (file.is_open())
+	{
+		file << o->isActive();
+	}
+	file.close();
+}
+
+void Item::loadToFile(Entity * o)
+{
+	ifstream file;
+	file.open(FOLDER + SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
+
+	bool active;
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+		file >> active;
+		if (!active) 
+			Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(o);
+	}
+
+	file.close();
+}
+
 void Item::interact(Entity* e) {
 	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
 		->currentState())->inventory->getComponent<Inventory>()->addItem(e)) {

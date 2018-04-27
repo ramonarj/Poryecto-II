@@ -26,6 +26,14 @@ public:
 	string getDescription() { return description; };
 	string getPath() { return txtFilePath_; };
 
+	void load(int num) { numFile_ = num; };
+
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
+
+protected:
+	int numFile_;
+
 private:
 	ItemType type_;
 	string description;	//	descripcion que aparece en el inventario

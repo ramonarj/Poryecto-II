@@ -332,6 +332,11 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 
+			if (pEntity->getComponent<Item>() != nullptr) {
+				pEntity->getComponent<Item>()->load(numItemFile);
+				numItemFile++;
+			}
+
 			pushEntity(e, pEntity);
 		}
 	}

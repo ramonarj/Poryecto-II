@@ -31,8 +31,8 @@ void ItemContainer::saveToFile(ofstream& file)
 {
 	for (Entity* e : inventory) {
 		file << e->getName() << endl;
-		/*if (e->getComponent<Weapon>() != nullptr)
-		file << e->getComponent<Weapon>()->getNumHits() << endl;*/
+		if (e->getComponent<Weapon>() != nullptr)
+			file << e->getComponent<Weapon>()->getNumHits() << endl;
 		if (e->getComponent<Key>() != nullptr)
 			file << e->getComponent<Key>()->getDoorId() << endl;
 	}
@@ -40,9 +40,12 @@ void ItemContainer::saveToFile(ofstream& file)
 
 void ItemContainer::loadToFile(ifstream& file)
 {
+	inventory.clear();
+
 	Entity* pEntity;
 	string name;
 	int numKey;
+	int numHits;
 	file >> name;
 	while (!file.fail()) {
 		pEntity = GameObjectFactory::Instance()->create(name);
@@ -51,6 +54,11 @@ void ItemContainer::loadToFile(ifstream& file)
 		{
 			file >> numKey;
 			pEntity->getComponent<Key>()->load(numKey);
+		}
+		else if (pEntity->getComponent<Weapon>() != nullptr)
+		{
+			file >> numHits;
+			pEntity->getComponent<Weapon>()->setNumHits(numHits);
 		}
 		file >> name;
 	}

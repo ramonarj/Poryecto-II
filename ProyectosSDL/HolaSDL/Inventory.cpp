@@ -248,7 +248,7 @@ void Inventory::saveToFile(Entity* o)
 		if (equiped != nullptr)
 		{
 			file << equiped->getName() << endl;
-			//file << equiped->getComponent<Weapon>()->getNumHits() << endl;
+			file << equiped->getComponent<Weapon>()->getNumHits() << endl;
 		}
 		ItemContainer::saveToFile(file);
 			

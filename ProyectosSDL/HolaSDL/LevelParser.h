@@ -48,6 +48,7 @@ private:
 	int zoom;
 
 	int numEnemyFile = 0;
+	int numItemFile = 0;
 };
 
 

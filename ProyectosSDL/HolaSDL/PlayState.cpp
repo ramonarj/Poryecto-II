@@ -120,6 +120,8 @@ void PlayState::startState()
 	/*Entity* textTest = new Entity(20, 20);
 	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
 	stage_.push_back(textTest);*/
+
+	mergeStages();
 }
 
 void PlayState::update(Uint32 time)

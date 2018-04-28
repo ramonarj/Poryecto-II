@@ -44,11 +44,21 @@ void GameState::loadToFile()
 		e->loadToFile();
 }
 
+void GameState::mergeStages()
+{
+	for (Entity* e : stageAux_)
+		stage_.push_back(e);
+}
+
 void GameState::removeEntity(Entity* e) {
 	removedEntities_.push_back(e);
 }
 void GameState::removeStage(Entity* e) {
 	stage_.remove(e);
+}
+void GameState::removeStageAux(Entity * e)
+{
+	stageAux_.remove(e);
 }
 void GameState::removeInteractible(Entity* e) {
 	interactibles_.remove(e);

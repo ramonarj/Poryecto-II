@@ -39,7 +39,8 @@ private:
 		std::vector<Layer*> *pLayers, Level* pLevel);
 
 	void loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy);
-	void pushEntity(TiXmlElement* e, Entity* pEntity);
+	void loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister);
+	void loadSRMap(Entity* pEntity, int numMap, std::string orientacion);
 
 	int m_tileSize;
 	int m_width;

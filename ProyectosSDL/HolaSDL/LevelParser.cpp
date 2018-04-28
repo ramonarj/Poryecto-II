@@ -13,6 +13,7 @@
 #include "SecurityCamera.h"
 #include "Register.h"
 #include "SRMap.h"
+#include "AnimationRenderObject.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -208,6 +209,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 	int staticEntity;
 	int collidableDoor;
+	int floorRegister;
+
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("properties"))
@@ -221,6 +224,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 					if (property->Attribute("name") == std::string("collidableDoor"))
 						property->Attribute("value", &collidableDoor);
+
+					if (property->Attribute("name") == std::string("floorRegister"))
+						property->Attribute("value", &floorRegister);
 				}
 			}
 		}
@@ -232,17 +238,23 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;
+			std::string orientacion;
+			
+			//Variables para los personajes
 			int life = 0;
 			int damage = 0;
+			int numEnemy = 0;
 
+			//Variables para las puertas y las llaves
 			int numKey = 0;
 			int numDoor = 0;
 			int needKey = 0;
+
 			int numCamera = 0;
-			std::string orientacion;
+
+			//Variables para los registros
 			int registerFile;
 			int numMap;
-			int numEnemy = 0;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
@@ -319,15 +331,15 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			else if (e->Attribute("type") == std::string("Key"))
 				pEntity->getComponent<Key>()->load(numKey);
-			
+
 			else if (e->Attribute("type") == std::string("Camera"))
 				pEntity->getComponent<SecurityCamera>()->load(numCamera);
-			
+
 			else if (e->Attribute("type") == std::string("Register"))
-				pEntity->getComponent<Register>()->load(registerFile);
-			
+				loadRegister(e, pEntity, registerFile, floorRegister);
+
 			else if (e->Attribute("type") == std::string("SRMap"))
-				pEntity->getComponent<SRMap>()->load(numMap, orientacion);
+				loadSRMap(pEntity, numMap, orientacion);
 
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
@@ -337,7 +349,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				numItemFile++;
 			}
 
-			pushEntity(e, pEntity);
+			if (e->Attribute("type") != std::string("Register") && e->Attribute("type") != std::string("SRMap"))
+				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);
@@ -360,24 +373,22 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 }
 
-void LevelParser::pushEntity(TiXmlElement * e, Entity * pEntity)
+void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister)
 {
-	if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))
+	pEntity->getComponent<Register>()->load(registerFile);
+	if (floorRegister)
 	{
-		bool regFound = false;
-		int i = 0;
-		list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
-		while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound) {
-			if ((*it)->getComponent<Register>() != nullptr || (*it)->getComponent<SRMap>() != nullptr)
-				regFound = true;
-			else
-				it++;
-		}
-		if (regFound)
-			Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
-		else
-			Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+		pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Register1"), 400, true, true, 2));
+		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 	}
 	else
-		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+	{
+		Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
+	}
+}
+
+void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacion)
+{
+	pEntity->getComponent<SRMap>()->load(numMap, orientacion);
+	Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
 }

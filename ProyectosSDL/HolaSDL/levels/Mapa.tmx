@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="376">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="378">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -218,6 +218,7 @@
  </objectgroup>
  <objectgroup name="Registers">
   <properties>
+   <property name="floorRegister" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
   <object id="349" name="Register" type="Register" x="1440" y="1500" width="20" height="20">
@@ -226,6 +227,22 @@
    </properties>
   </object>
   <object id="351" name="Register" type="Register" x="1520" y="1740" width="20" height="20">
+   <properties>
+    <property name="registerFile" type="int" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="FloorRegisters">
+  <properties>
+   <property name="floorRegister" type="int" value="1"/>
+   <property name="staticEntity" type="int" value="1"/>
+  </properties>
+  <object id="376" name="Register" type="Register" x="1440" y="1500" width="20" height="20">
+   <properties>
+    <property name="registerFile" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="377" name="Register" type="Register" x="1520" y="1740" width="20" height="20">
    <properties>
     <property name="registerFile" type="int" value="2"/>
    </properties>

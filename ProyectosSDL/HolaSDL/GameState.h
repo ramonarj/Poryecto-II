@@ -14,6 +14,8 @@ protected:
 	Entity* cursor_;
 
 	list<Entity*> stage_;
+	list<Entity*> stageAux_;
+
 	list<Entity*> interactibles_;
 	list<Entity*> characters_;
 	list<Entity*> doors_;
@@ -24,9 +26,11 @@ protected:
 	static unique_ptr<GameState> s_pInstance;
 
 	void removeStage(Entity* e);
+	void removeStageAux(Entity* e);
 	void removeInteractible(Entity* e);
 	void removeCharacter(Entity* e);
 	void removeDoor(Entity* e);
+
 public:
 
 	static GameState* Instance()
@@ -46,6 +50,9 @@ public:
 
 	void pushEntities(Entity* e) { stage_.push_back(e); };
 	list<Entity*>* getStage() { return &stage_; };
+	list<Entity*>* getStageAux() { return &stageAux_; };
+	void mergeStages();
+
 	list<Entity*>* getInteractibles() { return &interactibles_; };
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };

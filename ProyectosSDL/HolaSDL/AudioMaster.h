@@ -1,15 +1,9 @@
 #pragma once
 
-#define AL_ALUT_H
-
 #include <al.h>
 #include <alc.h>
 #include <vector>
 #include <iostream>
-#include <efx.h>
-#include <cstdlib>
-#include <efx-creative.h>
-#include <EFX-Util.h>
 
 using namespace std;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="375">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="376">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -1454,6 +1454,15 @@
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="10"/>
     <property name="numKey" type="int" value="1"/>
+    <property name="textureID" value="puerta"/>
+   </properties>
+  </object>
+  <object id="375" name="Puerta" type="Puerta" x="8600" y="7300" width="40" height="40">
+   <properties>
+    <property name="dir" value="norte"/>
+    <property name="needKey" type="int" value="1"/>
+    <property name="numDoor" type="int" value="6"/>
+    <property name="numKey" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
    </properties>
   </object>

@@ -22,6 +22,8 @@ class SlidingPuzzleComponent : public Component
 	{
 		int correctPosX;
 		int correctPosY;
+		int currentPosX;
+		int currentPosY;
 		bool ghost;
 		SDL_Rect srcRect;
 	};
@@ -47,6 +49,6 @@ private:
 	void compruebaAdyacencia(int i, int j);
 	void desordena();
 
-	coord PosCasillas[3][3]{ {{300,50}, {300,250}, {300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
+	coord PosCasillas[3][3]{ {{300,50},{300,250},{300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
 };
 

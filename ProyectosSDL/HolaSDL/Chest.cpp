@@ -3,7 +3,6 @@
 #include "Inventory.h"
 
 
-
 Chest::Chest()
 {
 	//InvTam = 20;

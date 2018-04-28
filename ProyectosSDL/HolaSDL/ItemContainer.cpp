@@ -101,6 +101,14 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	{
 		resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
 	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::ACID)
+	{
+		resource->getTexture("Acid")->render(pRenderer, DestRect, &clip);
+	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::ACIDCHEMICAL)
+	{
+		resource->getTexture("AcidChemical")->render(pRenderer, DestRect, &clip);
+	}
 }
 
 void ItemContainer::renderSlotMark(SDL_Rect DestRect) {

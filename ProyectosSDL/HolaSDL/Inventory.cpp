@@ -308,6 +308,21 @@ bool Inventory::checkItem(int item)
 	}
 	return found;
 }
+bool Inventory::checkIdemItems(int item, int repeat)
+{
+	int i = 0;
+	int founds = 0;
+	if (debug) { return true; }
+
+	while (founds < repeat && i < int(inventory.size()) && !empty())
+	{
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == item) { founds += 1; }
+		i++;
+	}
+	if (founds >= repeat)
+		return true;
+	else return false;
+}
 //CHECK WHAT ITEM IS ON THE INDICATED POSITION
 Entity * Inventory::ItemInPosition(int pos)
 {

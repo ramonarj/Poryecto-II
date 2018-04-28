@@ -43,6 +43,7 @@ public:
 	void Debug_Mode_Off() { debug = false; };
 
 	virtual bool checkItem(int item);
+	virtual bool checkIdemItems(int item, int repeat);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	void removeWeapon();

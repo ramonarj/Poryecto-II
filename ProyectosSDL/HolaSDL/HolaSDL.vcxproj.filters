@@ -229,6 +229,9 @@
     <ClCompile Include="SlidingPuzzle.cpp">
       <Filter>Archivos de código fuente\States</Filter>
     </ClCompile>
+    <ClCompile Include="AudioMaster.cpp">
+      <Filter>Archivos de código fuente\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -462,6 +465,9 @@
     <ClInclude Include="SlidingPuzzle.h">
       <Filter>Archivos de encabezado\States</Filter>
     </ClInclude>
+    <ClInclude Include="AudioMaster.h">
+      <Filter>Archivos de encabezado\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />
@@ -508,6 +514,12 @@
     </Filter>
     <Filter Include="Archivos de encabezado\Inventory">
       <UniqueIdentifier>{17c9b4b5-18dc-4624-aa4c-1a4932d6b0d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Audio">
+      <UniqueIdentifier>{13c827c6-f3b7-42c5-b18f-98d293df5fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Audio">
+      <UniqueIdentifier>{4639d712-4680-4cfe-a492-daabaee2e2be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

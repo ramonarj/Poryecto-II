@@ -1,9 +1,13 @@
 #pragma once
+
+#define AL_ALUT_H
+
 #include <al.h>
 #include <alc.h>
 #include <vector>
 #include <iostream>
 #include <efx.h>
+#include <cstdlib>
 #include <efx-creative.h>
 #include <EFX-Util.h>
 
@@ -16,6 +20,7 @@ public:
 	~AudioMaster();
 
 	static void list_audio_devices(const ALCchar *devices);
+
 	
 
 private:
@@ -25,7 +30,9 @@ private:
 	ALuint source;
 	ALuint buffer;
 
+
 	void initSource();
 	void LoadSources();
 };
+
 

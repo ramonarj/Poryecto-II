@@ -84,6 +84,8 @@ void Craft::render(Entity * e, Uint32 time)
 	resource->getTexture("Firstaid")->render(pRenderer, dest, &clip);
 	dest = RECT(craftSlots[1].x - slotWidth / 2, craftSlots[1].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
 	resource->getTexture("Acid")->render(pRenderer, dest, &clip);
+	dest = RECT(craftSlots[2].x - slotWidth / 2, craftSlots[2].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Circuit")->render(pRenderer, dest, &clip);
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
@@ -302,7 +304,7 @@ void Craft::craft()
 	switch (slotCraftClicked)
 	{
 	case 0:
-		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES) && !inv->fullInventory())
+		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES))
 		{
 			inv->objectCrafted(ItemType::CROWBAR, ItemType::STICK);
 			Entity* e = new Entity(0, 0);
@@ -311,8 +313,23 @@ void Craft::craft()
 		}
 		break;
 	case 1:
+		if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))
+		{
+			inv->objectCrafted(ItemType::ACIDCHEMICAL, ItemType::ACIDCHEMICAL);
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new Item(ItemType::ACID, "AcidDescription")); //cambiar
+			inv->addItem(e);
+		}
 		break;
 	case 2:
+		if (inv->checkIdemItems(ItemType::PIECEPUZZLE, 4))
+		{
+			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
+			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new FirstAid("Firstaid")); //cambiar
+			inv->addItem(e);
+		}
 		break;
 	case 3:
 		break;

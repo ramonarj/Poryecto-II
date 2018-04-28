@@ -4,6 +4,7 @@
 
 AudioMaster::AudioMaster()
 {
+
 	device = alcOpenDevice(NULL);
 	if (!device){
 		cout << "device no inicializado";
@@ -33,6 +34,7 @@ AudioMaster::~AudioMaster()
 {
 }
 
+
 void AudioMaster::list_audio_devices(const ALCchar * devices)
 {
 	const ALCchar *device = devices, *next = devices + 1;
@@ -49,6 +51,8 @@ void AudioMaster::list_audio_devices(const ALCchar * devices)
 	cout << "----------\n";
 }
 
+
+
 void AudioMaster::initSource()
 {
 	alGenSources((ALuint)1, &source);
@@ -64,7 +68,10 @@ void AudioMaster::initSource()
 
 void AudioMaster::LoadSources()
 {
-
+	
 }
+
+
+
 
 

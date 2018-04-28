@@ -166,6 +166,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Alcohol", "images/Items/alcohol.png");
 	resourceManager_->addTexture("Bandages", "images/Items/bandage.png");
 	resourceManager_->addTexture("Card", "images/Items/keycard.png");
+	resourceManager_->addTexture("Circuit", "images/Items/circuit.png");
 	resourceManager_->addTexture("Television", "images/Items/television.png");
 	resourceManager_->addTexture("Register1", "images/Items/register1.png");
 
@@ -226,16 +227,17 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Key", new ItemCreator(ItemType::KEY));
 	gameObjectFactory->registerType("Axe", new ItemCreator(ItemType::AXE));
 	gameObjectFactory->registerType("Firstaid", new ItemCreator(ItemType::FIRSTAID));
+	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
+	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));
+	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
 	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
 	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
-	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
-	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));
+	
 	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
 	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
-	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
 	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
 	gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));*/

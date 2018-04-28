@@ -59,6 +59,20 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 				}
 			}
 		}
+		else if (event.button.button == SDL_BUTTON_RIGHT)
+		{
+			int i = 0;
+			while (i< int(inventory.size()) && !clicked)
+			{
+				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + slotWidth)
+					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
+				{
+					clicked = true;
+					useItem(i);
+				}
+				i++;
+			}
+		}
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
@@ -492,6 +506,7 @@ void Inventory::moveMarkSlot(int a) {
 
 
 
+
 void Inventory::activeItem()
 {
 	if (selectedSlot <= 3) {
@@ -597,6 +612,14 @@ void Inventory::setToRepair()
 		}
 	}
 }
+
+void Inventory::useItem(int i)
+{
+	if (inventory[i]->getComponent<FirstAid>()->getType() == ItemType::FIRSTAID){}
+		//inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
+	clicked = false;
+}
+
 
 Entity * Inventory::currentWeapon()
 {

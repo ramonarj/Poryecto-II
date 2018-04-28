@@ -24,6 +24,7 @@ public:
 	void setActiveController(bool b) { controllerActive = b; };
 	void moveMarkSlot(int a);
 	void setSelectedSlot(int a) { selectedSlot = a; };
+	void useItem(int i);
 
 protected:
 	bool debug = false;

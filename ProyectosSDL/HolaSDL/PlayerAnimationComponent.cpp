@@ -29,6 +29,11 @@ PlayerAnimationComponent::~PlayerAnimationComponent()
 
 
 void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
+
+	if (fade_ == nullptr) {
+		fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
+	}
+
 	SDL_Rect dest
 		RECT(o->getPosition().getX() - Camera::Instance()->getPosition().getX(),
 			o->getPosition().getY() - Camera::Instance()->getPosition().getY(),
@@ -193,7 +198,45 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 
 		iddle_->render(Game::Instance()->getRenderer(), dest, &clip);
 	}
+
+
+
+	//clip para ocupar la pantalla
+	dest = RECT(
+		o->getPosition().getX() - Camera::Instance()->getPosition().getX() - Game::Instance()->getWindowWidth() / 2,
+		o->getPosition().getY() - Camera::Instance()->getPosition().getY() - Game::Instance()->getWindowHeight() / 2,
+		fade_->getWidth(),
+		fade_->getHeight()
+	);
+	//Llamada al fade para modificar progresivamente el alfa
+	fade();
+	//Llamada a render (comentada para que no moleste)
+	//fade_->render(Game::Instance()->getRenderer(), dest, &clip);
+
 }
+
+void PlayerAnimationComponent::fade()
+{
+	if (fading_ == 1) {
+		alphaFade_++;
+		if (alphaFade_ > 254)
+			fading_ = 0;
+	}
+	else if (fading_ == -1) {
+		alphaFade_--;
+		if (alphaFade_ < 1)
+			fading_ = 0;
+	}
+	SDL_SetTextureAlphaMod(fade_->getSdlTexture(), alphaFade_);
+}
+
+void PlayerAnimationComponent::setFadeWay(bool way) {
+	if (way)
+		fading_ = 1;
+	else
+		fading_ = -1;
+}
+
 
 void PlayerAnimationComponent::invincible()
 {

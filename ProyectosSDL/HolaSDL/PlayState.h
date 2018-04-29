@@ -35,6 +35,8 @@ public:
 	Entity* chest;
 	Entity* craft;
 
+	Entity* fadeManager_ = nullptr;
+
 	static PlayState* Instance()
 	{
 		if (s_pInstance.get() == nullptr)

@@ -143,5 +143,5 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 }
 
 void Texture::ChangeAlphaValue(Uint8 alpha) {
-	SDL_SetTextureAlphaMod(this->texture_, alpha);
+	int a = SDL_SetTextureAlphaMod(this->texture_, alpha);
 }

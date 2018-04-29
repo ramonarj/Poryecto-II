@@ -16,6 +16,7 @@ Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
+	stateMachine_.pushStateTick();
 	exit_ = false;
 }
 
@@ -57,6 +58,9 @@ void Game::start() {
 		stateMachine_.currentState()->update(startTime);
 		stateMachine_.currentState()->render(startTime);
 		stateMachine_.currentState()->removeEntities();
+		stateMachine_.changeStateTick();
+		if (stateMachine_.pushStateTick())
+			stateMachine_.currentState()->startState();
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
 			SDL_Delay(10 - frameTime);

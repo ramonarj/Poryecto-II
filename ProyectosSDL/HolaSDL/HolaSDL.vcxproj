@@ -79,6 +79,7 @@
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
     <ClCompile Include="SlidingPuzzleController.cpp" />
+    <ClCompile Include="SlidingPuzzleItem.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="SRMap.cpp" />
     <ClCompile Include="StaticImageRender.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />
     <ClInclude Include="SlidingPuzzleController.h" />
+    <ClInclude Include="SlidingPuzzleItem.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SRMap.h" />
     <ClInclude Include="StaticImageRender.h" />

@@ -16,6 +16,7 @@
 #include "SkeletonRenderer.h"
 #include "SRMap.h"
 #include "MessageTrigger.h"
+#include "SlidingPuzzleItem.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -86,7 +87,8 @@ public:
 			break;
 		case FIRSTAID:
 			//i = new Movable();	//	DEBUG
-			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			//i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			i = new SlidingPuzzleItem();	//	DEGUG
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type), "Has recogido cinta aislante");
@@ -266,4 +268,18 @@ public:
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
+};
+
+class SlidingPuzzleItemCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new SlidingPuzzleItem());
+		e->addComponent(new MessageTrigger("'E' para ver el puzzle", "'Square/X' para ver el puzzle"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+
 };

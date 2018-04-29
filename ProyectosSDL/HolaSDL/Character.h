@@ -32,6 +32,7 @@ protected:
 	bool attacking = false;
 	void move(Entity*o);
 	void knockBack(Entity*o, Vector2D desplazamiento);
+	void knockBack(Entity * o, Entity * own, double push);
 
 private:
 	bool knockBack_;

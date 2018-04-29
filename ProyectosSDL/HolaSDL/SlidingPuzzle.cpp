@@ -16,6 +16,7 @@ void SlidingPuzzle::startState()
 
 	Entity* slidingPuzzle = new Entity(0, 0);
 	slidingPuzzle->addComponent(new SlidingPuzzleComponent());
+	slidingPuzzle->addComponent(new SlidingPuzzleController());
 	stage_.push_back(slidingPuzzle);
 }
 

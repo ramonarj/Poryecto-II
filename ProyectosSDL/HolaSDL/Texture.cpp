@@ -44,6 +44,7 @@ void Texture::close() {
 
 bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	SDL_Surface* surface = IMG_Load(fileName.c_str());
+
 	if (surface != nullptr) {
 		close(); // destroy current texture
 		texture_ = SDL_CreateTextureFromSurface(renderer, surface);
@@ -139,4 +140,8 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, SDL_FLIP_NONE);
+}
+
+void Texture::ChangeAlphaValue(Uint8 alpha) {
+	SDL_SetTextureAlphaMod(this->texture_, alpha);
 }

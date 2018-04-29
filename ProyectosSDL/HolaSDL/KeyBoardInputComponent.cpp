@@ -33,6 +33,16 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 	if (!o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive()){
 
+		if (!timerSet && dirBlock_ != 0) {
+			Timer_ = time;
+			timerSet = true;
+		}
+
+		if (time > Timer_ + 250) {	//1/4 segundo
+			timerSet = false;
+			dirBlock_ = 0;
+		}
+
 
 		if (inv != nullptr) {
 			if (state[saveGame_])
@@ -43,25 +53,29 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			{
 				PlayState::Instance()->setLoadGame(true);
 			}
-			if (state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
+			if (dirBlock_!=7 && dirBlock_!=8 && dirBlock_!=6 && state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 				velocity.setX(-vel);
 				direction.setX(-1);
+				dirBlock_ = 0;
 			}
-			else if (state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			else if (dirBlock_ != 2 && dirBlock_ != 3 && dirBlock_ != 4 && state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 				velocity.setX(vel);
 				direction.setX(1);
+				dirBlock_ = 0;
 			}
 			else {
 				velocity.setX(0);
 				direction.setX(0);
 			}
-			if (state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			if (dirBlock_ != 8 && dirBlock_ != 1 && dirBlock_ != 2 && state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 				velocity.setY(-vel);
 				direction.setY(1);
+				dirBlock_ = 0;
 			}
-			else if (state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			else if (dirBlock_ != 4 && dirBlock_ != 5 && dirBlock_ != 6 && state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
 				velocity.setY(vel);
 				direction.setY(-1);
+				dirBlock_ = 0;
 			}
 			else if (state[interact_]) {
 				if (event.type == SDL_KEYDOWN) {

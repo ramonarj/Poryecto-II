@@ -14,6 +14,8 @@ public:
 private:
 	bool lightsOn_;
 	
+	Entity* player_=nullptr;
+
 	SDL_Renderer* renderer_;
 	vector<Light*> lights;
 	PlayerLight playerLight_;

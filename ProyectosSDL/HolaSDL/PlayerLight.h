@@ -10,12 +10,14 @@ public:
 	PlayerLight();
 	~PlayerLight();
 	void render(Entity* o, Uint32 time);
-
+	Texture* fade_;
 private:
 	bool horizontal_; //True = Horizontal, False = Vertical
 	bool flipped_;
 	Entity* player_;
 	Texture* shadow_;
+	
+	
 	SDL_Texture* sdlShadow;
 	string currentDirection;
 	string lastDirection;

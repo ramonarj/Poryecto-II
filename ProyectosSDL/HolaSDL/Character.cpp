@@ -61,7 +61,7 @@ void Character::move(Entity * o)
 	o->setPosition(pos);
 }
 
-void Character::knockBack(Entity*o, Vector2D desplazamiento)
+void Character::knockBack(Entity*o, Vector2D desplazamiento)	//WHEN PUNCHING
 {
 	if (!o->getComponent<Character>()->getKnockBack()) 
 	{
@@ -70,5 +70,15 @@ void Character::knockBack(Entity*o, Vector2D desplazamiento)
 		o->getComponent<Character>()->setKnockBack(true);
 		if (o->getComponent<Player>() != nullptr)
 			o->getComponent<Player>()->startInvincible();
+	}
+}
+
+void Character::knockBack(Entity*o, Entity* own, double push)
+{
+	if (!o->getComponent<Character>()->getKnockBack())
+	{
+		o->setVelocity(Vector2D(-(o->getDirection().getX()) *push, -(o->getDirection().getY())*push));
+		o->getComponent<Character>()->setKnockBackOn();
+		o->getComponent<Character>()->setKnockBack(true);
 	}
 }

@@ -19,6 +19,8 @@ public:
 	virtual ~KeyBoardInputComponent();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 
+	void setDirBlock(int a) { dirBlock_ = a; };
+
 private:
 	SDL_Scancode left_;
 	SDL_Scancode right_;
@@ -47,6 +49,11 @@ private:
 
 	//*MOUSE*
 	int mouseX=0; int mouseY = 0;
+
+	//Knockback easy
+	Uint32 Timer_ = 0;
+	bool timerSet = false;
+	int dirBlock_ = 0;
 
 	//MessageRenderer
 	MessageRenderer* messageRenderer;

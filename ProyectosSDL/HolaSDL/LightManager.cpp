@@ -9,6 +9,10 @@ LightManager::~LightManager(){
 }
 
 void LightManager::render(Entity * e, Uint32 time) {
+
+	if (player_ == nullptr)
+		player_ = Game::Instance()->getEntityWithComponent<Player>();
+
 	if (lightsOn_) {
 		SDL_Texture* target_texture = SDL_CreateTexture( //textura Target (Mezcla final de las luces)
 			renderer_,
@@ -18,11 +22,17 @@ void LightManager::render(Entity * e, Uint32 time) {
 			Game::Instance()->getWindowHeight()
 		);
 
+		SDL_Rect rect_;
+
+		
+
 		SDL_SetRenderTarget(renderer_, target_texture); //Se pone como target del renderer solo esa textura
+
+		
 
 		for (Light* l : lights) { //Se pinta sobre la textura target todas las luces
 
-			SDL_Rect rect_ = RECT( //Rect destino de cada luz
+			rect_ = RECT( //Rect destino de cada luz
 				l->getPos().getX() - Camera::Instance()->getPosition().getX(),
 				l->getPos().getY() - Camera::Instance()->getPosition().getY(),
 				l->getTexture()->getWidth(),
@@ -30,7 +40,9 @@ void LightManager::render(Entity * e, Uint32 time) {
 			);
 
 			SDL_RenderCopy(renderer_, l->getTexture()->getSdlTexture(), nullptr, &rect_);
+
 		}
+		
 
 		playerLight_.render(e, time);
 
@@ -48,12 +60,13 @@ void LightManager::render(Entity * e, Uint32 time) {
 		SDL_RenderCopy(renderer_, target_texture, &destrect_, &destrect_); //Se renderiza la textura final
 		//SDL_RenderCopyEx(renderer_, target_texture, &destrect_, &destrect_, 0, 0, SDL_FLIP_NONE); //Se renderiza la textura final
 
+		
+
 		SDL_SetRenderTarget(renderer_, target_texture); //Se pone como target del renderer solo esa textura
 		SDL_RenderClear(renderer_);
 		SDL_SetRenderTarget(renderer_, nullptr); //El renderer ya no solo pinta en la textura target
 
 		SDL_DestroyTexture(target_texture);
-		
 	}
 }
 

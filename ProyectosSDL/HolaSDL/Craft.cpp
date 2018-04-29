@@ -4,6 +4,9 @@
 Craft::Craft()
 {
 	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 250, 100, nullptr));
+
+	SDL_Color c{ 0,255,100,255 };
+	description_.getComponent<TextNote>()->setColor(c);
 }
 
 
@@ -88,12 +91,12 @@ void Craft::render(Entity * e, Uint32 time)
 	resource->getTexture("Circuit")->render(pRenderer, dest, &clip);
 
 	if (controllerActive && renderMark) {
-		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
+		if (selectedSlot < 3 && !craftButtonSelected && !repairButtonSelected) {
 			SDL_Rect DestRect = { craftSlots[selectedSlot].x - slotWidth / 2 + 5, craftSlots[selectedSlot].y - slotWidth / 2 + 4, slotWidth * 2 - 8, slotWidth * 2 - 8 };
 			renderSlotMark(DestRect);
 		}
-		else if (selectedSlot < 4 && !craftButtonSelected && !repairButtonSelected) {
-			SDL_Rect DestRect = { repareSlots[selectedSlot - 2].x - slotWidth / 2 + 4, repareSlots[selectedSlot - 2].y - slotWidth / 2 + 2, slotWidth * 2 - 6, slotWidth * 2 - 6 };
+		else if (selectedSlot < 5 && !craftButtonSelected && !repairButtonSelected) {
+			SDL_Rect DestRect = { repareSlots[selectedSlot - 3].x - slotWidth / 2 + 4, repareSlots[selectedSlot - 3].y - slotWidth / 2 + 2, slotWidth * 2 - 6, slotWidth * 2 - 6 };
 			renderSlotMark(DestRect);
 		}
 		else if (craftButtonSelected) {
@@ -111,6 +114,8 @@ void Craft::render(Entity * e, Uint32 time)
 		else if(selectedSlot==1) {
 			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
 		}
+		else if(selectedSlot == 2)
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
 		else
 			description_.getComponent<TextNote>()->changeString("");
 	}
@@ -121,9 +126,11 @@ void Craft::render(Entity * e, Uint32 time)
 		else if (slotCraftClicked == 1) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
 			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
 		}
-		else {
-			description_.getComponent<TextNote>()->changeString("");
+		else if(slotCraftClicked == 2){
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
 		}
+		else
+			description_.getComponent<TextNote>()->changeString("");
 	}
 
 	description_.getComponent<TextNote>()->render(nullptr, time);
@@ -149,37 +156,41 @@ void Craft::moveMarkSlot(int a)
 {
 	if (!craftButtonSelected && !repairButtonSelected) {
 		if (a == 1) {
-			if (selectedSlot == 2 || selectedSlot == 3)
-				selectedSlot = 1;
+			if (selectedSlot == 3 || selectedSlot == 4)
+				selectedSlot = 2;
 			else if (selectedSlot == 1)
 				selectedSlot = 0;
+			else if (selectedSlot == 2)
+				selectedSlot = 1;
 		}
 		else if (a == 3) {
 			if (selectedSlot == 0)
 				selectedSlot = 1;
 			else if (selectedSlot == 1)
 				selectedSlot = 2;
-		}
-		else if (a == 2) {
-			if (selectedSlot == 2)
+			else if (selectedSlot == 2)
 				selectedSlot = 3;
 		}
-		else if (a == 4) {
+		else if (a == 2) {
 			if (selectedSlot == 3)
-				selectedSlot = 2;
+				selectedSlot = 4;
+		}
+		else if (a == 4) {
+			if (selectedSlot == 4)
+				selectedSlot = 3;
 		}
 	}
 	else if(craftButtonSelected) {
 		if (a == 1)
-			selectedSlot = 1;
-		else if (a == 3)
 			selectedSlot = 2;
+		else if (a == 3)
+			selectedSlot = 3;
 	}
 	else if (repairButtonSelected) {
 		if (a == 1)
-			selectedSlot = 1;
+			selectedSlot = 2;
 		else if (a == 4)
-			selectedSlot = 3;
+			selectedSlot = 4;
 	}
 }
 
@@ -195,7 +206,7 @@ void Craft::tryCraftingRepair()
 			}
 			break;
 		case 1:
-			break;		//HAY QUE CAMBIAR LAS VARIABLES DEL REPIAR A 4 Y 5 RESPECTIVAMENTE LAS 2 Y 3 SI SE QUIEREN METER MAS CRAFTEABLES
+			break;		//HAY QUE CAMBIAR LAS VARIABLES DEL REPIAR A 3 Y 4 RESPECTIVAMENTE LAS 2 Y 3 SI SE QUIEREN METER MAS CRAFTEABLES
 		default:
 			break;
 		}

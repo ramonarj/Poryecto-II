@@ -3,6 +3,8 @@
 
 PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), currentAgl_(0), destAgl_(0), lastDirection("Right"), currentDirection("Right"), sdlShadow(nullptr) {
 	sdlShadow = Game::Instance()->getResourceManager()->getTexture("PlayerLight")->getSdlTexture();
+	fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
+	
 	SDL_SetTextureBlendMode(sdlShadow, SDL_BLENDMODE_ADD);
 
 	shadow_ = Game::Instance()->getResourceManager()->getTexture("PlayerLight");
@@ -62,4 +64,5 @@ void PlayerLight::render(Entity* o, Uint32 time) {
 	currentAgl_ = lerp(currentAgl_, destAgl_, 0.3); //transición al nuevo destino de forma suave
 
 	shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
+	
 }

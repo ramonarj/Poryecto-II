@@ -35,6 +35,7 @@ public:
 	//Para el mapa
 	bool load(string fileName, std::string id, SDL_Renderer* pRenderer);
 	void drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer *pRenderer);
+	void ChangeAlphaValue(Uint8 alpha);
 	void close();
 
 private:

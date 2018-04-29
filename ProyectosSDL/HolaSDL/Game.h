@@ -20,6 +20,7 @@
 #include "MenuState.h"
 #include "LightTestState.h"
 #include "Level.h"
+#include "BaseControllerInput.h"
 #include "KeyBoardInputComponent.h"
 #include "ControllerInputComponent.h"
 #include "ResourceManager.h"

@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "Game.h"
 
+class SlidingPuzzleController;
 
 class SlidingPuzzleComponent : public Component
 {
@@ -44,11 +45,18 @@ public:
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
 
+	void moveMarkSlot(int a);
+	void clickMark();
+
 private:
 	bool combruebaVictoria();
-	void compruebaAdyacencia(int i, int j);
 	void desordena();
+	void renderMark(SDL_Rect DestRect);
+	void compruebaAdyacencia(int i, int j);	
 
 	coord PosCasillas[3][3]{ {{300,50},{300,250},{300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
+	coord markSlot;
+
+	SlidingPuzzleController* pc = nullptr;
 };
 

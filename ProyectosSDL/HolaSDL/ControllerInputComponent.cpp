@@ -17,96 +17,7 @@ ControllerInputComponent::~ControllerInputComponent()
 }
 
 
-bool ControllerInputComponent::initialiseJoysticks()
-{
-	if (SDL_WasInit(SDL_INIT_JOYSTICK) == 0)
-	{
-		SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-	}
-	if (SDL_NumJoysticks() > 0)
-	{
-		for (int i = 0; i < SDL_NumJoysticks(); i++)
-		{
-			int h = SDL_NumJoysticks();
-			SDL_Joystick* joy = SDL_JoystickOpen(i);
 
-			m_joysticks.push_back(joy);
-			m_joystickValues.push_back(std::make_pair(new Vector2D(0, 0), new Vector2D(0, 0))); // add our pair
-
-			std::vector<bool> tempButtons;
-			for (int j = 0; j < SDL_JoystickNumButtons(joy); j++)
-			{
-				tempButtons.push_back(false);
-			}
-			m_buttonStates.push_back(tempButtons);
-
-			if (tempButtons.size() == 14) {
-				//increment = 1;
-				controllerType = false;
-			}
-			else if (tempButtons.size() == 11) {
-				//increment = 8;
-				controllerType = true;
-			}
-
-		}
-		SDL_JoystickEventState(SDL_ENABLE);
-		m_bJoysticksInitialised = true;
-		std::cout << "Initialised " << m_joysticks.size() << "joystick(s)";
-	}
-	else
-	{
-		m_bJoysticksInitialised = false;
-	}
-	return m_bJoysticksInitialised;
-}
-
-void ControllerInputComponent::clean() {
-	if (m_bJoysticksInitialised)
-	{
-		for (unsigned int i = 0; i < SDL_NumJoysticks(); i++)
-		{
-			SDL_JoystickClose(m_joysticks[i]);
-		}
-		m_bJoysticksInitialised = false;
-		m_joystickValues.clear();
-		m_buttonStates.clear();
-		m_joysticks.clear();
-	}
-}
-
-int ControllerInputComponent::xvalue(int joy, int stick)
-{
-	if (m_joystickValues.size() > 0)
-	{
-		if (stick == 1)
-		{
-			return m_joystickValues[joy].first->getX();
-		}
-		else if (stick == 2)
-		{
-			return m_joystickValues[joy].second->getX();
-		}
-	}
-	return 0;
-}
-
-
-int ControllerInputComponent::yvalue(int joy, int stick)
-{
-	if (m_joystickValues.size() > 0)
-	{
-		if (stick == 1)
-		{
-			return m_joystickValues[joy].first->getY();
-		}
-		else if (stick == 2)
-		{
-			return m_joystickValues[joy].second->getY();
-		}
-	}
-	return 0;
-}
 
 void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 	
@@ -140,6 +51,15 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		const Uint8 *state = SDL_GetKeyboardState(NULL);
 		double vel = 7 * Camera::Instance()->getZoom();
 
+		if (!timerSet && dirBlock_ != 0) {
+			Timer_ = time;
+			timerSet = true;
+		}
+
+		if (time > Timer_ + 250) {	//1/4 segundo
+			timerSet = false;
+			dirBlock_ = 0;
+		}
 
 		//JOYSTICK IZQUIERDO
 		if (event.type == SDL_JOYAXISMOTION) // check the type value
@@ -149,11 +69,17 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			{
 				if (event.jaxis.value > m_joystickDeadZone)		//This value goes from -33000 until 33000
 				{
-					m_joystickValues[0].first->setX(1);		//joystick izquierdo - derecha
+					if (dirBlock_ != 2 && dirBlock_ != 3 && dirBlock_ != 4) {
+						m_joystickValues[0].first->setX(1);		//joystick izquierdo - derecha
+						//dirBlock_ = 0;
+					}
 				}
 				else if (event.jaxis.value < -m_joystickDeadZone)
 				{
-					m_joystickValues[0].first->setX(-1);		//joystick izquierdo - izquierda
+					if (dirBlock_ != 7 && dirBlock_ != 8 && dirBlock_ != 6) {
+						m_joystickValues[0].first->setX(-1);		//joystick izquierdo - izquierda
+						//dirBlock_ = 0;
+					}
 				}
 				else
 				{
@@ -165,11 +91,17 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			{
 				if (event.jaxis.value > m_joystickDeadZone)			//joystick izquierdo - abajo
 				{
-					m_joystickValues[0].first->setY(1);
+					if (dirBlock_ != 4 && dirBlock_ != 5 && dirBlock_ != 6) {
+						m_joystickValues[0].first->setY(1);
+						//dirBlock_ = 0;
+					}
 				}
 				else if (event.jaxis.value < -m_joystickDeadZone)	//joystick izquierdo - arriba
 				{
-					m_joystickValues[0].first->setY(-1);
+					if (dirBlock_ != 8 && dirBlock_ != 1 && dirBlock_ != 2) {
+						m_joystickValues[0].first->setY(-1);
+						//dirBlock_ = 0;
+					}
 				}
 				else
 				{
@@ -195,7 +127,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		b = SDL_JoystickGetAxis(m_joysticks[0], 0); //EJE HORIZONTAL
 
 
-		//Derecho derecha
+		//izquierdo derecha
 		if (b > m_joystickDeadZone && !joystickMoved)
 		{
 			joystickMoved = true;
@@ -208,7 +140,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				craft->getComponent<Craft>()->moveMarkSlot(2);		//COMENTADOS POR AHORA
 			}
 		}
-		//Derecho izquierda
+		//izquierdo izquierda
 		else if (b < -m_joystickDeadZone && !joystickMoved)
 		{
 			joystickMoved = true;
@@ -309,7 +241,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 							//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
 
-							if ((*it)->getName() == "MESA DE CRAFTEO" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
+							if ((*it)->getName() == "CraftingTable" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
 
 								inv->setActive(!inv->isActive());
 								craft->setActive(!craft->isActive());
@@ -327,7 +259,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 								interactButtonPressedSquare = true;
 								entityFound = true;
 							}
-							else if ((*it)->getName() == "COFRE" && !cstOpen) {
+							else if ((*it)->getName() == "Chest" && !cstOpen) {
 
 								inv->setActive(!inv->isActive());
 								cst->setActive(!cst->isActive());
@@ -378,9 +310,10 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				else if (((!controllerType && m_buttonStates[0][Circle]) || (controllerType && m_buttonStates[0][B])) && !interactButtonPressedCircle && !o->getIsReading())	//Can only attack if you have an equiped weapon
 				{
 					if (inv->getComponent<Inventory>()->currentWeapon() != nullptr && !invOpen && !cstOpen && !crftOpen) {
-						if (!(o->getComponent<Character>()->getAttacking())) {
+						if (!(o->getComponent<Character>()->getAttacking()) && !(o->getComponent<Player>()->getCoolDown())) {
 							o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
 							o->getComponent<Character>()->setAttacking(true);
+							o->getComponent<Player>()->startCoolDown();
 							std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 						}
 					}

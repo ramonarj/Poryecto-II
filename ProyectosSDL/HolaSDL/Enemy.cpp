@@ -19,15 +19,15 @@ void Enemy::punch(Entity* o)
 	
 	SDL_Rect playerRect = player->getRect();
 	SDL_Rect enemyRect = o->getRect();
-	chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
+	//chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
 
 	//Comprobamos si estamos dentro todavia del enemigo
 	if (Collisions::RectRect(&playerRect, &enemyRect))
 	{
 		if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
 		{
-			chaseVector_.setX(-chaseVector_.getX());
-			chaseVector_.setY(-chaseVector_.getY());
+			/*chaseVector_.setX(-chaseVector_.getX());
+			chaseVector_.setY(-chaseVector_.getY());*/
 			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
 			this->takeDamage(player->getComponent<Player>()->getDamage());
 		}
@@ -112,10 +112,6 @@ void Enemy::move(Entity* o)
 
 	//4.SE MUEVE
 	Character::move(o);
-
-
-	//5.COLISIONES
-	//checkCollisions(o, chaseVector);
 }
 
 bool Enemy::playerInRange(Entity * o)
@@ -131,32 +127,55 @@ bool Enemy::playerInRange(Entity * o)
 	return(player != nullptr && player->getComponent<Player>()->isAlive() && distance < rango && !player->getComponent<Player>()->getAwakening());	
 }
 
-void Enemy::checkCollisions(Entity* o, Vector2D chaseVector)
+void Enemy::checkCollisions(Entity* o)
 {
 	SDL_Rect playerRect = player->getRect();
 	SDL_Rect enemyRect = o->getRect();
+	SDL_Rect internEnemyRect;
+
+	internEnemyRect.x = enemyRect.x + enemyRect.w / 4;
+	internEnemyRect.y = enemyRect.y + enemyRect.h / 6;
+	internEnemyRect.w = enemyRect.w/2;
+	internEnemyRect.h = enemyRect.h*2/3;
+
+	bool effectDone = false;
+
 	if (Collisions::RectRect(&playerRect, &enemyRect))
 	{
 		//El que pille recibir� da�o y knockback
 		//El player le ataca
 		if (player->getComponent<Player>()->getAttacking() && isAlive() && player->getComponent<Player>()->getPunch())
 		{
-			chaseVector.setX(-chaseVector.getX());
-			chaseVector.setY(-chaseVector.getY());
+			/*chaseVector.setX(-chaseVector.getX());
+			chaseVector.setY(-chaseVector.getY());*/
 			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
 			this->takeDamage(player->getComponent<Player>()->getDamage());
+
+			effectDone = true;
 		}
 		//�l ataca solo si está vivo y si lo está el player
 		else if (isAlive() && player->getComponent<Character>()->isAlive() && !reloading && !player->getComponent<Player>()->getInvincible())
 		{
-			chaseVector_ = chaseVector;
+ 			/*chaseVector_ = chaseVector;*/
 			setAttacking(true);
 
-			Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));
+			//Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));	//Si se pone este knockback aqui se empuja al player antes de colpear
 
 			reloading = true;
+			effectDone = true;
 		}
 	}
+
+	if (!pushed_ && Collisions::RectRect(&playerRect, &internEnemyRect))
+	{
+		if (isAlive() && player->getComponent<Character>()->isAlive()) 
+		{
+			setBlockDir(player);		
+			Character::knockBack(player, o, push*1.75);
+			pushed_ = true;
+		}
+	}
+	else if (pushed_) pushed_ = false;
 }
 
 void Enemy::bringMeToLife(Uint32 time)
@@ -177,8 +196,8 @@ void Enemy::update(Entity * o, Uint32 time)
 		myself = o;
 
 	if (isAlive()) {
-		chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
-		checkCollisions(o, chaseVector_);
+		//chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
+		checkCollisions(o);
 	}
 
 	//Tanto �l como el jugador est�n vivos
@@ -202,12 +221,11 @@ void Enemy::update(Entity * o, Uint32 time)
 	/*else if (!playerInRange(o) && isAlive())
 		o->setVelocity(Vector2D(0, 0));*/
 	//Muere	
-	else {
+	else if (!isAlive()) {
 		if (!dead) {
 			dead = true;
 			deadOn_ = time;
 			deadTime_ = 20000;
-			//o->getComponent<EnemyAnimationComponent>()->setFramesToZero();
 		}
 		o->setVelocity(Vector2D(0, 0));
 	}
@@ -257,4 +275,47 @@ void Enemy::load(int numEnemy, int numEnemyFile)
 
 Enemy::~Enemy()
 {
+}
+
+void Enemy::setBlockDir(Entity* p) {
+
+	int horizontal = 0;
+	int vertical = 0;
+
+	horizontal = p->getDirection().getX();
+	vertical = p->getDirection().getY();
+
+	if(horizontal==0 && vertical==1){
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(1);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(1);
+	}
+	else if (horizontal == 1 && vertical == 1) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(2);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(2);
+	}
+	else if (horizontal == 1 && vertical == 0) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(3);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(3);
+	}
+	else if (horizontal == 1 && vertical == -1) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(4);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(4);
+	}
+	else if (horizontal == 0 && vertical == -1) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(5);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(5);
+	}
+	else if (horizontal == -1 && vertical == -1) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(6);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(6);
+	}
+	else if (horizontal == -1 && vertical == 0) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(7);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(7);
+	}
+	else if (horizontal == -1 && vertical == 1) {
+		p->getComponent<KeyBoardInputComponent>()->setDirBlock(8);
+		p->getComponent<ControllerInputComponent>()->setDirBlock(8);
+	}
+
 }

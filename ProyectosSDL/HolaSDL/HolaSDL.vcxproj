@@ -15,6 +15,7 @@
     <ClCompile Include="AnimationRenderObject.cpp" />
     <ClCompile Include="AudioMaster.cpp" />
     <ClCompile Include="base64.cpp" />
+    <ClCompile Include="BaseControllerInput.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
@@ -76,6 +77,7 @@
     <ClCompile Include="SkeletonRenderer.cpp" />
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
+    <ClCompile Include="SlidingPuzzleController.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="SRMap.cpp" />
     <ClCompile Include="StaticImageRender.cpp" />
@@ -94,6 +96,7 @@
     <ClInclude Include="AnimationRenderObject.h" />
     <ClInclude Include="AudioMaster.h" />
     <ClInclude Include="base64.h" />
+    <ClInclude Include="BaseControllerInput.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="checkML.h" />
@@ -161,6 +164,7 @@
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />
+    <ClInclude Include="SlidingPuzzleController.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="SRMap.h" />
     <ClInclude Include="StaticImageRender.h" />
@@ -179,7 +183,7 @@
     <ProjectGuid>{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}</ProjectGuid>
     <RootNamespace>HolaSDL</RootNamespace>
     <ProjectName>HolaSDL</ProjectName>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -82,10 +82,10 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 				if (enemyType_==1 && actualFrameAttacking_==4) {
 					o->getComponent<Enemy>()->punch(o);
 				}
-				else if (enemyType_ == 2 && actualFrameAttacking_ == 9999) {		//DATO A CAMBIAR SEGUN LA ANIMACION DEL ENEMIGO
+				else if (enemyType_ == 2 && actualFrameAttacking_ == 4) {		//DATO A CAMBIAR SEGUN LA ANIMACION DEL ENEMIGO
 					o->getComponent<Enemy>()->punch(o);
 				}
-				else if (enemyType_ == 3 && actualFrameAttacking_ == 9999) {		//DATO A CAMBIAR SEGUN LA ANIMACION DEL ENEMIGO
+				else if (enemyType_ == 3 && actualFrameAttacking_ == 3) {		//DATO A CAMBIAR SEGUN LA ANIMACION DEL ENEMIGO
 					o->getComponent<Enemy>()->punch(o);
 				}
 			}
@@ -118,7 +118,7 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 				diying_->getHeight() / directions_);
 
 
-		if (time > actualTime_ + cooldown_*3/2) {
+		if (time > actualTime_ + cooldown_*2/3) {
 			if (actualFrameDiying_ < diyingFrames_ - 1)
 				actualFrameDiying_++;
 			actualTime_ = time;
@@ -127,6 +127,8 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 		diying_->render(Game::Instance()->getRenderer(), dest, &clip);
 
 	}
+
+	//RESUCITANDO
 	else if ((!o->getComponent<Character>()->isAlive()) && o->getComponent<Enemy>()->getResurrecting()) {
 
 		if (actualFrameMoving_ != 0)

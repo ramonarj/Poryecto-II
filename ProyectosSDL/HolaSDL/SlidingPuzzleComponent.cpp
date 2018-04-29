@@ -1,6 +1,6 @@
 #include "SlidingPuzzleComponent.h"
 
-
+#include "SlidingPuzzleController.h"
 
 SlidingPuzzleComponent::SlidingPuzzleComponent()
 {
@@ -32,6 +32,9 @@ SlidingPuzzleComponent::SlidingPuzzleComponent()
 		}
 	}
 
+	markSlot.x = 0;
+	markSlot.y = 0;
+
 	desordena();
 }
 
@@ -50,13 +53,16 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 
 void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<SlidingPuzzleController>()->getComponent<SlidingPuzzleController>();
+
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			cout << event.button.x << " " << event.button.y << endl;
 			bool clicked = false;
 			int i = 0, j = 0;
 
-			while (i < 3 && !clicked){
+			while (i < 3 && !clicked) {
 				while (j < 3 && !clicked)
 				{
 					if ((event.button.x >= PosCasillas[i][j].x && event.button.x <= PosCasillas[i][j].x + AnchoPieza)
@@ -64,12 +70,14 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 					{
 						clicked = true;
 					}
-					if(!clicked) j++;
+					if (!clicked) j++;
 				}
-				if (!clicked) { i++; j = 0; };
+				if (!clicked)
+					{ i++; j = 0; };
 			}
 
-			if(clicked && !fichas[i][j].ghost) compruebaAdyacencia(i, j);
+			if (clicked && !fichas[i][j].ghost) 
+				compruebaAdyacencia(i, j);
 		}
 	}
 }
@@ -77,7 +85,7 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 void SlidingPuzzleComponent::render(Entity * e, Uint32 time)
 {
 
-		SDL_Rect dest = { -600,-800, 2000,2000 };
+	SDL_Rect dest = { -600,-800, 2000,2000 };
 	resource->getTexture("SRMapa1")->render(pRenderer, dest);
 	SDL_Rect DestRect;
 
@@ -91,6 +99,13 @@ void SlidingPuzzleComponent::render(Entity * e, Uint32 time)
 		}
 	}
 
+	DestRect.w = 210;	//210-200 = 10
+	DestRect.h = 210;
+	DestRect.x = PosCasillas[markSlot.x][markSlot.y].x - 5;		//10/2 = 5
+	DestRect.y = PosCasillas[markSlot.x][markSlot.y].y - 5;
+
+	if(pc->joysticksInitialised())
+		renderMark(DestRect);
 }
 
 bool SlidingPuzzleComponent::combruebaVictoria()
@@ -211,4 +226,37 @@ void SlidingPuzzleComponent::desordena()
 			numClicks++;
 		}
 	}*/
+}
+
+void SlidingPuzzleComponent::moveMarkSlot(int a)
+{
+	if (a == 1) {
+		if (markSlot.y > 0) {
+			markSlot.y--;
+		}
+	}
+	else if (a == 3) {
+		if (markSlot.y < 2) {
+			markSlot.y++;
+		}
+	}
+	else if (a == 2) {
+		if (markSlot.x < 2) {
+			markSlot.x++;
+		}
+	}
+	else if (a == 4) {
+		if (markSlot.x > 0) {
+			markSlot.x--;
+		}
+	}
+}
+
+void SlidingPuzzleComponent::renderMark(SDL_Rect DestRect) { 
+	resource->getTexture("InventoryCursor")->render(pRenderer, DestRect);
+}
+
+void SlidingPuzzleComponent::clickMark() {
+	if (!fichas[markSlot.x][markSlot.y].ghost)
+		compruebaAdyacencia(markSlot.x, markSlot.y);
 }

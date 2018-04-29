@@ -2,7 +2,7 @@
 
 
 
-Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1500), invincible_(false), invincibleOn_(0), invincibleTime_(4000), invincibleOnOff_(0)
+Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0)
 {
 }
 Player::~Player()

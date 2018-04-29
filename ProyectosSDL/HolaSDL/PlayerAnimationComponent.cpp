@@ -98,7 +98,7 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 			}
 			else {
 				actualFrameAttacking_ = 0;
-				(o->getComponent<Character>()->setAttacking(false));
+				o->getComponent<Character>()->setAttacking(false);
 				o->getComponent<Player>()->setPunch(false);
 			}
 			actualTime_ = time;

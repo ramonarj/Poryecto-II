@@ -33,20 +33,21 @@ public:
 	void load(int numEnemy, int numEnemyFile);
 
 	virtual ~Enemy();
+	void setBlockDir(Entity * p);
 private:
 	Entity* player;
 	Entity* myself = nullptr;
 
 	int numFile_;
 
-	Vector2D chaseVector_;
+	bool pushed_ = false;
 
 	int numEnemy_;
 	int rango;
 	int velMag;
 	int relaxTime;
 	bool reloading;
-	bool dead;
+	bool dead = true;
 	bool resurecting=false;
 
 	double push;
@@ -56,7 +57,7 @@ private:
 
 	virtual void move(Entity* o);
 	bool playerInRange(Entity * o);
-	void checkCollisions(Entity * o, Vector2D chaseVector);
+	void checkCollisions(Entity * o);
 
 	void bringMeToLife(Uint32 time);
 

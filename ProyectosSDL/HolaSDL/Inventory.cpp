@@ -11,6 +11,8 @@ Inventory::Inventory()
 	pRenderer = nullptr;
 	resource = nullptr;
 	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 710, 510, nullptr));
+	SDL_Color c{ 0,255,100,255 };
+	description_.getComponent<TextNote>()->setColor(c);
 }
 
 Inventory::~Inventory()

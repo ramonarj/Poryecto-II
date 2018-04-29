@@ -5,7 +5,8 @@
 
 Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
 	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), 
-	collidableDoor_(false), messageChanged_(false), thisDoor_(thisDoor) {
+	collidableDoor_(false), messageChanged_(false), thisDoor_(thisDoor),
+	messageRenderer(nullptr), messageTimer(nullptr) {
 }
 
 
@@ -40,19 +41,26 @@ void Door::interact(Entity * e)
 						{
 							if (doorComp->getOri() == "norte")
 								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
-								(*it)->getPosition().getY() + (*it)->getHeight() / 10));
+									(*it)->getPosition().getY() + (*it)->getHeight() / 10));
 
 							else if (doorComp->getOri() == "sur")
 								player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
-								(*it)->getPosition().getY() - player->getHeight() / 2));
+									(*it)->getPosition().getY() - player->getHeight() / 2));
 
 							else if (doorComp->getOri() == "este")
 								player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth() / 2,
-								(*it)->getPosition().getY()));
+									(*it)->getPosition().getY()));
 
 							else if (doorComp->getOri() == "oeste")
 								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
-								(*it)->getPosition().getY()));
+									(*it)->getPosition().getY()));
+
+							std::string name = thisDoor_->getName();
+							if (name != "Puerta") {
+								messageRenderer->display(name,
+									Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);
+								messageTimer->start(3);
+							}
 
 							puertEncontrada = true;
 						}
@@ -140,6 +148,10 @@ void Door::update(Entity * e, Uint32 time) {
 		inventory = Game::Instance()->getEntityWithComponent<Inventory>();
 	if (compInvent == nullptr)
 		compInvent = inventory->getComponent<Inventory>();
+	if (messageRenderer == nullptr)
+		messageRenderer = PlayState::Instance()->getZoneMessageRenderer()->getComponent<MessageRenderer>();
+	if (messageTimer == nullptr)
+		messageTimer = PlayState::Instance()->getZoneMessageRenderer()->getComponent<MessageTimer>();
 
 	if (needKey_ && !messageChanged_) {
 		SDL_Rect playerRect = { int(player->getPosition().getX()), int(player->getPosition().getY()), int(player->getWidth()), int(player->getHeight()) };

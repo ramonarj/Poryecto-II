@@ -94,6 +94,12 @@ void PlayState::startState()
 	messageRenderer->addComponent(new MessageTimer());
 	stage_.push_back(messageRenderer);
 
+	//ZoneMessageRenderer----------------------------------------------------------
+	zoneMessageRenderer = new Entity(0, 0);
+	zoneMessageRenderer->addComponent(new MessageRenderer());
+	zoneMessageRenderer->addComponent(new MessageTimer());
+	stage_.push_back(zoneMessageRenderer);
+
 	craft = new Entity(0, 0);
 	Craft* craftComp = new Craft();
 	craft->addComponent(craftComp);

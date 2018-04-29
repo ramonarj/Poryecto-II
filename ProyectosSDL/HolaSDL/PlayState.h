@@ -25,6 +25,7 @@ private:
 	int mapHeight;
 
 	Entity* messageRenderer;
+	Entity* zoneMessageRenderer;
 
 	bool saveGame = false;
 	bool loadGame = false;
@@ -52,6 +53,7 @@ public:
 	Entity* getPlayer() { return player; };
 
 	Entity* getMessageRenderer() { return messageRenderer; };
+	Entity* getZoneMessageRenderer() { return zoneMessageRenderer; };
 	int getMapWidth() { return mapWidth; };
 	int getMapHeight() { return mapHeight; };
 

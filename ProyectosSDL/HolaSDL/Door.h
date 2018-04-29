@@ -4,6 +4,8 @@
 #include "Interactible.h"
 #include <list>
 #include "Inventory.h"
+#include "MessageRenderer.h"
+#include "MessageTimer.h"
 
 class Door : public Interactible
 {
@@ -38,6 +40,9 @@ private:
 	Inventory* compInvent;
 	Entity* itemKey;
 	Entity* thisDoor_;
+
+	MessageRenderer* messageRenderer;
+	MessageTimer* messageTimer;
 
 	int doorNum_;
 	string ori_;

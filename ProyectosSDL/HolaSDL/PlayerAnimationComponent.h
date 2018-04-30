@@ -12,8 +12,6 @@ public:
 		Uint32 cooldown, Uint32 iddleFrames, Uint32 movementFrames, Uint32 attackingFrames, Uint32 diyingFrames, Uint32 awakeningFrames);
 	virtual ~PlayerAnimationComponent();
 	virtual void render(Entity* o, Uint32 time);
-	void fade();
-	void setFadeWay(bool way);
 	virtual void update(Entity* o, Uint32 time) {};
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
 	Vector2D getLastDir() { return lastDir; };
@@ -32,8 +30,6 @@ private:
 	vector<Texture*> attackingTextures_;
 	Texture * diying_ = nullptr;
 	Texture * awakening_ = nullptr;
-
-	Texture* fade_ = nullptr;
 
 	Uint32 movementFrames_;
 	Uint32 iddleFrames_;
@@ -68,8 +64,5 @@ private:
 	bool attackInProgress_ = false;
 
 	Uint8 alpha_;
-	
-	Uint8 alphaFade_;
-	int fading_ = -1;	// -1 or 1 define the way, In or Out
 };
 

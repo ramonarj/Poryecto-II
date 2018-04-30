@@ -18,8 +18,6 @@ PlayerAnimationComponent::PlayerAnimationComponent(Texture * iddle, Texture * mo
 	attackingTextures_.push_back(attackingPipe_);
 	attackingTextures_.push_back(attackingCrutch_);
 	attackingTextures_.push_back(attackingAxe_);
-
-	//SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), 100);
 }
 
 
@@ -29,11 +27,6 @@ PlayerAnimationComponent::~PlayerAnimationComponent()
 
 
 void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
-
-	if (fade_ == nullptr) {
-		fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
-	}
-
 	SDL_Rect dest
 		RECT(o->getPosition().getX() - Camera::Instance()->getPosition().getX(),
 			o->getPosition().getY() - Camera::Instance()->getPosition().getY(),
@@ -198,68 +191,30 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 
 		iddle_->render(Game::Instance()->getRenderer(), dest, &clip);
 	}
-
-
-
-	//clip para ocupar la pantalla
-	dest = RECT(
-		o->getPosition().getX() - Camera::Instance()->getPosition().getX() - Game::Instance()->getWindowWidth() / 2,
-		o->getPosition().getY() - Camera::Instance()->getPosition().getY() - Game::Instance()->getWindowHeight() / 2,
-		fade_->getWidth(),
-		fade_->getHeight()
-	);
-	//Llamada al fade para modificar progresivamente el alfa
-	fade();
-	//Llamada a render (comentada para que no moleste)
-	//fade_->render(Game::Instance()->getRenderer(), dest, &clip);
-
 }
-
-void PlayerAnimationComponent::fade()
-{
-	if (fading_ == 1) {
-		alphaFade_++;
-		if (alphaFade_ > 254)
-			fading_ = 0;
-	}
-	else if (fading_ == -1) {
-		alphaFade_--;
-		if (alphaFade_ < 1)
-			fading_ = 0;
-	}
-	SDL_SetTextureAlphaMod(fade_->getSdlTexture(), alphaFade_);
-}
-
-void PlayerAnimationComponent::setFadeWay(bool way) {
-	if (way)
-		fading_ = 1;
-	else
-		fading_ = -1;
-}
-
 
 void PlayerAnimationComponent::invincible()
 {
 	if (alpha_ == 255) alpha_ = 100;
 	else alpha_ = 255;
 
-	SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(moving_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(diying_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(awakening_->getSdlTexture(), alpha_);
-	for (Texture* t: attackingTextures_)
-		SDL_SetTextureAlphaMod(t->getSdlTexture(), alpha_);
+	iddle_->ChangeAlphaValue(alpha_);
+	moving_->ChangeAlphaValue(alpha_);
+	diying_->ChangeAlphaValue(alpha_);
+	awakening_->ChangeAlphaValue(alpha_);
+	for (Texture* t : attackingTextures_)
+		t->ChangeAlphaValue(alpha_);
 }
 
 void PlayerAnimationComponent::removeTransparency()
 {
 	alpha_ = 255;
-	SDL_SetTextureAlphaMod(iddle_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(moving_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(diying_->getSdlTexture(), alpha_);
-	SDL_SetTextureAlphaMod(awakening_->getSdlTexture(), alpha_);
+	iddle_->ChangeAlphaValue(alpha_);
+	moving_->ChangeAlphaValue(alpha_);
+	diying_->ChangeAlphaValue(alpha_);
+	awakening_->ChangeAlphaValue(alpha_);
 	for (Texture* t : attackingTextures_)
-		SDL_SetTextureAlphaMod(t->getSdlTexture(), alpha_);
+		t->ChangeAlphaValue(alpha_);
 }
 
 

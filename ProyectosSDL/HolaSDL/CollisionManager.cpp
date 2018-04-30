@@ -20,7 +20,7 @@ void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const
 
 		for (Entity* c : entity)
 		{
-			if (!c->isStatic())
+			if (!c->isStatic() && (c->getVelocity().getX() != 0 || c->getVelocity().getY() != 0))
 			{
 				Vector2D pos(Vector2D(c->getPosition().getX(), c->getPosition().getY()));
 				double width = c->getWidth();

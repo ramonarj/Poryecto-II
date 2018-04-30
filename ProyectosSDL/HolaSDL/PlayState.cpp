@@ -6,7 +6,7 @@
 #include "SRMap.h"
 #include "MessageRenderer.h"
 #include "MessageTimer.h"
-//#include "FadeManager.h"
+#include "FadeManager.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -119,26 +119,12 @@ void PlayState::startState()
 	inventory->setActive(false);
 	stage_.push_back(inventory);
 
-	////FADE---------------------------------------------------------------------------------
-	//fadeManager_ = new Entity(0, 0);
-	//FadeManager* fadeManager = new FadeManager();
-	//fadeManager_->addComponent(fadeManager);
-	////stage_.push_back(fadeManagerEntity);
-
-	/*invtComp->addItem(insulationTape);
-	invtComp->addItem(palo2);
-	invtComp->addItem(palo);*/
-
-	//Registro (nota de texto) de prueba ---------------------------------------------
-	/*Entity* textTest = new Entity(20, 20);
-	textTest->addComponent(new TextNote(Game::Instance(), "textNotes/Archivo1.txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro")));
-	stage_.push_back(textTest);*/
-
 	mergeStages();
 
-	/*fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
-	fade_->ChangeAlphaValue(0);*/
-
+	////FADE---------------------------------------------------------------------------------
+	fadeManager_ = new Entity();
+	fadeManager_->addComponent(new FadeManager(Game::Instance()->getResourceManager()->getTexture("Black")));
+	stage_.push_back(fadeManager_);
 }
 
 void PlayState::update(Uint32 time)

@@ -29,8 +29,8 @@
 #include "EnemyAnimationComponent.h"
 #include "PlayerAnimationComponent.h"
 
-const string FOLDER = "../HolaSDL/";
-//const string FOLDER = "";
+//const string FOLDER = "../HolaSDL/";
+const string FOLDER = "";
 
 const string SAVE_FOLDER = "/saveGame/";
 

@@ -1,1 +1,4 @@
-hola soy un Firstaid
+             BOTIQUIN
+Recupera un porcentaje de tu vida.
+
+Usos: 1

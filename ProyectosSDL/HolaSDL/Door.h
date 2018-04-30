@@ -22,6 +22,7 @@ public:
 	string getOri() { return ori_; };
 
 	bool canTeleport();
+	void teleport(Entity* e);
 	bool getNeedKey();
 	void setNeedKey();
 	void openDoor();

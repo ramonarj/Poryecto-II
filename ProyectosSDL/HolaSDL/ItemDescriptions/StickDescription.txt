@@ -1,1 +1,4 @@
-hola soy un palo
+                MULETA
+Puedes apoyar tu peso en ella, pero
+mejor usarla para golpear.
+      Daño: 1          Usos: 5

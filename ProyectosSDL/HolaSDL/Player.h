@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include "Camera.h"
+#include "FadeManager.h"
 
 class Player :
 	public Character
@@ -29,6 +30,12 @@ public:
 	void startInvincible();
 	void invincible(Entity* o, Uint32 time);
 
+	bool getTeleport() { return teleport_; };
+	void startTeleport(int door, string ori);
+	void teleport();
+	int getNumDoor() { return numDoorToTeleport_; };
+	string getOriDoor() { return oriDoorToTeleport_; };
+
 	bool getPunch() { return punch; };
 	void setPunch(bool p) { punch = p; };
 
@@ -53,5 +60,12 @@ private:
 	Uint32 invincibleOn_;
 	Uint32 invincibleOnOff_;
 	Uint32 invincibleTime_;
+
+	//Teleport entre habitaciones
+	bool teleport_;
+	Uint32 teleportOn_;
+	Uint32 teleportTime_;
+	int numDoorToTeleport_;
+	string oriDoorToTeleport_;
 };
 

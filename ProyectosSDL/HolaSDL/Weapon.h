@@ -10,6 +10,7 @@ public:
 	~Weapon();
 	void attack(); // Resta 1 al numero de golpes que tiene el arma
 	void repare(int a);
+	int getDamage() { return damage_; };
 	int getTypeStr() { return (type_); };
 	int getNumHits() { return numHits_; };
 	void setNumHits(int num) { numHits_ = num; };

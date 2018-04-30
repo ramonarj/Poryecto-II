@@ -1,1 +1,4 @@
-hola soy un palo
+               HACHA
+Herramienta usada por leñadores para
+talar árboles/cabezas.
+      Daño: 2          Usos: 20

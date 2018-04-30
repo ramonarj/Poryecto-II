@@ -18,9 +18,6 @@ void Door::interact(Entity * e)
 	int n = 0;
 	if (collidableDoor_) 
 	{
-		doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
-		
-
 		if (needKey_)
 		{
 			setNeedKey();
@@ -29,44 +26,7 @@ void Door::interact(Entity * e)
 		{
 			if (canTeleport())
 			{
-				list<Entity*>::const_iterator it = doors.begin();
-				bool puertEncontrada = false;
-
-				while (it != doors.end() && !puertEncontrada)
-				{
-					if (e != (*it))
-					{
-						Door* doorComp = (*it)->getComponent<Door>();
-						if (doorNum_ == doorComp->getDoorNum() && doorComp->isCollidable())
-						{
-							if (doorComp->getOri() == "norte")
-								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
-									(*it)->getPosition().getY() + (*it)->getHeight() / 10));
-
-							else if (doorComp->getOri() == "sur")
-								player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
-									(*it)->getPosition().getY() - player->getHeight() / 2));
-
-							else if (doorComp->getOri() == "este")
-								player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth() / 2,
-									(*it)->getPosition().getY()));
-
-							else if (doorComp->getOri() == "oeste")
-								player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
-									(*it)->getPosition().getY()));
-
-							std::string name = thisDoor_->getName();
-							if (name != "Puerta") {
-								messageRenderer->display(name,
-									Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);
-								messageTimer->start(3);
-							}
-
-							puertEncontrada = true;
-						}
-					}
-					it++;
-				}
+				PlayState::Instance()->getPlayer()->getComponent<Player>()->startTeleport(doorNum_, ori_);
 			}
 		}
 	}
@@ -91,6 +51,50 @@ bool Door::canTeleport()
 		|| (ori_ == "sur" && animPlayer->getLastDir().getY() == -1)
 		|| (ori_ == "este" && animPlayer->getLastDir().getX() == 1)
 		|| (ori_ == "oeste" && animPlayer->getLastDir().getX() == -1));
+}
+
+void Door::teleport(Entity* e)
+{
+	doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
+	list<Entity*>::const_iterator it = doors.begin();
+	bool puertEncontrada = false;
+
+	while (it != doors.end() && !puertEncontrada)
+	{
+		if (e != (*it))
+		{
+			Door* doorComp = (*it)->getComponent<Door>();
+			if (doorComp->isCollidable() && PlayState::Instance()->getPlayer()->getComponent<Player>()->getNumDoor() == doorComp->getDoorNum() 
+				&& PlayState::Instance()->getPlayer()->getComponent<Player>()->getOriDoor() == doorComp->getOri())
+			{
+				if (doorComp->getOri() == "norte")
+					player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2 - player->getWidth() / 2,
+					(*it)->getPosition().getY() + (*it)->getHeight() / 10));
+
+				else if (doorComp->getOri() == "sur")
+					player->setPosition(Vector2D(((*it)->getPosition().getX() + (*it)->getWidth() / 2) - player->getWidth() / 2,
+					(*it)->getPosition().getY() - player->getHeight() / 2));
+
+				else if (doorComp->getOri() == "este")
+					player->setPosition(Vector2D((*it)->getPosition().getX() - player->getWidth() / 2,
+					(*it)->getPosition().getY()));
+
+				else if (doorComp->getOri() == "oeste")
+					player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
+					(*it)->getPosition().getY()));
+
+				std::string name = thisDoor_->getName();
+				if (name != "Puerta") {
+					messageRenderer->display(name,
+						Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);
+					messageTimer->start(3);
+				}
+
+				puertEncontrada = true;
+			}
+		}
+		it++;
+	}
 }
 
 bool Door::getNeedKey()
@@ -120,6 +124,7 @@ void Door::setNeedKey()
 
 void Door::openDoor()
 {
+	doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
 	for (list<Entity*>::const_iterator it = doors.begin(); it != doors.end(); it++)
 	{
 		Door* doorComp = (*it)->getComponent<Door>();
@@ -177,6 +182,13 @@ void Door::update(Entity * e, Uint32 time) {
 	else if (!messageChanged_) {
 		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", false);
 		messageChanged_ = true;
+	}
+
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getTeleport() &&
+		Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
+	{
+		teleport(e);
+		PlayState::Instance()->getPlayer()->getComponent<Player>()->teleport();
 	}
 }
 

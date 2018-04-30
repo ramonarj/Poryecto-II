@@ -224,11 +224,11 @@ void Inventory::render(Entity* e, Uint32 time)
 	if (controllerActive) {
 		if (selectedSlot >= 0 && selectedSlot<getInventory().size()) {
 			//if(getInventory()[selectedSlot] != nullptr)
-				description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getPath());
+				description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
 		}
 		else if (selectedSlot == 4) {
 			if (equiped != nullptr)
-				description_.getComponent<TextNote>()->changeString(equiped->getComponent<Item>()->getPath());
+				description_.getComponent<TextNote>()->changeString(equiped->getComponent<Item>()->getDescription());
 		}
 		else {
 			description_.getComponent<TextNote>()->changeString("");
@@ -239,13 +239,13 @@ void Inventory::render(Entity* e, Uint32 time)
 			if (equiped != nullptr) {
 				Entity* b = equiped;
 				Item* c = b->getComponent<Item>();
-				description_.getComponent<TextNote>()->changeString(c->getPath());
+				description_.getComponent<TextNote>()->changeString(c->getDescription());
 			}
 		}
 		else if (slotClicked >= 0 && slotClicked < getInventory().size()) {
 			Entity* b = getInventory()[slotClicked];
 			Item* c = b->getComponent<Item>();
-			description_.getComponent<TextNote>()->changeString(c->getPath());
+			description_.getComponent<TextNote>()->changeString(c->getDescription());
 		}
 		else {
 			description_.getComponent<TextNote>()->changeString("");

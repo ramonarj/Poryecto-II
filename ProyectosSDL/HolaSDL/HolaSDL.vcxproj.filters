@@ -106,9 +106,6 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="base64.cpp">
       <Filter>Archivos de código fuente\Map</Filter>
     </ClCompile>
@@ -242,6 +239,9 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="SlidingPuzzleItem.cpp" />
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -356,9 +356,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="base64.h">
@@ -488,6 +485,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SlidingPuzzleItem.h" />
+    <ClInclude Include="Weapon.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

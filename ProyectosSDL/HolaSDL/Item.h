@@ -33,10 +33,10 @@ public:
 
 protected:
 	int numFile_;
+	string description;	//	descripcion que aparece en el inventario
+	string txtFilePath_;
 
 private:
 	ItemType type_;
-	string description;	//	descripcion que aparece en el inventario
-	string txtFilePath_;
 	bool loadDescription(const string& filename);	//	carga la descripcion del fichero DescriptionItems.txt
 };

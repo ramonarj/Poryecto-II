@@ -118,7 +118,7 @@ void Chest::render(Entity * e, Uint32 time)
 
 	if (controllerActive) {
 		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
-			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getPath());
+			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
 		}
 		else {
 			description_.getComponent<TextNote>()->changeString("");
@@ -128,7 +128,7 @@ void Chest::render(Entity * e, Uint32 time)
 		if (slotClicked >= 0 && slotClicked<getInventory().size()) {
 			Entity* b = getInventory()[slotClicked];
 			Item* c = b->getComponent<Item>();
-			description_.getComponent<TextNote>()->changeString(c->getPath());
+			description_.getComponent<TextNote>()->changeString(c->getDescription());
 		}
 		else {
 			description_.getComponent<TextNote>()->changeString("");

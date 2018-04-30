@@ -14,14 +14,17 @@ public:
 	int getTypeStr() { return (type_); };
 	int getNumHits() { return numHits_; };
 	void setNumHits(int num) { numHits_ = num; };
+	virtual void update(Entity* e, Uint32 time);
 private:
 	int damage_;
 	int numHits_;
 	int maxHits_;
 	double repairIndex_ = 0.6;
 	ItemType type_;
+	string initialDescr;
 
 	void repair();	// Repara el arma
 	void weaponInit(ItemType type);	// Metodo para inicializar el arma
+	bool saveDescription();
 };
 

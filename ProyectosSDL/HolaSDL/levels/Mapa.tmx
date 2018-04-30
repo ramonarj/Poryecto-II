@@ -1068,6 +1068,7 @@
     <property name="numDoor" type="int" value="1"/>
     <property name="numKey" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
+    <property name="zoneName" value="Salas de Urgencia"/>
    </properties>
   </object>
   <object id="21" name="Puerta" type="Puerta" x="2720" y="6430" width="40" height="40">
@@ -1104,6 +1105,7 @@
     <property name="numDoor" type="int" value="4"/>
     <property name="numKey" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
+    <property name="zoneName" value="Cafeteria"/>
    </properties>
   </object>
   <object id="29" name="Puerta" type="Puerta" x="10760" y="990" width="40" height="40">
@@ -1158,6 +1160,7 @@
     <property name="numDoor" type="int" value="4"/>
     <property name="numKey" type="int" value="2"/>
     <property name="textureID" value="puerta"/>
+    <property name="zoneName" value="Hall"/>
    </properties>
   </object>
   <object id="119" name="Puerta" type="Puerta" x="8960" y="10010" width="40" height="40">
@@ -1185,6 +1188,7 @@
     <property name="numDoor" type="int" value="1"/>
     <property name="numKey" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
+    <property name="zoneName" value="Soy el PUTOAMO"/>
    </properties>
   </object>
   <object id="373" name="Key" type="Key" x="1414" y="1577.33" width="20" height="27.3333">

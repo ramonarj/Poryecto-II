@@ -25,9 +25,6 @@ void PlayState::startState()
 	string fileMap = FOLDER + string("levels/Mapa.tmx");
 	pLevel = levelParser.parseLevel(fileMap.c_str());
 
-	for (Entity* e : stage_)
-		cout << e->getName() << endl;
-
 	mapWidth = levelParser.mapWidth;
 	mapHeight = levelParser.mapHeight;
 

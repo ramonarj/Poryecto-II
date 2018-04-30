@@ -32,7 +32,7 @@ void Door::interact(Entity * e)
 	}
 }
 
-void Door::load(int numero, string ori, int numKey, int needKey, int collidableDoor)
+void Door::load(int numero, string ori, int numKey, int needKey, int collidableDoor, string zoneName)
 {
 	doorNum_ = numero;
 	ori_ = ori;
@@ -40,7 +40,8 @@ void Door::load(int numero, string ori, int numKey, int needKey, int collidableD
 	needKey_ = needKey;
 	if (needKey_)
 		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas una llave");
-	collidableDoor_ = { collidableDoor == 0 ? false : true };
+	collidableDoor_ = collidableDoor;
+	zoneName_ = zoneName;
 }
 
 bool Door::canTeleport()

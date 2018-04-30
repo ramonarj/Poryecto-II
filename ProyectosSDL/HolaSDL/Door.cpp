@@ -84,11 +84,14 @@ void Door::teleport(Entity* e)
 					player->setPosition(Vector2D((*it)->getPosition().getX() + (*it)->getWidth() / 2,
 					(*it)->getPosition().getY()));
 
-				std::string name = thisDoor_->getName();
-				if (name != "Puerta") {
-					messageRenderer->display(name,
-						Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);
-					messageTimer->start(3);
+				if (isCollidable()) {
+					std::string name = (*it)->getComponent<Door>()->getZoneName();
+					cout << name << endl;
+					if (name != "") {
+						messageRenderer->display(name,
+							Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);
+						messageTimer->start(4);
+					}
 				}
 
 				puertEncontrada = true;

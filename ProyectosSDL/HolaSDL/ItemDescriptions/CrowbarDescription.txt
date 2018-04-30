@@ -1,1 +1,4 @@
-hola soy un crowbar
+              PALANCA
+Barra curva de hierro usada por un 
+curioso científico para golpear.
+      Daño: 1          Usos: 10

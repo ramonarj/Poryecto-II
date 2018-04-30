@@ -58,5 +58,8 @@ private:
 	//MessageRenderer
 	MessageRenderer* messageRenderer;
 	MessageTimer* messageTimer;
+
+	//Alpha del fade para saber si el personaje se puede mover o no
+	Uint8 alphaFade_;
 };
 

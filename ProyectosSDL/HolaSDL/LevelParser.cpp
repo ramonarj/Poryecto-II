@@ -30,9 +30,9 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	// get the root node and display some values
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
-	std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
+	/*std::cout << "Loading level:\n" << "Version: " << pRoot->Attribute("version") << "\n";
 	std::cout << "Width:" << pRoot->Attribute("width") << " - Height:" << pRoot->Attribute("height") << "\n";
-	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";
+	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";*/
 
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
@@ -249,6 +249,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numKey = 0;
 			int numDoor = 0;
 			int needKey = 0;
+			string zoneName = "";
 
 			int numCamera = 0;
 
@@ -315,6 +316,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 							
 							else if (property->Attribute("name") == std::string("numEnemy"))
 								property->Attribute("value", &numEnemy);
+
+							else if (property->Attribute("name") == std::string("zoneName"))
+								zoneName = property->Attribute("value");
 						}
 					}
 				}
@@ -327,7 +331,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				loadCharacters(e, pEntity, life, damage, numEnemy);
 
 			else if (e->Attribute("type") == std::string("Puerta"))
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor, zoneName);
 
 			else if (e->Attribute("type") == std::string("Key"))
 				pEntity->getComponent<Key>()->load(numKey);

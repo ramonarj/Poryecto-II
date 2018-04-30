@@ -149,7 +149,8 @@ void Enemy::checkCollisions(Entity* o)
 			/*chaseVector.setX(-chaseVector.getX());
 			chaseVector.setY(-chaseVector.getY());*/
 			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
-			this->takeDamage(player->getComponent<Player>()->getDamage());
+			this->takeDamage(Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->getDamage());
+			Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->attack();
 
 			effectDone = true;
 		}

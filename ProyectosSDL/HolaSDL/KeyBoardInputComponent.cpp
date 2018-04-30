@@ -10,10 +10,12 @@ KeyBoardInputComponent::KeyBoardInputComponent()
 }
 
 KeyBoardInputComponent::KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack,
-												SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, 
-												SDL_Scancode SwitchController, SDL_Scancode saveGame, SDL_Scancode loadGame) :
+	SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo,
+	SDL_Scancode SwitchController, SDL_Scancode saveGame, SDL_Scancode loadGame) :
 	left_(left), right_(right), up_(up), down_(down), interact_(interact), attack_(attack), inventory_(inventory), chest_(chest), craft_(crafteo), switchController_(SwitchController),
-	pause_(pause), enter_(enter), saveGame_(saveGame), loadGame_(loadGame), inventoryPressed(false), chestPressed(false), messageRenderer(nullptr), messageTimer(nullptr) {
+	pause_(pause), enter_(enter), saveGame_(saveGame), loadGame_(loadGame), inventoryPressed(false), chestPressed(false), messageRenderer(nullptr), messageTimer(nullptr),
+	alphaFade_(0)
+{
 }
 
 KeyBoardInputComponent::~KeyBoardInputComponent()
@@ -22,6 +24,7 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 
 void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 
+	alphaFade_ = Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade();
 	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 	if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
@@ -53,12 +56,12 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 			{
 				PlayState::Instance()->setLoadGame(true);
 			}
-			if (dirBlock_!=7 && dirBlock_!=8 && dirBlock_!=6 && state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
+			if (dirBlock_!=7 && dirBlock_!=8 && dirBlock_!=6 && state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive() && alphaFade_ == 0) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 				velocity.setX(-vel);
 				direction.setX(-1);
 				dirBlock_ = 0;
 			}
-			else if (dirBlock_ != 2 && dirBlock_ != 3 && dirBlock_ != 4 && state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			else if (dirBlock_ != 2 && dirBlock_ != 3 && dirBlock_ != 4 && state[right_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive() && alphaFade_ == 0) {
 				velocity.setX(vel);
 				direction.setX(1);
 				dirBlock_ = 0;
@@ -67,12 +70,12 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				velocity.setX(0);
 				direction.setX(0);
 			}
-			if (dirBlock_ != 8 && dirBlock_ != 1 && dirBlock_ != 2 && state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			if (dirBlock_ != 8 && dirBlock_ != 1 && dirBlock_ != 2 && state[up_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive() && alphaFade_ == 0) {
 				velocity.setY(-vel);
 				direction.setY(1);
 				dirBlock_ = 0;
 			}
-			else if (dirBlock_ != 4 && dirBlock_ != 5 && dirBlock_ != 6 && state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {
+			else if (dirBlock_ != 4 && dirBlock_ != 5 && dirBlock_ != 6 && state[down_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive() && alphaFade_ == 0) {
 				velocity.setY(vel);
 				direction.setY(-1);
 				dirBlock_ = 0;

@@ -15,13 +15,15 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int numero, string ori, int numKey, int needKey, int collidableDoor);
+	void load(int numero, string ori, int numKey, int needKey, int collidableDoor, string zoneName);
 
 	int getDoorNum() { return doorNum_; };
 	int getNumKey() { return numKey_; };
 	string getOri() { return ori_; };
+	string getZoneName() { return zoneName_; };
 
 	bool canTeleport();
+	void teleport(Entity* e);
 	bool getNeedKey();
 	void setNeedKey();
 	void openDoor();
@@ -46,6 +48,7 @@ private:
 
 	int doorNum_;
 	string ori_;
+	string zoneName_;
 	int numKey_;
 	bool needKey_;
 	bool collidableDoor_;

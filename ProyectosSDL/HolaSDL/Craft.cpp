@@ -200,13 +200,23 @@ void Craft::tryCraftingRepair()
 		switch (selectedSlot)
 		{
 		case 0:
-			if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			if ((inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES)) || (inv->checkIdemItems(ItemType::GENERICCHEMICAL,2)))
 			{
 				craftButtonSelected = true;
 			}
 			break;
 		case 1:
-			break;		//HAY QUE CAMBIAR LAS VARIABLES DEL REPIAR A 3 Y 4 RESPECTIVAMENTE LAS 2 Y 3 SI SE QUIEREN METER MAS CRAFTEABLES
+			if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))	
+			{
+				craftButtonSelected = true;
+			}
+			break;	
+		case 2:
+			if (inv->checkIdemItems(ItemType::PIECEPUZZLE, 4))
+			{
+				craftButtonSelected = true;
+			}
+			break;
 		default:
 			break;
 		}

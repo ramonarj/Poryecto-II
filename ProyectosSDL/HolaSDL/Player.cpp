@@ -2,7 +2,8 @@
 
 
 
-Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0)
+Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0),
+				teleport_(false), teleportOn_(0), teleportTime_(0), numDoorToTeleport_(0)
 {
 }
 Player::~Player()
@@ -85,6 +86,23 @@ void Player::invincible(Entity* o, Uint32 time)
 		o->getComponent<PlayerAnimationComponent>()->invincible();
 		invincibleOnOff_ = SDL_GetTicks();
 	}
+}
+
+void Player::startTeleport(int door, string ori)
+{
+	teleport_ = true;
+	numDoorToTeleport_ = door;
+
+	if (ori == "norte")oriDoorToTeleport_ = "sur";
+	else if (ori == "sur")oriDoorToTeleport_ = "norte";
+	else if (ori == "este")oriDoorToTeleport_ = "oeste";
+	else if (ori == "oeste")oriDoorToTeleport_ = "este";
+}
+
+void Player::teleport()
+{
+	if (teleport_ && Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
+		teleport_ = false;
 }
 
 

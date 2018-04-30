@@ -2,40 +2,46 @@
 #include "Game.h"
 
 
-FadeManager::FadeManager()
+FadeManager::FadeManager() : Component(), fade_(nullptr), alpha_(0), difAlpha_(0)
 {
-	renderer_ = Game::Instance()->getRenderer();
+}
+
+FadeManager::FadeManager(Texture * texture) : Component(), fade_(texture), alpha_(MAX_FADE_ALPHA), difAlpha_(15)
+{
 }
 
 
 FadeManager::~FadeManager()
 {
+	delete fade_;
 }
 
 void FadeManager::render(Entity * e, Uint32 time) {
 
-	if (player_ == nullptr) {
-		player_ = Game::Instance()->getEntityWithComponent<Player>();
+	SDL_Rect dest = RECT(0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight());
+
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getTeleport())
+	{
+		if (alpha_ < MAX_FADE_ALPHA)
+			alpha_ += difAlpha_;
+		if (alpha_ > 255 - difAlpha_)
+			alpha_ = MAX_FADE_ALPHA;
 	}
-	if (fade_==nullptr) {
-		fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
+	else
+	{
+		if (alpha_ > 0) 
+			alpha_ -= difAlpha_;
+		if (alpha_ < difAlpha_)
+			alpha_ = 0;
 	}
+	fade_->ChangeAlphaValue(alpha_);
 
-	SDL_Rect dest = RECT(
-		player_->getPosition().getX() - Camera::Instance()->getPosition().getX() - Game::Instance()->getWindowWidth() / 2,
-		player_->getPosition().getY() - Camera::Instance()->getPosition().getY() - Game::Instance()->getWindowHeight() / 2,
-		fade_->getWidth(),
-		fade_->getHeight()
-	);
 
-	fade_->ChangeAlphaValue(0);
-
-	fade_->render(renderer_, dest);
-
+	fade_->render(Game::Instance()->getRenderer(), dest);
 }
 
 void FadeManager::handleInput(Entity * e, Uint32 time, const SDL_Event & event) {
-	if (event.type == SDL_KEYDOWN) {
+	/*if (event.type == SDL_KEYDOWN) {
 		
-	}
+	}*/
 }

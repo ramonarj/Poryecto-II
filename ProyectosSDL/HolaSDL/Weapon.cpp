@@ -24,12 +24,15 @@ void Weapon::weaponInit(ItemType type) {
 	{
 	case STICK:
 		maxHits_ = 5;
+		damage_ = 1;
 		break;
 	case CROWBAR:
 		maxHits_ = 10;
+		damage_ = 1;
 		break;
 	case PIPE:
 		maxHits_ = 15;
+		damage_ = 1;
 		break;
 	case AXE:
 		maxHits_ = 20;

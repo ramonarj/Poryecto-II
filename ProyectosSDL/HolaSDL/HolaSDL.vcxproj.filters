@@ -247,6 +247,12 @@
     <ClCompile Include="SlidingPuzzleItem.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
     </ClCompile>
+    <ClCompile Include="OrderPuzzleComponent.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="OrderPuzzle.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -497,6 +503,12 @@
     </ClInclude>
     <ClInclude Include="SlidingPuzzleItem.h">
       <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderPuzzle.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderPuzzleComponent.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

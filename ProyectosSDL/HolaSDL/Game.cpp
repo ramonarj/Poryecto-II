@@ -211,6 +211,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("PointLight", "images/Shadows/PointLight.png");
 	resourceManager_->addTexture("BGtest", "images/Shadows/BGtest.png");
 
+	resourceManager_->addTexture("Blood", "images/Shadows/blood.png");
+
 	//AnimationTilesheet
 	resourceManager_->addTexture("SecurityCameras", "images/AnimTilesheet/TileshetCameras.png");
 

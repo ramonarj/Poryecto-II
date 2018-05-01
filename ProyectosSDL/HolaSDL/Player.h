@@ -16,6 +16,7 @@ public:
 	virtual void loadToFile(Entity* o);
 
 	int getLife() { return life; };
+	int getMaxLife() { return maxLife_; };
 	void cure();
 	void setWeaponId(int id) { WeaponId = id; };
 	int getWeaponId() { return WeaponId; };

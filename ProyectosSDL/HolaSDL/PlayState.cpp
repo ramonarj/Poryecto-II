@@ -7,16 +7,17 @@
 #include "MessageRenderer.h"
 #include "MessageTimer.h"
 #include "FadeManager.h"
+#include "BloodManager.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
-PlayState::PlayState(): GameState(){ //Constructora de nueva partida
-	
+PlayState::PlayState() : GameState() { //Constructora de nueva partida
+
 }
 
 
 PlayState::~PlayState() {
-	
+
 }
 
 void PlayState::startState()
@@ -119,6 +120,14 @@ void PlayState::startState()
 	fadeManager_ = new Entity();
 	fadeManager_->addComponent(new FadeManager(Game::Instance()->getResourceManager()->getTexture("Black")));
 	stage_.push_back(fadeManager_);
+
+	//Blood-------------------------------------------------------------------
+	Entity* bloodManagerEntity = new Entity(0, 0);
+	BloodManager* bloodManager = new BloodManager();
+	bloodManagerEntity->addComponent(bloodManager);
+	bloodManagerEntity->setHeight(Game::Instance()->getWindowHeight());
+	bloodManagerEntity->setWidth(Game::Instance()->getWindowWidth());
+	stage_.push_back(bloodManagerEntity);
 }
 
 void PlayState::update(Uint32 time)

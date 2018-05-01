@@ -23,7 +23,7 @@ public:
 	string getZoneName() { return zoneName_; };
 
 	bool canTeleport();
-	void teleport(Entity* e);
+	void teleport();
 	bool getNeedKey();
 	void setNeedKey();
 	void openDoor();

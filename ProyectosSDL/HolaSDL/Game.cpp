@@ -117,6 +117,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("CraftingTable", new CraftingTableCreator());
 	gameObjectFactory->registerType("Register", new RegisterCreator());
 	gameObjectFactory->registerType("SRMap", new SRMapCreator());
+	gameObjectFactory->registerType("SavePoint", new SavePointCreator());
 	registerTypeItem();
 }
 

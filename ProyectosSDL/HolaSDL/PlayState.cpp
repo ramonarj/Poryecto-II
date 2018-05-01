@@ -99,20 +99,17 @@ void PlayState::startState()
 	stage_.push_back(zoneMessageRenderer);
 
 	craft = new Entity(0, 0);
-	Craft* craftComp = new Craft();
-	craft->addComponent(craftComp);
+	craft->addComponent(new Craft());
 	craft->setActive(false);
 	stage_.push_back(craft);
 
 	chest = new Entity(0, 0);
-	Chest* chestComp = new Chest();
-	chest->addComponent(chestComp);
+	chest->addComponent(new Chest());
 	chest->setActive(false);
 	stage_.push_back(chest);
 
 	inventory = new Entity(0, 0);
-	Inventory* invtComp = new Inventory();
-	inventory->addComponent(invtComp);
+	inventory->addComponent(new Inventory());
 	inventory->setActive(false);
 	stage_.push_back(inventory);
 

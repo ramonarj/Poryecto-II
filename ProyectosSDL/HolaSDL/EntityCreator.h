@@ -17,6 +17,7 @@
 #include "SRMap.h"
 #include "MessageTrigger.h"
 #include "SlidingPuzzleItem.h"
+#include "SavePoint.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -278,6 +279,20 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new SlidingPuzzleItem());
 		e->addComponent(new MessageTrigger("'E' para ver el puzzle", "'Square/X' para ver el puzzle"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+
+};
+
+class SavePointCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new SavePoint());
+		e->addComponent(new MessageTrigger("'E' para dormir y Guardar Partida", "'Square/X' para dormir y Guardar Partida"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

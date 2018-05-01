@@ -32,7 +32,7 @@
 //const string FOLDER = "../HolaSDL/";
 const string FOLDER = "";
 
-const string SAVE_FOLDER = "/saveGame/";
+const string SAVE_FOLDER = "../HolaSDL/saveGame/";
 
 class Game : public SDLGame {
 

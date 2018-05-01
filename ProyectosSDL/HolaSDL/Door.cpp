@@ -26,7 +26,7 @@ void Door::interact(Entity * e)
 		{
 			if (canTeleport())
 			{
-				PlayState::Instance()->getPlayer()->getComponent<Player>()->startTeleport(doorNum_, ori_);
+				PlayState::Instance()->getPlayer()->getComponent<Player>()->startTeleport(e, doorNum_, ori_);
 			}
 		}
 	}
@@ -54,7 +54,7 @@ bool Door::canTeleport()
 		|| (ori_ == "oeste" && animPlayer->getLastDir().getX() == -1));
 }
 
-void Door::teleport(Entity* e)
+void Door::teleport()
 {
 	doors = (*Game::Instance()->stateMachine_.currentState()->getDoors());
 	list<Entity*>::const_iterator it = doors.begin();
@@ -62,7 +62,7 @@ void Door::teleport(Entity* e)
 
 	while (it != doors.end() && !puertEncontrada)
 	{
-		if (e != (*it))
+		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getDoorToTeleport() != (*it))
 		{
 			Door* doorComp = (*it)->getComponent<Door>();
 			if (doorComp->isCollidable() && PlayState::Instance()->getPlayer()->getComponent<Player>()->getNumDoor() == doorComp->getDoorNum() 
@@ -191,15 +191,14 @@ void Door::update(Entity * e, Uint32 time) {
 	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getTeleport() &&
 		Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
 	{
-		teleport(e);
-		PlayState::Instance()->getPlayer()->getComponent<Player>()->teleport();
+		teleport();
 	}
 }
 
 void Door::saveToFile(Entity* o)
 {
 	ofstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
+	file.open(SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
 	if (file.is_open())
 	{
 		file << needKey_;
@@ -210,7 +209,7 @@ void Door::saveToFile(Entity* o)
 void Door::loadToFile(Entity* o)
 {
 	ifstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
+	file.open(SAVE_FOLDER + "Door/door" + to_string(doorNum_) + ".pac");
 
 	//Vemos si existe el archivo
 	if (file.is_open())

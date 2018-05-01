@@ -238,8 +238,13 @@
     <ClCompile Include="FadeManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="SlidingPuzzleItem.cpp" />
     <ClCompile Include="Weapon.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePoint.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="SlidingPuzzleItem.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
     </ClCompile>
   </ItemGroup>
@@ -484,8 +489,13 @@
     <ClInclude Include="FadeManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="SlidingPuzzleItem.h" />
     <ClInclude Include="Weapon.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePoint.h">
+      <Filter>Archivos de encabezado\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="SlidingPuzzleItem.h">
       <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
   </ItemGroup>

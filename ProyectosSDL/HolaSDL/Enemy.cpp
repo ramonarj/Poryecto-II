@@ -237,7 +237,7 @@ void Enemy::update(Entity * o, Uint32 time)
 void Enemy::saveToFile(Entity* o)
 {
 	ofstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
+	file.open(SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
 	if (file.is_open())
 	{
 		o->saveEntity(o, file);
@@ -248,7 +248,7 @@ void Enemy::saveToFile(Entity* o)
 void Enemy::loadToFile(Entity* o)
 {
 	ifstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
+	file.open(SAVE_FOLDER + "Enemy/enemy" + to_string(numFile_) + ".pac");
 
 	//Vemos si existe el archivo
 	if (file.is_open())

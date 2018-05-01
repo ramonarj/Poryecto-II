@@ -18,7 +18,7 @@ void Item::use(Entity* e, Entity* item) {
 void Item::saveToFile(Entity * o)
 {
 	ofstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
+	file.open(SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
 	if (file.is_open())
 	{
 		file << o->isActive();
@@ -29,7 +29,7 @@ void Item::saveToFile(Entity * o)
 void Item::loadToFile(Entity * o)
 {
 	ifstream file;
-	file.open(FOLDER + SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
+	file.open(SAVE_FOLDER + "Items/item" + o->getName() + to_string(numFile_) + ".pac");
 
 	bool active;
 

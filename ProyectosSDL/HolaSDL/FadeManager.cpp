@@ -6,7 +6,7 @@ FadeManager::FadeManager() : Component(), fade_(nullptr), alpha_(0), difAlpha_(0
 {
 }
 
-FadeManager::FadeManager(Texture * texture) : Component(), fade_(texture), alpha_(MAX_FADE_ALPHA), difAlpha_(15)
+FadeManager::FadeManager(Texture * texture) : Component(), fade_(texture), alpha_(MAX_FADE_ALPHA), difAlpha_(10)
 {
 }
 
@@ -20,12 +20,15 @@ void FadeManager::render(Entity * e, Uint32 time) {
 
 	SDL_Rect dest = RECT(0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight());
 
-	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getTeleport())
+	if (doFade_)
 	{
 		if (alpha_ < MAX_FADE_ALPHA)
 			alpha_ += difAlpha_;
 		if (alpha_ > 255 - difAlpha_)
+		{
 			alpha_ = MAX_FADE_ALPHA;
+			doFade_ = false;
+		}
 	}
 	else
 	{
@@ -44,4 +47,10 @@ void FadeManager::handleInput(Entity * e, Uint32 time, const SDL_Event & event) 
 	/*if (event.type == SDL_KEYDOWN) {
 		
 	}*/
+}
+
+void FadeManager::setDoFade(bool b, Uint8 dif)
+{
+	doFade_ = b;
+	difAlpha_ = dif;
 }

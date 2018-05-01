@@ -262,7 +262,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
-				|| e->Attribute("type") == std::string("SRMap"))
+				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);

@@ -3,7 +3,7 @@
 
 
 Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0),
-				teleport_(false), teleportOn_(0), teleportTime_(0), numDoorToTeleport_(0)
+				teleport_(false), numDoorToTeleport_(0), doorToTeleport_(nullptr)
 {
 }
 Player::~Player()
@@ -30,19 +30,21 @@ void Player::render(Entity* o, Uint32 time) {}
 void Player::saveToFile(Entity* o)
 {
 	ofstream file;
-	file.open(FOLDER + SAVE_FOLDER + "player.pac");
+	file.open(SAVE_FOLDER + "player.pac");
 	if (file.is_open())
 	{
 		o->saveEntity(o, file);
 		file << life;
 	}
+	else
+		cout << "Error al abrir el archivo de Guardado de Player" << endl;
 	file.close();
 }
 
 void Player::loadToFile(Entity* o)
 {
 	ifstream file;
-	file.open(FOLDER + SAVE_FOLDER + "player.pac");
+	file.open(SAVE_FOLDER + "player.pac");
 
 	//Vemos si existe el archivo
 	if (file.is_open())
@@ -51,6 +53,8 @@ void Player::loadToFile(Entity* o)
 
 		file >> life;
 	}
+	else
+		cout << "Error al abrir el archivo de Cargado de Player" << endl;
 
 	file.close();
 }
@@ -88,21 +92,18 @@ void Player::invincible(Entity* o, Uint32 time)
 	}
 }
 
-void Player::startTeleport(int door, string ori)
+void Player::startTeleport(Entity* e, int door, string ori)
 {
 	teleport_ = true;
 	numDoorToTeleport_ = door;
+	doorToTeleport_ = e;
+
+	Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setDoFade(true, 20);
 
 	if (ori == "norte")oriDoorToTeleport_ = "sur";
 	else if (ori == "sur")oriDoorToTeleport_ = "norte";
 	else if (ori == "este")oriDoorToTeleport_ = "oeste";
 	else if (ori == "oeste")oriDoorToTeleport_ = "este";
-}
-
-void Player::teleport()
-{
-	if (teleport_ && Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
-		teleport_ = false;
 }
 
 

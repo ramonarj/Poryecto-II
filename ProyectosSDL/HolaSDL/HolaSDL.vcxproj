@@ -73,6 +73,7 @@
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SavePoint.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SecurityCamera.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="SavePoint.h" />
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="sdl_includes.h" />
     <ClInclude Include="SecurityCamera.h" />

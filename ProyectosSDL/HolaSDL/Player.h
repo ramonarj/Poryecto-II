@@ -31,10 +31,10 @@ public:
 	void invincible(Entity* o, Uint32 time);
 
 	bool getTeleport() { return teleport_; };
-	void startTeleport(int door, string ori);
-	void teleport();
+	void startTeleport(Entity* e, int door, string ori);
 	int getNumDoor() { return numDoorToTeleport_; };
 	string getOriDoor() { return oriDoorToTeleport_; };
+	Entity* getDoorToTeleport() { return doorToTeleport_; };
 
 	bool getPunch() { return punch; };
 	void setPunch(bool p) { punch = p; };
@@ -63,9 +63,8 @@ private:
 
 	//Teleport entre habitaciones
 	bool teleport_;
-	Uint32 teleportOn_;
-	Uint32 teleportTime_;
 	int numDoorToTeleport_;
 	string oriDoorToTeleport_;
+	Entity* doorToTeleport_;
 };
 

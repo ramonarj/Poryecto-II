@@ -382,7 +382,11 @@ void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFi
 	pEntity->getComponent<Register>()->load(registerFile);
 	if (floorRegister)
 	{
-		pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Register1"), 400, true, true, 2));
+		if (registerFile == 1) {
+			pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("BookShelving"), 400, true, true, 2));
+		}
+		else
+			pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Register1"), 400, true, true, 2));
 		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 	}
 	else

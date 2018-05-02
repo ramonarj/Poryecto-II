@@ -158,6 +158,7 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 					actualFrameAwakening_++;
 				else {
 					o->getComponent<Player>()->setAwakening(false);		//Ya no está despertandose
+					o->setDirection(Vector2D(0.0, -1.0));
 				}
 				actualTime_ = time;
 			}

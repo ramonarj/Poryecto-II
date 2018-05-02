@@ -176,6 +176,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Circuit", "images/Items/circuit.png");
 	resourceManager_->addTexture("Television", "images/Items/television.png");
 	resourceManager_->addTexture("Register1", "images/Items/register1.png");
+	resourceManager_->addTexture("BookShelving", "images/Items/bookShelving.png");
 
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
@@ -193,6 +194,8 @@ void Game::addResourcesTexture()
 	//Backgrounds
 	resourceManager_->addTexture("FondoMenu", "images/Menu/FondoMenu.png");
 	resourceManager_->addTexture("BgRegistro", "images/bgRegistro.png");
+	resourceManager_->addTexture("BgRegistroWithPic", "images/bgRegistroWithPic.png");
+	resourceManager_->addTexture("BgBook", "images/bgBook.png");
 	resourceManager_->addTexture("SRMapa1", "images/SRMap/SRMap1.png");
 	resourceManager_->addTexture("SRMapa2", "images/SRMap/SRMap2.png");
 	resourceManager_->addTexture("SRMapa3", "images/SRMap/SRMap3.png");
@@ -202,7 +205,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
 
 	//Cursors
-	resourceManager_->addTexture("Cursor", "images/stickPrueba.png");
+	resourceManager_->addTexture("Cursor", "images/Cursor.png");
 	resourceManager_->addTexture("InventoryCursor", "images/Inventario/CursorInventario.png");
 
 	//Lighting

@@ -17,7 +17,7 @@ Inventory::Inventory()
 
 Inventory::~Inventory()
 {
-	for (int i = 0; i < inventory.size(); i++){ if (inventory[i] != nullptr) delete inventory[i]; }
+	for (int i = 0; i < inventory.size(); i++) { if (inventory[i] != nullptr) delete inventory[i]; }
 	for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
 	if (equiped != nullptr) delete equiped;
 	equiped = nullptr;
@@ -39,18 +39,18 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
 
-			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x +slotWidth)
-				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + slotWidth))
+			if ((event.button.x >= EquippedCoord.x - slotWidth/2 && event.button.x <= EquippedCoord.x + slotWidth)
+				&& (event.button.y >= EquippedCoord.y - slotWidth/2 && event.button.y <= EquippedCoord.y + slotWidth))
 			{
 				equipedClicked = true;
 				equipedLastClicked = true;
 			}
-			
+
 			else {
 				while (i< int(inventory.size()) && !clicked)
 				{
-					if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + slotWidth)
-						&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
+					if ((event.button.x >= Inventoryslots[i].x - slotWidth/2 && event.button.x <= Inventoryslots[i].x + slotWidth)
+						&& (event.button.y >= Inventoryslots[i].y - slotWidth/2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 					{
 						clicked = true;
 						equipedLastClicked = false;
@@ -66,8 +66,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= Inventoryslots[i].x && event.button.x <= Inventoryslots[i].x + slotWidth)
-					&& (event.button.y >= Inventoryslots[i].y && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
+				if ((event.button.x >= Inventoryslots[i].x - slotWidth/2 && event.button.x <= Inventoryslots[i].x + slotWidth)
+					&& (event.button.y >= Inventoryslots[i].y - slotWidth/2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 				{
 					clicked = true;
 					useItem(i);
@@ -79,51 +79,51 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
-			if ((event.button.x >= EquippedCoord.x && event.button.x <= EquippedCoord.x + slotWidth)
-				&& (event.button.y >= EquippedCoord.y && event.button.y <= EquippedCoord.y + slotWidth)) //cambio
+			if ((event.button.x >= EquippedCoord.x - slotWidth/2 && event.button.x <= EquippedCoord.x + slotWidth)
+				&& (event.button.y >= EquippedCoord.y - slotWidth/2 && event.button.y <= EquippedCoord.y + slotWidth)) //cambio
 			{
 				equipWeapon(slotClicked);
 			}
 			//COMPROBAR SI SE HA SOLTADO DENTRO DE LAS COORDENADAS DEL COFRE
-			else if(chestMode){
+			else if (chestMode) {
 				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
-					if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[cofre->getChestTam() - 1].x)
-						&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[cofre->getChestTam() - 1].y))
-					{
-						if (!cofre->fullChest()) {
-							cofre->addItem(inventory[slotClicked]);
-							this->DeleteItem(slotClicked);
-						}
+				if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[cofre->getChestTam() - 1].x)
+					&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[cofre->getChestTam() - 1].y))
+				{
+					if (!cofre->fullChest()) {
+						cofre->addItem(inventory[slotClicked]);
+						this->DeleteItem(slotClicked);
 					}
+				}
 			}
 
 			else if (craftMode) {
 				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
-				if ((event.button.x >= craftWin->WepRepareSlot().x && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)//Cambiar
-					&& (event.button.y >= craftWin->WepRepareSlot().y && event.button.y <= craftWin->WepRepareSlot().y + slotWidth)
+				if ((event.button.x >= craftWin->WepRepareSlot().x - slotWidth/2 && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->WepRepareSlot().y - slotWidth/2 && event.button.y <= craftWin->WepRepareSlot().y + slotWidth)
 					&& inventory[slotClicked]->getComponent<Weapon>())
 				{
 					craftWin->setWep(inventory[slotClicked]);
 					this->DeleteItem(slotClicked);
 				}
-					
-				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x && event.button.x <= craftWin->InsulationTapeRepareSlot().x + slotWidth)//Cambiar
-					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y && event.button.y <= craftWin->InsulationTapeRepareSlot().y + slotWidth)
-					&&inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
-						craftWin->setCinta(inventory[slotClicked]);
-						this->DeleteItem(slotClicked);
+
+				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x - slotWidth/2 && event.button.x <= craftWin->InsulationTapeRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y - slotWidth/2 && event.button.y <= craftWin->InsulationTapeRepareSlot().y + slotWidth)
+					&& inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
+					craftWin->setCinta(inventory[slotClicked]);
+					this->DeleteItem(slotClicked);
 				}
-				
+
 			}
 			clicked = false;
 		}
-	}	
+	}
 
 	else if (event.type == SDL_MOUSEBUTTONUP && equipedClicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL INVENTARIO
-			if ((event.button.x >= Inventoryslots[0].x && event.button.x <= Inventoryslots[InventoryTam - 1].x + slotWidth)
-				&& (event.button.y >= Inventoryslots[0].y && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)) //cambio
+			if ((event.button.x >= Inventoryslots[0].x - slotWidth/2 && event.button.x <= Inventoryslots[InventoryTam - 1].x + slotWidth)
+				&& (event.button.y >= Inventoryslots[0].y - slotWidth/2 && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)) //cambio
 			{
 				if (!fullInventory())
 				{
@@ -153,7 +153,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 //Este m�todo coprueba por DuckTyping que objeto hay en cada parte del vector y lo pinta
 void Inventory::render(Entity* e, Uint32 time)
 {
-	
+
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
@@ -177,9 +177,9 @@ void Inventory::render(Entity* e, Uint32 time)
 		int x, y;
 		SDL_GetMouseState(&x, &y);
 
-		if(!equipedClicked)
-		DestRect = { EquippedCoord.x - slotWidth/2 + 2, EquippedCoord.y - slotWidth / 2 -2, slotWidth*2, slotWidth*2 };	//DEBUG
-		else  DestRect = { x - slotWidth/2, y - slotWidth / 2, slotWidth*2, slotWidth*2 };
+		if (!equipedClicked)
+			DestRect = { EquippedCoord.x - slotWidth / 2 + 2, EquippedCoord.y - slotWidth / 2 - 2, slotWidth * 2, slotWidth * 2 };	//DEBUG
+		else  DestRect = { x - slotWidth / 2, y - slotWidth / 2, slotWidth * 2, slotWidth * 2 };
 
 		if (weaponComp->getType() == ItemType::STICK)
 			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
@@ -197,25 +197,25 @@ void Inventory::render(Entity* e, Uint32 time)
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemInvPosX(i) - slotWidth / 2, getItemInvPosY(i) - slotWidth / 2, slotWidth*2, slotWidth*2 };
+			SDL_Rect DestRect = { getItemInvPosX(i) - slotWidth / 2, getItemInvPosY(i) - slotWidth / 2, slotWidth * 2, slotWidth * 2 };
 			renderItem(i, e, DestRect);
 		}
 		if (clicked)
 		{
 			int x, y;
 			SDL_GetMouseState(&x, &y);
-			SDL_Rect DestRect = { x - slotWidth / 2, y - slotWidth / 2, slotWidth*2, slotWidth*2 };
+			SDL_Rect DestRect = { x - slotWidth / 2, y - slotWidth / 2, slotWidth * 2, slotWidth * 2 };
 			renderItem(slotClicked, e, DestRect);
 		}
 	}
 
 	if (controllerActive && renderMark) {
 		if (selectedSlot <= 3) {
-			SDL_Rect DestRect = { Inventoryslots[selectedSlot].x-slotWidth/2+5, Inventoryslots[selectedSlot].y-slotWidth/2+3, slotWidth*2-8, slotWidth*2-8 };
+			SDL_Rect DestRect = { Inventoryslots[selectedSlot].x - slotWidth / 2 + 5, Inventoryslots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
 			renderSlotMark(DestRect);
 		}
 		else {
-			SDL_Rect DestRect = { EquippedCoord.x-slotWidth/2-5, EquippedCoord.y-slotWidth/2-10, slotWidth*2+16, slotWidth*2+16 };
+			SDL_Rect DestRect = { EquippedCoord.x - slotWidth / 2 - 5, EquippedCoord.y - slotWidth / 2 - 10, slotWidth * 2 + 16, slotWidth * 2 + 16 };
 			renderSlotMark(DestRect);
 		}
 	}
@@ -224,7 +224,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	if (controllerActive) {
 		if (selectedSlot >= 0 && selectedSlot<getInventory().size()) {
 			//if(getInventory()[selectedSlot] != nullptr)
-				description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
+			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
 		}
 		else if (selectedSlot == 4) {
 			if (equiped != nullptr)
@@ -267,7 +267,7 @@ void Inventory::saveToFile(Entity* o)
 			file << equiped->getComponent<Weapon>()->getNumHits() << endl;
 		}
 		ItemContainer::saveToFile(file);
-			
+
 	}
 	file.close();
 }
@@ -379,7 +379,7 @@ void Inventory::removeWeapon()
 		Entity* aux;
 		while (i < inventorySize() && !found) {
 
-			 aux = ItemInPosition(i);
+			aux = ItemInPosition(i);
 			if (aux->getComponent<Weapon>() != nullptr) {
 
 				DeleteItem(i);
@@ -387,7 +387,7 @@ void Inventory::removeWeapon()
 				equiped = aux;
 				found = true;
 
-				}
+			}
 			i++;
 		}
 	}
@@ -405,7 +405,7 @@ void Inventory::objectCrafted(int a, int b)
 	bool found = false;
 	while (!found && i < int(inventory.size()) && !empty())
 	{
-		if (ItemInPosition(i)->getComponent<Item>()->getType() == a) { 
+		if (ItemInPosition(i)->getComponent<Item>()->getType() == a) {
 			found = true;
 			inventory.erase(inventory.begin() + i);
 		}
@@ -416,7 +416,7 @@ void Inventory::objectCrafted(int a, int b)
 	while (!found && i < int(inventory.size()) && !empty())
 	{
 		if (ItemInPosition(i)->getComponent<Item>()->getType() == b) {
-			found = true; 
+			found = true;
 			inventory.erase(inventory.begin() + i);
 		}
 		else i++;
@@ -424,7 +424,7 @@ void Inventory::objectCrafted(int a, int b)
 }
 
 void Inventory::moveMarkSlot(int a) {
-	
+
 	switch (selectedSlot)
 	{
 	case 0:
@@ -521,7 +521,7 @@ void Inventory::activeItem()
 				equipWeapon(selectedSlot);
 			}
 			else if (aux->getComponent<FirstAid>() != nullptr) {
-				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(),aux);
+				aux->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), aux);
 			}
 		}
 	}
@@ -556,8 +556,8 @@ void Inventory::moveItem()
 			}
 		}
 	}
-	else if (selectedSlot == 4 && equiped!=nullptr) {
-		
+	else if (selectedSlot == 4 && equiped != nullptr) {
+
 		aux = equiped;
 
 		if (!cofre->fullInventory())
@@ -617,8 +617,8 @@ void Inventory::setToRepair()
 
 void Inventory::useItem(int i)
 {
-	if (inventory[i]->getComponent<FirstAid>()->getType() == ItemType::FIRSTAID){}
-		//inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
+	if (inventory[i]->getComponent<FirstAid>()->getType() == ItemType::FIRSTAID) {}
+	//inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
 	clicked = false;
 }
 

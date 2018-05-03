@@ -256,6 +256,18 @@
     <ClCompile Include="BloodManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="NumberKey.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="KeypadComponent.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="KeypadScreen.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="KeypadState.cpp">
+      <Filter>Archivos de código fuente\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -515,6 +527,18 @@
     </ClInclude>
     <ClInclude Include="BloodManager.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="KeypadComponent.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="KeypadScreen.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberKey.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="KeypadState.h">
+      <Filter>Archivos de encabezado\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

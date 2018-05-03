@@ -2,6 +2,8 @@
 #include "EntityCreator.h"
 #include "SlidingPuzzle.h"
 #include "OrderPuzzle.h"
+#include"KeypadState.h"
+
 
 
 unique_ptr<Game> Game:: s_pInstance = nullptr;
@@ -12,7 +14,10 @@ Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 
 	//Se añade MenuScene
 	//getResources()->getMusic(Resources::Menu)->play();
+	
 	stateMachine_.pushState(PlayState::Instance());
+
+	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());
 	//stateMachine_.pushState(MenuState::Instance());
@@ -218,6 +223,12 @@ void Game::addResourcesTexture()
 
 	//AnimationTilesheet
 	resourceManager_->addTexture("SecurityCameras", "images/AnimTilesheet/TileshetCameras.png");
+
+	//Numpad
+	resourceManager_->addTexture("Keypad", "images/Keypad/numpad.png");
+	resourceManager_->addTexture("Keys", "images/Keypad/keys.png");
+	resourceManager_->addTexture("Keys_", "images/Keypad/keys_.png");
+	resourceManager_->addTexture("Numbers", "images/Keypad/numbers.png");
 
 }
 

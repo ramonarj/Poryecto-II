@@ -61,15 +61,15 @@ void Enemy::move(Entity* o)
 	double dif = 3;
 
 	if (numEnemy_ == 1) aux = -o->getHeight() / 3;
-	else if (numEnemy_ == 2) aux = -o->getHeight() / 4;
+	else if (numEnemy_ == 2) aux = o->getHeight() / 6;
 	else if (numEnemy_ == 3) aux = o->getHeight() / 3;
 
 	if (!o->getComponent<Character>()->getKnockBack())
 	{
 		//Movimiento en X
-		if (pos.getX() < playerPos.getX() - dif)
+		if (pos.getX() < playerPos.getX())
 			vel.setX(cos(alpha) * velMag);
-		else if (pos.getX() > playerPos.getX() + dif)
+		else if (pos.getX() > playerPos.getX())
 			vel.setX(cos(alpha) * -velMag);
 		else
 			vel.setX(0);
@@ -77,17 +77,14 @@ void Enemy::move(Entity* o)
 		//Movimiento en Y
 
 		if (pos.getY() - aux < playerPos.getY() - dif)
-		{
 			vel.setY(velMag);
-		}
 		else if (pos.getY() - aux > playerPos.getY() + dif)
-		{
 			vel.setY(-velMag);
-		}
 		else
-		{
 			vel.setY(0);
-		}
+
+		/*if (numEnemy_ == 3 && o->getDirection().getX() == 0 && o->getDirection().getY() == 1)
+			cout << "Hola" << endl;*/
 
 		//Actualizamos la velocidad
 		o->setVelocity(vel);
@@ -101,11 +98,18 @@ void Enemy::move(Entity* o)
 	//Prioritaria en el eje Y
 	dir.setY((vel.getY() > 0) ? -1 : 1);
 
+
 	//Eje prioritario (solo tenemos en cuenta las direcciones (-1, 0), (1, 0), (0, -1) y (0, 1)
-	if (abs(chaseVector.getX()) > abs(chaseVector.getY()))
-		dir.setY(0);
+	if (vel.getX() == 0 || vel.getY() == 0)
+	{
+		if (vel.getX() == 0) dir.setX(0);
+		else dir.setY(0);
+	}
 	else
-		dir.setX(0);
+	{
+		if (abs(chaseVector.getX()) > abs(chaseVector.getY())) dir.setY(0);
+		else dir.setX(0);
+	}
 
 	o->setDirection(dir);
 
@@ -150,6 +154,7 @@ void Enemy::checkCollisions(Entity* o)
 			chaseVector.setY(-chaseVector.getY());*/
 			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
 			this->takeDamage(Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->getDamage());
+			
 			Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->attack();
 
 			effectDone = true;

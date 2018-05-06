@@ -31,6 +31,7 @@ public:
 	void startInvincible();
 	void invincible(Entity* o, Uint32 time);
 
+	void setTeleport(bool b) { teleport_ = b; };
 	bool getTeleport() { return teleport_; };
 	void startTeleport(Entity* e, int door, string ori);
 	int getNumDoor() { return numDoorToTeleport_; };

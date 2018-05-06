@@ -125,6 +125,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Register", new RegisterCreator());
 	gameObjectFactory->registerType("SRMap", new SRMapCreator());
 	gameObjectFactory->registerType("SavePoint", new SavePointCreator());
+	gameObjectFactory->registerType("Light", new LightCreator());
 	registerTypeItem();
 }
 
@@ -176,7 +177,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Firstaid", "images/Items/medkit.png");
 	resourceManager_->addTexture("insulationTape", "images/Items/ducktape.png");
 	resourceManager_->addTexture("Alcohol", "images/Items/alcohol.png");
-	resourceManager_->addTexture("Bandages", "images/Items/bandage.png");
+	resourceManager_->addTexture("Bandages", "images/Items/bandages.png");
 	resourceManager_->addTexture("Card", "images/Items/keycard.png");
 	resourceManager_->addTexture("Circuit", "images/Items/circuit.png");
 	resourceManager_->addTexture("Television", "images/Items/television.png");
@@ -218,6 +219,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("PlayerLight", "images/Shadows/PlayerLight.png");
 	resourceManager_->addTexture("Black", "images/Shadows/Black.png");
 	resourceManager_->addTexture("PointLight", "images/Shadows/PointLight.png");
+	resourceManager_->addTexture("Lampara1", "images/Shadows/Lampara1.png");
+	resourceManager_->addTexture("TelevisionLight", "images/Shadows/Television.png");
+	resourceManager_->addTexture("Emergencia", "images/Shadows/emergencia.png");
 	resourceManager_->addTexture("BGtest", "images/Shadows/BGtest.png");
 
 	resourceManager_->addTexture("Blood", "images/Shadows/blood.png");
@@ -259,15 +263,14 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Card", new ItemCreator(ItemType::CARD));
 	gameObjectFactory->registerType("Acid", new ItemCreator(ItemType::ACID));
 	gameObjectFactory->registerType("AcidChemical", new ItemCreator(ItemType::ACIDCHEMICAL));
-	/*gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
+	gameObjectFactory->registerType("Stick", new ItemCreator(ItemType::STICK));
 	gameObjectFactory->registerType("Pipe", new ItemCreator(ItemType::PIPE));
 	gameObjectFactory->registerType("Alcohol", new ItemCreator(ItemType::ALCOHOL));
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
-	
 	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
-	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
+	//gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
-	gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
-	gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));*/
+	//gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
+	//gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));
 }

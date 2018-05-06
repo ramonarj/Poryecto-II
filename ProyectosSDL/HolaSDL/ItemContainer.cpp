@@ -85,7 +85,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
+			resource->getTexture("Pipe")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::AXE)
 			resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);

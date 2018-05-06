@@ -10,22 +10,24 @@
 #include "StaticImageRender.h"
 #include <memory>
 
+class LightManager;
+
 class PlayState: public GameState {
 
 private:
 	PlayState();
 	static unique_ptr<PlayState> s_pInstance;
 
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer = nullptr;
 	Level* pLevel = nullptr;
 
-	Entity* player;
+	Entity* player = nullptr;
 
 	int mapWidth;
 	int mapHeight;
 
-	Entity* messageRenderer;
-	Entity* zoneMessageRenderer;
+	Entity* messageRenderer = nullptr;
+	Entity* zoneMessageRenderer = nullptr;
 
 	bool saveGame = false;
 	bool loadGame = false;
@@ -64,6 +66,7 @@ public:
 
 	bool getLoadGame() { return loadGame; };
 	void setLoadGame(bool b) { loadGame = b; };
+
 };
 
 typedef PlayState PlayState;

@@ -1,3 +1,3 @@
-HACHA:
-Arma que tal vez te sirva para matar
-bichos. El filo no está afilado
+               HACHA
+  Precaución, usa esta herramienta
+  en casos de emergencia.

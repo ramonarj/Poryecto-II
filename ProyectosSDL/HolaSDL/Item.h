@@ -25,6 +25,7 @@ public:
 	virtual void use(Entity* e, Entity* item);
 	string getDescription() { return description; };
 	string getPath() { return txtFilePath_; };
+	void setDescription(string s) { description = s; };
 
 	void load(int num) { numFile_ = num; };
 

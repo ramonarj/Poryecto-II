@@ -14,7 +14,9 @@ public:
 	int getTypeStr() { return (type_); };
 	int getNumHits() { return numHits_; };
 	void setNumHits(int num) { numHits_ = num; };
+	string getInitialDescr() { return initialDescr; };
 	virtual void update(Entity* e, Uint32 time);
+
 private:
 	int damage_;
 	int numHits_;

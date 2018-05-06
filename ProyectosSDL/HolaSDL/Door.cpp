@@ -4,7 +4,7 @@
 #include "MessageTrigger.h"
 
 Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
-	compInvent(nullptr), itemKey(nullptr), doorNum_(0), numKey_(0), needKey_(false), 
+	compInvent(nullptr), itemKey(nullptr), doorNum_(0), needKey_(false), 
 	collidableDoor_(false), messageChanged_(false), thisDoor_(thisDoor),
 	messageRenderer(nullptr), messageTimer(nullptr) {
 }
@@ -32,11 +32,10 @@ void Door::interact(Entity * e)
 	}
 }
 
-void Door::load(int numero, string ori, int numKey, int needKey, int collidableDoor, string zoneName)
+void Door::load(int numero, string ori, int needKey, int collidableDoor, string zoneName)
 {
 	doorNum_ = numero;
 	ori_ = ori;
-	numKey_ = numKey;
 	needKey_ = needKey;
 	if (needKey_)
 		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas una llave");
@@ -93,7 +92,7 @@ void Door::teleport()
 						messageTimer->start(4);
 					}
 				}
-
+				PlayState::Instance()->getPlayer()->getComponent<Player>()->setTeleport(false);
 				puertEncontrada = true;
 			}
 		}
@@ -116,7 +115,7 @@ void Door::setNeedKey()
 		int i = 0;
 		while (i < compInvent->getKeys().size() && needKey_)
 		{
-			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
+			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
 				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				openDoor();
 			}
@@ -172,7 +171,7 @@ void Door::update(Entity * e, Uint32 time) {
 				bool found = false;
 				while (i < compInvent->getKeys().size() && !found)
 				{
-					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == numKey_) {
+					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
 						thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para usar la llave", "'Square/X' para usar la llave");
 						messageChanged_ = true;
 						found = true;

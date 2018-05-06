@@ -15,10 +15,9 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int numero, string ori, int numKey, int needKey, int collidableDoor, string zoneName);
+	void load(int numero, string ori, int needKey, int collidableDoor, string zoneName);
 
 	int getDoorNum() { return doorNum_; };
-	int getNumKey() { return numKey_; };
 	string getOri() { return ori_; };
 	string getZoneName() { return zoneName_; };
 
@@ -49,7 +48,6 @@ private:
 	int doorNum_;
 	string ori_;
 	string zoneName_;
-	int numKey_;
 	bool needKey_;
 	bool collidableDoor_;
 	bool messageChanged_;

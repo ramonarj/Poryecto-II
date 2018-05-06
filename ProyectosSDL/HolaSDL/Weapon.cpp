@@ -15,8 +15,7 @@ Weapon::~Weapon()
 }
 
 void Weapon::update(Entity* e, Uint32 time) {
-	description = initialDescr + "Daño:" + to_string(damage_) + "     " + "Usos:" + to_string(numHits_) + "\n";
-	//saveDescription();
+
 }
 
 void Weapon::weaponInit(ItemType type) {

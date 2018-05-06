@@ -1,13 +1,12 @@
 #include "PlayState.h"
 #include "Game.h"
-#include "PlayerLight.h"
-#include "LightManager.h"
 #include "Light.h"
 #include "SRMap.h"
 #include "MessageRenderer.h"
 #include "MessageTimer.h"
 #include "FadeManager.h"
 #include "BloodManager.h"
+#include "LightManager.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -54,38 +53,22 @@ void PlayState::startState()
 	cursor_->addComponent(new MouseInputComponent());
 	cursor_->setActive(false);
 
-	//Item
-	/*Entity* palo = new Entity(10, 20);
-	palo->addComponent(new Weapon(ItemType::STICK, "Stick"));
-	stage_.push_back(palo);
-	palo->getComponent<Weapon>()->attack();
-	palo->getComponent<Weapon>()->attack();
-	palo->getComponent<Weapon>()->attack();
-	palo->getComponent<Weapon>()->attack();
-
-	Entity* palo2 = new Entity(10, 20);
-	palo2->addComponent(new Weapon(ItemType::CROWBAR, "Crowbar"));
-	stage_.push_back(palo2);
-
-	Entity* insulationTape = new Entity(15, 25);
-	insulationTape->addComponent(new InsulationTape("InsulationTape"));
-	stage_.push_back(insulationTape);
-	insulationTape->getComponent<InsulationTape>()->use(palo);*/
-
 	//Iluminacion -------------------------------------------------------------
-	//Entity* playerLight = new Entity(0, 0);
-	//playerLight->addComponent(new PlayerLight());
-	//stage_.push_back(playerLight);
-
-	Entity* lightManagerEntity = new Entity(0, 0);
 	LightManager* lightManager = new LightManager();
+	Entity* lightManagerEntity = new Entity(0, 0);
 	lightManagerEntity->addComponent(lightManager);
 	lightManagerEntity->setHeight(Game::Instance()->getWindowHeight());
 	lightManagerEntity->setWidth(Game::Instance()->getWindowWidth());
 	stage_.push_back(lightManagerEntity);
 
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4200, 5500));
-	lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture("PointLight"), 4800, 5500));
+	for (Entity* e : stage_)
+	{
+		if (e->getName() == "Light")
+		{
+			string textureName = e->getTextureName();
+			lightManager->addLight(new Light(Game::Instance()->getResourceManager()->getTexture(textureName), e->getPosition().getX() - Game::Instance()->getResourceManager()->getTexture(textureName)->getWidth() / 2, e->getPosition().getY() - Game::Instance()->getResourceManager()->getTexture(textureName)->getHeight() / 2));
+		}
+	}
 
 	//MessageRenderer----------------------------------------------------------
 	messageRenderer = new Entity(0, 0);
@@ -113,6 +96,7 @@ void PlayState::startState()
 	inventory->addComponent(new Inventory());
 	inventory->setActive(false);
 	stage_.push_back(inventory);
+
 
 	mergeStages();
 

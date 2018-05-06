@@ -206,7 +206,7 @@ void Inventory::render(Entity* e, Uint32 time)
 			resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::PIPE)
-			resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
+			resource->getTexture("Pipe")->render(pRenderer, DestRect, &clip);
 
 		else if (weaponComp->getType() == ItemType::AXE)
 			resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
@@ -260,6 +260,11 @@ void Inventory::render(Entity* e, Uint32 time)
 			if (equiped != nullptr) {
 				Entity* b = equiped;
 				Item* c = b->getComponent<Item>();
+				if (b->getComponent<Weapon>() != nullptr)
+				{
+					Weapon* w = b->getComponent<Weapon>();
+					w->setDescription(w->getInitialDescr() + "       Ataque: " + to_string(w->getDamage()) + "     " + "Usos: " + to_string(w->getNumHits()) + "\n");
+				}
 				description_.getComponent<TextNote>()->changeString(c->getDescription());
 			}
 		}
@@ -296,6 +301,8 @@ void Inventory::saveToFile(Entity* o)
 
 void Inventory::loadToFile(Entity* o)
 {
+	inventory.clear();
+
 	ifstream file;
 	file.open(SAVE_FOLDER + "Inventory/inventory.pac");
 

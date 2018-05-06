@@ -14,6 +14,8 @@
 #include "Register.h"
 #include "SRMap.h"
 #include "AnimationRenderObject.h"
+#include "Light.h"
+#include "LightManager.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -238,6 +240,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;
+			std::string textureName = "";
 			std::string orientacion;
 			
 			//Variables para los personajes
@@ -262,11 +265,13 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
-				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint"))
+				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint")
+				|| e->Attribute("type") == std::string("Light"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
 			}
+
 			Entity* pEntity = GameObjectFactory::Instance()->create(e->Attribute("type"));
 
 			// get the property values
@@ -319,19 +324,22 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("zoneName"))
 								zoneName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("textureName"))
+								textureName = property->Attribute("value");
 						}
 					}
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"));
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"), textureName);
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
 				loadCharacters(e, pEntity, life, damage, numEnemy);
 
 			else if (e->Attribute("type") == std::string("Puerta"))
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor, zoneName);
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
 
 			else if (e->Attribute("type") == std::string("Key"))
 				pEntity->getComponent<Key>()->load(numKey);

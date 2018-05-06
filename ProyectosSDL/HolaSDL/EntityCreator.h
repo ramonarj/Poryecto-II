@@ -88,14 +88,29 @@ public:
 			break;
 		case FIRSTAID:
 			//i = new Movable();	//	DEBUG
-			//i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
-			i = new SlidingPuzzleItem();	//	DEGUG
+			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			//i = new SlidingPuzzleItem();	//	DEGUG
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type), "Has recogido cinta aislante");
 			break;
 		case KEY:
 			i = new Key(itemTypetoString(type), "Has recogido una llave");
+			break;
+		case ALCOHOL:
+			i = new Key(itemTypetoString(type), "Has recogido alcohol");
+			break;
+		case BANDAGES:
+			i = new Key(itemTypetoString(type), "Has recogido unas vendas");
+			break;
+		case GENERICCHEMICAL:
+			i = new Key(itemTypetoString(type), "Has recogido un químico genérico");
+			break;
+		case BIOCIDE:
+			i = new Key(itemTypetoString(type), "Has recogido biocida");
+			break;
+		case PIECEPUZZLE:
+			i = new Key(itemTypetoString(type), "Has recogido una pieza de un puzle");
 			break;
 		default:
 			i = new Item(type, itemTypetoString(type));
@@ -294,6 +309,17 @@ public:
 		e->addComponent(new SavePoint());
 		e->addComponent(new MessageTrigger("'E' para dormir y Guardar Partida", "'Square/X' para dormir y Guardar Partida"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+
+};
+
+class LightCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
 		return e;
 	}
 

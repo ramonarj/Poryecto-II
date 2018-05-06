@@ -88,13 +88,14 @@ void Entity::loadEntity(Entity * o, ifstream & file)
 	getline(file, s);
 }
 
-void Entity::load(int x, int y, int width, int height, int staticEntity, string name)
+void Entity::load(int x, int y, int width, int height, int staticEntity, string name, string textureName)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
 	height_ = height;
 	currentRow_ = 1;
 	currentFrame_ = 1;
+	textureName_ = textureName;
 
 	staticEntity_ = staticEntity;
 
@@ -164,6 +165,11 @@ bool Entity::isStatic()
 string Entity::getName()
 {
 	return name_;
+}
+
+string Entity::getTextureName()
+{
+	return textureName_;
 }
 
 bool Entity::getIsReading()

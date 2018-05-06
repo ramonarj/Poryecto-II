@@ -15,6 +15,10 @@ AnimationRenderObject::AnimationRenderObject(Texture * image, int cooldown,bool 
 
 }
 
+AnimationRenderObject::AnimationRenderObject(Texture * image, int cooldown, bool on, int numFrames, bool life) : on_(on), image_(image), cooldown_(cooldown), numFrames_(numFrames), life_(life) {
+
+}
+
 AnimationRenderObject::~AnimationRenderObject()
 {
 
@@ -64,7 +68,28 @@ void AnimationRenderObject::render(Entity * o, Uint32 time){
 				lastTimeFrame_ = time;
 			}
 		}
+		else if (life_) {
 
+			//SI ES LA ANIMACION DE VIDA
+
+			dest = RECT(o->getPosition().getX(),
+				o->getPosition().getY(),
+				o->getWidth(), o->getHeight());
+
+			clip = RECT((frame_)* image_->getWidth() / (numFrames_),
+				0,
+				image_->getWidth() / (numFrames_),
+				image_->getHeight());
+
+			if (time > lastTimeFrame_ + cooldown_) {
+
+				frame_++;
+				if (frame_ == numFrames_)
+					frame_ = 0;
+
+				lastTimeFrame_ = time;
+			}
+		}
 		else if (other_) {
 
 			//SI ES UN OBJETO QUIETO SIN ORIENTACIÓN

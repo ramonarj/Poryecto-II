@@ -6,6 +6,7 @@
 #include <list>
 #include "Key.h"
 
+
 using namespace std;
 
 class Craft;
@@ -79,6 +80,11 @@ private:
 
 	Entity description_ = Entity(20, 20);
 	SDL_Rect clip = RECT(0, 0, 20, 20);
+
+	Entity life = Entity(0, 0);
+
+	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;
+
 };
 
 

@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "FirstAid.h"
 #include "Craft.h"
+#include "AnimationRenderObject.h"
 
 Inventory::Inventory()
 {
@@ -13,6 +14,14 @@ Inventory::Inventory()
 	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 710, 510, nullptr));
 	SDL_Color c{ 0,255,100,255 };
 	description_.getComponent<TextNote>()->setColor(c);
+	life.addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Electro3"), 200, true, 18, true));
+	life.setPosition(Vector2D(Game::Instance()->getWindowWidth() - 375, Game::Instance()->getWindowHeight() - 338));
+	life.setWidth(263);
+	life.setHeight(63);
+
+	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.75;
+	ritmoCardiaco2 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5;
+	ritmoCardiaco3 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25;
 }
 
 Inventory::~Inventory()
@@ -25,10 +34,22 @@ Inventory::~Inventory()
 
 void Inventory::update(Entity* e, Uint32 time)
 {
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco3)
+		life.getComponent<AnimationRenderObject>()->setCoolDown(50);
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco2)
+		life.getComponent<AnimationRenderObject>()->setCoolDown(100);
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco1)
+		life.getComponent<AnimationRenderObject>()->setCoolDown(150);
 }
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
+	if (event.type == SDL_KEYDOWN) {
+		if (event.key.keysym.sym == SDLK_n)
+			life.getComponent<AnimationRenderObject>()->setCoolDown(life.getComponent<AnimationRenderObject>()->getCoolDown() - 25);
+		else if (event.key.keysym.sym == SDLK_m)
+			life.getComponent<AnimationRenderObject>()->setCoolDown(life.getComponent<AnimationRenderObject>()->getCoolDown() + 25);
+	}
 
 	if (cofre == nullptr)
 		cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>();
@@ -39,8 +60,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
 
-			if ((event.button.x >= EquippedCoord.x - slotWidth/2 && event.button.x <= EquippedCoord.x + slotWidth)
-				&& (event.button.y >= EquippedCoord.y - slotWidth/2 && event.button.y <= EquippedCoord.y + slotWidth))
+			if ((event.button.x >= EquippedCoord.x - slotWidth / 2 && event.button.x <= EquippedCoord.x + slotWidth)
+				&& (event.button.y >= EquippedCoord.y - slotWidth / 2 && event.button.y <= EquippedCoord.y + slotWidth))
 			{
 				equipedClicked = true;
 				equipedLastClicked = true;
@@ -49,8 +70,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			else {
 				while (i< int(inventory.size()) && !clicked)
 				{
-					if ((event.button.x >= Inventoryslots[i].x - slotWidth/2 && event.button.x <= Inventoryslots[i].x + slotWidth)
-						&& (event.button.y >= Inventoryslots[i].y - slotWidth/2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
+					if ((event.button.x >= Inventoryslots[i].x - slotWidth / 2 && event.button.x <= Inventoryslots[i].x + slotWidth)
+						&& (event.button.y >= Inventoryslots[i].y - slotWidth / 2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 					{
 						clicked = true;
 						equipedLastClicked = false;
@@ -66,8 +87,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			int i = 0;
 			while (i< int(inventory.size()) && !clicked)
 			{
-				if ((event.button.x >= Inventoryslots[i].x - slotWidth/2 && event.button.x <= Inventoryslots[i].x + slotWidth)
-					&& (event.button.y >= Inventoryslots[i].y - slotWidth/2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
+				if ((event.button.x >= Inventoryslots[i].x - slotWidth / 2 && event.button.x <= Inventoryslots[i].x + slotWidth)
+					&& (event.button.y >= Inventoryslots[i].y - slotWidth / 2 && event.button.y <= Inventoryslots[i].y + slotWidth))//EL 50 Es un numero provisional de prueba //cambio
 				{
 					clicked = true;
 					useItem(i);
@@ -79,8 +100,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	else if (event.type == SDL_MOUSEBUTTONUP && clicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL ARMA EQUIPADA
-			if ((event.button.x >= EquippedCoord.x - slotWidth/2 && event.button.x <= EquippedCoord.x + slotWidth)
-				&& (event.button.y >= EquippedCoord.y - slotWidth/2 && event.button.y <= EquippedCoord.y + slotWidth)) //cambio
+			if ((event.button.x >= EquippedCoord.x - slotWidth / 2 && event.button.x <= EquippedCoord.x + slotWidth)
+				&& (event.button.y >= EquippedCoord.y - slotWidth / 2 && event.button.y <= EquippedCoord.y + slotWidth)) //cambio
 			{
 				equipWeapon(slotClicked);
 			}
@@ -99,16 +120,16 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 
 			else if (craftMode) {
 				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
-				if ((event.button.x >= craftWin->WepRepareSlot().x - slotWidth/2 && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)//Cambiar
-					&& (event.button.y >= craftWin->WepRepareSlot().y - slotWidth/2 && event.button.y <= craftWin->WepRepareSlot().y + slotWidth)
+				if ((event.button.x >= craftWin->WepRepareSlot().x - slotWidth / 2 && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->WepRepareSlot().y - slotWidth / 2 && event.button.y <= craftWin->WepRepareSlot().y + slotWidth)
 					&& inventory[slotClicked]->getComponent<Weapon>())
 				{
 					craftWin->setWep(inventory[slotClicked]);
 					this->DeleteItem(slotClicked);
 				}
 
-				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x - slotWidth/2 && event.button.x <= craftWin->InsulationTapeRepareSlot().x + slotWidth)//Cambiar
-					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y - slotWidth/2 && event.button.y <= craftWin->InsulationTapeRepareSlot().y + slotWidth)
+				else if ((event.button.x >= craftWin->InsulationTapeRepareSlot().x - slotWidth / 2 && event.button.x <= craftWin->InsulationTapeRepareSlot().x + slotWidth)//Cambiar
+					&& (event.button.y >= craftWin->InsulationTapeRepareSlot().y - slotWidth / 2 && event.button.y <= craftWin->InsulationTapeRepareSlot().y + slotWidth)
 					&& inventory[slotClicked]->getComponent<Item>()->getType() == ItemType::INSULATIONTEPE && !craftWin->CintainSlot()) {
 					craftWin->setCinta(inventory[slotClicked]);
 					this->DeleteItem(slotClicked);
@@ -122,8 +143,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 	else if (event.type == SDL_MOUSEBUTTONUP && equipedClicked) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL INVENTARIO
-			if ((event.button.x >= Inventoryslots[0].x - slotWidth/2 && event.button.x <= Inventoryslots[InventoryTam - 1].x + slotWidth)
-				&& (event.button.y >= Inventoryslots[0].y - slotWidth/2 && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)) //cambio
+			if ((event.button.x >= Inventoryslots[0].x - slotWidth / 2 && event.button.x <= Inventoryslots[InventoryTam - 1].x + slotWidth)
+				&& (event.button.y >= Inventoryslots[0].y - slotWidth / 2 && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)) //cambio
 			{
 				if (!fullInventory())
 				{
@@ -222,7 +243,7 @@ void Inventory::render(Entity* e, Uint32 time)
 
 
 	if (controllerActive) {
-		if (selectedSlot >= 0 && selectedSlot<getInventory().size()) {
+		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
 			//if(getInventory()[selectedSlot] != nullptr)
 			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
 		}
@@ -253,6 +274,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	}
 
 	description_.getComponent<TextNote>()->render(nullptr, time);
+	life.render(time);
 }
 
 void Inventory::saveToFile(Entity* o)

@@ -16,12 +16,16 @@ public:
 	AnimationRenderObject();
 	AnimationRenderObject(Texture* image, int cooldown, bool chest, bool camera, bool on);
 	AnimationRenderObject(Texture* image, int cooldown, bool other, bool on, int numFrames);
+	AnimationRenderObject(Texture* image, int cooldown, bool on, int numFrames, bool life);
 
 	virtual ~AnimationRenderObject();
 
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 time) {};
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
+
+	void setCoolDown(int i) { cooldown_ = i; };
+	int getCoolDown() { return cooldown_; };
 
 private:
 
@@ -32,6 +36,7 @@ private:
 	bool on_ = false;
 	bool other_ = false;
 	bool way_ = true;
+	bool life_ = false;
 
 	int numFrames_ = -1;
 

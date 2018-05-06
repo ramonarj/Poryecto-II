@@ -23,7 +23,7 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 }
 
 void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
-
+	
 	alphaFade_ = Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade();
 	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }

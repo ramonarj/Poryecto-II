@@ -19,7 +19,7 @@ private:
 	Texture* bloodText;			//Textura de sangre en borde de pantalla
 	Uint8 alpha_;
 
-	Uint32 actualTime_ = 0, time_ = 100;
+	Uint32 actualTime_ = 0, time_ = 500;
 	Uint32 interCorto, interLargo;	//ritmo de los latidos de la pantalla
 };
 

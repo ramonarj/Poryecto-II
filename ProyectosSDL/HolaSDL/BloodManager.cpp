@@ -42,21 +42,22 @@ void BloodManager::render(Entity * e, Uint32 time) {
 		
 		//Si la vida de Elise esta igual o por debajo de 1/5 de la vida maxima los latidos van mas rápidos
 		if (currentLife <= bloodActiveFast) {
-			interCorto = 50;
-			interLargo = 250;
+			interCorto = 100;
+			interLargo = 300;
 		}
 		if (player_->getComponent<Player>()->getInvincible() && pant) {
 			SDL_SetRenderDrawColor(renderer_, COLOR(0xFFFFFFFF));
 			SDL_RenderClear(renderer_);
 			SDL_RenderPresent(renderer_);
-			SDL_Delay(10);
+			SDL_Delay(100);
 			if (currentLife <= bloodActiveNormal) {
 				SDL_SetRenderDrawColor(renderer_, COLOR(0xD50000FF));
 				SDL_RenderClear(renderer_);
 				SDL_RenderPresent(renderer_);
-				SDL_Delay(10);
+				SDL_Delay(100);
 			}
 			pant = false;
+			SDL_SetRenderDrawColor(renderer_, COLOR(0x00000000));
 		}
 		else if (!player_->getComponent<Player>()->getInvincible())
 			pant = true;

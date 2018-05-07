@@ -49,6 +49,7 @@ public:
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	void removeWeapon();
+	void removeKey(int numKey);
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }

@@ -422,6 +422,16 @@ void Inventory::removeWeapon()
 	}
 }
 
+void Inventory::removeKey(int numKey)
+{
+	bool foundKey = false;
+	for (int i = 0; i < inventorySize() && !foundKey; i++)
+	{
+		if (inventory[i]->getComponent<Key>() != nullptr && inventory[i]->getComponent<Key>()->getDoorId() == numKey)
+			DeleteItem(i);
+	}
+}
+
 bool Inventory::fullInventory()
 {
 	if (inventory.size() >= InventoryTam) { return true; }

@@ -117,6 +117,7 @@ void Door::setNeedKey()
 		{
 			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
 				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
+				compInvent->removeKey(doorNum_);
 				openDoor();
 			}
 			else

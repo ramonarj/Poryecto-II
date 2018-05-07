@@ -1770,7 +1770,7 @@
     <property name="textureWidth" type="int" value="42"/>
    </properties>
   </object>
-  <object id="159" name="Player" type="Player" x="8971.61" y="10053.4" width="19" height="27.3333">
+  <object id="159" name="Player" type="Player" x="1409.61" y="1570.73" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

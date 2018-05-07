@@ -66,7 +66,6 @@ public:
 
 	bool getLoadGame() { return loadGame; };
 	void setLoadGame(bool b) { loadGame = b; };
-
 };
 
 typedef PlayState PlayState;

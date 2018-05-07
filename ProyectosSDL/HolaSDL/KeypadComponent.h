@@ -9,7 +9,7 @@ class KeypadComponent :
 {
 	//tener en cuenta de que cuando se han introducido 4 n�meros no pueden introducirse m�s
 public:
-	KeypadComponent(Texture* image, int password);
+	KeypadComponent(Texture* image, Entity* codeEntity, int password);
 	~KeypadComponent();
 private:
 	virtual void update(Entity* e, Uint32 time) ;//
@@ -19,6 +19,9 @@ private:
 	void clear(); //Borra los n�meros introducidos
 	bool validate();//Valida los n�meros que se han introducido
 	void addNumber(int n);
+	void validCode();
+
+	Entity* codeEntity_;
 
 	float edge_, space_;
 	//vector <int> numSequence; //Guarda los n�meros introducidos -> puede ser un int

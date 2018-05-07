@@ -21,6 +21,7 @@ protected:
 	list<Entity*> doors_;
 	list<Entity*> removedEntities_;
 	list<Entity*> removedInteractibles_;
+	list<Entity*> codes_;
 
 	GameState();
 	static unique_ptr<GameState> s_pInstance;
@@ -56,6 +57,7 @@ public:
 	list<Entity*>* getInteractibles() { return &interactibles_; };
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };
+	list<Entity*>* getCodes() { return &codes_; };
 	Entity* getCursor() { return cursor_; };
 	void removeEntities();	// sacar las entidades que se quieren eliminar de cada vector y hacer delete de ellas (se llama al final de cada tick)
 	void removeEntity(Entity* e);	// método que se llama cuando quieres eliminar una entidad

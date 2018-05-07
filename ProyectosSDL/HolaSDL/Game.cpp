@@ -2,7 +2,7 @@
 #include "EntityCreator.h"
 #include "SlidingPuzzle.h"
 #include "OrderPuzzle.h"
-#include"KeypadState.h"
+#include "KeypadState.h"
 
 
 
@@ -126,6 +126,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("SRMap", new SRMapCreator());
 	gameObjectFactory->registerType("SavePoint", new SavePointCreator());
 	gameObjectFactory->registerType("Light", new LightCreator());
+	gameObjectFactory->registerType("Code", new CodeCreator());
 	registerTypeItem();
 }
 

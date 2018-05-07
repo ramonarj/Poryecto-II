@@ -18,6 +18,7 @@
 #include "MessageTrigger.h"
 #include "SlidingPuzzleItem.h"
 #include "SavePoint.h"
+#include "Code.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -311,7 +312,6 @@ public:
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
-
 };
 
 class LightCreator : public BaseCreator
@@ -322,5 +322,17 @@ public:
 		Entity* e = new Entity();
 		return e;
 	}
+};
 
+class CodeCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Code());
+		e->addComponent(new MessageTrigger("'E' para escribir código", "'Square/X' para escribir código"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
 };

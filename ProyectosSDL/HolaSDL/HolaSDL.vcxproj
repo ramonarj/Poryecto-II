@@ -21,6 +21,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="ChestObject.cpp" />
+    <ClCompile Include="Code.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="ChestObject.h" />
+    <ClInclude Include="Code.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Component.h" />

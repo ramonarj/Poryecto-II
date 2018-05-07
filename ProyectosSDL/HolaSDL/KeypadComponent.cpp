@@ -1,8 +1,12 @@
 #include "KeypadComponent.h"
+#include "Code.h"
+#include "PlayState.h"
+#include "Door.h"
 
 
-KeypadComponent::KeypadComponent(Texture* image, int password) : numpad_ (image)
+KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int password) : numpad_ (image)
 {
+	codeEntity_ = codeEntity;
 	password_ = to_string(password);
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	dest.x = dest.y = 0;
@@ -56,11 +60,7 @@ void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event
 						if (n == 10)
 							clear();
 						else if(n == 12) {
-							if (validate())
-								cout << "Nice" << endl;
-							else
-								cout << "Wrong" << endl;
-
+							validCode();
 						}
 					}
 					j++;
@@ -93,6 +93,25 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 void KeypadComponent::addNumber(int n) {
 	sequence_ += to_string(n);
 	screen.setSequence(sequence_);
+}
+
+void KeypadComponent::validCode()
+{
+	if (validate())
+	{
+		codeEntity_->getComponent<Code>()->setAccept(true);
+		codeEntity_->getComponent<Code>()->setCodeActive(false);
+		list<Entity*> doors = (*PlayState::Instance()->getDoors());
+		for (Entity* e : *(PlayState::Instance()->getDoors()))
+		{
+			if (e->getComponent<Door>()->getDoorNum() == codeEntity_->getComponent<Code>()->getNumDoorCode())
+				e->getComponent<Door>()->keyFalse();
+		}
+		cout << "Nice" << endl;
+		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+	}
+	else
+		cout << "Wrong" << endl;
 }
 
 bool KeypadComponent::validate() {

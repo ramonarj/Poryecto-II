@@ -16,6 +16,8 @@
 #include "AnimationRenderObject.h"
 #include "Light.h"
 #include "LightManager.h"
+#include "Code.h"
+#include "KeypadState.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -260,13 +262,17 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int registerFile;
 			int numMap;
 
+			//Variables para el codigo de abrir puertas
+			int numDoorCode = 0;
+			int code = 0;
+
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
 				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint")
-				|| e->Attribute("type") == std::string("Light"))
+				|| e->Attribute("type") == std::string("Light") || e->Attribute("type") == std::string("Code"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -327,6 +333,12 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("textureName"))
 								textureName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("numDoorCode"))
+								property->Attribute("value", &numDoorCode);
+
+							else if (property->Attribute("name") == std::string("code"))
+								property->Attribute("value", &code);
 						}
 					}
 				}
@@ -352,6 +364,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			else if (e->Attribute("type") == std::string("SRMap"))
 				loadSRMap(pEntity, numMap, orientacion);
+
+			else if (e->Attribute("type") == std::string("Code"))
+				loadCode(pEntity, numDoorCode, code);
 
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
@@ -407,4 +422,10 @@ void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacio
 {
 	pEntity->getComponent<SRMap>()->load(numMap, orientacion);
 	Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
+}
+
+void LevelParser::loadCode(Entity * pEntity, int numDoor, int code)
+{
+	pEntity->getComponent<Code>()->load(numDoor, code);
+	KeypadState::Instance()->getCodes()->push_back(pEntity);
 }

@@ -1,5 +1,5 @@
 #include "KeypadState.h"
-
+#include "Code.h"
 
 unique_ptr<KeypadState> KeypadState::s_pInstance = nullptr;
 
@@ -13,8 +13,21 @@ void KeypadState::startState() {
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
 	cursor_->addComponent(new MouseInputComponent());
 
+	int numCode = 0;
+	Entity* codeEntity = nullptr;
+	list<Entity*>::iterator it;
+	bool foundCode = false;
+	for (it = codes_.begin(); it != codes_.end() && !foundCode; it++)
+	{
+		if ((*it)->getComponent<Code>()->getCodeActive())
+		{
+			foundCode = true;
+			numCode = (*it)->getComponent<Code>()->getNumCode();
+			codeEntity = (*it);
+		}
+	}
 	Entity* keypad = new Entity(0, 0);
-	keypad->addComponent(new KeypadComponent(Game::Instance()->getResourceManager()->getTexture("Keypad"), 1234));
+	keypad->addComponent(new KeypadComponent(Game::Instance()->getResourceManager()->getTexture("Keypad"), codeEntity, numCode));
 	stage_.push_back(keypad);
 }
 

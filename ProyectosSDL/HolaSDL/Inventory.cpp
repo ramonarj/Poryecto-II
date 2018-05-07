@@ -656,8 +656,11 @@ void Inventory::setToRepair()
 
 void Inventory::useItem(int i)
 {
-	if (inventory[i]->getComponent<FirstAid>()->getType() == ItemType::FIRSTAID) {}
-	//inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
+	if (inventory[i]->getComponent<FirstAid>() != nullptr) {
+		inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
+		DeleteItem(i);
+	}
+
 	clicked = false;
 }
 

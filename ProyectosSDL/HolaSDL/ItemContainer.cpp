@@ -97,6 +97,10 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	{
 		resource->getTexture("Firstaid")->render(pRenderer, DestRect, &clip);
 	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::ALCOHOL)
+	{
+		resource->getTexture("Alcohol")->render(pRenderer, DestRect, &clip);
+	}
 	else if (inventory[i]->getComponent<Key>())
 	{
 		resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
@@ -109,6 +113,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	{
 		resource->getTexture("AcidChemical")->render(pRenderer, DestRect, &clip);
 	}
+	
 }
 
 void ItemContainer::renderSlotMark(SDL_Rect DestRect) {

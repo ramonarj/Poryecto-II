@@ -38,7 +38,7 @@ void PlayState::startState()
 	}
 
 	//PROBAR LOS MOVIBLES:
-		//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h
+	//Descomentar estas dos lineas, la linea 76 del EntityCreator.h y comentar la 77 del EntityCreator.h
 	//Movable* movableComp = Game::Instance()->getEntityWithComponent<Movable>()->getComponent<Movable>();
 	//movableComp->addPlayer(player);
 
@@ -96,6 +96,11 @@ void PlayState::startState()
 	inventory->addComponent(new Inventory());
 	inventory->setActive(false);
 	stage_.push_back(inventory);
+
+	Entity* fa = new Entity(0, 0);
+	Item* facomp = new Item(ALCOHOL, "alcohol");
+	fa->addComponent(facomp);
+	inventory->getComponent<Inventory>()->addItem(fa);
 
 
 	mergeStages();

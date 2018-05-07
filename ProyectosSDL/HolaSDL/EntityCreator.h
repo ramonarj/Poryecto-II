@@ -99,19 +99,19 @@ public:
 			i = new Key(itemTypetoString(type), "Has recogido una llave");
 			break;
 		case ALCOHOL:
-			i = new Key(itemTypetoString(type), "Has recogido alcohol");
+			i = new Item(ALCOHOL, "Alcohol", "Has recogido alcohol");
 			break;
 		case BANDAGES:
-			i = new Key(itemTypetoString(type), "Has recogido unas vendas");
+			i = new Item(BANDAGES, "Bandages", "Has recogido unas vendas");
 			break;
 		case GENERICCHEMICAL:
-			i = new Key(itemTypetoString(type), "Has recogido un químico genérico");
+			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un químico genérico");
 			break;
 		case BIOCIDE:
-			i = new Key(itemTypetoString(type), "Has recogido biocida");
+			i = new Item(BIOCIDE, "Biocide", "Has recogido biocida");
 			break;
 		case PIECEPUZZLE:
-			i = new Key(itemTypetoString(type), "Has recogido una pieza de un puzle");
+			i = new Item(PIECEPUZZLE, "PiecePuzzle", "Has recogido una pieza de un puzle");
 			break;
 		default:
 			i = new Item(type, itemTypetoString(type));

@@ -17,5 +17,5 @@ void FirstAid::use(Entity* player, Entity* item) {
 		//llamar al metodo de e de recargar vida
 		player->getComponent<Player>()->cure();
 	}
-	Item::use(player, item);
+	//Item::use(player, item);
 }

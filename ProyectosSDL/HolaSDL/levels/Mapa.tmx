@@ -229,6 +229,7 @@
   <object id="416" name="Code" type="Code" x="8940" y="10010" width="20" height="40">
    <properties>
     <property name="code" type="int" value="5432"/>
+    <property name="dir" value="norte"/>
     <property name="numDoorCode" type="int" value="5"/>
    </properties>
   </object>

@@ -41,6 +41,8 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 
 
 void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event) {
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
+
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			int i = 0;
@@ -67,6 +69,14 @@ void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event
 				}
 				i++;
 			}
+		}
+	}
+	if (event.type == SDL_KEYDOWN)
+	{
+		if (state[SDL_SCANCODE_E])
+		{
+			codeEntity_->getComponent<Code>()->setCodeActive(false);
+			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 		}
 	}
 }

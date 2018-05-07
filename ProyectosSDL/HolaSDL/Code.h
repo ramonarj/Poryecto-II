@@ -11,7 +11,7 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int numDoor, int code);
+	void load(int numDoor, int code, string dir);
 
 	void setCodeActive(bool b) { codeActive_ = b; };
 	bool getCodeActive() { return codeActive_; };
@@ -23,10 +23,15 @@ public:
 
 	int getNumDoorCode() { return numDoor_; };
 
+	string getOri() { return ori_; };
+
 private:
 	int numDoor_;
 	int code_;
 	bool codeActive_;
 	bool accept_;
+	string ori_;
+
+	bool canWriteCode();
 };
 

@@ -270,6 +270,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			//Variables para la cuenta atras
 			int activeCountdown = 0;
+			int countdown = 0;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
@@ -351,6 +352,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("activeCountdown"))
 								property->Attribute("value", &activeCountdown);
+
+							else if (property->Attribute("name") == std::string("count"))
+								property->Attribute("value", &countdown);
 						}
 					}
 				}
@@ -381,7 +385,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				loadCode(pEntity, numDoorCode, code, orientacion);
 
 			else if (e->Attribute("type") == std::string("Countdown"))
-				pEntity->getComponent<Countdown>()->load(activeCountdown);
+				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
 
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);

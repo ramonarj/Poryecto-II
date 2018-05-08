@@ -12,7 +12,7 @@ public:
 	virtual void update(Entity* e, Uint32 time);
 	virtual void render(Entity* e, Uint32 time);
 
-	void startCountdown();
+	void startCountdown(int count);
 
 	bool getCountdown() { return countdown_; };
 	void setCountdown(bool b) { countdown_ = b; };
@@ -25,5 +25,6 @@ private:
 	Uint32 countdownOnOff_;
 	Uint32 countdownTime_;
 	bool transparentCont_;
+	Uint32 timeToRed_;
 
 };

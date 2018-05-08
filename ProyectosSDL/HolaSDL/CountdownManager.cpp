@@ -2,7 +2,8 @@
 #include "Game.h"
 
 
-CountdownManager::CountdownManager() : Component(), countdown_(false), countdownOn_(0), countdownTime_(80000), messageRenderer(nullptr), transparentCont_(false)
+CountdownManager::CountdownManager() : Component(), countdown_(false), countdownOn_(0), countdownTime_(0), 
+										messageRenderer(nullptr), transparentCont_(false), timeToRed_(5000)
 {
 }
 
@@ -44,18 +45,24 @@ void CountdownManager::update(Entity * e, Uint32 time)
 	else
 		messageRenderer->getComponent<MessageRenderer>()->setMessage("");
 
-	if (countdown_ && (countdownOn_ + countdownTime_ < time))
+	if (countdown_)
 	{
-		messageRenderer->getComponent<MessageRenderer>()->setMessage("00:00");
-		messageRenderer->getComponent<MessageTimer>()->start(0.5);
-		Game::Instance()->getEntityWithComponent<Player>()->getComponent<Character>()->setDie();
-		countdown_ = false;
-	}
-	else if (countdown_ && (countdownOnOff_ + 500 < time))
-	{
-		transparentCont_ = !transparentCont_;
-		messageRenderer->getComponent<MessageRenderer>()->setEnabled(transparentCont_);
-		countdownOnOff_ = SDL_GetTicks();
+		if (countdownOn_ + countdownTime_ < time)
+		{
+			messageRenderer->getComponent<MessageRenderer>()->setMessage("00:00");
+			messageRenderer->getComponent<MessageTimer>()->start(0.5);
+			Game::Instance()->getEntityWithComponent<Player>()->getComponent<Character>()->setDie();
+			countdown_ = false;
+		}
+		else if (countdownOnOff_ + 500 < time)
+		{
+			transparentCont_ = !transparentCont_;
+			messageRenderer->getComponent<MessageRenderer>()->setEnabled(transparentCont_);
+			countdownOnOff_ = SDL_GetTicks();
+		}
+
+		if ((countdownOn_ + countdownTime_) - time <= timeToRed_)
+			messageRenderer->getComponent<MessageRenderer>()->setColor({ 255, 0, 0, 255 });
 	}
 }
 
@@ -63,10 +70,12 @@ void CountdownManager::render(Entity * e, Uint32 time)
 {
 }
 
-void CountdownManager::startCountdown()
+void CountdownManager::startCountdown(int count)
 {
 	countdown_ = true;
 	transparentCont_ = true;
+	countdownTime_ = count;
 	countdownOnOff_ = SDL_GetTicks();
 	countdownOn_ = SDL_GetTicks();
+	messageRenderer->getComponent<MessageRenderer>()->setColor({ 255, 255, 255, 255 });
 }

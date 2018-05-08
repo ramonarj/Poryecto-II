@@ -14,6 +14,7 @@ public:
 	void setMessage(std::string newMsg) { message_ = newMsg; };
 	void setPosition(double x, double y) { textX_ = x; textY_ = y; };
 	void setFont(Font* f) { font_ = f; };
+	void setColor(SDL_Color c) { color_ = c; };
 
 private:
 	std::string message_;

@@ -14,7 +14,8 @@ SRMap::~SRMap()
 
 void SRMap::interact(Entity * e)
 {
-	AnimationRenderer* animPlayer = PlayState::Instance()->getPlayer()->getComponent<AnimationRenderer>();
+	Entity* player = PlayState::Instance()->getPlayer();
+	PlayerAnimationComponent* animPlayer = player->getComponent<PlayerAnimationComponent>();
 
 	if ((ori_ == "norte" && animPlayer->getLastDir().getY() == 1)
 		|| (ori_ == "sur" && animPlayer->getLastDir().getY() == -1)
@@ -23,11 +24,11 @@ void SRMap::interact(Entity * e)
 	{
 
 		if (!mapActive_) {
-			PlayState::Instance()->getPlayer()->setIsReading(true);
+			player->setIsReading(true);
 			mapActive_ = true;
 		}
 		else {
-			PlayState::Instance()->getPlayer()->setIsReading(false);
+			player->setIsReading(false);
 			mapActive_ = false;
 		}
 	}
@@ -36,7 +37,7 @@ void SRMap::interact(Entity * e)
 void SRMap::load(int numMap, std::string ori)
 {
 	ori_ = ori;
-	image_ = Game::Instance()->getResourceManager()->getTexture("SRMapa1");
+	image_ = Game::Instance()->getResourceManager()->getTexture("SRMapa" + to_string(numMap));
 }
 
 void SRMap::render(Entity * o, Uint32 time)

@@ -22,8 +22,13 @@ public:
 	virtual void handleInput(Uint32 time, const SDL_Event& event);
 	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
+	virtual void saveToFile();
+	virtual void loadToFile();
 
-	void load(int x, int y, int width, int height, int staticEntity, string name);
+	void saveEntity(Entity* o, ofstream& file);
+	void loadEntity(Entity* o, ifstream& file);
+
+	void load(int x, int y, int width, int height, int staticEntity, string name, string textureName);
 
 	virtual void addComponent(Component* c);
 	virtual void delComponent(Component* c);
@@ -38,6 +43,7 @@ public:
 	void scale(double s);
 	bool isStatic();
 	string getName();
+	string getTextureName();
 	bool getIsReading();
 	void setIsReading(bool b);
 
@@ -82,6 +88,8 @@ private:
 
 	double currentRow_;
 	double currentFrame_;
+
+	string textureName_;
 
 	vector<Component*> comps_;
 	vector<bool> sideCollision;

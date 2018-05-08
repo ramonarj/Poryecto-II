@@ -1,23 +1,57 @@
 #include "Character.h"
+#include "Player.h"
 
 
-
-Character::Character() :life(0){}
-
-Character::Character(int life, int damage) : life(life), damage(damage) {};
+Character::Character() :life(0), damage(0), knockBack_(false), knockBackOn_(0), knockBackTime_(50){}
 
 
 void Character::load(int l, int d)
 {
-	life = l;
+	maxLife_ = life = l;
 	damage = d;
 }
 
 void Character::update(Entity* o, Uint32 time)
 {
 	//Solo si está vivo
-	if(isAlive())
+	if (isAlive())
+	{
 		move(o);
+		if (o->getComponent<Character>()->getKnockBack() && (o->getComponent<Character>()->getKnockBackOn() + knockBackTime_ < time))
+		{
+			o->getComponent<Character>()->setKnockBack(false);
+			o->setVelocity(Vector2D(0.0, 0.0));
+		}
+	}
+	else
+	{
+		if (o->getComponent<Player>() != nullptr)
+		{
+			if (!Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getDoFade() && Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == 0)
+			{
+				Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setDoFade(true, 10);
+			}
+			else
+			{
+				if (Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
+				{
+					o->setPosition(o->getComponent<Player>()->getLastSRPos());
+					o->getComponent<Character>()->setAlive();
+					o->getComponent<Player>()->setInvincible(false);
+					o->getComponent<PlayerAnimationComponent>()->removeTransparency();
+				}
+			}
+		}
+	}
+}
+
+void Character::saveToFile()
+{
+	
+}
+
+void Character::loadToFile(ifstream& file)
+{
 }
 
 void Character::takeDamage(int i)
@@ -28,7 +62,7 @@ void Character::takeDamage(int i)
 		life -= i; //Restamos la vida
 		if (!isAlive())
 			cout << "I died" << endl;
-		else
+		else 
 			cout << "Life: " << life << endl;
 	}
 }
@@ -47,9 +81,24 @@ void Character::move(Entity * o)
 	o->setPosition(pos);
 }
 
-void Character::knockBack(Entity*o, Vector2D desplazamiento)
+void Character::knockBack(Entity*o, Vector2D desplazamiento)	//WHEN PUNCHING
 {
-	o->setPosition(Vector2D
-	(o->getPosition().getX() + desplazamiento.getX(),
-		o->getPosition().getY() + desplazamiento.getY()));
+	if (!o->getComponent<Character>()->getKnockBack()) 
+	{
+		o->setVelocity(Vector2D(desplazamiento.getX(), -desplazamiento.getY()));
+		o->getComponent<Character>()->setKnockBackOn();
+		o->getComponent<Character>()->setKnockBack(true);
+		if (o->getComponent<Player>() != nullptr)
+			o->getComponent<Player>()->startInvincible();
+	}
+}
+
+void Character::knockBack(Entity*o, Entity* own, double push)
+{
+	if (!o->getComponent<Character>()->getKnockBack())
+	{
+		o->setVelocity(Vector2D(-(o->getDirection().getX()) *push, -(o->getDirection().getY())*push));
+		o->getComponent<Character>()->setKnockBackOn();
+		o->getComponent<Character>()->setKnockBack(true);
+	}
 }

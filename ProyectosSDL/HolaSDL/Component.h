@@ -21,4 +21,6 @@ public:
 	virtual void update(Entity* e, Uint32 time) {};
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event) {};
 	virtual void render(Entity* e, Uint32 time) {};
+	virtual void saveToFile(Entity* o) {};
+	virtual void loadToFile(Entity* o) {};
 };

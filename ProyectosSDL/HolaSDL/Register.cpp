@@ -27,5 +27,29 @@ void Register::interact(Entity * e)
 void Register::load(int registerFile)
 {
 	registerFile_ = registerFile;
-	textNote = new TextNote(Game::Instance(), "textNotes/Archivo" + to_string(registerFile_) + ".txt", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro"));
+	loadText(to_string(registerFile_));
+	if (registerFile == 1) {	//Como es unico se podria hacer entero en photoshop
+		textNote = new TextNote(Game::Instance(), "", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgBook"));
+	}
+	else if (registerFile == 2)	//Variacion del registro normal pero con la foto de Elise
+		textNote = new TextNote(Game::Instance(), text_, 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistroWithPic"));	//Cambiar esto TEMPORAL
+	else
+		textNote = new TextNote(Game::Instance(), text_, 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro"));
+}
+
+bool Register::loadText(const string& filename) {
+	ifstream archivo;
+	stringstream ss, file;
+	string line;
+
+	file << "textNotes/Archivo" << to_string(registerFile_) << ".txt";
+	archivo.open(file.str());
+
+	while (getline(archivo, line))
+	{
+		ss << line << "\n";
+	}
+	text_ = ss.str();
+	archivo.close();
+	return true;
 }

@@ -32,11 +32,33 @@ void GameState::handleInput(Uint32 time, SDL_Event& event) { //Llamar a los inpu
 	cursor_->handleInput(time,event);
 }
 
+void GameState::saveToFile()
+{
+	for (Entity* e : stage_)
+		e->saveToFile();
+}
+
+void GameState::loadToFile()
+{
+	for (Entity* e : stage_)
+		e->loadToFile();
+}
+
+void GameState::mergeStages()
+{
+	for (Entity* e : stageAux_)
+		stage_.push_back(e);
+}
+
 void GameState::removeEntity(Entity* e) {
 	removedEntities_.push_back(e);
 }
 void GameState::removeStage(Entity* e) {
 	stage_.remove(e);
+}
+void GameState::removeStageAux(Entity * e)
+{
+	stageAux_.remove(e);
 }
 void GameState::removeInteractible(Entity* e) {
 	interactibles_.remove(e);
@@ -59,8 +81,7 @@ void GameState::removeEntities() {
 	removedEntities_.clear();
 	
 	for (Entity* e : removedInteractibles_) {
-		removeInteractible(e);
-		removeStage(e);
+		e->setActive(false);
 	}
 }
 

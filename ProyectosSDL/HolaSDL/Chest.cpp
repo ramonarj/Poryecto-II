@@ -3,17 +3,21 @@
 #include "Inventory.h"
 
 
-
 Chest::Chest()
 {
 	//InvTam = 20;
 	pRenderer = nullptr;
 	resource = nullptr;
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 140, 510, nullptr));
+
+	SDL_Color c { 0,255,100,255 };
+	description_.getComponent<TextNote>()->setColor(c);
 }
 
 
 Chest::~Chest()
 {
+		for (int i = 0; i < inventory.size(); i++){ if (inventory[i] != nullptr) delete inventory[i]; }
 }
 
 void Chest::update(Entity * e, Uint32 time)
@@ -69,23 +73,31 @@ void Chest::render(Entity * e, Uint32 time)
 
 	int ancho = width - width / 10;
 	int alto = height - height / 10;
-	int posX = 0 + (width / 10)/2;
-	int posY = 0 + (height / 10)/2;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
+
+	SDL_Rect dest1 = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest1);
+
+	ancho = width - width / 10;
+	alto = height - height / 10;
+	posX = 0 + (width / 10)/2;
+	posY = 0 + (height / 10)/2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
 	resource->getTexture("Chest")->render(pRenderer, dest);
-
+	
 	for (int i = 0; i < int(inventory.size()); i++)
 	{
 		if (i != slotClicked || !clicked) {
-			SDL_Rect DestRect = { getItemChestPosX(i), getItemChestPosY(i), slotWidth, slotWidth };
+			SDL_Rect DestRect = { getItemChestPosX(i) - slotWidth / 2, getItemChestPosY(i) - slotWidth / 2, slotWidth*2 , slotWidth*2 };
 			renderItem(i, e, DestRect);
 		}
 			if (clicked)
 			{
 				int x, y;
 				SDL_GetMouseState(&x, &y);
-				SDL_Rect DestRect = { x, y, slotWidth, slotWidth };
+				SDL_Rect DestRect = { x - slotWidth / 2, y - slotWidth / 2, slotWidth*2, slotWidth*2 };
 				renderItem(slotClicked, e, DestRect);
 			}
 	}
@@ -104,6 +116,52 @@ void Chest::render(Entity * e, Uint32 time)
 		renderSlotMark(DestRect);
 	}
 
+	if (controllerActive) {
+		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
+			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
+	}
+	else {
+		if (slotClicked >= 0 && slotClicked<getInventory().size()) {
+			Entity* b = getInventory()[slotClicked];
+			Item* c = b->getComponent<Item>();
+			description_.getComponent<TextNote>()->changeString(c->getDescription());
+		}
+		else {
+			description_.getComponent<TextNote>()->changeString("");
+		}
+	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
+
+}
+
+void Chest::saveToFile(Entity* o)
+{
+	ofstream file;
+	file.open(SAVE_FOLDER + "Inventory/chest.pac");
+	if (file.is_open())
+	{
+		ItemContainer::saveToFile(file);
+	}
+	file.close();
+}
+
+void Chest::loadToFile(Entity* o)
+{
+	ifstream file;
+	file.open(SAVE_FOLDER + "Inventory/chest.pac");
+
+	//Vemos si existe el archivo
+	if (file.is_open())
+	{
+		ItemContainer::loadToFile(file);
+	}
+
+	file.close();
 }
 
 bool Chest::fullChest()

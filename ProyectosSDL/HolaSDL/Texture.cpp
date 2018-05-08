@@ -44,6 +44,7 @@ void Texture::close() {
 
 bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	SDL_Surface* surface = IMG_Load(fileName.c_str());
+
 	if (surface != nullptr) {
 		close(); // destroy current texture
 		texture_ = SDL_CreateTextureFromSurface(renderer, surface);
@@ -56,8 +57,7 @@ bool Texture::loadFromImg(SDL_Renderer* renderer, std::string fileName) {
 	return texture_ != nullptr;
 }
 
-bool Texture::loadFromText(SDL_Renderer* renderer, std::string text,
-		const Font& font, const SDL_Color color) {
+bool Texture::loadFromText(SDL_Renderer* renderer, std::string text, const Font& font, const SDL_Color color) {
 	SDL_Surface* textSurface = font.renderText(text, color);
 	if (textSurface != nullptr) {
 		close();
@@ -80,8 +80,7 @@ void Texture::render(SDL_Renderer* renderer, int x, int y) const {
 	render(renderer, dest);
 }
 
-void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
-		SDL_Rect* clip) const {
+void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, SDL_Rect* clip) const {
 	if (texture_) {
 		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {
@@ -91,8 +90,7 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest,
 	}
 }
 
-void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
-		SDL_Rect* clip) const {
+void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle, SDL_Rect* clip) const {
 	if (texture_) {
 		SDL_Rect default_clip = { 0, 0, width_, height_ };
 		if (clip == nullptr) {
@@ -105,7 +103,7 @@ void Texture::render(SDL_Renderer* renderer, const SDL_Rect& dest, double angle,
 
 bool Texture::load(string fileName, std::string id, SDL_Renderer * pRenderer)
 {
-	SDL_Surface* pTempSurface = IMG_Load(("levels/" + fileName).c_str());
+	SDL_Surface* pTempSurface = IMG_Load((FOLDER + "levels/" + fileName).c_str());
 	if (pTempSurface == 0)
 	{
 		return false;
@@ -142,4 +140,9 @@ void Texture::drawTile(string id, int margin, int spacing, int x, int y, int wid
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, SDL_FLIP_NONE);
+}
+
+void Texture::ChangeAlphaValue(Uint8 alpha)
+{
+	SDL_SetTextureAlphaMod(getSdlTexture(), alpha);
 }

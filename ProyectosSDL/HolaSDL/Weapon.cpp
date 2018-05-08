@@ -2,10 +2,11 @@
 
 
 
-Weapon::Weapon(ItemType type, const string& filename) : Item(type, filename)
+Weapon::Weapon(ItemType type, const string& filename, std::string interactMessage) : Item(type, filename, interactMessage)
 {
 	weaponInit(type);
 	type_ = type;
+	initialDescr = getDescription();
 }
 
 
@@ -13,17 +14,24 @@ Weapon::~Weapon()
 {
 }
 
+void Weapon::update(Entity* e, Uint32 time) {
+
+}
+
 void Weapon::weaponInit(ItemType type) {
 	switch (type)
 	{
 	case STICK:
 		maxHits_ = 5;
+		damage_ = 1;
 		break;
 	case CROWBAR:
 		maxHits_ = 10;
+		damage_ = 1;
 		break;
 	case PIPE:
 		maxHits_ = 15;
+		damage_ = 1;
 		break;
 	case AXE:
 		maxHits_ = 20;
@@ -57,7 +65,17 @@ void Weapon::repare(int a)
 void Weapon::repair() {
 
 	numHits_ += (int)repairIndex_*maxHits_;
-	if (numHits_ > maxHits_) 
+	if (numHits_ > maxHits_)
 		numHits_ = maxHits_;
 	std::cout << " arma reparada, numHits = " << numHits_ << std::endl;
+}
+
+bool Weapon::saveDescription() {
+	ofstream archivo;
+	archivo.clear();
+	archivo.open(txtFilePath_);
+	archivo << description;
+	archivo.close();
+	cout << endl << description << endl;
+	return true;
 }

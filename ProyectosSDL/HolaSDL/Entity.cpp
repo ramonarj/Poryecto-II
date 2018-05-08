@@ -51,17 +51,57 @@ void Entity::render(Uint32 time) {
 	}
 }
 
-void Entity::load(int x, int y, int width, int height, int staticEntity, string name)
+void Entity::saveToFile()
+{
+	for (Component* c : comps_) {
+		c->saveToFile(this);
+	}
+}
+
+void Entity::loadToFile()
+{
+	for (Component* c : comps_) {
+		c->loadToFile(this);
+	}
+}
+
+void Entity::saveEntity(Entity* o, ofstream & file)
+{
+	file << o->isActive() << endl;
+	file << o->getPosition().getX() << " " << o->getPosition().getY() << endl;
+}
+
+void Entity::loadEntity(Entity * o, ifstream & file)
+{
+	bool active;
+	string s;
+
+	file >> active;
+	o->setActive(active);
+	//Pasamos de línea
+	getline(file, s);
+
+	Vector2D v;
+	double n;
+	file >> n; v.setX(n); file >> n; v.setY(n); o->setPosition(v);
+	//Pasamos de línea
+	getline(file, s);
+}
+
+void Entity::load(int x, int y, int width, int height, int staticEntity, string name, string textureName)
 {
 	position_.set(Vector2D(x, y));
 	width_ = width;
 	height_ = height;
 	currentRow_ = 1;
 	currentFrame_ = 1;
+	textureName_ = textureName;
 
 	staticEntity_ = staticEntity;
 
 	name_ = name;
+	if (name_ == "Player")
+		this->getComponent<Player>()->setLastSRPos(position_);
 }
 
 void Entity::addComponent(Component* c) {
@@ -129,6 +169,11 @@ string Entity::getName()
 	return name_;
 }
 
+string Entity::getTextureName()
+{
+	return textureName_;
+}
+
 bool Entity::getIsReading()
 {
 	return reading_;
@@ -158,6 +203,16 @@ void Entity::setSideCollision(int i)
 	{
 		if (i != j) sideCollision[j] = false;
 		else sideCollision[j] = true;
+
+		for (int i = 0; i < sideCollision.size(); i++) {
+
+			if (sideCollision[i]) {
+				if (i == 0) {
+					std::cout << to_string(i) << std::endl;
+				}
+			}
+
+		}
 	}
 }
 

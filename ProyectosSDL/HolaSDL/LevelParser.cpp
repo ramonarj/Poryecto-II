@@ -6,7 +6,6 @@
 #include "base64.h"
 #include "zlib.h"
 #include "Level.h"
-#include "Game.h"
 #include "Texture.h"
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
@@ -14,6 +13,12 @@
 #include "SecurityCamera.h"
 #include "Register.h"
 #include "SRMap.h"
+#include "AnimationRenderObject.h"
+#include "Light.h"
+#include "LightManager.h"
+#include "Code.h"
+#include "KeypadState.h"
+#include "Countdown.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -34,9 +39,9 @@ Level* LevelParser::parseLevel(const char *levelFile)
 	std::cout << "Width:" << pRoot->Attribute("width") << " - Height:" << pRoot->Attribute("height") << "\n";
 	std::cout << "Tile Width:" << pRoot->Attribute("tilewidth") << " - Tile Height:" << pRoot->Attribute("tileheight") << "\n";*/
 
-	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
+	pRoot->Attribute("tilewidth", &m_tileSize);
 
 	m_tileSize *= zoom;
 
@@ -209,6 +214,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 	int staticEntity;
 	int collidableDoor;
+	int floorRegister;
+
 	for (TiXmlElement* e = pObjectElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("properties"))
@@ -218,13 +225,13 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				if (property->Value() == std::string("property"))
 				{
 					if (property->Attribute("name") == std::string("staticEntity"))
-					{
 						property->Attribute("value", &staticEntity);
-					}
+
 					if (property->Attribute("name") == std::string("collidableDoor"))
-					{
 						property->Attribute("value", &collidableDoor);
-					}
+
+					if (property->Attribute("name") == std::string("floorRegister"))
+						property->Attribute("value", &floorRegister);
 				}
 			}
 		}
@@ -236,27 +243,48 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		if (e->Value() == std::string("object"))
 		{
 			int x, y, width, height, numFrames;
+			std::string textureName = "";
+			std::string orientacion;
+			
+			//Variables para los personajes
 			int life = 0;
 			int damage = 0;
+			int numEnemy = 0;
 
+			//Variables para las puertas y las llaves
 			int numKey = 0;
 			int numDoor = 0;
 			int needKey = 0;
+			string zoneName = "";
+			string keyName = "";
+
 			int numCamera = 0;
-			std::string orientacion;
+
+			//Variables para los registros
 			int registerFile;
 			int numMap;
+
+			//Variables para el codigo de abrir puertas
+			int numDoorCode = 0;
+			int code = 0;
+
+			//Variables para la cuenta atras
+			int activeCountdown = 0;
+			int countdown = 0;
 
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
-				|| e->Attribute("type") == std::string("SRMap"))
+				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint")
+				|| e->Attribute("type") == std::string("Light") || e->Attribute("type") == std::string("Code")
+				|| e->Attribute("type") == std::string("Countdown"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
 			}
+
 			Entity* pEntity = GameObjectFactory::Instance()->create(e->Attribute("type"));
 
 			// get the property values
@@ -269,109 +297,153 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 						if (property->Value() == std::string("property"))
 						{
 							if (property->Attribute("name") == std::string("numFrames"))
-							{
 								property->Attribute("value", &numFrames);
-							}
+
 							else if (property->Attribute("name") == std::string("textureHeight"))
-							{
 								property->Attribute("value", &height);
-							}
-							else if (property->Attribute("name") == std::string("textureWidth"))
-							{
+				
+							else if (property->Attribute("name") == std::string("textureWidth"))							
 								property->Attribute("value", &width);
-							}
+							
 							else if (property->Attribute("name") == std::string("life"))
-							{
 								property->Attribute("value", &life);
-							}
+							
 							else if (property->Attribute("name") == std::string("damage"))
-							{
 								property->Attribute("value", &damage);
-							}
+						
 							else if (property->Attribute("name") == std::string("numDoor"))
-							{
 								property->Attribute("value", &numDoor);
-							}
+							
 							else if (property->Attribute("name") == std::string("dir"))
-							{
 								orientacion = property->Attribute("value");
-							}
+							
 							else if (property->Attribute("name") == std::string("numKey"))
-							{
 								property->Attribute("value", &numKey);
-							}
+							
 							else if (property->Attribute("name") == std::string("needKey"))
-							{
 								property->Attribute("value", &needKey);
-							}
+							
 							else if (property->Attribute("name") == std::string("numCamera"))
-							{
 								property->Attribute("value", &numCamera);
-							}
+							
 							else if (property->Attribute("name") == std::string("registerFile"))
-							{
 								property->Attribute("value", &registerFile);
-							}
+							
 							else if (property->Attribute("name") == std::string("numMap"))
-							{
 								property->Attribute("value", &numMap);
-							}
+							
+							else if (property->Attribute("name") == std::string("numEnemy"))
+								property->Attribute("value", &numEnemy);
+
+							else if (property->Attribute("name") == std::string("zoneName"))
+								zoneName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("textureName"))
+								textureName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("numDoorCode"))
+								property->Attribute("value", &numDoorCode);
+
+							else if (property->Attribute("name") == std::string("code"))
+								property->Attribute("value", &code);
+
+							else if (property->Attribute("name") == std::string("keyName"))
+								keyName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("activeCountdown"))
+								property->Attribute("value", &activeCountdown);
+							else if (property->Attribute("name") == std::string("count"))
+								property->Attribute("value", &countdown);
 						}
 					}
 				}
 			}
 			//Cargas de varias formas dependiendo del tipo de objeto
-			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"));
+			pEntity->load(x * zoom, y * zoom, width * zoom, height * zoom, staticEntity, e->Attribute("name"), textureName);
 
 			//Si es un personaje, le carga diferentes variables y lo mete en un vector
 			if (e->Attribute("type") == std::string("Player") || e->Attribute("type") == std::string("Enemy"))
-			{
-				pEntity->getComponent<Character>()->load(life, damage);
-			}
-			else if (e->Attribute("type") == std::string("Puerta"))
-			{
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, numKey, needKey, collidableDoor);
-			}
-			else if (e->Attribute("type") == std::string("Key"))
-			{
-				pEntity->getComponent<Key>()->load(numKey);
-			}
-			else if (e->Attribute("type") == std::string("Camera"))
-			{
-				pEntity->getComponent<SecurityCamera>()->load(numCamera);
-			}
-			else if (e->Attribute("type") == std::string("Register"))
-			{
-				pEntity->getComponent<Register>()->load(registerFile);
-			}
-			else if (e->Attribute("type") == std::string("SRMap"))
-			{
-				pEntity->getComponent<SRMap>()->load(numMap, orientacion);
-			}
+				loadCharacters(e, pEntity, life, damage, numEnemy);
 
-			//Si es una puerta lo mete en un vector diferente al de entidades
-			if (e->Attribute("type") != std::string("Register") || e->Attribute("type") != std::string("SRMap"))
-			{
-				bool regFound = false;
-				int i = 0;
-				list<Entity*>::const_iterator it = (*Game::Instance()->stateMachine_.currentState()->getStage()).begin();
-				while (it != (*Game::Instance()->stateMachine_.currentState()->getStage()).end() && !regFound){
-					if ((*it)->getComponent<Register>() != nullptr || (*it)->getComponent<SRMap>() != nullptr)
-						regFound = true;
-					else
-						it++;
-				}
-				if (regFound)
-					Game::Instance()->stateMachine_.currentState()->getStage()->insert(it, pEntity);
-				else
-					Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
-			}
-			else
-				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+			else if (e->Attribute("type") == std::string("Puerta"))
+				pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
+
+			else if (e->Attribute("type") == std::string("Key"))				
+				pEntity->getComponent<Key>()->load(numKey, keyName);
+
+			else if (e->Attribute("type") == std::string("Camera"))
+				pEntity->getComponent<SecurityCamera>()->load(numCamera);
+
+			else if (e->Attribute("type") == std::string("Register"))
+				loadRegister(e, pEntity, registerFile, floorRegister);
+
+			else if (e->Attribute("type") == std::string("SRMap"))
+				loadSRMap(pEntity, numMap, orientacion);
+
+			else if (e->Attribute("type") == std::string("Code"))
+				loadCode(pEntity, numDoorCode, code, orientacion);
+
+			else if (e->Attribute("type") == std::string("Countdown"))
+				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
 
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
+
+			if (pEntity->getComponent<Item>() != nullptr) {
+				pEntity->getComponent<Item>()->load(numItemFile);
+				numItemFile++;
+			}
+
+			if (e->Attribute("type") != std::string("Register") && e->Attribute("type") != std::string("SRMap"))
+				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}
 	}
 	pLayers->push_back(pObjectLayer);
+}
+
+void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy)
+{
+	pEntity->getComponent<Character>()->load(life, damage);
+	if (e->Attribute("type") == std::string("Enemy")) {
+		pEntity->getComponent<Enemy>()->load(numEnemy, numEnemyFile);
+		if (numEnemy == 1)
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo1_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo1_Diying"),nullptr, 150, 2, 8, 7, 6, 0));
+		else if (numEnemy == 2)
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo2_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Diying"), Game::Instance()->getResourceManager()->getTexture("Enemigo2_Resurrecting"), 120, 2, 8, 5, 3, 4));
+		else if (numEnemy == 3){
+			pEntity->addComponent(new EnemyAnimationComponent(numEnemy, Game::Instance()->getResourceManager()->getTexture("Enemigo3_Moving"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Iddle"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Attacking"), Game::Instance()->getResourceManager()->getTexture("Enemigo3_Diying"), nullptr, 120, 2, 7, 7, 4, 0));
+		}
+		numEnemyFile++;
+	}
+	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
+}
+
+void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister)
+{
+	pEntity->getComponent<Register>()->load(registerFile);
+	if (floorRegister)
+	{
+		if (registerFile == 1) {
+			pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("BookShelving"), 400, true, true, 2));
+		}
+		else
+			pEntity->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Register1"), 400, true, true, 2));
+		Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
+	}
+	else
+	{
+		Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
+	}
+}
+
+void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacion)
+{
+	pEntity->getComponent<SRMap>()->load(numMap, orientacion);
+	Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
+}
+
+void LevelParser::loadCode(Entity * pEntity, int numDoor, int code, std::string dir)
+{
+	pEntity->getComponent<Code>()->load(numDoor, code, dir);
+	KeypadState::Instance()->getCodes()->push_back(pEntity);
 }

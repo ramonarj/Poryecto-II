@@ -5,6 +5,8 @@
 #include "Entity.h"
 #include "Collisions.h"
 #include <iostream>
+#include "MessageRenderer.h"
+#include "MessageTimer.h"
 
 class KeyBoardInputComponent :
 	public Component
@@ -12,9 +14,12 @@ class KeyBoardInputComponent :
 public:
 	KeyBoardInputComponent();		
 	KeyBoardInputComponent(SDL_Scancode left, SDL_Scancode right, SDL_Scancode up, SDL_Scancode down, SDL_Scancode interact, SDL_Scancode attack, 
-		SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController);
+		SDL_Scancode inventory, SDL_Scancode chest, SDL_Scancode pause, SDL_Scancode enter, SDL_Scancode crafteo, SDL_Scancode SwitchController, 
+		SDL_Scancode saveGame, SDL_Scancode loadGame);
 	virtual ~KeyBoardInputComponent();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
+
+	void setDirBlock(int a) { dirBlock_ = a; };
 
 private:
 	SDL_Scancode left_;
@@ -29,6 +34,8 @@ private:
 	SDL_Scancode pause_;
 	SDL_Scancode enter_;
 	SDL_Scancode switchController_;
+	SDL_Scancode saveGame_;
+	SDL_Scancode loadGame_;
 
 	//VARIABLE PARA EVITAR EL PARPADEO DEL INVENTARIO Y PARA CUADRAR QUE SE ABRAN LAS 
 	//INTERFACES CORRECTAS SIN QUE SE ABRAN Y CIERREN DE FORMAS DESIGUALES
@@ -42,5 +49,17 @@ private:
 
 	//*MOUSE*
 	int mouseX=0; int mouseY = 0;
+
+	//Knockback easy
+	Uint32 Timer_ = 0;
+	bool timerSet = false;
+	int dirBlock_ = 0;
+
+	//MessageRenderer
+	MessageRenderer* messageRenderer;
+	MessageTimer* messageTimer;
+
+	//Alpha del fade para saber si el personaje se puede mover o no
+	Uint8 alphaFade_;
 };
 

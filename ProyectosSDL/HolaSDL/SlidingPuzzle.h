@@ -2,6 +2,7 @@
 #pragma once
 #include "GameState.h"
 #include "SlidingPuzzleComponent.h"
+#include "SlidingPuzzleController.h"
 
 class SlidingPuzzle : public GameState
 {

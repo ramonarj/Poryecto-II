@@ -4,27 +4,34 @@
 #include "Interactible.h"
 #include <list>
 #include "Inventory.h"
+#include "MessageRenderer.h"
+#include "MessageTimer.h"
 
 class Door : public Interactible
 {
 public:
-	Door();
+	Door(Entity* thisDoor);
 	~Door();
 
 	virtual void interact(Entity* e);
 
-	void load(int numero, string ori, int numKey, int needKey, int collidableDoor);
+	void load(int numero, string ori, int needKey, int collidableDoor, string zoneName);
 
 	int getDoorNum() { return doorNum_; };
-	int getNumKey() { return numKey_; };
 	string getOri() { return ori_; };
+	string getZoneName() { return zoneName_; };
 
 	bool canTeleport();
+	void teleport();
 	bool getNeedKey();
 	void setNeedKey();
 	void openDoor();
 	void keyFalse();
 	bool isCollidable();
+
+	virtual void update(Entity* e, Uint32 time);
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
 
 private:
 	list<Entity*> doors;
@@ -33,11 +40,16 @@ private:
 	ItemContainer* compContainer;
 	Inventory* compInvent;
 	Entity* itemKey;
+	Entity* thisDoor_;
+
+	MessageRenderer* messageRenderer;
+	MessageTimer* messageTimer;
 
 	int doorNum_;
 	string ori_;
-	int numKey_;
+	string zoneName_;
 	bool needKey_;
 	bool collidableDoor_;
+	bool messageChanged_;
 };
 

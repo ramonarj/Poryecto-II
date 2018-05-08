@@ -1,61 +1,68 @@
 #include "PlayerLight.h"
+#include <algorithm>
 
-PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), lightsOn_(false) {
-	SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal")->getSdlTexture(), SDL_BLENDMODE_MOD);
-	SDL_SetTextureBlendMode(Game::Instance()->getResourceManager()->getTexture("ShadowVertical")->getSdlTexture(), SDL_BLENDMODE_MOD);
+PlayerLight::PlayerLight(): horizontal_(true), flipped_(false), currentAgl_(0), destAgl_(0), lastDirection("Right"), currentDirection("Right"), sdlShadow(nullptr) {
+	sdlShadow = Game::Instance()->getResourceManager()->getTexture("PlayerLight")->getSdlTexture();
+	fade_ = Game::Instance()->getResourceManager()->getTexture("Black");
+	
+	SDL_SetTextureBlendMode(sdlShadow, SDL_BLENDMODE_ADD);
 
-	shadowH_ = Game::Instance()->getResourceManager()->getTexture("ShadowHorizontal");
-	shadowV_ = Game::Instance()->getResourceManager()->getTexture("ShadowVertical");
+	shadow_ = Game::Instance()->getResourceManager()->getTexture("PlayerLight");
+
 	player_ = PlayState::Instance()->getPlayer();
 }
 
 PlayerLight::~PlayerLight() {
 }
 
+double lerp(double a, double b, double f) {
+	return a + f * (b - a);
+}
+
 void PlayerLight::render(Entity* o, Uint32 time) {
 	
 	if (player_->getDirection().getX() > 0) {
-		cout << "Derecha" << endl;
-
-		horizontal_ = true;
-		flipped_ = false;
+		destAgl_ = 0;
+		currentDirection = "Right";
 	}
 	else if (player_->getDirection().getX() < 0) {
-		cout << "Izquierda" << endl;
-
-		horizontal_ = true;
-		flipped_ = true;
+		destAgl_ = 180;
+		currentDirection = "Left";
 	}
 	else if (player_->getDirection().getY() > 0) {
-		cout << "Arriba" << endl;
-
-		horizontal_ = false;
-		flipped_ = false;
+		destAgl_ = 270;
+		currentDirection = "Up";
 	}
 	else if (player_->getDirection().getY() < 0) {
-		cout << "Abajo" << endl;
-
-		horizontal_ = false;
-		flipped_ = true;
+		destAgl_ = 90;
+		currentDirection = "Down";
 	}
+
+	// Esto arregla el comportamiento raro en este caso extraordinarios
+	if (lastDirection == "Right") {
+		if (currentDirection == "Up")
+			currentAgl_ += 360;
+	}else if (lastDirection == "Up") {
+		if (currentDirection == "Right")
+			currentAgl_ -= 360;
+	}
+
+	lastDirection = currentDirection;
+
+	//SDL_Rect destRect RECT(
+	//	o->getPosition().getX(),
+	//	o->getPosition().getY(),
+	//	Game::Instance()->getWindowWidth(),
+	//	Game::Instance()->getWindowHeight());
 
 	SDL_Rect destRect RECT(
 		o->getPosition().getX(),
-		o->getPosition().getY(),
+		o->getPosition().getY() - ((Game::Instance()->getWindowWidth() - Game::Instance()->getWindowHeight())/2),
 		Game::Instance()->getWindowWidth(),
-		Game::Instance()->getWindowHeight());
-	if (lightsOn_)
-		(horizontal_? shadowH_ : shadowV_)->render(Game::Instance()->getRenderer(), destRect, 360 / (flipped_ ? 2 : 1));
-}
+		Game::Instance()->getWindowWidth());
 
-void PlayerLight::handleInput(Entity * e, Uint32 time, const SDL_Event & event) {
-	if (event.type == SDL_KEYDOWN) {
-		if (event.key.keysym.sym == SDLK_l)
-			lightsOn_ = !lightsOn_;
-	}
-}
+	currentAgl_ = lerp(currentAgl_, destAgl_, 0.3); //transición al nuevo destino de forma suave
 
-//double lerp(double a, double b, double f)
-//{
-//	return a + f * (b - a);
-//}
+	shadow_->render(Game::Instance()->getRenderer(), destRect, currentAgl_);
+	
+}

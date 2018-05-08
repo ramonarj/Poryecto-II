@@ -6,6 +6,7 @@
 #include <list>
 #include "Key.h"
 
+
 using namespace std;
 
 class Craft;
@@ -24,6 +25,7 @@ public:
 	void setActiveController(bool b) { controllerActive = b; };
 	void moveMarkSlot(int a);
 	void setSelectedSlot(int a) { selectedSlot = a; };
+	void useItem(int i);
 
 protected:
 	bool debug = false;
@@ -33,6 +35,8 @@ public:
 	virtual void update(Entity* e, Uint32 time);
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
 
 	bool addItem(Entity * item);
 
@@ -41,9 +45,11 @@ public:
 	void Debug_Mode_Off() { debug = false; };
 
 	virtual bool checkItem(int item);
+	virtual bool checkIdemItems(int item, int repeat);
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	void removeWeapon();
+	void removeKey(int numKey);
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }
@@ -69,10 +75,17 @@ private:
 	vector<Entity*> keys;
 	bool controllerActive = false;
 	int selectedSlot = 0;
+	bool equipedClicked = false;
+	bool equipedLastClicked = false;
 	bool renderMark = true;
 
 	Entity description_ = Entity(20, 20);
-	
+	SDL_Rect clip = RECT(0, 0, 20, 20);
+
+	Entity life = Entity(0, 0);
+
+	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;
+
 };
 
 

@@ -2,7 +2,7 @@
 
 
 
-FirstAid::FirstAid(const string& filename) : Item(ItemType::FIRSTAID,filename)
+FirstAid::FirstAid(const string& filename, std::string interactMessage) : Item(ItemType::FIRSTAID, filename, interactMessage)
 {
 }
 
@@ -11,14 +11,11 @@ FirstAid::~FirstAid()
 {
 }
 
-void FirstAid::update(Entity* e, Uint32 time) {
-
-}
-
-void FirstAid::use(Entity* player) {
+void FirstAid::use(Entity* player, Entity* item) {
 	if (player->getComponent<Player>() != nullptr) {
 		std::cout << Item::getType() << " ha sido usado" << std::endl;
 		//llamar al metodo de e de recargar vida
 		player->getComponent<Player>()->cure();
 	}
+	//Item::use(player, item);
 }

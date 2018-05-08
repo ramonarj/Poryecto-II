@@ -7,6 +7,7 @@ public:
 	~SecurityCamera();
 
 	void load(int numCamera);
+	int getNumCamera() { return numCamera_; };
 
 private:
 	int numCamera_;

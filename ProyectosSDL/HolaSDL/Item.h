@@ -12,7 +12,7 @@ enum ItemType{ STICK, CROWBAR, PIPE, AXE, ALCOHOL, BANDAGES, FIRSTAID, GENERICCH
 class Item : public Interactible
 {
 public:
-	Item(ItemType type, const string& filename);
+	Item(ItemType type, const string& filename, std::string interactMessage = "");
 	virtual ~Item();
 
 	virtual void update(Entity* e, Uint32 time) {};
@@ -22,11 +22,22 @@ public:
 	ItemType getType() { return type_; };
 
 	// METODO PARA USAR UN ITEM (LOS ITEMS SE USAN DESDE EL INVENTARIO)
-	virtual void use(Entity* e) {};
+	virtual void use(Entity* e, Entity* item);
 	string getDescription() { return description; };
+	string getPath() { return txtFilePath_; };
+	void setDescription(string s) { description = s; };
+
+	void load(int num) { numFile_ = num; };
+
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
+
+protected:
+	int numFile_;
+	string description;	//	descripcion que aparece en el inventario
+	string txtFilePath_;
 
 private:
 	ItemType type_;
-	string description;	//	descripcion que aparece en el inventario
 	bool loadDescription(const string& filename);	//	carga la descripcion del fichero DescriptionItems.txt
 };

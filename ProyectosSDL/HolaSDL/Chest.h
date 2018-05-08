@@ -1,5 +1,6 @@
 #pragma once
 #include "ItemContainer.h"
+#include "Entity.h"
 
 class Inventory;
 class Chest : public ItemContainer
@@ -14,12 +15,13 @@ public:
 	virtual void update(Entity* e, Uint32 time);
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
+	virtual void saveToFile(Entity * o);
+	virtual void loadToFile(Entity * o);
 	
 	bool fullChest();
 	bool addItem(Entity * item);
 
 	virtual bool checkItem(int item);
-	//void renderItem(int i, Entity* e, SDL_Rect DestRect);
 	virtual Entity* ItemInPosition(int pos);
 	virtual bool fullInventory();
 
@@ -39,5 +41,7 @@ private:
 	bool controllerActive = false;
 	int selectedSlot = 0;
 	bool renderMark = false;
+
+	Entity description_ = Entity(20, 20);
 };
 

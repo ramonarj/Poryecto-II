@@ -16,6 +16,7 @@ void SlidingPuzzle::startState()
 
 	Entity* slidingPuzzle = new Entity(0, 0);
 	slidingPuzzle->addComponent(new SlidingPuzzleComponent());
+	slidingPuzzle->addComponent(new SlidingPuzzleController());
 	stage_.push_back(slidingPuzzle);
 }
 
@@ -33,6 +34,8 @@ void SlidingPuzzle::update(Uint32 time)
 void SlidingPuzzle::handleInput(Uint32 time, SDL_Event & event)
 {
 	GameState::handleInput(time, event);
+	if (event.type == SDL_KEYDOWN)	//DEBUG
+		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());	//DEBUG
 }
 
 SlidingPuzzle::~SlidingPuzzle()

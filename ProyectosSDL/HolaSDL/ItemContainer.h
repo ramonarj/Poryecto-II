@@ -23,7 +23,7 @@ protected:
 
 	//int InvTam;
 	bool clicked = false;
-	int slotClicked;
+	int slotClicked = -1;
 	
 	vector<Entity*> inventory;
 	coord Inventoryslots[4] = { { 705, 100 },{ 800, 100 },{ 705,200 },{ 800,200 } };
@@ -49,6 +49,9 @@ public:
 	int inventorySize() { return inventory.size(); };
 	vector<Entity*> getInventory() { return inventory; };
 
+	virtual void saveToFile(ofstream& file);
+	virtual void loadToFile(ifstream& file);
+
 protected:
 	int slotWidth = 50;
 	SDL_Renderer* pRenderer = nullptr;
@@ -62,5 +65,8 @@ protected:
 	void renderItem(int i, Entity* e, SDL_Rect DestRect);
 
 	void renderSlotMark(SDL_Rect DestRect);
+
+	SDL_Rect clip = RECT(0, 0, 20, 20);
+
 };
 

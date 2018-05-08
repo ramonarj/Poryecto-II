@@ -13,7 +13,7 @@ public:
 	~TextNote();
 	virtual void render(Entity* e, Uint32 time);
 	void changeString(string txtFilePath);
-
+	void setColor(SDL_Color c) { color_ = c; }
 
 private:
 	Texture* background_;

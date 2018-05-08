@@ -74,5 +74,8 @@ private:
 	int selectedSlot = 0;
 	int slotWidth = 50;
 	bool renderMark = false;
+
+	SDL_Rect clip = RECT(0, 0, 20, 20);
+	Entity description_ = Entity(20, 20);
 };
 

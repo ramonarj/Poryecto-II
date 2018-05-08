@@ -14,19 +14,24 @@ protected:
 	Entity* cursor_;
 
 	list<Entity*> stage_;
+	list<Entity*> stageAux_;
+
 	list<Entity*> interactibles_;
 	list<Entity*> characters_;
 	list<Entity*> doors_;
 	list<Entity*> removedEntities_;
 	list<Entity*> removedInteractibles_;
+	list<Entity*> codes_;
 
 	GameState();
 	static unique_ptr<GameState> s_pInstance;
 
 	void removeStage(Entity* e);
+	void removeStageAux(Entity* e);
 	void removeInteractible(Entity* e);
 	void removeCharacter(Entity* e);
 	void removeDoor(Entity* e);
+
 public:
 
 	static GameState* Instance()
@@ -41,16 +46,22 @@ public:
 	virtual void render(Uint32 time);
 	virtual void update(Uint32 time);
 	virtual void handleInput(Uint32 time, SDL_Event& event);
+	virtual void saveToFile();
+	virtual void loadToFile();
 
 	void pushEntities(Entity* e) { stage_.push_back(e); };
 	list<Entity*>* getStage() { return &stage_; };
+	list<Entity*>* getStageAux() { return &stageAux_; };
+	void mergeStages();
+
 	list<Entity*>* getInteractibles() { return &interactibles_; };
 	list<Entity*>* getCharacters() { return &characters_; };
 	list<Entity*>* getDoors() { return &doors_; };
+	list<Entity*>* getCodes() { return &codes_; };
 	Entity* getCursor() { return cursor_; };
-	void removeEntities();
-	void removeEntity(Entity* e);
-	void removeInteractibleOfStage(Entity* e);
+	void removeEntities();	// sacar las entidades que se quieren eliminar de cada vector y hacer delete de ellas (se llama al final de cada tick)
+	void removeEntity(Entity* e);	// método que se llama cuando quieres eliminar una entidad
+	void removeInteractibleOfStage(Entity* e);	//método que se llama cuando quieres eliminar un item del escenario para meterlo en el inventario
 };
 
 

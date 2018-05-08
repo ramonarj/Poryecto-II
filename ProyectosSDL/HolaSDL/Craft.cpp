@@ -3,11 +3,17 @@
 
 Craft::Craft()
 {
+	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 250, 100, nullptr));
+
+	SDL_Color c{ 0,255,100,255 };
+	description_.getComponent<TextNote>()->setColor(c);
 }
 
 
 Craft::~Craft()
 {
+	if (Wep != nullptr) delete Wep;
+	if (cinta != nullptr) delete cinta;
 }
 
 void Craft::update(Entity * e, Uint32 time)
@@ -59,26 +65,38 @@ void Craft::render(Entity * e, Uint32 time)
 
 	int ancho = width - width / 10;
 	int alto = height - height / 10;
-	int posX = 0 + (width / 10) / 2;
-	int posY = 0 + (height / 10) / 2;
+	int posX = width / 2 - ancho / 2;
+	int posY = height / 2 - alto / 2;
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
+	resource->getTexture("Inventory")->render(pRenderer, dest);
+
+	ancho = width - width / 10;
+	alto = height - height / 10;
+	posX = 0 + (width / 10) / 2;
+	posY = 0 + (height / 10) / 2;
+
+	dest = { posX,posY, ancho,alto };
 	resource->getTexture("Craft")->render(pRenderer, dest);
 
 	renderItem(Wep, repareSlots[WeaponSlot]);
 	renderItem(cinta, repareSlots[InsulationTapeSlot]);
 
 	//RENDER DE LOS OBJETOS A CRAFTEAR
-	resource->getTexture("Firstaid")->render(pRenderer, craftSlots[0]);
-	resource->getTexture("Acid")->render(pRenderer, craftSlots[1]);
+	dest = RECT(craftSlots[0].x - slotWidth / 2, craftSlots[0].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Firstaid")->render(pRenderer, dest, &clip);
+	dest = RECT(craftSlots[1].x - slotWidth / 2, craftSlots[1].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Acid")->render(pRenderer, dest, &clip);
+	dest = RECT(craftSlots[2].x - slotWidth / 2, craftSlots[2].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
+	resource->getTexture("Circuit")->render(pRenderer, dest, &clip);
 
 	if (controllerActive && renderMark) {
-		if (selectedSlot < 2 && !craftButtonSelected && !repairButtonSelected) {
+		if (selectedSlot < 3 && !craftButtonSelected && !repairButtonSelected) {
 			SDL_Rect DestRect = { craftSlots[selectedSlot].x - slotWidth / 2 + 5, craftSlots[selectedSlot].y - slotWidth / 2 + 4, slotWidth * 2 - 8, slotWidth * 2 - 8 };
 			renderSlotMark(DestRect);
 		}
-		else if (selectedSlot < 4 && !craftButtonSelected && !repairButtonSelected) {
-			SDL_Rect DestRect = { repareSlots[selectedSlot - 2].x - slotWidth / 2 + 4, repareSlots[selectedSlot - 2].y - slotWidth / 2 + 2, slotWidth * 2 - 6, slotWidth * 2 - 6 };
+		else if (selectedSlot < 5 && !craftButtonSelected && !repairButtonSelected) {
+			SDL_Rect DestRect = { repareSlots[selectedSlot - 3].x - slotWidth / 2 + 4, repareSlots[selectedSlot - 3].y - slotWidth / 2 + 2, slotWidth * 2 - 6, slotWidth * 2 - 6 };
 			renderSlotMark(DestRect);
 		}
 		else if (craftButtonSelected) {
@@ -88,6 +106,34 @@ void Craft::render(Entity * e, Uint32 time)
 			renderSlotMark(repairButtonRect);
 		}
 	}
+
+	if (controllerActive) {
+		if (selectedSlot == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+		}
+		else if(selectedSlot==1) {
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+		}
+		else if(selectedSlot == 2)
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
+		else
+			description_.getComponent<TextNote>()->changeString("");
+	}
+	else {
+		if (slotCraftClicked == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+		}
+		else if (slotCraftClicked == 1) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+		}
+		else if(slotCraftClicked == 2){
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
+		}
+		else
+			description_.getComponent<TextNote>()->changeString("");
+	}
+
+	description_.getComponent<TextNote>()->render(nullptr, time);
 
 }
 
@@ -110,37 +156,41 @@ void Craft::moveMarkSlot(int a)
 {
 	if (!craftButtonSelected && !repairButtonSelected) {
 		if (a == 1) {
-			if (selectedSlot == 2 || selectedSlot == 3)
-				selectedSlot = 1;
+			if (selectedSlot == 3 || selectedSlot == 4)
+				selectedSlot = 2;
 			else if (selectedSlot == 1)
 				selectedSlot = 0;
+			else if (selectedSlot == 2)
+				selectedSlot = 1;
 		}
 		else if (a == 3) {
 			if (selectedSlot == 0)
 				selectedSlot = 1;
 			else if (selectedSlot == 1)
 				selectedSlot = 2;
-		}
-		else if (a == 2) {
-			if (selectedSlot == 2)
+			else if (selectedSlot == 2)
 				selectedSlot = 3;
 		}
-		else if (a == 4) {
+		else if (a == 2) {
 			if (selectedSlot == 3)
-				selectedSlot = 2;
+				selectedSlot = 4;
+		}
+		else if (a == 4) {
+			if (selectedSlot == 4)
+				selectedSlot = 3;
 		}
 	}
 	else if(craftButtonSelected) {
 		if (a == 1)
-			selectedSlot = 1;
-		else if (a == 3)
 			selectedSlot = 2;
+		else if (a == 3)
+			selectedSlot = 3;
 	}
 	else if (repairButtonSelected) {
 		if (a == 1)
-			selectedSlot = 1;
+			selectedSlot = 2;
 		else if (a == 4)
-			selectedSlot = 3;
+			selectedSlot = 4;
 	}
 }
 
@@ -150,13 +200,23 @@ void Craft::tryCraftingRepair()
 		switch (selectedSlot)
 		{
 		case 0:
-			if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())		//No deberia importar tener el inventario lleno ya que usas dos para conseguir una cosa
+			if ((inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES)) || (inv->checkIdemItems(ItemType::GENERICCHEMICAL,2)))
 			{
 				craftButtonSelected = true;
 			}
 			break;
 		case 1:
-			break;		//HAY QUE CAMBIAR LAS VARIABLES DEL REPIAR A 4 Y 5 RESPECTIVAMENTE LAS 2 Y 3 SI SE QUIEREN METER MAS CRAFTEABLES
+			if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))	
+			{
+				craftButtonSelected = true;
+			}
+			break;	
+		case 2:
+			if (inv->checkIdemItems(ItemType::PIECEPUZZLE, 4))
+			{
+				craftButtonSelected = true;
+			}
+			break;
 		default:
 			break;
 		}
@@ -228,33 +288,33 @@ void Craft::renderSlotMark(SDL_Rect DestRect)
 void Craft::renderItem(Entity* e, coord pos)
 {	
 	if (e != nullptr) {
-		SDL_Rect DestRect = { pos.x, pos.y, 50, 50 };
+		SDL_Rect DestRect = { pos.x - slotWidth / 2, pos.y - slotWidth / 2, slotWidth*2, slotWidth*2 };
 		if (e->getComponent<InsulationTape>())
 		{
-			resource->getTexture("insulationTape")->render(pRenderer, DestRect);
+			resource->getTexture("insulationTape")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<Weapon>())
 		{
 			Weapon* weaponComp = e->getComponent<Weapon>();
 			if (weaponComp->getType() == ItemType::STICK)
-				resource->getTexture("Stick")->render(pRenderer, DestRect);
+				resource->getTexture("Stick")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::PIPE)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::AXE)
-				resource->getTexture("Axe")->render(pRenderer, DestRect);
+				resource->getTexture("Axe")->render(pRenderer, DestRect, &clip);
 
 			else if (weaponComp->getType() == ItemType::CROWBAR)
-				resource->getTexture("Crowbar")->render(pRenderer, DestRect);
+				resource->getTexture("Crowbar")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<FirstAid>())
 		{
-			resource->getTexture("Firstaid")->render(pRenderer, DestRect);
+			resource->getTexture("Firstaid")->render(pRenderer, DestRect, &clip);
 		}
 		else if (e->getComponent<Key>())
 		{
-			resource->getTexture("Key")->render(pRenderer, DestRect);
+			resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
 		}
 	}
 }
@@ -265,7 +325,7 @@ void Craft::craft()
 	switch (slotCraftClicked)
 	{
 	case 0:
-		if (inv->checkItem(ItemType::CROWBAR) && inv->checkItem(ItemType::STICK) && !inv->fullInventory())
+		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES))
 		{
 			inv->objectCrafted(ItemType::CROWBAR, ItemType::STICK);
 			Entity* e = new Entity(0, 0);
@@ -274,8 +334,23 @@ void Craft::craft()
 		}
 		break;
 	case 1:
+		if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))
+		{
+			inv->objectCrafted(ItemType::ACIDCHEMICAL, ItemType::ACIDCHEMICAL);
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new Item(ItemType::ACID, "AcidDescription")); //cambiar
+			inv->addItem(e);
+		}
 		break;
 	case 2:
+		if (inv->checkIdemItems(ItemType::PIECEPUZZLE, 4))
+		{
+			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
+			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new FirstAid("Firstaid")); //cambiar
+			inv->addItem(e);
+		}
 		break;
 	case 3:
 		break;

@@ -1,0 +1,34 @@
+#pragma once
+#include "Component.h"
+#include "Game.h"
+#include "ImageRenderer.h"
+#include "NumberKey.h"
+#include "KeypadScreen.h"
+class KeypadComponent :
+	public Component
+{
+	//tener en cuenta de que cuando se han introducido 4 n�meros no pueden introducirse m�s
+public:
+	KeypadComponent(Texture* image, Entity* codeEntity, int password);
+	~KeypadComponent();
+private:
+	virtual void update(Entity* e, Uint32 time) ;//
+	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event); //controla las pulsaciones del rat�n -> llama a "clicked" de cada tecla
+	virtual void render(Entity* e, Uint32 time);//pinta la carcasa 
+
+	void clear(); //Borra los n�meros introducidos
+	bool validate();//Valida los n�meros que se han introducido
+	void addNumber(int n);
+	void validCode();
+
+	Entity* codeEntity_;
+
+	float edge_, space_;
+	//vector <int> numSequence; //Guarda los n�meros introducidos -> puede ser un int
+	string password_, sequence_;
+	Texture* numpad_;
+	SDL_Renderer* pRenderer=nullptr;
+	NumberKey keys[4][3];
+	KeypadScreen screen;
+	SDL_Rect dest;
+};

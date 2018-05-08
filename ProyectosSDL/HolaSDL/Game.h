@@ -20,11 +20,19 @@
 #include "MenuState.h"
 #include "LightTestState.h"
 #include "Level.h"
+#include "BaseControllerInput.h"
 #include "KeyBoardInputComponent.h"
 #include "ControllerInputComponent.h"
 #include "ResourceManager.h"
 #include "GameObjectFactory.h"
 #include "AnimationRenderer.h"
+#include "EnemyAnimationComponent.h"
+#include "PlayerAnimationComponent.h"
+
+//const string FOLDER = "../HolaSDL/";
+const string FOLDER = "";
+
+const string SAVE_FOLDER = "../HolaSDL/saveGame/";
 
 class Game : public SDLGame {
 

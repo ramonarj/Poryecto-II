@@ -327,7 +327,7 @@ void Craft::craft()
 	case 0:
 		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES))
 		{
-			inv->objectCrafted(ItemType::CROWBAR, ItemType::STICK);
+			inv->objectCrafted(ItemType::ALCOHOL, ItemType::BANDAGES);
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new FirstAid("Firstaid"));
 			inv->addItem(e);
@@ -348,7 +348,7 @@ void Craft::craft()
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
 			Entity* e = new Entity(0, 0);
-			e->addComponent(new FirstAid("Firstaid")); //cambiar
+			e->addComponent((new Item(ItemType::CARD, "CardDescription"))); //cambiar
 			inv->addItem(e);
 		}
 		break;

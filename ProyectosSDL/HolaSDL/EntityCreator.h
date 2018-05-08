@@ -109,6 +109,9 @@ public:
 		case GENERICCHEMICAL:
 			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un químico genérico");
 			break;
+		case ACID:
+			i = new Item(ACID, "Acid", "Has recogido acido");
+			break;
 		case BIOCIDE:
 			i = new Item(BIOCIDE, "Biocide", "Has recogido biocida");
 			break;

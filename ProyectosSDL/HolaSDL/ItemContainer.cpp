@@ -117,6 +117,26 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	{
 		resource->getTexture("AcidChemical")->render(pRenderer, DestRect, &clip);
 	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::GENERICCHEMICAL)
+	{
+		resource->getTexture("GenericChemical")->render(pRenderer, DestRect, &clip);
+	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::BIOCIDE)
+	{
+		resource->getTexture("Biocide")->render(pRenderer, DestRect, &clip);
+	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::BANDAGES)
+	{
+		resource->getTexture("Bandages")->render(pRenderer, DestRect, &clip);
+	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::PIECEPUZZLE)
+	{
+		resource->getTexture("Circuit")->render(pRenderer, DestRect, &clip);
+	}
+	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::CARD)
+	{
+		resource->getTexture("Card")->render(pRenderer, DestRect, &clip);
+	}
 	
 }
 

@@ -271,11 +271,19 @@
     <ClCompile Include="Code.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="CountdownManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Countdown.cpp">
       <Filter>Archivos de código fuente\Items</Filter>
+=======
+    <ClCompile Include="OrderPuzzleController.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyPadController.cpp">
+      <Filter>Archivos de código fuente</Filter>
+>>>>>>> Stashed changes
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -552,11 +560,19 @@
     <ClInclude Include="Code.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="CountdownManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Countdown.h">
       <Filter>Archivos de encabezado\Items</Filter>
+=======
+    <ClInclude Include="OrderPuzzleController.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPadController.h">
+      <Filter>Archivos de encabezado</Filter>
+>>>>>>> Stashed changes
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,7 @@ void OrderPuzzle::startState()
 
 	Entity* orderpuzzle = new Entity(0, 0);
 	orderpuzzle->addComponent(new OrderPuzzleComponent());
+	orderpuzzle->addComponent(new OrderPuzzleController());
 	stage_.push_back(orderpuzzle);
 
 }

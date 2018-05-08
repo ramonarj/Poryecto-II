@@ -3,12 +3,15 @@
 #include "PlayState.h"
 #include "Door.h"
 
+#include "KeyPadController.h"
 
 KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int password) : numpad_ (image)
 {
 	codeEntity_ = codeEntity;
 	password_ = to_string(password);
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
+	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
+
 	dest.x = dest.y = 0;
 	dest.h = numpad_->getHeight();
 	dest.w = numpad_->getWidth();
@@ -41,6 +44,10 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 
 
 void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event) {
+
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<KeyPadController>()->getComponent<KeyPadController>();
+
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -98,6 +105,14 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 		}
 	}
 	screen.render(time);
+
+	keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getRect().x;
+
+	if (pc->joysticksInitialised()) {
+		dest = { keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().x - 5, keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().y -5,
+			keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().w +10, keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().h +10 };	//El borde
+		renderMark(dest);
+	}
 }
 
 void KeypadComponent::addNumber(int n) {
@@ -124,6 +139,8 @@ void KeypadComponent::validCode()
 		cout << "Wrong" << endl;
 }
 
+
+
 bool KeypadComponent::validate() {
 	return (sequence_ == password_) ? true : false;
 }
@@ -135,4 +152,72 @@ void KeypadComponent::clear() {
 
 KeypadComponent::~KeypadComponent()
 {
+}
+
+void KeypadComponent::renderMark(SDL_Rect DestRect)
+{
+	resource->getTexture("InventoryCursor")->render(pRenderer, DestRect);	//Aqui es la textura del borde
+}
+
+void KeypadComponent::moveMarkSlot(int a)
+{
+	if (a == 1) {
+		if (markSlot.y > 0) {
+			markSlot.y--;
+		}
+	}
+	else if (a == 3) {
+		if (markSlot.y < 3) {
+			markSlot.y++;
+		}
+	}
+	else if (a == 2) {
+		if (markSlot.x < 2) {
+			markSlot.x++;
+		}
+	}
+	else if (a == 4) {
+		if (markSlot.x > 0) {
+			markSlot.x--;
+		}
+	}
+}
+
+void KeypadComponent::clickMark()
+{
+	if (markSlot.y < 3) {
+		if (markSlot.y == 0 && markSlot.x == 0) {
+			addNumber(1);
+		}
+		else if (markSlot.y == 0 && markSlot.x == 1) {
+			addNumber(2);
+		}
+		else if (markSlot.y == 0 && markSlot.x == 2) {
+			addNumber(3);
+		}
+		else if (markSlot.y == 1 && markSlot.x == 0) {
+			addNumber(4);
+		}
+		else if (markSlot.y == 1 && markSlot.x == 1) {
+			addNumber(5);
+		}
+		else if (markSlot.y == 1 && markSlot.x == 2) {
+			addNumber(6);
+		}
+		else if (markSlot.y == 2 && markSlot.x == 0) {
+			addNumber(7);
+		}
+		else if (markSlot.y == 2 && markSlot.x == 1) {
+			addNumber(8);
+		}
+		else if (markSlot.y == 2 && markSlot.x == 2) {
+			addNumber(9);
+		}		
+	}
+	if (markSlot.y == 3 && markSlot.x == 1)
+		addNumber(0);
+	if (markSlot.y == 3 && markSlot.x == 0)
+		clear();
+	if (markSlot.y == 3 && markSlot.x == 2)
+		validCode();
 }

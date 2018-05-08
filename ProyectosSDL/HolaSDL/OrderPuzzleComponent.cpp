@@ -1,6 +1,6 @@
 #include "OrderPuzzleComponent.h"
 
-
+#include "OrderPuzzleController.h"
 
 
 OrderPuzzleComponent::OrderPuzzleComponent()
@@ -85,6 +85,10 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 
 void OrderPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
+
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		if (event.button.button == SDL_BUTTON_LEFT && state == clickState::normalMode) {
 
@@ -134,4 +138,35 @@ void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 		DestRect = { 200 * (i + 1), 200, 100, 300 };
 		resource->getTexture(puzzle[i].text)->render(pRenderer, DestRect);
 	}
+
+
+	if (pc->joysticksInitialised()) {
+		DestRect = { 200 * (markSlot + 1) - 5, 195, 110, 310 };	//El borde
+		renderMark(DestRect);
+	}
+}
+
+void OrderPuzzleComponent::moveMarkSlot(int a)
+{
+	if (a == 2) {
+		if (markSlot < 4) {
+			markSlot++;
+		}
+	}
+	else if (a == 4) {
+		if (markSlot > 0) {
+			markSlot--;
+		}
+	}
+}
+
+void OrderPuzzleComponent::clickMark()
+{
+	if(markSlot<4)		//Si no es la del extremo derecha
+		switchPiece(markSlot, markSlot + 1);
+}
+
+void OrderPuzzleComponent::renderMark(SDL_Rect DestRect)
+{
+	resource->getTexture("InventoryCursor")->render(pRenderer, DestRect);	//Aqui es la textura del borde
 }

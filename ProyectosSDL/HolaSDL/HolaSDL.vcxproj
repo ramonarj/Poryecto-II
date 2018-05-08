@@ -53,6 +53,7 @@
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="KeyBoardInputComponent.cpp" />
     <ClCompile Include="KeypadComponent.cpp" />
+    <ClCompile Include="KeyPadController.cpp" />
     <ClCompile Include="KeypadScreen.cpp" />
     <ClCompile Include="KeypadState.cpp" />
     <ClCompile Include="Layer.cpp" />
@@ -74,6 +75,7 @@
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="OrderPuzzle.cpp" />
     <ClCompile Include="OrderPuzzleComponent.cpp" />
+    <ClCompile Include="OrderPuzzleController.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -151,6 +153,7 @@
     <ClInclude Include="Key.h" />
     <ClInclude Include="KeyBoardInputComponent.h" />
     <ClInclude Include="KeypadComponent.h" />
+    <ClInclude Include="KeyPadController.h" />
     <ClInclude Include="KeypadScreen.h" />
     <ClInclude Include="KeypadState.h" />
     <ClInclude Include="Layer.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="OrderPuzzle.h" />
     <ClInclude Include="OrderPuzzleComponent.h" />
+    <ClInclude Include="OrderPuzzleController.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />

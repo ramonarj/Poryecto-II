@@ -1,6 +1,7 @@
 #include "KeypadState.h"
 #include "Code.h"
 
+
 unique_ptr<KeypadState> KeypadState::s_pInstance = nullptr;
 
 KeypadState::KeypadState()
@@ -28,6 +29,7 @@ void KeypadState::startState() {
 	}
 	Entity* keypad = new Entity(0, 0);
 	keypad->addComponent(new KeypadComponent(Game::Instance()->getResourceManager()->getTexture("Keypad"), codeEntity, numCode));
+	keypad->addComponent(new KeyPadController());
 	stage_.push_back(keypad);
 }
 

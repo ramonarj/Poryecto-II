@@ -1,6 +1,8 @@
 #pragma once
 #include "GameState.h"
 #include "KeypadComponent.h"
+#include "KeyPadController.h"
+
 class KeypadState : public GameState
 {
 private:

@@ -15,6 +15,7 @@ public:
 	virtual void render(Uint32 time);
 	int getValue() { return value_; };
 	bool clicked(int x, int y, Uint32 time);
+	SDL_Rect getNumRect() { return dest_; };
 
 private:
 	SDL_Renderer * pRenderer_;

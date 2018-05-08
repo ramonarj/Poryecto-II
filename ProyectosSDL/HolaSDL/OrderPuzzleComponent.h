@@ -5,6 +5,8 @@
 #include "ResourceManager.h"
 #include "Game.h"
 
+class OrderPuzzleController;
+
 class OrderPuzzleComponent : public Component
 {
 private:
@@ -34,6 +36,12 @@ private:
 	bool compruebaVictoria();
 	void desordena();
 
+	int markSlot = 0;
+	OrderPuzzleController* pc = nullptr;
+	void renderMark(SDL_Rect DestRect);
+
+	coord PosPieces[5]{ { 200,200 },{ 400,200 },{ 600,200 },{ 800,200 },{ 1000,200 } };
+
 public:
 	OrderPuzzleComponent();
 	~OrderPuzzleComponent();
@@ -41,5 +49,8 @@ public:
 	virtual void update(Entity* e, Uint32 time);
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 	virtual void render(Entity* e, Uint32 time);
+
+	void moveMarkSlot(int a);
+	void clickMark();
 };
 

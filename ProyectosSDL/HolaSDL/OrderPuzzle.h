@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "OrderPuzzleComponent.h"
+#include "OrderPuzzleController.h"
 
 class OrderPuzzle : public GameState
 {

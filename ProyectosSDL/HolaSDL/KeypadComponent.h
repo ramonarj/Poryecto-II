@@ -4,6 +4,9 @@
 #include "ImageRenderer.h"
 #include "NumberKey.h"
 #include "KeypadScreen.h"
+
+class KeyPadController;
+
 class KeypadComponent :
 	public Component
 {
@@ -11,7 +14,17 @@ class KeypadComponent :
 public:
 	KeypadComponent(Texture* image, Entity* codeEntity, int password);
 	~KeypadComponent();
+
+	void moveMarkSlot(int a);
+	void clickMark();
+
 private:
+
+	struct coord {
+		int x;
+		int y;
+	};
+
 	virtual void update(Entity* e, Uint32 time) ;//
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event); //controla las pulsaciones del rat�n -> llama a "clicked" de cada tecla
 	virtual void render(Entity* e, Uint32 time);//pinta la carcasa 
@@ -28,7 +41,12 @@ private:
 	string password_, sequence_;
 	Texture* numpad_;
 	SDL_Renderer* pRenderer=nullptr;
+	ResourceManager* resource = nullptr;
 	NumberKey keys[4][3];
 	KeypadScreen screen;
 	SDL_Rect dest;
+
+	coord markSlot = { 0, 0 };
+	KeyPadController* pc = nullptr;
+	void renderMark(SDL_Rect DestRect);
 };

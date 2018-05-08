@@ -241,7 +241,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 
 							//AQUI SERIA CUANDO SE REGISTRA EL COFRE O LA MESA DE CRAFTEO Y SEGÚN CUAL METER AQUI LO QUE SE REALIZA CUANDO SE PULSA EL BOTON DEL COFRE/INVENTARIO
 
-							if ((*it)->getName() == "CraftingTable" && !crftOpen) {	//Si lo que interactuamos tiene componente de crafteo
+							if ((*it)->getName() == "CraftingTable" && !crftOpen && !invOpen) {	//Si lo que interactuamos tiene componente de crafteo
 
 								inv->setActive(!inv->isActive());
 								craft->setActive(!craft->isActive());
@@ -259,7 +259,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 								interactButtonPressedSquare = true;
 								entityFound = true;
 							}
-							else if ((*it)->getName() == "Chest" && !cstOpen) {
+							else if ((*it)->getName() == "Chest" && !cstOpen && !invOpen) {
 
 								inv->setActive(!inv->isActive());
 								cst->setActive(!cst->isActive());

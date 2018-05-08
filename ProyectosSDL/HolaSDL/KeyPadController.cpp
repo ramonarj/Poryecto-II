@@ -1,13 +1,22 @@
-#include "KeyPadController.h" 
+#include "KeyPadController.h"
+ 
 KeyPadController::KeyPadController()
-{ 
-} 
+{
+ 
+}
+ 
 
-KeyPadController::~KeyPadController() 
-{ 
-} 
- 
-void KeyPadController::handleInput(Entity * o, Uint32 time, const SDL_Event & event){	if (puzll_ == nullptr)
+KeyPadController::~KeyPadController()
+ 
+{
+ 
+}
+ 
+
+ 
+void KeyPadController::handleInput(Entity * o, Uint32 time, const SDL_Event & event)
+{
+	if (puzll_ == nullptr)
 		puzll_ = Game::Instance()->getEntityWithComponent<KeypadComponent>()->getComponent<KeypadComponent>();
 
 	if (event.type == SDL_JOYDEVICEREMOVED) {
@@ -114,10 +123,16 @@ void KeyPadController::handleInput(Entity * o, Uint32 time, const SDL_Event & ev
 
 		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !interactButtonPressed) {
 			puzll_->clickMark();
+			interactButtonPressed = true;
 		}
 		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && interactButtonPressed) {
 			interactButtonPressed = false;
 		}
 
-	} 
-}
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
+			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+		}
+
+	}
+ 
+}

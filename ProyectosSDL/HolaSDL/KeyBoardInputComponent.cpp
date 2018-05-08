@@ -80,7 +80,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				direction.setY(-1);
 				dirBlock_ = 0;
 			}
-			else if (state[interact_]) {
+			else if (state[interact_] && !invOpen) {
 				if (event.type == SDL_KEYDOWN) {
 					SDL_Rect playerRect = { int(o->getPosition().getX()), int(o->getPosition().getY()), int(o->getWidth()), int(o->getHeight()) };
 

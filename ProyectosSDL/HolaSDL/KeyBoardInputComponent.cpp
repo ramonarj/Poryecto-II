@@ -100,7 +100,8 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 								if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
 								inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 								//SOUND 
-								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+								//Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+								Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 
 								inv->getComponent<Inventory>()->setRenderMark(true);
 								craft->getComponent<Craft>()->setRenderMark(false);
@@ -115,7 +116,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 								cstOpen = !cstOpen;
 								inv->getComponent<Inventory>()->setChestMode(cstOpen);
 								//SOUND 
-								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+								Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 
 								inv->getComponent<Inventory>()->setRenderMark(true);
 								cst->getComponent<Chest>()->setRenderMark(false);
@@ -174,7 +175,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 				if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
 				if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 				if (craft == nullptr) { craft = Game::Instance()->getEntityWithComponent<Craft>(); }
-				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
+				Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 				inv->setActive(!inv->isActive());
 				inventoryPressed = true;
 				invOpen = !invOpen;

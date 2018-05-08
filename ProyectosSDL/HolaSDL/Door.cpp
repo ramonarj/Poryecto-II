@@ -27,6 +27,7 @@ void Door::interact(Entity * e)
 			if (canTeleport())
 			{
 				PlayState::Instance()->getPlayer()->getComponent<Player>()->startTeleport(e, doorNum_, ori_);
+				Game::Instance()->getResourceManager()->getSound("DoorSound")->play();
 			}
 		}
 	}

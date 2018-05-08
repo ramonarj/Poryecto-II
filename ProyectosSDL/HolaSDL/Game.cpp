@@ -139,10 +139,10 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Elise_Iddle", "images/Characters/Elise/Iddle_Elise.png");
 	resourceManager_->addTexture("Elise_Awakening", "images/Characters/Elise/Despertar_Elise.png");
 	resourceManager_->addTexture("Elise_Moving", "images/Characters/Elise/Movimiento_Elise.png");
-	resourceManager_->addTexture("Elise_AttackingCrowbar", "images/Characters/Elise/AtacandoCrowbar_Elise.png");
-	resourceManager_->addTexture("Elise_AttackingPipe", "images/Characters/Elise/AtacandoPipe_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingCrowbar", "images/Characters/Elise/AtacandoCrutch_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingPipe", "images/Characters/Elise/AtacandoCrowbar_Elise.png");
 	resourceManager_->addTexture("Elise_AttackingAxe", "images/Characters/Elise/AtacandoAxe_Elise.png");
-	resourceManager_->addTexture("Elise_AttackingCrutch", "images/Characters/Elise/AtacandoCrutch_Elise.png");
+	resourceManager_->addTexture("Elise_AttackingCrutch", "images/Characters/Elise/AtacandoPipe_Elise.png");
 	resourceManager_->addTexture("Elise_Diying", "images/Characters/Elise/Muerte_Elise.png");
 
 

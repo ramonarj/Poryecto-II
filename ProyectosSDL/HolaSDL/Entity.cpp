@@ -100,6 +100,8 @@ void Entity::load(int x, int y, int width, int height, int staticEntity, string 
 	staticEntity_ = staticEntity;
 
 	name_ = name;
+	if (name_ == "Player")
+		this->getComponent<Player>()->setLastSRPos(position_);
 }
 
 void Entity::addComponent(Component* c) {

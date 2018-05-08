@@ -271,6 +271,12 @@
     <ClCompile Include="Code.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="CountdownManager.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Countdown.cpp">
+      <Filter>Archivos de código fuente\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -545,6 +551,12 @@
     </ClInclude>
     <ClInclude Include="Code.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="CountdownManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Countdown.h">
+      <Filter>Archivos de encabezado\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

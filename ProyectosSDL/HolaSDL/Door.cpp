@@ -93,6 +93,10 @@ void Door::teleport()
 					}
 				}
 				PlayState::Instance()->getPlayer()->getComponent<Player>()->setTeleport(false);
+
+				if (doorComp->getZoneName() == "SAFE ROOM")
+					player->getComponent<Player>()->setLastSRPos(player->getPosition());
+
 				puertEncontrada = true;
 			}
 		}
@@ -158,7 +162,10 @@ void Door::update(Entity * e, Uint32 time) {
 	if (compInvent == nullptr)
 		compInvent = inventory->getComponent<Inventory>();
 	if (messageRenderer == nullptr)
+	{
 		messageRenderer = PlayState::Instance()->getZoneMessageRenderer()->getComponent<MessageRenderer>();
+		messageRenderer->setFont(Game::Instance()->getResourceManager()->getFont("VCR_OSD_MONO_32"));
+	}
 	if (messageTimer == nullptr)
 		messageTimer = PlayState::Instance()->getZoneMessageRenderer()->getComponent<MessageTimer>();
 

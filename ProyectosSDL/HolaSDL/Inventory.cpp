@@ -271,6 +271,12 @@ void Inventory::render(Entity* e, Uint32 time)
 		else if (slotClicked >= 0 && slotClicked < getInventory().size()) {
 			Entity* b = getInventory()[slotClicked];
 			Item* c = b->getComponent<Item>();
+			if (b->getComponent<Key>() != nullptr)
+			{
+				Key* k = b->getComponent<Key>();
+				k->setDescription(k->getInitialDescr() + "\n" + k->getKeyName() + "\n");
+			}
+
 			description_.getComponent<TextNote>()->changeString(c->getDescription());
 		}
 		else {

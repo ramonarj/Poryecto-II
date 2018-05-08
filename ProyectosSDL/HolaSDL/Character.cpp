@@ -23,6 +23,26 @@ void Character::update(Entity* o, Uint32 time)
 			o->setVelocity(Vector2D(0.0, 0.0));
 		}
 	}
+	else
+	{
+		if (o->getComponent<Player>() != nullptr)
+		{
+			if (!Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getDoFade() && Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == 0)
+			{
+				Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setDoFade(true, 10);
+			}
+			else
+			{
+				if (Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
+				{
+					o->setPosition(o->getComponent<Player>()->getLastSRPos());
+					o->getComponent<Character>()->setAlive();
+					o->getComponent<Player>()->setInvincible(false);
+					o->getComponent<PlayerAnimationComponent>()->removeTransparency();
+				}
+			}
+		}
+	}
 }
 
 void Character::saveToFile()

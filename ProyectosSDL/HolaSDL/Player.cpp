@@ -3,7 +3,7 @@
 
 
 Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0),
-				teleport_(false), numDoorToTeleport_(0), doorToTeleport_(nullptr)
+				teleport_(false), numDoorToTeleport_(0), doorToTeleport_(nullptr), lastSRpos_(0, 0)
 {
 }
 Player::~Player()
@@ -34,7 +34,8 @@ void Player::saveToFile(Entity* o)
 	if (file.is_open())
 	{
 		o->saveEntity(o, file);
-		file << life;
+		file << life << endl;
+		file << o->getComponent<Player>()->getLastSRPos().getX() << " " << o->getComponent<Player>()->getLastSRPos().getY() << endl;
 	}
 	else
 		cout << "Error al abrir el archivo de Guardado de Player" << endl;
@@ -52,6 +53,9 @@ void Player::loadToFile(Entity* o)
 		o->loadEntity(o, file);
 
 		file >> life;
+
+		double n;
+		file >> n; lastSRpos_.setX(n); file >> n; lastSRpos_.setY(n);
 	}
 	else
 		cout << "Error al abrir el archivo de Cargado de Player" << endl;

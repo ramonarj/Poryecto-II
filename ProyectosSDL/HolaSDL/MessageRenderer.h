@@ -13,6 +13,7 @@ public:
 	bool isDisplaying() { return display_; };
 	void setMessage(std::string newMsg) { message_ = newMsg; };
 	void setPosition(double x, double y) { textX_ = x; textY_ = y; };
+	void setFont(Font* f) { font_ = f; };
 
 private:
 	std::string message_;

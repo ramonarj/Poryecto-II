@@ -19,6 +19,7 @@
 #include "SlidingPuzzleItem.h"
 #include "SavePoint.h"
 #include "Code.h"
+#include "Countdown.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -64,6 +65,7 @@ public:
 	Entity* createEntity() const
 	{
 		Entity* e = new Entity();
+
 		e->addComponent(chooseItemType(type_));
 		e->addComponent(new MessageTrigger("'E' para recoger", "Square/X para recoger"));
 		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
@@ -333,6 +335,17 @@ public:
 		e->addComponent(new Code());
 		e->addComponent(new MessageTrigger("'E' para escribir código", "'Square/X' para escribir código"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class CountdownCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Countdown());
 		return e;
 	}
 };

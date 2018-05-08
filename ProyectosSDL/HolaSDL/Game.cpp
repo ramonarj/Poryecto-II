@@ -127,6 +127,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("SavePoint", new SavePointCreator());
 	gameObjectFactory->registerType("Light", new LightCreator());
 	gameObjectFactory->registerType("Code", new CodeCreator());
+	gameObjectFactory->registerType("Countdown", new CountdownCreator());
 	registerTypeItem();
 }
 
@@ -254,6 +255,8 @@ void Game::addResourcesFonts()
 	resourceManager_->addFont("ARIAL", "fonts/ARIAL.ttf", 24);
 	resourceManager_->addFont("NES-Chimera", "fonts/NES-Chimera.ttf", 24);
 	resourceManager_->addFont("VCR_OSD_MONO", "fonts/VCR_OSD_MONO.ttf", 21);
+	resourceManager_->addFont("VCR_OSD_MONO_32", "fonts/VCR_OSD_MONO.ttf", 32);
+	resourceManager_->addFont("VCR_OSD_MONO_40", "fonts/VCR_OSD_MONO.ttf", 40);
 }
 
 void Game::registerTypeItem() {

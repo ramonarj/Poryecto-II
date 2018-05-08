@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="418">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="429">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -222,7 +222,42 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="CodePuzzle">
+ <objectgroup name="Countdowns" visible="0">
+  <properties>
+   <property name="staticEntity" type="int" value="1"/>
+  </properties>
+  <object id="420" name="Countdown" type="Countdown" x="10760" y="980" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="421" name="Countdown" type="Countdown" x="8600" y="7340" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="424" name="Countdown" type="Countdown" x="11220" y="640" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="425" name="Countdown" type="Countdown" x="11180" y="500" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="426" name="Countdown" type="Countdown" x="11220" y="1780" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="427" name="Countdown" type="Countdown" x="2700" y="2200" width="40" height="40">
+   <properties>
+    <property name="activeCountdown" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="CodePuzzle" visible="0">
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
@@ -340,7 +375,7 @@
   <object id="388" name="SavePoint" type="SavePoint" x="7620" y="9000" width="40" height="60"/>
   <object id="389" name="SavePoint" type="SavePoint" x="11299.8" y="1809.5" width="60" height="70"/>
  </objectgroup>
- <objectgroup name="Teleports">
+ <objectgroup name="Teleports" visible="0">
   <properties>
    <property name="collidableDoor" type="int" value="1"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1070,8 +1105,8 @@
   </object>
   <object id="29" name="Puerta" type="Puerta" x="10760" y="990" width="40" height="40">
    <properties>
-    <property name="dir" value="norte"/>
-    <property name="needKey" type="int" value="0"/>
+    <property name="dir" value="sur"/>
+    <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="6"/>
     <property name="textureID" value="puerta"/>
     <property name="zoneName" value="LABORATORIOS"/>
@@ -1145,6 +1180,15 @@
     <property name="numDoor" type="int" value="1"/>
     <property name="textureID" value="puerta"/>
     <property name="zoneName" value="ZONA DE EXTRACCIONES"/>
+   </properties>
+  </object>
+  <object id="422" name="Key" type="Key" x="8609.75" y="7392.83" width="20" height="27.3333">
+   <properties>
+    <property name="keyName" value="  Llave de la Zona de Extracciones."/>
+    <property name="numKey" type="int" value="6"/>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
  </objectgroup>
@@ -1675,6 +1719,15 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
+  <object id="418" name="Key" type="Key" x="1418.5" y="1584.83" width="20" height="27.3333">
+   <properties>
+    <property name="keyName" value="  Llave de la Zona de Extracciones."/>
+    <property name="numKey" type="int" value="1"/>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Items" visible="0">
   <properties>
@@ -1756,7 +1809,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Characters">
+ <objectgroup name="Enemies" visible="0">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
@@ -1768,15 +1821,6 @@
     <property name="textureHeight" type="int" value="46"/>
     <property name="textureID" value="enemy"/>
     <property name="textureWidth" type="int" value="42"/>
-   </properties>
-  </object>
-  <object id="159" name="Player" type="Player" x="1409.61" y="1570.73" width="19" height="27.3333">
-   <properties>
-    <property name="damage" type="int" value="1"/>
-    <property name="life" type="int" value="3"/>
-    <property name="textureHeight" type="int" value="34"/>
-    <property name="textureID" value="Player"/>
-    <property name="textureWidth" type="int" value="34"/>
    </properties>
   </object>
   <object id="367" name="Enemy" type="Enemy" x="1573.5" y="1768.83" width="19" height="27.3333">
@@ -1797,6 +1841,20 @@
     <property name="textureHeight" type="int" value="23"/>
     <property name="textureID" value="enemy"/>
     <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Player">
+  <properties>
+   <property name="staticEntity" type="int" value="0"/>
+  </properties>
+  <object id="428" name="Player" type="Player" x="1400.5" y="1566.33" width="19" height="27.3333">
+   <properties>
+    <property name="damage" type="int" value="1"/>
+    <property name="life" type="int" value="3"/>
+    <property name="textureHeight" type="int" value="34"/>
+    <property name="textureID" value="Player"/>
+    <property name="textureWidth" type="int" value="34"/>
    </properties>
   </object>
  </objectgroup>
@@ -1827,14 +1885,6 @@
   <object id="413" name="Light" type="Light" x="3960" y="1280" width="20" height="20">
    <properties>
     <property name="textureName" value="TelevisionLight"/>
-   </properties>
-  </object>
-  <object id="415" name="Key" type="Key" x="1422.5" y="1598.83" width="20" height="27.3333">
-   <properties>
-    <property name="numKey" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="20"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
  </objectgroup>

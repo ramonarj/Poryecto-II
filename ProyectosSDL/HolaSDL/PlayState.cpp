@@ -7,6 +7,7 @@
 #include "FadeManager.h"
 #include "BloodManager.h"
 #include "LightManager.h"
+#include "CountdownManager.h"
 
 unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
 
@@ -97,12 +98,6 @@ void PlayState::startState()
 	inventory->setActive(false);
 	stage_.push_back(inventory);
 
-	Entity* fa = new Entity(0, 0);
-	Item* facomp = new Item(ALCOHOL, "alcohol");
-	fa->addComponent(facomp);
-	inventory->getComponent<Inventory>()->addItem(fa);
-
-
 	mergeStages();
 
 	////FADE---------------------------------------------------------------------------------
@@ -117,6 +112,11 @@ void PlayState::startState()
 	bloodManagerEntity->setHeight(Game::Instance()->getWindowHeight());
 	bloodManagerEntity->setWidth(Game::Instance()->getWindowWidth());
 	stage_.push_back(bloodManagerEntity);
+
+	//Countdown-----------------------------------------------------------------------------
+	Entity* countdownManager_ = new Entity(0, 0);
+	countdownManager_->addComponent(new CountdownManager());
+	stage_.push_back(countdownManager_);
 }
 
 void PlayState::update(Uint32 time)

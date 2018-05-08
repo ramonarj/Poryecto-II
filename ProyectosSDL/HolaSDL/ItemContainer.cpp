@@ -34,7 +34,7 @@ void ItemContainer::saveToFile(ofstream& file)
 		if (e->getComponent<Weapon>() != nullptr)
 			file << e->getComponent<Weapon>()->getNumHits() << endl;
 		if (e->getComponent<Key>() != nullptr)
-			file << e->getComponent<Key>()->getDoorId() << endl;
+			file << e->getComponent<Key>()->getDoorId() << " " << e->getComponent<Key>()->getKeyName() << endl;
 	}
 }
 
@@ -45,6 +45,8 @@ void ItemContainer::loadToFile(ifstream& file)
 	Entity* pEntity;
 	string name;
 	int numKey;
+	stringstream keyName;
+
 	int numHits;
 	file >> name;
 	while (!file.fail()) {
@@ -53,7 +55,9 @@ void ItemContainer::loadToFile(ifstream& file)
 		if (pEntity->getComponent<Key>() != nullptr)
 		{
 			file >> numKey;
-			pEntity->getComponent<Key>()->load(numKey);
+			keyName << file.rdbuf();
+
+			pEntity->getComponent<Key>()->load(numKey, keyName.str());
 		}
 		else if (pEntity->getComponent<Weapon>() != nullptr)
 		{

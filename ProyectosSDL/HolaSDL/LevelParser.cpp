@@ -18,6 +18,7 @@
 #include "LightManager.h"
 #include "Code.h"
 #include "KeypadState.h"
+#include "Countdown.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -255,6 +256,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numDoor = 0;
 			int needKey = 0;
 			string zoneName = "";
+			string keyName = "";
 
 			int numCamera = 0;
 
@@ -266,13 +268,17 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int numDoorCode = 0;
 			int code = 0;
 
+			//Variables para la cuenta atras
+			int activeCountdown = 0;
+
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
 			if (e->Attribute("type") == std::string("Puerta") || e->Attribute("type") == std::string("Camera") ||
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
 				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint")
-				|| e->Attribute("type") == std::string("Light") || e->Attribute("type") == std::string("Code"))
+				|| e->Attribute("type") == std::string("Light") || e->Attribute("type") == std::string("Code")
+				|| e->Attribute("type") == std::string("Countdown"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -339,6 +345,12 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("code"))
 								property->Attribute("value", &code);
+
+							else if (property->Attribute("name") == std::string("keyName"))
+								keyName = property->Attribute("value");
+
+							else if (property->Attribute("name") == std::string("activeCountdown"))
+								property->Attribute("value", &activeCountdown);
 						}
 					}
 				}
@@ -353,8 +365,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Puerta"))
 				pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
 
-			else if (e->Attribute("type") == std::string("Key"))
-				pEntity->getComponent<Key>()->load(numKey);
+			else if (e->Attribute("type") == std::string("Key"))				
+				pEntity->getComponent<Key>()->load(numKey, keyName);
 
 			else if (e->Attribute("type") == std::string("Camera"))
 				pEntity->getComponent<SecurityCamera>()->load(numCamera);
@@ -367,6 +379,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			else if (e->Attribute("type") == std::string("Code"))
 				loadCode(pEntity, numDoorCode, code, orientacion);
+
+			else if (e->Attribute("type") == std::string("Countdown"))
+				pEntity->getComponent<Countdown>()->load(activeCountdown);
 
 			if (e->Attribute("type") == std::string("Puerta"))
 				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);

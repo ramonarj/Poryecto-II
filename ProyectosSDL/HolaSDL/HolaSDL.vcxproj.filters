@@ -1,637 +1,199 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Collisions.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityCreator.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="FillRectRenderer.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectFactory.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageRenderer.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Interactible.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="LightManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="LoaderParams.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageRenderer.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageTimer.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageTrigger.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseInputComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Movable.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Music.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerLight.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Resources.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLGame.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="SkeletonRenderer.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="SlidingPuzzleComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundEffect.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticImageRender.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="TextNote.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="base64.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxmlparser.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxmlerror.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="tinystr.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelParser.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectLayer.cpp">
-      <Filter>Archivos de código fuente\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de código fuente\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Archivos de código fuente\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Archivos de código fuente\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateMachine.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="LightTestState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="PauseState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstAid.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="InsulationTape.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Key.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Register.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="SecurityCamera.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="SRMap.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationRenderer.cpp">
-      <Filter>Archivos de código fuente\Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationRenderObject.cpp">
-      <Filter>Archivos de código fuente\Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyAnimationComponent.cpp">
-      <Filter>Archivos de código fuente\Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerAnimationComponent.cpp">
-      <Filter>Archivos de código fuente\Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="Chest.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="Craft.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemContainer.cpp">
-      <Filter>Archivos de código fuente\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="ChestObject.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="CraftingTable.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="SlidingPuzzle.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioMaster.cpp">
-      <Filter>Archivos de código fuente\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="ControllerInputComponent.cpp">
-      <Filter>Archivos de código fuente\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyBoardInputComponent.cpp">
-      <Filter>Archivos de código fuente\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseControllerInput.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="SlidingPuzzleController.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="FadeManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="SavePoint.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="SlidingPuzzleItem.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="OrderPuzzleComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="OrderPuzzle.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="BloodManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="NumberKey.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="KeypadComponent.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="KeypadScreen.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="KeypadState.cpp">
-      <Filter>Archivos de código fuente\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Code.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-<<<<<<< Updated upstream
-    <ClCompile Include="CountdownManager.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Countdown.cpp">
-      <Filter>Archivos de código fuente\Items</Filter>
-=======
-    <ClCompile Include="OrderPuzzleController.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyPadController.cpp">
-      <Filter>Archivos de código fuente</Filter>
->>>>>>> Stashed changes
-    </ClCompile>
+    <ClCompile Include="AnimationRenderer.cpp" />
+    <ClCompile Include="AnimationRenderObject.cpp" />
+    <ClCompile Include="AudioMaster.cpp" />
+    <ClCompile Include="base64.cpp" />
+    <ClCompile Include="BaseControllerInput.cpp" />
+    <ClCompile Include="BloodManager.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Chest.cpp" />
+    <ClCompile Include="ChestObject.cpp" />
+    <ClCompile Include="Code.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ControllerInputComponent.cpp" />
+    <ClCompile Include="Countdown.cpp" />
+    <ClCompile Include="CountdownManager.cpp" />
+    <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="CraftingTable.cpp" />
+    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EnemyAnimationComponent.cpp" />
+    <ClCompile Include="EntityCreator.cpp" />
+    <ClCompile Include="FadeManager.cpp" />
+    <ClCompile Include="FillRectRenderer.cpp" />
+    <ClCompile Include="FirstAid.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectFactory.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="InsulationTape.cpp" />
+    <ClCompile Include="Interactible.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemContainer.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="KeyBoardInputComponent.cpp" />
+    <ClCompile Include="KeypadComponent.cpp" />
+    <ClCompile Include="KeyPadController.cpp" />
+    <ClCompile Include="KeypadScreen.cpp" />
+    <ClCompile Include="KeypadState.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelParser.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightManager.cpp" />
+    <ClCompile Include="LightTestState.cpp" />
+    <ClCompile Include="LoaderParams.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MessageRenderer.cpp" />
+    <ClCompile Include="MessageTimer.cpp" />
+    <ClCompile Include="MessageTrigger.cpp" />
+    <ClCompile Include="MouseInputComponent.cpp" />
+    <ClCompile Include="Movable.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="NumberKey.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="OrderPuzzle.cpp" />
+    <ClCompile Include="OrderPuzzleComponent.cpp" />
+    <ClCompile Include="OrderPuzzleController.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAnimationComponent.cpp" />
+    <ClCompile Include="PlayerLight.cpp" />
+    <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="Register.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SavePoint.cpp" />
+    <ClCompile Include="SDLGame.cpp" />
+    <ClCompile Include="SecurityCamera.cpp" />
+    <ClCompile Include="SkeletonRenderer.cpp" />
+    <ClCompile Include="SlidingPuzzle.cpp" />
+    <ClCompile Include="SlidingPuzzleComponent.cpp" />
+    <ClCompile Include="SlidingPuzzleController.cpp" />
+    <ClCompile Include="SlidingPuzzleItem.cpp" />
+    <ClCompile Include="SoundEffect.cpp" />
+    <ClCompile Include="SRMap.cpp" />
+    <ClCompile Include="StaticImageRender.cpp" />
+    <ClCompile Include="TextNote.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="checkML.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Collisions.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityCreator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="FillRectRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectFactory.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Interactible.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LightManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LoaderParams.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Messages.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageTimer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageTrigger.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseInputComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Movable.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Music.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLight.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Resources.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="sdl_includes.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLGame.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SkeletonRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SlidingPuzzleComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundEffect.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticImageRender.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TextNote.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="base64.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="tinyxml.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="tinystr.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelParser.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectLayer.h">
-      <Filter>Archivos de encabezado\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Archivos de encabezado\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Archivos de encabezado\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateMachine.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="LightTestState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstAid.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="InsulationTape.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Key.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Register.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="SecurityCamera.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="SRMap.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationRenderer.h">
-      <Filter>Archivos de encabezado\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationRenderObject.h">
-      <Filter>Archivos de encabezado\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAnimationComponent.h">
-      <Filter>Archivos de encabezado\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerAnimationComponent.h">
-      <Filter>Archivos de encabezado\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemContainer.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="Chest.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="Craft.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>Archivos de encabezado\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="ChestObject.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="CraftingTable.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="SlidingPuzzle.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioMaster.h">
-      <Filter>Archivos de encabezado\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="ControllerInputComponent.h">
-      <Filter>Archivos de encabezado\Controllers</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyBoardInputComponent.h">
-      <Filter>Archivos de encabezado\Controllers</Filter>
-    </ClInclude>
-    <ClInclude Include="SlidingPuzzleController.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseControllerInput.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="FadeManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="SavePoint.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="SlidingPuzzleItem.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="OrderPuzzle.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="OrderPuzzleComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="BloodManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="KeypadComponent.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="KeypadScreen.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="NumberKey.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="KeypadState.h">
-      <Filter>Archivos de encabezado\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Code.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-<<<<<<< Updated upstream
-    <ClInclude Include="CountdownManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Countdown.h">
-      <Filter>Archivos de encabezado\Items</Filter>
-=======
-    <ClInclude Include="OrderPuzzleController.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyPadController.h">
-      <Filter>Archivos de encabezado</Filter>
->>>>>>> Stashed changes
-    </ClInclude>
+    <ClInclude Include="AnimationRenderer.h" />
+    <ClInclude Include="AnimationRenderObject.h" />
+    <ClInclude Include="AudioMaster.h" />
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="BaseControllerInput.h" />
+    <ClInclude Include="BloodManager.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="checkML.h" />
+    <ClInclude Include="Chest.h" />
+    <ClInclude Include="ChestObject.h" />
+    <ClInclude Include="Code.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Collisions.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ControllerInputComponent.h" />
+    <ClInclude Include="Countdown.h" />
+    <ClInclude Include="CountdownManager.h" />
+    <ClInclude Include="Craft.h" />
+    <ClInclude Include="CraftingTable.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EnemyAnimationComponent.h" />
+    <ClInclude Include="EntityCreator.h" />
+    <ClInclude Include="FadeManager.h" />
+    <ClInclude Include="FillRectRenderer.h" />
+    <ClInclude Include="FirstAid.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectFactory.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="InsulationTape.h" />
+    <ClInclude Include="Interactible.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemContainer.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="KeyBoardInputComponent.h" />
+    <ClInclude Include="KeypadComponent.h" />
+    <ClInclude Include="KeyPadController.h" />
+    <ClInclude Include="KeypadScreen.h" />
+    <ClInclude Include="KeypadState.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelParser.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightManager.h" />
+    <ClInclude Include="LightTestState.h" />
+    <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MessageRenderer.h" />
+    <ClInclude Include="Messages.h" />
+    <ClInclude Include="MessageTimer.h" />
+    <ClInclude Include="MessageTrigger.h" />
+    <ClInclude Include="MouseInputComponent.h" />
+    <ClInclude Include="Movable.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="NumberKey.h" />
+    <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="OrderPuzzle.h" />
+    <ClInclude Include="OrderPuzzleComponent.h" />
+    <ClInclude Include="OrderPuzzleController.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAnimationComponent.h" />
+    <ClInclude Include="PlayerLight.h" />
+    <ClInclude Include="PlayState.h" />
+    <ClInclude Include="Register.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Resources.h" />
+    <ClInclude Include="SavePoint.h" />
+    <ClInclude Include="SDLGame.h" />
+    <ClInclude Include="sdl_includes.h" />
+    <ClInclude Include="SecurityCamera.h" />
+    <ClInclude Include="SkeletonRenderer.h" />
+    <ClInclude Include="SlidingPuzzle.h" />
+    <ClInclude Include="SlidingPuzzleComponent.h" />
+    <ClInclude Include="SlidingPuzzleController.h" />
+    <ClInclude Include="SlidingPuzzleItem.h" />
+    <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="SRMap.h" />
+    <ClInclude Include="StaticImageRender.h" />
+    <ClInclude Include="TextNote.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Archivos de código fuente">
-      <UniqueIdentifier>{a5852be7-7d2c-4c76-b058-b982a3605854}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{e308b533-c3a6-4daa-8f44-6491d260cb64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Map">
-      <UniqueIdentifier>{2a057bda-7c0a-4b65-aab1-4bb54e1fc7b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Map">
-      <UniqueIdentifier>{a640f56f-3ed6-4a55-9884-75da2f283222}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Characters">
-      <UniqueIdentifier>{76327acb-c33d-49fd-8ac1-d5d3590b9373}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Characters">
-      <UniqueIdentifier>{d36bb2ab-4ac3-456c-a5c7-3ece29aaa36a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\States">
-      <UniqueIdentifier>{5af3c74b-0ad0-4cab-85e5-f30ea23d8bd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\States">
-      <UniqueIdentifier>{edf7f29a-fe80-4cf8-91ee-5f65754e1395}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Items">
-      <UniqueIdentifier>{fff45132-a7b7-4a24-a348-9345c0f6a09a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Items">
-      <UniqueIdentifier>{7e8927ca-6463-44ed-8623-9b7446136bd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Animations">
-      <UniqueIdentifier>{ca05d6b5-a10c-4cf4-bcc7-255274181587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Animations">
-      <UniqueIdentifier>{7376206c-6123-48e2-862e-8c25d863e648}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Inventory">
-      <UniqueIdentifier>{49cc0d39-953a-452a-ae6d-bde76f6a11bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Inventory">
-      <UniqueIdentifier>{17c9b4b5-18dc-4624-aa4c-1a4932d6b0d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Audio">
-      <UniqueIdentifier>{13c827c6-f3b7-42c5-b18f-98d293df5fc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Audio">
-      <UniqueIdentifier>{4639d712-4680-4cfe-a492-daabaee2e2be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Controllers">
-      <UniqueIdentifier>{e929ec80-a9d4-4125-b027-1d7acd4de4bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Controllers">
-      <UniqueIdentifier>{aa0ca78b-5fde-4b4e-b4f2-0368b00c7fc9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

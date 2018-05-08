@@ -26,6 +26,7 @@ void SRMap::interact(Entity * e)
 		if (!mapActive_) {
 			player->setIsReading(true);
 			mapActive_ = true;
+			Game::Instance()->getResourceManager()->getSound("MapSound")->play();
 		}
 		else {
 			player->setIsReading(false);

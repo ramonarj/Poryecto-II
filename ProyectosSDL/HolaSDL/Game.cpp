@@ -244,6 +244,7 @@ void Game::addResourcesMusic()
 {
 	resourceManager_->addMusic("Menu", "music/Menu.mp3");
 	resourceManager_->addMusic("SafeRoom", "music/SafeRoom.mp3");
+	resourceManager_->addMusic("SilenceSound", "music/AloneEffect.mp3");
 }
 
 void Game::addResourcesSoundEffects()

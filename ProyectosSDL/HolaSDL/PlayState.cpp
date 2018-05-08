@@ -71,6 +71,8 @@ void PlayState::startState()
 		}
 	}
 
+	Game::Instance()->getResourceManager()->getMusic("SilenceSound")->play();
+
 	//MessageRenderer----------------------------------------------------------
 	messageRenderer = new Entity(0, 0);
 	messageRenderer->addComponent(new MessageRenderer());

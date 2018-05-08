@@ -141,6 +141,7 @@ void Craft::repare()
 {
 	Wep->getComponent<Weapon>()->repare(REPARE_VAR);
 	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>(); }
+	Game::Instance()->getResourceManager()->getSound("RepareSound")->play();
 	inv->addItem(Wep);
 	Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(cinta);
 	Wep = nullptr;
@@ -328,6 +329,7 @@ void Craft::craft()
 		if (inv->checkItem(ItemType::ALCOHOL) && inv->checkItem(ItemType::BANDAGES))
 		{
 			inv->objectCrafted(ItemType::ALCOHOL, ItemType::BANDAGES);
+			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new FirstAid("Firstaid"));
 			inv->addItem(e);
@@ -337,6 +339,7 @@ void Craft::craft()
 		if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))
 		{
 			inv->objectCrafted(ItemType::ACIDCHEMICAL, ItemType::ACIDCHEMICAL);
+			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new Item(ItemType::ACID, "AcidDescription")); //cambiar
 			inv->addItem(e);
@@ -347,6 +350,7 @@ void Craft::craft()
 		{
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
+			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent((new Item(ItemType::CARD, "CardDescription"))); //cambiar
 			inv->addItem(e);

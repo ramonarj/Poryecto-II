@@ -116,7 +116,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 								cstOpen = !cstOpen;
 								inv->getComponent<Inventory>()->setChestMode(cstOpen);
 								//SOUND 
-								Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
+								Game::Instance()->getResourceManager()->getSound("ChestSound")->play();
 
 								inv->getComponent<Inventory>()->setRenderMark(true);
 								cst->getComponent<Chest>()->setRenderMark(false);
@@ -137,6 +137,8 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 									messageTimer->start(2);
 								}
 								entityFound = true;
+								if((*it)->getComponent<Item>() != nullptr)
+								Game::Instance()->getResourceManager()->getSound("PickSound")->play();
 							}
 						}
 						else {

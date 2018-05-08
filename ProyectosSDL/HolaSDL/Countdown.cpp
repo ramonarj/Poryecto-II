@@ -19,13 +19,14 @@ void Countdown::update(Entity * e, Uint32 time)
 	if (Collisions::RectRect(&Game::Instance()->getEntityWithComponent<Player>()->getRect(), &e->getRect()))
 	{
 		if (!countdownManager_->getCountdown() && activeCountdown_ && Game::Instance()->getEntityWithComponent<Player>()->getComponent<Character>()->isAlive())
-			countdownManager_->startCountdown();
+			countdownManager_->startCountdown(countdown_);
 		else if (countdownManager_->getCountdown() && !activeCountdown_  && Game::Instance()->getEntityWithComponent<Player>()->getComponent<Character>()->isAlive())
 			countdownManager_->setCountdown(false);
 	}
 }
 
-void Countdown::load(int active)
+void Countdown::load(int active, int countdown)
 {
 	activeCountdown_ = active;
+	countdown_ = countdown;
 }

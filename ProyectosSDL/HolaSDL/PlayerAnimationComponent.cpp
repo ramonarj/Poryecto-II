@@ -62,6 +62,16 @@ void PlayerAnimationComponent::render(Entity* o, Uint32 time) {
 			actualTime_ = time;
 		}
 
+		if((actualFrameMoving_ == 5 || actualFrameMoving_ == 11) && !soundActive)
+		{ 
+			soundActive = true;
+			Game::Instance()->getResourceManager()->getSound("StepSound")->play(); 
+		}
+		if((actualFrameMoving_ != 5 && actualFrameMoving_ != 11))
+		{
+			soundActive = false;
+		}
+
 		moving_->render(Game::Instance()->getRenderer(), dest, &clip);
 
 	}

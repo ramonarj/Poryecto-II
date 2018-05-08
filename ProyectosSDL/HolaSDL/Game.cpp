@@ -13,8 +13,9 @@ Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	initGame();
 
 	//Se añade MenuScene
-	//getResources()->getMusic(Resources::Menu)->play();
-	
+	//getResources()->getMusic(Resources::MENU)->play();
+	//getResourceManager()->getMusic("Menu")->play();
+	//getResourceManager()->getSound("InventorySound")->play();
 	stateMachine_.pushState(PlayState::Instance());
 
 	//stateMachine_.pushState(KeypadState::Instance());
@@ -247,7 +248,23 @@ void Game::addResourcesMusic()
 
 void Game::addResourcesSoundEffects()
 {
-	resourceManager_->addSound("InventoryOpen", "sounds/Inventory.wav");
+	resourceManager_->addSound("InventorySound", "sounds/OpencraftAndInventory.mp3");
+	resourceManager_->addSound("SlotSound", "sounds/cambiarSlot.mp3");
+	resourceManager_->addSound("ChestSound", "sounds/ChestOpen.mp3");
+	resourceManager_->addSound("UnlockSound", "sounds/DesbloqueaPuerta.mp3");
+	resourceManager_->addSound("LockSound", "sounds/DoorLocked.mp3");
+	resourceManager_->addSound("SaveSound", "sounds/GuardarPartida.mp3");
+	resourceManager_->addSound("MapSound", "sounds/mapa.mp3");
+	resourceManager_->addSound("Monster3DeadSound", "sounds/Monstruo3muerte.mp3");
+	resourceManager_->addSound("Monster3Sound", "sounds/Monstruo3Sonido.mp3");
+	resourceManager_->addSound("StepSound", "sounds/pasos.mp3");
+	resourceManager_->addSound("PickSound", "sounds/pickUpItepANDcraft.mp3");
+	resourceManager_->addSound("CraftSound", "sounds/pickUpItepANDcraft.mp3");
+	resourceManager_->addSound("BeepSound", "sounds/Pitido.wav");
+	resourceManager_->addSound("DoorSound", "sounds/puerta.mp3");
+	resourceManager_->addSound("RepareSound", "sounds/repare.mp3");
+
+
 }
 
 void Game::addResourcesFonts()

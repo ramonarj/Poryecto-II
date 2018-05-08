@@ -58,6 +58,7 @@ private:
 	int weapon(Entity* o);
 	int dir(Entity* o);
 	int dirIddle(Entity* o);
+	bool soundActive = false;
 
 	int weaponId = -1;
 

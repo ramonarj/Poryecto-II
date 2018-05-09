@@ -7,7 +7,7 @@ class NumberKey :
 {
 public:
 	NumberKey() {};
-	NumberKey(SDL_Renderer * pRenderer, int value, int fil, int col, float edge, float space, float screen);
+	NumberKey(SDL_Renderer * pRenderer, int value, int fil, int col, float h, float w);
 	~NumberKey();
 
 	virtual void handleInput(Uint32 time, const SDL_Event& event) {};

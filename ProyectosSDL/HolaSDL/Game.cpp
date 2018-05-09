@@ -233,9 +233,9 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("SecurityCameras", "images/AnimTilesheet/TileshetCameras.png");
 
 	//Numpad
-	resourceManager_->addTexture("Keypad", "images/Keypad/numpad.png");
-	resourceManager_->addTexture("Keys", "images/Keypad/keys.png");
-	resourceManager_->addTexture("Keys_", "images/Keypad/keys_.png");
+	resourceManager_->addTexture("Keypad", "images/Keypad/Keypad.png");
+	resourceManager_->addTexture("Keys", "images/Keypad/ButtonsUP.png");
+	resourceManager_->addTexture("Keys_", "images/Keypad/ButtonsDOWN.png");
 	resourceManager_->addTexture("Numbers", "images/Keypad/numbers.png");
 
 }

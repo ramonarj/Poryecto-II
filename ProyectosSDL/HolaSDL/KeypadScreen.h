@@ -6,15 +6,17 @@ class KeypadScreen :
 {
 public:
 	KeypadScreen() {};
-	KeypadScreen(SDL_Renderer* pRenderer);
+	KeypadScreen(SDL_Renderer* pRenderer, float h, float w);
 	void setSequence(string n){
 		sequence = n;
 	};
 	virtual void handleInput(Uint32 time, const SDL_Event& event) {};
-	virtual void update(Uint32 time) {};
+	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	~KeypadScreen();
 private:
+	Uint32 timeOn = 0, delta = 500;
+	bool on = true;
 	pair <int, int> numero(char s);
 	string sequence;
 	SDL_Renderer* pRenderer_;

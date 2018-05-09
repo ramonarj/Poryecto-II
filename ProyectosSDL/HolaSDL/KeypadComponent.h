@@ -10,7 +10,7 @@ class KeyPadController;
 class KeypadComponent :
 	public Component
 {
-	//tener en cuenta de que cuando se han introducido 4 n�meros no pueden introducirse m�s
+	//tener en cuenta que cuando se han introducido 4 n�meros no pueden introducirse m�s
 public:
 	KeypadComponent(Texture* image, Entity* codeEntity, int password);
 	~KeypadComponent();
@@ -45,6 +45,8 @@ private:
 	NumberKey keys[4][3];
 	KeypadScreen screen;
 	SDL_Rect dest;
+
+	float h, w;
 
 	coord markSlot = { 1, 1 };
 	KeyPadController* pc = nullptr;

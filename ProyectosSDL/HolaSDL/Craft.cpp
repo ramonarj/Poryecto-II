@@ -376,6 +376,7 @@ void Craft::setWep(Entity* e)
 	else
 	{
 		Wep = e;
+		Game::Instance()->getResourceManager()->getSound("SlotSound")->play();
 	}
 	
 
@@ -384,6 +385,7 @@ void Craft::setWep(Entity* e)
 void Craft::setCinta(Entity* e)
 {
 	cinta = e;
+	Game::Instance()->getResourceManager()->getSound("SlotSound")->play();
 }
 
 void Craft::restoreObjects()

@@ -21,6 +21,7 @@ void Door::interact(Entity * e)
 		if (needKey_)
 		{
 			setNeedKey();
+		
 		}
 		else
 		{
@@ -100,8 +101,14 @@ void Door::teleport()
 					Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setFinalFade(true, 10, 10);
 				}
 
-				if (doorComp->getZoneName() == "SAFE ROOM")
+				if (doorComp->getZoneName() == "SAFE ROOM") {
 					player->getComponent<Player>()->setLastSRPos(player->getPosition());
+					Game::Instance()->getResourceManager()->getMusic("SafeRoom")->play();
+				}
+				else
+				{
+					Game::Instance()->getResourceManager()->getMusic("SilenceSound")->play();
+				}
 
 				puertEncontrada = true;
 			}
@@ -120,7 +127,7 @@ void Door::setNeedKey()
 	//inventory = Game::Instance()->getEntityWithComponent<Inventory>();
 	compContainer = inventory->getComponent<ItemContainer>();
 	//compInvent = inventory->getComponent<Inventory>();
-
+	bool found = false;
 	if (!compInvent->getKeys().empty()) {
 		int i = 0;
 		while (i < compInvent->getKeys().size() && needKey_)
@@ -129,10 +136,16 @@ void Door::setNeedKey()
 				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				compInvent->removeKey(doorNum_);
 				openDoor();
+				found = true;
+				Game::Instance()->getResourceManager()->getSound("UnlockSound")->play();
 			}
 			else
 				i++;
 		}
+	}
+	if (!found)
+	{
+		Game::Instance()->getResourceManager()->getSound("LockSound")->play();
 	}
 }
 

@@ -149,6 +149,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 				if (!fullInventory())
 				{
 					inventory.push_back(equiped);
+					Game::Instance()->getResourceManager()->getSound("SlotSound")->play();
 					equiped = nullptr;
 					equipedLastClicked = false;
 				}
@@ -333,9 +334,11 @@ bool Inventory::addItem(Entity * item)
 			equiped = item;
 			equip = true;
 			alm = true;
+			Game::Instance()->getResourceManager()->getSound("PickSound")->play();
 		}
 	}
 	if (!fullInventory() && !equip) {
+		Game::Instance()->getResourceManager()->getSound("PickSound")->play();
 		inventory.push_back(item);
 		Key* k = item->getComponent<Key>();
 		if (k != nullptr)
@@ -396,7 +399,7 @@ void Inventory::equipWeapon(int pos)
 			equiped = inventory[pos];
 			this->DeleteItem(pos);
 		}
-
+		Game::Instance()->getResourceManager()->getSound("SlotSound")->play();
 		equipedLastClicked = true;
 
 	}
@@ -664,6 +667,7 @@ void Inventory::useItem(int i)
 {
 	if (inventory[i]->getComponent<FirstAid>() != nullptr) {
 		inventory[i]->getComponent<FirstAid>()->use(Game::Instance()->getEntityWithComponent<Player>(), inventory[i]);
+		Game::Instance()->getResourceManager()->getSound("SaveSound")->play();
 		DeleteItem(i);
 	}
 

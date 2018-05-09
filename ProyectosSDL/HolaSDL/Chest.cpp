@@ -172,7 +172,11 @@ bool Chest::fullChest()
 bool Chest::addItem(Entity * item)
 {
 	bool alm = false;
-	if (!fullChest()) { inventory.push_back(item); alm = true; }
+	if (!fullChest()) 
+	{ 
+		inventory.push_back(item); alm = true; 
+		Game::Instance()->getResourceManager()->getSound("SlotSound")->play();
+	}
 	return alm;
 }
 

@@ -244,7 +244,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 		{
 			int x, y, width, height, numFrames;
 			std::string textureName = "";
-			std::string orientacion;
+			std::string orientacion = "";
 			
 			//Variables para los personajes
 			int life = 0;
@@ -376,7 +376,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				pEntity->getComponent<SecurityCamera>()->load(numCamera);
 
 			else if (e->Attribute("type") == std::string("Register"))
-				loadRegister(e, pEntity, registerFile, floorRegister);
+				loadRegister(e, pEntity, registerFile, floorRegister, orientacion);
 
 			else if (e->Attribute("type") == std::string("SRMap"))
 				loadSRMap(pEntity, numMap, orientacion);
@@ -419,9 +419,9 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 }
 
-void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister)
+void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister, std::string dir)
 {
-	pEntity->getComponent<Register>()->load(registerFile);
+	pEntity->getComponent<Register>()->load(registerFile, dir);
 	if (floorRegister)
 	{
 		if (registerFile == 1) {

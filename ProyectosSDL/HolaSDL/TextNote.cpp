@@ -5,8 +5,8 @@
 TextNote::TextNote(Game* game_, string txtFilePath, int x, int y, Texture* backgroundTexture) : renderer_(game_->getRenderer()),
 font_(game_->getResourceManager()->getFont("VCR_OSD_MONO")), pos_(Vector2D(x, y)),
 color_{ 0, 0, 0, 255 }, spacing_(30),
-background_(backgroundTexture) /*,txtFilePath_(txtFilePath)*/{
-
+background_(backgroundTexture), alpha_(255) /*,txtFilePath_(txtFilePath)*/
+{
 	string aux = "";
 	textLines.clear();
 	for (char c : txtFilePath) {
@@ -36,6 +36,7 @@ void TextNote::render(Entity * e, Uint32 time) {
 		if (t.size() > 0) {
 			SDL_Surface* textSurface = font_->renderText(t, color_);
 			SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer_, textSurface);
+			SDL_SetTextureAlphaMod(textTexture, alpha_);
 			int textW = textSurface->w;
 			int textH = textSurface->h;
 			SDL_FreeSurface(textSurface);

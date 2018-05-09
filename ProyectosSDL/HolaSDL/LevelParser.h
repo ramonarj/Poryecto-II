@@ -39,7 +39,7 @@ private:
 		std::vector<Layer*> *pLayers, Level* pLevel);
 
 	void loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy);
-	void loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister);
+	void loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister, std::string dir);
 	void loadSRMap(Entity* pEntity, int numMap, std::string orientacion);
 	void loadCode(Entity* pEntity, int numDoor, int code, std::string dir);
 

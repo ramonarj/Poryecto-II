@@ -14,6 +14,8 @@ public:
 	virtual void render(Entity* e, Uint32 time);
 	void changeString(string txtFilePath);
 	void setColor(SDL_Color c) { color_ = c; }
+	void setFont(Font* f) { font_ = f; };
+	void setAlpha(Uint8 alpha) { alpha_ = alpha; };
 
 private:
 	Texture* background_;
@@ -24,5 +26,7 @@ private:
 	SDL_Color color_;
 	vector<string> textLines;
 	vector<Texture> textTextures_; //MAYBE NO HACE FALTA
+
+	Uint8 alpha_;
 };
 

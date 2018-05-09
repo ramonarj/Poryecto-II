@@ -12,21 +12,25 @@ Register::~Register()
 
 void Register::interact(Entity * e)
 {
-	if (!registerActive_) {
-		e->addComponent(textNote);
-		PlayState::Instance()->getPlayer()->setIsReading(true);
-		registerActive_ = true;
-	}
-	else {
-		e->delComponent(textNote);
-		PlayState::Instance()->getPlayer()->setIsReading(false);
-		registerActive_ = false;
+	if ((ori_ != "" && canRead()) || ori_ == "")
+	{
+		if (!registerActive_) {
+			e->addComponent(textNote);
+			PlayState::Instance()->getPlayer()->setIsReading(true);
+			registerActive_ = true;
+		}
+		else {
+			e->delComponent(textNote);
+			PlayState::Instance()->getPlayer()->setIsReading(false);
+			registerActive_ = false;
+		}
 	}
 }
 
-void Register::load(int registerFile)
+void Register::load(int registerFile, std::string dir)
 {
 	registerFile_ = registerFile;
+	ori_ = dir;
 	loadText(to_string(registerFile_));
 	if (registerFile == 1) {	//Como es unico se podria hacer entero en photoshop
 		textNote = new TextNote(Game::Instance(), "", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgBook"));
@@ -52,4 +56,14 @@ bool Register::loadText(const string& filename) {
 	text_ = ss.str();
 	archivo.close();
 	return true;
+}
+
+bool Register::canRead()
+{
+	PlayerAnimationComponent* animPlayer = PlayState::Instance()->getPlayer()->getComponent<PlayerAnimationComponent>();
+
+	return ((ori_ == "norte" && animPlayer->getLastDir().getY() == 1)
+		|| (ori_ == "sur" && animPlayer->getLastDir().getY() == -1)
+		|| (ori_ == "este" && animPlayer->getLastDir().getX() == 1)
+		|| (ori_ == "oeste" && animPlayer->getLastDir().getX() == -1));
 }

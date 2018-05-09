@@ -95,6 +95,11 @@ void Door::teleport()
 				}
 				PlayState::Instance()->getPlayer()->getComponent<Player>()->setTeleport(false);
 
+				if ((*it)->getComponent<Door>()->getDoorNum() == 1000 && (*it)->getComponent<Door>()->getOri() == "oeste")
+				{
+					Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setFinalFade(true, 10, 10);
+				}
+
 				if (doorComp->getZoneName() == "SAFE ROOM")
 					player->getComponent<Player>()->setLastSRPos(player->getPosition());
 
@@ -194,6 +199,11 @@ void Door::update(Entity * e, Uint32 time) {
 	else if (!messageChanged_) {
 		thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir", false);
 		messageChanged_ = true;
+	}
+
+	if (thisDoor_->getComponent<Door>()->getDoorNum() == 1000 && thisDoor_->getComponent<Door>()->getOri() == "oeste")
+	{
+		thisDoor_->getComponent<MessageTrigger>()->setEnabled(false);
 	}
 
 	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getTeleport() &&

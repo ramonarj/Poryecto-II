@@ -2,12 +2,12 @@
 #include "Game.h"
 
 MessageRenderer::MessageRenderer() : display_(false), color_({ 255, 255, 255, 255 }),
-font_(Game::Instance()->getResourceManager()->getFont("VCR_OSD_MONO")) {
+font_(Game::Instance()->getResourceManager()->getFont("VCR_OSD_MONO"))
+{
 
 }
 
 MessageRenderer::~MessageRenderer() {
-
 }
 
 void MessageRenderer::display(std::string message, double textX, double textY) {

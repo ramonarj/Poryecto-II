@@ -11,13 +11,15 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int registerFile);
+	void load(int registerFile, std::string dir);
 private:
 	int registerFile_;
 	bool registerActive_;
 	TextNote* textNote;
 	string text_;
+	string ori_;
 
 	bool loadText(const string& filename);
+	bool canRead();
 };
 

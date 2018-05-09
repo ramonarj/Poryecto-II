@@ -4,6 +4,8 @@
 
 OrderPuzzleController::OrderPuzzleController()
 {
+	if (m_bJoysticksInitialised)
+		active_ = true;
 }
 
 

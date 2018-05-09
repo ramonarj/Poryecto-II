@@ -17,6 +17,11 @@ void GameStateMachine::changeState(GameState* state) { //Cambia el valor de chan
 	changeState_ = state;
 }
 
+int GameStateMachine::size() { //Cambia el valor de changedState_
+	return states.size();
+}
+
+
 bool GameStateMachine::changeStateTick() { //Hace pop del estado actual y mete el que está en changedState_. Se llama al final del buque principal
 	if (changeState_ != nullptr) {
 		if (!states.empty()) states.pop();

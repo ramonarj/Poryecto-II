@@ -334,7 +334,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		if (m_buttonStates[0][Triangle] && !cstOpen && !crftOpen && !o->getIsReading())		//Inventario
 		{
 			if (!inventoryPressed) {
-				Game::Instance()->getResourceManager()->getSound("InventoryOpen")->play();
+				Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 				inv->setActive(!inv->isActive());
 				inv->getComponent<Inventory>()->setSelectedSlot(0);
 				inventoryPressed = true;

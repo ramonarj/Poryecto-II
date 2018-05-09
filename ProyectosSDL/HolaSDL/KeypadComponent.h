@@ -46,7 +46,7 @@ private:
 	KeypadScreen screen;
 	SDL_Rect dest;
 
-	coord markSlot = { 0, 0 };
+	coord markSlot = { 1, 1 };
 	KeyPadController* pc = nullptr;
 	void renderMark(SDL_Rect DestRect);
 };

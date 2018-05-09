@@ -84,6 +84,8 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 
 void SlidingPuzzleComponent::render(Entity * e, Uint32 time)
 {
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<SlidingPuzzleController>()->getComponent<SlidingPuzzleController>();
 
 	SDL_Rect dest = { -600,-800, 2000,2000 };
 	resource->getTexture("SRMapa1")->render(pRenderer, dest);

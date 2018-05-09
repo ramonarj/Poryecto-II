@@ -129,6 +129,9 @@ void OrderPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event 
 
 void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 {
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
+
 	SDL_Rect dest = { -600,-800, 2000,2000 };
 	resource->getTexture("SRMapa1")->render(pRenderer, dest);
 

@@ -39,7 +39,7 @@ private:
 	float edge_, space_;
 	//vector <int> numSequence; //Guarda los n�meros introducidos -> puede ser un int
 	string password_, sequence_;
-	Texture* numpad_;
+	Texture* numpad_, * background_;
 	SDL_Renderer* pRenderer=nullptr;
 	ResourceManager* resource = nullptr;
 	NumberKey keys[4][3];

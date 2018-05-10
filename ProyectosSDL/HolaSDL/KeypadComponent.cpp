@@ -16,6 +16,8 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 	h = (float)(Game::Instance()->getWindowHeight()) / (float)(numpad_->getHeight());
 	w = (float)(Game::Instance()->getWindowWidth() / 3 + 100) / (float)(numpad_->getWidth());
 
+	background_ = resource->getTexture("Background");
+
 	dest.h = numpad_->getHeight() * h;
 	dest.w = numpad_->getWidth() * w;
 
@@ -102,9 +104,12 @@ void KeypadComponent::update(Entity* e, Uint32 time) {
 
 
 void KeypadComponent::render(Entity* e, Uint32 time) {
+
 	//Pinta el teclado
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<KeyPadController>()->getComponent<KeyPadController>();
+
+	background_->render(pRenderer, { 0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight() }, nullptr);
 
 	numpad_->render(pRenderer, dest, nullptr);
 	for (int i = 0; i < 4; i++) {

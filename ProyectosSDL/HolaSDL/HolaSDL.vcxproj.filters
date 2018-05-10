@@ -96,6 +96,7 @@
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="CarnePuaj.cpp" />
+    <ClCompile Include="Sign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="CarnePuaj.h" />
+    <ClInclude Include="Sign.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

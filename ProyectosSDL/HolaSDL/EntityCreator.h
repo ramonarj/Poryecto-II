@@ -21,6 +21,8 @@
 #include "Code.h"
 #include "Countdown.h"
 #include "CarnePuaj.h"
+#include "Interactible.h"
+#include "Sign.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -85,13 +87,13 @@ public:
 			i = new Weapon(type, itemTypetoString(type), "Has recogido una palanca");
 			break;
 		case PIPE:
-			i = new Weapon(type, itemTypetoString(type), "Has recogido una tubería");
+			i = new Weapon(type, itemTypetoString(type), "Has recogido una tuberï¿½a");
 			break;
 		case AXE:
 			i = new Weapon(type, itemTypetoString(type), "Has recogido un hacha");
 			break;
 		case FIRSTAID:
-			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquï¿½n");
 			//i = new Movable();	//	DEBUG
 			//i = new SlidingPuzzleItem();	//	DEGUG
 			//i = new CarnePuaj();	//	DEBUG
@@ -109,7 +111,7 @@ public:
 			i = new Item(BANDAGES, "Bandages", "Has recogido unas vendas");
 			break;
 		case GENERICCHEMICAL:
-			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un químico genérico");
+			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un quï¿½mico genï¿½rico");
 			break;
 		case ACID:
 			i = new Item(ACID, "Acid", "Has recogido acido");
@@ -337,7 +339,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new Code());
-		e->addComponent(new MessageTrigger("'E' para escribir código", "'Square/X' para escribir código"));
+		e->addComponent(new MessageTrigger("'E' para escribir cï¿½digo", "'Square/X' para escribir cï¿½digo"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
@@ -361,6 +363,17 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new CarnePuaj());
+		return e;
+	}
+};
+
+class MessageInteractibleCreator : public BaseCreator {
+public:
+	Entity * createEntity() const {
+		Entity* e = new Entity();
+		e->addComponent(new Sign());
+		e->addComponent(new MessageTrigger("'E' para ver el cartel", "'Square/X' para ver el cartel"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

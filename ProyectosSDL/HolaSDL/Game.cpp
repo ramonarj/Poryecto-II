@@ -129,6 +129,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Light", new LightCreator());
 	gameObjectFactory->registerType("Code", new CodeCreator());
 	gameObjectFactory->registerType("Countdown", new CountdownCreator());
+	gameObjectFactory->registerType("MessageInteractible", new MessageInteractibleCreator());
 	registerTypeItem();
 }
 

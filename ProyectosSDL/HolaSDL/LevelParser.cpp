@@ -19,6 +19,7 @@
 #include "Code.h"
 #include "KeypadState.h"
 #include "Countdown.h"
+#include "Sign.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -275,6 +276,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			int activeCountdown = 0;
 			int countdown = 0;
 
+			//Variables para los carteles
+			int numSign = 0;
+
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
@@ -282,7 +286,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				e->Attribute("type") == std::string("Television") || e->Attribute("type") == std::string("Register")
 				|| e->Attribute("type") == std::string("SRMap") || e->Attribute("type") == std::string("SavePoint")
 				|| e->Attribute("type") == std::string("Light") || e->Attribute("type") == std::string("Code")
-				|| e->Attribute("type") == std::string("Countdown"))
+				|| e->Attribute("type") == std::string("Countdown") || e->Attribute("type") == std::string("MessageInteractible"))
 			{
 				e->Attribute("width", &width);
 				e->Attribute("height", &height);
@@ -361,6 +365,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("calendar"))
 								property->Attribute("value", &calendar);
+
+							else if (property->Attribute("name") == std::string("numSign"))
+								property->Attribute("value", &numSign);
 						}
 					}
 				}
@@ -373,9 +380,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				loadCharacters(e, pEntity, life, damage, numEnemy);
 
 			else if (e->Attribute("type") == std::string("Puerta"))
-				pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
+				loadDoors(pEntity, numDoor, orientacion, needKey, collidableDoor, zoneName);
 
-			else if (e->Attribute("type") == std::string("Key"))				
+			else if (e->Attribute("type") == std::string("Key"))
 				pEntity->getComponent<Key>()->load(numKey, keyName);
 
 			else if (e->Attribute("type") == std::string("Camera"))
@@ -393,15 +400,20 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Countdown"))
 				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
 
-			if (e->Attribute("type") == std::string("Puerta"))
-				Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
+			else if (e->Attribute("type") == std::string("Countdown"))
+				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
 
-			if (pEntity->getComponent<Item>() != nullptr) {
+			else if (e->Attribute("type") == std::string("MessageInteractible"))
+				loadSign(pEntity, numSign, orientacion);
+
+			else if (e->Attribute("type") == std::string("Item"))
+			{
 				pEntity->getComponent<Item>()->load(numItemFile);
 				numItemFile++;
 			}
 
-			if (e->Attribute("type") != std::string("Register") && e->Attribute("type") != std::string("SRMap"))
+			if (e->Attribute("type") != std::string("Register") && e->Attribute("type") != std::string("SRMap")
+				&& e->Attribute("type") != std::string("MessageInteractible"))
 				Game::Instance()->stateMachine_.currentState()->getStage()->push_back(pEntity);
 		}
 	}
@@ -423,6 +435,12 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 		numEnemyFile++;
 	}
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
+}
+
+void LevelParser::loadDoors(Entity* pEntity, int numDoor, std::string orientacion, int needKey, int collidableDoor, std::string zoneName)
+{
+	pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
+	Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 }
 
 void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister, std::string dir)
@@ -453,4 +471,10 @@ void LevelParser::loadCode(Entity * pEntity, int numDoor, int code, std::string 
 {
 	pEntity->getComponent<Code>()->load(numDoor, code, dir);
 	KeypadState::Instance()->getCodes()->push_back(pEntity);
+}
+
+void LevelParser::loadSign(Entity * pEntity, int numSign, std::string dir)
+{
+	pEntity->getComponent<Sign>()->load(pEntity, numSign, dir);
+	Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
 }

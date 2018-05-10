@@ -89,6 +89,7 @@
     <ClCompile Include="SavePoint.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="SecurityCamera.cpp" />
+    <ClCompile Include="Sign.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="SDLGame.h" />
     <ClInclude Include="sdl_includes.h" />
     <ClInclude Include="SecurityCamera.h" />
+    <ClInclude Include="Sign.h" />
     <ClInclude Include="SkeletonRenderer.h" />
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />

@@ -12,6 +12,9 @@ public:
 	void setMessage(std::string message, bool displayNow = false);
 	void setMessage(std::string KBmessage, std::string CNTmessage, bool displayNow = true);
 
+	string getKBMessage() { return KBmessage_; };
+	string getCNTmessage() { return CNTmessage_; };
+
 private:
 	std::string KBmessage_;
 	std::string CNTmessage_;

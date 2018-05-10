@@ -34,9 +34,9 @@ Inventory::Inventory()
 	life.setWidth(155);
 	life.setHeight(45);
 
-	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.75;
-	ritmoCardiaco2 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5;
-	ritmoCardiaco3 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25;
+	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife();
+	ritmoCardiaco2 = (int)ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5);
+	ritmoCardiaco3 = (int)ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25);
 }
 
 Inventory::~Inventory()
@@ -51,21 +51,21 @@ Inventory::~Inventory()
 
 void Inventory::update(Entity* e, Uint32 time)
 {
-	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco3) {
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) {
 		if (!lifeRed->isEnabled()) {
 			lifeGreen->setEnabled(false);
 			lifeRed->setEnabled(true);
 			lifeOrange->setEnabled(false);
 		}
 	}
-	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco2) {
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco2) {
 		if (!lifeOrange->isEnabled()) {
 			lifeOrange->setEnabled(true);
 			lifeGreen->setEnabled(false);
 			lifeRed->setEnabled(false);
 		}
 	}
-	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco1) {
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1) {
 		if (!lifeGreen->isEnabled()) {
 			lifeGreen->setEnabled(true);
 			lifeRed->setEnabled(false);

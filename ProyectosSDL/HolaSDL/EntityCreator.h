@@ -355,13 +355,13 @@ public:
 	}
 };
 
-//class CarnePuajCreator : public BaseCreator
-//{
-//public:
-//	Entity * createEntity() const
-//	{
-//		Entity* e = new Entity();
-//		e->addComponent(new CarnePuaj());
-//		return e;
-//	}
-//};
+class CarnePuajCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new CarnePuaj());
+		return e;
+	}
+};

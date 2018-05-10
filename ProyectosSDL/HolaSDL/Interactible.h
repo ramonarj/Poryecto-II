@@ -8,9 +8,9 @@ class Interactible : public Component {
 public:
 	Interactible(std::string interactMessage = "");
 	~Interactible() {};
-	virtual void interact(Entity* e) = 0; // Metodo abstracto de la interaccion
+	virtual void interact(Entity* e) {}; // Metodo abstracto de la interaccion
 	std::string* getInteractMessage() { return &interactMessage_; };
-private:
+protected:
 	std::string interactMessage_;
 };
 

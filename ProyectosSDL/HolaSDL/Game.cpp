@@ -17,7 +17,7 @@ Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//getResourceManager()->getMusic("Menu")->play();
 	//getResourceManager()->getSound("InventorySound")->play();
 	stateMachine_.pushState(PlayState::Instance());
-
+	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());

@@ -129,6 +129,7 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 void KeypadComponent::addNumber(int n) {
 	sequence_ += to_string(n);
 	screen.setSequence(sequence_);
+	Game::Instance()->getResourceManager()->getSound("BeepSound")->play();
 }
 
 void KeypadComponent::validCode()
@@ -145,13 +146,13 @@ void KeypadComponent::validCode()
 				e->getComponent<Door>()->keyFalse();
 		}
 		cout << "Nice" << endl;
-		//deberia sonar algun sonido
+		Game::Instance()->getResourceManager()->getSound("CodeSuccessSound")->play();
 		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 	}
 	else {
 		cout << "Wrong" << endl;
 		clear();
-		//deberia sonar algun sonido
+		Game::Instance()->getResourceManager()->getSound("ErrorCodeSound")->play();
 	}
 }
 

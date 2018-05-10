@@ -4,6 +4,8 @@
 
 SlidingPuzzleController::SlidingPuzzleController()
 {
+	if (m_bJoysticksInitialised)
+		active_ = true;
 }
 
 
@@ -120,9 +122,15 @@ void SlidingPuzzleController::handleInput(Entity* o, Uint32 time, const SDL_Even
 
 		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !interactButtonPressed) {
 			puzll_->clickMark();
+			interactButtonPressed = true;
 		}
 		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && interactButtonPressed) {
 			interactButtonPressed = false;
+		}
+		
+		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
+			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			interactButtonPressed = true;
 		}
 
 	}

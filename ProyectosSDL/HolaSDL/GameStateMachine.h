@@ -17,6 +17,7 @@ public:
 	void popState();
 	void pushState(GameState* state);
 	void changeState(GameState* state);
+	int size();
 	bool pushStateTick();
 	bool changeStateTick();
 	bool empty() { return states.empty(); };

@@ -12,16 +12,22 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
-	dest.x = dest.y = 0;
-	dest.h = numpad_->getHeight();
-	dest.w = numpad_->getWidth();
+	h = (float)(Game::Instance()->getWindowHeight()) / (float)(numpad_->getHeight());
+	w = (float)(Game::Instance()->getWindowWidth() / 3 + 100) / (float)(numpad_->getWidth());
+
+	dest.h = numpad_->getHeight() * h;
+	dest.w = numpad_->getWidth() * w;
+
+	dest.x = (Game::Instance()->getWindowWidth() / 2) - (dest.w / 2);
+	dest.y = 0;
+
 	//Screen
-	screen = KeypadScreen(pRenderer);
+	screen = KeypadScreen(pRenderer, h, w);
 
 	//Botones del teclado
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
-			keys[i][j] = NumberKey(pRenderer, i* 3 + j + 1, i, j, 50, 50, 100);
+			keys[i][j] = NumberKey(pRenderer, i* 3 + j + 1, i, j, h, w);
 		}
 	}
 	for (int j = 0; j < 3; j++) {
@@ -38,16 +44,12 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 			value = 11;
 			break;
 		}
-		keys[3][j] = NumberKey(pRenderer, value, 3, j, 50, 50, 100);
+		keys[3][j] = NumberKey(pRenderer, value, 3, j, h, w);
 	}
 }
 
 
 void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event) {
-
-	if (pc == nullptr)
-		pc = Game::Instance()->getEntityWithComponent<KeyPadController>()->getComponent<KeyPadController>();
-
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -93,11 +95,16 @@ void KeypadComponent::update(Entity* e, Uint32 time) {
 			keys[i][j].update(time);
 		}
 	}
+	screen.update(time);
+
 }
 
 
 void KeypadComponent::render(Entity* e, Uint32 time) {
 	//Pinta el teclado
+	if (pc == nullptr)
+		pc = Game::Instance()->getEntityWithComponent<KeyPadController>()->getComponent<KeyPadController>();
+
 	numpad_->render(pRenderer, dest, nullptr);
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -106,11 +113,9 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 	}
 	screen.render(time);
 
-	keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getRect().x;
-
-	if (pc->joysticksInitialised()) {
-		dest = { keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().x - 5, keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().y -5,
-			keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().w +10, keys[markSlot.x][markSlot.y].getComponent<NumberKey>()->getNumRect().h +10 };	//El borde
+	if (pc != nullptr && pc->joysticksInitialised()) {
+		dest = { keys[markSlot.y][markSlot.x].getNumRect().x - 5, keys[markSlot.y][markSlot.x].getNumRect().y -5,
+			keys[markSlot.y][markSlot.x].getNumRect().w +10, keys[markSlot.y][markSlot.x].getNumRect().h +10 };	//El borde
 		renderMark(dest);
 	}
 }

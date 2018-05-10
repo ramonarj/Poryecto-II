@@ -21,6 +21,7 @@
 #include "Code.h"
 #include "Countdown.h"
 #include "CarnePuaj.h"
+#include "Interactible.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -362,6 +363,16 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new CarnePuaj());
+		return e;
+	}
+};
+
+class MessageInteractible : public BaseCreator {
+public:
+	Entity * createEntity() const {
+		Entity* e = new Entity();
+		e->addComponent(new Interactible("", true));
+		e->addComponent(new MessageTrigger("'E' para interactuar", "'Square/X' para interactuar"));
 		return e;
 	}
 };

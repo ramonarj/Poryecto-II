@@ -140,10 +140,14 @@ void KeypadComponent::validCode()
 				e->getComponent<Door>()->keyFalse();
 		}
 		cout << "Nice" << endl;
+		//deberia sonar algun sonido
 		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 	}
-	else
+	else {
 		cout << "Wrong" << endl;
+		clear();
+		//deberia sonar algun sonido
+	}
 }
 
 
@@ -154,7 +158,6 @@ bool KeypadComponent::validate() {
 void KeypadComponent::clear() {
 	sequence_ = "";
 	screen.setSequence(sequence_);
-
 }
 
 KeypadComponent::~KeypadComponent()

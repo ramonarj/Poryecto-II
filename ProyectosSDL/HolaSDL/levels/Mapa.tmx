@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="448">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="448">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -1874,7 +1874,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="2826.18" y="1467" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="8963.86" y="10048.7" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

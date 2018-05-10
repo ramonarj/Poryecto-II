@@ -111,6 +111,7 @@ void OrderPuzzleController::handleInput(Entity * o, Uint32 time, const SDL_Event
 		}
 		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
 			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			interactButtonPressed = !interactButtonPressed;
 		}
 	}
 

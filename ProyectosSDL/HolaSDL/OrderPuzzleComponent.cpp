@@ -85,6 +85,7 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 
 void OrderPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+	const Uint8 *State = SDL_GetKeyboardState(NULL);
 
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
@@ -125,10 +126,18 @@ void OrderPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event 
 			}
 		}
 	}
+	if (event.type == SDL_KEYDOWN)
+	{
+		if (State[SDL_SCANCODE_E])
+		{
+			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+		}
+	}
 }
 
 void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 {
+
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
 

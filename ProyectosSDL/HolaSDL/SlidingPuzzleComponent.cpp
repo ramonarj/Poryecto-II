@@ -53,6 +53,8 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 
 void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 {
+	const Uint8 *State = SDL_GetKeyboardState(NULL);
+
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<SlidingPuzzleController>()->getComponent<SlidingPuzzleController>();
 
@@ -78,6 +80,13 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 
 			if (clicked && !fichas[i][j].ghost) 
 				compruebaAdyacencia(i, j);
+		}
+	}
+	if (event.type == SDL_KEYDOWN)
+	{
+		if (State[SDL_SCANCODE_E])
+		{
+			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 		}
 	}
 }

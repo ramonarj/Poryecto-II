@@ -284,6 +284,8 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.wav");
 	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
 	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
+	resourceManager_->addSound("Monster2DeadSound", "sounds/Monster2Dead.wav");
+	resourceManager_->addSound("Monster2HitSound", "sounds/Monster2HitTube.wav");
 }
 
 void Game::addResourcesFonts()

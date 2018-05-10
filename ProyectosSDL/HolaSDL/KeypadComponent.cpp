@@ -2,6 +2,7 @@
 #include "Code.h"
 #include "PlayState.h"
 #include "Door.h"
+#include "MessageTrigger.h"
 
 #include "KeyPadController.h"
 
@@ -131,6 +132,7 @@ void KeypadComponent::validCode()
 	{
 		codeEntity_->getComponent<Code>()->setAccept(true);
 		codeEntity_->getComponent<Code>()->setCodeActive(false);
+		codeEntity_->getComponent<MessageTrigger>()->setMessage("");
 		list<Entity*> doors = (*PlayState::Instance()->getDoors());
 		for (Entity* e : *(PlayState::Instance()->getDoors()))
 		{

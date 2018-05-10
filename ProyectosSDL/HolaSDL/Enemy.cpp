@@ -60,7 +60,7 @@ void Enemy::move(Entity* o)
 	double aux = 0;
 	double dif = 3;
 
-	if (numEnemy_ == 1) aux = -o->getHeight() / 3;
+	if (numEnemy_ == 1) aux = -o->getHeight() / 4;
 	else if (numEnemy_ == 2) aux = o->getHeight() / 6;
 	else if (numEnemy_ == 3) aux = o->getHeight() / 3;
 

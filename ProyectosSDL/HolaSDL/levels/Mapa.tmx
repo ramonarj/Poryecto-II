@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="448">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="448">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -270,7 +270,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Registers">
+ <objectgroup name="Registers" visible="0">
   <properties>
    <property name="floorRegister" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -377,7 +377,7 @@
   <object id="388" name="SavePoint" type="SavePoint" x="7620" y="9000" width="40" height="60"/>
   <object id="389" name="SavePoint" type="SavePoint" x="11299.8" y="1809.5" width="60" height="70"/>
  </objectgroup>
- <objectgroup name="Teleports">
+ <objectgroup name="Teleports" visible="0">
   <properties>
    <property name="collidableDoor" type="int" value="1"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1210,7 +1210,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Doors">
+ <objectgroup name="Doors" visible="0">
   <properties>
    <property name="collidableDoor" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1499,7 +1499,7 @@
     <property name="numCamera" type="int" value="2"/>
    </properties>
   </object>
-  <object id="305" name="Camera" type="Camera" x="1480" y="1820" width="20" height="20">
+  <object id="305" name="Camera" type="Camera" x="1500" y="1820" width="20" height="20">
    <properties>
     <property name="numCamera" type="int" value="1"/>
    </properties>
@@ -1594,7 +1594,7 @@
     <property name="numCamera" type="int" value="0"/>
    </properties>
   </object>
-  <object id="324" name="Camera" type="Camera" x="3160" y="9260" width="20" height="20">
+  <object id="324" name="Camera" type="Camera" x="3180" y="9260" width="20" height="20">
    <properties>
     <property name="numCamera" type="int" value="0"/>
    </properties>
@@ -1689,7 +1689,7 @@
     <property name="numCamera" type="int" value="1"/>
    </properties>
   </object>
-  <object id="344" name="Camera" type="Camera" x="11280" y="540" width="20" height="20">
+  <object id="344" name="Camera" type="Camera" x="11280" y="560" width="20" height="20">
    <properties>
     <property name="numCamera" type="int" value="2"/>
    </properties>
@@ -1874,7 +1874,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="8661.85" y="10034" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="2826.18" y="1467" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

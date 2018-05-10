@@ -36,9 +36,9 @@ void Register::load(int registerFile, std::string dir)
 		textNote = new TextNote(Game::Instance(), "", 410, 110, Game::Instance()->getResourceManager()->getTexture("BgBook"));
 	}
 	else if (registerFile == 2)	//Variacion del registro normal pero con la foto de Elise
-		textNote = new TextNote(Game::Instance(), text_, 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistroWithPic"));	//Cambiar esto TEMPORAL
+		textNote = new TextNote(Game::Instance(), text_, 410, 130, Game::Instance()->getResourceManager()->getTexture("BgRegistroWithPic"));	//Cambiar esto TEMPORAL
 	else
-		textNote = new TextNote(Game::Instance(), text_, 410, 110, Game::Instance()->getResourceManager()->getTexture("BgRegistro"));
+		textNote = new TextNote(Game::Instance(), text_, 410, 130, Game::Instance()->getResourceManager()->getTexture("BgRegistro"));
 }
 
 bool Register::loadText(const string& filename) {

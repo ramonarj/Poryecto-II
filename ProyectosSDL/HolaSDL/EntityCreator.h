@@ -288,7 +288,6 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new SRMap());
-		e->addComponent(new MessageTrigger("'E' para ver el mapa", "'Square/X' para ver el mapa"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

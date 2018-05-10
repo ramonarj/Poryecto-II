@@ -1,6 +1,7 @@
 #pragma once
 #include "Interactible.h"
 #include "PlayState.h"
+#include "MessageTrigger.h"
 
 class SRMap : public Interactible
 {
@@ -10,7 +11,7 @@ public:
 
 	virtual void interact(Entity* e);
 
-	void load(int numMap, string ori);
+	void load(Entity* e, int numMap, std::string ori, int calendar);
 
 	virtual void render(Entity* o, Uint32 time);
 

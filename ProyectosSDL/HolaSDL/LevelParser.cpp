@@ -262,7 +262,10 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 			//Variables para los registros
 			int registerFile;
+
+			//Variables para los mapas/calendarios
 			int numMap;
+			int calendar = 0;
 
 			//Variables para el codigo de abrir puertas
 			int numDoorCode = 0;
@@ -355,6 +358,9 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 
 							else if (property->Attribute("name") == std::string("count"))
 								property->Attribute("value", &countdown);
+
+							else if (property->Attribute("name") == std::string("calendar"))
+								property->Attribute("value", &calendar);
 						}
 					}
 				}
@@ -379,7 +385,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				loadRegister(e, pEntity, registerFile, floorRegister, orientacion);
 
 			else if (e->Attribute("type") == std::string("SRMap"))
-				loadSRMap(pEntity, numMap, orientacion);
+				loadSRMap(pEntity, numMap, orientacion, calendar);
 
 			else if (e->Attribute("type") == std::string("Code"))
 				loadCode(pEntity, numDoorCode, code, orientacion);
@@ -437,9 +443,9 @@ void LevelParser::loadRegister(TiXmlElement * e, Entity* pEntity, int registerFi
 	}
 }
 
-void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacion)
+void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacion, int calendar)
 {
-	pEntity->getComponent<SRMap>()->load(numMap, orientacion);
+	pEntity->getComponent<SRMap>()->load(pEntity, numMap, orientacion, calendar);
 	Game::Instance()->stateMachine_.currentState()->getStageAux()->push_back(pEntity);
 }
 

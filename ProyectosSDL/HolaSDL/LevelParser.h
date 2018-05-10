@@ -40,7 +40,7 @@ private:
 
 	void loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy);
 	void loadRegister(TiXmlElement * e, Entity* pEntity, int registerFile, int floorRegister, std::string dir);
-	void loadSRMap(Entity* pEntity, int numMap, std::string orientacion);
+	void loadSRMap(Entity* pEntity, int numMap, std::string orientacion, int calendar);
 	void loadCode(Entity* pEntity, int numDoor, int code, std::string dir);
 
 	int m_tileSize;

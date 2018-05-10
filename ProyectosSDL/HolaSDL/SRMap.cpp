@@ -35,10 +35,14 @@ void SRMap::interact(Entity * e)
 	}
 }
 
-void SRMap::load(int numMap, std::string ori)
+void SRMap::load(Entity* e, int numMap, std::string ori, int calendar)
 {
 	ori_ = ori;
 	image_ = Game::Instance()->getResourceManager()->getTexture("SRMapa" + to_string(numMap));
+	if (!calendar)
+		e->addComponent(new MessageTrigger("'E' para ver el mapa", "'Square/X' para ver el mapa"));
+	else
+		e->addComponent(new MessageTrigger("'E' para ver el calendario", "'Square/X' para ver el calendario"));
 }
 
 void SRMap::render(Entity * o, Uint32 time)

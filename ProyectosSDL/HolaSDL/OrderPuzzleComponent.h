@@ -40,6 +40,9 @@ private:
 	OrderPuzzleController* pc = nullptr;
 	void renderMark(SDL_Rect DestRect);
 
+	bool WinSound = false;
+	bool desordenaSound = false;
+
 	coord PosPieces[5]{ { 200,200 },{ 400,200 },{ 600,200 },{ 800,200 },{ 1000,200 } };
 
 public:

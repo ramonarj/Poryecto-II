@@ -54,6 +54,9 @@ private:
 	void renderMark(SDL_Rect DestRect);
 	void compruebaAdyacencia(int i, int j);	
 
+	bool winSound = false;
+	bool desordenaSound = true;
+
 	coord PosCasillas[3][3]{ {{300,50},{300,250},{300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
 	coord markSlot;
 

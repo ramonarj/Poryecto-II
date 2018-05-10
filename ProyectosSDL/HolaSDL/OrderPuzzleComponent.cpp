@@ -13,8 +13,9 @@ OrderPuzzleComponent::OrderPuzzleComponent()
 		puzzle[i].currentPos = i;
 		puzzle[i].text = "vara" + to_string(i);
 	}
-
+	Game::Instance()->getResourceManager()->getMusic("SilenceSound")->play();
 	desordena();
+	desordenaSound = false;
 }
 
 
@@ -43,6 +44,7 @@ void OrderPuzzleComponent::switchPiece(int p1, int p2)
 		puzzle[p1].currentPos = puzzle[p2].currentPos;
 		puzzle[p2].text = aux.text;
 		puzzle[p2].currentPos = aux.currentPos;
+		if(!desordenaSound)Game::Instance()->getResourceManager()->getSound("SwitchTubeSound")->play();
 	}
 }
 
@@ -80,6 +82,9 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 	if (compruebaVictoria())
 	{
 		cout << "poh hemo' ganao' \n";
+		if (!WinSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
+		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
+		WinSound = true;
 	}
 }
 

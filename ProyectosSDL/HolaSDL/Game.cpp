@@ -269,8 +269,20 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("BeepSound", "sounds/Pitido.wav");
 	resourceManager_->addSound("DoorSound", "sounds/puerta.mp3");
 	resourceManager_->addSound("RepareSound", "sounds/repare.mp3");
-
-
+	resourceManager_->addSound("CrySound", "sounds/Cry.mp3");
+	resourceManager_->addSound("LaughSound", "sounds/Laugh.mp3");
+	resourceManager_->addSound("ScaryStepsSound", "sounds/ScarySteps.mp3");
+	resourceManager_->addSound("ErrorCodeSound", "sounds/ErrorCode.wav");
+	resourceManager_->addSound("Monster1HitSound", "sounds/Monster1Hit.wav");
+	resourceManager_->addSound("Monster1DeadSound", "sounds/Monster1Dead.mp3");
+	resourceManager_->addSound("MonsterEcoSound", "sounds/MonsterEco.wav");
+	resourceManager_->addSound("MonsterRoarSound", "sounds/MonsterRoar.wav");
+	resourceManager_->addSound("MonsterRoar2Sound", "sounds/MonsterRoar2.wav");
+	resourceManager_->addSound("SuccessSound", "sounds/PuzzlesSuccess.wav");
+	resourceManager_->addSound("SlideSound", "sounds/Slide.wav");
+	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.wav");
+	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
+	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
 }
 
 void Game::addResourcesFonts()

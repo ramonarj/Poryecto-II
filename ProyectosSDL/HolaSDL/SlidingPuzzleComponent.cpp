@@ -34,8 +34,9 @@ SlidingPuzzleComponent::SlidingPuzzleComponent()
 
 	markSlot.x = 0;
 	markSlot.y = 0;
-
+	Game::Instance()->getResourceManager()->getMusic("SilenceSound")->play();
 	desordena();
+	desordenaSound = false;
 }
 
 
@@ -48,6 +49,9 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 	if (combruebaVictoria())
 	{
 		cout << "winner winner chicken dinner\n";
+		if(!winSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
+		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
+		winSound = true;
 	}
 }
 
@@ -155,6 +159,7 @@ void SlidingPuzzleComponent::compruebaAdyacencia(int i, int j)
 		fichas[i - 1][j].currentPosX = aux.currentPosX;
 		fichas[i - 1][j].currentPosY = aux.currentPosY;
 		fichas[i-1][j].ghost = false;
+		if(!desordenaSound)Game::Instance()->getResourceManager()->getSound("SlideSound")->play();
 	}
 	else if (i + 1 <= 2 && fichas[i + 1][j].ghost)
 	{
@@ -167,6 +172,7 @@ void SlidingPuzzleComponent::compruebaAdyacencia(int i, int j)
 		fichas[i + 1][j].currentPosX = aux.currentPosX;
 		fichas[i + 1][j].currentPosY = aux.currentPosY;
 		fichas[i + 1][j].ghost = false;
+		if (!desordenaSound)Game::Instance()->getResourceManager()->getSound("SlideSound")->play();
 	}
 	else if (j - 1 >= 0 && fichas[i][j - 1].ghost)
 	{
@@ -179,6 +185,7 @@ void SlidingPuzzleComponent::compruebaAdyacencia(int i, int j)
 		fichas[i][j - 1].currentPosX = aux.currentPosX;
 		fichas[i][j - 1].currentPosY = aux.currentPosY;
 		fichas[i][j - 1].ghost = false;
+		if (!desordenaSound)Game::Instance()->getResourceManager()->getSound("SlideSound")->play();
 	}
 	else if (j + 1 <= 2 && fichas[i][j + 1].ghost)
 	{
@@ -191,6 +198,7 @@ void SlidingPuzzleComponent::compruebaAdyacencia(int i, int j)
 		fichas[i][j + 1].currentPosX = aux.currentPosX;
 		fichas[i][j + 1].currentPosY = aux.currentPosY;
 		fichas[i][j + 1].ghost = false;
+		if (!desordenaSound)Game::Instance()->getResourceManager()->getSound("SlideSound")->play();
 	}	
 }
 

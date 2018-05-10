@@ -192,6 +192,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
 	resourceManager_->addTexture("Craft", "images/Inventario/FullscreenVersions/Crafting_Full.png");
 	resourceManager_->addTexture("Electro3", "images/Inventario/electro3.png");
+	resourceManager_->addTexture("Electro3rojo", "images/Inventario/electro3rojo.png");
+	resourceManager_->addTexture("Electro3naranja", "images/Inventario/electro3naranja.png");
 
 	//Puzzle
 	resourceManager_->addTexture("SlidingPuzzle", "images/puzzle.jpg");

@@ -18,6 +18,7 @@
     <ClCompile Include="BaseControllerInput.cpp" />
     <ClCompile Include="BloodManager.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CarnePuaj.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="ChestObject.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="BaseControllerInput.h" />
     <ClInclude Include="BloodManager.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CarnePuaj.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Chest.h" />

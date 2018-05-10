@@ -20,6 +20,7 @@
 #include "SavePoint.h"
 #include "Code.h"
 #include "Countdown.h"
+#include "CarnePuaj.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -90,9 +91,10 @@ public:
 			i = new Weapon(type, itemTypetoString(type), "Has recogido un hacha");
 			break;
 		case FIRSTAID:
-			//i = new Movable();	//	DEBUG
 			i = new FirstAid(itemTypetoString(type), "Has recogido un botiquín");
+			//i = new Movable();	//	DEBUG
 			//i = new SlidingPuzzleItem();	//	DEGUG
+			//i = new CarnePuaj();	//	DEBUG
 			break;
 		case INSULATIONTEPE:
 			i = new InsulationTape(itemTypetoString(type), "Has recogido cinta aislante");
@@ -352,3 +354,14 @@ public:
 		return e;
 	}
 };
+
+//class CarnePuajCreator : public BaseCreator
+//{
+//public:
+//	Entity * createEntity() const
+//	{
+//		Entity* e = new Entity();
+//		e->addComponent(new CarnePuaj());
+//		return e;
+//	}
+//};

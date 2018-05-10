@@ -14,10 +14,25 @@ Inventory::Inventory()
 	description_.addComponent(new TextNote(Game::Instance(), "ItemDescriptions/StickDescription.txt", 710, 510, nullptr));
 	SDL_Color c{ 0,255,100,255 };
 	description_.getComponent<TextNote>()->setColor(c);
-	life.addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Electro3"), 200, true, 18, true));
-	life.setPosition(Vector2D(Game::Instance()->getWindowWidth() - 375, Game::Instance()->getWindowHeight() - 338));
-	life.setWidth(263);
-	life.setHeight(63);
+	
+	lifeGreen = new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Electro3"), 125, true, 18, true);
+	lifeOrange = new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Electro3naranja"), 90, true, 18, true);
+	lifeRed = new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture("Electro3rojo"), 50, true, 18, true);
+	lifeRed->setEnabled(false);
+	lifeOrange->setEnabled(false);
+	life.addComponent(lifeGreen);
+	life.addComponent(lifeRed);
+	life.addComponent(lifeOrange);
+	
+	//La vida aparece en todo el espacio del recuadro
+	/*life.setPosition(Vector2D(Game::Instance()->getWindowWidth() - 373, Game::Instance()->getWindowHeight() - 338));
+	life.setWidth(257);
+	life.setHeight(63);*/
+
+	//La vida aparece en el hueco vacio
+	life.setPosition(Vector2D(Game::Instance()->getWindowWidth() - 273, Game::Instance()->getWindowHeight() - 330));
+	life.setWidth(155);
+	life.setHeight(45);
 
 	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.75;
 	ritmoCardiaco2 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5;
@@ -30,26 +45,60 @@ Inventory::~Inventory()
 	for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
 	if (equiped != nullptr) delete equiped;
 	equiped = nullptr;
+	delete lifeGreen, lifeRed, lifeOrange;
+	lifeGreen = lifeRed = lifeOrange = nullptr;
 }
 
 void Inventory::update(Entity* e, Uint32 time)
 {
-	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco3)
-		life.getComponent<AnimationRenderObject>()->setCoolDown(50);
-	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco2)
-		life.getComponent<AnimationRenderObject>()->setCoolDown(100);
-	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco1)
-		life.getComponent<AnimationRenderObject>()->setCoolDown(150);
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco3) {
+		if (!lifeRed->isEnabled()) {
+			lifeGreen->setEnabled(false);
+			lifeRed->setEnabled(true);
+			lifeOrange->setEnabled(false);
+		}
+	}
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco2) {
+		if (!lifeOrange->isEnabled()) {
+			lifeOrange->setEnabled(true);
+			lifeGreen->setEnabled(false);
+			lifeRed->setEnabled(false);
+		}
+	}
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() < ritmoCardiaco1) {
+		if (!lifeGreen->isEnabled()) {
+			lifeGreen->setEnabled(true);
+			lifeRed->setEnabled(false);
+			lifeOrange->setEnabled(false);
+		}
+	}
 }
 
 void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 {
+	//DEBUG---------------------------------------------------------------------
 	if (event.type == SDL_KEYDOWN) {
 		if (event.key.keysym.sym == SDLK_n)
 			life.getComponent<AnimationRenderObject>()->setCoolDown(life.getComponent<AnimationRenderObject>()->getCoolDown() - 25);
 		else if (event.key.keysym.sym == SDLK_m)
 			life.getComponent<AnimationRenderObject>()->setCoolDown(life.getComponent<AnimationRenderObject>()->getCoolDown() + 25);
+		else if (event.key.keysym.sym == SDLK_x) {
+			lifeGreen->setEnabled(false);
+			lifeOrange->setEnabled(true);
+			lifeRed->setEnabled(false);
+		}
+		else if (event.key.keysym.sym == SDLK_c) {
+			lifeGreen->setEnabled(false);
+			lifeOrange->setEnabled(false);
+			lifeRed->setEnabled(true);
+		}
+		else if (event.key.keysym.sym == SDLK_z) {
+			lifeGreen->setEnabled(true);
+			lifeOrange->setEnabled(false);
+			lifeRed->setEnabled(false);
+		}
 	}
+	//DEBUG----------------------------------------------------------------------
 
 	if (cofre == nullptr)
 		cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>();

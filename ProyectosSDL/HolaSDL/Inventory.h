@@ -9,6 +9,7 @@
 
 using namespace std;
 
+class AnimationRenderObject;
 class Craft;
 class Inventory : public ItemContainer
 {
@@ -84,8 +85,10 @@ private:
 
 	Entity life = Entity(0, 0);
 
-	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;
-
+	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;	//1->lento, 2->medio, 3->rapido
+	AnimationRenderObject* lifeGreen = nullptr;
+	AnimationRenderObject* lifeRed = nullptr;
+	AnimationRenderObject* lifeOrange = nullptr;
 };
 
 

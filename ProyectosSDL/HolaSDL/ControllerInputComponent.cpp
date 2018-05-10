@@ -202,12 +202,12 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			m_buttonStates[0][event.jbutton.button] = false;
 		}
 
-
+		alphaFade_ = Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade();
 		
 		if (inv == nullptr)
 			inv = Game::Instance()->getEntityWithComponent<Inventory>();
 
-		if (!o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive()) {
+		if (!o->getComponent<Player>()->getAwakening() && o->getComponent<Character>()->isAlive() && alphaFade_==0) {
 
 			if (inv != nullptr) {
 				if (m_joystickValues[0].first->getX() == -1 && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive()) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS

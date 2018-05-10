@@ -49,5 +49,6 @@ private:
 	Uint32 Timer_ = 0;
 	bool timerSet = false;
 	int dirBlock_ = 0;
+	Uint8 alphaFade_;
 };
 

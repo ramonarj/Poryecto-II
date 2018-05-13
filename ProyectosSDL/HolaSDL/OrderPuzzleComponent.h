@@ -45,8 +45,10 @@ private:
 
 	coord PosPieces[5]{ { 200,200 },{ 400,200 },{ 600,200 },{ 800,200 },{ 1000,200 } };
 
+	Entity* puzzleEntity_;
+
 public:
-	OrderPuzzleComponent();
+	OrderPuzzleComponent(Entity* puzzleEntity);
 	~OrderPuzzleComponent();
 
 	virtual void update(Entity* e, Uint32 time);

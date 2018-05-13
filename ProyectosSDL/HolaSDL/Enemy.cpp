@@ -270,11 +270,23 @@ void Enemy::load(int numEnemy, int numEnemyFile)
 	numFile_ = numEnemyFile;
 	Vector2D vel;
 	if (numEnemy == 1)
+	{
 		vel.set(Vector2D(1.0, 0.0));
+		damage = 4;
+		maxLife_ = life = 3;
+	}
 	else if (numEnemy == 2)
+	{
 		vel.set(Vector2D(2.0, 0.0));
+		damage = 2;
+		maxLife_ = life = 3;
+	}
 	else if (numEnemy == 3)
+	{
 		vel.set(Vector2D(3.0, 0.0));
+		damage = 1;
+		maxLife_ = life = 2;
+	}
 
 	velMag = vel.magnitude();
 }

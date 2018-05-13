@@ -34,8 +34,6 @@ void SlidingPuzzle::update(Uint32 time)
 void SlidingPuzzle::handleInput(Uint32 time, SDL_Event & event)
 {
 	GameState::handleInput(time, event);
-	if (event.type == SDL_KEYDOWN)	//DEBUG
-		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());	//DEBUG
 }
 
 SlidingPuzzle::~SlidingPuzzle()

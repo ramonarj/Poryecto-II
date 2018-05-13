@@ -1,9 +1,10 @@
 #include "OrderPuzzleComponent.h"
-
 #include "OrderPuzzleController.h"
+#include "Countdown.h"
+#include "Order.h"
 
 
-OrderPuzzleComponent::OrderPuzzleComponent()
+OrderPuzzleComponent::OrderPuzzleComponent(Entity* puzzleEntity) : puzzleEntity_(puzzleEntity)
 {
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
@@ -85,6 +86,9 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 		if (!WinSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		WinSound = true;
+		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+		puzzleEntity_->getComponent<Countdown>()->setActiveCountdown(true);
+		puzzleEntity_->getComponent<Order>()->setPuzzleActive(false);
 	}
 }
 

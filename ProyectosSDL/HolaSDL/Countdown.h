@@ -12,6 +12,9 @@ public:
 	virtual void update(Entity* e, Uint32 time);
 	void load(int active, int countdown);
 
+	bool getActiveCountdown() { return activeCountdown_; };
+	void setActiveCountdown(bool b) { activeCountdown_ = b; };
+
 	CountdownManager* countdownManager_;
 
 private:

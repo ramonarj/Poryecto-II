@@ -1,4 +1,5 @@
 #include "GameStateMachine.h"
+#include "Game.h"
 
 GameStateMachine::GameStateMachine() {
 }

@@ -130,6 +130,8 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("Code", new CodeCreator());
 	gameObjectFactory->registerType("Countdown", new CountdownCreator());
 	gameObjectFactory->registerType("MessageInteractible", new MessageInteractibleCreator());
+	gameObjectFactory->registerType("Slide", new SlideCreator());
+	gameObjectFactory->registerType("Order", new OrderCreator());
 	registerTypeItem();
 }
 
@@ -324,7 +326,7 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
 	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
-	//gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
+	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
 	//gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
 	//gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));

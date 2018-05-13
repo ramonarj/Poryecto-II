@@ -1,5 +1,7 @@
 #include "OrderPuzzle.h"
 #include "Game.h"
+#include "Countdown.h"
+#include "Order.h"
 
 unique_ptr<OrderPuzzle> OrderPuzzle::s_pInstance = nullptr;
 
@@ -19,8 +21,20 @@ void OrderPuzzle::startState()
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
 	cursor_->addComponent(new MouseInputComponent());
 
+	list<Entity*>::iterator it;
+	bool foundPuzzle = false;
+	Entity* puzzleEntity = nullptr;
+	for (it = orderPuzzles_.begin(); it != orderPuzzles_.end() && !foundPuzzle; it++)
+	{
+		if ((*it)->getComponent<Order>()->getPuzzleActive())
+		{
+			foundPuzzle = true;
+			puzzleEntity = (*it);
+		}
+	}
+
 	Entity* orderpuzzle = new Entity(0, 0);
-	orderpuzzle->addComponent(new OrderPuzzleComponent());
+	orderpuzzle->addComponent(new OrderPuzzleComponent(puzzleEntity));
 	orderpuzzle->addComponent(new OrderPuzzleController());
 	stage_.push_back(orderpuzzle);
 

@@ -76,6 +76,7 @@
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="NumberKey.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrderPuzzle.cpp" />
     <ClCompile Include="OrderPuzzleComponent.cpp" />
     <ClCompile Include="OrderPuzzleController.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="SecurityCamera.cpp" />
     <ClCompile Include="Sign.cpp" />
     <ClCompile Include="SkeletonRenderer.cpp" />
+    <ClCompile Include="Slide.cpp" />
     <ClCompile Include="SlidingPuzzle.cpp" />
     <ClCompile Include="SlidingPuzzleComponent.cpp" />
     <ClCompile Include="SlidingPuzzleController.cpp" />
@@ -180,6 +182,7 @@
     <ClInclude Include="Music.h" />
     <ClInclude Include="NumberKey.h" />
     <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="OrderPuzzle.h" />
     <ClInclude Include="OrderPuzzleComponent.h" />
     <ClInclude Include="OrderPuzzleController.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="SecurityCamera.h" />
     <ClInclude Include="Sign.h" />
     <ClInclude Include="SkeletonRenderer.h" />
+    <ClInclude Include="Slide.h" />
     <ClInclude Include="SlidingPuzzle.h" />
     <ClInclude Include="SlidingPuzzleComponent.h" />
     <ClInclude Include="SlidingPuzzleController.h" />

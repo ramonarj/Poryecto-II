@@ -1,5 +1,6 @@
 #include "FadeManager.h"
 #include "Game.h"
+#include "CountdownManager.h"
 
 
 FadeManager::FadeManager() : Component(), fade_(nullptr), alpha_(0), difAlpha_(0), finalFade_(false), messageRenderer_(nullptr),
@@ -76,6 +77,7 @@ void FadeManager::setFinalFade(bool b, Uint8 dif, Uint8 difAlphaSentence)
 	finalFade_ = b;
 	setDoFade(b, dif);
 	sentenceFade_ = b;
+	Game::Instance()->getEntityWithComponent<CountdownManager>()->getComponent<CountdownManager>()->setCountdown(false);
 	difAlphaSentence_ = difAlphaSentence;
 	if (finalFade_) 
 	{

@@ -8,6 +8,7 @@ class KeypadState : public GameState
 private:
 	KeypadState();
 	static unique_ptr<KeypadState> s_pInstance;
+
 public:
 	~KeypadState();
 	static KeypadState* Instance()

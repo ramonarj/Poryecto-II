@@ -25,6 +25,8 @@
 #include "CarnePuajAnimationRenderer.h"
 #include "Interactible.h"
 #include "Sign.h"
+#include "Slide.h"
+#include "Order.h"
 
 class PlayerCreator : public BaseCreator
 {
@@ -335,19 +337,6 @@ public:
 	}
 };
 
-class CodeCreator : public BaseCreator
-{
-public:
-	Entity * createEntity() const
-	{
-		Entity* e = new Entity();
-		e->addComponent(new Code());
-		e->addComponent(new MessageTrigger("'E' para escribir c�digo", "'Square/X' para escribir c�digo"));
-		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
-		return e;
-	}
-};
-
 class CountdownCreator : public BaseCreator
 {
 public:
@@ -377,6 +366,48 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Sign());
 		e->addComponent(new MessageTrigger("'E' para ver el cartel", "'Square/X' para ver el cartel"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+
+//PUZLES
+class CodeCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Code());
+		e->addComponent(new MessageTrigger("'E' para introducir codigo", "'Square/X' para introducir codigo"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class SlideCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Slide());
+		e->addComponent(new MessageTrigger("'E' para resolver el puzle", "'Square/X' para resolver el puzle"));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		return e;
+	}
+};
+
+class OrderCreator : public BaseCreator
+{
+public:
+	Entity * createEntity() const
+	{
+		Entity* e = new Entity();
+		e->addComponent(new Order());
+		e->addComponent(new Countdown());
+		e->addComponent(new MessageTrigger("'E' para resolver recolocar los cables", "'Square/X' para recolocar los cables"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

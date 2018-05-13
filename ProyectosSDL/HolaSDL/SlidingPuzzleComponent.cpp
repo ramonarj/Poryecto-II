@@ -52,6 +52,7 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 		if(!winSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		winSound = true;
+		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 	}
 }
 

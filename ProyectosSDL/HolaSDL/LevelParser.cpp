@@ -21,6 +21,7 @@
 #include "Countdown.h"
 #include "Sign.h"
 #include "DoorAnimation.h"
+#include "OrderPuzzle.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -214,7 +215,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 	ObjectLayer* pObjectLayer = new ObjectLayer();
 	//std::cout << pObjectElement->FirstChildElement()->Value();
 
-	int staticEntity;
+	int staticEntity = 1;
 	int collidableDoor;
 	int floorRegister;
 
@@ -398,11 +399,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Code"))
 				loadCode(pEntity, numDoorCode, code, orientacion);
 
-			else if (e->Attribute("type") == std::string("Countdown"))
-				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
-
-			else if (e->Attribute("type") == std::string("Countdown"))
-				pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
+			else if (e->Attribute("type") == std::string("Countdown") || e->Attribute("type") == std::string("Order"))
+				loadCountdown(e, pEntity, activeCountdown, countdown);
 
 			else if (e->Attribute("type") == std::string("MessageInteractible"))
 				loadSign(pEntity, numSign, orientacion);
@@ -482,6 +480,13 @@ void LevelParser::loadCode(Entity * pEntity, int numDoor, int code, std::string 
 {
 	pEntity->getComponent<Code>()->load(numDoor, code, dir);
 	KeypadState::Instance()->getCodes()->push_back(pEntity);
+}
+
+void LevelParser::loadCountdown(TiXmlElement * e, Entity* pEntity, int activeCountdown, int countdown)
+{
+	pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
+	if (e->Attribute("type") == std::string("Order"))
+		OrderPuzzle::Instance()->getOrderPuzzles()->push_back(pEntity);
 }
 
 void LevelParser::loadSign(Entity * pEntity, int numSign, std::string dir)

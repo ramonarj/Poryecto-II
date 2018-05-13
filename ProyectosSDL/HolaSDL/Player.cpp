@@ -102,7 +102,17 @@ void Player::startTeleport(Entity* e, int door, string ori)
 	numDoorToTeleport_ = door;
 	doorToTeleport_ = e;
 
+	if (SDL_GetTicks() > SoundTime + 2000) sound = false;
+
+	if (!sound) {
+		Game::Instance()->getResourceManager()->getSound("DoorSound")->play();
+		SoundTime = SDL_GetTicks();
+		sound = true;
+	}
+
 	Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->setDoFade(true, 20);
+
+	
 
 	if (ori == "norte")oriDoorToTeleport_ = "sur";
 	else if (ori == "sur")oriDoorToTeleport_ = "norte";

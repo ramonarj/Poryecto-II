@@ -52,13 +52,17 @@ public:
 	virtual ~Player();
 private:
 	virtual void move(Entity* o);
-
+	
 	bool punch = false;
 	bool awakening_ = true;
 	double cureIndex_ = 0.6;
 	int WeaponId;
 
 	string filename;
+
+	//DoorSound
+	Uint32 SoundTime = 0;
+	bool sound = false;
 
 	//Cooldown del ataque
 	bool coolDown_;

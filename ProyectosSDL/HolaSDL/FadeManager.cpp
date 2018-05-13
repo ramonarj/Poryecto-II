@@ -69,6 +69,8 @@ void FadeManager::setDoFade(bool b, Uint8 dif)
 	difAlpha_ = dif;
 }
 
+
+
 void FadeManager::setFinalFade(bool b, Uint8 dif, Uint8 difAlphaSentence)
 {
 	finalFade_ = b;

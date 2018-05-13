@@ -22,6 +22,7 @@ public:
 	void setFinalFade(bool b, Uint8 dif, Uint8 difAlphaSentence);
 	
 	Uint8 getAlphaFade() { return alpha_; };
+	bool getFinalFade() { return finalFade_; };
 
 	void finalMessage(Entity* e, Uint32 time);
 

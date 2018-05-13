@@ -16,7 +16,6 @@ void Enemy::revive()
 
 void Enemy::punch(Entity* o)
 {
-	
 	SDL_Rect playerRect = player->getRect();
 	SDL_Rect enemyRect = o->getRect();
 	//chaseVector_ = { player->getPosition().getX() - myself->getPosition().getX(), player->getPosition().getY() - myself->getPosition().getY() };
@@ -158,6 +157,7 @@ void Enemy::checkCollisions(Entity* o)
 			Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->attack();
 
 			effectDone = true;
+		
 		}
 		//�l ataca solo si está vivo y si lo está el player
 		else if (isAlive() && player->getComponent<Character>()->isAlive() && !reloading && !player->getComponent<Player>()->getInvincible())

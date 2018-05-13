@@ -54,7 +54,47 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 			actualTime_ = time;
 		}
 
+
+		if(enemyType_ == 1)
+		{
+			if ((actualFrameMoving_ == 1 || actualFrameMoving_ == 5) && !soundActive_)
+			{
+				soundActive_ = true;
+				Game::Instance()->getResourceManager()->getSound("Monster1StepSound")->play();
+			}
+			if ((actualFrameMoving_ != 1 && actualFrameMoving_ != 5))
+			{
+				soundActive_ = false;
+			}
+		}
+		else if (enemyType_ == 2) 
+		{
+			if ((actualFrameMoving_ == 5 || actualFrameMoving_ == 11) && !soundActive_)
+			{
+				soundActive_ = true;
+				Game::Instance()->getResourceManager()->getSound("Monster2StepSound")->play();
+			}
+			if ((actualFrameMoving_ != 5 && actualFrameMoving_ != 11))
+			{
+				soundActive_ = false;
+			}
+		}
+		else if(enemyType_ == 3)
+		{
+			if ((actualFrameMoving_ == 6 || actualFrameMoving_ == 12) && !soundActive_)
+			{
+				soundActive_ = true;
+				Game::Instance()->getResourceManager()->getSound("Monster3StepSound")->play();
+			}
+			if ((actualFrameMoving_ != 6 && actualFrameMoving_ != 12))
+			{
+				soundActive_ = false;
+			}
+		}
+
+
 		moving_->render(Game::Instance()->getRenderer(), dest, &clip);
+
 
 	}
 	//ATACANDO
@@ -125,12 +165,23 @@ void EnemyAnimationComponent::render(Entity* o, Uint32 time) {
 		}
 
 		diying_->render(Game::Instance()->getRenderer(), dest, &clip);
+		
+		if (!deadSound_) {
+			if (enemyType_ == 1)
+				Game::Instance()->getResourceManager()->getSound("Monster1DeadSound")->play();	
+			else if (enemyType_ == 2)
+				Game::Instance()->getResourceManager()->getSound("Monster2DeadSound")->play();
+			else if (enemyType_ == 3)
+				Game::Instance()->getResourceManager()->getSound("Monster3DeadSound")->play();
+			deadSound_ = true;
+		}
+		
 
 	}
 
 	//RESUCITANDO
 	else if ((!o->getComponent<Character>()->isAlive()) && o->getComponent<Enemy>()->getResurrecting()) {
-
+		deadSound_ = false;
 		if (actualFrameMoving_ != 0)
 			actualFrameMoving_ = 0;
 		if (actualFrameIddle_ != 0)

@@ -14,6 +14,8 @@ public:
 	virtual void render(Entity* o, Uint32 time);
 	virtual void update(Entity* o, Uint32 time) {};
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event) {};
+
+	int getType() { return enemyType_; };
 	Vector2D getLastDir() { return lastDir; };
 
 	//void setFramesToZero() { attackingFrames_ = 0; };
@@ -56,5 +58,7 @@ private:
 	int dirIddle(Entity* o);
 
 	bool attackInProgress_ = false;
+	bool soundActive_ = false;
+	bool deadSound_ = false;
 };
 

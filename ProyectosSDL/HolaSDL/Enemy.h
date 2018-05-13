@@ -30,6 +30,8 @@ public:
 	virtual void saveToFile(Entity* o);
 	virtual void loadToFile(Entity* o);
 
+	bool playerInRange(Entity * o);
+
 	void load(int numEnemy, int numEnemyFile);
 
 	virtual ~Enemy();
@@ -56,7 +58,7 @@ private:
 	Uint32 deadTime_;
 
 	virtual void move(Entity* o);
-	bool playerInRange(Entity * o);
+	
 	void checkCollisions(Entity * o);
 
 	void bringMeToLife(Uint32 time);

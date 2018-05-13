@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "ImageRenderer.h"
 #include "AnimationRenderObject.h"
+#include "DoorAnimation.h"
 #include "Resources.h"
 #include "SkeletonRenderer.h"
 #include "Door.h"
@@ -203,6 +204,7 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new MessageTrigger("'E' para abrir", "'Square/X' para abrir"));
 		e->addComponent(new Door(e));
+		e->addComponent(new DoorAnimation(e));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "PlayState.h"
 #include "MessageTrigger.h"
+#include "DoorAnimation.h"
 
 Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
 	compInvent(nullptr), itemKey(nullptr), doorNum_(0), needKey_(false), 
@@ -21,7 +22,6 @@ void Door::interact(Entity * e)
 		if (needKey_)
 		{
 			setNeedKey();
-		
 		}
 		else
 		{
@@ -33,11 +33,12 @@ void Door::interact(Entity * e)
 	}
 }
 
-void Door::load(int numero, string ori, int needKey, int collidableDoor, string zoneName)
+void Door::load(int numero, string ori, int needKey, int collidableDoor, string zoneName, bool ancha)
 {
 	doorNum_ = numero;
 	ori_ = ori;
 	needKey_ = needKey;
+	ancha_ = ancha;
 	if (needKey_)
 		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas una llave");
 	collidableDoor_ = collidableDoor;
@@ -156,8 +157,9 @@ void Door::openDoor()
 		Door* doorComp = (*it)->getComponent<Door>();
 
 		if (doorComp->getNeedKey()) {
-			if (doorNum_ == doorComp->getDoorNum())
+			if (doorNum_ == doorComp->getDoorNum()) {
 				doorComp->keyFalse();
+			}
 		}
 	}
 }

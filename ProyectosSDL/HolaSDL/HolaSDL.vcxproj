@@ -33,6 +33,7 @@
     <ClCompile Include="Craft.cpp" />
     <ClCompile Include="CraftingTable.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="DoorAnimation.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EnemyAnimationComponent.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Craft.h" />
     <ClInclude Include="CraftingTable.h" />
     <ClInclude Include="Door.h" />
+    <ClInclude Include="DoorAnimation.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EnemyAnimationComponent.h" />

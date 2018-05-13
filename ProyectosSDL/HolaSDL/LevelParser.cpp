@@ -20,6 +20,7 @@
 #include "KeypadState.h"
 #include "Countdown.h"
 #include "Sign.h"
+#include "DoorAnimation.h"
 
 
 Level* LevelParser::parseLevel(const char *levelFile)
@@ -380,7 +381,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 				loadCharacters(e, pEntity, life, damage, numEnemy);
 
 			else if (e->Attribute("type") == std::string("Puerta"))
-				loadDoors(pEntity, numDoor, orientacion, needKey, collidableDoor, zoneName);
+				loadDoors(pEntity, numDoor, orientacion, needKey, collidableDoor, zoneName,width,height);
 
 			else if (e->Attribute("type") == std::string("Key"))
 				pEntity->getComponent<Key>()->load(numKey, keyName);
@@ -437,9 +438,19 @@ void LevelParser::loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int
 	Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(pEntity);
 }
 
-void LevelParser::loadDoors(Entity* pEntity, int numDoor, std::string orientacion, int needKey, int collidableDoor, std::string zoneName)
+void LevelParser::loadDoors(Entity* pEntity, int numDoor, std::string orientacion, int needKey, int collidableDoor, std::string zoneName, int width, int height)
 {
-	pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName);
+	bool ancha = false;
+	if (width == height)
+		ancha = true;
+
+	pEntity->getComponent<Door>()->load(numDoor, orientacion, needKey, collidableDoor, zoneName, ancha);
+
+	if (collidableDoor == 0)
+		pEntity->getComponent<DoorAnimation>()->load(orientacion, ancha);
+	else
+		pEntity->delComponent(pEntity->getComponent<DoorAnimation>());
+
 	Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(pEntity);
 }
 

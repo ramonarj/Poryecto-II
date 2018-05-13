@@ -97,7 +97,11 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="CarnePuaj.cpp" />
     <ClCompile Include="Sign.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="CarnePuajAnimationRenderer.cpp" />
+=======
+    <ClCompile Include="DoorAnimation.cpp" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -197,7 +201,11 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="CarnePuaj.h" />
     <ClInclude Include="Sign.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="CarnePuajAnimationRenderer.h" />
+=======
+    <ClInclude Include="DoorAnimation.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

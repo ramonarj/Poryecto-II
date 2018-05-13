@@ -244,11 +244,19 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Numbers", "images/Keypad/numbers.png");
 	resourceManager_->addTexture("Background", "images/Keypad/background.png");
 
+	//Puertas
+	resourceManager_->addTexture("PuertaAbajo", "images/AnimPuertas/PuertaAbajo.png");
+	resourceManager_->addTexture("PuertaArriba", "images/AnimPuertas/PuertaArriba.png");
+	resourceManager_->addTexture("PuertaDerecha", "images/AnimPuertas/PuertaDerecha.png");
+	resourceManager_->addTexture("PuertaIzquierda", "images/AnimPuertas/PuertaIzquierda.png");
+	resourceManager_->addTexture("PuertaAbajoEstrecha", "images/AnimPuertas/PuertaAbajoEstrecha.png");
+	resourceManager_->addTexture("PuertaArribaEstrecha", "images/AnimPuertas/PuertaArribaEstrecha.png");
+	resourceManager_->addTexture("PuertaDerechaEstrecha", "images/AnimPuertas/PuertaDerechaEstrecha.png");
+	resourceManager_->addTexture("PuertaIzquierdaEstrecha", "images/AnimPuertas/PuertaIzquierdaEstrecha.png");
+	resourceManager_->addTexture("PuertaEmergencia", "images/AnimPuertas/PuertaEmergencia.png");
 	//CarnePuaj
 	resourceManager_->addTexture("CarnePuaj", "images/CarnePuaj/carnePuaj.png");
 	resourceManager_->addTexture("CarnePuajDesroyed", "images/CarnePuaj/carnePuajDestruyendose.png");
-
-
 }
 
 void Game::addResourcesMusic()

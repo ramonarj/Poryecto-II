@@ -189,7 +189,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Television", "images/Items/television.png");
 	resourceManager_->addTexture("Register1", "images/Items/register1.png");
 	resourceManager_->addTexture("BookShelving", "images/Items/bookShelving.png");
-	resourceManager_->addTexture("Chip", "images/Items/chip.png");
+	resourceManager_->addTexture("PiecePuzzle", "images/Items/chip.png");
+
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");
@@ -326,8 +327,9 @@ void Game::registerTypeItem() {
 	gameObjectFactory->registerType("Bandages", new ItemCreator(ItemType::BANDAGES));
 	gameObjectFactory->registerType("GenericChemical", new ItemCreator(ItemType::GENERICCHEMICAL));
 	gameObjectFactory->registerType("Biocide", new ItemCreator(ItemType::BIOCIDE));
-	gameObjectFactory->registerType("Piecepuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
+	gameObjectFactory->registerType("PiecePuzzle", new ItemCreator(ItemType::PIECEPUZZLE));
 	gameObjectFactory->registerType("Insulationtape", new ItemCreator(ItemType::INSULATIONTEPE));
+	gameObjectFactory->registerType("Circuit", new ItemCreator(ItemType::CIRCUIT));
 	//gameObjectFactory->registerType("Photo", new ItemCreator(ItemType::PHOTO));
 	//gameObjectFactory->registerType("Masck", new ItemCreator(ItemType::MASCK));
 }

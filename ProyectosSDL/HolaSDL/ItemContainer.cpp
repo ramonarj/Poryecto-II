@@ -107,7 +107,10 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	}
 	else if (inventory[i]->getComponent<Key>())
 	{
-		resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
+		if (inventory[i]->getName() == "Key")
+			resource->getTexture("Key")->render(pRenderer, DestRect, &clip);
+		else if (inventory[i]->getName() == "Circuit")
+			resource->getTexture("Circuit")->render(pRenderer, DestRect, &clip);
 	}
 	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::ACID)
 	{
@@ -131,7 +134,7 @@ void ItemContainer::renderItem(int i, Entity * e, SDL_Rect DestRect)
 	}
 	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::PIECEPUZZLE)
 	{
-		resource->getTexture("Circuit")->render(pRenderer, DestRect, &clip);
+		resource->getTexture("PiecePuzzle")->render(pRenderer, DestRect, &clip);
 	}
 	else if (inventory[i]->getComponent<Item>()->getType() == ItemType::CARD)
 	{

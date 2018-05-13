@@ -384,7 +384,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("Puerta"))
 				loadDoors(pEntity, numDoor, orientacion, needKey, collidableDoor, zoneName,width,height);
 
-			else if (e->Attribute("type") == std::string("Key"))
+			else if (e->Attribute("type") == std::string("Key") || e->Attribute("type") == std::string("Circuit"))
 				pEntity->getComponent<Key>()->load(numKey, keyName);
 
 			else if (e->Attribute("type") == std::string("Camera"))

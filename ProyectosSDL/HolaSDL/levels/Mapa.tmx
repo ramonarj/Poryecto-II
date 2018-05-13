@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="546">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="555">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -303,11 +303,6 @@
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
-  <object id="421" name="Countdown" type="Countdown" x="8600" y="7340" width="40" height="40">
-   <properties>
-    <property name="activeCountdown" type="int" value="0"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="CodePuzzle" visible="0">
   <properties>
@@ -1259,15 +1254,6 @@
     <property name="zoneName" value="ZONA DE EXTRACCIONES"/>
    </properties>
   </object>
-  <object id="422" name="Key" type="Key" x="8609.75" y="7392.83" width="20" height="27.3333">
-   <properties>
-    <property name="keyName" value="  Llave de la Zona de Extracciones."/>
-    <property name="numKey" type="int" value="6"/>
-    <property name="textureHeight" type="int" value="20"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="20"/>
-   </properties>
-  </object>
   <object id="443" name="Puerta" type="Puerta" x="2930" y="1480" width="40" height="40">
    <properties>
     <property name="dir" value="este"/>
@@ -1843,42 +1829,42 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="397" name="Firstaid" type="Firstaid" x="2434.5" y="1614.5" width="20.3333" height="27.6667">
+  <object id="397" name="Firstaid" type="Firstaid" x="2190.5" y="1227.83" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="398" name="Alcohol" type="Alcohol" x="2384.33" y="1616" width="20.3333" height="27.6667">
+  <object id="398" name="Alcohol" type="Alcohol" x="2140.33" y="1229.33" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="399" name="Bandages" type="Bandages" x="2475.33" y="1614.17" width="20.3333" height="27.6667">
+  <object id="399" name="Bandages" type="Bandages" x="2231.33" y="1227.5" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="400" name="GenericChemical" type="GenericChemical" x="2522.83" y="1614.17" width="20.3333" height="27.6667">
+  <object id="400" name="GenericChemical" type="GenericChemical" x="2278.83" y="1227.5" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="401" name="Biocide" type="Biocide" x="2569.33" y="1615.17" width="20.3333" height="27.6667">
+  <object id="401" name="Biocide" type="Biocide" x="2325.33" y="1228.5" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="403" name="Insulationtape" type="Insulationtape" x="2613.83" y="1614.67" width="20.3333" height="27.6667">
+  <object id="403" name="Insulationtape" type="Insulationtape" x="2369.83" y="1228" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
@@ -2018,33 +2004,40 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
+  <object id="554" name="PiecePuzzle" type="PiecePuzzle" x="2416.83" y="1226.17" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Weapons" visible="0">
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
-  <object id="392" name="Pipe" type="Pipe" x="2588.02" y="1945.47" width="24" height="34">
+  <object id="392" name="Pipe" type="Pipe" x="2772.02" y="1226.8" width="24" height="34">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="393" name="Stick" type="Stick" x="2524.68" y="1946.47" width="24" height="34">
+  <object id="393" name="Stick" type="Stick" x="2708.68" y="1227.8" width="24" height="34">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="394" name="Crowbar" type="Crowbar" x="2455.01" y="1943.93" width="24" height="34">
+  <object id="394" name="Crowbar" type="Crowbar" x="2639.01" y="1225.26" width="24" height="34">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="395" name="Axe" type="Axe" x="2395.02" y="1946.47" width="23" height="27">
+  <object id="395" name="Axe" type="Axe" x="2579.02" y="1227.8" width="23" height="27">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
@@ -2460,7 +2453,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1645.33" y="9491.33" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1420" y="1560" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

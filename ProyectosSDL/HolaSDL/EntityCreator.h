@@ -115,7 +115,7 @@ public:
 			i = new Item(BANDAGES, "Bandages", "Has recogido unas vendas");
 			break;
 		case GENERICCHEMICAL:
-			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un qu�mico gen�rico");
+			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un quimico generico");
 			break;
 		case ACID:
 			i = new Item(ACID, "Acid", "Has recogido acido");
@@ -124,7 +124,10 @@ public:
 			i = new Item(BIOCIDE, "Biocide", "Has recogido biocida");
 			break;
 		case PIECEPUZZLE:
-			i = new Item(PIECEPUZZLE, "PiecePuzzle", "Has recogido una pieza de un puzle");
+			i = new Item(PIECEPUZZLE, "PiecePuzzle", "Has recogido un chip");
+			break;
+		case CIRCUIT:
+			i = new Key(itemTypetoString(type), "Has recogido un circuito");
 			break;
 		default:
 			i = new Item(type, itemTypetoString(type));
@@ -187,6 +190,9 @@ public:
 			break;
 		case MASK:
 			str = "Mask";
+			break;
+		case CIRCUIT:
+			str = "Circuit";
 			break;
 		default:
 			str = "";

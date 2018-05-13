@@ -351,8 +351,10 @@ void Craft::craft()
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
 			inv->objectCrafted(ItemType::PIECEPUZZLE, ItemType::PIECEPUZZLE);
 			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
-			Entity* e = new Entity(0, 0);
-			e->addComponent((new Item(ItemType::CARD, "CardDescription"))); //cambiar
+			Entity * e = GameObjectFactory::Instance()->create("Circuit");
+			e->getComponent<Key>()->load(6, "Circuito que abre los laboratorios.");
+			e->load(0, 0, 0, 0, 1, "Circuit", "");
+			//e->addComponent((new Item(ItemType::CARD, "CardDescription"))); //cambiar
 			inv->addItem(e);
 		}
 		break;

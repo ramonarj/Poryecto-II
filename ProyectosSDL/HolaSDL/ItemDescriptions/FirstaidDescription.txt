@@ -1,4 +1,4 @@
-             BOTIQUIN
+             BOTIQUÍN
 Recupera un porcentaje de tu vida.
 
 Usos: 1

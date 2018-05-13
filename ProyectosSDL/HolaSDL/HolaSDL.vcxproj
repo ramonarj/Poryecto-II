@@ -19,6 +19,7 @@
     <ClCompile Include="BloodManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CarnePuaj.cpp" />
+    <ClCompile Include="CarnePuajAnimationRenderer.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="ChestObject.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="BloodManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CarnePuaj.h" />
+    <ClInclude Include="CarnePuajAnimationRenderer.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Chest.h" />
@@ -217,7 +219,7 @@
     <ProjectGuid>{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}</ProjectGuid>
     <RootNamespace>HolaSDL</RootNamespace>
     <ProjectName>HolaSDL</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

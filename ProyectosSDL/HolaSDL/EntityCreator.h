@@ -21,6 +21,7 @@
 #include "Code.h"
 #include "Countdown.h"
 #include "CarnePuaj.h"
+#include "CarnePuajAnimationRenderer.h"
 #include "Interactible.h"
 #include "Sign.h"
 
@@ -363,6 +364,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new CarnePuaj());
+		e->addComponent(new CarnePuajAnimationRenderer(Game::Instance()->getResourceManager()->getTexture("CarnePuaj"), Game::Instance()->getResourceManager()->getTexture("CarnePuajDestroyed"), 100, 4, 8);
 		return e;
 	}
 };

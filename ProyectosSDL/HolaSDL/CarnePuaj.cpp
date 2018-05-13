@@ -43,7 +43,7 @@ void CarnePuaj::update(Entity* e, Uint32 time) {
 		}
 		else {
 			acid_ = false;
-			e->getComponent<MessageTrigger>()->setMessage("Es necesario un potente acido para quemar la masa carne");
+			e->getComponent<MessageTrigger>()->setMessage("Es necesario un potente acido para quemar la masa de carne");
 		}
 	}
 }

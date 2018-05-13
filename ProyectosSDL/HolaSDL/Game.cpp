@@ -244,6 +244,11 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Numbers", "images/Keypad/numbers.png");
 	resourceManager_->addTexture("Background", "images/Keypad/background.png");
 
+	//CarnePuaj
+	resourceManager_->addTexture("CarnePuaj", "images/CarnePuaj/carnePuaj.png");
+	resourceManager_->addTexture("CarnePuajDesroyed", "images/CarnePuaj/carnePuajDestruyendose.png");
+
+
 }
 
 void Game::addResourcesMusic()

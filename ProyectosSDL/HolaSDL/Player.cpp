@@ -102,7 +102,7 @@ void Player::startTeleport(Entity* e, int door, string ori)
 	numDoorToTeleport_ = door;
 	doorToTeleport_ = e;
 
-	if (SDL_GetTicks() > SoundTime + 2000) sound = false;
+	if (SDL_GetTicks() > SoundTime + 1000) sound = false;
 
 	if (!sound) {
 		Game::Instance()->getResourceManager()->getSound("DoorSound")->play();

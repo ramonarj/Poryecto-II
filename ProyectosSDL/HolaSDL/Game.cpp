@@ -187,7 +187,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Television", "images/Items/television.png");
 	resourceManager_->addTexture("Register1", "images/Items/register1.png");
 	resourceManager_->addTexture("BookShelving", "images/Items/bookShelving.png");
-
+	resourceManager_->addTexture("Chip", "images/Items/chip.png");
 	//Inventory
 	resourceManager_->addTexture("Inventory", "images/Inventario/FullscreenVersions/Inventario_Full.png");
 	resourceManager_->addTexture("Chest", "images/Inventario/FullscreenVersions/Cofre_Full.png");

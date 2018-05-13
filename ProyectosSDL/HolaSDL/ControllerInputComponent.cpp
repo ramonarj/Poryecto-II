@@ -249,7 +249,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 								if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
 								inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 								//SOUND 
-								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+								Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 
 								if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
 								else interfaceActive = 0;
@@ -267,7 +267,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 								cstOpen = !cstOpen;
 								inv->getComponent<Inventory>()->setChestMode(cstOpen);
 								//SOUND 
-								Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+								Game::Instance()->getResourceManager()->getSound("ChestSound")->play();
 
 								if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
 								else interfaceActive = 0;
@@ -413,7 +413,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 			cstOpen = !cstOpen;
 			inv->getComponent<Inventory>()->setChestMode(cstOpen);
 			//SOUND
-			Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+			//Game::Instance()->getResourceManager()->getSound("Inventory")->play();
 
 			if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
 			else interfaceActive = 0;
@@ -499,7 +499,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				if (!craft->isActive()) { craft->getComponent<Craft>()->restoreObjects(); }
 				inv->getComponent<Inventory>()->setCraftMode(crftOpen);
 				//SOUND 
-				Game::Instance()->getResourceManager()->getSound("Inventory")->play();
+				Game::Instance()->getResourceManager()->getSound("InventorySound")->play();
 
 				if (interfaceActive == 0) interfaceActive = 1;			//Interfaz del inventario
 				else interfaceActive = 0;

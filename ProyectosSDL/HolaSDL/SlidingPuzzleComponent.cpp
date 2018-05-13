@@ -1,6 +1,6 @@
 #include "SlidingPuzzleComponent.h"
-
 #include "SlidingPuzzleController.h"
+#include "Key.h"
 
 SlidingPuzzleComponent::SlidingPuzzleComponent()
 {
@@ -53,6 +53,11 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		winSound = true;
 		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+		for (Entity* e : *(PlayState::Instance()->getStage()))
+		{
+			if (e->getComponent<Key>() != nullptr && e->getComponent<Key>()->getDoorId() == 14)
+				e->setActive(true);
+		}
 	}
 }
 

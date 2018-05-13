@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="555">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="559">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -299,7 +299,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Countdowns">
+ <objectgroup name="Countdowns" visible="0">
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
@@ -316,7 +316,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="SlidingPuzzle" visible="0">
+ <objectgroup name="SlidingPuzzle">
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
@@ -2011,6 +2011,34 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
+  <object id="555" name="PiecePuzzle" type="PiecePuzzle" x="8523.33" y="9925.67" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="556" name="PiecePuzzle" type="PiecePuzzle" x="8625.83" y="7370.17" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="557" name="PiecePuzzle" type="PiecePuzzle" x="595.333" y="458.167" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="558" name="PiecePuzzle" type="PiecePuzzle" x="1667.5" y="7008.17" width="20.3333" height="27.6667">
+   <properties>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Weapons" visible="0">
   <properties>
@@ -2453,7 +2481,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1420" y="1560" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1434" y="1645.33" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

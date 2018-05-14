@@ -139,6 +139,7 @@ void Game::addGameObjectsFactory()
 	gameObjectFactory->registerType("MessageInteractible", new MessageInteractibleCreator());
 	gameObjectFactory->registerType("Slide", new SlideCreator());
 	gameObjectFactory->registerType("Order", new OrderCreator());
+	gameObjectFactory->registerType("CarnePuaj", new CarnePuajCreator());
 	registerTypeItem();
 }
 
@@ -276,7 +277,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("PuertaEmergencia", "images/AnimPuertas/PuertaEmergencia.png");
 	//CarnePuaj
 	resourceManager_->addTexture("CarnePuaj", "images/CarnePuaj/carnePuaj.png");
-	resourceManager_->addTexture("CarnePuajDesroyed", "images/CarnePuaj/carnePuajDestruyendose.png");
+	resourceManager_->addTexture("CarnePuajDestroyed", "images/CarnePuaj/carnePuajDestruyendose.png");
 }
 
 void Game::addResourcesMusic()

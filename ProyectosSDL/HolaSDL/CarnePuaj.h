@@ -8,10 +8,13 @@ public:
 	~CarnePuaj();
 	virtual void interact(Entity* e);
 	virtual void update(Entity* e, Uint32 time);
+
+	bool playerCanMove(Entity* e);
 private:
 	bool acid_;
 
 	Entity* player = nullptr;
 	Inventory* inventory = nullptr;
+	Vector2D playerDir;
 };
 

@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Craft.h"
 #include "PlayState.h"
+#include "CarnePuaj.h"
 
 KeyBoardInputComponent::KeyBoardInputComponent()
 {
@@ -88,7 +89,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 					int i = 0;
 					list<Entity*>::const_iterator it = (Game::Instance()->stateMachine_.currentState()->getInteractibles()->begin());
 					while (it != (Game::Instance()->stateMachine_.currentState()->getInteractibles()->end()) && !entityFound) {
-						SDL_Rect intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
+						SDL_Rect intRect;
+						if ((*it)->getComponent<CarnePuaj>() != nullptr)
+							intRect = { int((*it)->getPosition().getX() - (*it)->getWidth() / 2), int((*it)->getPosition().getY() - (*it)->getHeight() / 2), int(2 * (*it)->getWidth()), int(2 * (*it)->getHeight()) };
+						else
+							intRect = { int((*it)->getPosition().getX()), int((*it)->getPosition().getY()), int((*it)->getWidth()), int((*it)->getHeight()) };
 						if (Collisions::RectRect(&playerRect, &intRect) && (*it)->isActive()) {
 
 							if ((*it)->getName() == "CraftingTable") {	//Si lo que interactuamos tiene componente de crafteo

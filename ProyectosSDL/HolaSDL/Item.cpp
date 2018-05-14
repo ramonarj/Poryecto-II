@@ -67,6 +67,6 @@ bool Item::loadDescription(const string& filename) {
 	}
 	description = ss.str();
 	archivo.close();
-	cout << endl << description << endl;
+	//cout << endl << description << endl;
 	return true;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="559">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="559">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -1271,7 +1271,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Doors" visible="0">
+ <objectgroup name="Doors">
   <properties>
    <property name="collidableDoor" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1414,7 +1414,7 @@
   </object>
   <object id="290" name="Puerta" type="Puerta" x="10760" y="1020" width="40" height="40">
    <properties>
-    <property name="dir" value="norte"/>
+    <property name="dir" value="sur"/>
     <property name="needKey" type="int" value="1"/>
     <property name="numDoor" type="int" value="6"/>
     <property name="textureID" value="puerta"/>

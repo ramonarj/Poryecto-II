@@ -19,6 +19,7 @@
 #include "PlayState.h"
 #include "MenuState.h"
 #include "PauseState.h"
+#include "CreditsState.h"
 #include "LightTestState.h"
 #include "Level.h"
 #include "BaseControllerInput.h"

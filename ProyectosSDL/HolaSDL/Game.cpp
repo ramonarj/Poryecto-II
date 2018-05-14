@@ -239,6 +239,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("ExitPause", "images/Menu/ExitPause.png");
 	resourceManager_->addTexture("MenuBackground", "images/Menu/MenuBackground.png");
 	resourceManager_->addTexture("PauseBackground", "images/Menu/PauseBackground.png");
+	resourceManager_->addTexture("CreditsBackground", "images/Menu/CreditsBackground.png");
 
 	//Cursors
 	resourceManager_->addTexture("Cursor", "images/Cursor.png");

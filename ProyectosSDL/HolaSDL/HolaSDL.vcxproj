@@ -33,6 +33,8 @@
     <ClCompile Include="CountdownManager.cpp" />
     <ClCompile Include="Craft.cpp" />
     <ClCompile Include="CraftingTable.cpp" />
+    <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="DoorAnimation.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -137,6 +139,8 @@
     <ClInclude Include="CountdownManager.h" />
     <ClInclude Include="Craft.h" />
     <ClInclude Include="CraftingTable.h" />
+    <ClInclude Include="Credits.h" />
+    <ClInclude Include="CreditsState.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="DoorAnimation.h" />
     <ClInclude Include="Enemy.h" />

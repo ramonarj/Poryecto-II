@@ -240,8 +240,21 @@ void Inventory::render(Entity* e, Uint32 time)
 		int posX = width / 2 - ancho / 2;
 		int posY = height / 2 - alto / 2;
 
-		SDL_Rect dest = { posX,posY, ancho,alto };
+		SDL_Rect dest = { posX, posY, ancho,alto };
 		resource->getTexture("Inventory")->render(pRenderer, dest);
+
+
+		SDL_Rect destE = { posX * 14, posY, ancho/4, alto /2};
+		
+		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) 
+			resource->getTexture("EliseInventory_NotOk")->render(pRenderer, destE);
+		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco2) 
+			resource->getTexture("EliseInventory_Ok")->render(pRenderer, destE);
+		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1) 
+			resource->getTexture("EliseInventory")->render(pRenderer, destE);
+
+
+
 	}
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {

@@ -104,6 +104,8 @@
     <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CreditsState.cpp" />
+    <ClCompile Include="Credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -210,6 +212,8 @@
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CreditsState.h" />
+    <ClInclude Include="Credits.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

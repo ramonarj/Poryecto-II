@@ -16,8 +16,8 @@ CarnePuaj::~CarnePuaj()
 void CarnePuaj::interact(Entity* e) {
 	if (acid_)
 	{
-		e->getComponent<CarnePuajAnimationRenderer>()->destroy();
 		e->getComponent<MessageTrigger>()->setMessage("", false);
+		e->getComponent<CarnePuajAnimationRenderer>()->destroy();
 	}
 }
 

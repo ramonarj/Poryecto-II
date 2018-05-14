@@ -458,7 +458,7 @@
   <object id="388" name="SavePoint" type="SavePoint" x="7620" y="9000" width="40" height="60"/>
   <object id="389" name="SavePoint" type="SavePoint" x="11299.8" y="1809.5" width="60" height="70"/>
  </objectgroup>
- <objectgroup name="Teleports" visible="0">
+ <objectgroup name="Teleports">
   <properties>
    <property name="collidableDoor" type="int" value="1"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1282,7 +1282,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Doors" visible="0">
+ <objectgroup name="Doors">
   <properties>
    <property name="collidableDoor" type="int" value="0"/>
    <property name="staticEntity" type="int" value="1"/>
@@ -1343,7 +1343,7 @@
     <property name="textureID" value="puerta"/>
    </properties>
   </object>
-  <object id="267" name="Puerta" type="Puerta" x="2920" y="746" width="40" height="40">
+  <object id="267" name="Puerta" type="Puerta" x="2920" y="720" width="40" height="40">
    <properties>
     <property name="dir" value="norte"/>
     <property name="needKey" type="int" value="1"/>
@@ -2492,10 +2492,10 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1776.67" y="1742.66" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1643.42" y="9486.41" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
-    <property name="life" type="int" value="3"/>
+    <property name="life" type="int" value="10"/>
     <property name="textureHeight" type="int" value="34"/>
     <property name="textureID" value="Player"/>
     <property name="textureWidth" type="int" value="34"/>

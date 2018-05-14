@@ -1,4 +1,4 @@
-          QUÍMICO GENÉRICO
- Combinado con otro químico genérico 
- de misma composición se obtiene 
- ácido corrosivo.
+              ÁCIDO X
+Combinado con otro ácido de misma 
+composición se obtiene ácido 
+corrosivo.

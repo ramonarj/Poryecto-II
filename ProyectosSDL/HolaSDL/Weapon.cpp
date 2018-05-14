@@ -1,5 +1,5 @@
 #include "Weapon.h"
-
+#include "Game.h"
 
 
 Weapon::Weapon(ItemType type, const string& filename, std::string interactMessage) : Item(type, filename, interactMessage)
@@ -52,7 +52,10 @@ void Weapon::attack() {
 
 	if (numHits_ <= 0) {
 		std::cout << "Arma destruida: " << this->getType() << std::endl;
-		setEnabled(false); // no se como destuir el arma
+		setEnabled(false);
+		Entity* inv = Game::Instance()->getEntityWithComponent<Inventory>();
+		inv->getComponent<Inventory>()->destroyWeapon();
+		cout << "hola";
 	}
 }
 

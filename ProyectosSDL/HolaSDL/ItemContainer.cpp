@@ -16,7 +16,9 @@ ItemContainer::~ItemContainer()
 //DELETE ITEM FROM SELECTED POSITION
 void ItemContainer::DeleteItem(int pos)
 {
+	//Entity* a = inventory[pos];
 	if (!empty()) { inventory.erase(inventory.begin() + pos); }
+	//delete a;
 }
 //MAKE AN EMPTY INVENTORY
 void ItemContainer::ClearInventory()

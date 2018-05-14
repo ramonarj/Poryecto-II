@@ -23,7 +23,7 @@ void Enemy::punch(Entity* o)
 	//Comprobamos si estamos dentro todavia del enemigo
 	if (Collisions::RectRect(&playerRect, &enemyRect))
 	{
-		if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
+	if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
 		{
 			/*chaseVector_.setX(-chaseVector_.getX());
 			chaseVector_.setY(-chaseVector_.getY());*/
@@ -153,7 +153,20 @@ void Enemy::checkCollisions(Entity* o)
 			chaseVector.setY(-chaseVector.getY());*/
 			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
 			this->takeDamage(Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->getDamage());
-			
+			if (enemyType_ == -1) enemyType_ = o->getComponent<EnemyAnimationComponent>()->getType();
+
+			if (enemyType_ == 1)
+			{
+				Game::Instance()->getResourceManager()->getSound("Monster1HitSound")->play();
+			}
+			else if (enemyType_ == 2)
+			{
+				Game::Instance()->getResourceManager()->getSound("Monster2HitSound")->play();
+			}
+			else if (enemyType_ == 3)
+			{
+				Game::Instance()->getResourceManager()->getSound("Monster3DeadSound")->play();
+			}
 			Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>()->currentWeapon()->getComponent<Weapon>()->attack();
 
 			effectDone = true;

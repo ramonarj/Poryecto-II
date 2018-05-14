@@ -51,6 +51,9 @@ Inventory::~Inventory()
 
 void Inventory::update(Entity* e, Uint32 time)
 {
+
+		
+
 	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) {
 		if (!lifeRed->isEnabled()) {
 			lifeGreen->setEnabled(false);
@@ -396,6 +399,10 @@ bool Inventory::addItem(Entity * item)
 	}
 	return alm;
 }
+
+
+
+
 
 //CHECK IF ITEM "item" IS ON THE INVENTORY
 bool Inventory::checkItem(int item)

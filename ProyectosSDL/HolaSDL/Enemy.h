@@ -39,6 +39,7 @@ public:
 private:
 	Entity* player;
 	Entity* myself = nullptr;
+	int enemyType_ = -1;
 
 	int numFile_;
 

@@ -1,7 +1,7 @@
 #include "GameStateMachine.h"
 #include "Game.h"
 
-GameStateMachine::GameStateMachine() {
+GameStateMachine::GameStateMachine(): statesToPop(0) {
 }
 
 GameStateMachine::~GameStateMachine() {
@@ -11,7 +11,13 @@ void GameStateMachine::popState() { //Borra el top de la pila de states y hace p
 	if (!states.empty()) {
 		delete states.top();
 		states.pop();
+		if (statesToPop >= 1)
+			statesToPop--;
 	}
+}
+
+void GameStateMachine::popStateSafe() { //Borra el top de la pila de states y hace pop
+	statesToPop++;
 }
 
 void GameStateMachine::changeState(GameState* state) { //Cambia el valor de changedState_

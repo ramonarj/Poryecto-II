@@ -103,6 +103,7 @@
     <ClCompile Include="Sign.cpp" />
     <ClCompile Include="Slide.cpp" />
     <ClCompile Include="Order.cpp" />
+    <ClCompile Include="Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Sign.h" />
     <ClInclude Include="Slide.h" />
     <ClInclude Include="Order.h" />
+    <ClInclude Include="Button.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

@@ -18,6 +18,7 @@
 #include "GameStateMachine.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include "PauseState.h"
 #include "LightTestState.h"
 #include "Level.h"
 #include "BaseControllerInput.h"

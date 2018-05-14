@@ -17,7 +17,7 @@ PlayState::PlayState() : GameState() { //Constructora de nueva partida
 
 
 PlayState::~PlayState() {
-
+	
 }
 
 void PlayState::startState()
@@ -140,6 +140,10 @@ void PlayState::handleInput(Uint32 time, SDL_Event & event)
 {
 	pLevel->handleInput(time, event);
 	GameState::handleInput(time, event);
+	if (event.type == SDL_KEYDOWN) {
+		if (event.key.keysym.sym == SDLK_ESCAPE) //Pressing Escape will enter pause state
+			Game::Instance()->getStateMachine()->pushState(new PauseState());
+	}
 }
 
 void PlayState::saveToFile()

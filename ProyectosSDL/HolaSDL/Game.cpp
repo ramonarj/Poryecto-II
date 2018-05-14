@@ -16,12 +16,12 @@ Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//getResources()->getMusic(Resources::MENU)->play();
 	//getResourceManager()->getMusic("Menu")->play();
 	//getResourceManager()->getSound("InventorySound")->play();
-	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());
-	//stateMachine_.pushState(MenuState::Instance());
+	stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
 	stateMachine_.pushStateTick();
@@ -69,6 +69,13 @@ void Game::start() {
 		stateMachine_.changeStateTick();
 		if (stateMachine_.pushStateTick())
 			stateMachine_.currentState()->startState();
+		if (stateMachine_.getStatesToPop() >= 1) {
+			for (int i = 0; i < stateMachine_.getStatesToPop(); i++)
+			{
+				stateMachine_.popState();
+			}
+		}
+
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
 			SDL_Delay(10 - frameTime);
@@ -88,9 +95,9 @@ void Game::handleInput(Uint32 time) {
 		if (event_.type == SDL_KEYDOWN) {
 			switch (event_.key.keysym.sym) {
 
-			case SDLK_ESCAPE: //Pressing Escape will close the game
-				exit_ = true;
-				break;
+			//case SDLK_ESCAPE: //Pressing Escape will close the game
+			//	exit_ = true;
+			//	break;
 
 			case SDLK_f: // Pressing f to toggle fullscreen
 				setFullScreen();
@@ -221,6 +228,16 @@ void Game::addResourcesTexture()
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
 	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
+	resourceManager_->addTexture("Button1", "images/Menu/button1.png");
+	resourceManager_->addTexture("NewGameButton", "images/Menu/NewGame.png");
+	resourceManager_->addTexture("LoadGameButton", "images/Menu/LoadGame.png");
+	resourceManager_->addTexture("CreditsButton", "images/Menu/Credits.png");
+	resourceManager_->addTexture("ExitButton", "images/Menu/Exit.png");
+	resourceManager_->addTexture("BackToGameButton", "images/Menu/BackToGame.png");
+	resourceManager_->addTexture("BackToMenuButton", "images/Menu/BackToMenu.png");
+	resourceManager_->addTexture("ExitPause", "images/Menu/ExitPause.png");
+	resourceManager_->addTexture("MenuBackground", "images/Menu/MenuBackground.png");
+	resourceManager_->addTexture("PauseBackground", "images/Menu/PauseBackground.png");
 
 	//Cursors
 	resourceManager_->addTexture("Cursor", "images/Cursor.png");

@@ -9,6 +9,8 @@ class GameStateMachine {
 
 private:
 	stack<GameState*> states;
+	int statesToPop;
+
 	GameState* changeState_ = nullptr;
 	GameState* pushState_ = nullptr;
 public:
@@ -16,6 +18,8 @@ public:
 	~GameStateMachine();
 
 	void popState();
+	void popStateSafe();
+	int getStatesToPop() { return statesToPop; };
 	void pushState(GameState* state);
 	void changeState(GameState* state);
 	int size();

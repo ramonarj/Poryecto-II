@@ -46,7 +46,7 @@ public:
 		e->addComponent(new PlayerAnimationComponent(Game::Instance()->getResourceManager()->getTexture("Elise_Iddle"), Game::Instance()->getResourceManager()->getTexture("Elise_Moving"),
 			Game::Instance()->getResourceManager()->getTexture("Elise_AttackingCrowbar"), Game::Instance()->getResourceManager()->getTexture("Elise_AttackingPipe"), Game::Instance()->getResourceManager()->getTexture("Elise_AttackingCrutch"),
 			Game::Instance()->getResourceManager()->getTexture("Elise_AttackingAxe"), Game::Instance()->getResourceManager()->getTexture("Elise_Diying"), Game::Instance()->getResourceManager()->getTexture("Elise_Awakening"),
-			80, 2, 12, 6, 6, 6));
+			80, 2, 12, 6, 5, 6));
 		//Game::Instance()->stateMachine_.currentState()->getCharacters()->push_back(e);
 		return e;
 	}
@@ -361,7 +361,7 @@ public:
 	{
 		Entity* e = new Entity();
 		e->addComponent(new CarnePuaj());
-		e->addComponent(new CarnePuajAnimationRenderer(Game::Instance()->getResourceManager()->getTexture("CarnePuaj"), Game::Instance()->getResourceManager()->getTexture("CarnePuajDestroyed"), 100, 4, 8));
+		e->addComponent(new CarnePuajAnimationRenderer(Game::Instance()->getResourceManager()->getTexture("CarnePuaj"), Game::Instance()->getResourceManager()->getTexture("CarnePuajDestroyed"), 300, 4, 8));
 		e->addComponent(new MessageTrigger("", ""));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;

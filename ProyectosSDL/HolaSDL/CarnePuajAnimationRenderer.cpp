@@ -37,10 +37,13 @@ void CarnePuajAnimationRenderer::render(Entity* o, Uint32 time){
 			RECT(cont * imageDestroyed_->getWidth()/ destroyedFrames_, 0,
 				imageDestroyed_->getWidth() / destroyedFrames_, imageDestroyed_->getHeight());
 		if (time > actualTime_ + cooldown_) {
-			if (cont < frames_ - 1)
+			if (cont < destroyedFrames_ - 1)
 				cont++;
 			else
+			{
 				finished_ = true;		//Si ha llegado al último frame de la animación de destrucción ya no renderiza más
+				PlayState::Instance()->removeEntity(o);
+			}
 			actualTime_ = time;
 		}
 		imageDestroyed_->render(pRenderer_, dest, &clip);

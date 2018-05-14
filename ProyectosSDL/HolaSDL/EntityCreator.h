@@ -362,6 +362,8 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new CarnePuaj());
 		e->addComponent(new CarnePuajAnimationRenderer(Game::Instance()->getResourceManager()->getTexture("CarnePuaj"), Game::Instance()->getResourceManager()->getTexture("CarnePuajDestroyed"), 100, 4, 8));
+		e->addComponent(new MessageTrigger("", ""));
+		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}
 };

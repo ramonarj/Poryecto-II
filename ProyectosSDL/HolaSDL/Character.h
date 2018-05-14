@@ -39,5 +39,6 @@ private:
 	bool knockBack_;
 	Uint32 knockBackOn_;
 	Uint32 knockBackTime_;
+	Entity* thisEntity_ = nullptr;
 };
 

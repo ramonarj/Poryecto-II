@@ -20,6 +20,9 @@ public:
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 
 	void setDirBlock(int a) { dirBlock_ = a; };
+	void interactDeadRegister(){ 
+		lastInteractible->interact((thisEntity_));
+	}
 
 private:
 	SDL_Scancode left_;
@@ -61,5 +64,7 @@ private:
 
 	//Alpha del fade para saber si el personaje se puede mover o no
 	Uint8 alphaFade_;
+	Interactible* lastInteractible = nullptr;
+	Entity* thisEntity_ = nullptr;
 };
 

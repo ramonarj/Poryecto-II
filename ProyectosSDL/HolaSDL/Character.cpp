@@ -13,6 +13,9 @@ void Character::load(int l, int d)
 
 void Character::update(Entity* o, Uint32 time)
 {
+	if (thisEntity_ == nullptr)
+		thisEntity_ = o;
+
 	//Solo si está vivo
 	if (isAlive())
 	{
@@ -60,8 +63,11 @@ void Character::takeDamage(int i)
 	if(isAlive())
 	{
 		life -= i; //Restamos la vida
-		if (!isAlive())
+		if (!isAlive()) {
 			cout << "I died" << endl;
+			if (thisEntity_->getComponent<Player>() != nullptr && thisEntity_->getIsReading())		//Como esta leyendo el ultimo interactible con el que interactuo fue un registro
+				thisEntity_->getComponent<KeyBoardInputComponent>()->interactDeadRegister();
+		}
 		else 
 			cout << "Life: " << life << endl;
 	}

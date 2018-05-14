@@ -24,7 +24,7 @@ KeyBoardInputComponent::~KeyBoardInputComponent()
 }
 
 void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
-	
+
 	alphaFade_ = Game::Instance()->getEntityWithComponent<FadeManager>()->getComponent<FadeManager>()->getAlphaFade();
 	if (cst == nullptr) { cst = Game::Instance()->getEntityWithComponent<Chest>(); }
 	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
@@ -136,6 +136,8 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 									messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
 
 								Interactible* inter = (*it)->getComponent<Interactible>();
+								lastInteractible = inter;
+								thisEntity_ = (*it);
 								inter->interact((*it));
 								std::string* intMsg = inter->getInteractMessage();
 								if (*intMsg != "") {
@@ -207,4 +209,5 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 	}
 
 }
+
 

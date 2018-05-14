@@ -40,7 +40,7 @@ void Door::load(int numero, string ori, int needKey, int collidableDoor, string 
 	needKey_ = needKey;
 	ancha_ = ancha;
 	if (needKey_)
-		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas una llave");
+		thisDoor_->getComponent<MessageTrigger>()->setMessage("Necesitas su llave");
 	collidableDoor_ = collidableDoor;
 	zoneName_ = zoneName;
 }

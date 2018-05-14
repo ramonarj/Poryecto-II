@@ -8,7 +8,7 @@
 
 unique_ptr<Game> Game:: s_pInstance = nullptr;
 
-Game::Game() : SDLGame("Cursed Gold 2048", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
+Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization
 	initGame();
 
@@ -276,9 +276,16 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("PuertaDerechaEstrecha", "images/AnimPuertas/PuertaDerechaEstrecha.png");
 	resourceManager_->addTexture("PuertaIzquierdaEstrecha", "images/AnimPuertas/PuertaIzquierdaEstrecha.png");
 	resourceManager_->addTexture("PuertaEmergencia", "images/AnimPuertas/PuertaEmergencia.png");
+	
 	//CarnePuaj
 	resourceManager_->addTexture("CarnePuaj", "images/CarnePuaj/carnePuaj.png");
 	resourceManager_->addTexture("CarnePuajDestroyed", "images/CarnePuaj/carnePuajDestruyendose.png");
+
+	//Elise Inventario
+	resourceManager_->addTexture("EliseInventory", "images/Inventario/Elise/1.png");
+	resourceManager_->addTexture("EliseInventory_Ok", "images/Inventario/Elise/2.png");
+	resourceManager_->addTexture("EliseInventory_NotOk", "images/Inventario/Elise/3.png");
+
 }
 
 void Game::addResourcesMusic()

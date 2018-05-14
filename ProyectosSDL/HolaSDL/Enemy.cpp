@@ -213,6 +213,8 @@ void Enemy::update(Entity * o, Uint32 time)
 	}
 	else if (isAlive() && playerInRange(o) && !reloading)
 		move(o);
+	else if (isAlive() && !playerInRange(o) && !reloading)
+		o->setVelocity(Vector2D(0, 0));
 	//Recargando
 	else if (reloading)
 	{

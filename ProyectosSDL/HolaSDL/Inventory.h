@@ -47,7 +47,8 @@ public:
 	void Debug_Mode_On() { debug = true; };
 	void Debug_Mode_Off() { debug = false; };
 
-	void destroyWeapon() { equiped = nullptr; };
+	void destroyWeapon();
+
 	virtual bool checkItem(int item);
 	virtual bool checkIdemItems(int item, int repeat);
 	virtual Entity* ItemInPosition(int pos);

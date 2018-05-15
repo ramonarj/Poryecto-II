@@ -55,6 +55,7 @@ private:
 	
 	bool punch = false;
 	bool awakening_ = true;
+	bool deadSound = false;
 	double cureIndex_ = 0.6;
 	int WeaponId;
 

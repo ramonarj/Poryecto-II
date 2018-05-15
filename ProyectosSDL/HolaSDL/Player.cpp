@@ -21,6 +21,12 @@ void Player::update(Entity * o, Uint32 time)
 	coolDownAttack(time);
 	invincible(o, time);
 	Character::update(o, time);
+
+	if (!isAlive() && !deadSound) {
+		Game::Instance()->getResourceManager()->getSound("DieSound")->play();
+		deadSound = true;
+	}
+	else if (isAlive()) { deadSound = false; }
 }
 
 void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event){}

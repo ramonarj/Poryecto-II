@@ -413,6 +413,12 @@ bool Inventory::addItem(Entity * item)
 
 
 
+void Inventory::destroyWeapon()
+{
+	equiped = nullptr;
+	Game::Instance()->getResourceManager()->getSound("BreakSound")->play();
+}
+
 //CHECK IF ITEM "item" IS ON THE INVENTORY
 bool Inventory::checkItem(int item)
 {

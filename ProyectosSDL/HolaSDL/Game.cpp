@@ -336,6 +336,8 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.wav");
 	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
 	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
+	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
+	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
 	
 }
 

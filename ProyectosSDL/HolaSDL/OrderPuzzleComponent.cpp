@@ -161,7 +161,7 @@ void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 	}
 
 
-	if (pc->joysticksInitialised()) {
+	if (pc->joysticksInitialised() && pc->getActive()) {
 		DestRect = { 200 * (markSlot + 1) - 5, 195, 110, 310 };	//El borde
 		renderMark(DestRect);
 	}

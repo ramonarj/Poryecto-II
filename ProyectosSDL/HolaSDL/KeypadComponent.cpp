@@ -119,7 +119,7 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 	}
 	screen.render(time);
 
-	if (pc != nullptr && pc->joysticksInitialised()) {
+	if (pc != nullptr && pc->joysticksInitialised() && pc->getActive()) {
 		dest = { keys[markSlot.y][markSlot.x].getNumRect().x - 5, keys[markSlot.y][markSlot.x].getNumRect().y -5,
 			keys[markSlot.y][markSlot.x].getNumRect().w +10, keys[markSlot.y][markSlot.x].getNumRect().h +10 };	//El borde
 		renderMark(dest);

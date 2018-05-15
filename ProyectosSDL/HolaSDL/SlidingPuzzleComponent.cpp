@@ -125,7 +125,7 @@ void SlidingPuzzleComponent::render(Entity * e, Uint32 time)
 	DestRect.x = PosCasillas[markSlot.x][markSlot.y].x - 5;		//10/2 = 5
 	DestRect.y = PosCasillas[markSlot.x][markSlot.y].y - 5;
 
-	if(pc->joysticksInitialised())
+	if(pc->joysticksInitialised() && pc->getActive())
 		renderMark(DestRect);
 }
 

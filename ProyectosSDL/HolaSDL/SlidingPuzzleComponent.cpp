@@ -106,8 +106,8 @@ void SlidingPuzzleComponent::render(Entity * e, Uint32 time)
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<SlidingPuzzleController>()->getComponent<SlidingPuzzleController>();
 
-	SDL_Rect dest = { -600,-800, 2000,2000 };
-	resource->getTexture("SRMapa1")->render(pRenderer, dest);
+	SDL_Rect dest = { 0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight() };
+	resource->getTexture("SliddingBG")->render(pRenderer, dest);
 	SDL_Rect DestRect;
 
 	for (int i = 0; i < 3; i++){

@@ -225,6 +225,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("SRMapa3", "images/SRMap/SRMap3.png");
 	resourceManager_->addTexture("SRMapa10", "images/SRMap/SRMap10.png");
 	resourceManager_->addTexture("SRMapa11", "images/SRMap/SRMap11.png");
+	resourceManager_->addTexture("SliddingBG", "images/Backgrounds/SliddingBG.png");
+	resourceManager_->addTexture("OrderBG", "images/Backgrounds/OrderBG.png");
 
 	//Buttons
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");

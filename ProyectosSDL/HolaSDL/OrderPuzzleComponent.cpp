@@ -150,8 +150,9 @@ void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 	if (pc == nullptr)
 		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
 
-	SDL_Rect dest = { -600,-800, 2000,2000 };
-	resource->getTexture("SRMapa1")->render(pRenderer, dest);
+	SDL_Rect dest = {0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight()};
+	cout << Game::Instance()->getWindowWidth() << endl;
+	resource->getTexture("OrderBG")->render(pRenderer, dest);
 
 	SDL_Rect DestRect;
 

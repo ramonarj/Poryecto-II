@@ -57,7 +57,7 @@ private:
 	bool winSound = false;
 	bool desordenaSound = true;
 
-	coord PosCasillas[3][3]{ {{300,50},{300,250},{300,450}}, {{500,50},{500,250},{500,450}}, { { 700,50 },{ 700,250 },{ 700,450 } } };
+	coord PosCasillas[3][3]{ {{340,60},{340,260},{340,460 }}, {{540,60 },{540,260 },{540,460 }}, { { 740,60 },{ 740,260 },{ 740,460 } } };
 	coord markSlot;
 
 	SlidingPuzzleController* pc = nullptr;

@@ -210,4 +210,11 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 }
 
+void KeyBoardInputComponent::switchOffInv()
+{
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	inv->setActive(!inv->isActive());
+	invOpen = !invOpen;
+}
+
 

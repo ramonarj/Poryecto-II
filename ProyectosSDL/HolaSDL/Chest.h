@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 class Inventory;
+class ControllerInputComponent;
 class Chest : public ItemContainer
 {
 public:
@@ -43,5 +44,6 @@ private:
 	bool renderMark = false;
 
 	Entity description_ = Entity(20, 20);
+	ControllerInputComponent* controller_ = nullptr;
 };
 

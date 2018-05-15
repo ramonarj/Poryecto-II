@@ -291,6 +291,8 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 									messageTimer = PlayState::Instance()->getMessageRenderer()->getComponent<MessageTimer>();
 
 								Interactible* inter = (*it)->getComponent<Interactible>();
+								lastInteractible = inter;
+								thisEntity_ = (*it);
 								inter->interact((*it));
 								std::string* intMsg = inter->getInteractMessage();
 								if (*intMsg != "") {
@@ -562,4 +564,17 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 				m_buttonStates[0][left3] = false;
 		}
 	}
+}
+
+void ControllerInputComponent::interactDeadRegister()
+{
+	if (lastInteractible != nullptr)
+		lastInteractible->interact((thisEntity_));
+}
+
+void ControllerInputComponent::switchOffInv()
+{
+	if (inv == nullptr) { inv = Game::Instance()->getEntityWithComponent<Inventory>(); }
+	inv->setActive(!inv->isActive());
+	invOpen = !invOpen;
 }

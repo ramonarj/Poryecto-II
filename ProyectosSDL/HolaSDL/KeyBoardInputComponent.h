@@ -21,8 +21,14 @@ public:
 
 	void setDirBlock(int a) { dirBlock_ = a; };
 	void interactDeadRegister(){ 
-		lastInteractible->interact((thisEntity_));
+		if(lastInteractible!=nullptr)
+			lastInteractible->interact((thisEntity_));
 	}
+	void switchOffInv();
+
+	bool chestOpen() { return cstOpen; };
+	bool InventoryOpen() { return invOpen; };
+	bool craftOpen() { return craft; };
 
 private:
 	SDL_Scancode left_;
@@ -46,9 +52,7 @@ private:
 	Entity* inv = nullptr;
 	Entity* cst = nullptr;
 	Entity* craft = nullptr;
-	bool chestOpen() { return cstOpen; };
-	bool InventoryOpen() { return invOpen; };
-	bool craftOpen() { return craft; };
+	
 
 	//*MOUSE*
 	int mouseX=0; int mouseY = 0;
@@ -66,5 +70,6 @@ private:
 	Uint8 alphaFade_;
 	Interactible* lastInteractible = nullptr;
 	Entity* thisEntity_ = nullptr;
+
 };
 

@@ -8,6 +8,8 @@
 
 enum repCoords { WeaponSlot, InsulationTapeSlot };
 
+class ControllerInputComponent;
+
 class Craft : public Component
 {
 public:
@@ -77,5 +79,7 @@ private:
 
 	SDL_Rect clip = RECT(0, 0, 20, 20);
 	Entity description_ = Entity(20, 20);
+
+	ControllerInputComponent* controller_ = nullptr;
 };
 

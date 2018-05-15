@@ -65,6 +65,7 @@ void Chest::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 
 void Chest::render(Entity * e, Uint32 time)
 {
+	if (controller_ == nullptr)	controller_ = Game::Instance()->getEntityWithComponent<Player>()->getComponent<ControllerInputComponent>();
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
@@ -102,7 +103,7 @@ void Chest::render(Entity * e, Uint32 time)
 			}
 	}
 
-	if (controllerActive && renderMark) {
+	if (controller_->joysticksInitialised() && controller_->getActive() && renderMark) {
 		SDL_Rect DestRect;
 		if(selectedSlot<5)
 			DestRect = { ChestSlots[selectedSlot].x - slotWidth / 2 + 6, ChestSlots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
@@ -116,7 +117,7 @@ void Chest::render(Entity * e, Uint32 time)
 		renderSlotMark(DestRect);
 	}
 
-	if (controllerActive) {
+	if (controller_->joysticksInitialised() && controller_->getActive()) {
 		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
 			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());
 		}

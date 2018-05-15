@@ -50,9 +50,7 @@ Inventory::~Inventory()
 }
 
 void Inventory::update(Entity* e, Uint32 time)
-{
-
-		
+{		
 
 	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) {
 		if (!lifeRed->isEnabled()) {
@@ -228,6 +226,7 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 void Inventory::render(Entity* e, Uint32 time)
 {
 
+	if (controller_ == nullptr)	controller_ = Game::Instance()->getEntityWithComponent<Player>()->getComponent<ControllerInputComponent>();
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
@@ -243,7 +242,6 @@ void Inventory::render(Entity* e, Uint32 time)
 		SDL_Rect dest = { posX, posY, ancho,alto };
 		resource->getTexture("Inventory")->render(pRenderer, dest);
 
-
 		SDL_Rect destE = { posX * 14, posY, ancho/4, alto /2};
 		
 		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) 
@@ -252,8 +250,6 @@ void Inventory::render(Entity* e, Uint32 time)
 			resource->getTexture("EliseInventory_Ok")->render(pRenderer, destE);
 		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1) 
 			resource->getTexture("EliseInventory")->render(pRenderer, destE);
-
-
 
 	}
 	//RENDERIZAMOS EL ARMA EQUIPADA
@@ -296,7 +292,7 @@ void Inventory::render(Entity* e, Uint32 time)
 		}
 	}
 
-	if (controllerActive && renderMark) {
+	if (controller_->joysticksInitialised() && controller_->getActive() && renderMark) {
 		if (selectedSlot <= 3) {
 			SDL_Rect DestRect = { Inventoryslots[selectedSlot].x - slotWidth / 2 + 5, Inventoryslots[selectedSlot].y - slotWidth / 2 + 3, slotWidth * 2 - 8, slotWidth * 2 - 8 };
 			renderSlotMark(DestRect);
@@ -308,7 +304,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	}
 
 
-	if (controllerActive) {
+	if (controller_->joysticksInitialised() && controller_->getActive()) {
 		if (selectedSlot >= 0 && selectedSlot < getInventory().size()) {
 			//if(getInventory()[selectedSlot] != nullptr)
 			description_.getComponent<TextNote>()->changeString(getInventory()[selectedSlot]->getComponent<Item>()->getDescription());

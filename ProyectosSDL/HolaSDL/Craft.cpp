@@ -57,6 +57,7 @@ void Craft::handleInput(Entity * e, Uint32 time, const SDL_Event & event)
 
 void Craft::render(Entity * e, Uint32 time)
 {
+	if (controller_ == nullptr)	controller_ = Game::Instance()->getEntityWithComponent<Player>()->getComponent<ControllerInputComponent>();
 	if(pRenderer==nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
@@ -90,7 +91,7 @@ void Craft::render(Entity * e, Uint32 time)
 	dest = RECT(craftSlots[2].x - slotWidth / 2, craftSlots[2].y - slotWidth / 2, slotWidth * 2, slotWidth * 2);
 	resource->getTexture("Circuit")->render(pRenderer, dest, &clip);
 
-	if (controllerActive && renderMark) {
+	if (controller_->joysticksInitialised() && controller_->getActive() && renderMark) {
 		if (selectedSlot < 3 && !craftButtonSelected && !repairButtonSelected) {
 			SDL_Rect DestRect = { craftSlots[selectedSlot].x - slotWidth / 2 + 5, craftSlots[selectedSlot].y - slotWidth / 2 + 4, slotWidth * 2 - 8, slotWidth * 2 - 8 };
 			renderSlotMark(DestRect);
@@ -107,7 +108,7 @@ void Craft::render(Entity * e, Uint32 time)
 		}
 	}
 
-	if (controllerActive) {
+	if (controller_->joysticksInitialised() && controller_->getActive()) {
 		if (selectedSlot == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
 			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
 		}

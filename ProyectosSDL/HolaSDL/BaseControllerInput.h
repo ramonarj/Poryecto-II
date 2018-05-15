@@ -22,6 +22,7 @@ public:
 	virtual bool initialiseJoysticks();
 	void clean();
 	bool joysticksInitialised() { return m_bJoysticksInitialised; }
+	bool getActive() { return active_; };
 	bool getButtonState(int joy, int buttonNumber) { return m_buttonStates[joy][buttonNumber]; }
 
 protected:

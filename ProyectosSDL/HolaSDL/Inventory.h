@@ -11,6 +11,8 @@ using namespace std;
 
 class AnimationRenderObject;
 class Craft;
+class ControllerInputComponent;
+
 class Inventory : public ItemContainer
 {
 public:
@@ -90,6 +92,8 @@ private:
 	AnimationRenderObject* lifeGreen = nullptr;
 	AnimationRenderObject* lifeRed = nullptr;
 	AnimationRenderObject* lifeOrange = nullptr;
+
+	ControllerInputComponent* controller_ = nullptr;
 };
 
 

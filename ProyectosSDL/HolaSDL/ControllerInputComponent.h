@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseControllerInput.h"
-
+#include "Game.h"
 
 
 class ControllerInputComponent :
@@ -11,10 +11,18 @@ public:
 	ControllerInputComponent();
 	virtual ~ControllerInputComponent();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
+
+	
 	
 	//void ProcessButton(int joy, int buttonNumber);
 	void Active(bool value) { active_ = value;};
 	void setDirBlock(int a) { dirBlock_ = a; };
+	void interactDeadRegister();
+	void switchOffInv();
+
+	bool chestOpen() { return cstOpen; };
+	bool InventoryOpen() { return invOpen; };
+	bool craftOpen() { return craft; };
 
 private:	
 
@@ -24,9 +32,6 @@ private:
 	Entity* inv = nullptr;
 	Entity* cst = nullptr;
 	Entity* craft = nullptr;
-	bool chestOpen() { return cstOpen; };
-	bool InventoryOpen() { return invOpen; };
-	bool craftOpen() { return craft; };
 
 	bool joystickMoved = false;
 
@@ -50,5 +55,8 @@ private:
 	bool timerSet = false;
 	int dirBlock_ = 0;
 	Uint8 alphaFade_;
+
+	Interactible* lastInteractible = nullptr;
+	Entity* thisEntity_ = nullptr;
 };
 

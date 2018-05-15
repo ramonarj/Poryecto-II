@@ -10,7 +10,7 @@ Register::~Register()
 	delete textNote;
 }
 
-void Register::interact(Entity * e)
+bool Register::interact(Entity * e)
 {
 	if ((ori_ != "" && canRead()) || ori_ == "")
 	{
@@ -24,7 +24,9 @@ void Register::interact(Entity * e)
 			PlayState::Instance()->getPlayer()->setIsReading(false);
 			registerActive_ = false;
 		}
+		return true;
 	}
+	return false;
 }
 
 void Register::load(int registerFile, std::string dir)

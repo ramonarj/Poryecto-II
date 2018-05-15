@@ -10,7 +10,7 @@ public:
 	~Sign();
 
 	void load(Entity* e, int numSign, std::string ori);
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 	bool canLookSign();
 	virtual void update(Entity* e, Uint32 time);
 

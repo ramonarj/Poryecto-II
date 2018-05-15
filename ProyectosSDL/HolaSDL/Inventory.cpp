@@ -35,8 +35,8 @@ Inventory::Inventory()
 	life.setHeight(45);
 
 	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife();
-	ritmoCardiaco2 = (int)ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5);
-	ritmoCardiaco3 = (int)ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25);
+	ritmoCardiaco2 = (int)(ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5));
+	ritmoCardiaco3 = (int)(ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25));
 }
 
 Inventory::~Inventory()
@@ -230,7 +230,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
-	if (!chestMode && !craftMode) {
+	//if (!chestMode && !craftMode) {
 		int width = Game::Instance()->getWindowWidth();
 		int height = Game::Instance()->getWindowHeight();
 
@@ -242,7 +242,7 @@ void Inventory::render(Entity* e, Uint32 time)
 		SDL_Rect dest = { posX, posY, ancho,alto };
 		resource->getTexture("Inventory")->render(pRenderer, dest);
 
-		SDL_Rect destE = { posX * 14, posY, ancho/4, alto /2};
+		destE = { posX * 14, posY, ancho/4, alto /2};
 		
 		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) 
 			resource->getTexture("EliseInventory_NotOk")->render(pRenderer, destE);
@@ -251,7 +251,8 @@ void Inventory::render(Entity* e, Uint32 time)
 		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1) 
 			resource->getTexture("EliseInventory")->render(pRenderer, destE);
 
-	}
+		life.render(time);
+	//}
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {
 		Weapon* weaponComp = equiped->getComponent<Weapon>();
@@ -347,7 +348,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	}
 
 	description_.getComponent<TextNote>()->render(nullptr, time);
-	life.render(time);
+	//life.render(time);
 }
 
 void Inventory::saveToFile(Entity* o)

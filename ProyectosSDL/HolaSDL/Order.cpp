@@ -12,8 +12,9 @@ Order::~Order()
 }
 
 
-void Order::interact(Entity * e)
+bool Order::interact(Entity * e)
 {
 	Game::Instance()->getStateMachine()->pushState(OrderPuzzle::Instance());
 	puzzleActive_ = true;
+	return true;
 }

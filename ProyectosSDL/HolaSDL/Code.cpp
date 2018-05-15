@@ -12,15 +12,17 @@ Code::~Code()
 {
 }
 
-void Code::interact(Entity * e)
+bool Code::interact(Entity * e)
 {
 	if (canWriteCode())
 	{
 		if (!e->getComponent<Code>()->getAccept()) {
 			e->getComponent<Code>()->setCodeActive(true);
 			Game::Instance()->getStateMachine()->pushState(KeypadState::Instance());
+			return true;
 		}
 	}
+	return false;
 }
 
 void Code::load(int numDoor, int code, string dir)

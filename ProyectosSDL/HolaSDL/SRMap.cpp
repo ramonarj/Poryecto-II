@@ -12,7 +12,7 @@ SRMap::~SRMap()
 	delete image_;
 }
 
-void SRMap::interact(Entity * e)
+bool SRMap::interact(Entity * e)
 {
 	Entity* player = PlayState::Instance()->getPlayer();
 	PlayerAnimationComponent* animPlayer = player->getComponent<PlayerAnimationComponent>();
@@ -32,7 +32,9 @@ void SRMap::interact(Entity * e)
 			player->setIsReading(false);
 			mapActive_ = false;
 		}
+		return true;
 	}
+	return false;
 }
 
 void SRMap::load(Entity* e, int numMap, std::string ori, int calendar)

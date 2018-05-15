@@ -9,7 +9,7 @@ class Interactible : public Component {
 public:
 	Interactible(std::string interactMessage = "", bool msgIsName = false);
 	~Interactible() {};
-	virtual void interact(Entity* e) {}; // Metodo "abstracto" de la interaccion
+	virtual bool interact(Entity* e) = 0; // Metodo "abstracto" de la interaccion
 	std::string* getInteractMessage() { return &interactMessage_; };
 	virtual void update(Entity* e, Uint32 time);
 

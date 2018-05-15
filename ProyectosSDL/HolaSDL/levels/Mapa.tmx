@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="561">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="562">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -1836,7 +1836,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Items" visible="0">
+ <objectgroup name="Items">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
@@ -2133,7 +2133,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Enemies" visible="0">
+ <objectgroup name="Enemies">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
@@ -2492,7 +2492,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1643.42" y="9486.41" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1634.94" y="9498.53" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="10"/>

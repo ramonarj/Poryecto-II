@@ -94,6 +94,8 @@ private:
 	AnimationRenderObject* lifeRed = nullptr;
 	AnimationRenderObject* lifeOrange = nullptr;
 
+	SDL_Rect destE;
+
 	ControllerInputComponent* controller_ = nullptr;
 };
 

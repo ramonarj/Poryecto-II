@@ -6,6 +6,6 @@ class CraftingTable :
 public:
 	CraftingTable();
 	virtual ~CraftingTable();
-	virtual void interact(Entity* e) {};
+	virtual bool interact(Entity* e) { return true; };
 };
 

@@ -9,7 +9,7 @@ public:
 	Register();
 	~Register();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 
 	void load(int registerFile, std::string dir);
 private:

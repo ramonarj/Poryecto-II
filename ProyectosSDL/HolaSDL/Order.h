@@ -6,7 +6,7 @@ class Order :
 public:
 	Order();
 	~Order();
-	void interact(Entity * e);
+	bool interact(Entity * e);
 
 	void setPuzzleActive(bool b) { puzzleActive_ = b; };
 	bool getPuzzleActive() { return puzzleActive_; };

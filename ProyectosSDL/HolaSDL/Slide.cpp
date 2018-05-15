@@ -11,7 +11,8 @@ Slide::~Slide()
 {
 }
 
-void Slide::interact(Entity * e)
+bool Slide::interact(Entity * e)
 {
 	Game::Instance()->getStateMachine()->pushState(SlidingPuzzle::Instance());
+	return true;
 }

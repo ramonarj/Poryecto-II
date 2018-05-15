@@ -44,10 +44,11 @@ void Item::loadToFile(Entity * o)
 	file.close();
 }
 
-void Item::interact(Entity* e) {
+bool Item::interact(Entity* e) {
 	if (dynamic_cast<PlayState*>(Game::Instance()->getStateMachine()
 		->currentState())->inventory->getComponent<Inventory>()->addItem(e)) {
 		Game::Instance()->getStateMachine()->currentState()->removeInteractibleOfStage(e);
+		return true;	//If you can take it
 	}
 
 }

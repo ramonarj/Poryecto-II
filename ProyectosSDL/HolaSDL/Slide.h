@@ -8,6 +8,6 @@ public:
 	Slide();
 	~Slide();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 };
 

@@ -293,13 +293,14 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 								Interactible* inter = (*it)->getComponent<Interactible>();
 								lastInteractible = inter;
 								thisEntity_ = (*it);
-								inter->interact((*it));
-								std::string* intMsg = inter->getInteractMessage();
-								if (*intMsg != "") {
-									messageRenderer->display(*intMsg);
-									messageTimer->start(2);
+								if (inter->interact((*it))) {
+									std::string* intMsg = inter->getInteractMessage();
+									if (*intMsg != "") {
+										messageRenderer->display(*intMsg);
+										messageTimer->start(2);
+									}
+									interactButtonPressedSquare = true;
 								}
-								interactButtonPressedSquare = true;
 								entityFound = true;
 							}
 							else {

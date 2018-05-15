@@ -138,11 +138,12 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 								Interactible* inter = (*it)->getComponent<Interactible>();
 								lastInteractible = inter;
 								thisEntity_ = (*it);
-								inter->interact((*it));
-								std::string* intMsg = inter->getInteractMessage();
-								if (*intMsg != "") {
-									messageRenderer->display(*intMsg);
-									messageTimer->start(2);
+								if (inter->interact((*it))) {
+									std::string* intMsg = inter->getInteractMessage();
+									if (*intMsg != "") {
+										messageRenderer->display(*intMsg);
+										messageTimer->start(2);
+									}
 								}
 								entityFound = true;
 					

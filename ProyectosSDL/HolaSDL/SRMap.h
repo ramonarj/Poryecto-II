@@ -9,7 +9,7 @@ public:
 	SRMap();
 	~SRMap();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 
 	void load(Entity* e, int numMap, std::string ori, int calendar);
 

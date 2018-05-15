@@ -7,6 +7,6 @@ public:
 	SavePoint();
 	~SavePoint();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 };
 

@@ -41,7 +41,7 @@ void Sign::load(Entity* e, int numSign, std::string ori)
 	ori_ = ori;
 }
 
-void Sign::interact(Entity * e)
+bool Sign::interact(Entity * e)
 {
 	if (!sign_ && canLookSign())
 	{
@@ -49,7 +49,9 @@ void Sign::interact(Entity * e)
 		messageTrigger_->setMessage("", true);
 		sign_ = true;
 		signOn_ = SDL_GetTicks();
+		return true;
 	}
+	return false;
 }
 
 bool Sign::canLookSign()

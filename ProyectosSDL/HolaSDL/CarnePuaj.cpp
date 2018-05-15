@@ -13,12 +13,14 @@ CarnePuaj::~CarnePuaj()
 {
 }
 
-void CarnePuaj::interact(Entity* e) {
+bool CarnePuaj::interact(Entity* e) {
 	if (acid_)
 	{
 		e->getComponent<MessageTrigger>()->setMessage("", false);
 		e->getComponent<CarnePuajAnimationRenderer>()->destroy();
+		return true;
 	}
+	return false;
 }
 
 void CarnePuaj::update(Entity* e, Uint32 time) {

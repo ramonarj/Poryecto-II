@@ -14,7 +14,7 @@ Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContaine
 Door::~Door() {
 }
 
-void Door::interact(Entity * e)
+bool Door::interact(Entity * e)
 {
 	int n = 0;
 	if (collidableDoor_) 
@@ -28,9 +28,11 @@ void Door::interact(Entity * e)
 			if (canTeleport())
 			{
 				PlayState::Instance()->getPlayer()->getComponent<Player>()->startTeleport(e, doorNum_, ori_);
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 void Door::load(int numero, string ori, int needKey, int collidableDoor, string zoneName, bool ancha)

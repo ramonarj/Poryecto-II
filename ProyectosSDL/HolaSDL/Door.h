@@ -13,7 +13,7 @@ public:
 	Door(Entity* thisDoor);
 	~Door();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 
 	void load(int numero, string ori, int needKey, int collidableDoor, string zoneName, bool ancha);
 

@@ -6,6 +6,6 @@ class ChestObject :
 public:
 	ChestObject();
 	virtual ~ChestObject();
-	virtual void interact(Entity* e) {};
+	virtual bool interact(Entity* e) { return true; };
 };
 

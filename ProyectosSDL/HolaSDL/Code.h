@@ -9,7 +9,7 @@ public:
 	Code();
 	~Code();
 
-	virtual void interact(Entity* e);
+	virtual bool interact(Entity* e);
 
 	void load(int numDoor, int code, string dir);
 

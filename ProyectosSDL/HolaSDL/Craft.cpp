@@ -337,9 +337,9 @@ void Craft::craft()
 		}
 		break;
 	case 1:
-		if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))
+		if (inv->checkIdemItems(ItemType::GENERICCHEMICAL, 2))
 		{
-			inv->objectCrafted(ItemType::ACIDCHEMICAL, ItemType::ACIDCHEMICAL);
+			inv->objectCrafted(ItemType::GENERICCHEMICAL, ItemType::GENERICCHEMICAL);
 			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new Item(ItemType::ACID, "AcidDescription")); //cambiar

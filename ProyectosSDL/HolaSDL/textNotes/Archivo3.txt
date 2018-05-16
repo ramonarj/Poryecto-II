@@ -1,12 +1,18 @@
-Registro de entrada:
+_______________________________________
+          REGISTRO DE ENTRADA
 
-Nombre: Charlie Lion
-Edad: 31 años
-Nº Seguridad Social: 741-66-2017
-Hora de llegada: 11:06 PM
+ NOMBRE: Charlie Lion
 
-Motivo de consulta: Contusiones y 
-laceraciones en brazos, cara y 
-piernas y cortes en el brazo derecho
-producidos por una paliza en 
-la universidad.
+ EDAD: 31 años
+
+ Nº SEGURIDAD SOCIAL: 741-66-2017
+
+ HORA DE LLEGADA: 11:06 PM
+
+ MOTIVO DE CONSULTA: Contusiones y 
+ laceraciones en brazos, cara y 
+ piernas y cortes en el brazo derecho
+ producidos por una paliza en 
+ la universidad.
+
+_______________________________________

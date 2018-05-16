@@ -2632,7 +2632,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="585.727" y="494.53" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="2745.05" y="1480.27" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="10"/>

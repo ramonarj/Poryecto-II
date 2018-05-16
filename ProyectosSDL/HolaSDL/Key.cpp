@@ -6,4 +6,6 @@ void Key::load(int numDoor, string keyName)
 	keyName_ = keyName;
 
 	initialDescription_ = description;
+
+	description = initialDescription_ + "\n" + keyName_ + "\n";
 }

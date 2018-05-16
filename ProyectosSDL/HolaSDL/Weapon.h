@@ -14,8 +14,8 @@ public:
 	int getTypeStr() { return (type_); };
 	int getNumHits() { return numHits_; };
 	void setNumHits(int num) { numHits_ = num; };
-	string getInitialDescr() { return initialDescr; };
 	virtual void update(Entity* e, Uint32 time);
+	virtual string getDescription();
 
 private:
 	int damage_;
@@ -25,8 +25,6 @@ private:
 	ItemType type_;
 	string initialDescr;
 
-	void repair();	// Repara el arma
 	void weaponInit(ItemType type);	// Metodo para inicializar el arma
-	bool saveDescription();
 };
 

@@ -14,8 +14,6 @@ public:
 	void setKeyName(string name) { keyName_ = name; };
 	string getKeyName() { return keyName_; };
 
-	string getInitialDescr() { return initialDescription_; };
-
 	void load(int numDoor, string keyName);
 
 private:

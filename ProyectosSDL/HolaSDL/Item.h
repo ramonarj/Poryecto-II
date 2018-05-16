@@ -23,7 +23,7 @@ public:
 
 	// METODO PARA USAR UN ITEM (LOS ITEMS SE USAN DESDE EL INVENTARIO)
 	virtual void use(Entity* e, Entity* item);
-	string getDescription() { return description; };
+	virtual string getDescription() { return description; };
 	string getPath() { return txtFilePath_; };
 	void setDescription(string s) { description = s; };
 

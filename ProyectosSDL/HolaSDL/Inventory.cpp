@@ -321,26 +321,11 @@ void Inventory::render(Entity* e, Uint32 time)
 	else {
 		if (equipedLastClicked) {
 			if (equiped != nullptr) {
-				Entity* b = equiped;
-				Item* c = b->getComponent<Item>();
-				if (b->getComponent<Weapon>() != nullptr)
-				{
-					Weapon* w = b->getComponent<Weapon>();
-					w->setDescription(w->getInitialDescr() + "       Ataque: " + to_string(w->getDamage()) + "     " + "Usos: " + to_string(w->getNumHits()) + "\n");
-				}
-				description_.getComponent<TextNote>()->changeString(c->getDescription());
+				description_.getComponent<TextNote>()->changeString(equiped->getComponent<Item>()->getDescription());
 			}
 		}
 		else if (slotClicked >= 0 && slotClicked < getInventory().size()) {
-			Entity* b = getInventory()[slotClicked];
-			Item* c = b->getComponent<Item>();
-			if (b->getComponent<Key>() != nullptr)
-			{
-				Key* k = b->getComponent<Key>();
-				k->setDescription(k->getInitialDescr() + "\n" + k->getKeyName() + "\n");
-			}
-
-			description_.getComponent<TextNote>()->changeString(c->getDescription());
+			description_.getComponent<TextNote>()->changeString(getInventory()[slotClicked]->getComponent<Item>()->getDescription());
 		}
 		else {
 			description_.getComponent<TextNote>()->changeString("");

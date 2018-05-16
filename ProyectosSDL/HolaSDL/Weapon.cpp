@@ -6,7 +6,6 @@ Weapon::Weapon(ItemType type, const string& filename, std::string interactMessag
 {
 	weaponInit(type);
 	type_ = type;
-	initialDescr = getDescription();
 }
 
 
@@ -15,7 +14,10 @@ Weapon::~Weapon()
 }
 
 void Weapon::update(Entity* e, Uint32 time) {
+}
 
+string Weapon::getDescription() {
+	return Item::getDescription() +"Daño:" + to_string(damage_) + "               " + "Usos:" + to_string(numHits_) + "\n";
 }
 
 void Weapon::weaponInit(ItemType type) {
@@ -61,24 +63,7 @@ void Weapon::attack() {
 
 void Weapon::repare(int a)
 {
-	maxHits_ -= a;
-	if (maxHits_ < 0) { maxHits_ = 0; }
-}
-
-void Weapon::repair() {
-
-	numHits_ += (int)repairIndex_*maxHits_;
+	numHits_ += a;
 	if (numHits_ > maxHits_)
 		numHits_ = maxHits_;
-	std::cout << " arma reparada, numHits = " << numHits_ << std::endl;
-}
-
-bool Weapon::saveDescription() {
-	ofstream archivo;
-	archivo.clear();
-	archivo.open(txtFilePath_);
-	archivo << description;
-	archivo.close();
-	cout << endl << description << endl;
-	return true;
 }

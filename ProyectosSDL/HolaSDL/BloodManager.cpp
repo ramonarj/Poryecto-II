@@ -23,7 +23,7 @@ void BloodManager::render(Entity * e, Uint32 time) {
 	if (player_ == nullptr)
 		player_ = Game::Instance()->getEntityWithComponent<Player>();
 
-	Uint32 interCorto, interLargo;
+	Uint32 interPositivo, interNegativo;
 	int currentLife = player_->getComponent<Player>()->getLife();
 	int maxlife = player_->getComponent<Player>()->getMaxLife();
 	float bloodActiveNormal = (int)ceil(maxlife*0.5);	//cantidad de vida para que se active la sangre de pantalla (vel normal)
@@ -33,13 +33,13 @@ void BloodManager::render(Entity * e, Uint32 time) {
 
 		//Si la vida de elise esta igual o por debajo de 1/3 de la vida maxima
 		if (currentLife <= bloodActiveNormal) {
-			interCorto = 250;
-			interLargo = 500;
+			interPositivo = 5;
+			interNegativo = -5;
 		}
 		//Si la vida de Elise esta igual o por debajo de 1/5 de la vida maxima los latidos van mas rápidos
 		if (currentLife <= bloodActiveFast) {
-			interCorto = 100;
-			interLargo = 300;
+			interPositivo = 10;
+			interNegativo = -10;
 		}
 		if (player_->getComponent<Player>()->getInvincible() && pant) {
 			//pantalla blanca
@@ -61,14 +61,15 @@ void BloodManager::render(Entity * e, Uint32 time) {
 			pant = true;
 		if (currentLife <= bloodActiveNormal) {
 			if (time > actualTime_ + time_) {
-				if (alpha_ > alphaCorto_) {
-					alpha_ = alphaCorto_;
-					time_ = interLargo;
+				
+				if (alpha_ > 70) {
+					i_ = interNegativo;
 				}
-				else {
-					alpha_ = alphaLargo_;
-					time_ = interCorto;
+				else if (alpha_ < 10) {
+					i_ = interPositivo;
 				}
+				alpha_ += i_;
+
 				bloodText->ChangeAlphaValue(alpha_);
 
 				actualTime_ = time;

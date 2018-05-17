@@ -91,7 +91,7 @@ void CollisionManager::checkEntityTileCollision(std::list<Entity*> entity, const
 					Vector2D vel(0, 0);
 					pos.setX(c->getPosition().getX() - c->getVelocity().getX());
 					pos.setY(c->getPosition().getY() - c->getVelocity().getY());
-					if (c->getComponent<Character>() == nullptr || c->getComponent<Character>()->getKnockBack())
+					if (c->getComponent<Character>() != nullptr && c->getComponent<Character>()->getKnockBack())
 						c->setVelocity(vel);
 					c->setPosition(pos);
 				}

@@ -1,8 +1,10 @@
 #include "OrderPuzzleComponent.h"
 #include "OrderPuzzleController.h"
 #include "Countdown.h"
+#include "OrderPuzzle.h"
 #include "Order.h"
 #include "Door.h"
+#include "MessageTrigger.h"
 
 
 OrderPuzzleComponent::OrderPuzzleComponent(Entity* puzzleEntity) : puzzleEntity_(puzzleEntity)
@@ -87,14 +89,21 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 		if (!WinSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		WinSound = true;
-		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
-		puzzleEntity_->getComponent<Countdown>()->setActiveCountdown(true);
-		puzzleEntity_->getComponent<Order>()->setPuzzleActive(false);
+
 		for (Entity* e : *(PlayState::Instance()->getDoors()))
 		{
 			if (e->getComponent<Door>()->getDoorNum() == 1000)
 				e->getComponent<Door>()->keyFalse();
 		}
+
+		if (puzzleEntity_ != nullptr) {
+			puzzleEntity_->getComponent<Countdown>()->setActiveCountdown(true);
+			puzzleEntity_->getComponent<Order>()->setPuzzleActive(false);
+			puzzleEntity_->getComponent<Order>()->setPuzzleComplete(true);
+			puzzleEntity_->getComponent<MessageTrigger>()->setMessage("", true);
+		}
+
+		OrderPuzzle::Instance()->setPop(true);
 	}
 }
 
@@ -145,7 +154,7 @@ void OrderPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Event 
 	{
 		if (State[SDL_SCANCODE_E])
 		{
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			OrderPuzzle::Instance()->setPop(true);
 		}
 	}
 }

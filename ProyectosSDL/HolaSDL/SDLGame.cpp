@@ -32,7 +32,7 @@ void SDLGame::initSDL() {
 	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN);
 
 	//Put exe. icon
-	SDL_Surface *surface = IMG_Load("images/icon.png");
+	SDL_Surface *surface = IMG_Load("images/EdelweissIcon64x64.png");
 	SDL_SetWindowIcon(window_, surface);
 	SDL_FreeSurface(surface);
 

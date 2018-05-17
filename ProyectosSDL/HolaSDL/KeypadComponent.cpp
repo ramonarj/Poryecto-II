@@ -3,8 +3,8 @@
 #include "PlayState.h"
 #include "Door.h"
 #include "MessageTrigger.h"
-
 #include "KeyPadController.h"
+#include "KeypadState.h"
 
 KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int password) : numpad_ (image)
 {
@@ -87,8 +87,9 @@ void KeypadComponent::handleInput(Entity* e, Uint32 time, const SDL_Event& event
 	{
 		if (state[SDL_SCANCODE_E])
 		{
-			codeEntity_->getComponent<Code>()->setCodeActive(false);
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			if (codeEntity_ != nullptr)
+				codeEntity_->getComponent<Code>()->setCodeActive(false);
+			KeypadState::Instance()->setPop(true);
 		}
 	}
 }
@@ -146,7 +147,7 @@ void KeypadComponent::validCode()
 		}
 		cout << "Nice" << endl;
 		Game::Instance()->getResourceManager()->getSound("CodeSuccessSound")->play();
-		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+		KeypadState::Instance()->setPop(true);
 	}
 	else {
 		cout << "Wrong" << endl;

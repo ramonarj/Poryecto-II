@@ -3,7 +3,7 @@
 #include "Countdown.h"
 #include "Order.h"
 
-unique_ptr<OrderPuzzle> OrderPuzzle::s_pInstance = nullptr;
+OrderPuzzle* OrderPuzzle::s_pInstance = nullptr;
 
 OrderPuzzle::OrderPuzzle()
 {
@@ -24,7 +24,7 @@ void OrderPuzzle::startState()
 	list<Entity*>::iterator it;
 	bool foundPuzzle = false;
 	Entity* puzzleEntity = nullptr;
-	for (it = orderPuzzles_.begin(); it != orderPuzzles_.end() && !foundPuzzle; it++)
+	for (it = PlayState::Instance()->getOrderPuzzles()->begin(); it != PlayState::Instance()->getOrderPuzzles()->end() && !foundPuzzle; it++)
 	{
 		if ((*it)->getComponent<Order>()->getPuzzleActive())
 		{
@@ -49,6 +49,8 @@ void OrderPuzzle::render(Uint32 time)
 void OrderPuzzle::update(Uint32 time)
 {
 	GameState::update(time);
+	if (pop_)
+		Game::Instance()->stateMachine_.popState();
 }
 
 void OrderPuzzle::handleInput(Uint32 time, SDL_Event & event)

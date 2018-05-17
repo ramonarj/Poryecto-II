@@ -1,5 +1,5 @@
 #include "OrderPuzzleController.h"
-
+#include "OrderPuzzle.h"
 
 
 OrderPuzzleController::OrderPuzzleController()
@@ -110,7 +110,7 @@ void OrderPuzzleController::handleInput(Entity * o, Uint32 time, const SDL_Event
 			interactButtonPressed = false;
 		}
 		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			OrderPuzzle::Instance()->setPop(true);
 			interactButtonPressed = !interactButtonPressed;
 		}
 	}

@@ -13,6 +13,7 @@ Slide::~Slide()
 
 bool Slide::interact(Entity * e)
 {
-	Game::Instance()->getStateMachine()->pushState(SlidingPuzzle::Instance());
+	if (!puzzleComplete_)
+		Game::Instance()->getStateMachine()->pushState(SlidingPuzzle::Instance());
 	return true;
 }

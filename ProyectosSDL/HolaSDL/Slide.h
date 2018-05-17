@@ -9,5 +9,11 @@ public:
 	~Slide();
 
 	virtual bool interact(Entity* e);
+
+	void setPuzzleComplete(bool b) { puzzleComplete_ = b; };
+	bool getPuzzleComplete() { return puzzleComplete_; };
+
+private:
+	bool puzzleComplete_ = false;
 };
 

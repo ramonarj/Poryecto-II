@@ -2,7 +2,7 @@
 #include "Code.h"
 
 
-unique_ptr<KeypadState> KeypadState::s_pInstance = nullptr;
+KeypadState* KeypadState::s_pInstance = nullptr;
 
 KeypadState::KeypadState()
 {
@@ -18,7 +18,7 @@ void KeypadState::startState() {
 	Entity* codeEntity = nullptr;
 	list<Entity*>::iterator it;
 	bool foundCode = false;
-	for (it = codes_.begin(); it != codes_.end() && !foundCode; it++)
+	for (it = PlayState::Instance()->getCodes()->begin(); it != PlayState::Instance()->getCodes()->end() && !foundCode; it++)
 	{
 		if ((*it)->getComponent<Code>()->getCodeActive())
 		{
@@ -42,6 +42,10 @@ void KeypadState::render(Uint32 time)
 void KeypadState::update(Uint32 time)
 {
 	GameState::update(time);
+	bool codeValid = false;
+
+	if (pop_)
+		Game::Instance()->getStateMachine()->popState();
 }
 
 void KeypadState::handleInput(Uint32 time, SDL_Event & event)

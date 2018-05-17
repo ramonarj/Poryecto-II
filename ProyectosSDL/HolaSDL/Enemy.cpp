@@ -66,9 +66,10 @@ void Enemy::move(Entity* o)
 	if (!o->getComponent<Character>()->getKnockBack())
 	{
 		//Movimiento en X
+		cout << "PosX Enemigo: " << pos.getX() << "    PosX Player: " << playerPos.getX() << endl;
 		if (pos.getX() < playerPos.getX())
 			vel.setX(cos(alpha) * velMag);
-		else if (pos.getX() > playerPos.getX())
+		else if (pos.getX() > playerPos.getX() + player->getWidth())
 			vel.setX(cos(alpha) * -velMag);
 		else
 			vel.setX(0);
@@ -179,6 +180,7 @@ void Enemy::checkCollisions(Entity* o)
 			setAttacking(true);
 
 			//Character::knockBack(player, Vector2D(o->getVelocity().getX() * push, o->getVelocity().getY() * push));	//Si se pone este knockback aqui se empuja al player antes de colpear
+			player->getComponent<Player>()->startInvincible();
 
 			reloading = true;
 			effectDone = true;
@@ -190,7 +192,7 @@ void Enemy::checkCollisions(Entity* o)
 		if (isAlive() && player->getComponent<Character>()->isAlive()) 
 		{
 			setBlockDir(player);		
-			Character::knockBack(player, o, push*1.75);
+			Character::knockBack(player, Vector2D(o->getVelocity().getX() * 10, o->getVelocity().getY() * 10));
 			pushed_ = true;
 		}
 	}

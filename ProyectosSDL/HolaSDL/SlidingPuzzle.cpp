@@ -1,6 +1,6 @@
 #include "SlidingPuzzle.h"
 
-unique_ptr<SlidingPuzzle> SlidingPuzzle::s_pInstance = nullptr;
+SlidingPuzzle* SlidingPuzzle::s_pInstance = nullptr;
 
 SlidingPuzzle::SlidingPuzzle()
 {
@@ -29,6 +29,9 @@ void SlidingPuzzle::render(Uint32 time)
 void SlidingPuzzle::update(Uint32 time)
 {
 	GameState::update(time);
+
+	if(pop_)
+		Game::Instance()->getStateMachine()->popState();
 }
 
 void SlidingPuzzle::handleInput(Uint32 time, SDL_Event & event)

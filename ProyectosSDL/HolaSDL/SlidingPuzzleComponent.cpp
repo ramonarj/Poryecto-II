@@ -1,5 +1,8 @@
 #include "SlidingPuzzleComponent.h"
 #include "SlidingPuzzleController.h"
+#include "SlidingPuzzle.h"
+#include "Slide.h"
+#include "MessageTrigger.h"
 #include "Key.h"
 
 SlidingPuzzleComponent::SlidingPuzzleComponent()
@@ -57,7 +60,17 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 		{
 			if (e->getComponent<Key>() != nullptr && e->getComponent<Key>()->getDoorId() == 14)
 				e->setActive(true);
+			else
+			{
+				Slide* s = e->getComponent<Slide>();
+				if (s != nullptr)
+				{
+					s->setPuzzleComplete(true);
+					e->getComponent<MessageTrigger>()->setMessage("", true);
+				}
+			}
 		}
+		SlidingPuzzle::Instance()->setPop(true);
 	}
 }
 
@@ -96,7 +109,7 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 	{
 		if (State[SDL_SCANCODE_E])
 		{
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			SlidingPuzzle::Instance()->setPop(true);
 		}
 	}
 }

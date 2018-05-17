@@ -6,7 +6,7 @@
 
 
 
-unique_ptr<Game> Game::s_pInstance = nullptr;
+Game* Game::s_pInstance = nullptr;
 
 Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization
@@ -16,12 +16,12 @@ Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WIND
 	//getResources()->getMusic(Resources::MENU)->play();
 	//getResourceManager()->getMusic("Menu")->play();
 	//getResourceManager()->getSound("InventorySound")->play();
-	//stateMachine_.pushState(PlayState::Instance());
+	stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());
-	stateMachine_.pushState(MenuState::Instance());
+	//stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
 	stateMachine_.pushStateTick();

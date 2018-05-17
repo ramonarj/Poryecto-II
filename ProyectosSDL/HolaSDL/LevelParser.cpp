@@ -483,14 +483,14 @@ void LevelParser::loadSRMap(Entity * pEntity, int numMap, std::string orientacio
 void LevelParser::loadCode(Entity * pEntity, int numDoor, int code, std::string dir)
 {
 	pEntity->getComponent<Code>()->load(numDoor, code, dir);
-	KeypadState::Instance()->getCodes()->push_back(pEntity);
+	PlayState::Instance()->getCodes()->push_back(pEntity);
 }
 
 void LevelParser::loadCountdown(TiXmlElement * e, Entity* pEntity, int activeCountdown, int countdown)
 {
 	pEntity->getComponent<Countdown>()->load(activeCountdown, countdown);
 	if (e->Attribute("type") == std::string("Order"))
-		OrderPuzzle::Instance()->getOrderPuzzles()->push_back(pEntity);
+		PlayState::Instance()->getOrderPuzzles()->push_back(pEntity);
 }
 
 void LevelParser::loadSign(Entity * pEntity, int numSign, std::string dir)

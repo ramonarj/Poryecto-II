@@ -42,9 +42,9 @@ public:
 
 	static Game* Instance()
 	{
-		if (s_pInstance.get() == nullptr)
-			s_pInstance.reset(new Game());
-		return s_pInstance.get();
+		if (s_pInstance == nullptr)
+			s_pInstance = new Game();
+		return s_pInstance;
 	}
 	//Game();
 	virtual ~Game();
@@ -74,7 +74,7 @@ public:
 
 private:
 	Game();
-	static unique_ptr<Game> s_pInstance;
+	static Game* s_pInstance;
 	ResourceManager* resourceManager_;
 
 	void initGame();
@@ -82,6 +82,7 @@ private:
 	void handleInput(Uint32 time);
 	//void update(Uint32 time);
 	//void render(Uint32 time);
+	//virtual void resetSingleton() { s_pInstance = nullptr; };
 
 	void addGameObjectsFactory();
 	void addResourcesTexture();

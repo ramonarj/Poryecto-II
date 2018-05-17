@@ -18,6 +18,9 @@ public:
 	void moveMarkSlot(int a);
 	void clickMark();
 
+	void setCodeValid(bool b) { codeValid = b; };
+	bool getCodeValid() { return codeValid; };
+
 private:
 
 	struct coord {
@@ -33,6 +36,8 @@ private:
 	bool validate();//Valida los n�meros que se han introducido
 	void addNumber(int n);
 	void validCode();
+
+	bool codeValid = false;
 
 	Entity* codeEntity_;
 

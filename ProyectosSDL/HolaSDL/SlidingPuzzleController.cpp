@@ -1,5 +1,5 @@
 #include "SlidingPuzzleController.h"
-
+#include "SlidingPuzzle.h"
 
 
 SlidingPuzzleController::SlidingPuzzleController()
@@ -129,7 +129,7 @@ void SlidingPuzzleController::handleInput(Entity* o, Uint32 time, const SDL_Even
 		}
 		
 		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			SlidingPuzzle::Instance()->setPop(true);
 			interactButtonPressed = true;
 		}
 

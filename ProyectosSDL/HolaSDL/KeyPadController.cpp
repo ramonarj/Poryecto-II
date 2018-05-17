@@ -1,4 +1,5 @@
 #include "KeyPadController.h"
+#include "KeypadState.h"
  
 KeyPadController::KeyPadController()
 {
@@ -131,7 +132,8 @@ void KeyPadController::handleInput(Entity * o, Uint32 time, const SDL_Event & ev
 		}
 
 		if (((!controllerType && m_buttonStates[0][Square]) || (controllerType && m_buttonStates[0][X])) && !interactButtonPressed) {
-			Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			//Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
+			KeypadState::Instance()->setPop(true);
 			interactButtonPressed = true;
 		}
 

@@ -103,8 +103,6 @@ void Character::knockBack(Entity*o, Vector2D desplazamiento)	//WHEN PUNCHING
 		o->setVelocity(Vector2D(desplazamiento.getX(), -desplazamiento.getY()));
 		o->getComponent<Character>()->setKnockBackOn();
 		o->getComponent<Character>()->setKnockBack(true);
-		if (o->getComponent<Player>() != nullptr)
-			o->getComponent<Player>()->startInvincible();
 	}
 }
 

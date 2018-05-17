@@ -126,6 +126,52 @@ void PlayState::update(Uint32 time)
 	pLevel->update(time);
 	GameState::update(time);
 	pLevel->update(time);
+
+	if (!ambientSound)
+	{
+		ambientSound = true;
+		SoundTimer = rand() % 60000 + 60000;
+		ActualTimer = time;
+	}
+	else if (time >= ActualTimer + SoundTimer)
+	{
+		ambientSound = false;
+		int randSound = rand() % 8;
+		//ESTO ES PARA EVITAR QUE EL MISMO SONIDO SUENE DOS VECES SEGUIDAS
+		while(randSound == lastSound){ int randSound = rand() % 8; }
+		lastSound = randSound;
+
+		switch (randSound)
+		{
+		case 0:
+			Game::Instance()->getResourceManager()->getSound("CrySound")->play();
+			break;
+		case 1:
+			Game::Instance()->getResourceManager()->getSound("LaughSound")->play();
+			break;
+		case 2:
+			Game::Instance()->getResourceManager()->getSound("MonsterRoarSound")->play();
+			break;
+		case 3:
+			Game::Instance()->getResourceManager()->getSound("MonsterRoar2Sound")->play();
+			break;
+		case 4:
+			Game::Instance()->getResourceManager()->getSound("ScaryStepsSound")->play();
+			break;
+		case 5:
+			Game::Instance()->getResourceManager()->getSound("WaterphoneDeepSound")->play();
+			break;
+		case 6:
+			Game::Instance()->getResourceManager()->getSound("WaterphoneChirridoSound")->play();
+			break;
+		case 7:
+			Game::Instance()->getResourceManager()->getSound("WaterphoneAmbientSound")->play();
+			break;
+		default:
+			Game::Instance()->getResourceManager()->getSound("WaterphoneDeepSound")->play();
+			break;
+		}
+	}
 }
 
 void PlayState::render(Uint32 time)

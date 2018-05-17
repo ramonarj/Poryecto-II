@@ -307,18 +307,23 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("UnlockSound", "sounds/DesbloqueaPuerta.mp3");
 	resourceManager_->addSound("LockSound", "sounds/DoorLocked.mp3");
 	resourceManager_->addSound("SaveSound", "sounds/GuardarPartida.mp3");
-	resourceManager_->addSound("MapSound", "sounds/mapa.mp3");
-	resourceManager_->addSound("Monster3Sound", "sounds/Monstruo3Sonido.mp3");
+	resourceManager_->addSound("MapSound", "sounds/mapa.mp3");	
 	resourceManager_->addSound("StepSound", "sounds/pasos.mp3");
 	resourceManager_->addSound("PickSound", "sounds/pickUpItepANDcraft.mp3");
 	resourceManager_->addSound("CraftSound", "sounds/pickUpItepANDcraft.mp3");
 	resourceManager_->addSound("BeepSound", "sounds/Pitido.wav");
 	resourceManager_->addSound("DoorSound", "sounds/puerta.mp3");
 	resourceManager_->addSound("RepareSound", "sounds/repare.mp3");
-	resourceManager_->addSound("CrySound", "sounds/Cry.mp3");
-	resourceManager_->addSound("LaughSound", "sounds/Laugh.mp3");
 	resourceManager_->addSound("ScaryStepsSound", "sounds/ScarySteps.mp3");
 	resourceManager_->addSound("ErrorCodeSound", "sounds/ErrorCode.wav");
+	resourceManager_->addSound("MonsterEcoSound", "sounds/MonsterEco.wav");
+	resourceManager_->addSound("SuccessSound", "sounds/PuzzlesSuccess.wav");
+	resourceManager_->addSound("SlideSound", "sounds/Slide.wav");
+	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.mp3");
+	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
+	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
+	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
+	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
 	//MONSTER1
 	resourceManager_->addSound("Monster1HitSound", "sounds/Monster1Hit.wav");
 	resourceManager_->addSound("Monster1DeadSound", "sounds/Monster1Dead.mp3");
@@ -328,20 +333,18 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("Monster2HitSound", "sounds/Monster2Hit.wav");
 	resourceManager_->addSound("Monster2StepSound", "sounds/Monster2Step.mp3");
 	//MONSTER3
+	resourceManager_->addSound("Monster3Sound", "sounds/Monstruo3Sonido.mp3");
 	resourceManager_->addSound("Monster3DeadSound", "sounds/Monstruo3muerte.mp3");
 	resourceManager_->addSound("Monster3StepSound", "sounds/Monstruo3Sonido.mp3");
-	
-	resourceManager_->addSound("MonsterRoarSound", "sounds/MonsterRoar.wav");
+	//AMBIENT
+	resourceManager_->addSound("CrySound", "sounds/Cry.mp3");
+	resourceManager_->addSound("LaughSound", "sounds/Laugh.mp3");
+	resourceManager_->addSound("MonsterRoarSound", "sounds/MonsterRoarAmbient.mp3");
 	resourceManager_->addSound("MonsterRoar2Sound", "sounds/MonsterRoar2.wav");
-	resourceManager_->addSound("MonsterEcoSound", "sounds/MonsterEco.wav");
-	resourceManager_->addSound("SuccessSound", "sounds/PuzzlesSuccess.wav");
-	resourceManager_->addSound("SlideSound", "sounds/Slide.wav");
-	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.mp3");
-	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
-	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
-	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
-	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
-
+	resourceManager_->addSound("ScaryStepsSound", "sounds/ScarySteps.mp3");
+	resourceManager_->addSound("WaterphoneDeepSound", "sounds/Waterphone1Deep.mp3");
+	resourceManager_->addSound("WaterphoneChirridoSound", "sounds/Waterphone3Chirrido.mp3");
+	resourceManager_->addSound("WaterphoneAmbientSound", "sounds/Waterphone6Ambient.mp3");
 	////Tema de elise
 	resourceManager_->addSound("EliseThemeSound", "music/TemadeElise.mp3");
 

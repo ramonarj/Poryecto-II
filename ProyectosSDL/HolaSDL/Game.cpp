@@ -51,6 +51,7 @@ void Game::initGame()
 void Game::closeGame() {
 	//Aqui van los deletes
 	delete resourceManager_;
+	//delete gameObjectFactory;
 }
 
 void Game::start() {
@@ -307,7 +308,6 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("LockSound", "sounds/DoorLocked.mp3");
 	resourceManager_->addSound("SaveSound", "sounds/GuardarPartida.mp3");
 	resourceManager_->addSound("MapSound", "sounds/mapa.mp3");
-	resourceManager_->addSound("Monster3DeadSound", "sounds/Monstruo3muerte.mp3");
 	resourceManager_->addSound("Monster3Sound", "sounds/Monstruo3Sonido.mp3");
 	resourceManager_->addSound("StepSound", "sounds/pasos.mp3");
 	resourceManager_->addSound("PickSound", "sounds/pickUpItepANDcraft.mp3");
@@ -330,21 +330,21 @@ void Game::addResourcesSoundEffects()
 	//MONSTER3
 	resourceManager_->addSound("Monster3DeadSound", "sounds/Monstruo3muerte.mp3");
 	resourceManager_->addSound("Monster3StepSound", "sounds/Monstruo3Sonido.mp3");
-
+	
 	resourceManager_->addSound("MonsterRoarSound", "sounds/MonsterRoar.wav");
 	resourceManager_->addSound("MonsterRoar2Sound", "sounds/MonsterRoar2.wav");
 	resourceManager_->addSound("MonsterEcoSound", "sounds/MonsterEco.wav");
 	resourceManager_->addSound("SuccessSound", "sounds/PuzzlesSuccess.wav");
 	resourceManager_->addSound("SlideSound", "sounds/Slide.wav");
-	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.wav");
+	resourceManager_->addSound("Slide2Sound", "sounds/Slide2.mp3");
 	resourceManager_->addSound("CodeSuccessSound", "sounds/SuccessCode.wav");
 	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
 	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
 	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
 
-	//Tema de elise
+	////Tema de elise
 	resourceManager_->addSound("EliseThemeSound", "music/TemadeElise.mp3");
-	
+
 }
 
 void Game::addResourcesFonts()

@@ -5,10 +5,10 @@ ResourceManager::ResourceManager(Game* game) : game_(game) {
 }
 
 ResourceManager::~ResourceManager() {
-	//deleteTextures();
-	//deleteMusic();
-	//deleteSounds();
-	//deleteFonts();
+//	deleteTextures();
+//	deleteMusic();
+//	deleteSounds();
+//	deleteFonts();
 }
 
 // Textures ------------------------------------------------------------
@@ -30,6 +30,8 @@ void ResourceManager::deleteTextures() {
 // Music ------------------------------------------------------------
 void ResourceManager::addMusic(string id, string filepath) {
 	music_.insert(pair<string, Music*>(id, new Music(FOLDER + filepath)));
+	sounds_.insert(pair<string, SoundEffect*>(id, new SoundEffect(FOLDER + filepath)));
+
 }
 
 Music * ResourceManager::getMusic(string id) {
@@ -53,8 +55,8 @@ SoundEffect * ResourceManager::getSound(string id) {
 }
 
 void ResourceManager::deleteSounds() {
-	for (auto&& s : sounds_) {
-		delete s.second;
+	for (auto&& ss : sounds_) {
+		delete ss.second;
 	}
 	sounds_.clear();
 }

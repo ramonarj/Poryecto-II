@@ -23,7 +23,12 @@ public:
 			s_pInstance.reset(new GameObjectFactory());
 		return s_pInstance.get();
 	}
-	~GameObjectFactory() {}
+	~GameObjectFactory() {
+		for (auto&& m : m_creators) {
+			delete m.second;
+		}
+		m_creators.clear();
+	};
 
 	bool registerType(std::string typeID, BaseCreator* pCreator)
 	{

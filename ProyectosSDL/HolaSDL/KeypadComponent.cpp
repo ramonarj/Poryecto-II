@@ -139,7 +139,6 @@ void KeypadComponent::validCode()
 		codeEntity_->getComponent<Code>()->setAccept(true);
 		codeEntity_->getComponent<Code>()->setCodeActive(false);
 		codeEntity_->getComponent<MessageTrigger>()->setMessage("");
-		list<Entity*> doors = (*PlayState::Instance()->getDoors());
 		for (Entity* e : *(PlayState::Instance()->getDoors()))
 		{
 			if (e->getComponent<Door>()->getDoorNum() == codeEntity_->getComponent<Code>()->getNumDoorCode())

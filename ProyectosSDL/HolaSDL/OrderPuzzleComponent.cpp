@@ -2,6 +2,7 @@
 #include "OrderPuzzleController.h"
 #include "Countdown.h"
 #include "Order.h"
+#include "Door.h"
 
 
 OrderPuzzleComponent::OrderPuzzleComponent(Entity* puzzleEntity) : puzzleEntity_(puzzleEntity)
@@ -89,6 +90,11 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 		Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 		puzzleEntity_->getComponent<Countdown>()->setActiveCountdown(true);
 		puzzleEntity_->getComponent<Order>()->setPuzzleActive(false);
+		for (Entity* e : *(PlayState::Instance()->getDoors()))
+		{
+			if (e->getComponent<Door>()->getDoorNum() == 1000)
+				e->getComponent<Door>()->keyFalse();
+		}
 	}
 }
 

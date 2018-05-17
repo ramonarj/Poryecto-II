@@ -36,6 +36,8 @@ distribution.
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include "checkML.h"
+
 
 #define TIXML_USE_STL
 

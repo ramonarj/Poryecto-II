@@ -7,6 +7,8 @@
 #include <iostream>
 #include "MessageRenderer.h"
 #include "MessageTimer.h"
+#include "checkML.h"
+
 
 class KeyBoardInputComponent :
 	public Component

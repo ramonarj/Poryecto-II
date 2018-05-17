@@ -2,6 +2,8 @@
 #include "Character.h"
 #include "Camera.h"
 #include "FadeManager.h"
+#include "checkML.h"
+
 
 class Player :
 	public Character

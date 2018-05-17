@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "Light.h"
 #include "PlayerLight.h"
+#include "checkML.h"
+
 
 class LightManager : public Component {
 public:

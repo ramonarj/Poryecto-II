@@ -2,6 +2,8 @@
 #include "Interactible.h"
 #include "PlayState.h"
 #include "MessageTrigger.h"
+#include "checkML.h"
+
 
 class SRMap : public Interactible
 {

@@ -2,6 +2,8 @@
 #include "Interactible.h"
 #include "TextNote.h"
 #include "PlayState.h"
+#include "checkML.h"
+
 
 class Register : public Interactible
 {

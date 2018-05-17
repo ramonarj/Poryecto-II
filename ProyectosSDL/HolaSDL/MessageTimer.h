@@ -1,6 +1,8 @@
 #pragma once
 #include "Component.h"
 #include "MessageRenderer.h"
+#include "checkML.h"
+
 
 class MessageTimer : public Component { //Para deshabilitar el Badge pasado un X tiempo
 public:

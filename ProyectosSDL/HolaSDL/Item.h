@@ -4,6 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "checkML.h"
+
+
 using namespace std;
 
 enum ItemType{ STICK, CROWBAR, PIPE, AXE, ALCOHOL, BANDAGES, FIRSTAID, GENERICCHEMICAL, ACIDCHEMICAL,

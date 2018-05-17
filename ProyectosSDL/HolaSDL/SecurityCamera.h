@@ -1,5 +1,8 @@
 #pragma once
 #include "Component.h"
+#include "checkML.h"
+
+
 class SecurityCamera : public Component
 {
 public:

@@ -3,6 +3,7 @@
 #include <vector>
 #include "tinyxml.h"
 #include "LoaderParams.h"
+#include "checkML.h"
 
 
 class Level;

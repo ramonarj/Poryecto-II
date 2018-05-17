@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "MessageRenderer.h"
 #include "ControllerInputComponent.h"
+#include "checkML.h"
+
 
 class MessageTrigger : public Component {
 public:

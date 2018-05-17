@@ -3,6 +3,8 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "checkML.h"
+
 
 enum MessageId {
 	PLAYER_INTERACTION,

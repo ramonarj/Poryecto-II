@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "Entity.h"
 #include "Game.h"
+#include "checkML.h"
+
 
 class PlayerAnimationComponent :
 	public Component

@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseControllerInput.h"
 #include "SlidingPuzzleComponent.h"
+#include "checkML.h"
+
 
 class SlidingPuzzleController :
 	public BaseControllerInput

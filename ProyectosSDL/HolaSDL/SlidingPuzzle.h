@@ -3,6 +3,8 @@
 #include "GameState.h"
 #include "SlidingPuzzleComponent.h"
 #include "SlidingPuzzleController.h"
+#include "checkML.h"
+
 
 class SlidingPuzzle : public GameState
 {

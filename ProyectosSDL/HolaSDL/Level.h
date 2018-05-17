@@ -6,6 +6,8 @@
 #include "LevelParser.h"
 #include "Entity.h"
 #include "CollisionManager.h"
+#include "checkML.h"
+
 
 class TileLayer;
 

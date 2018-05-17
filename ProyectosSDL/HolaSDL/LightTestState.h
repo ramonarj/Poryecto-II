@@ -1,5 +1,8 @@
 #pragma once
 #include "GameState.h"
+#include "checkML.h"
+
+
 class LightTestState :	public GameState {
 public:
 	LightTestState(Game* game_);

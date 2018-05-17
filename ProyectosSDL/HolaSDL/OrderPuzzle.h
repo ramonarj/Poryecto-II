@@ -2,6 +2,8 @@
 #include "GameState.h"
 #include "OrderPuzzleComponent.h"
 #include "OrderPuzzleController.h"
+#include "checkML.h"
+
 
 class OrderPuzzle : public GameState
 {

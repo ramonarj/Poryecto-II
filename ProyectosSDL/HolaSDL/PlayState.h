@@ -37,6 +37,12 @@ public:
 	Entity* chest;
 	Entity* craft;
 
+	//COSAS DE AUDIO
+	bool ambientSound = false;
+	Uint32 SoundTimer;
+	Uint32 ActualTimer;
+	int lastSound = 9;
+
 	Entity* fadeManager_ = nullptr;
 
 	static PlayState* Instance()

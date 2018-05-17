@@ -22,6 +22,12 @@ private:
 	map <string, SoundEffect*> sounds_;
 	map <string, Font*> fonts_;
 
+	void deleteTextures();
+	void deleteMusic();
+	void deleteSounds();
+	void deleteFonts();
+
+
 public:
 	ResourceManager(Game* game);
 	~ResourceManager();

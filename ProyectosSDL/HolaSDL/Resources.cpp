@@ -37,6 +37,7 @@ Resources::Resources(SDLGame* game) :
 Resources::~Resources() {
 	closeImageTextures();
 	closeFonts();
+	closeTextTextures();
 	closeMusic();
 	closeSoundEffects();
 }

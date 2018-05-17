@@ -50,6 +50,7 @@ void Game::initGame()
 
 void Game::closeGame() {
 	//Aqui van los deletes
+	delete resourceManager_;
 }
 
 void Game::start() {

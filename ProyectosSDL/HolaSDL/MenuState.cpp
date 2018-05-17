@@ -11,6 +11,7 @@ MenuState::MenuState() : GameState() //, pRenderer(nullptr), resource(nullptr), 
 
 
 MenuState::~MenuState() {
+
 }
 
 

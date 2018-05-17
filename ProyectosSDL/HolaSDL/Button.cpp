@@ -9,7 +9,6 @@ Button::Button(CallBackOnClick* callBack, Texture* texture, Vector2D pos) : Comp
 }
 
 Button::~Button() {
-	delete texture_;
 }
 
 void Button::render(Entity* o, Uint32 time) {

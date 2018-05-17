@@ -9,6 +9,7 @@ MouseInputComponent::MouseInputComponent()
 
 MouseInputComponent::~MouseInputComponent()
 {
+	delete m_mousePosition;
 }
 
 

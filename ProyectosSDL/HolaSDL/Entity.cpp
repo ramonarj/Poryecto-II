@@ -2,6 +2,9 @@
 #include "Camera.h"
 
 Entity::~Entity() {
+	for (Component* c : comps_) {
+		delete c;
+	}
 }
 
 void Entity::setActive(bool enabled)

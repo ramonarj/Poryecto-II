@@ -45,7 +45,7 @@ Inventory::~Inventory()
 	for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
 	if (equiped != nullptr) delete equiped;
 	equiped = nullptr;
-	delete lifeGreen, lifeRed, lifeOrange;
+	//delete lifeGreen, lifeRed, lifeOrange;
 	lifeGreen = lifeRed = lifeOrange = nullptr;
 }
 

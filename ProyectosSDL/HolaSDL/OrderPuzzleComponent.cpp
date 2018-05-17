@@ -85,16 +85,10 @@ void OrderPuzzleComponent::update(Entity * e, Uint32 time)
 {
 	if (compruebaVictoria())
 	{
-		cout << "poh hemo' ganao' \n";
+		//cout << "poh hemo' ganao' \n";
 		if (!WinSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		WinSound = true;
-
-		for (Entity* e : *(PlayState::Instance()->getDoors()))
-		{
-			if (e->getComponent<Door>()->getDoorNum() == 1000)
-				e->getComponent<Door>()->keyFalse();
-		}
 
 		if (puzzleEntity_ != nullptr) {
 			puzzleEntity_->getComponent<Countdown>()->setActiveCountdown(true);

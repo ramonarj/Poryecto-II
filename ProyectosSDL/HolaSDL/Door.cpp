@@ -178,6 +178,11 @@ void Door::keyFalse()
 	needKey_ = false;
 }
 
+void Door::keyTrue()
+{
+	needKey_ = true;
+}
+
 bool Door::isCollidable()
 {
 	return collidableDoor_;

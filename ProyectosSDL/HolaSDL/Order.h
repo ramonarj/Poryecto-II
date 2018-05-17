@@ -11,7 +11,7 @@ public:
 	void setPuzzleActive(bool b) { puzzleActive_ = b; };
 	bool getPuzzleActive() { return puzzleActive_; };
 
-	void setPuzzleComplete(bool b) { puzzleComplete_ = b; };
+	void setPuzzleComplete(bool b);
 	bool getPuzzleComplete() { return puzzleComplete_; };
 
 private:

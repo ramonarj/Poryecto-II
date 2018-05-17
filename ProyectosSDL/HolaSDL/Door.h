@@ -28,6 +28,7 @@ public:
 	void setNeedKey();
 	void openDoor();
 	void keyFalse();
+	void keyTrue();
 	bool isCollidable();
 
 	virtual void update(Entity* e, Uint32 time);

@@ -21,9 +21,9 @@ void DoorAnimation::render(Entity* o, Uint32 time) {
 
 	SDL_Rect clip;
 
-	if (open_ == false) {
+	//if (open_ == false) {
 		open_ = !o->getComponent<Door>()->getNeedKey();
-	}
+	//}
 
 	if (!open_) {
 		clip = RECT (0,0,image_->getWidth() / 2, image_->getHeight());

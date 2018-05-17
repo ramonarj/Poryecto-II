@@ -1,6 +1,8 @@
 #include "Order.h"
 #include "Game.h"
 #include "OrderPuzzle.h"
+#include "Door.h"
+#include "MessageTrigger.h"
 
 Order::Order(): puzzleActive_(false)
 {
@@ -19,4 +21,22 @@ bool Order::interact(Entity * e)
 		puzzleActive_ = true;
 	}
 	return true;
+}
+
+void Order::setPuzzleComplete(bool b)
+{
+	puzzleComplete_ = b;
+	for (Entity* e : *(PlayState::Instance()->getDoors()))
+	{
+		if (e->getComponent<Door>()->getDoorNum() == 1000)
+		{
+			if (puzzleComplete_)
+				e->getComponent<Door>()->keyFalse();
+			else
+			{
+				e->getComponent<Door>()->keyTrue();
+				e->getComponent<MessageTrigger>()->setMessage("Parece que esta puerta está averiada");
+			}
+		}
+	}
 }

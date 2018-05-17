@@ -33,7 +33,7 @@ private:
 protected:
 	SDL_Window* window_; // the window
 	SDL_Renderer* renderer_;  // the renderer
-	Resources* resources_; // resource (textures, font, music, etc)
+	//Resources* resources_; // resource (textures, font, music, etc)
 
 	std::string windowTitle_; // window title
 	int width_; // window width

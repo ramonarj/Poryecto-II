@@ -65,11 +65,11 @@ void SDLGame::closeSDL() {
 }
 
 void SDLGame::initResources() {
-	resources_ = new Resources(this);
+	//resources_ = new Resources(this);
 }
 
 void SDLGame::closeResources() {
-	delete resources_;
+	//delete resources_;
 }
 
 SDL_Window* SDLGame::getWindow() const {
@@ -81,7 +81,8 @@ SDL_Renderer* SDLGame::getRenderer() const {
 }
 
 const Resources* SDLGame::getResources() const {
-	return resources_;
+	//return resources_;
+	return nullptr;
 }
 
 int SDLGame::getWindowWidth() const {

@@ -22,6 +22,11 @@ public:
 	~MenuState();
 	virtual void startState();
 	virtual void render(Uint32 time);
+	virtual void resetSingleton() { 
+		//delete s_pInstance;
+		s_pInstance = nullptr;
+	};
+
 };
 
 typedef MenuState MenuState;

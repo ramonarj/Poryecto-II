@@ -10,7 +10,7 @@ GameState::~GameState() { //Destructora
 	for (Entity* o : stage_)
 		delete o;
 
-	//if (cursor_ != nullptr)	delete cursor_;
+	if (cursor_ != nullptr)	delete cursor_;
 }
 
 void GameState::startState()

@@ -11,7 +11,7 @@ class Game;
 class GameState {
 
 protected:
-	Entity* cursor_;
+	Entity* cursor_ = nullptr;
 
 	list<Entity*> stage_;
 	list<Entity*> stageAux_;

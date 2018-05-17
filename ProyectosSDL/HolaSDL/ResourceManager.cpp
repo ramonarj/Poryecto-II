@@ -5,10 +5,10 @@ ResourceManager::ResourceManager(Game* game) : game_(game) {
 }
 
 ResourceManager::~ResourceManager() {
-	//deleteTextures();
-	//deleteMusic();
-	//deleteSounds();
-	//deleteFonts();
+	deleteTextures();
+	deleteMusic();
+	deleteSounds();
+	deleteFonts();
 }
 
 // Textures ------------------------------------------------------------

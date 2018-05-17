@@ -5,6 +5,9 @@ GameStateMachine::GameStateMachine(): statesToPop(0) {
 }
 
 GameStateMachine::~GameStateMachine() {
+	while (!states.empty()) {
+		popState();
+	}
 }
 
 void GameStateMachine::popState() { //Borra el top de la pila de states y hace pop

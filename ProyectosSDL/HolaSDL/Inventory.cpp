@@ -185,6 +185,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 					this->DeleteItem(slotClicked);
 				}
 
+
+
 			}
 			clicked = false;
 		}
@@ -194,7 +196,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 		if (event.button.button == SDL_BUTTON_LEFT) {
 			//COMPROBAR SI SE HA SOLTADO EN LAAS COORDENADAS DEL INVENTARIO
 			if ((event.button.x >= Inventoryslots[0].x - slotWidth / 2 && event.button.x <= Inventoryslots[InventoryTam - 1].x + slotWidth)
-				&& (event.button.y >= Inventoryslots[0].y - slotWidth / 2 && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)) //cambio
+				&& (event.button.y >= Inventoryslots[0].y - slotWidth / 2 && event.button.y <= Inventoryslots[InventoryTam - 1].y + slotWidth)
+				&& equiped != nullptr) //cambio
 			{
 				if (!fullInventory())
 				{
@@ -209,7 +212,8 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 			else if (chestMode) {
 				if (cofre == nullptr) { cofre = Game::Instance()->getEntityWithComponent<Chest>()->getComponent<Chest>(); }
 				if ((event.button.x >= ChestSlots[0].x && event.button.x <= ChestSlots[cofre->getChestTam() - 1].x)
-					&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[cofre->getChestTam() - 1].y))
+					&& (event.button.y >= ChestSlots[0].y && event.button.y <= ChestSlots[cofre->getChestTam() - 1].y)
+					&& equiped != nullptr)
 				{
 					if (!cofre->fullChest()) {
 						cofre->addItem(equiped);
@@ -217,6 +221,19 @@ void Inventory::handleInput(Entity* e, Uint32 time, const SDL_Event& event)
 					}
 				}
 			}
+
+			//ARRASTRAR DESDE EL HUECO DEL ARMA HACIA EL HUECO DE REPARAR
+			else if (craftMode) {
+				if (craftWin == nullptr) { craftWin = Game::Instance()->getEntityWithComponent<Craft>()->getComponent<Craft>(); }
+				if ((event.button.x >= craftWin->WepRepareSlot().x - slotWidth / 2 && event.button.x <= craftWin->WepRepareSlot().x + slotWidth)
+					&& (event.button.y >= craftWin->WepRepareSlot().y - slotWidth / 2 && event.button.y <= craftWin->WepRepareSlot().y + slotWidth) 
+					&& equiped != nullptr)
+				{
+					craftWin->setWep(equiped);
+					equiped = nullptr;
+				}
+			}
+
 			equipedClicked = false;
 		}
 	}

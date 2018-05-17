@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" nextobjectid="602">
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="604">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -200,11 +200,11 @@
    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
   </data>
  </layer>
- <objectgroup name="CarnePuaj" visible="0">
+ <objectgroup name="CarnePuaj">
   <properties>
    <property name="staticEntity" type="int" value="1"/>
   </properties>
-  <object id="559" name="CarnePuaj" type="CarnePuaj" x="1860" y="1720" width="40" height="80">
+  <object id="559" name="CarnePuaj" type="CarnePuaj" x="1860" y="1640" width="40" height="80">
    <properties>
     <property name="textureHeight" type="int" value="80"/>
     <property name="textureWidth" type="int" value="40"/>
@@ -349,7 +349,7 @@
   <object id="544" name="Order" type="Order" x="486" y="2079" width="40" height="22">
    <properties>
     <property name="activeCountdown" type="int" value="0"/>
-    <property name="count" type="int" value="60000"/>
+    <property name="count" type="int" value="30000"/>
     <property name="dir" value="oeste"/>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureWidth" type="int" value="20"/>
@@ -1975,6 +1975,15 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
+  <object id="603" name="Key" type="Key" x="563.5" y="2015.33" width="20" height="27.3333">
+   <properties>
+    <property name="keyName" value="  Llave de la Zona de Extracciones."/>
+    <property name="numKey" type="int" value="11"/>
+    <property name="textureHeight" type="int" value="20"/>
+    <property name="textureID" value="item"/>
+    <property name="textureWidth" type="int" value="20"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Items" visible="0">
   <properties>
@@ -2273,7 +2282,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Enemies" visible="0">
+ <objectgroup name="Enemies">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
@@ -2362,9 +2371,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="471" name="Enemy" type="Enemy" x="8862.5" y="10045.7" width="19" height="27.3333">
@@ -2382,9 +2391,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="473" name="Enemy" type="Enemy" x="10253.5" y="6143.33" width="19" height="27.3333">
@@ -2392,9 +2401,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="489" name="Enemy" type="Enemy" x="2567.83" y="6314.33" width="19" height="27.3333">
@@ -2422,9 +2431,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="492" name="Enemy" type="Enemy" x="2552.83" y="7165.17" width="19" height="27.3333">
@@ -2472,9 +2481,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="501" name="Enemy" type="Enemy" x="2602.5" y="7139.67" width="19" height="27.3333">
@@ -2512,9 +2521,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="513" name="Enemy" type="Enemy" x="11282" y="4081.83" width="19" height="27.3333">
@@ -2542,9 +2551,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="519" name="Enemy" type="Enemy" x="1534.5" y="1749" width="19" height="27.3333">
@@ -2572,9 +2581,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="523" name="Enemy" type="Enemy" x="2938.5" y="843.333" width="19" height="27.3333">
@@ -2592,9 +2601,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
   <object id="525" name="Enemy" type="Enemy" x="2360.2" y="2113.61" width="19" height="27.3333">
@@ -2622,9 +2631,9 @@
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>
     <property name="numEnemy" type="int" value="2"/>
-    <property name="textureHeight" type="int" value="30"/>
+    <property name="textureHeight" type="int" value="28"/>
     <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="45"/>
+    <property name="textureWidth" type="int" value="50"/>
    </properties>
   </object>
  </objectgroup>
@@ -2658,7 +2667,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Player">
+ <objectgroup name="Player" visible="0">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>

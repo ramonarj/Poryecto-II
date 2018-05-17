@@ -1,6 +1,7 @@
 #include "Player.h"
-
-
+#include "Order.h"
+#include "MessageTrigger.h"
+#include "Countdown.h"
 
 Player::Player() :Character(), coolDown_(false), coolDownOn_(0), coolDownTime_(1000), invincible_(false), invincibleOn_(0), invincibleTime_(3000), invincibleOnOff_(0),
 				teleport_(false), numDoorToTeleport_(0), doorToTeleport_(nullptr), lastSRpos_(0, 0)
@@ -24,9 +25,18 @@ void Player::update(Entity * o, Uint32 time)
 
 	if (!isAlive() && !deadSound) {
 		Game::Instance()->getResourceManager()->getSound("DieSound")->play();
+		for (Entity* e : (*PlayState::Instance()->getOrderPuzzles()))
+		{
+			e->getComponent<Order>()->setPuzzleComplete(false);
+			e->getComponent<Countdown>()->setActiveCountdown(false);
+			MessageTrigger* mT = e->getComponent<MessageTrigger>();
+			mT->setMessage("'E' para resolver recolocar los cables", "'Square/X' para recolocar los cables", false);
+		}
 		deadSound = true;
 	}
-	else if (isAlive()) { deadSound = false; }
+	else if (isAlive()) { 
+		deadSound = false; 
+	}
 }
 
 void Player::handleInput(Entity* o, Uint32 time, const SDL_Event& event){}

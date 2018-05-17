@@ -43,6 +43,8 @@ private:
 	int selectedSlot = 0;
 	bool renderMark = false;
 
+	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;
+
 	Entity description_ = Entity(20, 20);
 	ControllerInputComponent* controller_ = nullptr;
 };

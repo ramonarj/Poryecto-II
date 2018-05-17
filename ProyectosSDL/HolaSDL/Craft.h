@@ -80,6 +80,8 @@ private:
 	SDL_Rect clip = RECT(0, 0, 20, 20);
 	Entity description_ = Entity(20, 20);
 
+	double ritmoCardiaco1, ritmoCardiaco2, ritmoCardiaco3;
+
 	ControllerInputComponent* controller_ = nullptr;
 };
 

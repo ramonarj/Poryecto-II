@@ -7,6 +7,10 @@ Craft::Craft()
 
 	SDL_Color c{ 0,255,100,255 };
 	description_.getComponent<TextNote>()->setColor(c);
+
+	ritmoCardiaco1 = PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife();
+	ritmoCardiaco2 = (int)(ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.5));
+	ritmoCardiaco3 = (int)(ceil(PlayState::Instance()->getPlayer()->getComponent<Player>()->getMaxLife()*0.25));
 }
 
 
@@ -71,6 +75,15 @@ void Craft::render(Entity * e, Uint32 time)
 
 	SDL_Rect dest = { posX,posY, ancho,alto };
 	resource->getTexture("Inventory")->render(pRenderer, dest);
+
+	dest = { posX * 14, posY, ancho / 4, alto / 2 };
+
+	if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3)
+		resource->getTexture("EliseInventory_NotOk")->render(pRenderer, dest);
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco2)
+		resource->getTexture("EliseInventory_Ok")->render(pRenderer, dest);
+	else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1)
+		resource->getTexture("EliseInventory")->render(pRenderer, dest);
 
 	ancho = width - width / 10;
 	alto = height - height / 10;

@@ -230,7 +230,8 @@ void Inventory::render(Entity* e, Uint32 time)
 	if (pRenderer == nullptr) pRenderer = Game::Instance()->getRenderer();
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 
-	//if (!chestMode && !craftMode) {
+	if (!chestMode && !craftMode) {
+
 		int width = Game::Instance()->getWindowWidth();
 		int height = Game::Instance()->getWindowHeight();
 
@@ -242,17 +243,17 @@ void Inventory::render(Entity* e, Uint32 time)
 		SDL_Rect dest = { posX, posY, ancho,alto };
 		resource->getTexture("Inventory")->render(pRenderer, dest);
 
-		destE = { posX * 14, posY, ancho/4, alto /2};
-		
-		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3) 
+		destE = { posX * 14, posY, ancho / 4, alto / 2 };
+
+		if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco3)
 			resource->getTexture("EliseInventory_NotOk")->render(pRenderer, destE);
-		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco2) 
+		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco2)
 			resource->getTexture("EliseInventory_Ok")->render(pRenderer, destE);
-		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1) 
+		else if (PlayState::Instance()->getPlayer()->getComponent<Player>()->getLife() <= ritmoCardiaco1)
 			resource->getTexture("EliseInventory")->render(pRenderer, destE);
 
-		life.render(time);
-	//}
+	}
+
 	//RENDERIZAMOS EL ARMA EQUIPADA
 	if (equiped != nullptr) {
 		Weapon* weaponComp = equiped->getComponent<Weapon>();
@@ -333,7 +334,7 @@ void Inventory::render(Entity* e, Uint32 time)
 	}
 
 	description_.getComponent<TextNote>()->render(nullptr, time);
-	//life.render(time);
+	life.render(time);
 }
 
 void Inventory::saveToFile(Entity* o)

@@ -9,7 +9,6 @@ SRMap::SRMap() : mapActive_(false), image_(nullptr)
 
 SRMap::~SRMap()
 {
-	delete image_;
 }
 
 bool SRMap::interact(Entity * e)

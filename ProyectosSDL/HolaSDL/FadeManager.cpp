@@ -17,7 +17,6 @@ FadeManager::FadeManager(Texture * texture) : Component(), fade_(texture), alpha
 
 FadeManager::~FadeManager()
 {
-	delete fade_;
 }
 
 void FadeManager::render(Entity * e, Uint32 time) {

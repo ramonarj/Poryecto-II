@@ -10,14 +10,14 @@ class MenuState : public GameState {
 
 private:
 	MenuState();
-	static unique_ptr<MenuState> s_pInstance;
+	static MenuState* s_pInstance;
 
 public:
 	static MenuState* Instance()
 	{
-		if (s_pInstance.get() == nullptr)
-			s_pInstance.reset(new MenuState());
-		return s_pInstance.get();
+		if (s_pInstance == nullptr)
+			s_pInstance = new MenuState();
+		return s_pInstance;
 	}
 	~MenuState();
 	virtual void startState();

@@ -9,6 +9,7 @@ GameStateMachine::~GameStateMachine() {
 
 void GameStateMachine::popState() { //Borra el top de la pila de states y hace pop
 	if (!states.empty()) {
+		states.top()->resetSingleton();
 		delete states.top();
 		states.pop();
 		if (statesToPop >= 1)

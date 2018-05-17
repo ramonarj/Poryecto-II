@@ -9,7 +9,7 @@
 #include "LightManager.h"
 #include "CountdownManager.h"
 
-unique_ptr<PlayState> PlayState::s_pInstance = nullptr;
+PlayState* PlayState::s_pInstance = nullptr;
 
 PlayState::PlayState() : GameState() { //Constructora de nueva partida
 

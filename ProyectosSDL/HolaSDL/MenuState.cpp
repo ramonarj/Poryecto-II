@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Button.h"
 
-unique_ptr<MenuState> MenuState::s_pInstance = nullptr;
+MenuState* MenuState::s_pInstance = nullptr;
 
 MenuState::MenuState() : GameState() //, pRenderer(nullptr), resource(nullptr), width(0), height(0)
 { 

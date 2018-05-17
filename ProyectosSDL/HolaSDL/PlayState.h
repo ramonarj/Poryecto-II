@@ -16,7 +16,7 @@ class PlayState: public GameState {
 
 private:
 	PlayState();
-	static unique_ptr<PlayState> s_pInstance;
+	static PlayState* s_pInstance;
 
 	SDL_Renderer* renderer = nullptr;
 	Level* pLevel = nullptr;
@@ -41,9 +41,9 @@ public:
 
 	static PlayState* Instance()
 	{
-		if (s_pInstance.get() == nullptr)
-			s_pInstance.reset(new PlayState());
-		return s_pInstance.get();
+		if (s_pInstance == nullptr)
+			s_pInstance = new PlayState();
+		return s_pInstance;
 	}
 	~PlayState();
 	virtual void startState();
@@ -52,6 +52,8 @@ public:
 	virtual void handleInput(Uint32 time, SDL_Event& event);
 	virtual void saveToFile();
 	virtual void loadToFile();
+	virtual void resetSingleton() { s_pInstance = nullptr; };
+
 
 	//Devuelve al jugador
 	Entity* getPlayer() { return player; };

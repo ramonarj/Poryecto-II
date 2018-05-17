@@ -49,6 +49,7 @@ public:
 	virtual void handleInput(Uint32 time, SDL_Event& event);
 	virtual void saveToFile();
 	virtual void loadToFile();
+	virtual void resetSingleton() {};
 
 	void pushEntities(Entity* e) { stage_.push_back(e); };
 	list<Entity*>* getStage() { return &stage_; };

@@ -6,7 +6,7 @@
 
 
 
-unique_ptr<Game> Game:: s_pInstance = nullptr;
+Game* Game:: s_pInstance = nullptr;
 
 Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WINDOW_WIDTH_, _WINDOW_HEIGHT_) {
 	//Initialization

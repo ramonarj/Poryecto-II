@@ -16,12 +16,12 @@ Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WIND
 	//getResources()->getMusic(Resources::MENU)->play();
 	//getResourceManager()->getMusic("Menu")->play();
 	//getResourceManager()->getSound("InventorySound")->play();
-	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());
-	//stateMachine_.pushState(MenuState::Instance());
+	stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
 	stateMachine_.pushStateTick();
@@ -340,6 +340,9 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
 	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
 	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
+
+	//Tema de elise
+	resourceManager_->addSound("EliseThemeSound", "music/TemadeElise.mp3");
 	
 }
 

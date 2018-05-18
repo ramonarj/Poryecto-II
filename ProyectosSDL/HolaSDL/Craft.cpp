@@ -135,7 +135,7 @@ void Craft::render(Entity * e, Uint32 time)
 	}
 	else {
 		if (slotCraftClicked == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+			description_.getComponent<TextNote>()->changeString("ItemDescriptions FirstAidDescription txt");
 		}
 		else if (slotCraftClicked == 1) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
 			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
@@ -348,11 +348,19 @@ void Craft::craft()
 			e->addComponent(new FirstAid("Firstaid"));
 			inv->addItem(e);
 		}
+		else if (inv->checkIdemItems(ItemType::GENERICCHEMICAL, 2))
+		{
+			inv->objectCrafted(ItemType::ALCOHOL, ItemType::BANDAGES);
+			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
+			Entity* e = new Entity(0, 0);
+			e->addComponent(new FirstAid("Firstaid"));
+			inv->addItem(e);
+		}
 		break;
 	case 1:
-		if (inv->checkIdemItems(ItemType::GENERICCHEMICAL, 2))
+		if (inv->checkIdemItems(ItemType::ACIDCHEMICAL, 2))
 		{
-			inv->objectCrafted(ItemType::GENERICCHEMICAL, ItemType::GENERICCHEMICAL);
+			inv->objectCrafted(ItemType::ACIDCHEMICAL, ItemType::ACIDCHEMICAL);
 			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new Item(ItemType::ACID, "AcidDescription")); //cambiar

@@ -115,7 +115,7 @@ public:
 			i = new Item(BANDAGES, "Bandages", "Has recogido unas vendas");
 			break;
 		case GENERICCHEMICAL:
-			i = new Item(GENERICCHEMICAL, "AcidChemical", "Has recogido un quimico generico");
+			i = new Item(GENERICCHEMICAL, "GenericChemical", "Has recogido un quimico generico");
 			break;
 		case ACID:
 			i = new Item(ACID, "Acid", "Has recogido acido");

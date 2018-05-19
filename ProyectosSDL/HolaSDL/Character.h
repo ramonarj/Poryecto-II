@@ -40,5 +40,9 @@ private:
 	Uint32 knockBackOn_;
 	Uint32 knockBackTime_;
 	Entity* thisEntity_ = nullptr;
+
+	int player = 0;
+	double velDiagonal = 0;
+	double velRecto = 0;
 };
 

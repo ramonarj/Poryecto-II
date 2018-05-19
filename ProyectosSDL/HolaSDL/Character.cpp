@@ -90,6 +90,25 @@ void Character::move(Entity * o)
 {
 	Vector2D pos = { o->getPosition().getX(), o->getPosition().getY() };
 
+	if (player == 0) {
+		if (o->getComponent<Player>() != nullptr) {
+			player = 1;
+			velDiagonal = PLAYER_VEL * 4 * (sqrt(2.0) / 2);
+			int a = Camera::Instance()->getZoom();
+			velRecto = PLAYER_VEL * 4;
+		}
+		else if (o->getComponent<Enemy>() != nullptr)
+		{
+			player = -1;
+		}
+	}
+
+	if (player == 1) {
+		if (abs(o->getVelocity().getX()) == velRecto && abs(o->getVelocity().getY()) == velRecto) {
+			o->setVelocity(Vector2D(velDiagonal * o->getDirection().getX() , velDiagonal * o->getDirection().getY() * -1));
+		}
+	}
+
 	pos.setX(pos.getX() + o->getVelocity().getX());
 	pos.setY(pos.getY() + o->getVelocity().getY());
 

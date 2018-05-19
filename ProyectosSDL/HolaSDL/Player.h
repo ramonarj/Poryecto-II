@@ -4,7 +4,7 @@
 #include "FadeManager.h"
 #include "checkML.h"
 
-const double PLAYER_VEL = 2;
+const double PLAYER_VEL = 3;
 
 class Player :
 	public Character

@@ -19,7 +19,7 @@ bool Register::interact(Entity * e)
 			PlayState::Instance()->getPlayer()->setIsReading(true);
 			registerActive_ = true;
 			int random = rand() % 100;
-			if(random > 79) Game::Instance()->getResourceManager()->getSound("EliseThemeSound")->play();
+			if(random > 69) Game::Instance()->getResourceManager()->getSound("EliseThemeSound")->play();
 		}
 		else {
 			e->delComponent(textNote);

@@ -64,6 +64,17 @@ void CountdownManager::update(Entity * e, Uint32 time)
 		if ((countdownOn_ + countdownTime_) - time <= timeToRed_)
 			messageRenderer->getComponent<MessageRenderer>()->setColor({ 255, 0, 0, 255 });
 	}
+
+	if (clockS && countdown_)
+	{
+		Game::Instance()->getResourceManager()->getSound("ClockSound")->play();
+		clockS = false;
+	}
+	if ((time > currentClockS + timeClockS) && !clockS && countdown_)
+	{
+		clockS = true;
+		currentClockS = time;
+	}
 }
 
 void CountdownManager::render(Entity * e, Uint32 time)
@@ -74,8 +85,12 @@ void CountdownManager::startCountdown(int count)
 {
 	countdown_ = true;
 	transparentCont_ = true;
+	clockS = 
 	countdownTime_ = count;
 	countdownOnOff_ = SDL_GetTicks();
 	countdownOn_ = SDL_GetTicks();
 	messageRenderer->getComponent<MessageRenderer>()->setColor({ 255, 255, 255, 255 });
+
+	clockS = true;
+	currentClockS = SDL_GetTicks();
 }

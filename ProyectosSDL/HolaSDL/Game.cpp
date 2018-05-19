@@ -329,6 +329,7 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("SwitchTubeSound", "sounds/SwitchTube.wav");
 	resourceManager_->addSound("BreakSound", "sounds/BreakWeapon.mp3");
 	resourceManager_->addSound("DieSound", "sounds/Die.mp3");
+	resourceManager_->addSound("ClockSound", "sounds/Clock.mp3");
 	//MONSTER1
 	resourceManager_->addSound("Monster1HitSound", "sounds/Monster1Hit.wav");
 	resourceManager_->addSound("Monster1DeadSound", "sounds/Monster1Dead.mp3");

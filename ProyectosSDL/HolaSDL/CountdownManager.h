@@ -29,4 +29,7 @@ private:
 	bool transparentCont_;
 	Uint32 timeToRed_;
 
+	bool clockS = false;
+	Uint32 currentClockS;
+	const int timeClockS = 1000;
 };

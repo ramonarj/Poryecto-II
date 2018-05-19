@@ -121,30 +121,29 @@ void Craft::render(Entity * e, Uint32 time)
 		}
 	}
 
+	dest = { 232,85, 360,275 };
+	
+
 	if (controller_->joysticksInitialised() && controller_->getActive()) {
 		if (selectedSlot == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/FirstAidDescription.txt");
+			resource->getTexture("CrafteoBotiquin")->render(pRenderer, dest);
 		}
 		else if(selectedSlot==1) {
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+			resource->getTexture("CrafteoAcido")->render(pRenderer, dest);
 		}
 		else if(selectedSlot == 2)
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
-		else
-			description_.getComponent<TextNote>()->changeString("");
+			resource->getTexture("CrafteoChip")->render(pRenderer, dest);		//PONER EL NOMBRE DEL ARCHIVO
 	}
 	else {
 		if (slotCraftClicked == 0) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions FirstAidDescription txt");
+			resource->getTexture("CrafteoBotiquin")->render(pRenderer, dest);
 		}
 		else if (slotCraftClicked == 1) {		//DEBUG ESE 2 ES PORQUE SOLO SE CRAFTEAN DOS OBJETOS
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/AcidDescription.txt");
+			resource->getTexture("CrafteoAcido")->render(pRenderer, dest);
 		}
 		else if(slotCraftClicked == 2){
-			description_.getComponent<TextNote>()->changeString("ItemDescriptions/CircuitDescription.txt");		//PONER EL NOMBRE DEL ARCHIVO
+			resource->getTexture("CrafteoChip")->render(pRenderer, dest);		//PONER EL NOMBRE DEL ARCHIVO
 		}
-		else
-			description_.getComponent<TextNote>()->changeString("");
 	}
 
 	description_.getComponent<TextNote>()->render(nullptr, time);

@@ -209,6 +209,11 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("Electro3rojo", "images/Inventario/electro3rojo.png");
 	resourceManager_->addTexture("Electro3naranja", "images/Inventario/electro3naranja.png");
 
+	//Crafts
+	resourceManager_->addTexture("CrafteoBotiquin", "images/Inventario/FullscreenVersions/CrafteoBotiquin.png");
+	resourceManager_->addTexture("CrafteoChip", "images/Inventario/FullscreenVersions/CrafteoChip.png");
+	resourceManager_->addTexture("CrafteoAcido", "images/Inventario/FullscreenVersions/CrafteoAcido.png");
+
 	//Puzzle
 	resourceManager_->addTexture("SlidingPuzzle", "images/puzzle.jpg");
 	resourceManager_->addTexture("vara0", "images/vara.png");

@@ -29,7 +29,7 @@ OrderPuzzleComponent::~OrderPuzzleComponent()
 
 void OrderPuzzleComponent::switchPiece(int p1, int p2)
 {
-	cout << p1 << " " << p2 << "\n";
+	//cout << p1 << " " << p2 << "\n";
 
 	//CON EL ULTIMO DE LOS 3 IF YA ESTARÍA BIEN FUNCIONAL PERO HACE COMPROBACIONES CON VALORES 
 	//QUE ESTAN FUERA DEL RANGO DEL ARRAY ASÍ QUE POR SEGURIDAD, PARA EVITAR TENER ALGUN PROBLEMA
@@ -160,7 +160,7 @@ void OrderPuzzleComponent::render(Entity * e, Uint32 time)
 		pc = Game::Instance()->getEntityWithComponent<OrderPuzzleController>()->getComponent<OrderPuzzleController>();
 
 	SDL_Rect dest = {0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight()};
-	cout << Game::Instance()->getWindowWidth() << endl;
+	//cout << Game::Instance()->getWindowWidth() << endl;
 	resource->getTexture("OrderBG")->render(pRenderer, dest);
 
 	SDL_Rect DestRect;

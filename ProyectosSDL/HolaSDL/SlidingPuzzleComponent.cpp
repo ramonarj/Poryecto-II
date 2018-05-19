@@ -51,7 +51,7 @@ void SlidingPuzzleComponent::update(Entity * e, Uint32 time)
 {
 	if (combruebaVictoria())
 	{
-		cout << "winner winner chicken dinner\n";
+		//cout << "winner winner chicken dinner\n";
 		if(!winSound) Game::Instance()->getResourceManager()->getSound("SuccessSound")->play();
 		Game::Instance()->getResourceManager()->getMusic("SilenceSound")->pause();
 		winSound = true;
@@ -83,7 +83,7 @@ void SlidingPuzzleComponent::handleInput(Entity * e, Uint32 time, const SDL_Even
 
 	if (event.type == SDL_MOUSEBUTTONDOWN) {
 		if (event.button.button == SDL_BUTTON_LEFT) {
-			cout << event.button.x << " " << event.button.y << endl;
+			//cout << event.button.x << " " << event.button.y << endl;
 			bool clicked = false;
 			int i = 0, j = 0;
 

@@ -207,7 +207,7 @@ void Entity::setSideCollision(int i)
 		if (i != j) sideCollision[j] = false;
 		else sideCollision[j] = true;
 
-		for (int i = 0; i < sideCollision.size(); i++) {
+		/*for (int i = 0; i < sideCollision.size(); i++) {
 
 			if (sideCollision[i]) {
 				if (i == 0) {
@@ -215,7 +215,7 @@ void Entity::setSideCollision(int i)
 				}
 			}
 
-		}
+		}*/
 	}
 }
 

@@ -10,7 +10,7 @@ FadeManager::FadeManager() : Component(), fade_(nullptr), alpha_(0), difAlpha_(0
 
 FadeManager::FadeManager(Texture * texture) : Component(), fade_(texture), alpha_(MAX_FADE_ALPHA), difAlpha_(10),
 												finalFade_(false), messageRenderer_(nullptr), sentenceOn_(0),
-	                                          sentenceTime_(5000), numMessage_(0), alphaSentence_(0)
+	                                          sentenceTime_(16000), numMessage_(0), alphaSentence_(0)
 {
 	}
 

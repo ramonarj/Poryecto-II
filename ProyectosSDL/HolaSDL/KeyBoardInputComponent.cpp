@@ -162,7 +162,7 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 					o->getComponent<Player>()->setWeaponId(inv->getComponent<Inventory>()->equiped->getComponent<Weapon>()->getTypeStr());
 					o->getComponent<Character>()->setAttacking(true);
 					o->getComponent<Player>()->startCoolDown();
-					std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
+					//std::cout << o->getComponent<Player>()->getWeaponId() << std::endl;
 				}
 			}
 			else {

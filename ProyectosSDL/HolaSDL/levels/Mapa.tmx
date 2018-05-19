@@ -1872,7 +1872,7 @@
   <object id="345" name="Television" type="Television" x="3940" y="1240" width="40" height="40"/>
   <object id="347" name="Television" type="Television" x="10080" y="5960" width="40" height="40"/>
  </objectgroup>
- <objectgroup name="Keys">
+ <objectgroup name="Keys" visible="0">
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
@@ -2002,13 +2002,6 @@
    </properties>
   </object>
   <object id="400" name="GenericChemical" type="GenericChemical" x="2278.83" y="1227.5" width="20.3333" height="27.6667">
-   <properties>
-    <property name="textureHeight" type="int" value="20"/>
-    <property name="textureID" value="item"/>
-    <property name="textureWidth" type="int" value="20"/>
-   </properties>
-  </object>
-  <object id="401" name="Biocide" type="Biocide" x="2325.33" y="1228.5" width="20.3333" height="27.6667">
    <properties>
     <property name="textureHeight" type="int" value="20"/>
     <property name="textureID" value="item"/>
@@ -2662,7 +2655,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1644" y="9478.5" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="547.45" y="2058.96" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="10"/>

@@ -59,9 +59,9 @@ void Enemy::move(Entity* o)
 	double aux = 0;
 	double dif = 3;
 
-	if (numEnemy_ == 1) aux = -o->getHeight() / 4;
-	else if (numEnemy_ == 2) aux = o->getHeight() / 6;
-	else if (numEnemy_ == 3) aux = o->getHeight() / 3;
+	if (numEnemy_ == 1) aux = (-o->getHeight() / 4);
+	else if (numEnemy_ == 2) aux = (o->getHeight() / 6);
+	else if (numEnemy_ == 3) aux = (o->getHeight() / 3);
 
 	if (!o->getComponent<Character>()->getKnockBack())
 	{
@@ -81,6 +81,12 @@ void Enemy::move(Entity* o)
 			vel.setY(-velMag);
 		else
 			vel.setY(0);
+
+		if (vel.getX() != 0 && vel.getY() != 0)
+		{
+			vel.setX(vel.getX() * (sqrt(2) / 4));
+			vel.setY(vel.getY() * (sqrt(2) / 4));
+		}
 
 		/*if (numEnemy_ == 3 && o->getDirection().getX() == 0 && o->getDirection().getY() == 1)
 			cout << "Hola" << endl;*/
@@ -287,19 +293,19 @@ void Enemy::load(int numEnemy, int numEnemyFile)
 	Vector2D vel;
 	if (numEnemy == 1)
 	{
-		vel.set(Vector2D(1.0, 0.0));
+		vel.set(Vector2D((PLAYER_VEL - (PLAYER_VEL / 2)) * Camera::Instance()->getZoom(), 0.0));
 		damage = 4;
 		maxLife_ = life = 3;
 	}
 	else if (numEnemy == 2)
 	{
-		vel.set(Vector2D(2.0, 0.0));
+		vel.set(Vector2D((PLAYER_VEL - (PLAYER_VEL)) * Camera::Instance()->getZoom(), 0.0));
 		damage = 2;
 		maxLife_ = life = 3;
 	}
 	else if (numEnemy == 3)
 	{
-		vel.set(Vector2D(3.0, 0.0));
+		vel.set(Vector2D((PLAYER_VEL + (PLAYER_VEL / 2)) * Camera::Instance()->getZoom(), 0.0));
 		damage = 1;
 		maxLife_ = life = 2;
 	}

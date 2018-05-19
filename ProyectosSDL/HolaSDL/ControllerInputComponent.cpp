@@ -50,7 +50,7 @@ void ControllerInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Eve
 		Vector2D velocity = o->getVelocity();
 		Vector2D direction = o->getDirection();
 		const Uint8 *state = SDL_GetKeyboardState(NULL);
-		double vel = 7 * Camera::Instance()->getZoom();
+		double vel = PLAYER_VEL * Camera::Instance()->getZoom();
 
 		if (!timerSet && dirBlock_ != 0) {
 			Timer_ = time;

@@ -1872,7 +1872,7 @@
   <object id="345" name="Television" type="Television" x="3940" y="1240" width="40" height="40"/>
   <object id="347" name="Television" type="Television" x="10080" y="5960" width="40" height="40"/>
  </objectgroup>
- <objectgroup name="Keys">
+ <objectgroup name="Keys" visible="0">
   <properties>
    <property name="staticEntity" value="1"/>
   </properties>
@@ -2662,7 +2662,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="2734.37" y="5954.92" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1396.54" y="1549.09" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="10"/>

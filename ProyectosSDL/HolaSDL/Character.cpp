@@ -91,7 +91,7 @@ void Character::move(Entity * o)
 	if (player == 0) {
 		if (o->getComponent<Player>() != nullptr) {
 			player = 1;
-			velDiagonal = PLAYER_VEL * 4 * (sqrt(2.0) / 2);
+			velDiagonal = PLAYER_VEL * 4 * (0.95);
 			int a = Camera::Instance()->getZoom();
 			velRecto = PLAYER_VEL * 4;
 		}

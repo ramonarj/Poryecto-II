@@ -23,19 +23,20 @@ void Enemy::punch(Entity* o)
 	//Comprobamos si estamos dentro todavia del enemigo
 	if (Collisions::RectRect(&playerRect, &enemyRect))
 	{
-	if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
-		{
-			/*chaseVector_.setX(-chaseVector_.getX());
-			chaseVector_.setY(-chaseVector_.getY());*/
-			Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
-			this->takeDamage(player->getComponent<Player>()->getDamage());
-		}
-		//�l ataca solo si está vivo y si lo está el player
-		else if (isAlive() && player->getComponent<Character>()->isAlive())
-		{
-			Character::knockBack(player, Vector2D(o->getDirection().getX() * push, o->getDirection().getY() * push));
-			player->getComponent<Player>()->takeDamage(damage);
-		}
+		if (player->getComponent<Player>()->getAttacking() && player->getComponent<Player>()->getPunch())
+			{
+				/*chaseVector_.setX(-chaseVector_.getX());
+				chaseVector_.setY(-chaseVector_.getY());*/
+				Character::knockBack(o, Vector2D(player->getComponent<PlayerAnimationComponent>()->getLastDir().getX()* push, player->getComponent<PlayerAnimationComponent>()->getLastDir().getY() * push));
+				this->takeDamage(player->getComponent<Player>()->getDamage());
+			}
+			//�l ataca solo si está vivo y si lo está el player
+			else if (isAlive() && player->getComponent<Character>()->isAlive())
+			{
+				Character::knockBack(player, Vector2D(o->getDirection().getX() * push, o->getDirection().getY() * push));
+				player->getComponent<Player>()->takeDamage(damage);
+				player->getComponent<Player>()->startInvincible();
+			}
 		
 	}
 }
@@ -184,8 +185,8 @@ void Enemy::checkCollisions(Entity* o)
  			/*chaseVector_ = chaseVector;*/
 			setAttacking(true);
 
-			Character::knockBack(player, Vector2D(o->getDirection().getX() * push, o->getDirection().getY() * push));	//Si se pone este knockback aqui se empuja al player antes de colpear
-			player->getComponent<Player>()->startInvincible();
+			//Character::knockBack(player, Vector2D(o->getDirection().getX() * push, o->getDirection().getY() * push));	//Si se pone este knockback aqui se empuja al player antes de colpear
+			//player->getComponent<Player>()->startInvincible();
 
 			reloading = true;
 			effectDone = true;

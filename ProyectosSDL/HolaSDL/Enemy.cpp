@@ -299,7 +299,7 @@ void Enemy::load(int numEnemy, int numEnemyFile)
 	}
 	else if (numEnemy == 2)
 	{
-		vel.set(Vector2D((PLAYER_VEL - (PLAYER_VEL)) * Camera::Instance()->getZoom(), 0.0));
+		vel.set(Vector2D((PLAYER_VEL) * Camera::Instance()->getZoom(), 0.0));
 		damage = 2;
 		maxLife_ = life = 3;
 	}

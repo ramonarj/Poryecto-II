@@ -145,12 +145,12 @@ void KeypadComponent::validCode()
 			if (e->getComponent<Door>()->getDoorNum() == codeEntity_->getComponent<Code>()->getNumDoorCode())
 				e->getComponent<Door>()->keyFalse();
 		}
-		cout << "Nice" << endl;
+		//cout << "Nice" << endl;
 		Game::Instance()->getResourceManager()->getSound("CodeSuccessSound")->play();
 		KeypadState::Instance()->setPop(true);
 	}
 	else {
-		cout << "Wrong" << endl;
+		//cout << "Wrong" << endl;
 		clear();
 		Game::Instance()->getResourceManager()->getSound("ErrorCodeSound")->play();
 	}

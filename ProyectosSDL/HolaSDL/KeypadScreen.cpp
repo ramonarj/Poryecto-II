@@ -4,7 +4,7 @@
 
 KeypadScreen::KeypadScreen(SDL_Renderer* pRenderer, float h, float w) :pRenderer_(pRenderer)
 {
-	cout << "I'm working" << endl;
+	//cout << "I'm working" << endl;
 	if (resource == nullptr) resource = Game::Instance()->getResourceManager();
 	image_ = resource->getTexture("Numbers");
 	src.h = image_->getHeight() / 4;

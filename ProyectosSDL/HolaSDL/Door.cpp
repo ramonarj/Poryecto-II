@@ -96,7 +96,7 @@ void Door::teleport()
 
 				if (isCollidable()) {
 					std::string name = (*it)->getComponent<Door>()->getZoneName();
-					cout << name << endl;
+					//cout << name << endl;
 					if (name != "") {
 						messageRenderer->display(name,
 							Game::Instance()->getWindowWidth() / 2, Game::Instance()->getWindowHeight() / 8);

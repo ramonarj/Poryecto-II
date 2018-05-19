@@ -50,14 +50,14 @@ void Weapon::weaponInit(ItemType type) {
 void Weapon::attack() {
 
 	numHits_--;
-	std::cout << " has atacado, numHits = " << numHits_ << std::endl;
-
+	//std::cout << " has atacado, numHits = " << numHits_ << std::endl;
+	
 	if (numHits_ <= 0) {
-		std::cout << "Arma destruida: " << this->getType() << std::endl;
+		//std::cout << "Arma destruida: " << this->getType() << std::endl;
 		setEnabled(false);
 		Entity* inv = Game::Instance()->getEntityWithComponent<Inventory>();
 		inv->getComponent<Inventory>()->destroyWeapon();
-		cout << "hola";
+		//cout << "hola";
 	}
 }
 

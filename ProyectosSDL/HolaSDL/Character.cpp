@@ -64,7 +64,7 @@ void Character::takeDamage(int i)
 	{
 		life -= i; //Restamos la vida
 		if (!isAlive()) {
-			cout << "I died" << endl;
+			//cout << "I died" << endl;
 			if (thisEntity_->getComponent<Player>() != nullptr && thisEntity_->getIsReading()) {		//Como esta leyendo el ultimo interactible con el que interactuo fue un registro
 				thisEntity_->getComponent<KeyBoardInputComponent>()->interactDeadRegister();
 				thisEntity_->getComponent<ControllerInputComponent>()->interactDeadRegister();
@@ -77,8 +77,6 @@ void Character::takeDamage(int i)
 				//Tal vez con mando haya que hacerlo tambien pero es un poco lio mañana lo miro CONTINUAR
 			}
 		}
-		else 
-			cout << "Life: " << life << endl;
 	}
 }
 

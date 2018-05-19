@@ -415,7 +415,7 @@ public:
 		Entity* e = new Entity();
 		e->addComponent(new Order());
 		e->addComponent(new Countdown());
-		e->addComponent(new MessageTrigger("'E' para resolver recolocar los cables", "'Square/X' para recolocar los cables"));
+		e->addComponent(new MessageTrigger("'E' para recolocar los cables", "'Square/X' para recolocar los cables"));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
 		return e;
 	}

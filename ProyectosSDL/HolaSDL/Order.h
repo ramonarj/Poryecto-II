@@ -1,7 +1,7 @@
 #pragma once
 #include "Interactible.h"
 #include "checkML.h"
-
+#include "Inventory.h"
 
 class Order :
 	public Interactible
@@ -9,6 +9,7 @@ class Order :
 public:
 	Order();
 	~Order();
+	virtual void update(Entity* e, Uint32 time);
 	bool interact(Entity * e);
 
 	void setPuzzleActive(bool b) { puzzleActive_ = b; };
@@ -20,5 +21,7 @@ public:
 private:
 	bool puzzleActive_;
 	bool puzzleComplete_ = false;
+	bool biocida_ = false;
+	Inventory* compInvent = nullptr;
 };
 

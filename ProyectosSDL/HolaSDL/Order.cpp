@@ -13,10 +13,25 @@ Order::~Order()
 {
 }
 
+void Order::update(Entity * e, Uint32 time)
+{
+	if (compInvent == nullptr)
+		compInvent = Game::Instance()->getEntityWithComponent<Inventory>()->getComponent<Inventory>();
+
+	if (compInvent->checkItem(BIOCIDE)) {
+		e->getComponent<MessageTrigger>()->setMessage("'E' para recolocar los cables", "'Square/X' para recolocar los cables");
+		biocida_ = true;
+	}
+	else {
+		e->getComponent<MessageTrigger>()->setMessage("Es inútil activar la ventilación sin el biocida");
+		biocida_ = false;
+	}
+}
+
 
 bool Order::interact(Entity * e)
 {
-	if (!puzzleComplete_) {
+	if (!puzzleComplete_ && biocida_) {
 		Game::Instance()->getStateMachine()->pushState(OrderPuzzle::Instance());
 		puzzleActive_ = true;
 	}

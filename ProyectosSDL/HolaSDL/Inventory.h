@@ -55,7 +55,7 @@ public:
 	virtual Entity* ItemInPosition(int pos);
 	void equipWeapon(int pos);
 	void removeWeapon();
-	void removeKey(int numKey);
+	
 	virtual bool fullInventory();
 	void setChestMode(bool a) { chestMode = a; }
 	void setCraftMode(bool a) { craftMode = a; }
@@ -68,7 +68,10 @@ public:
 	bool craftMode = false;
 
 	//GETS
-	vector<Entity*> getKeys() { return keys; };
+	//vector<Entity*> getKeys() { return keys; };
+	void removeKey(int numKey);
+
+
 	int getInvTam() { return InventoryTam; };
 	int getSelectedSlot() { return selectedSlot; };
 
@@ -78,7 +81,7 @@ public:
 	void setRenderMark(bool a) { renderMark = a; }
 	
 private:
-	vector<Entity*> keys;
+	//vector<Entity*> keys;
 	bool controllerActive = false;
 	int selectedSlot = 0;
 	bool equipedClicked = false;

@@ -42,7 +42,7 @@ Inventory::Inventory()
 Inventory::~Inventory()
 {
 	for (int i = 0; i < inventory.size(); i++) { if (inventory[i] != nullptr) delete inventory[i]; }
-	for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
+	//for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
 	if (equiped != nullptr) delete equiped;
 	equiped = nullptr;
 	//delete lifeGreen, lifeRed, lifeOrange;
@@ -405,9 +405,9 @@ bool Inventory::addItem(Entity * item)
 	if (!fullInventory() && !equip) {
 		Game::Instance()->getResourceManager()->getSound("PickSound")->play();
 		inventory.push_back(item);
-		Key* k = item->getComponent<Key>();
+		/*Key* k = item->getComponent<Key>();
 		if (k != nullptr)
-			keys.push_back(item);
+			keys.push_back(item);*/
 		alm = true;
 	}
 	return alm;
@@ -511,8 +511,10 @@ void Inventory::removeKey(int numKey)
 	bool foundKey = false;
 	for (int i = 0; i < inventorySize() && !foundKey; i++)
 	{
-		if (inventory[i]->getComponent<Key>() != nullptr && inventory[i]->getComponent<Key>()->getDoorId() == numKey)
+		if (inventory[i]->getComponent<Key>() != nullptr && inventory[i]->getComponent<Key>()->getDoorId() == numKey){
+			foundKey = true;
 			DeleteItem(i);
+		}
 	}
 }
 

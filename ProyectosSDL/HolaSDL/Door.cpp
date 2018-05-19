@@ -4,7 +4,7 @@
 #include "MessageTrigger.h"
 #include "DoorAnimation.h"
 
-Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr), compContainer(nullptr),
+Door::Door(Entity* thisDoor) : player(nullptr), inventory(nullptr),
 	compInvent(nullptr), itemKey(nullptr), doorNum_(0), needKey_(false), 
 	collidableDoor_(false), messageChanged_(false), thisDoor_(thisDoor),
 	messageRenderer(nullptr), messageTimer(nullptr) {
@@ -133,15 +133,17 @@ bool Door::getNeedKey()
 
 void Door::setNeedKey()
 {
-	//inventory = Game::Instance()->getEntityWithComponent<Inventory>();
-	compContainer = inventory->getComponent<ItemContainer>();
-	//compInvent = inventory->getComponent<Inventory>();
+	if (inventory == nullptr)
+		inventory = Game::Instance()->getEntityWithComponent<Inventory>();
+	if (compInvent == nullptr)
+		compInvent = inventory->getComponent<Inventory>();
+
 	bool found = false;
-	if (!compInvent->getKeys().empty()) {
+	if (!compInvent->getInventory().empty()) {
 		int i = 0;
-		while (i < compInvent->getKeys().size() && needKey_)
+		while (i < compInvent->getInventory().size() && needKey_)
 		{
-			if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
+			if (compInvent->getInventory()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
 				thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para abrir", "'Square/X' para abrir");
 				compInvent->removeKey(doorNum_);
 				openDoor();
@@ -195,6 +197,8 @@ void Door::update(Entity * e, Uint32 time) {
 		inventory = Game::Instance()->getEntityWithComponent<Inventory>();
 	if (compInvent == nullptr)
 		compInvent = inventory->getComponent<Inventory>();
+	/*if (compInvent == nullptr)
+		compInvent = inventory->getComponent<Inventory>();*/
 	if (messageRenderer == nullptr)
 	{
 		messageRenderer = PlayState::Instance()->getZoneMessageRenderer()->getComponent<MessageRenderer>();
@@ -208,12 +212,12 @@ void Door::update(Entity * e, Uint32 time) {
 		SDL_Rect thisRect = { int(e->getPosition().getX()), int(e->getPosition().getY()), int(e->getWidth()), int(e->getHeight()) };
 
 		if (Collisions::RectRect(&playerRect, &thisRect)) {
-			if (!compInvent->getKeys().empty()) {
+			if (!compInvent->getInventory().empty()) {
 				int i = 0;
 				bool found = false;
-				while (i < compInvent->getKeys().size() && !found)
+				while (i < compInvent->getInventory().size() && !found)
 				{
-					if (compInvent->getKeys()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
+					if (compInvent->getInventory()[i]->getComponent<Key>()->getDoorId() == doorNum_) {
 						thisDoor_->getComponent<MessageTrigger>()->setMessage("'E' para usar la llave", "'Square/X' para usar la llave");
 						messageChanged_ = true;
 						found = true;

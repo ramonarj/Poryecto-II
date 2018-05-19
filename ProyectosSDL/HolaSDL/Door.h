@@ -39,7 +39,6 @@ private:
 	list<Entity*> doors;
 	Entity* player;
 	Entity* inventory;
-	ItemContainer* compContainer;
 	Inventory* compInvent;
 	Entity* itemKey;
 	Entity* thisDoor_;

@@ -66,7 +66,6 @@ void Enemy::move(Entity* o)
 	if (!o->getComponent<Character>()->getKnockBack())
 	{
 		//Movimiento en X
-		cout << "PosX Enemigo: " << pos.getX() << "    PosX Player: " << playerPos.getX() << endl;
 		if (pos.getX() < playerPos.getX())
 			vel.setX(cos(alpha) * velMag);
 		else if (pos.getX() > playerPos.getX())

@@ -235,7 +235,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("SliddingBG", "images/Backgrounds/SliddingBG.png");
 	resourceManager_->addTexture("OrderBG", "images/Backgrounds/OrderBG.png");
 
-	//Buttons
+	//Menus
 	resourceManager_->addTexture("BotonNuevaPartida", "images/Menu/NuevaPartida.png");
 	resourceManager_->addTexture("BotonExit", "images/Menu/Exit.png");
 	resourceManager_->addTexture("Button1", "images/Menu/button1.png");
@@ -249,6 +249,8 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("MenuBackground", "images/Menu/MenuBackground.png");
 	resourceManager_->addTexture("PauseBackground", "images/Menu/PauseBackground.png");
 	resourceManager_->addTexture("CreditsBackground", "images/Menu/CreditsBackground.png");
+	resourceManager_->addTexture("CreditsImage", "images/Menu/CreditsImage.png");
+
 
 	//Cursors
 	resourceManager_->addTexture("Cursor", "images/Cursor.png");

@@ -11,8 +11,8 @@ ItemContainer::ItemContainer()
 
 ItemContainer::~ItemContainer()
 {
-	for (Entity* e : inventory)
-		delete e;
+	/*for (Entity* e : inventory)
+		delete e;*/
 }
 
 //DELETE ITEM FROM SELECTED POSITION

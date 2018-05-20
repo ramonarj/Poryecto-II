@@ -10,6 +10,8 @@ CreditsState::~CreditsState(){
 
 void CreditsState::startState()
 {
+	targetTime = SDL_GetTicks() + 90000;
+
 	//Cursor
 	cursor_ = new Entity();
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
@@ -23,13 +25,23 @@ void CreditsState::startState()
 	stage_.push_back(bg);
 
 	//Credits
+	string creditsImageId = "CreditsImage";
 	Entity* cr = new Entity();
-	cr->setWidth(Game::Instance()->getWindowWidth());
-	cr->setHeight((Game::Instance()->getWindowWidth() / Game::Instance()->getResourceManager()->getTexture("Button1")->getWidth()) * Game::Instance()->getResourceManager()->getTexture("Button1")->getHeight());
-	cr->setPosition(Vector2D(0, 600)); //Posicion inicial
-	cr->addComponent(new Credits(Game::Instance(), Game::Instance()->getResourceManager()->getTexture("Button1"), -1.0));
+	//cr->setWidth(Game::Instance()->getWindowWidth());
+	//cr->setHeight((Game::Instance()->getWindowWidth() / Game::Instance()->getResourceManager()->getTexture(creditsImageId)->getWidth()) * Game::Instance()->getResourceManager()->getTexture(creditsImageId)->getHeight());
+	cr->setHeight(5000);
+	cr->setWidth(1280);
+	cr->setPosition(Vector2D(0, 650)); //Posicion inicial
+	cr->addComponent(new Credits(Game::Instance(), Game::Instance()->getResourceManager()->getTexture(creditsImageId), -0.6));
 	stage_.push_back(cr);
 
+}
+
+void CreditsState::update(Uint32 time)
+{
+	GameState::update(time);
+	if (targetTime < time)
+		Game::Instance()->getStateMachine()->popStateSafe();
 }
 
 void CreditsState::render(Uint32 time)

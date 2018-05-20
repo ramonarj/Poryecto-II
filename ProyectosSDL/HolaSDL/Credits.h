@@ -9,6 +9,8 @@ private:
 	//int spacing_;
 	float velocity_;
 	Texture* image_;
+	float deltaTime;
+	float lastTime;
 
 	//Font* font_;
 	//SDL_Color color_;

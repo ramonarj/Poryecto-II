@@ -4,11 +4,10 @@
 
 MenuState* MenuState::s_pInstance = nullptr;
 
-MenuState::MenuState() : GameState() //, pRenderer(nullptr), resource(nullptr), width(0), height(0)
+MenuState::MenuState() : GameState(), loading(false) //, pRenderer(nullptr), resource(nullptr), width(0), height(0)
 { 
 
 }
-
 
 MenuState::~MenuState() {
 
@@ -18,12 +17,14 @@ MenuState::~MenuState() {
 static void new_game(Game* game) {
 	cout << "Iniciar nueva partida" << endl;
 	Game::Instance()->getStateMachine()->pushState(PlayState::Instance());
+	MenuState::Instance()->setLoadingScreen(true);
 }
 
 static void load_game(Game* game) {
 	PlayState* pl = PlayState::Instance();
 	pl->setLoadGame(true);
 	Game::Instance()->getStateMachine()->pushState(pl);
+	MenuState::Instance()->setLoadingScreen(true);
 
 	cout << "Iniciar partida cargada" << endl;
 }
@@ -38,11 +39,27 @@ static void close_game(Game* game) {
 	Game::Instance()->stop();
 }
 
+void MenuState::setLoadingScreen(bool b) {
+	if (b) {
+		SDL_Rect rect RECT(
+			0,
+			0,
+			Game::Instance()->getWindowWidth(),
+			Game::Instance()->getWindowHeight());
+
+		SDL_RenderClear(Game::Instance()->getRenderer());
+		loadingTex_->render(Game::Instance()->getRenderer(), rect);
+		SDL_RenderPresent(Game::Instance()->getRenderer());
+	}
+	loading = b;
+}
 
 void MenuState::startState()
 {
 	Game::Instance()->getResourceManager()->getMusic("Menu")->play();
-	
+
+	loadingTex_ = Game::Instance()->getResourceManager()->getTexture("LoadingScreen");
+
 	cursor_ = new Entity();
 	cursor_->setHeight(50);
 	cursor_->setWidth(50);
@@ -80,9 +97,17 @@ void MenuState::startState()
 
 }
 
+void MenuState::update(Uint32 time) {
+	GameState::update(time);
+}
+
 void MenuState::render(Uint32 time)
 {
-	SDL_RenderClear(Game::Instance()->getRenderer());
-	GameState::render(time);
-	SDL_RenderPresent(Game::Instance()->getRenderer());
+	if (!loading) {
+		SDL_RenderClear(Game::Instance()->getRenderer());
+		GameState::render(time);
+		SDL_RenderPresent(Game::Instance()->getRenderer());
+	}
 }
+
+

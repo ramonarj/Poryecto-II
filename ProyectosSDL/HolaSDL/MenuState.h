@@ -11,8 +11,10 @@
 class MenuState : public GameState {
 
 private:
+	bool loading;
 	MenuState();
 	static MenuState* s_pInstance;
+	Texture* loadingTex_;
 
 public:
 	static MenuState* Instance()
@@ -22,7 +24,10 @@ public:
 		return s_pInstance;
 	}
 	~MenuState();
+	void setLoadingScreen(bool b);
+
 	virtual void startState();
+	virtual void update(Uint32 time);
 	virtual void render(Uint32 time);
 	virtual void resetSingleton() { 
 		//delete s_pInstance;

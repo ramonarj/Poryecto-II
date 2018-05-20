@@ -17,6 +17,7 @@ static void resume_game(Game* game) {
 
 static void back_to_menu(Game* game) {
 	cout << "Volver al menu" << endl;
+	MenuState::Instance()->setLoadingScreen(false);
 	Game::Instance()->getStateMachine()->popStateSafe();
 	Game::Instance()->getStateMachine()->popStateSafe();
 }

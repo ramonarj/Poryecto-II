@@ -250,6 +250,7 @@ void Game::addResourcesTexture()
 	resourceManager_->addTexture("PauseBackground", "images/Menu/PauseBackground.png");
 	resourceManager_->addTexture("CreditsBackground", "images/Menu/CreditsBackground.png");
 	resourceManager_->addTexture("CreditsImage", "images/Menu/CreditsImage.png");
+	resourceManager_->addTexture("LoadingScreen", "images/Menu/LoadingScreen.png");
 
 
 	//Cursors

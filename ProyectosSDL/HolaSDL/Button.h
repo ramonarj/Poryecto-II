@@ -24,7 +24,7 @@ public:
 	Button(CallBackOnClick* callBack, Texture* texture, Vector2D pos);
 	~Button();
 	virtual void render(Entity* o, Uint32 time);
-	virtual void update() {};
+	virtual void update(Entity* e, Uint32 time);
 	virtual void handleInput(Entity* e, Uint32 time, const SDL_Event& event);
 
 	//virtual void loadFromFile(ifstream &archivo) {}; 

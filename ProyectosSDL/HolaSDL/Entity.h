@@ -43,6 +43,7 @@ public:
 	void setHeight(double height);
 	void scale(double s);
 	bool isStatic();
+	void setName(string name);
 	string getName();
 	string getTextureName();
 	bool getIsReading();

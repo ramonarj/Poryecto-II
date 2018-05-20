@@ -70,7 +70,7 @@ void ItemContainer::loadToFile(ifstream& file)
 		}
 		file >> name;
 	}
-	delete pEntity;
+	//delete pEntity;
 }
 
 //CHECK IF INVENTORY IS EMPTY

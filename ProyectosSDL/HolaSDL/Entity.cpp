@@ -175,6 +175,11 @@ bool Entity::isStatic()
 	return staticEntity_;
 }
 
+void Entity::setName(string name)
+{
+	name_ = name;
+}
+
 string Entity::getName()
 {
 	return name_;

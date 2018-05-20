@@ -17,7 +17,7 @@ PlayState::PlayState() : GameState() { //Constructora de nueva partida
 
 
 PlayState::~PlayState() {
-	
+	delete pLevel;
 }
 
 void PlayState::startState()

@@ -11,6 +11,8 @@ ItemContainer::ItemContainer()
 
 ItemContainer::~ItemContainer()
 {
+	for (Entity* e : inventory)
+		delete e;
 }
 
 //DELETE ITEM FROM SELECTED POSITION
@@ -44,7 +46,7 @@ void ItemContainer::loadToFile(ifstream& file)
 {
 	inventory.clear();
 
-	Entity* pEntity;
+	Entity* pEntity = nullptr;
 	string name;
 	int numKey;
 	stringstream keyName;
@@ -68,6 +70,7 @@ void ItemContainer::loadToFile(ifstream& file)
 		}
 		file >> name;
 	}
+	delete pEntity;
 }
 
 //CHECK IF INVENTORY IS EMPTY

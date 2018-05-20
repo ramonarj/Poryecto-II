@@ -20,7 +20,7 @@ public:
 
 	virtual void update(Entity* e, Uint32 time) {};
 
-	// M�todo para interactuar de los Items
+	// Metodo para interactuar de los Items
 	virtual bool interact(Entity* e);
 	ItemType getType() { return type_; };
 

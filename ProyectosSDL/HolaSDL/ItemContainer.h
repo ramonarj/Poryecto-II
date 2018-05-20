@@ -18,7 +18,7 @@ class ItemContainer : public Component
 {
 public:
 	ItemContainer();
-	~ItemContainer();
+	virtual ~ItemContainer();
 
 protected:
 

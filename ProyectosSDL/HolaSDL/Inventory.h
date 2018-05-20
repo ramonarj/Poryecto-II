@@ -24,7 +24,7 @@ public:
 	const int InventoryTam = 4;
 
 	Inventory();
-	~Inventory();
+	virtual ~Inventory();
 
 	void setActiveController(bool b) { controllerActive = b; };
 	void moveMarkSlot(int a);

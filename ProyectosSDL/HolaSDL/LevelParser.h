@@ -15,29 +15,24 @@ class Texture;
 class ObjectLayer;
 class Entity;
 
-class LevelParser
-{
+class LevelParser {
 
 public:
 	Level * parseLevel(const char* stateFile);
-
+	~LevelParser(){};
 	int mapWidth;
 	int mapHeight;
 
 private:
 
-	void parseTilesets(TiXmlElement* pTilesetRoot,
-		std::vector<Tileset>* pTilesets);
+	void parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
 
-	void parseTileLayer(TiXmlElement* pTileElement,
-		std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets,
-		std::vector<TileLayer*> *pCollisionLayers);
+	void parseTileLayer(TiXmlElement* pTileElement,	std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, std::vector<TileLayer*> *pCollisionLayers);
 
 
 	void parseTextures(TiXmlElement* pTextureRoot);
 
-	void parseObjectLayer(TiXmlElement* pObjectElement,
-		std::vector<Layer*> *pLayers, Level* pLevel);
+	void parseObjectLayer(TiXmlElement* pObjectElement,	std::vector<Layer*> *pLayers, Level* pLevel);
 
 	void loadCharacters(TiXmlElement* e, Entity* pEntity, int life, int damage, int numEnemy);
 	void loadDoors(Entity * pEntity, int numDoor, std::string orientacion, int needKey, int collidableDoor, std::string zoneName, int width, int height);

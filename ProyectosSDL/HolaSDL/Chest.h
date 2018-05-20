@@ -9,7 +9,7 @@ class Chest : public ItemContainer
 {
 public:
 	Chest();
-	~Chest();
+	virtual ~Chest();
 
 	const int ChestTam = 20;
 	Inventory* inv = nullptr;

@@ -112,10 +112,18 @@ void Entity::addComponent(Component* c) {
 }
 
 void Entity::delComponent(Component* c) {
-	std::vector<Component*>::iterator position = std::find(
-		comps_.begin(), comps_.end(), c);
-	if (position != comps_.end())
+	std::vector<Component*>::iterator position = std::find(comps_.begin(), comps_.end(), c);
+	if (position != comps_.end()) {
+		delete (*position);
 		comps_.erase(position);
+	}
+}
+
+void Entity::removeComponent(Component* c) { //Doesnt delete the component
+	std::vector<Component*>::iterator position = std::find(comps_.begin(), comps_.end(), c);
+	if (position != comps_.end()) {
+		comps_.erase(position);
+	}
 }
 
 

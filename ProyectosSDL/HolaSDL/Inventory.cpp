@@ -41,10 +41,15 @@ Inventory::Inventory()
 
 Inventory::~Inventory()
 {
-	for (int i = 0; i < inventory.size(); i++) { if (inventory[i] != nullptr) delete inventory[i]; }
+	//for (int i = 0; i < inventory.size(); i++){
+	//	if (inventory[i] != nullptr)
+	//		delete inventory[i];
+	//}
+
 	//for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
-	if (equiped != nullptr) delete equiped;
-	equiped = nullptr;
+	//if (equiped != nullptr) delete equiped;
+	//equiped = nullptr;
+
 	//delete lifeGreen, lifeRed, lifeOrange;
 	lifeGreen = lifeRed = lifeOrange = nullptr;
 }
@@ -432,7 +437,8 @@ bool Inventory::checkItem(int item)
 
 	while (!found && i < int(inventory.size()) && !empty())
 	{
-		if (ItemInPosition(i)->getComponent<Item>()->getType() == item) { found = true; }
+		Item* it = ItemInPosition(i)->getComponent<Item>();
+		if (it != nullptr && it->getType() == item) { found = true; }
 		else i++;
 	}
 	return found;
@@ -445,7 +451,8 @@ bool Inventory::checkIdemItems(int item, int repeat)
 
 	while (founds < repeat && i < int(inventory.size()) && !empty())
 	{
-		if (ItemInPosition(i)->getComponent<Item>()->getType() == item) { founds += 1; }
+		Item* it = ItemInPosition(i)->getComponent<Item>();
+		if (it != nullptr && it->getType() == item) { founds += 1; }
 		i++;
 	}
 	if (founds >= repeat)

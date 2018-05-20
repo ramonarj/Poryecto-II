@@ -5,12 +5,19 @@
 #include "TileLayer.h"
 #include <math.h>
 
-Level::Level()
-{
+Level::Level() {
 }
 
-Level::~Level()
+Level::~Level() {
+	freeMemory();
+}
+
+void Level::freeMemory()
 {
+	for (int i = 0; i < m_layers.size(); i++)
+	{
+		delete m_layers[i];
+	}
 }
 
 void Level::render()

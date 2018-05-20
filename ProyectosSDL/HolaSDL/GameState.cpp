@@ -7,8 +7,35 @@ GameState::GameState() { //Constructora
 }
 
 GameState::~GameState() { //Destructora
-	for (Entity* o : stage_)
-		delete o;
+	while (!stage_.empty()) {
+		Entity* temp = stage_.front();
+		stage_.pop_front();
+		delete temp;
+	}
+
+	while (!interactibles_.empty()) {
+		interactibles_.pop_front();
+	}
+
+	while (!characters_.empty()) {
+		characters_.pop_front();
+	}
+
+	while (!removedEntities_.empty()) {
+		removedEntities_.pop_front();
+	}
+
+	while (!removedInteractibles_.empty()) {
+		removedInteractibles_.pop_front();
+	}
+
+	while (!codes_.empty()) {
+		codes_.pop_front();
+	}
+
+	while (!orderPuzzles_.empty()) {
+		orderPuzzles_.pop_front();
+	}
 
 	if (cursor_ != nullptr)	delete cursor_;
 }

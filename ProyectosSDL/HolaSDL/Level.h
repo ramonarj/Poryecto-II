@@ -45,6 +45,7 @@ private:
 	friend class LevelParser;
 
 	Level();
+	void freeMemory();
 
 	std::vector<Layer*> m_layers;
 	std::vector<Tileset> m_tilesets;

@@ -213,7 +213,9 @@ public:
 		e->addComponent(new MessageTrigger("'E' para abrir", "'Square/X' para abrir"));
 		e->addComponent(new Door(e));
 		e->addComponent(new DoorAnimation(e));
+
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+		Game::Instance()->stateMachine_.currentState()->getDoors()->push_back(e);
 		return e;
 	}
 };

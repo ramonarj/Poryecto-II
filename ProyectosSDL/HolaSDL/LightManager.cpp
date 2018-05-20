@@ -6,6 +6,8 @@ LightManager::LightManager(): playerLight_(PlayerLight()), lightsOn_(true) {
 }
 
 LightManager::~LightManager(){
+	for (Light* l : lights)
+		delete l;
 }
 
 void LightManager::render(Entity * e, Uint32 time) {

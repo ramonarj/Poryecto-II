@@ -32,6 +32,7 @@ public:
 
 	virtual void addComponent(Component* c);
 	virtual void delComponent(Component* c);
+	virtual void removeComponent(Component* c);
 
 
 	//Getters y setters

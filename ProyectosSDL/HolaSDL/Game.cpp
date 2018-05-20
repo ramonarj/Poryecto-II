@@ -16,12 +16,12 @@ Game::Game() : SDLGame("Cursed Gold 2248: Pirate's Weird & Kinky Revenge", _WIND
 	//getResources()->getMusic(Resources::MENU)->play();
 	//getResourceManager()->getMusic("Menu")->play();
 	//getResourceManager()->getSound("InventorySound")->play();
-	stateMachine_.pushState(PlayState::Instance());
+	//stateMachine_.pushState(PlayState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(KeypadState::Instance());
 	//stateMachine_.pushState(OrderPuzzle::Instance());
 	//stateMachine_.pushState(SlidingPuzzle::Instance());
-	//stateMachine_.pushState(MenuState::Instance());
+	stateMachine_.pushState(MenuState::Instance());
 	//stateMachine_.pushState(new LightTestState(this));
 
 	stateMachine_.pushStateTick();
@@ -319,7 +319,6 @@ void Game::addResourcesSoundEffects()
 	resourceManager_->addSound("BeepSound", "sounds/Pitido.wav");
 	resourceManager_->addSound("DoorSound", "sounds/puerta.mp3");
 	resourceManager_->addSound("RepareSound", "sounds/repare.mp3");
-	resourceManager_->addSound("ScaryStepsSound", "sounds/ScarySteps.mp3");
 	resourceManager_->addSound("ErrorCodeSound", "sounds/ErrorCode.wav");
 	resourceManager_->addSound("MonsterEcoSound", "sounds/MonsterEco.wav");
 	resourceManager_->addSound("SuccessSound", "sounds/PuzzlesSuccess.wav");

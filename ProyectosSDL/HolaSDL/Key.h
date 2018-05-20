@@ -12,7 +12,7 @@ public:
 
 	//virtual void use(Entity* e) {};
 	void setDoorId(int id) { doorId = id; };
-	const int getDoorId() const { return doorId; };
+	int getDoorId() { return doorId; };
 
 	void setKeyName(string name) { keyName_ = name; };
 	string getKeyName() { return keyName_; };

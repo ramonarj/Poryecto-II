@@ -21,6 +21,10 @@ static void new_game(Game* game) {
 }
 
 static void load_game(Game* game) {
+	PlayState* pl = PlayState::Instance();
+	pl->setLoadGame(true);
+	Game::Instance()->getStateMachine()->pushState(pl);
+
 	cout << "Iniciar partida cargada" << endl;
 }
 

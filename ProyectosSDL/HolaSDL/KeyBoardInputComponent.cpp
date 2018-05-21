@@ -49,14 +49,6 @@ void KeyBoardInputComponent::handleInput(Entity* o, Uint32 time, const SDL_Event
 
 
 		if (inv != nullptr) {
-			if (state[saveGame_])
-			{
-				PlayState::Instance()->setSaveGame(true);
-			}
-			else if (state[loadGame_])
-			{
-				PlayState::Instance()->setLoadGame(true);
-			}
 			if (dirBlock_!=7 && dirBlock_!=8 && dirBlock_!=6 && state[left_] && !(o->getComponent<Character>()->getAttacking()) && !o->getIsReading() && !inv->isActive() && alphaFade_ == 0) {		//ESTO SE PODRIA AGRUPAR COMO CONDICIONE GENERAL YA QUE SI ESTAS ATACANDO TAMPOCO DEBERIAS PODER HACER OTRAS COSAS
 				velocity.setX(-vel);
 				direction.setX(-1);

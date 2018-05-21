@@ -34,6 +34,8 @@ public:
 		s_pInstance = nullptr;
 	};
 
+	void setMenuMusic(bool b);
+
 };
 
 typedef MenuState MenuState;

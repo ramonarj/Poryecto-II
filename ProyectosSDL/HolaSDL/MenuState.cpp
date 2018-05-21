@@ -110,4 +110,10 @@ void MenuState::render(Uint32 time)
 	}
 }
 
+void MenuState::setMenuMusic(bool b)
+{
+	if (b) Game::Instance()->getResourceManager()->getMusic("Menu")->play();
+	else Game::Instance()->getResourceManager()->getMusic("Menu")->close();
+}
+
 

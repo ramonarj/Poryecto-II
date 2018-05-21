@@ -41,7 +41,14 @@ void CreditsState::update(Uint32 time)
 {
 	GameState::update(time);
 	if (targetTime < time)
+	{
 		Game::Instance()->getStateMachine()->popStateSafe();
+		if (PlayState::Instance()->getFinishGame())
+		{
+			MenuState::Instance()->setLoadingScreen(false);
+			Game::Instance()->getStateMachine()->popStateSafe();
+		}
+	}
 }
 
 void CreditsState::render(Uint32 time)
@@ -58,6 +65,11 @@ void CreditsState::handleInput(Uint32 time, SDL_Event & event)
 		if (event.key.keysym.sym == SDLK_ESCAPE) { //Pressing Escape will enter pause state
 			cout << "Volver al juego" << endl;
 			Game::Instance()->getStateMachine()->popStateSafe();
+			if (PlayState::Instance()->getFinishGame())
+			{
+				MenuState::Instance()->setLoadingScreen(false);
+				Game::Instance()->getStateMachine()->popStateSafe();
+			}
 		}
 	}
 }

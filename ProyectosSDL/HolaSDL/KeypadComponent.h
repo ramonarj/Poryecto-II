@@ -51,6 +51,7 @@ private:
 	ResourceManager* resource = nullptr;
 	NumberKey keys[4][3];
 	KeypadScreen screen;
+	SDL_Rect numPadDest;
 	SDL_Rect dest;
 
 	float h, w;

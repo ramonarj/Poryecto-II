@@ -18,11 +18,11 @@ KeypadComponent::KeypadComponent(Texture* image, Entity* codeEntity, int passwor
 
 	background_ = resource->getTexture("Background");
 
-	dest.h = numpad_->getHeight() * h;
-	dest.w = numpad_->getWidth() * w;
+	numPadDest.h = numpad_->getHeight() * h;
+	numPadDest.w = numpad_->getWidth() * w;
 
-	dest.x = (Game::Instance()->getWindowWidth() / 2) - (dest.w / 2);
-	dest.y = 0;
+	numPadDest.x = (Game::Instance()->getWindowWidth() / 2) - (numPadDest.w / 2);
+	numPadDest.y = 0;
 
 	//Screen
 	screen = KeypadScreen(pRenderer, h, w);
@@ -112,17 +112,19 @@ void KeypadComponent::render(Entity* e, Uint32 time) {
 
 	background_->render(pRenderer, { 0, 0, Game::Instance()->getWindowWidth(), Game::Instance()->getWindowHeight() }, nullptr);
 
-	numpad_->render(pRenderer, dest, nullptr);
+	numpad_->render(pRenderer, numPadDest, nullptr);
+
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 3; j++) {
 			keys[i][j].render(time);
 		}
 	}
+
 	screen.render(time);
 
 	if (pc != nullptr && pc->joysticksInitialised() && pc->getActive()) {
-		dest = { keys[markSlot.y][markSlot.x].getNumRect().x - 5, keys[markSlot.y][markSlot.x].getNumRect().y -5,
-			keys[markSlot.y][markSlot.x].getNumRect().w +10, keys[markSlot.y][markSlot.x].getNumRect().h +10 };	//El borde
+		dest = { keys[markSlot.y][markSlot.x].getNumRect().x - 5, keys[markSlot.y][markSlot.x].getNumRect().y - 5,
+			keys[markSlot.y][markSlot.x].getNumRect().w + 10, keys[markSlot.y][markSlot.x].getNumRect().h + 10 };	//El borde
 		renderMark(dest);
 	}
 }

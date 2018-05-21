@@ -172,6 +172,11 @@ void PlayState::update(Uint32 time)
 			break;
 		}
 	}
+
+	if (finishGame_ && fadeManager_->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
+	{
+		Game::Instance()->getStateMachine()->pushState(new CreditsState());
+	}
 }
 
 void PlayState::render(Uint32 time)

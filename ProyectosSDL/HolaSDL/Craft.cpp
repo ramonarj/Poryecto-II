@@ -349,7 +349,7 @@ void Craft::craft()
 		}
 		else if (inv->checkIdemItems(ItemType::GENERICCHEMICAL, 2))
 		{
-			inv->objectCrafted(ItemType::ALCOHOL, ItemType::BANDAGES);
+			inv->objectCrafted(ItemType::GENERICCHEMICAL, ItemType::GENERICCHEMICAL);
 			Game::Instance()->getResourceManager()->getSound("CraftSound")->play();
 			Entity* e = new Entity(0, 0);
 			e->addComponent(new FirstAid("Firstaid"));

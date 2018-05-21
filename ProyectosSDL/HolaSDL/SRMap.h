@@ -21,5 +21,6 @@ private:
 	string ori_;
 	bool mapActive_;
 	Texture* image_;
+	int numMap_;
 };
 

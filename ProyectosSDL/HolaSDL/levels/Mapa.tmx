@@ -1976,7 +1976,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Items">
+ <objectgroup name="Items" visible="0">
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
@@ -2655,7 +2655,7 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="428" name="Player" type="Player" x="1620.45" y="9491.29" width="19" height="27.3333">
+  <object id="428" name="Player" type="Player" x="1627.67" y="9495.17" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="10"/>

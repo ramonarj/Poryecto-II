@@ -34,6 +34,8 @@ private:
 	bool saveGame = false;
 	bool loadGame = false;
 
+	bool finishGame_ = false;
+
 public:
 	Entity* inventory;
 	Entity* chest;
@@ -76,6 +78,9 @@ public:
 
 	bool getLoadGame() { return loadGame; };
 	void setLoadGame(bool b) { loadGame = b; };
+
+	bool getFinishGame() { return finishGame_; };
+	void setFinishGame(bool b) { finishGame_ = b; };
 };
 
 typedef PlayState PlayState;

@@ -1,20 +1,20 @@
 #pragma once
 #include "BaseControllerInput.h"
-#include "OrderPuzzleComponent.h"
-#include "checkML.h"
 
 
-class OrderPuzzleController :
+class PauseState;
+
+class PauseControllerInput :
 	public BaseControllerInput
 {
 public:
-	OrderPuzzleController();
-	virtual ~OrderPuzzleController();
+	PauseControllerInput(PauseState* h);
+	virtual ~PauseControllerInput();
 	virtual void handleInput(Entity* o, Uint32 time, const SDL_Event& event);
 
 private:
 	bool joystickMoved = true;
 	int slot = 0;
-	OrderPuzzleComponent* puzll_ = nullptr;
+	PauseState* state_ = nullptr;
 };
 

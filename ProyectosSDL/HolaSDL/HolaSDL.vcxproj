@@ -70,6 +70,7 @@
     <ClCompile Include="LightTestState.cpp" />
     <ClCompile Include="LoaderParams.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuControllerInput.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MessageRenderer.cpp" />
     <ClCompile Include="MessageTimer.cpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="OrderPuzzle.cpp" />
     <ClCompile Include="OrderPuzzleComponent.cpp" />
     <ClCompile Include="OrderPuzzleController.cpp" />
+    <ClCompile Include="PauseControllerInput.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -178,6 +180,7 @@
     <ClInclude Include="LightManager.h" />
     <ClInclude Include="LightTestState.h" />
     <ClInclude Include="LoaderParams.h" />
+    <ClInclude Include="MenuControllerInput.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageRenderer.h" />
     <ClInclude Include="Messages.h" />
@@ -192,6 +195,7 @@
     <ClInclude Include="OrderPuzzle.h" />
     <ClInclude Include="OrderPuzzleComponent.h" />
     <ClInclude Include="OrderPuzzleController.h" />
+    <ClInclude Include="PauseControllerInput.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />

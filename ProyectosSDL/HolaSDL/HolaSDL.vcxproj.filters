@@ -106,6 +106,8 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="MenuControllerInput.cpp" />
+    <ClCompile Include="PauseControllerInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationRenderer.h" />
@@ -214,6 +216,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CreditsState.h" />
     <ClInclude Include="Credits.h" />
+    <ClInclude Include="MenuControllerInput.h" />
+    <ClInclude Include="PauseControllerInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HolaSDL.rc" />

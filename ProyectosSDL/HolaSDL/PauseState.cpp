@@ -1,6 +1,7 @@
 #include "PauseState.h"
 #include "Game.h"
 #include "Button.h"
+#include "PauseControllerInput.h"
 
 PauseState::PauseState() : GameState()
 {
@@ -36,6 +37,9 @@ void PauseState::startState()
 	cursor_->addComponent(new StaticImageRender(Game::Instance()->getResourceManager()->getTexture("Cursor")));
 	cursor_->addComponent(new MouseInputComponent());
 
+	Entity* mando = new Entity();
+	mando->addComponent(new PauseControllerInput(this));
+	stage_.push_back(mando);
 
 	//Background
 	Entity* bg = new Entity();
@@ -49,16 +53,21 @@ void PauseState::startState()
 	//Volver al juego
 	Entity* newGameButton = new Entity();
 	newGameButton->addComponent(new Button(resume_game, Game::Instance()->getResourceManager()->getTexture("BackToGameButton"), Vector2D((Game::Instance()->getWindowWidth()/2) - (Game::Instance()->getResourceManager()->getTexture("BackToGameButton")->getWidth()/2), 380)));
+	botones.push_back(newGameButton);
 	stage_.push_back(newGameButton);
 
 	//Volver al menu
 	Entity* backToMenu = new Entity();
 	backToMenu->addComponent(new Button(back_to_menu, Game::Instance()->getResourceManager()->getTexture("BackToMenuButton"), Vector2D((Game::Instance()->getWindowWidth() / 2) - (Game::Instance()->getResourceManager()->getTexture("BackToMenuButton")->getWidth() / 2), 460)));
+	botones.push_back(backToMenu);
+	backToMenu->getComponent<Button>()->MarkButton(false);
 	stage_.push_back(backToMenu);
 
 	//Cerrar el juego
 	Entity* closeGame = new Entity();
 	closeGame->addComponent(new Button(close_game, Game::Instance()->getResourceManager()->getTexture("ExitPause"), Vector2D((Game::Instance()->getWindowWidth() / 2) - (Game::Instance()->getResourceManager()->getTexture("ExitPause")->getWidth() / 2), 540)));
+	botones.push_back(closeGame);
+	closeGame->getComponent<Button>()->MarkButton(false);
 	stage_.push_back(closeGame);
 
 }
@@ -79,4 +88,33 @@ void PauseState::handleInput(Uint32 time, SDL_Event & event)
 			Game::Instance()->getStateMachine()->popStateSafe();
 		}
 	}
+}
+
+void PauseState::update(Uint32 time) {
+	if (controller_ != nullptr)
+		if (!controller_->joysticksInitialised())
+			GameState::update(time);
+}
+
+void PauseState::moveButton(int a)
+{
+	if (a == 1) {
+		if (actualButton > 0) {
+			botones[actualButton]->getComponent<Button>()->MarkButton(false);
+			actualButton--;
+			botones[actualButton]->getComponent<Button>()->MarkButton(true);
+		}
+	}
+	else if (a == 0) {
+		if (actualButton < 2) {
+			botones[actualButton]->getComponent<Button>()->MarkButton(false);
+			actualButton++;
+			botones[actualButton]->getComponent<Button>()->MarkButton(true);
+		}
+	}
+}
+
+void PauseState::pressButton()
+{
+	botones[actualButton]->getComponent<Button>()->cbOnClick(Game::Instance());
 }

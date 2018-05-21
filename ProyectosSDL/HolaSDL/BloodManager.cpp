@@ -26,7 +26,7 @@ void BloodManager::render(Entity * e, Uint32 time) {
 	Uint32 interPositivo, interNegativo;
 	int currentLife = player_->getComponent<Player>()->getLife();
 	int maxlife = player_->getComponent<Player>()->getMaxLife();
-	float bloodActiveNormal = (int)ceil(maxlife*0.5);	//cantidad de vida para que se active la sangre de pantalla (vel normal)
+	float bloodActiveNormal = (int)ceil(maxlife*0.3);	//cantidad de vida para que se active la sangre de pantalla (vel normal)
 	float bloodActiveFast = (int)ceil(maxlife*0.2);	//cantidad de vida para que se active la sangre de pantalla (vel rápida)
 
 	if (bloodOn_) {

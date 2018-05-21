@@ -1,16 +1,16 @@
 #include "MenuState.h"
 #include "Game.h"
 #include "Button.h"
+#include "MenuControllerInput.h"
 
 MenuState* MenuState::s_pInstance = nullptr;
 
 MenuState::MenuState() : GameState(), loading(false) //, pRenderer(nullptr), resource(nullptr), width(0), height(0)
 { 
-
 }
 
 MenuState::~MenuState() {
-
+	delete controller_;
 }
 
 
@@ -58,6 +58,10 @@ void MenuState::startState()
 {
 	Game::Instance()->getResourceManager()->getMusic("Menu")->play();
 
+	Entity* mando = new Entity();
+	mando->addComponent(new MenuControllerInput(this));
+	stage_.push_back(mando);
+
 	loadingTex_ = Game::Instance()->getResourceManager()->getTexture("LoadingScreen");
 
 	cursor_ = new Entity();
@@ -78,27 +82,36 @@ void MenuState::startState()
 	//Nueva partida
 	Entity* newGameButton = new Entity();
 	newGameButton->addComponent(new Button(new_game, Game::Instance()->getResourceManager()->getTexture("NewGameButton"), Vector2D(0,380)));
+	botones.push_back(newGameButton);
 	stage_.push_back(newGameButton);
 
 	//Cargar Partida
 	Entity* closeButton = new Entity();
 	closeButton->addComponent(new Button(load_game, Game::Instance()->getResourceManager()->getTexture("LoadGameButton"), Vector2D(0, 460)));
+	closeButton->getComponent<Button>()->MarkButton(false);
+	botones.push_back(closeButton);
 	stage_.push_back(closeButton);
 
 	//Creditos
 	Entity* creditsButton = new Entity();
 	creditsButton->addComponent(new Button(credits_button, Game::Instance()->getResourceManager()->getTexture("CreditsButton"), Vector2D(0, 540)));
+	creditsButton->getComponent<Button>()->MarkButton(false);
+	botones.push_back(creditsButton);
 	stage_.push_back(creditsButton);
 
 	//Salir
 	Entity* ExitButton = new Entity();
 	ExitButton->addComponent(new Button(close_game, Game::Instance()->getResourceManager()->getTexture("ExitButton"), Vector2D(0, 620)));
+	ExitButton->getComponent<Button>()->MarkButton(false);
+	botones.push_back(ExitButton);
 	stage_.push_back(ExitButton);
 
 }
 
 void MenuState::update(Uint32 time) {
-	GameState::update(time);
+	if (controller_ != nullptr && !controller_->joysticksInitialised()) {
+		GameState::update(time);
+	}
 }
 
 void MenuState::render(Uint32 time)
@@ -110,10 +123,35 @@ void MenuState::render(Uint32 time)
 	}
 }
 
+
+
 void MenuState::setMenuMusic(bool b)
 {
 	if (b) Game::Instance()->getResourceManager()->getMusic("Menu")->play();
 	else Game::Instance()->getResourceManager()->getMusic("Menu")->close();
+}
+
+void MenuState::moveButton(int a)
+{
+	if (a == 1) {
+		if (actualButton > 0) {
+			botones[actualButton]->getComponent<Button>()->MarkButton(false);
+			actualButton--;
+			botones[actualButton]->getComponent<Button>()->MarkButton(true);
+		}
+	}
+	else if (a == 0) {
+		if (actualButton < 3) {
+			botones[actualButton]->getComponent<Button>()->MarkButton(false);
+			actualButton++;
+			botones[actualButton]->getComponent<Button>()->MarkButton(true);
+		}
+	}
+}
+
+void MenuState::pressButton()
+{
+	botones[actualButton]->getComponent<Button>()->cbOnClick(Game::Instance());
 }
 
 

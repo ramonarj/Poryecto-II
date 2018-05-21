@@ -35,3 +35,11 @@ void Button::handleInput(Entity* o, Uint32 time, const SDL_Event& event) {
 		}
 	}
 }
+
+void Button::MarkButton(bool value)
+{
+	if(value)
+		SDL_SetTextureColorMod(texture_->getSdlTexture(), 255, 255, 255);
+	else
+		SDL_SetTextureColorMod(texture_->getSdlTexture(), 155, 155, 155);
+}

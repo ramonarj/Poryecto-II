@@ -7,6 +7,7 @@
 #include <memory>
 #include "checkML.h"
 
+class MenuControllerInput;
 
 class MenuState : public GameState {
 
@@ -15,6 +16,9 @@ private:
 	MenuState();
 	static MenuState* s_pInstance;
 	Texture* loadingTex_;
+	vector<Entity*> botones;
+	MenuControllerInput* controller_ = nullptr;
+	int actualButton = 0;
 
 public:
 	static MenuState* Instance()
@@ -35,6 +39,8 @@ public:
 	};
 
 	void setMenuMusic(bool b);
+	void moveButton(int a);
+	void pressButton();
 
 };
 

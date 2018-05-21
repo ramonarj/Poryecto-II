@@ -11,9 +11,6 @@ typedef void CallBackOnClick(Game* game);
 
 class Button : public Component{
 
-protected:
-	CallBackOnClick* cbOnClick;
-
 private:
 	Texture* texture_;
 	SDL_Rect rect;
@@ -29,5 +26,8 @@ public:
 
 	//virtual void loadFromFile(ifstream &archivo) {}; 
 	//virtual void saveFromFile(ofstream &archivo) {}; 
+
+	void MarkButton(bool value);
+	CallBackOnClick* cbOnClick;
 };
 

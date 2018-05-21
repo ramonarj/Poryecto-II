@@ -175,7 +175,7 @@ void PlayState::update(Uint32 time)
 
 	if (finishGame_ && fadeManager_->getComponent<FadeManager>()->getAlphaFade() == MAX_FADE_ALPHA)
 	{
-		Game::Instance()->getStateMachine()->pushState(new CreditsState());
+		Game::Instance()->getStateMachine()->pushState(new CreditsState(2));
 	}
 }
 

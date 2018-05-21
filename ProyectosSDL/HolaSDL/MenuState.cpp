@@ -31,7 +31,7 @@ static void load_game(Game* game) {
 
 static void credits_button(Game* game) {
 	cout << "Iniciar creditos" << endl;
-	Game::Instance()->getStateMachine()->pushState(new CreditsState());
+	Game::Instance()->getStateMachine()->pushState(new CreditsState(1));
 }
 
 static void close_game(Game* game) {

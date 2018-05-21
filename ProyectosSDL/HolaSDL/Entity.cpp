@@ -39,8 +39,10 @@ void Entity::handleInput(Uint32 time, const SDL_Event& event) {
 void Entity::update(Uint32 time) {
 	if (isActive()) {
 		for (Component* c : comps_) {
-			if (c->isEnabled())
+			if (c->isEnabled()) {
+				c->timing(time);
 				c->update(this, time);
+			}
 		}
 	}
 }

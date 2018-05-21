@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Credits.h"
 
-CreditsState::CreditsState(): GameState() {
+CreditsState::CreditsState(int statesToPop): GameState(), popStates(statesToPop) {
 }
 
 CreditsState::~CreditsState(){
@@ -64,12 +64,15 @@ void CreditsState::handleInput(Uint32 time, SDL_Event & event)
 	if (event.type == SDL_KEYDOWN) {
 		if (event.key.keysym.sym == SDLK_ESCAPE) { //Pressing Escape will enter pause state
 			cout << "Volver al juego" << endl;
-			Game::Instance()->getStateMachine()->popStateSafe();
-			if (PlayState::Instance()->getFinishGame())
-			{
-				MenuState::Instance()->setLoadingScreen(false);
+			for (int i = 0; i < popStates; i++) {
 				Game::Instance()->getStateMachine()->popStateSafe();
 			}
+
+			//if (PlayState::Instance()->getFinishGame())
+			//{
+			//	MenuState::Instance()->setLoadingScreen(false);
+			//	Game::Instance()->getStateMachine()->popStateSafe();
+			//}
 		}
 	}
 }

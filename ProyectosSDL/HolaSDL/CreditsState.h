@@ -6,8 +6,9 @@
 class CreditsState : public GameState {
 private:
 	float targetTime;
+	int popStates;
 public:
-	CreditsState();
+	CreditsState(int statesToPop);
 	~CreditsState();
 	virtual void startState();
 	virtual void update(Uint32 time);

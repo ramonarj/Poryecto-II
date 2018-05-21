@@ -18,6 +18,7 @@ private:
 	Texture* loadingTex_;
 	vector<Entity*> botones;
 	Entity* controller_ = nullptr;
+	MenuControllerInput* controllerComponent_ = nullptr;
 	int actualButton = 0;
 
 public:

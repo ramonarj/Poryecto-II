@@ -38,7 +38,8 @@ void PauseState::startState()
 	cursor_->addComponent(new MouseInputComponent());
 
 	controller_ = new Entity();
-	controller_->addComponent(new PauseControllerInput(this));
+	controllerComponent_ = new PauseControllerInput(this);
+	controller_->addComponent(controllerComponent_);
 	stage_.push_back(controller_);
 
 	//Background
@@ -91,8 +92,8 @@ void PauseState::handleInput(Uint32 time, SDL_Event & event)
 }
 
 void PauseState::update(Uint32 time) {
-	if (controller_ != nullptr && controller_->getComponent<PauseControllerInput>() != nullptr)
-		if (!controller_->getComponent<PauseControllerInput>()->joysticksInitialised())
+	if (controller_ != nullptr && controllerComponent_ != nullptr)
+		if (!controllerComponent_->joysticksInitialised())
 			GameState::update(time);
 }
 

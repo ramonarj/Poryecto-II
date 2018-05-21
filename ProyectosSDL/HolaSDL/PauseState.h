@@ -10,6 +10,7 @@ public:
 	~PauseState();
 	vector<Entity*> botones;
 	Entity* controller_ = nullptr;
+	PauseControllerInput* controllerComponent_ = nullptr;
 	int actualButton = 0;
 
 	virtual void startState();

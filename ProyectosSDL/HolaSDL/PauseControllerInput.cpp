@@ -96,10 +96,13 @@ void PauseControllerInput::handleInput(Entity * o, Uint32 time, const SDL_Event 
 			m_buttonStates[0][event.jbutton.button] = false;
 		}
 
-		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A]))) {
+		if (((!controllerType && m_buttonStates[0][Cross]) || (controllerType && m_buttonStates[0][A])) && !buttonPressed) {
 
 			state_->pressButton();
-
+			buttonPressed = true;
+		}
+		else if (((!controllerType && !m_buttonStates[0][Cross]) || (controllerType && !m_buttonStates[0][A])) && buttonPressed) {
+			buttonPressed = false;
 		}
 	}
 }

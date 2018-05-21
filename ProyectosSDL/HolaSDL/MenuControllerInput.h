@@ -15,5 +15,7 @@ private:
 	bool joystickMoved = true;
 	int slot = 0;
 	MenuState* state_ = nullptr;
+
+	bool buttonPressed = false;
 };
 

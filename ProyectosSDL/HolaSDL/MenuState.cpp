@@ -58,9 +58,9 @@ void MenuState::startState()
 {
 	Game::Instance()->getResourceManager()->getMusic("Menu")->play();
 
-	Entity* mando = new Entity();
-	mando->addComponent(new MenuControllerInput(this));
-	stage_.push_back(mando);
+	controller_ = new Entity();
+	controller_->addComponent(new MenuControllerInput(this));
+	stage_.push_back(controller_);
 
 	loadingTex_ = Game::Instance()->getResourceManager()->getTexture("LoadingScreen");
 
@@ -109,9 +109,9 @@ void MenuState::startState()
 }
 
 void MenuState::update(Uint32 time) {
-	if (controller_ != nullptr && !controller_->joysticksInitialised()) {
-		GameState::update(time);
-	}
+	if (controller_ != nullptr && controller_->getComponent<PauseControllerInput>() != nullptr)
+		if (!controller_->getComponent<PauseControllerInput>()->joysticksInitialised())
+			GameState::update(time);
 }
 
 void MenuState::render(Uint32 time)

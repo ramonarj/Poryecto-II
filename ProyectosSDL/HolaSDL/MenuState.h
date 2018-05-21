@@ -17,7 +17,7 @@ private:
 	static MenuState* s_pInstance;
 	Texture* loadingTex_;
 	vector<Entity*> botones;
-	MenuControllerInput* controller_ = nullptr;
+	Entity* controller_ = nullptr;
 	int actualButton = 0;
 
 public:

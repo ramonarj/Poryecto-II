@@ -78,7 +78,9 @@ public:
 		//LOS OBJETOS VAN CON ANIMACION PARA OBJETOS ESTATICOS
 		e->addComponent(new AnimationRenderObject(Game::Instance()->getResourceManager()->getTexture(itemTypetoString(type_)),400,false,false,true));
 		Game::Instance()->stateMachine_.currentState()->getInteractibles()->push_back(e);
+
 		return e;
+
 	};
 	Component* chooseItemType(const ItemType type) const{
 		Component* i;

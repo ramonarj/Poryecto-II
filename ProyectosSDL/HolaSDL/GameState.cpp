@@ -107,7 +107,7 @@ void GameState::removeEntities() {
 		removeInteractible(e);
 		removeCharacter(e);
 		removeDoor(e);
-		delete(e);
+		//delete(e);
 	}
 	removedEntities_.clear();
 	

@@ -21,7 +21,7 @@ Chest::Chest()
 
 Chest::~Chest()
 {
-		for (int i = 0; i < inventory.size(); i++){ if (inventory[i] != nullptr) delete inventory[i]; }
+		//for (int i = 0; i < inventory.size(); i++){ if (inventory[i] != nullptr) delete inventory[i]; }
 }
 
 void Chest::update(Entity * e, Uint32 time)

@@ -56,6 +56,7 @@ void ItemContainer::loadToFile(ifstream& file)
 	while (!file.fail()) {
 		pEntity = GameObjectFactory::Instance()->create(name);
 		addItem(pEntity);
+		pEntity->setName(name);
 		if (pEntity->getComponent<Key>() != nullptr)
 		{
 			file >> numKey;

@@ -41,10 +41,10 @@ Inventory::Inventory()
 
 Inventory::~Inventory()
 {
-	for (int i = 0; i < inventory.size(); i++){
+	/*for (int i = 0; i < inventory.size(); i++){
 		if (inventory[i] != nullptr)
 			delete inventory[i];
-	}
+	}*/
 
 	//for (int i = 0; i < keys.size(); i++) { if (keys[i] != nullptr) delete keys[i]; }
 	//if (equiped != nullptr) delete equiped;

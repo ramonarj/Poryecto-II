@@ -408,7 +408,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
 			else if (e->Attribute("type") == std::string("MessageInteractible"))
 				loadSign(pEntity, numSign, orientacion);
 
-			else if (e->Attribute("type") == std::string("Item"))
+			if (pEntity->getComponent<Item>() != nullptr)
 			{
 				pEntity->getComponent<Item>()->load(numItemFile);
 				numItemFile++;

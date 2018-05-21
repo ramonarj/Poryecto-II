@@ -21,6 +21,11 @@ void BaseControllerInput::clean() {
 			SDL_JoystickClose(m_joysticks[i]);
 		}
 		m_bJoysticksInitialised = false;
+		for (int i = 0; i < m_joystickValues.size(); i++)
+		{
+			delete m_joystickValues.at(i).first;
+			delete m_joystickValues.at(i).second;
+		}
 		m_joystickValues.clear();
 		m_buttonStates.clear();
 		m_joysticks.clear();

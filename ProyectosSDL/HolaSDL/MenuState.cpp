@@ -10,7 +10,6 @@ MenuState::MenuState() : GameState(), loading(false) //, pRenderer(nullptr), res
 }
 
 MenuState::~MenuState() {
-	delete controller_;
 }
 
 

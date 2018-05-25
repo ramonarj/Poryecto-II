@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.2" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="612">
+<map version="1.0" tiledversion="2018.04.18" orientation="orthogonal" renderorder="right-down" width="600" height="600" tilewidth="20" tileheight="20" infinite="0" nextobjectid="612">
  <tileset firstgid="1" name="ParedesSuelo" tilewidth="20" tileheight="20" tilecount="576" columns="36">
   <image source="Tileshet.png" width="720" height="320"/>
  </tileset>
@@ -2191,16 +2191,6 @@
   <properties>
    <property name="staticEntity" type="int" value="0"/>
   </properties>
-  <object id="465" name="Enemy" type="Enemy" x="700.5" y="8079.83" width="19" height="27.3333">
-   <properties>
-    <property name="damage" type="int" value="1"/>
-    <property name="life" type="int" value="3"/>
-    <property name="numEnemy" type="int" value="1"/>
-    <property name="textureHeight" type="int" value="46"/>
-    <property name="textureID" value="enemy"/>
-    <property name="textureWidth" type="int" value="42"/>
-   </properties>
-  </object>
   <object id="466" name="Enemy" type="Enemy" x="3424.5" y="9471.66" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
@@ -2221,7 +2211,7 @@
     <property name="textureWidth" type="int" value="20"/>
    </properties>
   </object>
-  <object id="468" name="Enemy" type="Enemy" x="3057.5" y="9309.33" width="19" height="27.3333">
+  <object id="468" name="Enemy" type="Enemy" x="3153.5" y="9307.33" width="19" height="27.3333">
    <properties>
     <property name="damage" type="int" value="1"/>
     <property name="life" type="int" value="3"/>

@@ -68,25 +68,25 @@ void Enemy::move(Entity* o)
 	{
 		//Movimiento en X
 		if (pos.getX() < playerPos.getX())
-			vel.setX(cos(alpha) * velMag);
+			vel.setX(cos(alpha) * velMag * getDeltaTime() / 4);
 		else if (pos.getX() > playerPos.getX())
-			vel.setX(cos(alpha) * -velMag);
+			vel.setX(cos(alpha) * -velMag * getDeltaTime() / 4);
 		else
 			vel.setX(0);
 
 		//Movimiento en Y
 
 		if (pos.getY() - aux < playerPos.getY() - dif)
-			vel.setY(velMag);
+			vel.setY(velMag * getDeltaTime() / 4);
 		else if (pos.getY() - aux > playerPos.getY() + dif)
-			vel.setY(-velMag);
+			vel.setY(-velMag * getDeltaTime() / 4);
 		else
 			vel.setY(0);
 
 		if (vel.getX() != 0 && vel.getY() != 0)
 		{
-			vel.setX(vel.getX() * (sqrt(2) / 4));
-			vel.setY(vel.getY() * (sqrt(2) / 4));
+			vel.setX(vel.getX() * (sqrt(2) / 4) * getDeltaTime() / 4);
+			vel.setY(vel.getY() * (sqrt(2) / 4) * getDeltaTime() / 4);
 		}
 
 		/*if (numEnemy_ == 3 && o->getDirection().getX() == 0 && o->getDirection().getY() == 1)
